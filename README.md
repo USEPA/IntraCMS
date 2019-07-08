@@ -38,3 +38,31 @@ This is a Composer-based installer for the [Lightning](https://www.drupal.org/pr
 3. For the database, select SQLite for a simple installation. The DB location has defaulted to a file store in the drupal directory. Keep this as default.
 4. Once submitting the DB settings, the installation of the DB will take some time.
 5. Once completed, enter your preferred admin name and credentials.
+
+## IIS Express
+* Install for Windows machines here: https://www.microsoft.com/en-us/download/details.aspx?id=48264
+* Once installed, `iisexpress` is available via command line. Test with `iisexpress /?`
+* The configuration file for your IIS sites lives in C:\Users\[current_user]\Documents\IISExpress\config
+* To add a site configuration, edit applicationhost.config:
+   ```xml
+    <site name="ord" id="1">
+        <application path="/" applicationPool="Clr4IntegratedAppPool">
+            <virtualDirectory path="/" physicalPath="[Full path to ORD@WORK site root]\docroot" />
+        </application>
+        <bindings>
+            <binding protocol="http" bindingInformation="*:8080:localhost" />
+        </bindings>
+    </site>
+    ```
+    *  The bindingInformation section can have a different port (other than 8080) if required. Keep Application Pool setting to the default.
+* Add the following within the system.webServer tag
+    ```xml
+   <fastCgi>
+        <application fullPath="[Full path to PHP installation directory]\php-cgi.exe" stderrMode="ReturnStdErrIn500" activityTimeout="370">
+            <environmentVariables>
+                <environmentVariable name="PHPRC" value="[Full path to PHP installation directory]" />
+            </environmentVariables>
+        </application>
+    </fastCgi>
+    ```
+* To start the web server, run `iisexpress` in the command line. If you are managing multiple sites within the config, run `iisexpress /site:[site_name]` or `iisexpress /site:[site_id]`
