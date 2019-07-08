@@ -4,6 +4,12 @@ The United States Environmental Protection Agency (EPA) GitHub project code is p
 
 This is a Composer-based installer for the [Lightning](https://www.drupal.org/project/lightning) Drupal distribution. Welcome to the future!
 
+## Lightning quickstart:
+You can start the site with no dependency on web servers or installed DB by using what Lightning is prepackaged with. Simply run the following command in the root of your project:
+`composer quick-start`
+
+This will install the PHP dependencies, install a SQLITE DB within the directory of your repo, and spin up a Travis server instance. While very simple, this can be a slow web server stack. Following guidelines below, it might be more beneficial to use your own preferred DB, Web Server, and PHP installation.
+
 ## System Requirements
 
 * PHP 7.3.7
@@ -28,7 +34,7 @@ This is a Composer-based installer for the [Lightning](https://www.drupal.org/pr
 1. From command line, run command  `git clone https://github.com/USEPA/ORDatWork.git`.
 2. If required, enter git username/email and password when prompted.
 3. `cd ORDatWork` -- Navigate into the cloned git repo
-4. `git checkout origin/development` -- checkout the development branch
+4. `git checkout -b origin/development` -- checkout the development branch
 5. `composer install` -- install all dependencies for the project. This can take some time.
     * For a Windows environment, this must be done in a BASH command line. Try GIT bash, included with the GIT installation, or Ubuntu Bash, new to Windows 10. 
 
