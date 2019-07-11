@@ -24,7 +24,7 @@ The United States Environmental Protection Agency (EPA) GitHub project code is p
 
 #### Setup your config sync folder for ADD
 1. Create a 'sync' folder at 'site/default/files/config_your_config_folder_name' path.
-2: Update your settings.php file in the *Location of the site configuration files.* area with the following:
+2. Update your settings.php file in the *Location of the site configuration files.* area with the following:
 
    ` $config_directories = [
       CONFIG_SYNC_DIRECTORY => 'sites/default/files/config_your_config_folder_name/sync',
