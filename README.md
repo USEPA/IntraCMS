@@ -22,7 +22,7 @@ This is a Composer-based installer for the [Lightning](https://www.drupal.org/pr
 7. Click **OK**
 8. Once the site has been created in ADD, click on the local site URL to view the site in your browser.
 
-## Database setup
+## Database setup for non-ADD setup
 1. Navigate to site in browser. (URL depends on your webserver. It can be localhost:8080 for example.)
 2. Drupal will prompt you to select site settings. First is the language, then the database.
 3. For the database, select SQLite for a simple installation. The DB location has defaulted to a file store in the drupal directory. Keep this as default.
