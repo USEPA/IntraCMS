@@ -12,6 +12,25 @@ The United States Environmental Protection Agency (EPA) GitHub project code is p
 5. `composer install` -- install all dependencies for the project. This can take some time.
     * For a Windows environment, this must be done in a BASH command line. Try GIT bash, included with the GIT installation, or Ubuntu Bash, new to Windows 10. 
 
+### Developing new feature
+1. If contributing to the project, first ensure you have your development environment set up. Use Acquia Dev Desktop (below), then read through system-requirements for dependency installation.
+2. When working on a new feature, you must create a new GIT branch from the remote development branch. No branches can be made from staging or master. To create a new branch from development, do the following:
+    1. `git fetch` -- updates your local GIT with the latest details from the remote.
+    2. `git checkout -b [name of your feature branch] origin/development` -- This creates a new branch with the latest from origin/development.
+    3. The git checkout command above will also point your repo to the new branch.
+ 3. Before starting work on your new branch, you must install any updates from the development branch. This can be dependencies in composer.json, or new configurations that manage the Drupal projects structure.
+    1. `composer install` -- Update your dependencies with latest changes
+    2. It's possible the a dependency was removed from composer.json and your project must be updated. If this is the case, you will be prompted after running `composer install` to run `composer update`. This will only remove the dependencies from your local project. Do not run `composer update` otherwise. 
+    3. `drush config:import` -- Updates your Drupal Database with the last configuration changes. It will prompt you to confirm the configurations being imported. Type `y` and enter.   
+
+### Committing code
+1. While developing, it is good practice to commit your code often. 
+    1. Run `git commit`
+### Deploying a new feature
+1. After finishing a feature locally, you must deploy to the repo and create a pull request (PR). Before deploying, you must update any changed configurations.
+    1. Run `drush config:export` or `drush cex` to take your local Drupal configurations and store them in code.
+    2. Run `git add [configuration directory location` to ensure any new files are being collected.
+    3. 
 ### [Acquia Dev Desktop (ADD)](https://dev.acquia.com/downloads)
 1. Open ADD
 2. Click the **+** button from the bottom left corner
