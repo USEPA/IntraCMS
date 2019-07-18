@@ -24,11 +24,11 @@ The United States Environmental Protection Agency (EPA) GitHub project code is p
 8. Once the site has been created in ADD, click on the local site URL to view the site in your browser.
 
 #### Setup your config sync folder for ADD
-1. Create a 'sync' folder at 'site/default/files/config_your_config_folder_name' path.
+1. Create a 'sync' folder at 'ORDatWork/config' path. NOTE: This should be in the same directory as your docroot folder. You may need to cut the folder from inside '/sites/default/'
 2. Update your settings.php file in the *Location of the site configuration files.* area with the following:
 
    ` $config_directories = [
-      CONFIG_SYNC_DIRECTORY => 'sites/default/files/config_your_config_folder_name/sync',
+      CONFIG_SYNC_DIRECTORY => '../config/sync',
     ];`
 
 3. Check your sites Status Report page (/admin/reports/status#error) to ensure the error the sync error is not there.
