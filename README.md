@@ -52,6 +52,9 @@ The United States Environmental Protection Agency (EPA) GitHub project code is p
     1. `git add README.md` from project root.
     2. `git add config/` stages the entire directory
 3. Run `git commit -m "Short and descriptive commit message"`, with a commit message that describes the work completed.
+4. Before pushing your code, it is good practice to pull the latest changes from development. This makes sure you are up to date and not accidentally overwriting another developers code.
+    1. Run `git pull origin development`
+    2. This pulls the latest code from development branch and merges into your local branch. As long as there are not merge conflicts, you are ready to continue deploying your code.
 4. Run `git push`. If this is the first time pushing a new branch, you will be prompted to run `git push --set-upstream origin [local branch name]`. This will create a new branch in the remote repo with your changes. Afterwards you only need to run `git push` to update your branch.
 
 ### Deploying a new feature
