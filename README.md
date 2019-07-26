@@ -8,7 +8,7 @@ The United States Environmental Protection Agency (EPA) GitHub project code is p
 1. From command line, run command  `git clone https://github.com/USEPA/ORDatWork.git`. If using [Acquia Dev Desktop (ADD)](https://dev.acquia.com/downloads), have the repository cloned inside `~Sites/devdesktop`
 2. If required, enter git username/email and password when prompted.
 3. `cd ORDatWork` -- Navigate into the cloned git repo 
-4. `git checkout -b origin/development` -- checkout the development branch
+4. `git checkout --track origin/development` -- checkout the development branch from remote
 5. `composer install` -- install all dependencies for the project. This can take some time.
     * For a Windows environment, this must be done in a BASH command line. Try GIT bash, included with the GIT installation, or Ubuntu Bash, new to Windows 10. 
 
