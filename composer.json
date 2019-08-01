@@ -17,6 +17,14 @@
         "process-timeout": 0
     },
     "extra": {
+        "patches": {
+            "drupal/group": {
+                "2797793: Associate menu with a group": "https://www.drupal.org/files/issues/2019-07-23/group-support_string_entity_ids-2797793-164.patch"
+            },
+            "drupal/groupmenu": {
+                "3010909: Group menu association": "https://www.drupal.org/files/issues/2019-04-04/groupmenu-change_references_to_entity_id-3010909-9.patch"
+            }
+        },
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,
         "installer-paths": {
