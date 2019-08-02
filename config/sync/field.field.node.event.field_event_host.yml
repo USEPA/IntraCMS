@@ -1,0 +1,29 @@
+uuid: b48e2c77-b8cb-47bc-b7e3-ca1268b5db8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event_host
+    - node.type.event
+    - taxonomy.vocabulary.event_host
+id: node.event.field_event_host
+field_name: field_event_host
+entity_type: node
+bundle: event
+label: 'Event Host'
+description: 'Select the host of this event.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      event_host: event_host
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
