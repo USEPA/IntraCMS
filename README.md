@@ -5,6 +5,7 @@ The United States Environmental Protection Agency (EPA) GitHub project code is p
 ## Initial Setup
 
 ### Git initialization and dependency installation
+Use a BASH command line (e.g. GIT BASH) for a Windows environment.
 1. From command line, run command  `git clone https://github.com/USEPA/ORDatWork.git`. If using [Acquia Dev Desktop (ADD)](https://dev.acquia.com/downloads), have the repository cloned inside `~Sites/devdesktop`
 2. If required, enter git username/email and password when prompted.
 3. `cd ORDatWork` -- Navigate into the cloned git repo 
