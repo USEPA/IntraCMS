@@ -46,6 +46,8 @@ Use a BASH command line (e.g. GIT BASH) for a Windows environment.
     1. `composer install` -- Update your dependencies with latest changes
     2. It's possible the a dependency was removed from composer.json and your project must be updated. If this is the case, you will be prompted after running `composer install` to run `composer update`. This will only remove the dependencies from your local project. Do not run `composer update` otherwise. 
     3. `drush config:import` -- Updates your Drupal Database with the last configuration changes. It will prompt you to confirm the configurations being imported. Type `y` and enter.   
+      1. In order to run `drush config:import`, you must first set your site UUID once.
+      2. `drush config-set "system.site" uuid "a20f8b2d-8c57-4965-bb1c-d142c5b66431"`
 
 ### Committing and pushing code
 1. While developing, it is good practice to commit and push your code often. 
