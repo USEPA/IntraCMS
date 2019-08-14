@@ -1,34 +1,31 @@
-uuid: 6402664c-e85b-4ee3-a139-20a4842bcef0
+uuid: 0b825003-872f-4e0a-b660-927c36cfde50
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.page.body
-    - node.type.page
+    - field.field.node.photos_of_the_week.body
+    - node.type.photos_of_the_week
   module:
     - text
     - user
-_core:
-  default_config_hash: 5LgpWwg6HIBQ1CW3MZaz81YFkqmyQEc2RakDWut74EY
-id: node.page.teaser
+id: node.photos_of_the_week.teaser
 targetEntityType: node
-bundle: page
+bundle: photos_of_the_week
 mode: teaser
 content:
   body:
     label: hidden
     type: text_summary_or_trimmed
-    weight: 100
+    weight: 101
     settings:
       trim_length: 600
     third_party_settings: {  }
     region: content
   links:
-    weight: 101
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
     region: content
 hidden:
-  content_moderation_control: true
-  field_meta_tags: true
-  layout_selection: true
   search_api_excerpt: true
