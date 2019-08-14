@@ -1,0 +1,28 @@
+uuid: ee880e4c-749f-4032-9701-d3a42e2afc98
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_week_photos
+    - media.type.image
+    - node.type.photos_of_the_week
+id: node.photos_of_the_week.field_week_photos
+field_name: field_week_photos
+entity_type: node
+bundle: photos_of_the_week
+label: Photos
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference
