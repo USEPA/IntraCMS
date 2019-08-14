@@ -1,0 +1,31 @@
+uuid: 51eac17f-6120-4e18-b42d-8affa52bbc9b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.question_and_answer.field_answer
+    - field.field.paragraph.question_and_answer.field_question
+    - paragraphs.paragraphs_type.question_and_answer
+  module:
+    - text
+id: paragraph.question_and_answer.default
+targetEntityType: paragraph
+bundle: question_and_answer
+mode: default
+content:
+  field_answer:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_question:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }
