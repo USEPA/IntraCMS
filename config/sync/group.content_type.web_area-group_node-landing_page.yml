@@ -1,0 +1,20 @@
+uuid: 94222cb3-5f3a-4d6a-ac1c-c78924d6b357
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.web_area
+    - node.type.landing_page
+  module:
+    - gnode
+    - node
+id: web_area-group_node-landing_page
+label: 'Web Area: Group node (Landing page)'
+description: 'Adds <em class="placeholder">Landing page</em> content to groups both publicly and privately.'
+group_type: web_area
+content_plugin: 'group_node:landing_page'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 1
