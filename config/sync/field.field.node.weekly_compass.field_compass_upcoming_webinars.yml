@@ -1,0 +1,23 @@
+uuid: e6e06e73-62d6-4072-b908-1160be99cc38
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_compass_upcoming_webinars
+    - node.type.weekly_compass
+  module:
+    - link
+id: node.weekly_compass.field_compass_upcoming_webinars
+field_name: field_compass_upcoming_webinars
+entity_type: node
+bundle: weekly_compass
+label: 'Upcoming Webinars'
+description: 'Enter the webinar title (including the date and time) and associated link.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

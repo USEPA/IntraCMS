@@ -1,28 +1,28 @@
-uuid: 51eac17f-6120-4e18-b42d-8affa52bbc9b
+uuid: 30a25796-a0fc-4361-96e7-e2a81d121276
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.question_and_answer.field_answer
-    - field.field.paragraph.question_and_answer.field_question
-    - paragraphs.paragraphs_type.question_and_answer
+    - field.field.paragraph.title_and_text.field_paragraph_text
+    - field.field.paragraph.title_and_text.field_paragraph_title
+    - paragraphs.paragraphs_type.title_and_text
   module:
     - text
-id: paragraph.question_and_answer.default
+id: paragraph.title_and_text.default
 targetEntityType: paragraph
-bundle: question_and_answer
+bundle: title_and_text
 mode: default
 content:
-  field_answer:
+  field_paragraph_text:
     weight: 1
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_question:
+  field_paragraph_title:
     weight: 0
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
