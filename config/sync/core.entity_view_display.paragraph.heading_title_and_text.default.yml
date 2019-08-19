@@ -1,0 +1,34 @@
+uuid: fa31bcc7-7e1b-440c-adfb-a666e7f9eb57
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.heading_title_and_text.field_paragraph_heading
+    - field.field.paragraph.heading_title_and_text.field_title_and_text
+    - paragraphs.paragraphs_type.heading_title_and_text
+  module:
+    - entity_reference_revisions
+id: paragraph.heading_title_and_text.default
+targetEntityType: paragraph
+bundle: heading_title_and_text
+mode: default
+content:
+  field_paragraph_heading:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_title_and_text:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  search_api_excerpt: true
