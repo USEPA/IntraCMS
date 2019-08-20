@@ -14,7 +14,9 @@
         "drupal/smart_date": "^1.0",
         "drupal/paragraphs": "^1.8",
         "drupal/simplesamlphp_auth": "^3.1",
-        "drupal/admin_toolbar": "^1.27"
+        "drupal/admin_toolbar": "^1.27",
+        "drupal/fontawesome": "^2.14",
+        "wikimedia/composer-merge-plugin": "^1.4"
     },
     "require-dev": {
         "drush/drush": "^9.0"
@@ -32,8 +34,13 @@
             },
             "drupal/fullcalendar_view": {
                 "3061341: Provide support for Smart Date": "https://www.drupal.org/files/issues/2019-07-04/fullcalendar_view-smart_date-support-3061341-14.patch"
-            }
-        },
+            },
+        "merge-plugin": {
+            "include": [
+                "web/modules/contrib/fontawesome/composer.libraries.json"
+            ]
+        }
+        },      
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,
         "installer-paths": {
