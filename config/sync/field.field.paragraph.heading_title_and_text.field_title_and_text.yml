@@ -1,0 +1,37 @@
+uuid: e6fa4d9b-8ea7-486f-8872-7e99a320b99a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title_and_text
+    - paragraphs.paragraphs_type.heading_title_and_text
+    - paragraphs.paragraphs_type.title_and_text
+  module:
+    - entity_reference_revisions
+id: paragraph.heading_title_and_text.field_title_and_text
+field_name: field_title_and_text
+entity_type: paragraph
+bundle: heading_title_and_text
+label: 'Title and Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      title_and_text: title_and_text
+    target_bundles_drag_drop:
+      heading_title_and_text:
+        weight: 4
+        enabled: false
+      question_and_answer:
+        weight: 5
+        enabled: false
+      title_and_text:
+        enabled: true
+        weight: 6
+field_type: entity_reference_revisions
