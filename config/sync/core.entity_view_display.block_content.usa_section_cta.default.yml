@@ -1,0 +1,45 @@
+uuid: bd01e703-4f29-403d-b633-d16672d884ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.usa_section_cta
+    - field.field.block_content.usa_section_cta.field_usa_cta_button
+    - field.field.block_content.usa_section_cta.field_usa_intro_text
+    - field.field.block_content.usa_section_cta.field_usa_section_heading
+  module:
+    - link
+id: block_content.usa_section_cta.default
+targetEntityType: block_content
+bundle: usa_section_cta
+mode: default
+content:
+  field_usa_cta_button:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_usa_intro_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_usa_section_heading:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  search_api_excerpt: true
