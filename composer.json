@@ -12,7 +12,12 @@
         "drupal/entity_reference_tree": "^1.8",
         "drupal/fullcalendar_view": "^2.2",
         "drupal/smart_date": "^1.0",
-        "drupal/simplesamlphp_auth": "^3.1"
+        "drupal/paragraphs": "^1.8",
+        "drupal/simplesamlphp_auth": "^3.1",
+        "drupal/admin_toolbar": "^1.27",
+        "drupal/uswds": "^2.0@RC",
+        "drupal/fontawesome": "^2.14",
+        "wikimedia/composer-merge-plugin": "^1.4"
     },
     "require-dev": {
         "drush/drush": "^9.0"
@@ -30,8 +35,13 @@
             },
             "drupal/fullcalendar_view": {
                 "3061341: Provide support for Smart Date": "https://www.drupal.org/files/issues/2019-07-04/fullcalendar_view-smart_date-support-3061341-14.patch"
-            }
-        },
+            },
+        "merge-plugin": {
+            "include": [
+                "web/modules/contrib/fontawesome/composer.libraries.json"
+            ]
+        }
+        },      
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,
         "installer-paths": {
@@ -46,10 +56,16 @@
             "docroot/modules/contrib/{$name}": [
                 "type:drupal-module"
             ],
+            "docroot/modules/custom/{$name}": [
+                "type:drupal-module"
+            ],
             "docroot/profiles/contrib/{$name}": [
                 "type:drupal-profile"
             ],
             "docroot/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "docroot/themes/custom/{$name}": [
                 "type:drupal-theme"
             ],
             "drush/contrib/{$name}": [

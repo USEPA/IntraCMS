@@ -1,0 +1,29 @@
+uuid: 8a527b9b-8bb5-454c-bed3-7da3d3efb710
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_keywords
+    - node.type.article
+    - taxonomy.vocabulary.tags
+id: node.article.field_keywords
+field_name: field_keywords
+entity_type: node
+bundle: article
+label: Keywords
+description: 'Autocomplete field fused for tagging content. Tagging content allows information to be related throughout the site. Keywords or keyword phrases should be very descriptive. Do not use words like "form" or "news".'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags: tags
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,32 @@
+uuid: 30a25796-a0fc-4361-96e7-e2a81d121276
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.title_and_text.field_paragraph_text
+    - field.field.paragraph.title_and_text.field_paragraph_title
+    - paragraphs.paragraphs_type.title_and_text
+  module:
+    - text
+id: paragraph.title_and_text.default
+targetEntityType: paragraph
+bundle: title_and_text
+mode: default
+content:
+  field_paragraph_text:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_paragraph_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  search_api_excerpt: true

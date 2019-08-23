@@ -1,0 +1,22 @@
+uuid: ed6db09c-d019-4b16-94bf-d4cb7787f929
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.organization
+  module:
+    - text
+id: taxonomy_term.organization.default
+targetEntityType: taxonomy_term
+bundle: organization
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  search_api_excerpt: true

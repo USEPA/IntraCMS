@@ -1,0 +1,20 @@
+uuid: d3cd6a74-ad94-4d82-9dcc-e4cea756cb12
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.web_area
+    - node.type.article
+  module:
+    - gnode
+    - node
+id: web_area-group_node-article
+label: 'Web Area: Group node (Article)'
+description: 'Adds <em class="placeholder">Article</em> content to groups both publicly and privately.'
+group_type: web_area
+content_plugin: 'group_node:article'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 0

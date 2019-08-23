@@ -1,0 +1,38 @@
+uuid: 3d10c2c9-8b2e-42d3-8179-1b146eca3388
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.heading_title_and_text.field_paragraph_heading
+    - field.field.paragraph.heading_title_and_text.field_title_and_text
+    - paragraphs.paragraphs_type.heading_title_and_text
+  module:
+    - paragraphs
+id: paragraph.heading_title_and_text.default
+targetEntityType: paragraph
+bundle: heading_title_and_text
+mode: default
+content:
+  field_paragraph_heading:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_title_and_text:
+    type: entity_reference_paragraphs
+    weight: 1
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true

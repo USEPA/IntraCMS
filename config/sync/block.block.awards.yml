@@ -1,0 +1,46 @@
+uuid: de6d5df8-5fb6-41dd-baf3-5f0e12d020e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.awards
+  module:
+    - ctools
+    - node
+    - system
+  theme:
+    - epa_intranet
+id: awards
+theme: epa_intranet
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'system_menu_block:awards'
+settings:
+  id: 'system_menu_block:awards'
+  label: Awards
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  request_path:
+    id: request_path
+    pages: '/awards/*'
+    negate: false
+    context_mapping: {  }
+  node_type:
+    id: node_type
+    bundles:
+      page: page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      page: page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
