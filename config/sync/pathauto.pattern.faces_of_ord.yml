@@ -1,0 +1,22 @@
+uuid: f8ee6fc7-7771-4be5-8af0-19ad6dd3c279
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: faces_of_ord
+label: 'Faces of ORD'
+type: 'canonical_entities:node'
+pattern: 'faces-of-ord/[node:title]'
+selection_criteria:
+  08cb18e7-aaa0-4c78-a22d-5ef71291ee76:
+    id: node_type
+    bundles:
+      faces_of_ord: faces_of_ord
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 08cb18e7-aaa0-4c78-a22d-5ef71291ee76
+selection_logic: and
+weight: -7
+relationships: {  }
