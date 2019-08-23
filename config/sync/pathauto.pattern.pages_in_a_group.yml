@@ -1,0 +1,23 @@
+uuid: 2844f94f-a38d-4fbc-8c8c-90f87b41f07b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: pages_in_a_group
+label: 'Pages in a Group'
+type: 'canonical_entities:node'
+pattern: '/[node:group:title]/[node:title]'
+selection_criteria:
+  02945abc-c538-4d5c-b598-2228d90bbc78:
+    id: node_type
+    bundles:
+      landing_page: landing_page
+      page: page
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 02945abc-c538-4d5c-b598-2228d90bbc78
+selection_logic: and
+weight: -9
+relationships: {  }
