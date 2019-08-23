@@ -1,22 +1,22 @@
-uuid: c23d95e7-342d-4683-b99a-45764ada9c8d
+uuid: 6362673a-2692-4af9-a821-63efec2fd719
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: basic_page
-label: 'Basic Page'
+id: weekly_compass
+label: 'Weekly Compass'
 type: 'canonical_entities:node'
-pattern: '[node:title]'
+pattern: 'weekly-compass/[node:title]'
 selection_criteria:
-  28025c80-2f6c-47e8-aeec-bf6953e17691:
+  7f1a8c80-bf31-4bd7-8447-560815f46df6:
     id: node_type
     bundles:
-      page: page
+      weekly_compass: weekly_compass
     negate: false
     context_mapping:
       node: node
-    uuid: 28025c80-2f6c-47e8-aeec-bf6953e17691
+    uuid: 7f1a8c80-bf31-4bd7-8447-560815f46df6
 selection_logic: and
 weight: -5
 relationships: {  }

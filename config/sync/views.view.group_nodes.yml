@@ -742,15 +742,15 @@ display:
           empty_zero: false
           hide_alter_empty: true
           fields:
-            view_group_content: view_group_content
-            edit_group_content: edit_group_content
-            delete_group_content: delete_group_content
             edit_node: edit_node
             delete_node: delete_node
             title: '0'
             type: '0'
             status: '0'
             changed: '0'
+            view_group_content: '0'
+            edit_group_content: '0'
+            delete_group_content: '0'
           destination: true
           plugin_id: dropbutton
       filters:
@@ -816,7 +816,7 @@ display:
           exposed: true
           expose:
             operator_id: type_op
-            label: Type
+            label: 'Content type'
             description: ''
             use_operator: false
             operator: type_op
@@ -827,9 +827,10 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              editor: '0'
               administrator: '0'
-              group_admin: '0'
             reduce: false
+            argument: ''
           is_grouped: false
           group_info:
             label: ''
@@ -869,7 +870,14 @@ display:
           group_type: group
           admin_label: 'Content relation'
           required: true
-          group_content_plugins: {  }
+          group_content_plugins:
+            'group_node:article': 'group_node:article'
+            'group_node:landing_page': 'group_node:landing_page'
+            'group_node:page': 'group_node:page'
+            'group_node:event': '0'
+            'group_node:faces_of_ord': '0'
+            'group_node:photos_of_the_week': '0'
+            'group_node:weekly_compass': '0'
           entity_type: node
           plugin_id: group_content_to_entity_reverse
       arguments:
@@ -886,7 +894,7 @@ display:
             title_enable: false
             title: All
           title_enable: true
-          title: '{{ arguments.gid|placeholder }} nodes'
+          title: '{{ arguments.gid|placeholder }} Content'
           default_argument_type: fixed
           default_argument_options:
             argument: ''
@@ -911,7 +919,11 @@ display:
           entity_field: gid
           plugin_id: numeric
       display_extenders: {  }
-      title: Nodes
+      title: Content
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:
@@ -933,14 +945,13 @@ display:
       path: group/%group/nodes
       menu:
         type: tab
-        title: Nodes
+        title: Content
         description: ''
         expanded: false
         parent: ''
         weight: 25
         context: '0'
         menu_name: main
-        enabled: true
     cache_metadata:
       max-age: -1
       contexts:
