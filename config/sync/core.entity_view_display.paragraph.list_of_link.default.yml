@@ -1,0 +1,37 @@
+uuid: 0c0d0c38-aed8-4e73-8e4e-20cc61c6d117
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.list_of_link.field_link_list_item
+    - field.field.paragraph.list_of_link.field_paragraph_title
+    - paragraphs.paragraphs_type.list_of_link
+  module:
+    - link
+id: paragraph.list_of_link.default
+targetEntityType: paragraph
+bundle: list_of_link
+mode: default
+content:
+  field_link_list_item:
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_paragraph_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  search_api_excerpt: true
