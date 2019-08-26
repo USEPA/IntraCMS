@@ -4,10 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_featured_image
     - field.field.node.page.field_meta_tags
+    - field.field.node.page.field_sidebar_content
     - field.field.node.page.layout_selection
     - node.type.page
   module:
+    - entity_reference_revisions
     - layout_builder
     - layout_discovery
     - layout_library
@@ -62,6 +65,40 @@ third_party_settings:
                 third_party_settings: {  }
             additional: {  }
             weight: 2
+          deeccb0e-da5e-49f2-90b6-f95a76890483:
+            uuid: deeccb0e-da5e-49f2-90b6-f95a76890483
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:page:field_sidebar_content'
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: above
+                settings:
+                  view_mode: default
+                  link: ''
+                third_party_settings: {  }
+            additional: {  }
+            weight: 3
+          e5ce82a7-ee94-4a37-b52a-824e76a414da:
+            uuid: e5ce82a7-ee94-4a37-b52a-824e76a414da
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:page:field_featured_image'
+              formatter:
+                type: entity_reference_entity_view
+                label: above
+                settings:
+                  view_mode: default
+                  link: false
+                third_party_settings: {  }
+            additional: {  }
+            weight: 4
         third_party_settings: {  }
   layout_library:
     enable: true
@@ -79,6 +116,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  field_featured_image:
+    type: entity_reference_entity_view
+    weight: 4
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
   field_meta_tags:
     type: metatag_empty_formatter
     region: content
@@ -86,6 +132,15 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
+  field_sidebar_content:
+    type: entity_reference_revisions_entity_view
+    weight: 3
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
   links:
     weight: 1
     settings: {  }
