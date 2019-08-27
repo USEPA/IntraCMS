@@ -5,6 +5,7 @@ dependencies:
   config:
     - system.menu.group-2-menu
   module:
+    - ctools
     - system
   theme:
     - epa_intranet
@@ -28,3 +29,14 @@ visibility:
     pages: '/information-technology/*'
     negate: false
     context_mapping: {  }
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      event: event
+      faces_of_ord: faces_of_ord
+      landing_page: landing_page
+      photos_of_the_week: photos_of_the_week
+      weekly_compass: weekly_compass
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
