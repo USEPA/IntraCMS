@@ -22,7 +22,10 @@
         "drupal/config_ignore": "^2.1",
         "drupal/config_split": "^1.4",
         "drupal/migrate_plus": "^4.2",
-        "drupal/migrate_tools": "^4.3"
+        "drupal/migrate_tools": "^4.3",
+        "drupal/address": "~1.0",
+        "drupal/chosen": "^2.8",
+        "drupal/layout_builder_styles": "^1.0@beta"
     },
     "require-dev": {
         "drush/drush": "^9.0"
@@ -41,6 +44,9 @@
             },
             "drupal/fullcalendar_view": {
                 "3061341: Provide support for Smart Date": "https://www.drupal.org/files/issues/2019-07-04/fullcalendar_view-smart_date-support-3061341-14.patch"
+            },
+            "drupal/core": {
+                "3059387: Taxonomy Terms cannot be rendered when in preview: EntityMalformedException": "https://www.drupal.org/files/issues/2019-06-04/malformedentityexception-3059387.patch"
             },            
         "merge-plugin": {
             "include": [
