@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1cc8a0e4e0fde80d2fd10efb108b339a",
+    "content-hash": "35a95091631f291092e68b22205f323b",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -301,6 +301,65 @@
                 "html"
             ],
             "time": "2019-02-20T18:52:14+00:00"
+        },
+        {
+            "name": "commerceguys/addressing",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/commerceguys/addressing.git",
+                "reference": "2d048bfdb3b79f2d87f5d5b078769c059eaa3eb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/commerceguys/addressing/zipball/2d048bfdb3b79f2d87f5d5b078769c059eaa3eb1",
+                "reference": "2d048bfdb3b79f2d87f5d5b078769c059eaa3eb1",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/collections": "~1.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "1.*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "2.*",
+                "symfony/validator": ">=3.2"
+            },
+            "suggest": {
+                "symfony/validator": "to validate addresses"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CommerceGuys\\Addressing\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bojan Zivanovic"
+                },
+                {
+                    "name": "Damien Tournoud"
+                }
+            ],
+            "description": "Addressing library powered by CLDR and Google's address data.",
+            "keywords": [
+                "address",
+                "internationalization",
+                "localization",
+                "postal"
+            ],
+            "time": "2019-06-27T10:43:27+00:00"
         },
         {
             "name": "composer/installers",
@@ -1376,6 +1435,73 @@
             }
         },
         {
+            "name": "drupal/address",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/address.git",
+                "reference": "8.x-1.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/address-8.x-1.7.zip",
+                "reference": "8.x-1.7",
+                "shasum": "dab23a510090e59e3e6bc77faa517b523ad048ae"
+            },
+            "require": {
+                "commerceguys/addressing": "^1.0.0",
+                "drupal/core": "^8.6"
+            },
+            "require-dev": {
+                "drupal/token": "^1.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.7",
+                    "datestamp": "1559642884",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "bojanz",
+                    "homepage": "https://www.drupal.org/user/86106"
+                },
+                {
+                    "name": "dww",
+                    "homepage": "https://www.drupal.org/user/46549"
+                },
+                {
+                    "name": "googletorp",
+                    "homepage": "https://www.drupal.org/user/386230"
+                },
+                {
+                    "name": "mglaman",
+                    "homepage": "https://www.drupal.org/user/2416470"
+                },
+                {
+                    "name": "rszrama",
+                    "homepage": "https://www.drupal.org/user/49344"
+                }
+            ],
+            "description": "Provides functionality for storing, validating and displaying international postal addresses.",
+            "homepage": "http://drupal.org/project/address",
+            "support": {
+                "source": "https://git.drupalcode.org/project/address"
+            }
+        },
+        {
             "name": "drupal/admin_toolbar",
             "version": "1.27.0",
             "source": {
@@ -1584,6 +1710,166 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/blazy",
                 "issues": "https://drupal.org/project/issues/blazy"
+            }
+        },
+        {
+            "name": "drupal/chosen",
+            "version": "2.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/chosen.git",
+                "reference": "8.x-2.8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/chosen-8.x-2.8.zip",
+                "reference": "8.x-2.8",
+                "shasum": "19a99867bc09bb1f937e992fc25d95b98a908735"
+            },
+            "require": {
+                "drupal/chosen_lib": "*",
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.8",
+                    "datestamp": "1565942881",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Cyclodex",
+                    "homepage": "https://www.drupal.org/user/1305230"
+                },
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "Hydra",
+                    "homepage": "https://www.drupal.org/user/647364"
+                },
+                {
+                    "name": "Pol",
+                    "homepage": "https://www.drupal.org/user/47194"
+                },
+                {
+                    "name": "aidanlis",
+                    "homepage": "https://www.drupal.org/user/502018"
+                },
+                {
+                    "name": "arshadcn",
+                    "homepage": "https://www.drupal.org/user/571032"
+                },
+                {
+                    "name": "kalman.hosszu",
+                    "homepage": "https://www.drupal.org/user/267481"
+                },
+                {
+                    "name": "nagy.balint",
+                    "homepage": "https://www.drupal.org/user/1763952"
+                },
+                {
+                    "name": "supercabbageuk",
+                    "homepage": "https://www.drupal.org/user/235438"
+                }
+            ],
+            "description": "Makes select elements more friendly using the Chosen jQuery plugin",
+            "homepage": "https://www.drupal.org/project/chosen",
+            "keywords": [
+                "Chosen",
+                "Drupal"
+            ],
+            "support": {
+                "source": "https://drupal.org/project/chosen",
+                "issues": "https://drupal.org/project/issues/chosen"
+            }
+        },
+        {
+            "name": "drupal/chosen_lib",
+            "version": "2.8.0",
+            "require": {
+                "drupal/chosen": "self.version",
+                "drupal/core": "~8.0",
+                "php": ">=5.6.0"
+            },
+            "type": "metapackage",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.8",
+                    "datestamp": "1565942881",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Cyclodex",
+                    "homepage": "https://www.drupal.org/user/1305230"
+                },
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "Hydra",
+                    "homepage": "https://www.drupal.org/user/647364"
+                },
+                {
+                    "name": "Pol",
+                    "homepage": "https://www.drupal.org/user/47194"
+                },
+                {
+                    "name": "aidanlis",
+                    "homepage": "https://www.drupal.org/user/502018"
+                },
+                {
+                    "name": "arshadcn",
+                    "homepage": "https://www.drupal.org/user/571032"
+                },
+                {
+                    "name": "kalman.hosszu",
+                    "homepage": "https://www.drupal.org/user/267481"
+                },
+                {
+                    "name": "nagy.balint",
+                    "homepage": "https://www.drupal.org/user/1763952"
+                },
+                {
+                    "name": "supercabbageuk",
+                    "homepage": "https://www.drupal.org/user/235438"
+                }
+            ],
+            "description": "This module provides the basic integration with the Chosen jQuery plugin.",
+            "homepage": "https://www.drupal.org/project/chosen",
+            "support": {
+                "source": "https://git.drupalcode.org/project/chosen"
             }
         },
         {
@@ -2184,6 +2470,7 @@
                     "merge-extra": false
                 },
                 "patches_applied": {
+                    "3059387: Taxonomy Terms cannot be rendered when in preview: EntityMalformedException": "https://www.drupal.org/files/issues/2019-06-04/malformedentityexception-3059387.patch",
                     "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch",
                     "2885441 - EntityReferenceAutocompleteWidget should define its size setting as an integer": "https://www.drupal.org/files/issues/2885441-2.patch",
                     "2815221 - Add quickedit to the latest-revision route": "https://www.drupal.org/files/issues/2019-03-05/2815221-116.patch",
@@ -3678,6 +3965,65 @@
             "homepage": "https://www.drupal.org/project/layout_builder_st",
             "support": {
                 "source": "https://git.drupalcode.org/project/layout_builder_st"
+            }
+        },
+        {
+            "name": "drupal/layout_builder_styles",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/layout_builder_styles.git",
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/layout_builder_styles-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "69c291b9bf62d638fa01919aea2f0c94d62c14dd"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1563566880",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "bkosborne",
+                    "homepage": "https://www.drupal.org/user/788032"
+                },
+                {
+                    "name": "mark_fullmer",
+                    "homepage": "https://www.drupal.org/user/2612816"
+                },
+                {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
+                },
+                {
+                    "name": "twfahey",
+                    "homepage": "https://www.drupal.org/user/3403722"
+                }
+            ],
+            "description": "Apply styles to blocks in Layout Builder.",
+            "homepage": "https://www.drupal.org/project/layout_builder_styles",
+            "support": {
+                "source": "https://git.drupalcode.org/project/layout_builder_styles"
             }
         },
         {
@@ -12042,13 +12388,11 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/uswds": 5
+        "drupal/uswds": 5,
+        "drupal/layout_builder_styles": 10
     },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": [],
-    "platform-overrides": {
-        "php": "7.2.17"
-    }
+    "platform-dev": []
 }
