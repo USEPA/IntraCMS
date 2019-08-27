@@ -1,0 +1,29 @@
+uuid: 24d653b7-5a07-43e9-83c6-14e7862d509a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_organization
+    - node.type.staff_member
+    - taxonomy.vocabulary.organization
+id: node.staff_member.field_organization
+field_name: field_organization
+entity_type: node
+bundle: staff_member
+label: Organization
+description: 'Select the organization the member belongs to.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      organization: organization
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
