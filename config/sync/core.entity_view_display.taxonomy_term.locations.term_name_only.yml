@@ -1,0 +1,25 @@
+uuid: 5bb2028d-0265-47f8-8c76-edf2e4354cf5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.term_name_only
+    - field.field.taxonomy_term.locations.field_address
+    - field.field.taxonomy_term.locations.field_location_abbreviation
+    - taxonomy.vocabulary.locations
+  module:
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: taxonomy_term.locations.term_name_only
+targetEntityType: taxonomy_term
+bundle: locations
+mode: term_name_only
+content: {  }
+hidden:
+  description: true
+  field_address: true
+  field_location_abbreviation: true
+  search_api_excerpt: true
