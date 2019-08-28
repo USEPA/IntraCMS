@@ -1,0 +1,69 @@
+{#
+/**
+ * @file
+ * Override of system/menu.html.twig for the primary menu.
+ */
+#}
+
+{% import _self as menus %}
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+
+{{ menus.menu_links(items, 0, megamenu, 0, NULL, duplicate_parent) }}
+{% macro menu_links(items, menu_level, megamenu, button_id, parent, duplicate_parent) %}
+
+  {% import _self as menus %}
+
+  {% if items %}
+    {% if menu_level == 0 %}
+<ul class="usa-nav__primary usa-accordion">
+    {% elseif menu_level == 1 %}
+      <ul id="megamenu-{{ button_id }}" class="usa-nav__submenu {% if megamenu %}usa-megamenu{% endif %}">
+          <div class="grid-row grid-gap-4">
+          {% if duplicate_parent %}
+            <li class="usa-nav__submenu-item">
+                <a class="usa-nav__link" href="{{ parent.url }}">
+                    <span>{{ parent.title }}</span>
+                </a>
+            </li>
+        {% endif %}
+
+    {% else %}
+        <div class="desktop:grid-col-3">
+    <ul class="usa-nav__submenu-list">
+    {% endif %}
+
+    {% for item in items %}
+        {% if not (megamenu and menu_level == 1 and item.below) %}
+            <li class="{% if menu_level == 0 %}usa-nav__primary-item{% endif %} {% if menu_level > 0 %}usa-nav__submenu-item{% endif %}">
+        {% endif %}
+            {% if menu_level == 0 and item.below %}
+                <button class="usa-accordion__button usa-nav__link " aria-expanded="false" aria-controls="megamenu-{{ loop.index }}">
+                    <span>{{ item.title }}</span>
+                </button>
+            {% endif %}
+
+            {% if megamenu and menu_level < 2 and item.below %}
+                {{ menus.menu_links(item.below, menu_level + 1, megamenu, loop.index, item, duplicate_parent) }}
+            {% elseif menu_level == 0 and item.below %}
+                {{ menus.menu_links(item.below, menu_level + 1, megamenu, loop.index, item, duplicate_parent) }}
+            {% else %}
+                <a href="{{ item.url }}"{% if menu_level == 0 %} class="usa-nav__link{% if item.in_active_trail %} usa-current{% endif %}" {% endif %}>
+            <span>{{ item.title }}</span>
+                </a>
+            {% endif %}
+
+        </li>
+    {% endfor %}
+        {% if menu_level == 1 %}
+        </div>
+        {% endif %}
+        </ul>
+        {% if menu_level > 1 %}
+        </div>
+        {% endif %}
+{% endif %}
+        {% endmacro %}
