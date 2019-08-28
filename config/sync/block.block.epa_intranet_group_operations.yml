@@ -1,24 +1,30 @@
 uuid: cdd30900-8e79-42f4-80f4-a935fe36572e
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - group
+    - system
   theme:
     - epa_intranet
 _core:
   default_config_hash: MjMChFykEa-4UxdnGstVk1FcXqwUF3p_GBJLIFT3_XI
 id: epa_intranet_group_operations
 theme: epa_intranet
-region: sidebar_first
-weight: -20
+region: content
+weight: -3
 provider: null
 plugin: group_operations
 settings:
   id: group_operations
-  label: 'Group operations'
+  label: 'Create Web Area Content'
   provider: group
   label_display: visible
   context_mapping:
     group: '@group.group_route_context:group'
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: '/web-area/*'
+    negate: false
+    context_mapping: {  }
