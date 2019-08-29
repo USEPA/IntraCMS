@@ -6,6 +6,8 @@ dependencies:
     - field.storage.node.field_event_date
     - node.type.event
     - taxonomy.vocabulary.event_host
+  content:
+    - 'taxonomy_term:event_host:9e03a27b-2f4f-4248-b73e-b6a91ccbe5ff'
   module:
     - fullcalendar_view
     - node
@@ -244,10 +246,24 @@ display:
       title: 'Events by Host'
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'There are no upcoming events.'
+            format: rich_text
+          plugin_id: text
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -301,10 +317,10 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
-        field_event_host_target_id:
-          id: field_event_host_target_id
-          table: node__field_event_host
-          field: field_event_host_target_id
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
           relationship: none
           group_type: group
           admin_label: ''
@@ -313,12 +329,12 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_event_host_target_id_op
+            operator_id: tid_op
             label: 'Event Host'
             description: ''
             use_operator: false
-            operator: field_event_host_target_id_op
-            identifier: field_event_host_target_id
+            operator: tid_op
+            identifier: tid
             required: false
             remember: false
             multiple: false
@@ -341,10 +357,10 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
+          type: textfield
           limit: true
           vid: event_host
-          hierarchy: true
+          hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
       filter_groups:
@@ -352,7 +368,7 @@ display:
         groups:
           1: AND
       exposed_form:
-        type: input_required
+        type: basic
         options:
           submit_button: Apply
           reset_button: false
@@ -361,16 +377,138 @@ display:
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
-          text_input_required: 'Select any filter and click on Apply to see results'
-          text_input_required_format: full_html
       block_description: 'Events by Host'
       display_description: ''
+      allow:
+        items_per_page: false
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - url.query_args
+        - user
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_event_date'
+  block_events_named_host:
+    display_plugin: block
+    id: block_events_named_host
+    display_title: 'Block: OSIM Events'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
+      defaults:
+        style: false
+        row: false
+        filters: false
+        filter_groups: false
+        exposed_form: false
+        title: false
+      row:
+        type: fields
+        options: {  }
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          value:
+            event: event
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            - 4
+          group: 1
+          exposed: false
+          expose:
+            operator_id: tid_op
+            label: 'Event Host'
+            description: ''
+            use_operator: false
+            operator: tid_op
+            identifier: tid
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: textfield
+          limit: true
+          vid: event_host
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      block_description: 'OSIM Events'
+      display_description: ''
+      allow:
+        items_per_page: false
+      title: 'OSIM Events'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
         - url.query_args
         - user
         - 'user.node_grants:view'
@@ -389,6 +527,8 @@ display:
       title: 'Events Calendar'
       defaults:
         title: false
+        relationships: false
+      relationships: {  }
     cache_metadata:
       max-age: -1
       contexts:
