@@ -2,6 +2,8 @@ uuid: 9975c494-9903-4cfb-8ccd-e69da3b7e571
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.storage.group_content.group_roles
   module:
     - group
     - user
@@ -706,7 +708,8 @@ display:
         - url
         - url.query_args
         - user.group_permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.group_content.group_roles'
   page_1:
     display_plugin: page
     id: page_1
@@ -725,6 +728,7 @@ display:
         context: '0'
         menu_name: main
         enabled: true
+      use_admin_theme: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -734,4 +738,5 @@ display:
         - url
         - url.query_args
         - user.group_permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.group_content.group_roles'
