@@ -1,28 +1,33 @@
-uuid: 05f80f49-d3a7-496b-a5a6-96a75593100d
+uuid: 0527082a-ca42-44ed-8cfe-70a72f817625
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.thumbnail
+    - core.entity_view_mode.media.staff_member_card
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
-    - image.style.thumbnail
+    - image.style.staff_member_card
     - media.type.image
   module:
     - image
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
 _core:
-  default_config_hash: Gb3qN_HZzqfFf4728OIYBwnMVryxUzlsWkmOY56idC8
-id: media.image.thumbnail
+  default_config_hash: VLDxfMVPTkd2xvOjFMCh3kWmaOYnd03zggFXuUXQVEY
+id: media.image.staff_member_card
 targetEntityType: media
 bundle: image
-mode: thumbnail
+mode: staff_member_card
 content:
   image:
     type: image
     weight: 0
     label: hidden
     settings:
-      image_style: thumbnail
+      image_style: staff_member_card
       image_link: ''
     third_party_settings: {  }
     region: content
