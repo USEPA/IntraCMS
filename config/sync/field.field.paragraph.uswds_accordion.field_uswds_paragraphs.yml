@@ -1,0 +1,46 @@
+uuid: 3edd535c-4650-4037-af12-9d69155bebce
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_uswds_paragraphs
+    - paragraphs.paragraphs_type.uswds_accordion
+    - paragraphs.paragraphs_type.uswds_accordion_item
+  module:
+    - entity_reference_revisions
+id: paragraph.uswds_accordion.field_uswds_paragraphs
+field_name: field_uswds_paragraphs
+entity_type: paragraph
+bundle: uswds_accordion
+label: 'Accordion Items'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      uswds_accordion_item: uswds_accordion_item
+    target_bundles_drag_drop:
+      heading_title_and_text:
+        weight: 7
+        enabled: false
+      list_of_link:
+        weight: 8
+        enabled: false
+      question_and_answer:
+        weight: 9
+        enabled: false
+      title_and_text:
+        weight: 10
+        enabled: false
+      uswds_accordion:
+        weight: 11
+        enabled: false
+      uswds_accordion_item:
+        enabled: true
+        weight: 12
+field_type: entity_reference_revisions

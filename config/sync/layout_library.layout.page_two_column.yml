@@ -68,3 +68,26 @@ layout:
         additional: {  }
         weight: 4
     third_party_settings: {  }
+  -
+    layout_id: layout_onecol
+    layout_settings: {  }
+    components:
+      ba620a98-6768-4c0a-9730-b3285150ce58:
+        uuid: ba620a98-6768-4c0a-9730-b3285150ce58
+        region: content
+        configuration:
+          id: 'field_block:node:page:field_custom_text'
+          label: 'Custom Content'
+          provider: layout_builder
+          label_display: '0'
+          formatter:
+            label: hidden
+            type: entity_reference_revisions_entity_view
+            settings:
+              view_mode: default
+            third_party_settings: {  }
+          context_mapping:
+            entity: layout_builder.entity
+        additional: {  }
+        weight: 0
+    third_party_settings: {  }
