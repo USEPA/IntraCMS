@@ -27,16 +27,32 @@ third_party_settings:
         components: {  }
         third_party_settings: {  }
   layout_library:
-    enable: true
+    enable: false
   layout_builder_restrictions:
     entity_view_mode_restriction:
       allowed_blocks:
+        'Chaos tools': {  }
+        Content: {  }
+        'Content fields': {  }
+        'Custom block types':
+          - media_block
+          - text
+          - usa_section_cta
+        'Custom blocks': {  }
+        Devel: {  }
+        'Entity Block':
+          - 'entity_block:node'
+          - 'entity_block:media'
+        'Entity Browser':
+          - 'entity_browser_block:media_browser'
         Forms: {  }
         Group: {  }
         Help: {  }
-        'Lists (Views)': {  }
+        'Lists (Views)':
+          - 'views_block:event_calendar-block_events_by_host'
         Menus: {  }
         'Moderation Dashboard': {  }
+        'SimpleSAMLphp Authentication': {  }
         System: {  }
         User: {  }
         'User fields': {  }
