@@ -1,0 +1,49 @@
+uuid: 76bbd268-b9ef-4c87-8474-544f9f589543
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - node
+id: editor
+label: Editor
+description: ''
+matchers:
+  d63a9235-72ee-4303-8109-58a1265319ca:
+    uuid: d63a9235-72ee-4303-8109-58a1265319ca
+    id: 'entity:node'
+    weight: 0
+    settings:
+      include_unpublished: false
+      metadata: '[node:title] | [node:created:medium]'
+      bundles: {  }
+      group_by_bundle: true
+      substitution_type: canonical
+      limit: 100
+  df048ad5-43b3-42a6-8bc8-0aa517c68e13:
+    uuid: df048ad5-43b3-42a6-8bc8-0aa517c68e13
+    id: 'entity:file'
+    weight: 0
+    settings:
+      file_extensions: 'txt pdf doc docx xls xlsx ppt pptx'
+      file_status: 1
+      images:
+        show_dimensions: false
+        show_thumbnail: false
+        thumbnail_image_style: null
+      substitution_type: file
+      metadata: '[file:name]'
+      bundles: null
+      group_by_bundle: null
+      limit: 100
+  eb591dc2-5475-4d8f-baa8-2db0f215be43:
+    uuid: eb591dc2-5475-4d8f-baa8-2db0f215be43
+    id: 'entity:media'
+    weight: 0
+    settings:
+      metadata: '[media:name]'
+      bundles:
+        image: image
+      group_by_bundle: false
+      substitution_type: canonical
+      limit: 100

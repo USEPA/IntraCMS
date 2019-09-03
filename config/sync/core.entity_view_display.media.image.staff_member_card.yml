@@ -1,0 +1,40 @@
+uuid: 0527082a-ca42-44ed-8cfe-70a72f817625
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.staff_member_card
+    - field.field.media.image.field_media_in_library
+    - field.field.media.image.image
+    - image.style.staff_member_card
+    - media.type.image
+  module:
+    - image
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+_core:
+  default_config_hash: VLDxfMVPTkd2xvOjFMCh3kWmaOYnd03zggFXuUXQVEY
+id: media.image.staff_member_card
+targetEntityType: media
+bundle: image
+mode: staff_member_card
+content:
+  image:
+    type: image
+    weight: 0
+    label: hidden
+    settings:
+      image_style: staff_member_card
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_media_in_library: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

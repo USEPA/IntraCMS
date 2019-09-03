@@ -46,13 +46,14 @@
     not paragraph.isPublished() ? 'paragraph--unpublished'
   ]
 %}
+
 {% block paragraph %}
 <div class="card">
     <div class="card-header">
         {{ content.field_paragraph_title }}
     </div>
     <div class="card-body">      
-      <p class="card-text">{{ content.field_paragraph_text }}</p>      
+        {{ content.field_paragraph_text }}
     </div>
   </div>
 {% endblock paragraph %}

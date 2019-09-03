@@ -1,0 +1,53 @@
+uuid: 5fd26a91-cbd6-4c28-9cee-58013a99c490
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.uswds_accordion.field_uswds_accordion_bordered
+    - field.field.paragraph.uswds_accordion.field_uswds_accordion_expand
+    - field.field.paragraph.uswds_accordion.field_uswds_accordion_multi
+    - field.field.paragraph.uswds_accordion.field_uswds_paragraphs
+    - paragraphs.paragraphs_type.uswds_accordion
+  module:
+    - paragraphs
+id: paragraph.uswds_accordion.default
+targetEntityType: paragraph
+bundle: uswds_accordion
+mode: default
+content:
+  field_uswds_accordion_bordered:
+    weight: 1
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_uswds_accordion_expand:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_uswds_accordion_multi:
+    weight: 0
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_uswds_paragraphs:
+    type: entity_reference_paragraphs
+    weight: 3
+    settings:
+      title: 'Accordion Item'
+      title_plural: 'Accordion Items'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: uswds_accordion_item
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true

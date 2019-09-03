@@ -4,26 +4,50 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.faces_of_ord.field_center_or_office
+    - field.field.node.faces_of_ord.field_custom_question
+    - field.field.node.faces_of_ord.field_faces_job_position
     - field.field.node.faces_of_ord.field_faces_name
+    - field.field.node.faces_of_ord.field_faces_photo
+    - field.field.node.faces_of_ord.field_favorite_thing
+    - field.field.node.faces_of_ord.field_interesting_job
+    - field.field.node.faces_of_ord.field_research_program_area
+    - field.field.node.faces_of_ord.field_when_did_you_start_at_epa
     - node.type.faces_of_ord
   module:
+    - media
     - user
 id: node.faces_of_ord.teaser
 targetEntityType: node
 bundle: faces_of_ord
 mode: teaser
 content:
+  field_faces_name:
+    type: string
+    weight: 2
+    region: content
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_faces_photo:
+    type: media_thumbnail
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
   links:
-    weight: 100
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   field_center_or_office: true
   field_custom_question: true
   field_faces_job_position: true
-  field_faces_name: true
-  field_faces_photo: true
   field_favorite_thing: true
   field_interesting_job: true
   field_research_program_area: true

@@ -1,0 +1,38 @@
+uuid: 171df8fb-46d7-4e8f-a969-1ba6a6b27b3a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.tagline
+    - field.field.block_content.tagline.field_usa_prose
+    - field.field.block_content.tagline.field_usa_section_heading
+id: block_content.tagline.default
+targetEntityType: block_content
+bundle: tagline
+mode: default
+content:
+  field_usa_prose:
+    weight: 28
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_usa_section_heading:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

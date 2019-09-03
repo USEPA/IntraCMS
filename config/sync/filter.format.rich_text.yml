@@ -5,11 +5,12 @@ dependencies:
   module:
     - editor
     - entity_embed
+    - linkit
 _core:
   default_config_hash: LQ7Z_f1qIeAP7aiyHGBwlgjdsAHzwISN1_6-Dvv_fVY
 name: 'Rich text'
 format: rich_text
-weight: 1
+weight: -10
 filters:
   filter_align:
     id: filter_align
@@ -75,3 +76,10 @@ filters:
     weight: -43
     settings:
       filter_url_length: 72
+  linkit:
+    id: linkit
+    provider: linkit
+    status: true
+    weight: 0
+    settings:
+      title: true

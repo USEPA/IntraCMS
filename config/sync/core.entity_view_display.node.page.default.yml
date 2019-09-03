@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_custom_text
     - field.field.node.page.field_featured_image
     - field.field.node.page.field_meta_tags
     - field.field.node.page.field_sidebar_content
@@ -39,7 +40,7 @@ third_party_settings:
                 settings: {  }
                 third_party_settings: {  }
             additional: {  }
-            weight: 0
+            weight: 1
           cc4aa9a4-4ce3-4f7e-a5c4-5c8431c8ce26:
             uuid: cc4aa9a4-4ce3-4f7e-a5c4-5c8431c8ce26
             region: content
@@ -48,38 +49,6 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
               id: 'extra_field_block:node:page:links'
-            additional: {  }
-            weight: 1
-          6b322c76-5ed7-4853-b309-b4b18db3c524:
-            uuid: 6b322c76-5ed7-4853-b309-b4b18db3c524
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:page:field_meta_tags'
-              formatter:
-                type: metatag_empty_formatter
-                label: above
-                settings: {  }
-                third_party_settings: {  }
-            additional: {  }
-            weight: 2
-          deeccb0e-da5e-49f2-90b6-f95a76890483:
-            uuid: deeccb0e-da5e-49f2-90b6-f95a76890483
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:page:field_sidebar_content'
-              formatter:
-                type: entity_reference_revisions_entity_view
-                label: above
-                settings:
-                  view_mode: default
-                  link: ''
-                third_party_settings: {  }
             additional: {  }
             weight: 3
           e5ce82a7-ee94-4a37-b52a-824e76a414da:
@@ -98,7 +67,25 @@ third_party_settings:
                   link: false
                 third_party_settings: {  }
             additional: {  }
-            weight: 4
+            weight: 0
+          e8508fcd-9577-4c72-a1ad-503ab4f78858:
+            uuid: e8508fcd-9577-4c72-a1ad-503ab4f78858
+            region: content
+            configuration:
+              id: 'field_block:node:page:field_custom_text'
+              label: 'Custom Content'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_revisions_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 2
         third_party_settings: {  }
   layout_library:
     enable: true
@@ -114,6 +101,15 @@ content:
     type: text_default
     weight: 0
     settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_custom_text:
+    type: entity_reference_revisions_entity_view
+    weight: 5
+    label: above
+    settings:
+      view_mode: default
+      link: ''
     third_party_settings: {  }
     region: content
   field_featured_image:
