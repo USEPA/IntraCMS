@@ -19,16 +19,10 @@ libraries-override:
         assets/css/uswds.css: assets/css/uswds.css
     js:
       assets/js/uswds.min.js: assets/js/uswds.min.js
-  bootstrap/bootstrap:
-    css:
-      theme:
-        assets/css/bootstrap.css: assets/css/bootstrap.css
-    js:
-      assets/js/bootstrap.js: assets/js/boostrap.js
-  global/global:
-   css:
-    theme:
-     assets/css/global.css: assets/css/global.css
+
+libraries:
+ - epa_intranet/bootstrap
+ - epa_intranet/globa
 
 # Add the CSS to CKEditor, so that custom entries in "Style" will work.
 ckeditor_stylesheets:
