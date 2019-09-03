@@ -46,13 +46,16 @@
     not paragraph.isPublished() ? 'paragraph--unpublished'
   ]
 %}
+
 {% block paragraph %}
 <div class="card">
     <div class="card-header">
         {{ content.field_paragraph_title }}
     </div>
     <div class="card-body">      
-      <p class="card-text">{{ content.field_paragraph_text }}</p>      
+      <ul class="usa-list">
+         <li><a href="{{ content.field_link_list_item.0['#url'] }}">{{ content.field_link_list_item.0['#title'] }}</a></li>
+      </ul>
     </div>
   </div>
 {% endblock paragraph %}
