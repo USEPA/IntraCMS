@@ -6,6 +6,14 @@ dependencies:
     - filter.format.full_html
   module:
     - ckeditor
+    - editor_file
+third_party_settings:
+  editor_file:
+    status: true
+    scheme: public
+    directory: inline-files
+    extensions: txt
+    max_size: ''
 format: full_html
 editor: ckeditor
 settings:
@@ -17,11 +25,14 @@ settings:
           items:
             - Bold
             - Italic
+            - Format
+            - Styles
         -
           name: Links
           items:
             - DrupalLink
             - DrupalUnlink
+            - DrupalFile
         -
           name: Lists
           items:
@@ -37,10 +48,13 @@ settings:
           items:
             - Source
   plugins:
-    stylescombo:
-      styles: ''
+    drupallink:
+      linkit_enabled: true
+      linkit_profile: editor
     language:
       language_list: un
+    stylescombo:
+      styles: ''
 image_upload:
   status: false
   scheme: public

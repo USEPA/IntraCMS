@@ -1,8 +1,26 @@
 uuid: 270f6463-2c92-48b5-9292-7577a187ba7a
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - linkit
 name: 'Full HTML'
 format: full_html
-weight: 0
-filters: {  }
+weight: -9
+filters:
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: false
+    weight: -10
+    settings:
+      allowed_html: '<em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <a href hreflang data-entity-type data-entity-uuid data-entity-substitution title> <img src alt data-entity-type data-entity-uuid> <p> <h1> <pre>'
+      filter_html_help: true
+      filter_html_nofollow: false
+  linkit:
+    id: linkit
+    provider: linkit
+    status: true
+    weight: 0
+    settings:
+      title: true
