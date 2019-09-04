@@ -45,15 +45,20 @@
                     <span>{{ item.title }}</span>
                 </button>
             {% endif %}
-
             {% if megamenu and menu_level < 2 and item.below %}
                 {{ menus.menu_links(item.below, menu_level + 1, megamenu, loop.index, item, duplicate_parent) }}
             {% elseif menu_level == 0 and item.below %}
                 {{ menus.menu_links(item.below, menu_level + 1, megamenu, loop.index, item, duplicate_parent) }}
             {% else %}
-                <a href="{{ item.url }}"{% if menu_level == 0 %} class="usa-nav__link{% if item.in_active_trail %} usa-current{% endif %}" {% endif %}>
+                {% if item.original_link.pluginDefinition.description == 'strong'  %}
+                    <strong>
+                {% endif %}
+                        <a href="{{ item.url }}"{% if menu_level == 0 %} class="usa-nav__link{% if item.in_active_trail %} usa-current{% endif %}" {% endif %}>
             <span>{{ item.title }}</span>
                 </a>
+                    {% if item.original_link.pluginDefinition.description == 'strong'  %}
+                        </strong>
+                        {% endif %}
             {% endif %}
 
         </li>
