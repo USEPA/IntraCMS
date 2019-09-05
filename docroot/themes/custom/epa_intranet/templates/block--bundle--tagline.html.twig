@@ -27,12 +27,13 @@
  * @ingroup themeable
  */
 #}
-
-<div class="grid-row grid-gap">
-<div class="table:grid-col-4">
-<h2 class="font-heading-xl margin-top-0 table:margin-bottom-0">{{ content.field_usa_section_heading }}</h2>
-</div>
-<div class="tablet:grid-col-8 usa-prose">
-    <p>{{ content.field_usa_prose }}</p>
-</div>
-</div>
+<section class="grid-container usa-section">
+    <div class="grid-row grid-gap">
+        <div class="tablet:grid-col-4">
+            <h2 class="font-heading-xl margin-top-0 table:margin-bottom-0">{{ content.field_usa_section_heading[0] }}</h2>
+        </div>
+        <div class="tablet:grid-col-8 usa-prose">
+            <p>{{ content.field_usa_prose[0] }}</p>
+        </div>
+    </div>
+</section>
