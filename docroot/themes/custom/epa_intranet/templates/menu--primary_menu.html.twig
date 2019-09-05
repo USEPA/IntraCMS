@@ -52,15 +52,16 @@
             {% else %}
                 {% if item.original_link.pluginDefinition.description == 'strong'  %}
                     <strong>
+                    <a href="#">
+                        <span>{{ item.title }}</span>
+                    </a>
+                    </strong>
+                {% else %}
+                    <a href="{{ item.url }}"{% if menu_level == 0 %} class="usa-nav__link{% if item.in_active_trail %} usa-current{% endif %}" {% endif %}>
+                        <span>{{ item.title }}</span>
+                    </a>
                 {% endif %}
-                        <a href="{{ item.url }}"{% if menu_level == 0 %} class="usa-nav__link{% if item.in_active_trail %} usa-current{% endif %}" {% endif %}>
-            <span>{{ item.title }}</span>
-                </a>
-                    {% if item.original_link.pluginDefinition.description == 'strong'  %}
-                        </strong>
-                        {% endif %}
             {% endif %}
-
         </li>
     {% endfor %}
         {% if menu_level == 1 %}
