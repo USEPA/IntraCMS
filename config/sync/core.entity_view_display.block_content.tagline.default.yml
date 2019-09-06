@@ -1,0 +1,30 @@
+uuid: d75f30ee-7571-4af5-ae7b-ed99f07290dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.tagline
+    - field.field.block_content.tagline.field_usa_prose
+    - field.field.block_content.tagline.field_usa_section_heading
+id: block_content.tagline.default
+targetEntityType: block_content
+bundle: tagline
+mode: default
+content:
+  field_usa_prose:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_usa_section_heading:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  search_api_excerpt: true

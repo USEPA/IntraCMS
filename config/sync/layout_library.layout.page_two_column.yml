@@ -1,0 +1,93 @@
+uuid: 66a566e2-0699-425d-8947-c296545b6211
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: jYVh8Epfmnyruruw9mvA0muLgCUeWj7UjNe6c8voaxw
+id: page_two_column
+label: Two-column
+targetEntityType: node
+targetBundle: page
+layout:
+  -
+    layout_id: layout_twocol_section
+    layout_settings:
+      column_widths: 67-33
+    components:
+      9e31e1d5-9fe3-4076-8686-5149d97c96e4:
+        uuid: 9e31e1d5-9fe3-4076-8686-5149d97c96e4
+        region: second
+        configuration:
+          id: 'field_block:node:page:field_sidebar_content'
+          label: 'Sidebar Content'
+          provider: layout_builder
+          label_display: '0'
+          formatter:
+            label: hidden
+            type: entity_reference_revisions_entity_view
+            settings:
+              view_mode: default
+            third_party_settings: {  }
+          context_mapping:
+            entity: layout_builder.entity
+        additional: {  }
+        weight: 0
+      95e0ebd8-9b3b-4c74-8747-1bcc36eb0c19:
+        uuid: 95e0ebd8-9b3b-4c74-8747-1bcc36eb0c19
+        region: first
+        configuration:
+          id: 'field_block:node:page:field_featured_image'
+          label: 'Featured Image'
+          provider: layout_builder
+          label_display: '0'
+          formatter:
+            label: hidden
+            type: entity_reference_entity_view
+            settings:
+              view_mode: default
+            third_party_settings: {  }
+          context_mapping:
+            entity: layout_builder.entity
+        additional: {  }
+        weight: 3
+      b1951b9e-643d-4c99-9926-6ce586d5fafa:
+        uuid: b1951b9e-643d-4c99-9926-6ce586d5fafa
+        region: first
+        configuration:
+          id: 'field_block:node:page:body'
+          label: Body
+          provider: layout_builder
+          label_display: '0'
+          formatter:
+            label: hidden
+            type: text_default
+            settings: {  }
+            third_party_settings: {  }
+          context_mapping:
+            entity: layout_builder.entity
+        additional: {  }
+        weight: 4
+    third_party_settings: {  }
+  -
+    layout_id: layout_onecol
+    layout_settings: {  }
+    components:
+      ba620a98-6768-4c0a-9730-b3285150ce58:
+        uuid: ba620a98-6768-4c0a-9730-b3285150ce58
+        region: content
+        configuration:
+          id: 'field_block:node:page:field_custom_text'
+          label: 'Custom Content'
+          provider: layout_builder
+          label_display: '0'
+          formatter:
+            label: hidden
+            type: entity_reference_revisions_entity_view
+            settings:
+              view_mode: default
+            third_party_settings: {  }
+          context_mapping:
+            entity: layout_builder.entity
+        additional: {  }
+        weight: 0
+    third_party_settings: {  }

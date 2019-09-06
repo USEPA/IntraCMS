@@ -1,0 +1,46 @@
+uuid: b64ea25b-0790-4da8-8dca-9b994dbfd8ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.locations.field_address
+    - field.field.taxonomy_term.locations.field_location_abbreviation
+    - taxonomy.vocabulary.locations
+  module:
+    - address
+    - path
+id: taxonomy_term.locations.default
+targetEntityType: taxonomy_term
+bundle: locations
+mode: default
+content:
+  field_address:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  field_location_abbreviation:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  description: true

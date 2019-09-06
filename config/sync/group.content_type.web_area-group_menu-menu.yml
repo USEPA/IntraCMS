@@ -1,0 +1,22 @@
+uuid: e2428306-2444-441e-86e7-a96e95fda016
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.web_area
+  module:
+    - groupmenu
+    - system
+id: web_area-group_menu-menu
+label: 'Web Area: Group menu'
+description: 'Adds menus to groups'
+group_type: web_area
+content_plugin: 'group_menu:menu'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 1
+  auto_create_group_menu: 1
+  auto_create_home_link: 1
+  auto_create_home_link_title: Home

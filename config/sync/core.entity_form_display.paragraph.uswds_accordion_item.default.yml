@@ -1,0 +1,34 @@
+uuid: d5f3ce0f-b5c3-4a3c-a554-7ecd7f46bda8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.uswds_accordion_item.field_uswds_body
+    - field.field.paragraph.uswds_accordion_item.field_uswds_title
+    - paragraphs.paragraphs_type.uswds_accordion_item
+  module:
+    - text
+id: paragraph.uswds_accordion_item.default
+targetEntityType: paragraph
+bundle: uswds_accordion_item
+mode: default
+content:
+  field_uswds_body:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_uswds_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

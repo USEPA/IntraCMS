@@ -1,0 +1,28 @@
+uuid: e7e0fb20-8b7b-4170-8aeb-c11ce672d0a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_featured_image
+    - media.type.image
+    - node.type.page
+id: node.page.field_featured_image
+field_name: field_featured_image
+entity_type: node
+bundle: page
+label: 'Featured Image'
+description: 'Select or upload the image you wish to feature at the top of this page. The image will display below the page title and above the body text.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

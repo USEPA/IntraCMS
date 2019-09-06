@@ -1,0 +1,29 @@
+uuid: 292f4ceb-aea0-40dd-8197-896b9f50d0d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_research_program_area
+    - node.type.staff_member
+    - taxonomy.vocabulary.research_program_area
+id: node.staff_member.field_research_program_area
+field_name: field_research_program_area
+entity_type: node
+bundle: staff_member
+label: 'Research Program Area'
+description: 'Select the research program area the member may belong to.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      research_program_area: research_program_area
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,37 @@
+uuid: bfb8d44f-1473-4f71-9bc5-af0c35b055ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.organization
+  module:
+    - path
+    - text
+id: taxonomy_term.organization.default
+targetEntityType: taxonomy_term
+bundle: organization
+mode: default
+content:
+  description:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 1
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

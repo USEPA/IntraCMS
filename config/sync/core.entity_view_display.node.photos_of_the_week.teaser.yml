@@ -1,0 +1,32 @@
+uuid: 0b825003-872f-4e0a-b660-927c36cfde50
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.photos_of_the_week.body
+    - node.type.photos_of_the_week
+  module:
+    - text
+    - user
+id: node.photos_of_the_week.teaser
+targetEntityType: node
+bundle: photos_of_the_week
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_week_photos: true
+  search_api_excerpt: true
