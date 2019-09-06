@@ -1,0 +1,55 @@
+uuid: 13eee576-a526-45f8-8e76-6830f8c4ee4a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_custom_text
+    - node.type.page
+    - paragraphs.paragraphs_type.list_of_link
+    - paragraphs.paragraphs_type.rich_text
+    - paragraphs.paragraphs_type.title_and_text
+    - paragraphs.paragraphs_type.uswds_accordion
+  module:
+    - entity_reference_revisions
+id: node.page.field_custom_text
+field_name: field_custom_text
+entity_type: node
+bundle: page
+label: 'Custom Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      uswds_accordion: uswds_accordion
+      list_of_link: list_of_link
+      rich_text: rich_text
+      title_and_text: title_and_text
+    target_bundles_drag_drop:
+      uswds_accordion:
+        enabled: true
+        weight: -15
+      list_of_link:
+        enabled: true
+        weight: -14
+      rich_text:
+        enabled: true
+        weight: -13
+      title_and_text:
+        enabled: true
+        weight: -12
+      heading_title_and_text:
+        weight: -11
+        enabled: false
+      question_and_answer:
+        weight: -10
+        enabled: false
+      uswds_accordion_item:
+        weight: -9
+        enabled: false
+field_type: entity_reference_revisions

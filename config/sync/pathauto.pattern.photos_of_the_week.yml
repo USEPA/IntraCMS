@@ -1,0 +1,22 @@
+uuid: 3ad635ae-5342-43b4-a2ae-41009021ef2e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: photos_of_the_week
+label: 'Photos of the Week'
+type: 'canonical_entities:node'
+pattern: 'photos-of-the-week/[node:title]'
+selection_criteria:
+  aed8c5ce-5f2d-4c07-ae79-bad5ac32fb9a:
+    id: node_type
+    bundles:
+      photos_of_the_week: photos_of_the_week
+    negate: false
+    context_mapping:
+      node: node
+    uuid: aed8c5ce-5f2d-4c07-ae79-bad5ac32fb9a
+selection_logic: and
+weight: -6
+relationships: {  }

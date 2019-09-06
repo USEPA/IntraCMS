@@ -1,0 +1,23 @@
+uuid: efa4add2-14c1-4b4c-97fb-ed925606e5b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_article_featured
+    - node.type.article
+id: node.article.field_article_featured
+field_name: field_article_featured
+entity_type: node
+bundle: article
+label: Featured
+description: 'Check this box to include the <em>article</em> in a collection of featured articles.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

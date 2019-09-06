@@ -1,0 +1,42 @@
+uuid: f13b0f27-4a74-4abd-b4e3-3458d764ed0b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sidebar_content
+    - node.type.page
+    - paragraphs.paragraphs_type.list_of_link
+    - paragraphs.paragraphs_type.title_and_text
+  module:
+    - entity_reference_revisions
+id: node.page.field_sidebar_content
+field_name: field_sidebar_content
+entity_type: node
+bundle: page
+label: 'Sidebar Content'
+description: 'Select the type of content you would like to include in the sidebar column of this page.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      list_of_link: list_of_link
+      title_and_text: title_and_text
+    target_bundles_drag_drop:
+      list_of_link:
+        enabled: true
+        weight: 5
+      heading_title_and_text:
+        weight: 6
+        enabled: false
+      question_and_answer:
+        weight: 7
+        enabled: false
+      title_and_text:
+        enabled: true
+        weight: 8
+field_type: entity_reference_revisions

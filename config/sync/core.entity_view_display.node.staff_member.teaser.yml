@@ -1,0 +1,101 @@
+uuid: 6713de81-1f24-468c-862f-a53033925ba5
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.staff_member.field_email
+    - field.field.node.staff_member.field_first_name
+    - field.field.node.staff_member.field_last_name
+    - field.field.node.staff_member.field_location
+    - field.field.node.staff_member.field_organization
+    - field.field.node.staff_member.field_phone
+    - field.field.node.staff_member.field_research_program_area
+    - field.field.node.staff_member.field_staff_biography
+    - field.field.node.staff_member.field_staff_photo
+    - field.field.node.staff_member.field_staff_position
+    - field.field.node.staff_member.field_staff_profile
+    - field.field.node.staff_member.field_staff_secondary_location
+    - node.type.staff_member
+  module:
+    - link
+    - telephone
+    - user
+id: node.staff_member.teaser
+targetEntityType: node
+bundle: staff_member
+mode: teaser
+content:
+  field_email:
+    type: email_mailto
+    weight: 5
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_location:
+    type: entity_reference_entity_view
+    weight: 9
+    region: content
+    label: above
+    settings:
+      view_mode: term_name_only
+      link: false
+    third_party_settings: {  }
+  field_phone:
+    type: telephone_link
+    weight: 6
+    region: content
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+  field_staff_photo:
+    type: entity_reference_entity_view
+    weight: 1
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  field_staff_position:
+    type: string
+    weight: 4
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_staff_profile:
+    type: link
+    weight: 11
+    region: content
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  field_staff_secondary_location:
+    type: string
+    weight: 10
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_first_name: true
+  field_last_name: true
+  field_organization: true
+  field_research_program_area: true
+  field_staff_biography: true
+  search_api_excerpt: true

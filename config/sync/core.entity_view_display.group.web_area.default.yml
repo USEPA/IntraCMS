@@ -1,0 +1,32 @@
+uuid: c1747901-f963-436a-855a-fa03973c9765
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.group.web_area.field_group_contact
+    - group.type.web_area
+id: group.web_area.default
+targetEntityType: group
+bundle: web_area
+mode: default
+content:
+  field_group_contact:
+    weight: -4
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: email_mailto
+    region: content
+  label:
+    label: hidden
+    type: string
+    weight: -5
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  changed: true
+  created: true
+  search_api_excerpt: true
+  uid: true

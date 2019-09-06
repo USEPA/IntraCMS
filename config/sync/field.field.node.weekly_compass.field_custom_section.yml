@@ -1,0 +1,37 @@
+uuid: 3e6937e6-6bec-48c0-afc6-ad9aabd0fed4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_custom_section
+    - node.type.weekly_compass
+    - paragraphs.paragraphs_type.heading_title_and_text
+  module:
+    - entity_reference_revisions
+id: node.weekly_compass.field_custom_section
+field_name: field_custom_section
+entity_type: node
+bundle: weekly_compass
+label: 'Custom Section(s)'
+description: 'Add additional custom sections of content. Each section will have a header and may have multiple title/text fields.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      heading_title_and_text: heading_title_and_text
+    target_bundles_drag_drop:
+      heading_title_and_text:
+        enabled: true
+        weight: 4
+      question_and_answer:
+        weight: 5
+        enabled: false
+      title_and_text:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

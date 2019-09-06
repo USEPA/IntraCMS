@@ -1,0 +1,24 @@
+uuid: 532a6d89-92e2-4a42-b2d3-ef6a797e8007
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+  theme:
+    - uswds
+_core:
+  default_config_hash: MjMChFykEa-4UxdnGstVk1FcXqwUF3p_GBJLIFT3_XI
+id: uswds_group_operations
+theme: uswds
+region: sidebar_first
+weight: -20
+provider: null
+plugin: group_operations
+settings:
+  id: group_operations
+  label: 'Group operations'
+  provider: group
+  label_display: visible
+  context_mapping:
+    group: '@group.group_route_context:group'
+visibility: {  }

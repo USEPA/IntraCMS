@@ -1,0 +1,23 @@
+uuid: bd05b27f-8afb-4a63-ba8a-d9a712c0ddc4
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - group
+id: web_area_group_name
+label: 'Web Area Group Name'
+type: 'canonical_entities:group'
+pattern: '/web-area/[group:title]'
+selection_criteria:
+  802c459d-7e2d-4c3c-9af2-dd0d33079a08:
+    id: 'entity_bundle:group'
+    bundles:
+      web_area: web_area
+    negate: false
+    context_mapping:
+      group: group
+    uuid: 802c459d-7e2d-4c3c-9af2-dd0d33079a08
+selection_logic: and
+weight: -3
+relationships: {  }
