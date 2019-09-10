@@ -2,6 +2,11 @@ uuid: ae257f25-c9c5-4676-bed8-1fbd01ae3809
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.article
+    - node.type.landing_page
+    - node.type.page
+    - node.type.staff_member
   module:
     - gnode
     - group
@@ -811,7 +816,11 @@ display:
           group_type: group
           admin_label: ''
           operator: in
-          value: {  }
+          value:
+            article: article
+            page: page
+            landing_page: landing_page
+            staff_member: staff_member
           group: 1
           exposed: true
           expose:
