@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_form_mode.media.media_browser
+    - field.field.media.image.field_caption
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
     - image.style.medium
@@ -30,14 +31,14 @@ content:
     type: image_widget_crop
     weight: 0
     settings:
+      show_default_crop: true
       preview_image_style: medium
-      progress_indicator: throbber
+      crop_preview_image_style: crop_thumbnail
       crop_list:
         - freeform
-      show_crop_area: true
-      crop_preview_image_style: crop_thumbnail
+      progress_indicator: throbber
       crop_types_required: {  }
-      show_default_crop: true
+      show_crop_area: false
       warn_multiple_usages: false
     third_party_settings:
       lightning_media:
@@ -67,4 +68,5 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_caption: true
   uid: true
