@@ -1,21 +1,34 @@
-uuid: 7e6fe9e5-bd70-4830-9b8a-5c69e64f678e
+uuid: b81bcef8-22dc-410a-91a3-97d9002da461
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.media.slideshow
     - field.field.media.image.field_caption
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
     - media.type.image
   module:
     - image
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
 _core:
   default_config_hash: VLDxfMVPTkd2xvOjFMCh3kWmaOYnd03zggFXuUXQVEY
-id: media.image.default
+id: media.image.slideshow
 targetEntityType: media
 bundle: image
-mode: default
+mode: slideshow
 content:
+  field_caption:
+    type: basic_string
+    weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   image:
     type: image
     weight: 0
@@ -27,7 +40,6 @@ content:
     region: content
 hidden:
   created: true
-  field_caption: true
   field_media_in_library: true
   name: true
   search_api_excerpt: true
