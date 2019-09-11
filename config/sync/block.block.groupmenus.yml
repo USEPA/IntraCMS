@@ -1,0 +1,32 @@
+uuid: 024ad430-bbe8-406d-b68c-c9141cf7c51a
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - groupmenu_block
+  theme:
+    - epa_intranet
+id: groupmenus
+theme: epa_intranet
+region: sidebar_first
+weight: 0
+provider: null
+plugin: groupmenus
+settings:
+  id: groupmenus
+  label: 'Group menus'
+  provider: groupmenu_block
+  label_display: '0'
+  max_depth: '3'
+  context_mapping:
+    group: '@group.group_route_context:group'
+    node: '@node.node_route_context:node'
+visibility:
+  'entity_bundle:group':
+    id: 'entity_bundle:group'
+    bundles:
+      web_area: web_area
+    negate: false
+    context_mapping:
+      group: '@group.group_route_context:group'
