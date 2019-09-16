@@ -27,13 +27,21 @@
  * @ingroup themeable
  */
 #}
-<section class="grid-container usa-section">
+
+<div{{ attributes }}>
     <div class="grid-row grid-gap">
-        <div class="tablet:grid-col-4">
-            <h2 class="font-heading-xl margin-top-0 table:margin-bottom-0">{{ content.field_usa_section_heading[0] }}</h2>
-        </div>
+        {{ title_prefix }}
+        {% if label %}
+            <div class="tablet:grid-col-4">
+                <h2 class="font-heading-xl margin-top-0 table:margin-bottom-0">{{ content.field_usa_section_heading }}</h2>
+            </div>
+        {% endif %}
+        {{ title_suffix }}
         <div class="tablet:grid-col-8 usa-prose">
-            <p>{{ content.field_usa_prose[0] }}</p>
+            {% block content %}
+                {{ content | without("field_usa_section_heading") }}
+            {% endblock %}
         </div>
     </div>
-</section>
+</div>
+
