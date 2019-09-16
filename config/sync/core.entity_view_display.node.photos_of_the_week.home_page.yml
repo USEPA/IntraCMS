@@ -1,0 +1,46 @@
+uuid: f29e878d-6a3f-4d41-a16c-636320acc2e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.home_page
+    - field.field.node.photos_of_the_week.body
+    - field.field.node.photos_of_the_week.field_week_photos
+    - node.type.photos_of_the_week
+  module:
+    - layout_builder
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: node.photos_of_the_week.home_page
+targetEntityType: node
+bundle: photos_of_the_week
+mode: home_page
+content:
+  body:
+    label: hidden
+    type: text_trimmed
+    weight: 101
+    settings:
+      trim_length: 400
+    third_party_settings: {  }
+    region: content
+  field_week_photos:
+    type: entity_reference_entity_view
+    weight: 102
+    label: visually_hidden
+    settings:
+      view_mode: media_block
+      link: false
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  search_api_excerpt: true
