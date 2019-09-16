@@ -1,9 +1,9 @@
-uuid: 85eebd20-7373-4b47-ad8c-5255c1b992ce
+uuid: c8576200-9515-41de-9d40-698e6d1b7aa2
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.home_page
     - field.field.node.faces_of_ord.field_center_or_office
     - field.field.node.faces_of_ord.field_custom_question
     - field.field.node.faces_of_ord.field_faces_job_position
@@ -15,37 +15,42 @@ dependencies:
     - field.field.node.faces_of_ord.field_when_did_you_start_at_epa
     - node.type.faces_of_ord
   module:
+    - layout_builder
     - user
-id: node.faces_of_ord.teaser
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: node.faces_of_ord.home_page
 targetEntityType: node
 bundle: faces_of_ord
-mode: teaser
+mode: home_page
 content:
   field_faces_job_position:
-    type: string
     weight: 3
-    region: content
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  field_faces_name:
     type: string
-    weight: 2
     region: content
+  field_faces_name:
+    weight: 2
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    type: string
+    region: content
   field_faces_photo:
     type: entity_reference_entity_view
     weight: 1
-    region: content
     label: hidden
     settings:
       view_mode: media_block
       link: false
     third_party_settings: {  }
+    region: content
   links:
     weight: 0
     region: content
