@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_browser
     - field.field.node.faces_of_ord.field_center_or_office
     - field.field.node.faces_of_ord.field_custom_question
     - field.field.node.faces_of_ord.field_faces_job_position
@@ -16,7 +15,6 @@ dependencies:
     - node.type.faces_of_ord
   module:
     - content_moderation
-    - entity_browser
     - paragraphs
     - path
 id: node.faces_of_ord.default
@@ -64,21 +62,6 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_faces_photo:
-    type: entity_browser_entity_reference
-    weight: 123
-    settings:
-      entity_browser: media_browser
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: thumbnail
-      open: true
-      field_widget_replace: false
-    region: content
-    third_party_settings: {  }
   field_favorite_thing:
     weight: 129
     settings:
@@ -159,4 +142,5 @@ content:
       placeholder: ''
     region: content
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_faces_photo: true

@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_browser
     - field.field.node.article.body
     - field.field.node.article.field_article_featured
     - field.field.node.article.field_article_image
@@ -11,7 +10,6 @@ dependencies:
     - node.type.article
   module:
     - content_moderation
-    - entity_browser
     - path
     - text
 id: node.article.default
@@ -41,21 +39,6 @@ content:
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
-  field_article_image:
-    type: entity_browser_entity_reference
-    weight: 9
-    settings:
-      entity_browser: media_browser
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: thumbnail
-      open: true
-      field_widget_replace: false
-    region: content
-    third_party_settings: {  }
   field_keywords:
     weight: 11
     settings:
@@ -115,4 +98,5 @@ content:
       placeholder: ''
     region: content
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_article_image: true

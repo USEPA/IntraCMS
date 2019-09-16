@@ -3,13 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_browser
     - field.field.node.photos_of_the_week.body
     - field.field.node.photos_of_the_week.field_week_photos
     - node.type.photos_of_the_week
   module:
     - content_moderation
-    - entity_browser
     - path
     - text
 id: node.photos_of_the_week.default
@@ -31,21 +29,6 @@ content:
     weight: 2
     region: content
     settings: {  }
-    third_party_settings: {  }
-  field_week_photos:
-    type: entity_browser_entity_reference
-    weight: 7
-    settings:
-      entity_browser: media_browser
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: thumbnail
-      open: true
-      field_widget_replace: false
-    region: content
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
@@ -84,5 +67,6 @@ content:
     region: content
     third_party_settings: {  }
 hidden:
+  field_week_photos: true
   promote: true
   sticky: true
