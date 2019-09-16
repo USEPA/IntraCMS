@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.media_browser
     - field.field.node.faces_of_ord.field_center_or_office
     - field.field.node.faces_of_ord.field_custom_question
     - field.field.node.faces_of_ord.field_faces_job_position
@@ -15,6 +16,7 @@ dependencies:
     - node.type.faces_of_ord
   module:
     - content_moderation
+    - entity_browser
     - paragraphs
     - path
 id: node.faces_of_ord.default
@@ -24,19 +26,19 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   field_center_or_office:
-    weight: 125
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_custom_question:
     type: entity_reference_paragraphs
-    weight: 130
+    weight: 16
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -47,7 +49,7 @@ content:
     third_party_settings: {  }
     region: content
   field_faces_job_position:
-    weight: 124
+    weight: 10
     settings:
       size: 60
       placeholder: ''
@@ -55,15 +57,30 @@ content:
     type: string_textfield
     region: content
   field_faces_name:
-    weight: 122
+    weight: 9
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_faces_photo:
+    type: entity_browser_entity_reference
+    weight: 1
+    settings:
+      entity_browser: media_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: thumbnail
+      open: true
+      field_widget_replace: false
+    region: content
+    third_party_settings: {  }
   field_favorite_thing:
-    weight: 129
+    weight: 15
     settings:
       rows: 2
       placeholder: ''
@@ -71,7 +88,7 @@ content:
     type: string_textarea
     region: content
   field_interesting_job:
-    weight: 128
+    weight: 14
     settings:
       rows: 2
       placeholder: ''
@@ -79,13 +96,13 @@ content:
     type: string_textarea
     region: content
   field_research_program_area:
-    weight: 126
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_when_did_you_start_at_epa:
-    weight: 127
+    weight: 13
     settings:
       rows: 2
       placeholder: ''
@@ -94,13 +111,13 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 100
+    weight: 7
     settings: {  }
     region: content
     third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -108,26 +125,26 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 15
+    weight: 4
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 120
+    weight: 8
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 16
+    weight: 5
     region: content
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -5
+    weight: 0
     region: content
     settings:
       size: 60
@@ -135,12 +152,11 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     region: content
     third_party_settings: {  }
-hidden:
-  field_faces_photo: true
+hidden: {  }
