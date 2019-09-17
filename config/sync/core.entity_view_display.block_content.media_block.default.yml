@@ -4,27 +4,14 @@ status: true
 dependencies:
   config:
     - block_content.type.media_block
-    - field.field.block_content.media_block.field_test_image
     - field.field.block_content.media_block.field_usa_media_block_heading
     - field.field.block_content.media_block.field_usa_media_block_img
     - field.field.block_content.media_block.field_usa_media_block_text
-    - image.style.media_block_image
-  module:
-    - image
 id: block_content.media_block.default
 targetEntityType: block_content
 bundle: media_block
 mode: default
 content:
-  field_test_image:
-    weight: 1
-    label: hidden
-    settings:
-      image_style: media_block_image
-      image_link: content
-    third_party_settings: {  }
-    type: image
-    region: content
   field_usa_media_block_heading:
     weight: 2
     label: hidden

@@ -1,9 +1,9 @@
-uuid: 94b76b7e-8551-4ac4-b1d1-f45ec66d3b33
+uuid: 500c66e2-9621-41e8-be1a-7ef0421adc78
 langcode: en
 status: true
 dependencies:
   config:
-    - filter.format.rich_text
+    - filter.format.simple_text
   module:
     - ckeditor
     - editor_file
@@ -12,11 +12,9 @@ third_party_settings:
     status: true
     scheme: public
     directory: inline-files
-    extensions: 'txt pdf doc docx xls xlsx ppt pptx'
-    max_size: '12 MB'
-_core:
-  default_config_hash: 0bVELtfx9sXhjZ6s6W-dJo8SW-IR9jiEIEylzm-2Cro
-format: rich_text
+    extensions: txt
+    max_size: ''
+format: simple_text
 editor: ckeditor
 settings:
   toolbar:
@@ -27,21 +25,13 @@ settings:
           items:
             - Bold
             - Italic
-            - Strike
             - Format
             - Styles
-            - Superscript
-            - Subscript
-            - '-'
-            - Blockquote
-            - JustifyLeft
-            - JustifyCenter
-            - JustifyRight
-            - '-'
-            - RemoveFormat
-            - PasteText
-            - PasteFromWord
-            - '-'
+        -
+          name: Links
+          items:
+            - DrupalLink
+            - DrupalUnlink
         -
           name: Lists
           items:
@@ -50,23 +40,8 @@ settings:
             - Outdent
             - Indent
         -
-          name: Linking
-          items:
-            - DrupalLink
-            - DrupalUnlink
-            - '-'
-            - DrupalFile
-        -
-          name: Media
-          items:
-            - Table
-            - HorizontalRule
-            - media_browser
-        -
           name: Tools
           items:
-            - ShowBlocks
-            - DrupalFontAwesome
             - Source
   plugins:
     drupallink:
@@ -77,7 +52,7 @@ settings:
     stylescombo:
       styles: "p.usa-intro|Intro Text\r\nspan.usa-tag|Tag"
 image_upload:
-  status: true
+  status: false
   scheme: public
   directory: inline-images
   max_size: ''
