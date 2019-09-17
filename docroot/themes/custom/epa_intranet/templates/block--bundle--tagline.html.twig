@@ -28,7 +28,13 @@
  */
 #}
 
-<div{{ attributes }}>
+
+{% set classes = [
+    'grid-container',
+    'usa-section',
+] %}
+
+<section{{ attributes.addClass(classes) }}>
     <div class="grid-row grid-gap">
         {{ title_prefix }}
         {% if label %}
@@ -43,5 +49,5 @@
             {% endblock %}
         </div>
     </div>
-</div>
+</section>
 
