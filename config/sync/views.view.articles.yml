@@ -1,22 +1,17 @@
-uuid: 0b8e6ddf-615a-4a2b-872f-587a92f76c88
+uuid: 7e71ec9d-eddd-4886-8e5b-9a1d19ca7f73
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_event_date
-    - field.storage.node.field_event_host
-    - node.type.event
-    - taxonomy.vocabulary.event_host
-  content:
-    - 'taxonomy_term:event_host:9e03a27b-2f4f-4248-b73e-b6a91ccbe5ff'
+    - field.storage.node.body
+    - node.type.article
   module:
-    - fullcalendar_view
+    - group
     - node
-    - smart_date
-    - taxonomy
+    - text
     - user
-id: event_calendar
-label: Events
+id: articles
+label: Articles
 module: views
 description: ''
 tag: ''
@@ -74,45 +69,83 @@ display:
             previous: ‹‹
             next: ››
       style:
-        type: fullcalendar_view_display
-        options:
-          default_date_source: now
-          defaultDate: ''
-          start: field_event_date
-          end: field_event_date
-          title: title
-          des: {  }
-          use_entity_fields: 1
-          right_buttons:
-            agendaWeek: agendaWeek
-            agendaDay: agendaDay
-            listYear: listYear
-          nav_links: 1
-          alloweventOverlap: 1
-          updateConfirm: 1
-          defaultLanguage: en
-          languageSelector: 0
-          createEventLink: 0
-          tax_field: field_event_host
-          vocabularies: event_host
-          color_bundle:
-            article: '#3a87ad'
-            event: '#3a87ad'
-            faces_of_ord: '#3a87ad'
-            landing_page: '#3a87ad'
-            page: '#3a87ad'
-            photos_of_the_week: '#3a87ad'
-            staff_member: '#3a87ad'
-            weekly_compass: '#3a87ad'
-          bundle_type: event
-          classes: ''
-          color_taxonomies:
-            5: '#800040'
-            3: '#008000'
-            4: '#0080c0'
+        type: default
       row:
         type: fields
+        options:
+          default_field_elements: true
+          inline:
+            title: title
+          separator: ''
+          hide_empty: false
       fields:
+        created:
+          id: created
+          table: node_field_revision
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: timestamp
+          settings:
+            date_format: long
+            custom_date_format: ''
+            timezone: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: created
+          plugin_id: field
         title:
           id: title
           table: node_field_data
@@ -160,10 +193,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_event_date:
-          id: field_event_date
-          table: node__field_event_date
-          field: field_event_date
+        body:
+          id: body
+          table: node__body
+          field: body
           relationship: none
           group_type: group
           admin_label: ''
@@ -209,10 +242,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: smartdate_default
+          type: text_summary_or_trimmed
           settings:
-            timezone_override: ''
-            format: default
+            trim_length: 400
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -241,12 +273,27 @@ display:
           table: node_field_data
           field: type
           value:
-            event: event
+            article: article
           entity_type: node
           entity_field: type
           plugin_id: bundle
-      sorts: {  }
-      title: 'Events by Host'
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          order: DESC
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          exposed: false
+          expose:
+            label: ''
+          granularity: second
+      title: News
       header: {  }
       footer: {  }
       empty:
@@ -260,131 +307,118 @@ display:
           empty: true
           tokenize: false
           content:
-            value: 'There are no upcoming events.'
+            value: 'There are no news or announcements currently posted.'
             format: rich_text
           plugin_id: text
-      relationships: {  }
-      arguments: {  }
-      display_extenders: {  }
-      use_ajax: true
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url.query_args
-        - 'user.node_grants:view'
-        - user.permissions
-      tags:
-        - 'config:field.storage.node.field_event_date'
-  block_events_by_host:
-    display_plugin: block
-    id: block_events_by_host
-    display_title: 'Block: Events by Host'
-    position: 2
-    display_options:
-      display_extenders: {  }
-      style:
-        type: default
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: false
-      defaults:
-        style: false
-        row: false
-        filters: false
-        filter_groups: false
-        exposed_form: false
-      row:
-        type: fields
-        options: {  }
-      filters:
-        status:
-          value: '1'
+      relationships:
+        group_content:
+          id: group_content
           table: node_field_data
-          field: status
-          plugin_id: boolean
-          entity_type: node
-          entity_field: status
-          id: status
-          expose:
-            operator: ''
-          group: 1
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          value:
-            event: event
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-        tid:
-          id: tid
-          table: taxonomy_index
-          field: tid
+          field: group_content
           relationship: none
           group_type: group
+          admin_label: 'Content group content'
+          required: false
+          group_content_plugins:
+            'group_node:article': 'group_node:article'
+            'group_node:event': '0'
+            'group_node:faces_of_ord': '0'
+            'group_node:landing_page': '0'
+            'group_node:page': '0'
+            'group_node:photos_of_the_week': '0'
+            'group_node:staff_member': '0'
+            'group_node:weekly_compass': '0'
+          entity_type: node
+          plugin_id: group_content_to_entity_reverse
+        gid:
+          id: gid
+          table: group_content_field_data
+          field: gid
+          relationship: group_content
+          group_type: group
+          admin_label: Group
+          required: false
+          entity_type: group_content
+          entity_field: gid
+          plugin_id: standard
+        group_content_id:
+          id: group_content_id
+          table: groups_field_data
+          field: group_content_id
+          relationship: gid
+          group_type: group
+          admin_label: 'Group content'
+          required: false
+          group_content_plugins:
+            'group_node:article': 'group_node:article'
+            'group_node:event': '0'
+            'group_node:faces_of_ord': '0'
+            'group_node:landing_page': '0'
+            'group_node:page': '0'
+            'group_node:photos_of_the_week': '0'
+            'group_node:staff_member': '0'
+            'group_node:weekly_compass': '0'
+            group_membership: '0'
+            'group_menu:menu': '0'
+          entity_type: group
+          plugin_id: group_to_group_content
+        gc__node:
+          id: gc__node
+          table: group_content__entity_id
+          field: gc__node
+          relationship: group_content_id
+          group_type: group
+          admin_label: 'Group content Content'
+          required: false
+          group_content_plugins:
+            'group_node:article': 'group_node:article'
+            'group_node:event': '0'
+            'group_node:faces_of_ord': '0'
+            'group_node:landing_page': '0'
+            'group_node:page': '0'
+            'group_node:photos_of_the_week': '0'
+            'group_node:staff_member': '0'
+            'group_node:weekly_compass': '0'
+          entity_type: group_content
+          plugin_id: group_content_to_entity
+      arguments:
+        nid:
+          id: nid
+          table: node_field_data
+          field: nid
+          relationship: gc__node
+          group_type: group
           admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: tid_op
-            label: 'Event Host'
-            description: ''
-            use_operator: false
-            operator: tid_op
-            identifier: tid
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              editor: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: textfield
-          limit: true
-          vid: event_host
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      block_description: 'Events by Host'
-      display_description: ''
-      allow:
-        items_per_page: false
-      enabled: false
+          default_action: default
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: node
+          default_argument_options: {  }
+          default_argument_skip_url: false
+          summary_options:
+            base_path: ''
+            count: true
+            items_per_page: 25
+            override: false
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: false
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          break_phrase: false
+          not: false
+          entity_type: node
+          entity_field: nid
+          plugin_id: node_nid
+      display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -392,173 +426,138 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_event_date'
-  block_events_named_host:
+        - 'config:field.storage.node.body'
+  group_articles_block:
     display_plugin: block
-    id: block_events_named_host
-    display_title: 'Block: OSIM Events'
+    id: group_articles_block
+    display_title: Block
     position: 2
     display_options:
       display_extenders: {  }
       style:
         type: default
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: false
       defaults:
         style: false
         row: false
-        filters: false
-        filter_groups: false
-        exposed_form: false
-        title: false
+        pager: false
+        fields: false
       row:
         type: fields
-        options: {  }
-      filters:
-        status:
-          value: '1'
-          table: node_field_data
-          field: status
-          plugin_id: boolean
-          entity_type: node
-          entity_field: status
-          id: status
-          expose:
-            operator: ''
-          group: 1
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          value:
-            event: event
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-        tid:
-          id: tid
-          table: taxonomy_index
-          field: tid
+      pager:
+        type: some
+        options:
+          items_per_page: 5
+          offset: 0
+      fields:
+        created:
+          id: created
+          table: node_field_revision
+          field: created
           relationship: none
           group_type: group
           admin_label: ''
-          operator: or
-          value:
-            - 4
-          group: 1
-          exposed: false
-          expose:
-            operator_id: tid_op
-            label: 'Event Host'
-            description: ''
-            use_operator: false
-            operator: tid_op
-            identifier: tid
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              editor: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: textfield
-          limit: true
-          vid: event_host
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      block_description: 'OSIM Events'
-      display_description: ''
-      allow:
-        items_per_page: false
-      title: 'OSIM Events'
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url.query_args
-        - user
-        - 'user.node_grants:view'
-        - user.permissions
-      tags:
-        - 'config:field.storage.node.field_event_date'
-  calendar_page:
-    display_plugin: page
-    id: calendar_page
-    display_title: 'Page: Calendar'
-    position: 1
-    display_options:
-      display_extenders: {  }
-      path: calendar
-      display_description: ''
-      title: 'Events Calendar'
-      defaults:
-        title: false
-        relationships: false
-        fields: false
-      relationships: {  }
-      fields:
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: timestamp
+          settings:
+            date_format: long
+            custom_date_format: ''
+            timezone: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: created
+          plugin_id: field
         title:
           id: title
           table: node_field_data
           field: title
-          entity_type: node
-          entity_field: title
-          label: ''
-          alter:
-            alter_text: false
-            make_link: false
-            absolute: false
-            trim: false
-            word_boundary: false
-            ellipsis: false
-            strip_tags: false
-            html: false
-          hide_empty: false
-          empty_zero: false
           settings:
             link_to_entity: true
           plugin_id: field
           relationship: none
           group_type: group
           admin_label: ''
+          label: ''
           exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
           element_type: ''
           element_class: ''
           element_label_type: ''
@@ -568,6 +567,8 @@ display:
           element_wrapper_class: ''
           element_default_classes: true
           empty: ''
+          hide_empty: false
+          empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
           type: string
@@ -581,10 +582,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_event_date:
-          id: field_event_date
-          table: node__field_event_date
-          field: field_event_date
+        body:
+          id: body
+          table: node__body
+          field: body
           relationship: none
           group_type: group
           admin_label: ''
@@ -630,10 +631,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: smartdate_default
+          type: text_summary_or_trimmed
           settings:
-            timezone_override: ''
-            format: default
+            trim_length: 400
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -645,77 +645,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_event_host:
-          id: field_event_host
-          table: node__field_event_host
-          field: field_event_host
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
+      block_description: 'News Articles'
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url.query_args
+        - url
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_event_date'
-        - 'config:field.storage.node.field_event_host'
+        - 'config:field.storage.node.body'
