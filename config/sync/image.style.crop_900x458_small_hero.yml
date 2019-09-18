@@ -1,0 +1,25 @@
+uuid: 2e689be3-5aad-4686-b39b-a1e98432b9f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.900x458_small_hero
+  module:
+    - crop
+name: crop_900x458_small_hero
+label: 'Cropped: 900x458 Small Hero'
+effects:
+  54e0a2de-62fe-4c85-a897-3cc13ec80232:
+    uuid: 54e0a2de-62fe-4c85-a897-3cc13ec80232
+    id: crop_crop
+    weight: -10
+    data:
+      crop_type: 900x458_small_hero
+  824825cc-0e41-46a6-8384-a403758767d0:
+    uuid: 824825cc-0e41-46a6-8384-a403758767d0
+    id: image_scale
+    weight: 2
+    data:
+      width: 900
+      height: 458
+      upscale: false

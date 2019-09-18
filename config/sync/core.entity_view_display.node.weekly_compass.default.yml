@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.weekly_compass.field_in_the_news
     - field.field.node.weekly_compass.field_in_the_office
     - field.field.node.weekly_compass.field_photos_of_the_week
+    - field.field.node.weekly_compass.field_quick_updates
     - field.field.node.weekly_compass.field_weekly_note
     - node.type.weekly_compass
   module:
@@ -107,6 +108,13 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
+  field_quick_updates:
+    weight: 11
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
     region: content
   field_weekly_note:
     weight: 1

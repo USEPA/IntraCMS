@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.weekly_compass.field_in_the_news
     - field.field.node.weekly_compass.field_in_the_office
     - field.field.node.weekly_compass.field_photos_of_the_week
+    - field.field.node.weekly_compass.field_quick_updates
     - field.field.node.weekly_compass.field_weekly_note
     - node.type.weekly_compass
   module:
@@ -33,18 +34,18 @@ content:
     third_party_settings: {  }
   field_accolades:
     type: entity_reference_paragraphs
-    weight: 12
+    weight: 13
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
+      title: Accolades
+      title_plural: Accolades
+      edit_mode: closed
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: title_and_text
     third_party_settings: {  }
     region: content
   field_compass_upcoming_webinars:
-    weight: 9
+    weight: 10
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -53,18 +54,18 @@ content:
     region: content
   field_custom_section:
     type: entity_reference_paragraphs
-    weight: 17
+    weight: 18
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
+      title: 'Custom Section'
+      title_plural: 'Custom Sections'
+      edit_mode: closed
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: heading_title_and_text
     third_party_settings: {  }
     region: content
   field_faces_of_ord:
-    weight: 15
+    weight: 16
     settings:
       match_operator: CONTAINS
       size: 60
@@ -74,60 +75,68 @@ content:
     region: content
   field_in_the_community:
     type: entity_reference_paragraphs
-    weight: 14
+    weight: 15
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
+      title: 'In the Community'
+      title_plural: 'In the Community'
+      edit_mode: closed
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: title_and_text
     third_party_settings: {  }
     region: content
   field_in_the_lab:
     type: entity_reference_paragraphs
-    weight: 10
+    weight: 11
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
+      title: 'In the Lab'
+      title_plural: 'In the Lab'
+      edit_mode: closed
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: title_and_text
     third_party_settings: {  }
     region: content
   field_in_the_news:
     type: entity_reference_paragraphs
-    weight: 13
+    weight: 14
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
+      title: 'In the News'
+      title_plural: 'In the News'
+      edit_mode: closed
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: title_and_text
     third_party_settings: {  }
     region: content
   field_in_the_office:
     type: entity_reference_paragraphs
-    weight: 11
+    weight: 12
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
+      title: 'In the Office'
+      title_plural: 'In the Office'
+      edit_mode: closed
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: title_and_text
     third_party_settings: {  }
     region: content
   field_photos_of_the_week:
-    weight: 16
+    weight: 17
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_quick_updates:
+    weight: 9
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
     region: content
   field_weekly_note:
     weight: 8
