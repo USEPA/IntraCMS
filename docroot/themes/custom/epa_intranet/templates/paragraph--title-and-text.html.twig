@@ -38,24 +38,18 @@
  * @ingroup themeable
  */
 #}
-{%
-  set classes = [
-    'paragraph',
-    'paragraph--type--' ~ paragraph.bundle|clean_class,
-    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-    not paragraph.isPublished() ? 'paragraph--unpublished'
-  ]
-%}
 
 {% block paragraph %}
-<div class="card">
-    <div class="card-header">
-        {{ content.field_paragraph_title }}
+    <div {{ attributes.addClass("card") }}>
+        <div class="card-header">
+            <b>
+                {{ content.field_paragraph_title }}
+            </b>
+        </div>
+        <div class="card-body">
+            {{ content.field_paragraph_text }}
+        </div>
     </div>
-    <div class="card-body">      
-        {{ content.field_paragraph_text }}
-    </div>
-  </div>
 {% endblock paragraph %}
 
 

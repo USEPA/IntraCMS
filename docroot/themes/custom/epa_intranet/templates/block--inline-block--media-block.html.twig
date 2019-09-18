@@ -28,9 +28,15 @@
  */
 #}
 
+{%
+ set classes = [
+ 'usa-media-block',
+ 'tablet:grid-col',
+]
+%}
 
 
-<div class="usa-media-block tablet:grid-col">
+<div {{ attributes.addClass(classes) }}>
  <img class="usa-media-block__img" src="{{ file_url(content.field_test_image['#items'].entity.uri.value) }}" alt="{{ content.field_test_image.alt }}">
  <div class="usa-media-block__body">
  <h3 class="usa-graphic-list__heading">{{ content.field_usa_media_block_heading }}</h3>

@@ -40,14 +40,16 @@
 #}
 
 {% block paragraph %}
-<div {{ attributes.addClass("card") }}>
-    <div class="card-header">
-        {{ content.field_paragraph_title }}
+    <div {{ attributes.addClass("card") }}>
+        <div class="card-header">
+            <b>
+                {{ content.field_paragraph_title }}
+            </b>
+        </div>
+        <div class="card-body">
+            {{ content.field_link_list_item }}
+        </div>
     </div>
-    <div class="card-body">
-        {{ content.field_link_list_item }}
-    </div>
-  </div>
 {% endblock paragraph %}
 
 
