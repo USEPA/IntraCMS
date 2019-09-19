@@ -5,16 +5,26 @@ dependencies:
   config:
     - block_content.type.media_block
     - entity_browser.browser.media_browser
+    - field.field.block_content.media_block.field_link
     - field.field.block_content.media_block.field_usa_media_block_heading
     - field.field.block_content.media_block.field_usa_media_block_img
     - field.field.block_content.media_block.field_usa_media_block_text
   module:
     - entity_browser
+    - link
 id: block_content.media_block.default
 targetEntityType: block_content
 bundle: media_block
 mode: default
 content:
+  field_link:
+    weight: 26
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_usa_media_block_heading:
     weight: 2
     settings:
