@@ -38,15 +38,19 @@
  * @ingroup themeable
  */
 #}
+{%
+    set classes = [
+    'card',
+    'mt-2',
+]
+%}
 
 {% block paragraph %}
-    <div {{ attributes.addClass("card") }}>
-        <div class="card-header">
-            <b>
+    <div {{ attributes.addClass(classes) }}>
+        <div class="card-header m-0 font-weight-bold">
                 {{ content.field_paragraph_title }}
-            </b>
         </div>
-        <div class="card-body">
+        <div class="card-body py-1">
             {{ content.field_paragraph_text }}
         </div>
     </div>
