@@ -4,14 +4,29 @@ status: true
 dependencies:
   config:
     - block_content.type.media_block
+    - field.field.block_content.media_block.field_link
     - field.field.block_content.media_block.field_usa_media_block_heading
     - field.field.block_content.media_block.field_usa_media_block_img
     - field.field.block_content.media_block.field_usa_media_block_text
+  module:
+    - link
 id: block_content.media_block.default
 targetEntityType: block_content
 bundle: media_block
 mode: default
 content:
+  field_link:
+    weight: 4
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
   field_usa_media_block_heading:
     weight: 2
     label: hidden
