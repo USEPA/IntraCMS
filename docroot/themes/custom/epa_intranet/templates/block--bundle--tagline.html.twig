@@ -37,11 +37,9 @@
 <section{{ attributes.addClass(classes) }}>
     <div class="grid-row grid-gap">
         {{ title_prefix }}
-        {% if label %}
             <div class="tablet:grid-col-4">
-                <h2 class="font-heading-xl margin-top-0 table:margin-bottom-0">{{ content.field_usa_section_heading }}</h2>
+                <h2 class="font-heading-xl margin-top-0 table:margin-bottom-0 font-weight-bold">{{ content.field_usa_section_heading }}</h2>
             </div>
-        {% endif %}
         {{ title_suffix }}
         <div class="tablet:grid-col-8 usa-prose">
             {% block content %}

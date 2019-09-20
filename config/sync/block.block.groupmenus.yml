@@ -23,10 +23,14 @@ settings:
     group: '@group.group_route_context:group'
     node: '@node.node_route_context:node'
 visibility:
-  'entity_bundle:group':
-    id: 'entity_bundle:group'
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
     bundles:
-      web_area: web_area
-    negate: false
+      event: event
+      faces_of_ord: faces_of_ord
+      landing_page: landing_page
+      photos_of_the_week: photos_of_the_week
+      weekly_compass: weekly_compass
+    negate: true
     context_mapping:
-      group: '@group.group_route_context:group'
+      node: '@node.node_route_context:node'

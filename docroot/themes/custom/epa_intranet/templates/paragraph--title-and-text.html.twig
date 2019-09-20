@@ -39,23 +39,21 @@
  */
 #}
 {%
-  set classes = [
-    'paragraph',
-    'paragraph--type--' ~ paragraph.bundle|clean_class,
-    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-    not paragraph.isPublished() ? 'paragraph--unpublished'
-  ]
+    set classes = [
+    'card',
+    'mt-2',
+]
 %}
 
 {% block paragraph %}
-<div class="card">
-    <div class="card-header">
-        {{ content.field_paragraph_title }}
+    <div {{ attributes.addClass(classes) }}>
+        <div class="card-header m-0 font-weight-bold">
+                {{ content.field_paragraph_title }}
+        </div>
+        <div class="card-body py-1">
+            {{ content.field_paragraph_text }}
+        </div>
     </div>
-    <div class="card-body">      
-        {{ content.field_paragraph_text }}
-    </div>
-  </div>
 {% endblock paragraph %}
 
 

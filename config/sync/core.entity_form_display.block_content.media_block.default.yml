@@ -5,33 +5,26 @@ dependencies:
   config:
     - block_content.type.media_block
     - entity_browser.browser.media_browser
-    - field.field.block_content.media_block.field_test_image
+    - field.field.block_content.media_block.field_link
     - field.field.block_content.media_block.field_usa_media_block_heading
     - field.field.block_content.media_block.field_usa_media_block_img
     - field.field.block_content.media_block.field_usa_media_block_text
-    - image.style.thumbnail
   module:
     - entity_browser
-    - image
+    - link
 id: block_content.media_block.default
 targetEntityType: block_content
 bundle: media_block
 mode: default
 content:
-  field_test_image:
-    type: entity_browser_file
+  field_link:
     weight: 26
     settings:
-      entity_browser: image_browser
-      field_widget_edit: true
-      field_widget_remove: true
-      view_mode: default
-      preview_image_style: thumbnail
-      open: true
-      field_widget_replace: false
-      selection_mode: selection_append
-    region: content
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
+    type: link_default
+    region: content
   field_usa_media_block_heading:
     weight: 2
     settings:

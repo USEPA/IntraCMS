@@ -1,0 +1,62 @@
+uuid: 500c66e2-9621-41e8-be1a-7ef0421adc78
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.simple_text
+  module:
+    - ckeditor
+    - editor_file
+third_party_settings:
+  editor_file:
+    status: true
+    scheme: public
+    directory: inline-files
+    extensions: 'txt pdf doc docx xls xlsx ppt pptx'
+    max_size: '12 MB'
+format: simple_text
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Italic
+            - Format
+            - Styles
+        -
+          name: Links
+          items:
+            - DrupalLink
+            - DrupalUnlink
+            - DrupalFile
+        -
+          name: Lists
+          items:
+            - BulletedList
+            - NumberedList
+            - Outdent
+            - Indent
+        -
+          name: Tools
+          items:
+            - Source
+  plugins:
+    drupallink:
+      linkit_enabled: true
+      linkit_profile: editor
+    language:
+      language_list: un
+    stylescombo:
+      styles: "p.usa-intro|Intro Text\r\nspan.usa-tag|Tag"
+image_upload:
+  status: false
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null
