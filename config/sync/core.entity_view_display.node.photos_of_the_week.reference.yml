@@ -1,0 +1,62 @@
+uuid: a0ec7395-d066-42ea-8c26-91bc828561ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.reference
+    - field.field.node.photos_of_the_week.body
+    - field.field.node.photos_of_the_week.field_week_photos
+    - node.type.photos_of_the_week
+  module:
+    - layout_builder
+    - slick_entityreference
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: node.photos_of_the_week.reference
+targetEntityType: node
+bundle: photos_of_the_week
+mode: reference
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_week_photos:
+    type: slick_entityreference_vanilla
+    weight: 102
+    label: visually_hidden
+    settings:
+      optionset: default
+      skin: classic
+      view_mode: slideshow
+      cache: '0'
+      current_view_mode: default
+      override: 0
+      overridables:
+        arrows: 0
+        autoplay: 0
+        dots: 0
+        draggable: 0
+        infinite: 0
+        mouseWheel: 0
+        randomize: 0
+        variableWidth: 0
+      skin_arrows: ''
+      skin_dots: ''
+      style: ''
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  search_api_excerpt: true
