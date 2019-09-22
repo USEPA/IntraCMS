@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.group.web_area.field_group_contact
+    - field.field.group.web_area.field_group_description
     - group.type.web_area
   module:
     - path
@@ -13,16 +14,24 @@ bundle: web_area
 mode: default
 content:
   field_group_contact:
-    weight: 31
+    weight: 3
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: email_default
     region: content
+  field_group_description:
+    weight: 2
+    settings:
+      rows: 2
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
   label:
     type: string_textfield
-    weight: -5
+    weight: 0
     region: content
     settings:
       size: 60
@@ -30,7 +39,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }

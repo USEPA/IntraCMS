@@ -2,11 +2,6 @@ uuid: ae257f25-c9c5-4676-bed8-1fbd01ae3809
 langcode: en
 status: true
 dependencies:
-  config:
-    - node.type.article
-    - node.type.landing_page
-    - node.type.page
-    - node.type.staff_member
   module:
     - gnode
     - group
@@ -808,53 +803,6 @@ display:
           entity_type: node
           entity_field: status
           plugin_id: boolean
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: in
-          value:
-            article: article
-            page: page
-            landing_page: landing_page
-            staff_member: staff_member
-          group: 1
-          exposed: true
-          expose:
-            operator_id: type_op
-            label: 'Content type'
-            description: ''
-            use_operator: false
-            operator: type_op
-            identifier: type
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              editor: '0'
-              administrator: '0'
-            reduce: false
-            argument: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
       sorts: {  }
       header: {  }
       footer: {  }
@@ -951,7 +899,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: group/%group/nodes
+      path: group/%group/content
       menu:
         type: tab
         title: Content
