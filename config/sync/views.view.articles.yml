@@ -11,9 +11,9 @@ dependencies:
     - text
     - user
 id: articles
-label: Articles
+label: 'Group Content Types by Group'
 module: views
-description: ''
+description: 'Content types filtered by group'
 tag: ''
 base_table: node_field_data
 base_field: nid
@@ -318,9 +318,9 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Content group content'
-          required: false
+          required: true
           group_content_plugins:
-            'group_node:article': 'group_node:article'
+            'group_node:article': '0'
             'group_node:event': '0'
             'group_node:faces_of_ord': '0'
             'group_node:landing_page': '0'
@@ -337,7 +337,7 @@ display:
           relationship: group_content
           group_type: group
           admin_label: Group
-          required: false
+          required: true
           entity_type: group_content
           entity_field: gid
           plugin_id: standard
@@ -348,9 +348,9 @@ display:
           relationship: gid
           group_type: group
           admin_label: 'Group content'
-          required: false
+          required: true
           group_content_plugins:
-            'group_node:article': 'group_node:article'
+            'group_node:article': '0'
             'group_node:event': '0'
             'group_node:faces_of_ord': '0'
             'group_node:landing_page': '0'
@@ -369,9 +369,9 @@ display:
           relationship: group_content_id
           group_type: group
           admin_label: 'Group content Content'
-          required: false
+          required: true
           group_content_plugins:
-            'group_node:article': 'group_node:article'
+            'group_node:article': '0'
             'group_node:event': '0'
             'group_node:faces_of_ord': '0'
             'group_node:landing_page': '0'
@@ -419,6 +419,9 @@ display:
           entity_field: nid
           plugin_id: node_nid
       display_extenders: {  }
+      use_more: false
+      use_more_always: false
+      use_more_text: more
     cache_metadata:
       max-age: -1
       contexts:
@@ -433,12 +436,16 @@ display:
   group_articles_block:
     display_plugin: block
     id: group_articles_block
-    display_title: Block
+    display_title: 'Articles by Group'
     position: 2
     display_options:
       display_extenders: {  }
       style:
         type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
       defaults:
         style: false
         row: false
@@ -646,6 +653,7 @@ display:
           field_api_classes: false
           plugin_id: field
       block_description: 'News Articles'
+      display_description: ''
     cache_metadata:
       max-age: -1
       contexts:
