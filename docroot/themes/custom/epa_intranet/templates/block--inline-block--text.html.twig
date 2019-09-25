@@ -28,17 +28,27 @@
  */
 #}
 
-{% set classes = [
-    'usa-media-block',
-    'tablet:grid-col',
-] %}
+        {% if label %}
+{%
+ set classes = [
+ 'card',
+ 'mt-2',
+]
+%}
+{% endif %}
 
-<div {{ attributes.addClass(classes) }}>
-    {{ content.field_usa_media_block_img }}
-    <div class="usa-media-block__body">
+
+    <div {{ attributes.addClass(classes) }}>
+        
         {{ title_prefix }}
-        <h3 class="usa-graphic-list__heading">{{ content.field_usa_media_block_heading }}</h3>
-        {{ title_suffix }}
-        <p>{{ content.field_usa_media_block_text }}</p>
+        {% if label %}
+        <div class="card-header m-0 font-weight-bold">
+        <h2{{ title_attributes }}>{{ label }}</h2>
+        </div>
+        {% endif %}
+         {{ title_suffix }}
+        
+        <div class="card-body py-1">
+            {{ content }}
+        </div>
     </div>
-</div>

@@ -179,12 +179,17 @@
 </div>
 {% endif %}
 
+{% if content.field_faces_of_ord is not empty %}
+<hr />
+<h2>{{ content.field_faces_of_ord|field_label}}</h2>
+{{ content.field_faces_of_ord|field_value }}
+{% endif %}
 
-<h2>Faces of ORD</h2>
-{{ content.field_faces_of_ord}}
-
-<h2>Photos of the Week</h2>
-{{ content.field_photos_of_the_week }}
+{% if content.field_photos_of_the_week is not empty %}
+<hr />
+<h2>{{ content.field_photos_of_the_week|field_label}}</h2>
+{{ content.field_photos_of_the_week|field_value }}
+{% endif %}
 
 </div>
 </article>
