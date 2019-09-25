@@ -37,7 +37,10 @@
     {{ content.field_usa_media_block_img }}
     <div class="usa-media-block__body">
         {{ title_prefix }}
-        <h3 class="usa-graphic-list__heading">{{ content.field_usa_media_block_heading }}</h3>
+        <a href="{{ content.field_link.0['#url'] }}"
+           class="usa-graphic-list__heading">
+            {{ content.field_usa_media_block_heading }}
+        </a>
         {{ title_suffix }}
         <p>{{ content.field_usa_media_block_text }}</p>
     </div>
