@@ -11,3 +11,11 @@ function epa_intranet_theme_suggestions_block_alter(array &$suggestions, array $
     array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
   }
 }
+
+
+function epa_intranet_preprocess_image(&$variables) {
+  if (isset($variables['style_name']) && $variables['style_name'] == 'media_block_image') {
+    $variables['attributes']['class'][] = 'usa-media-block__img';
+    $variables['attributes']['class'][] = 'rounded-circle';
+  }
+}
