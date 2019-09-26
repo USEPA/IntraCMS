@@ -250,7 +250,20 @@ display:
       title: 'My Web Areas'
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'You are not a member of any <a href="/web-areas">web areas</a>.'
+            format: simple_text
+          plugin_id: text
       relationships:
         group_content:
           id: group_content
