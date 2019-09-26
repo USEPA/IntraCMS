@@ -1,0 +1,20 @@
+uuid: b4f78eed-e309-4064-83e0-5c25f96215fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.web_area
+    - node.type.staff_member
+  module:
+    - gnode
+    - node
+id: web_area-group_node-staff_member
+label: 'Web Area: Group node (Staff member)'
+description: 'Adds <em class="placeholder">Staff member</em> content to groups both publicly and privately.'
+group_type: web_area
+content_plugin: 'group_node:staff_member'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 0
