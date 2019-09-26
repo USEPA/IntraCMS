@@ -19,3 +19,20 @@ function epa_intranet_preprocess_image(&$variables) {
     $variables['attributes']['class'][] = 'rounded-circle';
   }
 }
+
+function epa_intranet_preprocess_field(&$variables, $hook) {
+  $elements = $variables['element'];
+  if ($elements['#field_name'] == 'field_caption') {
+    $variables['attributes']['class'][] = 'mt-2';
+  }
+  if ($elements['#view_mode'] == 'slideshow' && $elements['#field_name'] == 'image') {
+    $variables['attributes']['class'][] = 'm-auto';
+  }
+}
+
+
+function epa_intranet_preprocess_media(&$variables) {
+  if ($variables['view_mode'] == 'slideshow') {
+    $variables['attributes']['class'][] = 'grid-row';
+  }
+}

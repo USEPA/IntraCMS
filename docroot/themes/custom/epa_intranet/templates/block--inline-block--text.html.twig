@@ -29,26 +29,24 @@
 #}
 
         {% if label %}
-{%
- set classes = [
- 'card',
- 'mt-2',
-]
-%}
-{% endif %}
-
-
-    <div {{ attributes.addClass(classes) }}>
-        
-        {{ title_prefix }}
-        {% if label %}
-        <div class="card-header m-0 font-weight-bold">
-        <h2{{ title_attributes }}>{{ label }}</h2>
-        </div>
+            {% set classes = [
+                'card',
+                'mt-2',
+            ] %}
         {% endif %}
-         {{ title_suffix }}
-        
-        <div class="card-body py-1">
-            {{ content }}
+
+
+<div {{ attributes.addClass(classes) }}>
+
+    {{ title_prefix }}
+    {% if label %}
+        <div class="card-header m-0 font-weight-bold">
+            <h2{{ title_attributes }}>{{ label }}</h2>
         </div>
+    {% endif %}
+    {{ title_suffix }}
+
+    <div class="card-body py-1">
+        {{ content }}
     </div>
+</div>
