@@ -103,7 +103,9 @@
 
         <h2>{{ content.field_weekly_note|field_label }}</h2>
         {{ content.field_weekly_note|field_value }}
+    {% endif %}
 
+    {% if content.field_compass_upcoming_webinars|render is not empty %}
         <h2>{{ content.field_compass_upcoming_webinars|field_label }}</h2>
         <ul>
             <li>{{ content.field_compass_upcoming_webinars|field_value|safe_join('</li><li>') }}
