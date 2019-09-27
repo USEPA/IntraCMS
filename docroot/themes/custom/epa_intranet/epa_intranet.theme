@@ -28,9 +28,12 @@ function epa_intranet_preprocess_field(&$variables, $hook) {
   if ($elements['#view_mode'] == 'slideshow' && $elements['#field_name'] == 'image') {
     $variables['attributes']['class'][] = 'm-auto';
   }
-  $non_inline_staff_fields = ['field_staff_biography', 'field_image'];
+  $non_inline_staff_fields = ['field_staff_biography', 'field_staff_photo'];
   if ($elements['#bundle'] == 'staff_member' && !in_array($elements['#field_name'], $non_inline_staff_fields)) {
     $variables['attributes']['class'][] = 'w-100 d-inline-flex';
+  }
+  if ($elements['#bundle'] == 'staff_member' && $elements['#field_name'] == 'field_staff_photo') {
+    $variables['attributes']['class'][] = 'staff-photo';
   }
 
 
