@@ -38,20 +38,20 @@
  * @ingroup themeable
  */
 #}
-{%
-    set classes = [
-    'card',
+{% set isPage = paragraph.getParentEntity().bundle() == 'page' %}
+{% set classes = [
+    isPage ? 'card',
     'mt-2',
-]
-%}
+] %}
+
 
 
 {% block paragraph %}
     <div {{ attributes.addClass(classes) }}>
-        <div class="card-header m-0 font-weight-bold">
+        <div class=" {{ isPage ? 'card-header' }} m-0 font-weight-bold">
             {{ content.field_paragraph_title }}
         </div>
-        <div class="card-body py-1">
+        <div class="{{ isPage ? 'card-body' }}  py-1">
             {{ content.field_link_list_item }}
         </div>
     </div>
