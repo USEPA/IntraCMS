@@ -1,0 +1,46 @@
+uuid: 020804e4-040e-4fcc-b72c-2e608e08b285
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.uswds_grid.field_uswds_grid_column_stretch
+    - field.field.paragraph.uswds_grid.field_uswds_grid_column_width
+    - field.field.paragraph.uswds_grid.field_uswds_paragraphs
+    - paragraphs.paragraphs_type.uswds_grid
+  module:
+    - paragraphs
+_core:
+  default_config_hash: j_ChyvFM1IlYI-zRm_am9N75CUyqK78wbzeQlecW72I
+id: paragraph.uswds_grid.default
+targetEntityType: paragraph
+bundle: uswds_grid
+mode: default
+content:
+  field_uswds_grid_column_stretch:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_uswds_grid_column_width:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_uswds_paragraphs:
+    weight: 2
+    settings:
+      title: Column
+      title_plural: Columns
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: uswds_column
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true
