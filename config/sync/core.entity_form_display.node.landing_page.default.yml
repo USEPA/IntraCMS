@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.landing_page.field_hero
     - field.field.node.landing_page.field_landing_description
     - field.field.node.landing_page.layout_builder__layout
     - field.field.node.landing_page.layout_builder__translation
@@ -10,6 +11,7 @@ dependencies:
     - node.type.landing_page
   module:
     - content_moderation
+    - paragraphs
     - path
 id: node.landing_page.default
 targetEntityType: node
@@ -22,6 +24,18 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_hero:
+    type: entity_reference_paragraphs
+    weight: 123
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
   field_landing_description:
     weight: 121
     settings:
