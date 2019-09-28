@@ -131,6 +131,7 @@
             </div>
         {% endif %}
 
+
         {% if content.field_in_the_office|render is not empty %}
             <h2 class="usa-accordion__heading">
                 <button class="usa-accordion__button" aria-expanded="true" aria-controls="a2">
@@ -165,16 +166,8 @@
             </div>
         {% endif %}
 
-
         {% if content.field_custom_section|render is not empty %}
-            <h2 class="usa-accordion__heading">
-                <button class="usa-accordion__button" aria-expanded="true" aria-controls="a5">
-                    {{ content.field_custom_section|field_label }}
-                </button>
-            </h2>
-            <div id="a5" class="usa-accordion__content">
-                {{ content.field_custom_section|field_value }}
-            </div>
+            {{ content.field_custom_section }}
         {% endif %}
 
         {% if content.field_faces_of_ord|render is not empty %}
