@@ -38,21 +38,23 @@
  * @ingroup themeable
  */
 #}
-
-{% set isPage = paragraph.getParentEntity().bundle() == 'page' %}
-{% set classes = [
-    isPage ? 'card',
-    'mt-2',
-] %}
+{%
+    set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display
+]
+%}
 
 {% block paragraph %}
     <div {{ attributes.addClass(classes) }}>
-        <div class=" {{ isPage ? 'card-header' }} m-0 font-weight-bold">
-            {{ content.field_paragraph_title }}
-        </div>
-        <div class="{{ isPage ? 'card-body' }}  py-1">
-            {{ content.field_paragraph_text }}
-        </div>
+    <div class="field__label">
+       {{ content.field_question|field_value }}
+    </div>
+    <div class="field__item">
+        {{ content.field_answer|field_value }}
+    </div>
     </div>
 {% endblock paragraph %}
 

@@ -1,11 +1,23 @@
 
-.node-staff-member .field-name-field-staff-photo, .view-staff-directory .staff-photo .image-style-staff-member-card {
+h2, h3, h4, h5, h6, a {
+    color: #1b1b1b;
+    text-decoration: none;
+}
+
+.grid-container {
+    max-width: 76rem;
+
+}
+
+
+.node-staff-member .field-name-field-staff-photo, .view-staff-directory .staff-photo .image-style-staff-member-card,
+.staff-photo {
     padding: 2px;
-    border: 1px solid #DDD;
+    border: 2px solid #DDD;
     background: #EEE;
     overflow: hidden;
-    float: left;
-    margin-right: 30px;
+    float: right;
+    margin-right: 10px;
     width: 100px;
     height: 150px;
 }
@@ -18,7 +30,7 @@
     margin-top: 0;
 }
 
-.card-body{
+.card-body {
     padding: .5rem;
 }
 
@@ -28,25 +40,40 @@
 
 .field__label {
     font-weight: bold;
-  }
-  .field--label-inline .field__label,
-  .field--label-inline .field__items {
+}
+
+.field--label-inline .field__label,
+.field--label-inline .field__items {
     float: left; /* LTR */
-  }
-  .field--label-inline .field__label,
-  .field--label-inline > .field__item,
-  .field--label-inline .field__items {
+}
+
+.field--label-inline .field__label,
+.field--label-inline > .field__item,
+.field--label-inline .field__items {
     padding-right: 0.5em;
-  }
-  [dir="rtl"] .field--label-inline .field__label,
-  [dir="rtl"] .field--label-inline .field__items {
+}
+
+[dir="rtl"] .field--label-inline .field__label,
+[dir="rtl"] .field--label-inline .field__items {
     padding-right: 0;
     padding-left: 0.5em;
-  }
-  .field--label-inline .field__label::after {
-    content: ":";
-  }
+}
 
-  .media--view-mode-media-block {
-      float: left;
-  }
+.field--label-inline .field__label::after {
+    content: ":";
+}
+
+.media--view-mode-media-block {
+    float: left;
+}
+
+
+.layout {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.max-image-div img{
+    max-width: 500px;
+    margin: auto;
+}

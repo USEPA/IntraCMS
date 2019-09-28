@@ -1,0 +1,52 @@
+Index: docroot/modules/custom/content_migrations/GroupMenuBlock.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- docroot/modules/contrib/groupmenu/modules/groupmenu_block/src/Plugin/Block/GroupMenuBlock.php	(date 1569612077000)
++++ docroot/modules/contrib/groupmenu/modules/groupmenu_block/src/Plugin/Block/GroupMenuBlock.php	(date 1569612087721)
+@@ -27,8 +27,8 @@
+    */
+   public function defaultConfiguration() {
+     return [
+-      'max_depth' => 0,
+-    ] + parent::defaultConfiguration();
++        'max_depth' => 0,
++      ] + parent::defaultConfiguration();
+   }
+ 
+   /**
+@@ -84,17 +84,18 @@
+         // Make an array of menus to render.
+         $menus = array_merge($menus, $this->getGroupMenus($group));
+       }
+-    }
+-    else {
++    } else {
+       // Not on a node page, but try to get the group anyway.
+       $group = $this->getContextValue('group');
+       if ($group) {
+         $menus = $this->getGroupMenus($group);
+-      }
+-      else {
++      } else {
+         return [];
+       }
+     }
++    /* START: Add active trail fix */
++    $active_trail = \Drupal::service('menu.active_trail');
++    /* END: Add active trail fix */
+ 
+     // Render the menus.
+     $build = [];
+@@ -109,6 +110,10 @@
+       ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+     ];
+     foreach ($menus as $menu_name => $menu) {
++      /* START: Add active trail fix */
++      $parameters->setActiveTrail($active_trail->getActiveTrailIds($menu_name));
++      /* END: Add active trail fix */
++
+       $tree = \Drupal::menuTree()->load($menu_name, $parameters);
+       $tree = \Drupal::menuTree()->transform($tree, $manipulators);
+       $build[] = \Drupal::menuTree()->build($tree);

@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display a node.
+ * Default theme implementation to display a node.
  *
  * Available variables:
  * - node: The node entity with limited access to object properties and methods.
@@ -68,18 +68,11 @@
  * @todo Remove the id attribute (or make it a class), because if that gets
  *   rendered twice on a page this is invalid CSS for example: two lists
  *   in different view modes.
+ *
+ * @ingroup themeable
  */
 #}
-{% set classes = [
-    'node',
-    'node--type-' ~ node.bundle|clean_class,
-    node.isPromoted() ? 'node--promoted',
-    node.isSticky() ? 'node--sticky',
-    not node.isPublished() ? 'node--unpublished',
-    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-] %}
-{{ attach_library('classy/node') }}
-<article{{ attributes.addClass(classes) }}>
+<article{{ attributes }}>
 
     {{ title_prefix }}
     {% if label and not page %}
@@ -90,97 +83,22 @@
     {{ title_suffix }}
 
     {% if display_submitted %}
-        <footer class="node__meta">
+        <footer>
             {{ author_picture }}
-            <div{{ author_attributes.addClass('node__submitted') }}>
+            <div{{ author_attributes }}>
                 {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
                 {{ metadata }}
             </div>
         </footer>
     {% endif %}
 
-    {% if content.field_weekly_note|render is not empty %}
-
-        <h2>{{ content.field_weekly_note|field_label }}</h2>
-        {{ content.field_weekly_note|field_value }}
-    {% endif %}
-
-    {% if content.field_compass_upcoming_webinars|render is not empty %}
-        <h2>{{ content.field_compass_upcoming_webinars|field_label }}</h2>
-        <ul>
-            <li>{{ content.field_compass_upcoming_webinars|field_value|safe_join('</li><li>') }}
-        </ul>
-
-    {% endif %}
-
-    {% if content.field_quick_updates|render is not empty %}
-
-        <h2>{{ content.field_quick_updates|field_label }}</h2>
-        {{ content.field_quick_updates|field_value }}
-    {% endif %}
-
-    <div class="usa-accordion usa-accordion--bordered">
-        {% if content.field_in_the_lab|render is not empty %}
-            <h2 class="usa-accordion__heading">
-                <button class="usa-accordion__button" aria-expanded="true" aria-controls="a1">
-                    {{ content.field_in_the_lab|field_label }}
-                </button>
-            </h2>
-            <div id="a1" class="usa-accordion__content">
-                {{ content.field_in_the_lab|field_value }}
-            </div>
-        {% endif %}
-
-
-        {% if content.field_in_the_office|render is not empty %}
-            <h2 class="usa-accordion__heading">
-                <button class="usa-accordion__button" aria-expanded="true" aria-controls="a2">
-                    {{ content.field_in_the_office|field_label }}
-                </button>
-            </h2>
-            <div id="a2" class="usa-accordion__content">
-                {{ content.field_in_the_office|field_value }}
-            </div>
-        {% endif %}
-
-
-        {% if content.field_in_the_news|render is not empty %}
-            <h2 class="usa-accordion__heading">
-                <button class="usa-accordion__button" aria-expanded="true" aria-controls="a3">
-                    {{ content.field_in_the_news|field_label }}
-                </button>
-            </h2>
-            <div id="a3" class="usa-accordion__content">
-                {{ content.field_in_the_news|field_value }}
-            </div>
-        {% endif %}
-
-        {% if content.field_in_the_community|render is not empty %}
-            <h2 class="usa-accordion__heading">
-                <button class="usa-accordion__button" aria-expanded="true" aria-controls="a4">
-                    {{ content.field_in_the_community|field_label }}
-                </button>
-            </h2>
-            <div id="a4" class="usa-accordion__content">
-                {{ content.field_in_the_community|field_value }}
-            </div>
-        {% endif %}
-
-        {% if content.field_custom_section|render is not empty %}
-            {{ content.field_custom_section }}
-        {% endif %}
-
-        {% if content.field_faces_of_ord|render is not empty %}
-            <hr/>
-            <h2>{{ content.field_faces_of_ord|field_label }}</h2>
-            {{ content.field_faces_of_ord|field_value }}
-        {% endif %}
-
-        {% if content.field_photos_of_the_week|render is not empty %}
-            <hr/>
-            <h2>{{ content.field_photos_of_the_week|field_label }}</h2>
-            {{ content.field_photos_of_the_week|field_value }}
-        {% endif %}
-
+    <div{{ content_attributes.addClass('grid-row') }}>
+        <div class="grid-col-2 m-2">
+            {{ content.field_staff_photo }}
+        </div>
+        <div class="grid-col">
+            {{ content|without('field_first_name', 'field_last_name', 'field_staff_photo') }}
+        </div>
     </div>
+
 </article>

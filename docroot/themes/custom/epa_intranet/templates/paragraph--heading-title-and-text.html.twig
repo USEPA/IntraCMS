@@ -38,21 +38,14 @@
  * @ingroup themeable
  */
 #}
-
-{% set isPage = paragraph.getParentEntity().bundle() == 'page' %}
-{% set classes = [
-    isPage ? 'card',
-    'mt-2',
-] %}
-
 {% block paragraph %}
-    <div {{ attributes.addClass(classes) }}>
-        <div class=" {{ isPage ? 'card-header' }} m-0 font-weight-bold">
-            {{ content.field_paragraph_title }}
-        </div>
-        <div class="{{ isPage ? 'card-body' }}  py-1">
-            {{ content.field_paragraph_text }}
-        </div>
+    <h2 class="usa-accordion__heading mt-2">
+        <button class="usa-accordion__button" aria-expanded="true" aria-controls="{{ paragraph.id() }}">
+            {{ content.field_paragraph_heading|field_value }}
+        </button>
+    </h2>
+    <div id="{{ paragraph.id() }}" class="usa-accordion__content">
+        {{ content.field_title_and_text }}
     </div>
 {% endblock paragraph %}
 
