@@ -1,13 +1,16 @@
 {% block paragraph %}
     <div{{ attributes }}>
         {% block content %}
-
             <div class="grid-container">
                 <div class="usa-hero__callout">
-                    <h1 class="usa-hero__heading">{{ paragraph.field_uswds_title.value }}</h1>
-                    <p>  {{ paragraph.field_support_text.value }}</p>
-                    {{ content|without('field_uswds_title', 'field_support_text') }}
-
+                    <h1 class="usa-hero__heading">
+                    <span class="usa-hero__heading--alt">
+                    {{ content.field_uswds_hero_heading_alt|field_value }}
+                    </span>
+                    {{ content.field_uswds_title|field_value }}</h1>
+                    <p>  {{ content.field_uswds_hero_body|field_value }}</p>
+<a class="usa-button"
+       href="{{ content.field_uswds_button[0]['#url'] }}">{{ content.field_uswds_button[0]['#title'] }}</a>
                 </div>
             </div>
 

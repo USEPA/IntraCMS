@@ -3,8 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.uswds_hero.field_support_text
     - field.field.paragraph.uswds_hero.field_uswds_button
+    - field.field.paragraph.uswds_hero.field_uswds_hero_body
+    - field.field.paragraph.uswds_hero.field_uswds_hero_heading_alt
     - field.field.paragraph.uswds_hero.field_uswds_image
     - field.field.paragraph.uswds_hero.field_uswds_link
     - field.field.paragraph.uswds_hero.field_uswds_title
@@ -18,40 +19,35 @@ targetEntityType: paragraph
 bundle: uswds_hero
 mode: default
 content:
-  field_support_text:
+  field_uswds_button:
     weight: 3
-    label: above
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_uswds_hero_body:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_uswds_hero_heading_alt:
+    weight: 0
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
-  field_uswds_button:
-    weight: 2
-    label: hidden
-    settings:
-      trim_length: null
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings: {  }
-    type: link
-    region: content
-  field_uswds_link:
-    weight: 1
-    label: hidden
-    settings:
-      trim_length: null
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings: {  }
-    type: link
-    region: content
   field_uswds_title:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       link_to_entity: false
@@ -60,4 +56,5 @@ content:
     region: content
 hidden:
   field_uswds_image: true
+  field_uswds_link: true
   search_api_excerpt: true
