@@ -1,0 +1,68 @@
+uuid: 22dd3ae1-3c76-4fb9-8499-f718806c890e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.uswds_hero.field_uswds_button
+    - field.field.paragraph.uswds_hero.field_uswds_hero_body
+    - field.field.paragraph.uswds_hero.field_uswds_hero_heading_alt
+    - field.field.paragraph.uswds_hero.field_uswds_image
+    - field.field.paragraph.uswds_hero.field_uswds_link
+    - field.field.paragraph.uswds_hero.field_uswds_title
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.uswds_hero
+  module:
+    - image
+    - link
+_core:
+  default_config_hash: GqJl2IflO46NoSdMeNLETKuzQkThu0CdzfP3t9ZPX7A
+id: paragraph.uswds_hero.default
+targetEntityType: paragraph
+bundle: uswds_hero
+mode: default
+content:
+  field_uswds_button:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_uswds_hero_body:
+    weight: 4
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_uswds_hero_heading_alt:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_uswds_image:
+    weight: 0
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_uswds_title:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  field_uswds_link: true
+  status: true
+  uid: true
