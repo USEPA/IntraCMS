@@ -4,9 +4,14 @@
 
             <div class="grid-container">
                 <div class="usa-hero__callout">
-                    <h1 class="usa-hero__heading">{{ paragraph.field_uswds_title.value }}</h1>
+                    <h1 class="usa-hero__heading">
+                        <span class="usa-hero__heading--alt">
+                            {{ paragraph.field_hero_alt_header.value }}
+                        </span>
+                        {{ paragraph.field_uswds_title.value }}
+                    </h1>
                     <p>  {{ paragraph.field_support_text.value }}</p>
-                    {{ content|without('field_uswds_title', 'field_support_text') }}
+                    {{ content|without('field_uswds_title', 'field_support_text', 'field_hero_alt_header') }}
 
                 </div>
             </div>

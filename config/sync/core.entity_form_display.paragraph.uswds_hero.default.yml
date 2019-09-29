@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.uswds_hero.field_hero_alt_header
     - field.field.paragraph.uswds_hero.field_support_text
     - field.field.paragraph.uswds_hero.field_uswds_button
     - field.field.paragraph.uswds_hero.field_uswds_image
@@ -20,6 +21,14 @@ targetEntityType: paragraph
 bundle: uswds_hero
 mode: default
 content:
+  field_hero_alt_header:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_support_text:
     weight: 5
     settings:
