@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.uswds_hero.field_hero_alt_header
-    - field.field.paragraph.uswds_hero.field_support_text
     - field.field.paragraph.uswds_hero.field_uswds_button
+    - field.field.paragraph.uswds_hero.field_uswds_hero_body
+    - field.field.paragraph.uswds_hero.field_uswds_hero_heading_alt
     - field.field.paragraph.uswds_hero.field_uswds_image
     - field.field.paragraph.uswds_hero.field_uswds_link
     - field.field.paragraph.uswds_hero.field_uswds_title
@@ -19,48 +19,35 @@ targetEntityType: paragraph
 bundle: uswds_hero
 mode: default
 content:
-  field_hero_alt_header:
-    weight: 4
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_support_text:
-    weight: 3
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   field_uswds_button:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_uswds_hero_body:
     weight: 2
     label: hidden
-    settings:
-      trim_length: null
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
+    settings: {  }
     third_party_settings: {  }
-    type: link
+    type: basic_string
     region: content
-  field_uswds_link:
-    weight: 1
+  field_uswds_hero_heading_alt:
+    weight: 0
     label: hidden
     settings:
-      trim_length: null
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
+      link_to_entity: false
     third_party_settings: {  }
-    type: link
+    type: string
     region: content
   field_uswds_title:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       link_to_entity: false
@@ -69,4 +56,5 @@ content:
     region: content
 hidden:
   field_uswds_image: true
+  field_uswds_link: true
   search_api_excerpt: true
