@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f783541fcac654d4c2810806833c3098",
+    "content-hash": "5e572a38c3fa56d3385ad39edf275bf2",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -8236,6 +8236,131 @@
             }
         },
         {
+            "name": "drupal/webform_access",
+            "version": "5.4.0",
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/webform": "self.version",
+                "drupal/webform_node": "*"
+            },
+            "type": "metapackage",
+            "extra": {
+                "branch-alias": {
+                    "dev-5.x": "5.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-5.4",
+                    "datestamp": "1566209286",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "DanChadwick",
+                    "homepage": "https://www.drupal.org/user/504278"
+                },
+                {
+                    "name": "Liam Morland",
+                    "homepage": "https://www.drupal.org/user/493050"
+                },
+                {
+                    "name": "bucefal91",
+                    "homepage": "https://www.drupal.org/user/504128"
+                },
+                {
+                    "name": "fenstrat",
+                    "homepage": "https://www.drupal.org/user/362649"
+                },
+                {
+                    "name": "jrockowitz",
+                    "homepage": "https://www.drupal.org/user/371407"
+                },
+                {
+                    "name": "podarok",
+                    "homepage": "https://www.drupal.org/user/116002"
+                },
+                {
+                    "name": "quicksketch",
+                    "homepage": "https://www.drupal.org/user/35821"
+                },
+                {
+                    "name": "sanchiz",
+                    "homepage": "https://www.drupal.org/user/1671246"
+                },
+                {
+                    "name": "tedbow",
+                    "homepage": "https://www.drupal.org/user/240860"
+                },
+                {
+                    "name": "torotil",
+                    "homepage": "https://www.drupal.org/user/865256"
+                }
+            ],
+            "description": "Provides webform access controls for webform nodes.",
+            "homepage": "https://www.drupal.org/project/webform",
+            "support": {
+                "source": "https://git.drupalcode.org/project/webform"
+            }
+        },
+        {
+            "name": "drupal/webform_analysis",
+            "version": "1.0.0-beta7",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/webform_analysis.git",
+                "reference": "8.x-1.0-beta7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/webform_analysis-8.x-1.0-beta7.zip",
+                "reference": "8.x-1.0-beta7",
+                "shasum": "218ee42c0d3d5c62bb29e0e68134188dc2a16c85"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/webform": "*"
+            },
+            "require-dev": {
+                "drupal/webform_node": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta7",
+                    "datestamp": "1540735084",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "lbaran",
+                    "homepage": "https://www.drupal.org/user/3368098"
+                }
+            ],
+            "description": "Enables to obtain statistics on the results of form submissions.",
+            "homepage": "https://www.drupal.org/project/webform_analysis",
+            "support": {
+                "source": "https://git.drupalcode.org/project/webform_analysis"
+            }
+        },
+        {
             "name": "drupal/webform_config_ignore",
             "version": "1.0.0",
             "source": {
@@ -8281,6 +8406,208 @@
             "homepage": "https://www.drupal.org/project/webform_config_ignore",
             "support": {
                 "source": "https://git.drupalcode.org/project/webform_config_ignore"
+            }
+        },
+        {
+            "name": "drupal/webform_node",
+            "version": "5.4.0",
+            "require": {
+                "drupal/core": "*",
+                "drupal/webform": "self.version"
+            },
+            "type": "metapackage",
+            "extra": {
+                "branch-alias": {
+                    "dev-5.x": "5.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-5.4",
+                    "datestamp": "1566209286",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "DanChadwick",
+                    "homepage": "https://www.drupal.org/user/504278"
+                },
+                {
+                    "name": "Liam Morland",
+                    "homepage": "https://www.drupal.org/user/493050"
+                },
+                {
+                    "name": "bucefal91",
+                    "homepage": "https://www.drupal.org/user/504128"
+                },
+                {
+                    "name": "fenstrat",
+                    "homepage": "https://www.drupal.org/user/362649"
+                },
+                {
+                    "name": "jrockowitz",
+                    "homepage": "https://www.drupal.org/user/371407"
+                },
+                {
+                    "name": "podarok",
+                    "homepage": "https://www.drupal.org/user/116002"
+                },
+                {
+                    "name": "quicksketch",
+                    "homepage": "https://www.drupal.org/user/35821"
+                },
+                {
+                    "name": "sanchiz",
+                    "homepage": "https://www.drupal.org/user/1671246"
+                },
+                {
+                    "name": "tedbow",
+                    "homepage": "https://www.drupal.org/user/240860"
+                },
+                {
+                    "name": "torotil",
+                    "homepage": "https://www.drupal.org/user/865256"
+                }
+            ],
+            "description": "Provides a Webform content type which allows webforms to be integrated into a website as nodes.",
+            "homepage": "https://www.drupal.org/project/webform",
+            "support": {
+                "source": "https://git.drupalcode.org/project/webform"
+            }
+        },
+        {
+            "name": "drupal/webform_ui",
+            "version": "5.4.0",
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/webform": "self.version"
+            },
+            "type": "metapackage",
+            "extra": {
+                "branch-alias": {
+                    "dev-5.x": "5.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-5.4",
+                    "datestamp": "1566209286",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "DanChadwick",
+                    "homepage": "https://www.drupal.org/user/504278"
+                },
+                {
+                    "name": "Liam Morland",
+                    "homepage": "https://www.drupal.org/user/493050"
+                },
+                {
+                    "name": "bucefal91",
+                    "homepage": "https://www.drupal.org/user/504128"
+                },
+                {
+                    "name": "fenstrat",
+                    "homepage": "https://www.drupal.org/user/362649"
+                },
+                {
+                    "name": "jrockowitz",
+                    "homepage": "https://www.drupal.org/user/371407"
+                },
+                {
+                    "name": "podarok",
+                    "homepage": "https://www.drupal.org/user/116002"
+                },
+                {
+                    "name": "quicksketch",
+                    "homepage": "https://www.drupal.org/user/35821"
+                },
+                {
+                    "name": "sanchiz",
+                    "homepage": "https://www.drupal.org/user/1671246"
+                },
+                {
+                    "name": "tedbow",
+                    "homepage": "https://www.drupal.org/user/240860"
+                },
+                {
+                    "name": "torotil",
+                    "homepage": "https://www.drupal.org/user/865256"
+                }
+            ],
+            "description": "Provides a user interface for building and maintaining webforms.",
+            "homepage": "https://www.drupal.org/project/webform",
+            "support": {
+                "source": "https://git.drupalcode.org/project/webform"
+            }
+        },
+        {
+            "name": "drupal/webform_views",
+            "version": "5.0.0-alpha7",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/webform_views.git",
+                "reference": "8.x-5.0-alpha7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/webform_views-8.x-5.0-alpha7.zip",
+                "reference": "8.x-5.0-alpha7",
+                "shasum": "6c9bb51735a106729dcfa08372e987ebf95d38f2"
+            },
+            "require": {
+                "drupal/core": "*",
+                "drupal/webform": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-5.x": "5.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-5.0-alpha7",
+                    "datestamp": "1557288185",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "bucefal91",
+                    "homepage": "https://www.drupal.org/user/504128"
+                },
+                {
+                    "name": "jrockowitz",
+                    "homepage": "https://www.drupal.org/user/371407"
+                },
+                {
+                    "name": "ws.agency",
+                    "homepage": "https://www.drupal.org/user/2851415"
+                }
+            ],
+            "description": "Webform integration with views.",
+            "homepage": "https://www.drupal.org/project/webform_views",
+            "support": {
+                "source": "https://git.drupalcode.org/project/webform_views"
             }
         },
         {
@@ -13792,6 +14119,8 @@
         "drupal/auto_entitylabel": 10,
         "drupal/uswds_paragraphs": 10,
         "drupal/path_redirect_import": 10,
+        "drupal/webform_views": 15,
+        "drupal/webform_analysis": 10,
         "drupal/layout_builder_modal": 15
     },
     "prefer-stable": true,

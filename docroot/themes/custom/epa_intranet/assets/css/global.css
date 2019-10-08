@@ -25,7 +25,6 @@ h2, h3, h4, h5, h6, a {
 .layout--twocol-section .layout__region {
     padding: 5px;
 }
-
 .layout--onecol-section .layout__region {
     padding: 5px;
 }
@@ -33,7 +32,6 @@ h2, h3, h4, h5, h6, a {
 .align-left {
     padding-right: 10px;
 }
-
 .align-right {
     padding-left: 10px;
 }
@@ -90,10 +88,10 @@ h2, h3, h4, h5, h6, a {
     margin: auto;
 }
 
-.media-library-add-form-wrapper .usa-form {
-    max-width: 100% !important
-}
-
-#drupal-modal .usa-label {
-    display: inline;
-}
+/* remove display block so that label is inline with form element */
+.usa-label{
+    display:inline-block;
+    line-height:1.12707;
+    margin-top:1.5rem;
+    max-width:30rem;
+  }

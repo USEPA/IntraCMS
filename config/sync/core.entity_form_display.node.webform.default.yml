@@ -1,55 +1,38 @@
-uuid: 9fcda1ba-e571-4a3f-bf4d-8fd09f021606
+uuid: 9a484aba-e99b-40b9-8b9b-424b44b9f1a0
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.landing_page.field_hero
-    - field.field.node.landing_page.field_landing_description
-    - field.field.node.landing_page.layout_builder__layout
-    - field.field.node.landing_page.layout_builder__translation
-    - field.field.node.landing_page.layout_selection
-    - node.type.landing_page
+    - field.field.node.webform.body
+    - field.field.node.webform.webform
+    - node.type.webform
   module:
     - content_moderation
-    - paragraphs
     - path
-id: node.landing_page.default
+    - text
+    - webform
+_core:
+  default_config_hash: A3evv2pt6d-bKCPcgjXA5VGTemXWOxG3lSXvWiRWcck
+id: node.webform.default
 targetEntityType: node
-bundle: landing_page
+bundle: webform
 mode: default
 content:
+  body:
+    type: text_textarea_with_summary
+    weight: 0
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
   created:
     type: datetime_timestamp
     weight: 10
-    region: content
     settings: {  }
     third_party_settings: {  }
-  field_hero:
-    type: entity_reference_paragraphs
-    weight: 123
-    settings:
-      title: Hero
-      title_plural: Hero
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: uswds_hero
-    third_party_settings: {  }
     region: content
-  field_landing_description:
-    weight: 121
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textarea
-    region: content
-  layout_selection:
-    type: options_select
-    region: content
-    weight: 122
-    settings: {  }
-    third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
     weight: 100
@@ -59,16 +42,16 @@ content:
   path:
     type: path
     weight: 30
-    region: content
     settings: {  }
     third_party_settings: {  }
+    region: content
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
     weight: 15
-    region: content
     third_party_settings: {  }
+    region: content
   status:
     type: boolean_checkbox
     settings:
@@ -81,16 +64,16 @@ content:
     settings:
       display_label: true
     weight: 16
-    region: content
     third_party_settings: {  }
+    region: content
   title:
     type: string_textfield
     weight: -5
-    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
   uid:
     type: entity_reference_autocomplete
     weight: 5
@@ -98,13 +81,17 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
-    region: content
     third_party_settings: {  }
+    region: content
   url_redirects:
     weight: 50
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden:
-  layout_builder__layout: true
-  layout_builder__translation: true
+  webform:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: webform_entity_reference_select
+    region: content
+hidden: {  }

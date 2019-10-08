@@ -1,23 +1,18 @@
-uuid: 87c0de9a-d253-4068-953f-3f2cd3fda2c8
+uuid: 5589fcea-8027-4923-a610-e73077e5003e
 langcode: en
 status: open
-dependencies:
-  enforced:
-    module:
-      - webform
-_core:
-  default_config_hash: CjLyKc08W5pQDmtIk0iDWmit1eCAlCVJtOzxMdHI51Q
+dependencies: {  }
 open: null
 close: null
 weight: 0
-uid: null
+uid: 1
 template: false
 archive: false
-id: contact
-title: Contact
-description: 'Basic email contact webform.'
-category: ''
-elements: "name:\n  '#title': 'Your Name'\n  '#type': textfield\n  '#required': true\n  '#default_value': '[current-user:display-name]'\nemail:\n  '#title': 'Your Email'\n  '#type': email\n  '#required': true\n  '#default_value': '[current-user:mail]'\nsubject:\n  '#title': Subject\n  '#type': textfield\n  '#required': true\n  '#test': 'Testing contact webform from [site:name]'\nmessage:\n  '#title': Message\n  '#type': textarea\n  '#required': true\n  '#test': 'Please ignore this email.'\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': 'Send message'\n"
+id: ask_me
+title: 'Ask Me'
+description: 'all the thigns'
+category: IT
+elements: "the_checkbox:\n  '#type': checkbox\n  '#title': 'the checkbox'\n  '#description': 'description of the checkbox'\nmy_textfield:\n  '#type': textfield\n  '#title': 'my textfield'\n  '#required': true\npick_your_favorite:\n  '#type': checkboxes\n  '#title': 'pick your favorite'\n  '#options':\n    value1: 'Value One'\n    value2: 'value 2'\n    value3: 'value 3'\nmy_textarea:\n  '#type': textarea\n  '#title': 'My textarea'\nmy_select_list:\n  '#type': select\n  '#title': 'my select list'\n  '#options': ethnicity\n  '#empty_option': Other\n  '#empty_value': other"
 css: ''
 javascript: ''
 settings:
@@ -30,7 +25,7 @@ settings:
   page_submit_path: ''
   page_confirm_path: ''
   page_admin_theme: false
-  form_title: source_entity_webform
+  form_title: both
   form_submit_once: false
   form_exception_message: ''
   form_open_message: ''
@@ -103,10 +98,10 @@ settings:
   draft_loaded_message: ''
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
-  confirmation_type: url_message
+  confirmation_type: page
   confirmation_title: ''
-  confirmation_message: 'Your message has been sent.'
-  confirmation_url: '<front>'
+  confirmation_message: ''
+  confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -178,72 +173,4 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers:
-  email_confirmation:
-    id: email
-    label: 'Email confirmation'
-    handler_id: email_confirmation
-    status: true
-    conditions: {  }
-    weight: 1
-    settings:
-      states:
-        - completed
-      to_mail: '[webform_submission:values:email:raw]'
-      to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      from_mail: _default
-      from_options: {  }
-      from_name: _default
-      subject: '[webform_submission:values:subject:raw]'
-      body: '[webform_submission:values:message:value]'
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      html: true
-      attachments: false
-      twig: false
-      theme_name: ''
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-  email_notification:
-    id: email
-    label: 'Email notification'
-    handler_id: email_notification
-    status: true
-    conditions: {  }
-    weight: 2
-    settings:
-      states:
-        - completed
-      to_mail: _default
-      to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      from_mail: '[webform_submission:values:email:raw]'
-      from_options: {  }
-      from_name: '[webform_submission:values:name:raw]'
-      subject: '[webform_submission:values:subject:raw]'
-      body: '[webform_submission:values:message:value]'
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      html: true
-      attachments: false
-      twig: false
-      theme_name: ''
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
+handlers: {  }
