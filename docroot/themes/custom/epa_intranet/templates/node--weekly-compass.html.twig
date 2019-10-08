@@ -166,6 +166,17 @@
             </div>
         {% endif %}
 
+        {% if content.field_accolades|render is not empty %}
+        <h2 class="usa-accordion__heading">
+            <button class="usa-accordion__button" aria-expanded="true" aria-controls="a5">
+                {{ content.field_accolades|field_label }}
+            </button>
+        </h2>
+        <div id="a5" class="usa-accordion__content">
+            {{ content.field_accolades|field_value }}
+        </div>
+    {% endif %}
+
         {% if content.field_custom_section|render is not empty %}
             {{ content.field_custom_section }}
         {% endif %}
