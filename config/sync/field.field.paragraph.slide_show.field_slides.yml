@@ -1,21 +1,19 @@
-uuid: f13b0f27-4a74-4abd-b4e3-3458d764ed0b
+uuid: 1672e1b0-47be-4bc5-bf62-6506045e83ea
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_sidebar_content
-    - node.type.page
-    - paragraphs.paragraphs_type.list_of_link
+    - field.storage.paragraph.field_slides
+    - paragraphs.paragraphs_type.slide
     - paragraphs.paragraphs_type.slide_show
-    - paragraphs.paragraphs_type.title_and_text
   module:
     - entity_reference_revisions
-id: node.page.field_sidebar_content
-field_name: field_sidebar_content
-entity_type: node
-bundle: page
-label: 'Sidebar Content'
-description: 'Select the type of content you would like to include in the sidebar column of this page.'
+id: paragraph.slide_show.field_slides
+field_name: field_slides
+entity_type: paragraph
+bundle: slide_show
+label: Slides
+description: ''
 required: false
 translatable: false
 default_value: {  }
@@ -25,31 +23,29 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      list_of_link: list_of_link
-      title_and_text: title_and_text
-      slide_show: slide_show
+      slide: slide
     target_bundles_drag_drop:
-      list_of_link:
-        enabled: true
-        weight: 5
       heading_title_and_text:
-        weight: 6
+        weight: 16
+        enabled: false
+      list_of_link:
+        weight: 17
         enabled: false
       question_and_answer:
-        weight: 7
+        weight: 18
         enabled: false
-      title_and_text:
-        enabled: true
-        weight: 8
       rich_text:
         weight: 19
         enabled: false
       slide:
-        weight: 20
-        enabled: false
-      slide_show:
         enabled: true
+        weight: 20
+      slide_show:
         weight: 21
+        enabled: false
+      title_and_text:
+        weight: 22
+        enabled: false
       uswds_accordion:
         weight: 23
         enabled: false
