@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_sidebar_content
     - node.type.page
     - paragraphs.paragraphs_type.list_of_link
+    - paragraphs.paragraphs_type.slide_show
     - paragraphs.paragraphs_type.title_and_text
   module:
     - entity_reference_revisions
@@ -26,6 +27,7 @@ settings:
     target_bundles:
       list_of_link: list_of_link
       title_and_text: title_and_text
+      slide_show: slide_show
     target_bundles_drag_drop:
       list_of_link:
         enabled: true
@@ -39,4 +41,37 @@ settings:
       title_and_text:
         enabled: true
         weight: 8
+      rich_text:
+        weight: 19
+        enabled: false
+      slide:
+        weight: 20
+        enabled: false
+      slide_show:
+        enabled: true
+        weight: 21
+      uswds_accordion:
+        weight: 23
+        enabled: false
+      uswds_accordion_item:
+        weight: 24
+        enabled: false
+      uswds_column:
+        weight: 25
+        enabled: false
+      uswds_graphic_list:
+        weight: 26
+        enabled: false
+      uswds_grid:
+        weight: 27
+        enabled: false
+      uswds_hero:
+        weight: 28
+        enabled: false
+      uswds_media_block:
+        weight: 29
+        enabled: false
+      uswds_text:
+        weight: 30
+        enabled: false
 field_type: entity_reference_revisions

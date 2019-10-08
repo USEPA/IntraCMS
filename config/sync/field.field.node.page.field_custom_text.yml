@@ -7,6 +7,7 @@ dependencies:
     - node.type.page
     - paragraphs.paragraphs_type.list_of_link
     - paragraphs.paragraphs_type.rich_text
+    - paragraphs.paragraphs_type.slide_show
     - paragraphs.paragraphs_type.title_and_text
     - paragraphs.paragraphs_type.uswds_accordion
   module:
@@ -30,6 +31,7 @@ settings:
       list_of_link: list_of_link
       rich_text: rich_text
       title_and_text: title_and_text
+      slide_show: slide_show
     target_bundles_drag_drop:
       uswds_accordion:
         enabled: true
@@ -51,5 +53,29 @@ settings:
         enabled: false
       uswds_accordion_item:
         weight: -9
+        enabled: false
+      slide:
+        weight: 20
+        enabled: false
+      slide_show:
+        enabled: true
+        weight: 21
+      uswds_column:
+        weight: 25
+        enabled: false
+      uswds_graphic_list:
+        weight: 26
+        enabled: false
+      uswds_grid:
+        weight: 27
+        enabled: false
+      uswds_hero:
+        weight: 28
+        enabled: false
+      uswds_media_block:
+        weight: 29
+        enabled: false
+      uswds_text:
+        weight: 30
         enabled: false
 field_type: entity_reference_revisions
