@@ -1,0 +1,73 @@
+uuid: 1672e1b0-47be-4bc5-bf62-6506045e83ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_slides
+    - paragraphs.paragraphs_type.slide
+    - paragraphs.paragraphs_type.slide_show
+  module:
+    - entity_reference_revisions
+id: paragraph.slide_show.field_slides
+field_name: field_slides
+entity_type: paragraph
+bundle: slide_show
+label: Slides
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      slide: slide
+    target_bundles_drag_drop:
+      heading_title_and_text:
+        weight: 16
+        enabled: false
+      list_of_link:
+        weight: 17
+        enabled: false
+      question_and_answer:
+        weight: 18
+        enabled: false
+      rich_text:
+        weight: 19
+        enabled: false
+      slide:
+        enabled: true
+        weight: 20
+      slide_show:
+        weight: 21
+        enabled: false
+      title_and_text:
+        weight: 22
+        enabled: false
+      uswds_accordion:
+        weight: 23
+        enabled: false
+      uswds_accordion_item:
+        weight: 24
+        enabled: false
+      uswds_column:
+        weight: 25
+        enabled: false
+      uswds_graphic_list:
+        weight: 26
+        enabled: false
+      uswds_grid:
+        weight: 27
+        enabled: false
+      uswds_hero:
+        weight: 28
+        enabled: false
+      uswds_media_block:
+        weight: 29
+        enabled: false
+      uswds_text:
+        weight: 30
+        enabled: false
+field_type: entity_reference_revisions
