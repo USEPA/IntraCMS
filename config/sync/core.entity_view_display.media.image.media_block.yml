@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.media_block
+    - field.field.media.image.field_caption
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
+    - field.field.media.image.layout_builder__translation
     - image.style.media_block_image
     - media.type.image
   module:
@@ -33,7 +35,9 @@ content:
     region: content
 hidden:
   created: true
+  field_caption: true
   field_media_in_library: true
+  layout_builder__translation: true
   name: true
   search_api_excerpt: true
   thumbnail: true
