@@ -1,0 +1,111 @@
+uuid: 2e1d5ab4-ce29-43c2-acd8-58397c6b580a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.text
+    - block_content.type.usa_section_cta
+    - field.field.user.user.user_picture
+    - views.view.group_my_groups
+  module:
+    - layout_builder
+    - layout_discovery
+    - layout_library
+    - user
+    - views
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings: {  }
+        components: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings: {  }
+        components:
+          8cc816c8-b605-4979-81a3-edbd4007c8c5:
+            uuid: 8cc816c8-b605-4979-81a3-edbd4007c8c5
+            region: content
+            configuration:
+              id: 'inline_block:usa_section_cta'
+              label: 'user knowledgebase'
+              provider: layout_builder
+              label_display: visible
+              view_mode: full
+              block_revision_id: 9
+              block_serialized: null
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          column_widths: 50-50
+          layout_builder_styles_style: ''
+        components:
+          d75f0d90-6403-4752-93ea-2b30706419ef:
+            uuid: d75f0d90-6403-4752-93ea-2b30706419ef
+            region: first
+            configuration:
+              id: 'views_block:group_my_groups-block_1'
+              label: ''
+              provider: views
+              label_display: visible
+              views_label: ''
+              items_per_page: none
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+          3465d1cf-eefd-4d60-9f75-dfb415ed015d:
+            uuid: 3465d1cf-eefd-4d60-9f75-dfb415ed015d
+            region: second
+            configuration:
+              id: 'inline_block:text'
+              label: 'Comms Content'
+              provider: layout_builder
+              label_display: visible
+              view_mode: full
+              block_revision_id: 10
+              block_serialized: null
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          column_widths: 50-50
+          layout_builder_styles_style: ''
+        components:
+          7676d529-f635-4aa6-98df-2195da499514:
+            uuid: 7676d529-f635-4aa6-98df-2195da499514
+            region: first
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:user:user:member_for'
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+  layout_library:
+    enable: false
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  member_for:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  name: true
+  search_api_excerpt: true
+  user_picture: true
