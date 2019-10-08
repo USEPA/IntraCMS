@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display a block.
+ * Default theme implementation to display a block.
  *
  * Available variables:
  * - plugin_id: The ID of the block implementation.
@@ -23,22 +23,25 @@
  *   displayed after the main title tag that appears in the template.
  *
  * @see template_preprocess_block()
+ *
+ * @ingroup themeable
  */
 #}
+
 {% set classes = [
     'usa-media-block',
     'tablet:grid-col',
 ] %}
 
-<div{{ attributes.addClass(classes) }}>
+<div {{ attributes.addClass(classes) }}>
     {{ content.field_usa_media_block_img }}
-    {{ title_prefix }}
-    <h2 {{ title_attributes }}>
+    <div class="usa-media-block__body">
+        {{ title_prefix }}
         <a href="{{ content.field_link.0['#url'] }}"
            class="usa-graphic-list__heading text-dark">
             {{ content.field_usa_media_block_heading }}
         </a>
-    </h2>
-    {{ title_suffix }}
-    <p>{{ content.field_usa_media_block_text }}</p>
+        {{ title_suffix }}
+        <p>{{ content.field_usa_media_block_text }}</p>
+    </div>
 </div>
