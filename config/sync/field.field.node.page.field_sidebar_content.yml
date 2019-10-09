@@ -6,7 +6,6 @@ dependencies:
     - field.storage.node.field_sidebar_content
     - node.type.page
     - paragraphs.paragraphs_type.list_of_link
-    - paragraphs.paragraphs_type.slide_show
     - paragraphs.paragraphs_type.title_and_text
   module:
     - entity_reference_revisions
@@ -27,7 +26,6 @@ settings:
     target_bundles:
       list_of_link: list_of_link
       title_and_text: title_and_text
-      slide_show: slide_show
     target_bundles_drag_drop:
       list_of_link:
         enabled: true
@@ -48,8 +46,8 @@ settings:
         weight: 20
         enabled: false
       slide_show:
-        enabled: true
         weight: 21
+        enabled: false
       uswds_accordion:
         weight: 23
         enabled: false
