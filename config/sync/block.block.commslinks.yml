@@ -1,0 +1,40 @@
+uuid: 3a404639-f36d-437d-8be2-09211fa620f8
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:text:1a5cd306-bc30-4656-bdeb-d6d544668884'
+  module:
+    - block_content
+    - system
+    - user
+  theme:
+    - epa_intranet
+id: commslinks
+theme: epa_intranet
+region: content
+weight: -3
+provider: null
+plugin: 'block_content:1a5cd306-bc30-4656-bdeb-d6d544668884'
+settings:
+  id: 'block_content:1a5cd306-bc30-4656-bdeb-d6d544668884'
+  label: 'Comms Links'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '/user/*'
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      comms: comms
+      administrator: administrator
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
