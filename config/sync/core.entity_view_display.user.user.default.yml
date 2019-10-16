@@ -9,6 +9,7 @@ dependencies:
     - views.view.group_my_groups
   module:
     - layout_builder
+    - layout_builder_restrictions
     - layout_discovery
     - layout_library
     - user
@@ -73,6 +74,10 @@ third_party_settings:
         third_party_settings: {  }
   layout_library:
     enable: false
+  layout_builder_restrictions:
+    entity_view_mode_restriction:
+      allowed_blocks: {  }
+      allowed_layouts: {  }
 id: user.user.default
 targetEntityType: user
 bundle: user
