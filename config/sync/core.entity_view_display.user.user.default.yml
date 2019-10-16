@@ -9,6 +9,7 @@ dependencies:
     - views.view.group_my_groups
   module:
     - layout_builder
+    - layout_builder_restrictions
     - layout_discovery
     - layout_library
     - user
@@ -18,11 +19,6 @@ third_party_settings:
     allow_custom: false
     enabled: true
     sections:
-      -
-        layout_id: layout_onecol
-        layout_settings: {  }
-        components: {  }
-        third_party_settings: {  }
       -
         layout_id: layout_onecol
         layout_settings: {  }
@@ -61,40 +57,27 @@ third_party_settings:
               context_mapping: {  }
             additional: {  }
             weight: 0
-          3465d1cf-eefd-4d60-9f75-dfb415ed015d:
-            uuid: 3465d1cf-eefd-4d60-9f75-dfb415ed015d
+          295d7b24-2092-4801-8b01-1100e151d89c:
+            uuid: 295d7b24-2092-4801-8b01-1100e151d89c
             region: second
             configuration:
               id: 'inline_block:text'
-              label: 'Comms Content'
+              label: Webforms
               provider: layout_builder
               label_display: visible
               view_mode: full
-              block_revision_id: 10
+              block_revision_id: 12
               block_serialized: null
               context_mapping: {  }
             additional: {  }
             weight: 0
         third_party_settings: {  }
-      -
-        layout_id: layout_twocol_section
-        layout_settings:
-          column_widths: 50-50
-          layout_builder_styles_style: ''
-        components:
-          7676d529-f635-4aa6-98df-2195da499514:
-            uuid: 7676d529-f635-4aa6-98df-2195da499514
-            region: first
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'extra_field_block:user:user:member_for'
-            additional: {  }
-            weight: 0
-        third_party_settings: {  }
   layout_library:
     enable: false
+  layout_builder_restrictions:
+    entity_view_mode_restriction:
+      allowed_blocks: {  }
+      allowed_layouts: {  }
 id: user.user.default
 targetEntityType: user
 bundle: user
