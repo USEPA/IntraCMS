@@ -4,13 +4,14 @@ status: true
 dependencies:
   config:
     - block_content.type.media_block
+    - entity_browser.browser.media_browser
     - field.field.block_content.media_block.field_link
     - field.field.block_content.media_block.field_usa_media_block_heading
     - field.field.block_content.media_block.field_usa_media_block_img
     - field.field.block_content.media_block.field_usa_media_block_text
   module:
+    - entity_browser
     - link
-    - media_library
 id: block_content.media_block.default
 targetEntityType: block_content
 bundle: media_block
@@ -33,10 +34,18 @@ content:
     type: string_textfield
     region: content
   field_usa_media_block_img:
-    type: media_library_widget
+    type: entity_browser_entity_reference
     weight: 1
     settings:
-      media_types: {  }
+      entity_browser: media_browser
+      field_widget_display: rendered_entity
+      field_widget_remove: true
+      field_widget_replace: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: thumbnail
+      field_widget_edit: false
     region: content
     third_party_settings: {  }
   field_usa_media_block_text:
