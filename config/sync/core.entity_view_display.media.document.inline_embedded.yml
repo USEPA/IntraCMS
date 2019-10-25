@@ -1,0 +1,39 @@
+uuid: 17299eac-8a0a-4bd1-881f-5b3de95caa23
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.inline_embedded
+    - field.field.media.document.field_description
+    - field.field.media.document.field_document
+    - field.field.media.document.field_media_in_library
+    - media.type.document
+  module:
+    - file
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+_core:
+  default_config_hash: 4tgcXj_iKv9Fw3xmONUfCHKqO7OeOa11qVesruN4k4k
+id: media.document.inline_embedded
+targetEntityType: media
+bundle: document
+mode: inline_embedded
+content:
+  field_document:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: file_url_plain
+    region: content
+hidden:
+  created: true
+  field_description: true
+  field_media_in_library: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true
