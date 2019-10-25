@@ -28,25 +28,19 @@
  */
 #}
 
-        {% if label %}
-            {% set classes = [
-                'card',
-                'mt-2',
-            ] %}
-        {% endif %}
+{% set classes = [
+    'card'
+] %}
 
-
-<div {{ attributes.addClass(classes) }}>
-
-    {{ title_prefix }}
-    {% if label %}
-        <div class="card-header m-0 font-weight-bold">
-            <h2 class="font-heading-xl margin-y-0=">{{ label }}</h2>
-        </div>
-    {% endif %}
-    {{ title_suffix }}
-
-    <div class="card-body py-1">
-        {{ content }}
+<div {{ attributes.addClass(classes) }} style="width: 18rem;">
+    <img class="card-img-top" src={{ file_url(content.field_card_img|field_target_entity.uri.value) }} alt={{ content.field_card_img|field_raw('alt') }} />
+    
+    <div class="card-body">     
+        {{ title_prefix }}
+         {% if label %}
+         <h5 class="card-title">{{ label }}</h5>
+         {% endif %}
+        {{ title_suffix }} 
+      <span class="card-text">{{ content.field_card_text }}</span>
     </div>
-</div>
+  </div>

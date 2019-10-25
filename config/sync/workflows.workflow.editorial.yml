@@ -3,7 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
+    - node.type.article
+    - node.type.event
+    - node.type.faces_of_ord
+    - node.type.landing_page
     - node.type.page
+    - node.type.photos_of_the_week
+    - node.type.staff_member
+    - node.type.webform
+    - node.type.weekly_compass
   module:
     - content_moderation
 _core:
@@ -72,4 +80,13 @@ type_settings:
         - review
   entity_types:
     node:
+      - article
+      - event
+      - faces_of_ord
+      - landing_page
       - page
+      - photos_of_the_week
+      - staff_member
+      - webform
+      - weekly_compass
+  default_moderation_state: draft
