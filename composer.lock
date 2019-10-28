@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "73a451cadeac0d1742c14211fdb6ed6e",
+    "content-hash": "d967ce17364815b22c32afca76cb6dab",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -3828,6 +3828,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "2640398: Allow <drupal-entity> elements to be inline CKEditor Widgets": "https://www.drupal.org/files/issues/2019-05-08/allow-inline-embed-2640398-58.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4290,7 +4293,9 @@
                 },
                 "patches_applied": {
                     "2797793: Associate menu with a group": "https://www.drupal.org/files/issues/2019-07-23/group-support_string_entity_ids-2797793-164.patch",
-                    "2774827: Get a token of a node's parent group to create a pathauto pattern": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch"
+                    "2774827: Get a token of a node's parent group to create a pathauto pattern": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch",
+                    "2984315: Media enabler": "https://www.drupal.org/files/issues/2019-05-30/media-enabler-2984315-31.patch",
+                    "2999661: Views default argument for referencing current user groups": "https://www.drupal.org/files/issues/2019-06-07/user-groups-argument-2999661.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4314,6 +4319,54 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/group",
                 "issues": "https://drupal.org/project/issues/group"
+            }
+        },
+        {
+            "name": "drupal/groupmedia",
+            "version": "2.0.0-alpha4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/groupmedia.git",
+                "reference": "8.x-2.0-alpha4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/groupmedia-8.x-2.0-alpha4.zip",
+                "reference": "8.x-2.0-alpha4",
+                "shasum": "a44bde252d2edd4a8371afd01c1a53c5a9318048"
+            },
+            "require": {
+                "drupal/core": "*",
+                "drupal/group": "^1.0.0-rc3"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0-alpha4",
+                    "datestamp": "1567499285",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "a.dmitriiev",
+                    "homepage": "https://www.drupal.org/user/3235287"
+                }
+            ],
+            "description": "Enables Group functionality for the Media module",
+            "homepage": "https://www.drupal.org/project/groupmedia",
+            "support": {
+                "source": "https://git.drupalcode.org/project/groupmedia"
             }
         },
         {
@@ -6418,6 +6471,10 @@
                 {
                     "name": "See other contributors",
                     "homepage": "https://www.drupal.org/node/1072922/committers"
+                },
+                {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
                 },
                 {
                     "name": "tim.plunkett",
@@ -14335,7 +14392,8 @@
         "drupal/webform_views": 15,
         "drupal/webform_analysis": 10,
         "drupal/layout_builder_modal": 15,
-        "drupal/views_taxonomy_term_name_into_id": 15
+        "drupal/views_taxonomy_term_name_into_id": 15,
+        "drupal/groupmedia": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,

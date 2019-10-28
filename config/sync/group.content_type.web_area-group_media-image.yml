@@ -1,0 +1,19 @@
+uuid: 2f14559b-1664-4b2d-8803-f1f2064033b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.web_area
+    - media.type.image
+  module:
+    - groupmedia
+    - media
+id: web_area-group_media-image
+label: 'Web Area: Group media (Image)'
+description: 'Adds <em class="placeholder">Image</em> content to groups both publicly and privately.'
+group_type: web_area
+content_plugin: 'group_media:image'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

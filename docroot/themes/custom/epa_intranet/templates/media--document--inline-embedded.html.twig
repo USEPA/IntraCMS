@@ -34,5 +34,7 @@
 
 <div{{ attributes }}>
     {{ title_suffix.contextual_links }}
-    <a href="{{ file_url(media.get('field_document').entity.uri.value) }}">{{ name }}</a>
+    <span class="inline-embed file file--mime-application-vnd-openxmlformats-officedocument-wordprocessingml-document file--x-office-document">
+        <a href="{{ file_url(media.get('field_document').entity.uri.value) }}">{{ name }}</a>
+    </span>
 </div>
