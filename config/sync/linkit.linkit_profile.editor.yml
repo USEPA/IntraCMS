@@ -41,10 +41,9 @@ matchers:
     id: 'entity:media'
     weight: 0
     settings:
-      metadata: '[media:name]: [media:field_document:entity:basename]'
+      metadata: null
       bundles:
-        document: document
         image: image
       group_by_bundle: false
-      substitution_type: media_download
+      substitution_type: canonical
       limit: 100
