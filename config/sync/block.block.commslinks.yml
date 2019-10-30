@@ -1,11 +1,11 @@
-uuid: 3a404639-f36d-437d-8be2-09211fa620f8
+uuid: 9ee5b61f-bb16-4c11-9f67-51f15fe2a5ca
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:text:1a5cd306-bc30-4656-bdeb-d6d544668884'
+  config:
+    - fixed_block_content.fixed_block_content.comms_links
   module:
-    - block_content
+    - fixed_block_content
     - system
     - user
   theme:
@@ -13,17 +13,15 @@ dependencies:
 id: commslinks
 theme: epa_intranet
 region: content
-weight: -3
+weight: 0
 provider: null
-plugin: 'block_content:1a5cd306-bc30-4656-bdeb-d6d544668884'
+plugin: 'fixed_block_content:comms_links'
 settings:
-  id: 'block_content:1a5cd306-bc30-4656-bdeb-d6d544668884'
+  id: 'fixed_block_content:comms_links'
   label: 'Comms Links'
-  provider: block_content
+  provider: fixed_block_content
   label_display: visible
-  status: true
-  info: ''
-  view_mode: full
+  view_mode: ''
 visibility:
   request_path:
     id: request_path
