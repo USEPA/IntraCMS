@@ -27,7 +27,6 @@ function entity_view_group_bypass_help($route_name, RouteMatchInterface $route_m
 }
 
 
-
 /**
  * Implements hook_views_pre_build().
  *
@@ -44,3 +43,12 @@ function entity_view_group_bypass_views_pre_build(ViewExecutable $view) {
     }
   }
 }
+
+function entity_view_group_bypass_entity_embed_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, array &$context) {
+  if (count($context) && isset($context['data-entity-embed-display'])) {
+    if ($context['data-entity-embed-display'] === 'media_image') {
+      $build['#attributes']['class'][] = 'image-class';
+    }
+  }
+}
+
