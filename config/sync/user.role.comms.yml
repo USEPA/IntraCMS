@@ -9,14 +9,18 @@ third_party_settings:
     description: 'Role used for managing Weekly Compass, Faces of ORD, and Photos of the Week content.'
 id: comms
 label: Comms
-weight: -8
+weight: -7
 is_admin: null
 permissions:
+  - 'access ckeditor_media_browser entity browser pages'
   - 'access content overview'
   - 'access contextual links'
   - 'access image_browser entity browser pages'
   - 'access media overview'
+  - 'access media_browser entity browser pages'
   - 'access webform overview'
+  - 'configure editable landing_page node layout overrides'
+  - 'create and edit custom blocks'
   - 'create article content'
   - 'create audio_file media'
   - 'create document media'
@@ -24,6 +28,7 @@ permissions:
   - 'create image media'
   - 'create landing_page content'
   - 'create media'
+  - 'create page content'
   - 'create photos_of_the_week content'
   - 'create staff_member content'
   - 'create terms in tags'
@@ -72,6 +77,7 @@ permissions:
   - 'edit any document media'
   - 'edit any event content'
   - 'edit any faces_of_ord content'
+  - 'edit any image media'
   - 'edit any landing_page content'
   - 'edit any page content'
   - 'edit any photos_of_the_week content'
@@ -84,6 +90,7 @@ permissions:
   - 'edit own document media'
   - 'edit own faces_of_ord content'
   - 'edit own image media'
+  - 'edit own landing_page content'
   - 'edit own page content'
   - 'edit own photos_of_the_week content'
   - 'edit own staff_member content'
@@ -133,6 +140,8 @@ permissions:
   - 'view staff_member revisions'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
+  - 'view unpublished path file entity entities'
   - 'view webform revisions'
+  - 'view webform submissions any node'
   - 'view webform submissions own node'
   - 'view weekly_compass revisions'
