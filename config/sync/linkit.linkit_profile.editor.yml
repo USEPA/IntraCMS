@@ -3,14 +3,25 @@ langcode: en
 status: true
 dependencies:
   module:
-    - file
     - node
 id: editor
 label: Editor
 description: ''
 matchers:
-  d63a9235-72ee-4303-8109-58a1265319ca:
-    uuid: d63a9235-72ee-4303-8109-58a1265319ca
+  eb591dc2-5475-4d8f-baa8-2db0f215be43:
+    uuid: eb591dc2-5475-4d8f-baa8-2db0f215be43
+    id: 'entity:media'
+    weight: 0
+    settings:
+      metadata: ''
+      bundles:
+        document: document
+        image: image
+      group_by_bundle: true
+      substitution_type: media
+      limit: 100
+  ce372496-be75-48df-a3f2-51e08e2a2209:
+    uuid: ce372496-be75-48df-a3f2-51e08e2a2209
     id: 'entity:node'
     weight: 0
     settings:
@@ -18,32 +29,5 @@ matchers:
       metadata: '[node:group:title]/[node:title]'
       bundles: {  }
       group_by_bundle: true
-      substitution_type: canonical
-      limit: 100
-  df048ad5-43b3-42a6-8bc8-0aa517c68e13:
-    uuid: df048ad5-43b3-42a6-8bc8-0aa517c68e13
-    id: 'entity:file'
-    weight: 0
-    settings:
-      file_extensions: 'txt pdf doc docx xls xlsx ppt pptx'
-      file_status: 1
-      images:
-        show_dimensions: false
-        show_thumbnail: false
-        thumbnail_image_style: null
-      substitution_type: file
-      metadata: null
-      bundles: null
-      group_by_bundle: null
-      limit: 100
-  eb591dc2-5475-4d8f-baa8-2db0f215be43:
-    uuid: eb591dc2-5475-4d8f-baa8-2db0f215be43
-    id: 'entity:media'
-    weight: 0
-    settings:
-      metadata: null
-      bundles:
-        image: image
-      group_by_bundle: false
       substitution_type: canonical
       limit: 100

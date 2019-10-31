@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Contains entity_view_group_bypass.module.
+ */
+
+
+use Drupal\views\ViewExecutable;
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function entity_view_group_bypass_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the entity_view_group_bypass module.
+    case 'help.page.entity_view_group_bypass':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Entity View Group Bypass for entity view with group media') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_views_pre_build().
+ *
+ * @param \Drupal\views\ViewExecutable $view
+ */
+function entity_view_group_bypass_views_pre_build(ViewExecutable $view) {
+  if ($view->storage->id() == 'media' && strpos($view->current_display, 'entity_browser_') !== FALSE) {
+    if (\Drupal::currentUser()->hasPermission('administer media')) {
+      // Make the relationship to group content not required, so the user can get access
+      // to any media.
+      if (!empty($view->relationship['group_content'])) {
+        $view->relationship['group_content']->options['required'] = FALSE;
+      }
+    }
+  }
+}
