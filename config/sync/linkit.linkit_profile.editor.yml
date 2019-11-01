@@ -1,9 +1,7 @@
 uuid: 76bbd268-b9ef-4c87-8474-544f9f589543
 langcode: en
 status: true
-dependencies:
-  module:
-    - node
+dependencies: {  }
 id: editor
 label: Editor
 description: ''
@@ -17,17 +15,6 @@ matchers:
       bundles:
         document: document
         image: image
-      group_by_bundle: true
-      substitution_type: media
-      limit: 100
-  ce372496-be75-48df-a3f2-51e08e2a2209:
-    uuid: ce372496-be75-48df-a3f2-51e08e2a2209
-    id: 'entity:node'
-    weight: 0
-    settings:
-      include_unpublished: false
-      metadata: '[node:group:title]/[node:title]'
-      bundles: {  }
       group_by_bundle: true
       substitution_type: canonical
       limit: 100
