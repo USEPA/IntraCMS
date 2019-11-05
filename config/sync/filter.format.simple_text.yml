@@ -19,19 +19,6 @@ filters:
       allowed_html: '<0> <1> <2> <3 cite> <4> <5 type> <6 type start> <7> <8> <9> <10> <11 id> <12 id> <13 id> <14 id> <15 id> <16 src alt data-entity-type data-entity-uuid> <17> <18 class="usa-intro"> <19 class="usa-tag"> <20 href hreflang data-entity-type data-entity-uuid name data-entity-substitution title class=""> <21 data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button data-langcode alt title> <strong> <em> <p class="usa-intro"> <h2> <h3> <h4> <h5> <h6> <pre> <a href class="usa-button usa-button-gray"> <table class="usa-table usa-table-borderless"> <span class="usa-tag"> <ul> <li> <ol> <drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button data-langcode alt title>'
       filter_html_help: true
       filter_html_nofollow: false
-  filter_url:
-    id: filter_url
-    provider: filter
-    status: true
-    weight: -48
-    settings:
-      filter_url_length: 72
-  filter_htmlcorrector:
-    id: filter_htmlcorrector
-    provider: filter
-    status: true
-    weight: -49
-    settings: {  }
   editor_file_reference:
     id: editor_file_reference
     provider: editor
@@ -62,6 +49,12 @@ filters:
     status: false
     weight: -43
     settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: -49
+    settings: {  }
   filter_html_escape:
     id: filter_html_escape
     provider: filter
@@ -74,6 +67,13 @@ filters:
     status: false
     weight: -41
     settings: {  }
+  filter_url:
+    id: filter_url
+    provider: filter
+    status: true
+    weight: -48
+    settings:
+      filter_url_length: 72
   linkit:
     id: linkit
     provider: linkit
