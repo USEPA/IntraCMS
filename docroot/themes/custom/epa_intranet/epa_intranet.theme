@@ -18,8 +18,13 @@ function epa_intranet_preprocess_image(&$variables) {
     $variables['attributes']['class'][] = 'usa-media-block__img';
     $variables['attributes']['class'][] = 'rounded-circle';
   }
+  if (isset($variables['style_name']) && $variables['style_name'] == 'card') {
+    $variables['attributes']['class'][] = 'card-img-top';
+    $variables['attributes']['class'][] = 'w-100';
+    unset($variables['attributes']['width']);
+    unset($variables['attributes']['height']);
+  }
 }
-
 function epa_intranet_preprocess_field(&$variables, $hook) {
   $elements = $variables['element'];
   if ($elements['#field_name'] == 'field_caption') {

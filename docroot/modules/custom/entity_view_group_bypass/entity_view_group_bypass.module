@@ -7,7 +7,6 @@
 
 
 use Drupal\views\ViewExecutable;
-
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -26,19 +25,24 @@ function entity_view_group_bypass_help($route_name, RouteMatchInterface $route_m
   }
 }
 
-
 /**
- * Implements hook_views_pre_build().
- *
- * @param \Drupal\views\ViewExecutable $view
+ * Implements hook_views_pre_render().
  */
-function entity_view_group_bypass_views_pre_build(ViewExecutable $view) {
-  if ($view->storage->id() == 'media' && strpos($view->current_display, 'entity_browser_') !== FALSE) {
-    if (\Drupal::currentUser()->hasPermission('administer media')) {
-      // Make the relationship to group content not required, so the user can get access
-      // to any media.
-      if (!empty($view->relationship['group_content'])) {
-        $view->relationship['group_content']->options['required'] = FALSE;
+function entity_view_group_bypass_views_pre_render(ViewExecutable $view) {
+  if ($view->id() == 'media' && strpos($view->current_display, 'entity_browser_') !== FALSE) {
+    $user = \Drupal::currentUser();
+    if (!$user->hasPermission('administer media')) {
+      $group_membership_service = \Drupal::service('group.membership_loader');
+      $groups = $group_membership_service->loadByUser($user);
+      $group_ids = [];
+      foreach ($groups as $group) {
+        $group_ids[] = $group->getGroup()->id();
+      }
+      foreach ($view->result as $key => $value) {
+        $group_id_for_media = $value->groups_field_data_group_content_field_data_id;
+        if (isset($group_id_for_media) && !in_array($group_id_for_media, $group_ids)) {
+          unset ($view->result[$key]);
+        }
       }
     }
   }
