@@ -1,0 +1,62 @@
+uuid: 33763ff4-335f-40d8-9754-86f638341ecb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.sop.field_description
+    - field.field.node.sop.field_sop_guid
+    - node.type.sop
+  module:
+    - node
+label: 'QA Track SOP Feed'
+id: qa_track_sop_feed
+description: 'Imports SOP records from QA Track'
+help: ''
+import_period: 86400
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: syndication
+parser_configuration: {  }
+processor: 'entity:node'
+processor_configuration:
+  update_existing: 1
+  update_non_existent: _delete
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+  authorize: false
+  skip_hash_check: false
+  values:
+    type: sop
+custom_sources:
+  title:
+    label: title
+    value: title
+    machine_name: title
+  description:
+    label: description
+    value: description
+    machine_name: description
+  guid:
+    label: guid
+    value: guid
+    machine_name: guid
+mappings:
+  -
+    target: title
+    map:
+      value: title
+    unique: {  }
+  -
+    target: field_description
+    map:
+      value: description
+  -
+    target: field_sop_guid
+    map:
+      value: guid
+    unique: {  }
