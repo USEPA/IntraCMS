@@ -1,0 +1,131 @@
+uuid: 0911c5cb-9af9-4a54-b028-8a40f2d2cbf1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.sop.field_date_reviewed
+    - field.field.node.sop.field_description
+    - field.field.node.sop.field_discipline
+    - field.field.node.sop.field_division
+    - field.field.node.sop.field_lab
+    - field.field.node.sop.field_sop_alternate_number
+    - field.field.node.sop.field_sop_contact
+    - field.field.node.sop.field_sop_guid
+    - field.field.node.sop.field_sop_link
+    - field.field.node.sop.field_sop_number
+    - field.field.node.sop.field_sop_previous_number
+    - field.field.node.sop.field_sop_status
+    - field.field.node.sop.field_sub_discipline
+    - node.type.sop
+  module:
+    - datetime
+    - user
+id: node.sop.default
+targetEntityType: node
+bundle: sop
+mode: default
+content:
+  field_date_reviewed:
+    weight: 4
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: long_12h
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_description:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_discipline:
+    weight: 5
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_division:
+    weight: 8
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_lab:
+    weight: 7
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sop_alternate_number:
+    weight: 11
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sop_contact:
+    weight: 10
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sop_link:
+    weight: 9
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sop_number:
+    weight: 2
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sop_previous_number:
+    weight: 12
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sop_status:
+    weight: 3
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_sub_discipline:
+    weight: 6
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_sop_guid: true
+  search_api_excerpt: true
