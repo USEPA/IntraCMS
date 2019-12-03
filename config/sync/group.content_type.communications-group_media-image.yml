@@ -1,0 +1,19 @@
+uuid: 5a52f8f6-8451-48eb-99d6-5ddb31b50f73
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.communications
+    - media.type.image
+  module:
+    - groupmedia
+    - media
+id: communications-group_media-image
+label: 'Communications: Group media (Image)'
+description: 'Adds <em class="placeholder">Image</em> content to groups both publicly and privately.'
+group_type: communications
+content_plugin: 'group_media:image'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
