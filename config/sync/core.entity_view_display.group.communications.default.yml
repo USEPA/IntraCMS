@@ -1,36 +1,36 @@
-uuid: c1747901-f963-436a-855a-fa03973c9765
+uuid: f1cda4e9-0aaa-4ddb-aefa-ba7b9354aa26
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.group.web_area.field_group_contact
-    - field.field.group.web_area.field_group_contact_info
-    - field.field.group.web_area.field_group_description
-    - group.type.web_area
+    - field.field.group.communications.field_group_contact
+    - field.field.group.communications.field_group_contact_info
+    - field.field.group.communications.field_group_description
+    - group.type.communications
   module:
     - text
-id: group.web_area.default
+id: group.communications.default
 targetEntityType: group
-bundle: web_area
+bundle: communications
 mode: default
 content:
   field_group_contact:
-    weight: 3
-    label: inline
+    weight: -4
+    label: above
     settings: {  }
     third_party_settings: {  }
-    type: email_mailto
+    type: basic_string
     region: content
   field_group_contact_info:
-    weight: 2
+    weight: -3
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_group_description:
-    weight: 1
-    label: hidden
+    weight: -2
+    label: above
     settings: {  }
     third_party_settings: {  }
     type: basic_string
@@ -38,7 +38,7 @@ content:
   label:
     label: hidden
     type: string
-    weight: 0
+    weight: -5
     region: content
     settings:
       link_to_entity: false
