@@ -4,19 +4,29 @@ status: true
 dependencies:
   config:
     - field.field.group.web_area.field_group_contact
+    - field.field.group.web_area.field_group_contact_info
     - field.field.group.web_area.field_group_description
     - group.type.web_area
+  module:
+    - text
 id: group.web_area.default
 targetEntityType: group
 bundle: web_area
 mode: default
 content:
   field_group_contact:
-    weight: 2
+    weight: 3
     label: inline
     settings: {  }
     third_party_settings: {  }
     type: email_mailto
+    region: content
+  field_group_contact_info:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
     region: content
   field_group_description:
     weight: 1

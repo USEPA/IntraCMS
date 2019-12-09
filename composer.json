@@ -57,7 +57,9 @@
         "harvesthq/chosen": "1.8.7",
         "drupal/views_taxonomy_term_name_into_id": "^1.0@alpha",
         "drupal/fixed_block_content": "^1.0",
-        "drupal/groupmedia": "^2.0@alpha"
+        "drupal/groupmedia": "^2.0@alpha",
+        "drupal/feeds": "^3.0@alpha",
+        "drupal/feeds_ex": "^1.0@alpha"
     },
     "require-dev": {
         "drush/drush": "^9.0"
@@ -71,7 +73,8 @@
                 "2797793: Associate menu with a group": "https://www.drupal.org/files/issues/2019-07-23/group-support_string_entity_ids-2797793-164.patch",
                 "2774827: Get a token of a node's parent group to create a pathauto pattern": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch",
                 "2984315: Media enabler": "https://www.drupal.org/files/issues/2019-05-30/media-enabler-2984315-31.patch",
-                "2999661: Views default argument for referencing current user groups": "https://www.drupal.org/files/issues/2019-06-07/user-groups-argument-2999661.patch"
+                "2999661: Views default argument for referencing current user groups": "https://www.drupal.org/files/issues/2019-06-07/user-groups-argument-2999661.patch",
+                "2906085: Content moderation integration: transition permissions and latest version access": "https://www.drupal.org/files/issues/2019-11-26/group-2906085-55.patch"
             },
             "drupal/groupmenu": {
                 "3010909: Group menu association": "https://www.drupal.org/files/issues/2019-04-04/groupmenu-change_references_to_entity_id-3010909-9.patch",
@@ -88,7 +91,8 @@
                 "3059387: Taxonomy Terms cannot be rendered when in preview: EntityMalformedException": "https://www.drupal.org/files/issues/2019-06-04/malformedentityexception-3059387.patch",
                 "2719797: New option for Views page displays to use the admin theme": "https://www.drupal.org/files/issues/2019-06-10/core-88x--views--admin-path-2719797-77.patch",
                 "2950729: Undefined offset 1 in the MenuParentFormSelector.php": "https://www.drupal.org/files/issues/2019-09-17/2950729-14.patch",
-                "2949017: Permissions Patch": "https://www.drupal.org/files/issues/2019-05-06/2949017_47.patch"
+                "2949017: Permissions Patch": "https://www.drupal.org/files/issues/2019-05-06/2949017_47.patch",
+                "3035113: JSON API": "https://www.drupal.org/files/issues/2019-10-21/LatestRevisionCheck-13092187-24.patch"
             },
             "merge-plugin": {
                 "include": [
@@ -188,7 +192,7 @@
                 "type": "drupal-library",
                 "version": "1.8.7",
                 "dist": {
-                    "url": "https://github.com/harvesthq/chosen/archive/v1.8.7.zip",
+                    "url": "https://github.com/harvesthq/chosen-package/archive/master.zip",
                     "type": "zip"
                 },
                 "require": {

@@ -3,10 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - user.role.administrator
-    - user.role.author
-    - user.role.comms
-    - user.role.editor
+    - user.role.authenticated
   module:
     - group
     - user
@@ -29,10 +26,7 @@ display:
         type: role
         options:
           role:
-            author: author
-            comms: comms
-            editor: editor
-            administrator: administrator
+            authenticated: authenticated
       cache:
         type: tag
         options: {  }
