@@ -44,7 +44,7 @@ Use a BASH command line (e.g. GIT BASH) for a Windows environment.
     3. The git checkout command above will also point your repo to the new branch.
  3. Before starting work on your new branch, you must install any updates from the development branch. This can be dependencies in composer.json, or new configurations that manage your Drupal project's structure.
     1. `composer install` -- Update your dependencies with latest changes
-    2. It's possible the a dependency was removed from composer.json and your project must be updated. If this is the case, you will be prompted after running `composer install` to run `composer update`. This will only remove the dependencies from your local project. Do not run `composer update` otherwise. 
+    2. It's possible the a dependency was removed from composer.json and your project must be updated. If this is the case, you will be prompted after running `composer install` to run `composer update --lock`. This will only remove the dependencies from your local project. Never run `composer update` and never delete the composer.lock file. 
     3. `drush config:import` -- Updates your Drupal Database with the last configuration changes. It will prompt you to confirm the configurations being imported. Type `y` and enter.   
       1. In order to run `drush config:import`, you must first set your site UUID once.
       2. `drush config-set "system.site" uuid "a20f8b2d-8c57-4965-bb1c-d142c5b66431"`
