@@ -1,0 +1,120 @@
+uuid: e326a00d-479d-4137-8c22-4c29212ff644
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.qapp.body
+    - field.field.node.qapp.field_division
+    - field.field.node.qapp.field_lab
+    - field.field.node.qapp.field_qa_activity_number
+    - field.field.node.qapp.field_qapp_approval_date
+    - field.field.node.qapp.field_qapp_guid
+    - field.field.node.qapp.field_qapp_pdf
+    - field.field.node.qapp.field_qapp_project_lead
+    - field.field.node.qapp.field_qapp_project_lead_email
+    - field.field.node.qapp.field_qapp_project_type
+    - field.field.node.qapp.field_qapp_word
+    - node.type.qapp
+  module:
+    - datetime
+    - text
+    - user
+id: node.qapp.default
+targetEntityType: node
+bundle: qapp
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_division:
+    weight: 8
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_lab:
+    weight: 7
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_qa_activity_number:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_qapp_approval_date:
+    weight: 3
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: long_12h
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_qapp_guid:
+    weight: 11
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_qapp_pdf:
+    weight: 9
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_qapp_project_lead:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_qapp_project_lead_email:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: email_mailto
+    region: content
+  field_qapp_project_type:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_qapp_word:
+    weight: 10
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  search_api_excerpt: true

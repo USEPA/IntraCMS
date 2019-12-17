@@ -1,61 +1,47 @@
-uuid: 0331cd3e-027e-4676-bb36-3b386804e09e
+uuid: 61e3c784-c09b-4e04-9365-895abfa5c879
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.sop.field_date_reviewed
-    - field.field.node.sop.field_description
-    - field.field.node.sop.field_discipline
-    - field.field.node.sop.field_division
-    - field.field.node.sop.field_lab
-    - field.field.node.sop.field_sop_alternate_number
-    - field.field.node.sop.field_sop_contact
-    - field.field.node.sop.field_sop_guid
-    - field.field.node.sop.field_sop_link
-    - field.field.node.sop.field_sop_number
-    - field.field.node.sop.field_sop_previous_number
-    - field.field.node.sop.field_sop_status
-    - field.field.node.sop.field_sub_discipline
-    - node.type.sop
+    - field.field.node.qapp.body
+    - field.field.node.qapp.field_division
+    - field.field.node.qapp.field_lab
+    - field.field.node.qapp.field_qa_activity_number
+    - field.field.node.qapp.field_qapp_approval_date
+    - field.field.node.qapp.field_qapp_guid
+    - field.field.node.qapp.field_qapp_pdf
+    - field.field.node.qapp.field_qapp_project_lead
+    - field.field.node.qapp.field_qapp_project_lead_email
+    - field.field.node.qapp.field_qapp_project_type
+    - field.field.node.qapp.field_qapp_word
+    - node.type.qapp
   module:
     - content_moderation
     - datetime
     - path
-id: node.sop.default
+    - text
+id: node.qapp.default
 targetEntityType: node
-bundle: sop
+bundle: qapp
 mode: default
 content:
+  body:
+    type: text_textarea_with_summary
+    weight: 121
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
   created:
     type: datetime_timestamp
     weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_date_reviewed:
-    weight: 126
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_description:
-    weight: 121
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textarea
-    region: content
-  field_discipline:
-    weight: 127
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_division:
-    weight: 130
+    weight: 128
     settings:
       size: 60
       placeholder: ''
@@ -63,46 +49,14 @@ content:
     type: string_textfield
     region: content
   field_lab:
-    weight: 129
+    weight: 127
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_sop_alternate_number:
-    weight: 123
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_sop_contact:
-    weight: 133
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_sop_guid:
-    weight: 131
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_sop_link:
-    weight: 132
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_sop_number:
+  field_qa_activity_number:
     weight: 122
     settings:
       size: 60
@@ -110,15 +64,29 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_sop_previous_number:
-    weight: 124
+  field_qapp_approval_date:
+    weight: 123
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_qapp_guid:
+    weight: 131
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_sop_status:
+  field_qapp_pdf:
+    weight: 129
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_qapp_project_lead:
     weight: 125
     settings:
       size: 60
@@ -126,8 +94,24 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_sub_discipline:
-    weight: 128
+  field_qapp_project_lead_email:
+    weight: 126
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: content
+  field_qapp_project_type:
+    weight: 124
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_qapp_word:
+    weight: 130
     settings:
       size: 60
       placeholder: ''
@@ -189,5 +173,4 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden:
-  feeds_item: true
+hidden: {  }

@@ -1,0 +1,31 @@
+uuid: 1da74236-d1b3-4ffc-bba1-0a101130db58
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.qapp.body
+    - node.type.qapp
+  module:
+    - text
+    - user
+id: node.qapp.teaser
+targetEntityType: node
+bundle: qapp
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  search_api_excerpt: true
