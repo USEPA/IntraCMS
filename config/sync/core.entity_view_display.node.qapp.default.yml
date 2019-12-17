@@ -3,7 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.qapp.body
+    - field.field.node.qapp.feeds_item
+    - field.field.node.qapp.field_body
     - field.field.node.qapp.field_division
     - field.field.node.qapp.field_lab
     - field.field.node.qapp.field_qa_activity_number
@@ -17,19 +18,19 @@ dependencies:
     - node.type.qapp
   module:
     - datetime
-    - text
     - user
 id: node.qapp.default
 targetEntityType: node
 bundle: qapp
 mode: default
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 1
-    settings: {  }
+  field_body:
+    weight: 12
+    label: above
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
+    type: string
     region: content
   field_division:
     weight: 8
@@ -117,4 +118,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  feeds_item: true
   search_api_excerpt: true
