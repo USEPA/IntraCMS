@@ -4,28 +4,40 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.qapp.body
+    - field.field.node.qapp.feeds_item
+    - field.field.node.qapp.field_division
+    - field.field.node.qapp.field_lab
+    - field.field.node.qapp.field_qa_activity_number
+    - field.field.node.qapp.field_qapp_approval_date
+    - field.field.node.qapp.field_qapp_guid
+    - field.field.node.qapp.field_qapp_pdf
+    - field.field.node.qapp.field_qapp_project_lead
+    - field.field.node.qapp.field_qapp_project_lead_email
+    - field.field.node.qapp.field_qapp_project_type
+    - field.field.node.qapp.field_qapp_word
     - node.type.qapp
   module:
-    - text
     - user
 id: node.qapp.teaser
 targetEntityType: node
 bundle: qapp
 mode: teaser
 content:
-  body:
-    label: hidden
-    type: text_summary_or_trimmed
-    weight: 101
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
-    region: content
   links:
     weight: 100
     settings: {  }
     third_party_settings: {  }
     region: content
 hidden:
+  feeds_item: true
+  field_division: true
+  field_lab: true
+  field_qa_activity_number: true
+  field_qapp_approval_date: true
+  field_qapp_guid: true
+  field_qapp_pdf: true
+  field_qapp_project_lead: true
+  field_qapp_project_lead_email: true
+  field_qapp_project_type: true
+  field_qapp_word: true
   search_api_excerpt: true
