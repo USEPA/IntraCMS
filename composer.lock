@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6e8f185d020dafb3aedde90704408ff",
+    "content-hash": "e81a52150d14e2b4d0309582c8681ec4",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -206,7 +206,7 @@
             "version": "v1.8.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:kenwheeler/slick.git",
+                "url": "https://github.com/kenwheeler/slick.git",
                 "reference": "0f40c9d6a02a5c08b5f4dd80fdada3a854a59bee"
             },
             "dist": {
@@ -2828,6 +2828,7 @@
                     "2719797: New option for Views page displays to use the admin theme": "https://www.drupal.org/files/issues/2019-06-10/core-88x--views--admin-path-2719797-77.patch",
                     "2950729: Undefined offset 1 in the MenuParentFormSelector.php": "https://www.drupal.org/files/issues/2019-09-17/2950729-14.patch",
                     "2949017: Permissions Patch": "https://www.drupal.org/files/issues/2019-05-06/2949017_47.patch",
+                    "3035113: JSON API": "https://www.drupal.org/files/issues/2019-10-21/LatestRevisionCheck-13092187-24.patch",
                     "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch",
                     "2815221 - Add quickedit to the latest-revision route": "https://www.drupal.org/files/issues/2019-03-05/2815221-116.patch",
                     "1356276 - Allow profiles to define a base/parent profile and load them in the correct order": "https://www.drupal.org/files/issues/2018-10-12/1356276-531.patch",
@@ -4425,6 +4426,62 @@
             }
         },
         {
+            "name": "drupal/google_analytics",
+            "version": "2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/google_analytics.git",
+                "reference": "8.x-2.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/google_analytics-8.x-2.4.zip",
+                "reference": "8.x-2.4",
+                "shasum": "f2e78ec140024ddcd19e027704ba73c33731f656"
+            },
+            "require": {
+                "drupal/core": "~8.5"
+            },
+            "require-dev": {
+                "drupal/php": "*",
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.4",
+                    "datestamp": "1548968580",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "hass",
+                    "homepage": "https://www.drupal.org/u/hass"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/49388/committers"
+                }
+            ],
+            "description": "Allows your site to be tracked by Google Analytics by adding a Javascript tracking code to every page.",
+            "homepage": "https://www.drupal.org/project/google_analytics",
+            "support": {
+                "source": "https://git.drupal.org/project/google_analytics.git",
+                "issues": "https://www.drupal.org/project/issues/google_analytics"
+            }
+        },
+        {
             "name": "drupal/group",
             "version": "1.0.0-rc4",
             "source": {
@@ -4459,7 +4516,8 @@
                     "2797793: Associate menu with a group": "https://www.drupal.org/files/issues/2019-07-23/group-support_string_entity_ids-2797793-164.patch",
                     "2774827: Get a token of a node's parent group to create a pathauto pattern": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch",
                     "2984315: Media enabler": "https://www.drupal.org/files/issues/2019-05-30/media-enabler-2984315-31.patch",
-                    "2999661: Views default argument for referencing current user groups": "https://www.drupal.org/files/issues/2019-06-07/user-groups-argument-2999661.patch"
+                    "2999661: Views default argument for referencing current user groups": "https://www.drupal.org/files/issues/2019-06-07/user-groups-argument-2999661.patch",
+                    "2906085: Content moderation integration: transition permissions and latest version access": "https://www.drupal.org/files/issues/2019-11-26/group-2906085-55.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -9169,12 +9227,12 @@
             "version": "2.5.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mlocati/cldr-to-gettext-plural-rules.git",
+                "url": "https://github.com/php-gettext/Languages.git",
                 "reference": "78db2d17933f0765a102f368a6663f057162ddbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mlocati/cldr-to-gettext-plural-rules/zipball/78db2d17933f0765a102f368a6663f057162ddbd",
+                "url": "https://api.github.com/repos/php-gettext/Languages/zipball/78db2d17933f0765a102f368a6663f057162ddbd",
                 "reference": "78db2d17933f0765a102f368a6663f057162ddbd",
                 "shasum": ""
             },
