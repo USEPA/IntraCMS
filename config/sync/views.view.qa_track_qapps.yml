@@ -17,6 +17,7 @@ dependencies:
     - datetime
     - node
     - user
+    - vefl
 id: qa_track_qapps
 label: 'QA Track QAPPs'
 module: views
@@ -48,15 +49,31 @@ display:
           query_comment: ''
           query_tags: {  }
       exposed_form:
-        type: basic
+        type: vefl_basic
         options:
           submit_button: Apply
-          reset_button: false
+          reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          layout:
+            layout_id: layout_threecol_33_34_33
+            change: Change
+            widget_region:
+              combine: first
+              title: second
+              field_qapp_project_type_value: third
+              field_qapp_project_lead_value: first
+              field_lab_value: second
+              field_division_value: third
+              sort_by: top
+              sort_order: top
+              items_per_page: top
+              offset: top
+              submit: bottom
+              reset: bottom
       pager:
         type: full
         options:
@@ -1156,6 +1173,9 @@ display:
     display_options:
       display_extenders: {  }
       path: quality-assurance/qapps
+      header: {  }
+      defaults:
+        header: false
     cache_metadata:
       max-age: -1
       contexts:
