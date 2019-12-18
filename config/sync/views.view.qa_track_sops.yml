@@ -18,6 +18,7 @@ dependencies:
     - datetime
     - node
     - user
+    - vefl
 id: qa_track_sops
 label: 'QA Track SOPs'
 module: views
@@ -49,7 +50,7 @@ display:
           query_comment: ''
           query_tags: {  }
       exposed_form:
-        type: basic
+        type: vefl_basic
         options:
           submit_button: Apply
           reset_button: true
@@ -58,6 +59,22 @@ display:
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          layout:
+            layout_id: layout_threecol_33_34_33
+            change: Change
+            widget_region:
+              combine: first
+              title: second
+              field_discipline_value: third
+              field_lab_value: first
+              field_division_value: second
+              field_sop_contact_value: third
+              sort_by: top
+              sort_order: top
+              items_per_page: top
+              offset: top
+              submit: bottom
+              reset: bottom
       pager:
         type: full
         options:
@@ -833,6 +850,57 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          group: 1
+        combine:
+          id: combine
+          table: views
+          field: combine
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: combine_op
+            label: 'Search All Fields'
+            description: ''
+            use_operator: false
+            operator: combine_op
+            identifier: combine
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          fields:
+            field_sop_number: field_sop_number
+            field_sop_previous_number: field_sop_previous_number
+            title: title
+            field_date_reviewed: field_date_reviewed
+            field_discipline: field_discipline
+            field_sub_discipline: field_sub_discipline
+            field_sop_contact: field_sop_contact
+            field_lab: field_lab
+            field_division: field_division
+          plugin_id: combine
         title:
           id: title
           table: node_field_data
@@ -874,6 +942,58 @@ display:
             group_items: {  }
           entity_type: node
           entity_field: title
+          plugin_id: string
+        field_discipline_value:
+          id: field_discipline_value
+          table: node__field_discipline
+          field: field_discipline_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: word
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_discipline_value_op
+            label: Discipline
+            description: ''
+            use_operator: false
+            operator: field_discipline_value_op
+            identifier: field_discipline_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: 'Discipline (field_discipline)'
+            description: ''
+            identifier: field_discipline_value
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: ''
+                operator: '='
+                value: ''
+              2:
+                title: ''
+                operator: '='
+                value: ''
+              3:
+                title: ''
+                operator: '='
+                value: ''
           plugin_id: string
         field_lab_value:
           id: field_lab_value
@@ -955,58 +1075,6 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: string
-        field_discipline_value:
-          id: field_discipline_value
-          table: node__field_discipline
-          field: field_discipline_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: word
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_discipline_value_op
-            label: Discipline
-            description: ''
-            use_operator: false
-            operator: field_discipline_value_op
-            identifier: field_discipline_value
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              administrator: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: 'Discipline (field_discipline)'
-            description: ''
-            identifier: field_discipline_value
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items:
-              1:
-                title: ''
-                operator: '='
-                value: ''
-              2:
-                title: ''
-                operator: '='
-                value: ''
-              3:
-                title: ''
-                operator: '='
-                value: ''
-          plugin_id: string
         field_sop_contact_value:
           id: field_sop_contact_value
           table: node__field_sop_contact
@@ -1070,6 +1138,10 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:
