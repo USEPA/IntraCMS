@@ -111,8 +111,8 @@ display:
             title: title
             field_qapp_approval_date: title
             field_qapp_project_type: field_qapp_project_type
-            field_qapp_project_lead: field_qapp_project_lead
             field_qapp_project_lead_email: field_qapp_project_lead_email
+            field_qapp_project_lead: field_qapp_project_lead
             field_qapp_pdf: field_qapp_pdf
             field_qapp_word: field_qapp_pdf
             field_lab: field_lab
@@ -129,7 +129,7 @@ display:
               sortable: true
               default_sort_order: asc
               align: ''
-              separator: '<br />Date:'
+              separator: '<br />Date: '
               empty_column: false
               responsive: ''
             field_qapp_approval_date:
@@ -146,15 +146,15 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            field_qapp_project_lead:
-              sortable: true
+            field_qapp_project_lead_email:
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_qapp_project_lead_email:
-              sortable: false
+            field_qapp_project_lead:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -260,28 +260,39 @@ display:
           id: title
           table: node_field_data
           field: title
-          entity_type: node
-          entity_field: title
-          alter:
-            alter_text: false
-            make_link: false
-            absolute: false
-            trim: false
-            word_boundary: false
-            ellipsis: false
-            strip_tags: false
-            html: false
-          hide_empty: false
-          empty_zero: false
-          settings:
-            link_to_entity: true
-          plugin_id: field
           relationship: none
           group_type: group
           admin_label: ''
           label: Title
           exclude: false
-          element_type: ''
+          alter:
+            alter_text: false
+            text: '{{ title }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: false
+            ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: strong
           element_class: ''
           element_label_type: ''
           element_label_class: ''
@@ -290,9 +301,13 @@ display:
           element_wrapper_class: ''
           element_default_classes: true
           empty: ''
+          hide_empty: false
+          empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
           type: string
+          settings:
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -303,6 +318,9 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+          entity_type: node
+          entity_field: title
+          plugin_id: field
         field_qapp_approval_date:
           id: field_qapp_approval_date
           table: node__field_qapp_approval_date
@@ -430,69 +448,6 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_qapp_project_lead:
-          id: field_qapp_project_lead
-          table: node__field_qapp_project_lead
-          field: field_qapp_project_lead
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Project Lead'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
         field_qapp_project_lead_email:
           id: field_qapp_project_lead_email
           table: node__field_qapp_project_lead_email
@@ -501,7 +456,7 @@ display:
           group_type: group
           admin_label: ''
           label: 'Project Lead Email'
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -544,6 +499,69 @@ display:
           click_sort_column: value
           type: email_mailto
           settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_qapp_project_lead:
+          id: field_qapp_project_lead
+          table: node__field_qapp_project_lead
+          field: field_qapp_project_lead
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Project Lead'
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ field_qapp_project_lead }}'
+            make_link: true
+            path: 'mailto:{{ field_qapp_project_lead_email }}'
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -933,7 +951,7 @@ display:
           exposed: true
           expose:
             operator_id: field_qapp_project_type_value_op
-            label: 'Project Type'
+            label: 'Type of Research'
             description: ''
             use_operator: false
             operator: field_qapp_project_type_value_op
@@ -1173,7 +1191,20 @@ display:
     display_options:
       display_extenders: {  }
       path: quality-assurance/qapps
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: "<h1>Quality Assurance Project Plans (QAPPs)</h1>\r\n\r\n<p>A Quality Assurance Project Plan (QAPP) is a document describing in comprehensive detail the necessary quality assurance, quality control, and other technical activities that must be implemented to ensure that the results of the work performed will satisfy the stated performance criteria. Approved QAPPs for active research projects are being made available from this webpage to facilitate their use during ongoing research and to provide examples during planning of new research. Availability is determined by local QA staff in consultation with their managers and scientists. Inactive or archived QAPPs are only available from a QA Manager. The following information is provided to assist with locating QAPPs of interest:</p>\r\n\r\n<ul>\r\n<li><strong>QAPP Number:</strong> Unique number assigned by ORD QA Track</li>\r\n<li><strong>Title:</strong> Succinct description of the research</li>\r\n<li><strong>Date:</strong> Date QAPP was approved</li>\r\n<li><strong>Type of Research:</strong> Area of focus for the research (e.g., field work, modeling, existing date, etc.)</li>\r\n<li><strong>Project Lead:</strong> Typically the Principal Investigator for the research</li>\r\n</ul>\r\n\r\n<p>You can find or browse QAPPs several ways. To search simply use one of the search boxes. To activate a sort, click on the column header.</p>"
+            format: full_html
+          plugin_id: text
       defaults:
         header: false
     cache_metadata:
