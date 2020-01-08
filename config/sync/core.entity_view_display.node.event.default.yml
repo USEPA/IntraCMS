@@ -13,6 +13,7 @@ dependencies:
     - node.type.event
   module:
     - layout_builder
+    - layout_builder_restrictions
     - layout_discovery
     - layout_library
     - link
@@ -110,6 +111,10 @@ third_party_settings:
         third_party_settings: {  }
   layout_library:
     enable: false
+  layout_builder_restrictions:
+    entity_view_mode_restriction:
+      allowed_blocks: {  }
+      allowed_layouts: {  }
 id: node.event.default
 targetEntityType: node
 bundle: event
