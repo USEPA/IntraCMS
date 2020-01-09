@@ -73,12 +73,12 @@
  */
 #}
 
-<ul>
+<p>
 <article{{ attributes }}>
 
     {{ title_prefix }}
     {% if label and not page %}
-        <li{{ title_attributes }}>
+        {{ title_attributes }}
             <a href="{{ url }}" rel="bookmark">{{ label }}</a>
         
     {% endif %}
@@ -86,7 +86,6 @@
 
 <br />
     {{ content.field_event_date }}
-    </li>
 
 </article>
-</ul>
+</p>
