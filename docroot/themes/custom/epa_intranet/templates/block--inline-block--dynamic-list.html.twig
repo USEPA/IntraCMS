@@ -28,25 +28,26 @@
  */
 #}
 
-        {% if label %}
-            {% set classes = [
-                'card',
-                'mt-2'
-            ] %}
-        {% endif %}
+{% if label %}
+{% set classes = [
+    'card',
+    'mt-2',
+] %}
+{% endif %}
 
 
 <div {{ attributes.addClass(classes) }}>
+
 {{ title_prefix }}
-    {% if label %}
-        <div class="card-header m-0 font-weight-bold">
-            <h2 class="font-heading-xl margin-y-0=">{{ label }}</h2>
-        </div>
-    {% endif %}
-
-    <div class="card-body py-1">
-        {{ content.body }}
-        {{ content.field_dynamic_list }}
-    </div>
+{% if label %}
+<div class="card-header m-0 font-weight-bold">
+<h2 class="font-heading-xl margin-y-0=">{{ label }}</h2>
 </div>
+{% endif %}
+{{ title_suffix }}
 
+<div class="card-body py-1">
+    {{ content.body }}
+    {{ content.field_dynamic_list }}
+</div>
+</div>
