@@ -4,28 +4,28 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.policy.body
+    - field.field.node.policy.field_effective_date
+    - field.field.node.policy.field_policy_statement
+    - field.field.node.policy.field_rescind_this_policy
+    - field.field.node.policy.field_rescission_date
+    - field.field.node.policy.field_topic_area_of_authority
     - node.type.policy
   module:
-    - text
     - user
 id: node.policy.teaser
 targetEntityType: node
 bundle: policy
 mode: teaser
 content:
-  body:
-    label: hidden
-    type: text_summary_or_trimmed
-    weight: 101
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
-    region: content
   links:
     weight: 100
     settings: {  }
     third_party_settings: {  }
     region: content
 hidden:
+  field_effective_date: true
+  field_policy_statement: true
+  field_rescind_this_policy: true
+  field_rescission_date: true
+  field_topic_area_of_authority: true
   search_api_excerpt: true

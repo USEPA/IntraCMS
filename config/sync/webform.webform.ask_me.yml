@@ -12,7 +12,7 @@ id: ask_me
 title: 'Ask Me'
 description: 'all the thigns'
 category: IT
-elements: "the_checkbox:\n  '#type': checkbox\n  '#title': 'the checkbox'\n  '#description': 'description of the checkbox'\nmy_textfield:\n  '#type': textfield\n  '#title': 'my textfield'\n  '#required': true\npick_your_favorite:\n  '#type': checkboxes\n  '#title': 'pick your favorite'\n  '#options':\n    value1: 'Value One'\n    value2: 'value 2'\n    value3: 'value 3'\nmy_textarea:\n  '#type': textarea\n  '#title': 'My textarea'\nmy_select_list:\n  '#type': select\n  '#title': 'my select list'\n  '#options': ethnicity\n  '#empty_option': Other\n  '#empty_value': other"
+elements: "the_checkbox:\n  '#type': checkbox\n  '#title': 'the checkbox'\n  '#description': 'description of the checkbox'\nmy_textfield:\n  '#type': textfield\n  '#title': 'my textfield'\n  '#required': true\npick_your_favorite:\n  '#type': checkboxes\n  '#title': 'pick your favorite'\n  '#options':\n    value1: 'Value One'\n    value2: 'value 2'\n    value3: 'value 3'\n  '#required': true\n  '#wrapper_attributes':\n    style: usa-fieldset\n  '#attributes':\n    style: usa-radio__input\n  '#label_attributes':\n    style: usa-radio__label\nmy_textarea:\n  '#type': textarea\n  '#title': 'My textarea'\n  '#required': true\nmy_select_list:\n  '#type': select\n  '#title': 'my select list'\n  '#options': ethnicity\n  '#empty_option': Other\n  '#empty_value': other\n  '#required': true\nradio_field:\n  '#type': radios\n  '#title': 'radio field'\n  '#options': gender\n  '#required': true"
 css: ''
 javascript: ''
 settings:
