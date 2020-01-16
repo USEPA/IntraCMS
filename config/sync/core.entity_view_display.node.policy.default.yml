@@ -1,0 +1,57 @@
+uuid: 9ac93b3d-3479-4dd2-ae92-fba3f24697de
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.policy.body
+    - field.field.node.policy.field_effective_date
+    - field.field.node.policy.field_policy_statement
+    - field.field.node.policy.field_topic_area_of_authority
+    - node.type.policy
+  module:
+    - datetime
+    - text
+    - user
+id: node.policy.default
+targetEntityType: node
+bundle: policy
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_effective_date:
+    weight: 102
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_policy_statement:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_topic_area_of_authority:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  search_api_excerpt: true

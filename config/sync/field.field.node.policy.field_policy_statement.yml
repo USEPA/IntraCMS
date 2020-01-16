@@ -1,0 +1,21 @@
+uuid: 904ae694-fe1c-4eac-a471-35be7cd22ead
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_policy_statement
+    - node.type.policy
+  module:
+    - text
+id: node.policy.field_policy_statement
+field_name: field_policy_statement
+entity_type: node
+bundle: policy
+label: 'Policy Statement'
+description: 'Succinctly describe the requirement (the "what"), now how to carry it out (the "why"). If the "why" is the requirement, then refer to that document.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
