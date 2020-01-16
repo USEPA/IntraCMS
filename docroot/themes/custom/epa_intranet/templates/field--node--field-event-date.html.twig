@@ -20,6 +20,16 @@
  * @see template_preprocess_field()
  */
 #}
+{% set view_mode = element['#view_mode'] %}
+
+{% if view_mode == 'list' %}
+
+{% for item in items %}
+      <em>{{ item.content }}</em>
+    {% endfor %}
+
+{% else %}
+
 {%
   set classes = [
     'field',
@@ -47,3 +57,4 @@
     {% endfor %}
   </div>
 </div>
+{% endif %}

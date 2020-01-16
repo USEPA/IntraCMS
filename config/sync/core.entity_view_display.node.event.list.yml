@@ -1,9 +1,9 @@
-uuid: 3ace0472-b55e-453b-961d-62c141d26971
+uuid: ab2fe33f-fb91-4839-9748-bc3a61b469d1
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.list
     - field.field.node.event.field_event_date
     - field.field.node.event.field_event_description
     - field.field.node.event.field_event_host
@@ -13,34 +13,34 @@ dependencies:
     - field.field.node.event.field_show_on_ord_calendar
     - node.type.event
   module:
+    - layout_builder
+    - layout_library
     - smart_date
-    - text
     - user
-id: node.event.teaser
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+  layout_library:
+    enable: false
+id: node.event.list
 targetEntityType: node
 bundle: event
-mode: teaser
+mode: list
 content:
   field_event_date:
-    type: smartdate_default
     weight: 0
-    region: content
     label: hidden
     settings:
       timezone_override: ''
-      format: default
+      format: compact
       format_type: medium
     third_party_settings: {  }
-  field_event_description:
-    type: text_summary_or_trimmed
-    weight: 1
+    type: smartdate_default
     region: content
-    label: above
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
 hidden:
   content_moderation_control: true
+  field_event_description: true
   field_event_host: true
   field_event_location: true
   field_event_recording: true
