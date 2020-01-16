@@ -3,9 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.policy.body
     - field.field.node.policy.field_effective_date
     - field.field.node.policy.field_policy_statement
+    - field.field.node.policy.field_rescind_this_policy
+    - field.field.node.policy.field_rescission_date
     - field.field.node.policy.field_topic_area_of_authority
     - node.type.policy
   module:
@@ -17,13 +18,6 @@ targetEntityType: node
 bundle: policy
 mode: default
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 101
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   field_effective_date:
     weight: 102
     label: above
@@ -39,6 +33,25 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
+  field_rescind_this_policy:
+    weight: 105
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_rescission_date:
+    weight: 106
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_topic_area_of_authority:
     weight: 103
