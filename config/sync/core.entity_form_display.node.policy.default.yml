@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.policy.field_definitions
     - field.field.node.policy.field_effective_date
     - field.field.node.policy.field_policy_statement
     - field.field.node.policy.field_prior_identifier
@@ -46,6 +47,15 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_definitions:
+    weight: 28
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_effective_date:
     weight: 10
     settings: {  }
