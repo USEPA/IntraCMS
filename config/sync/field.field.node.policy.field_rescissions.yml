@@ -1,0 +1,25 @@
+uuid: 86ff42db-b269-4e27-be17-af436d6776bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rescissions
+    - node.type.policy
+id: node.policy.field_rescissions
+field_name: field_rescissions
+entity_type: node
+bundle: policy
+label: Rescissions
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: policy
+      display_name: rescinded_policy_entity_reference
+      arguments: {  }
+field_type: entity_reference

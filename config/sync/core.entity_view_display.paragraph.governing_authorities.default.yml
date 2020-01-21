@@ -1,0 +1,37 @@
+uuid: 7aee2fe7-5e5d-4f00-99db-490edbee1aeb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.governing_authorities.field_reference_name_and_url
+    - field.field.paragraph.governing_authorities.field_reference_type
+    - paragraphs.paragraphs_type.governing_authorities
+  module:
+    - link
+    - options
+id: paragraph.governing_authorities.default
+targetEntityType: paragraph
+bundle: governing_authorities
+mode: default
+content:
+  field_reference_name_and_url:
+    weight: 1
+    label: inline
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_reference_type:
+    weight: 0
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden:
+  search_api_excerpt: true

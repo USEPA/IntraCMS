@@ -1,0 +1,76 @@
+uuid: 210d7dc3-77ab-4c3c-90d8-7e9ace93c42d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_references
+    - node.type.policy
+    - paragraphs.paragraphs_type.governing_authorities
+  module:
+    - entity_reference_revisions
+id: node.policy.field_references
+field_name: field_references
+entity_type: node
+bundle: policy
+label: 'Governing Authorities'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      governing_authorities: governing_authorities
+    target_bundles_drag_drop:
+      governing_authorities:
+        enabled: true
+        weight: 17
+      heading_title_and_text:
+        weight: 18
+        enabled: false
+      list_of_link:
+        weight: 19
+        enabled: false
+      question_and_answer:
+        weight: 20
+        enabled: false
+      rich_text:
+        weight: 21
+        enabled: false
+      slide:
+        weight: 22
+        enabled: false
+      slide_show:
+        weight: 23
+        enabled: false
+      title_and_text:
+        weight: 24
+        enabled: false
+      uswds_accordion:
+        weight: 25
+        enabled: false
+      uswds_accordion_item:
+        weight: 26
+        enabled: false
+      uswds_column:
+        weight: 27
+        enabled: false
+      uswds_graphic_list:
+        weight: 28
+        enabled: false
+      uswds_grid:
+        weight: 29
+        enabled: false
+      uswds_hero:
+        weight: 30
+        enabled: false
+      uswds_media_block:
+        weight: 31
+        enabled: false
+      uswds_text:
+        weight: 32
+        enabled: false
+field_type: entity_reference_revisions

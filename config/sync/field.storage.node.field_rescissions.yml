@@ -1,17 +1,16 @@
-uuid: 6803c984-8dd1-4277-86b1-0bcdff4bed1b
+uuid: ec5c12ad-6d6b-4201-b827-6ba2a8ce5905
 langcode: en
 status: true
 dependencies:
   module:
-    - datetime
     - node
-id: node.field_rescission_date
-field_name: field_rescission_date
+id: node.field_rescissions
+field_name: field_rescissions
 entity_type: node
-type: datetime
+type: entity_reference
 settings:
-  datetime_type: date
-module: datetime
+  target_type: node
+module: core
 locked: false
 cardinality: 1
 translatable: true
