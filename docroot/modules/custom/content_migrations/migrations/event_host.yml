@@ -1,5 +1,5 @@
-id: policy_topic
-label: 'Policy Topics Migration'
+id: event_tags
+label: 'Event Tags Migration'
 source:
   plugin: url
   # Specifies the http fetcher plugin.
@@ -14,7 +14,7 @@ source:
     Accept: 'application/json; charset=utf-8'
     Content-Type: 'application/json'
   # One or more URLs from which to fetch the source data.
-  urls: https://webxdev.ord.epa.gov/dev2/api/taxonomy_term?parameters[vid]=18
+  urls: https://webxdev.ord.epa.gov/dev2/api/content?/api/taxonomy_term?parameters[vid]=2
   # For JSON, item_selector is the xpath used to select
   # our source items (tags in this case).
   item_selector: 0
@@ -40,4 +40,4 @@ process:
   parent: parent
 destination:
   plugin: entity:taxonomy_term
-  default_bundle: policy_topic
+  default_bundle: event_tags

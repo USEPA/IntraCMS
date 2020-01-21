@@ -85,8 +85,16 @@ process:
   revision_timestamp: timestamp
   type:
     plugin: default_value
-    default_value: event
-  field_effective_date: field_effective_date
+    default_value: policy
+  #field_effective_date:
+    #plugin: sub_process
+    #source: field_effective_date
+    #process:
+      #value:
+        #plugin: format_date
+        #from_format: 'Y-m-d H:i:s'
+        #to_format: 'Y-m-d\TH:i:s'
+        #source: value
   group_rescind: group_rescind
   field_rescind_this_policy: field_rescind_this_policy
   field_rescission_date: field_rescission_date
@@ -94,7 +102,7 @@ process:
     plugin: migration_lookup
     migration: policy_topic
     source: field_topic_area_of_authority
-migration_dependencies:
+  migration_dependencies:
   required:
-    - policy_topic
+    - policy_topics
 

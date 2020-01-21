@@ -1,5 +1,5 @@
-id: calendar_events
-label: 'JSON migration - Calendar Events'
+id: staff_member
+label: 'JSON migration - Staff Member'
 migration_tags: null
 migration_group: migrate_content
 source:
@@ -16,7 +16,7 @@ source:
     Accept: 'application/json; charset=utf-8'
     Content-Type: 'application/json'
   # One or more URLs from which to fetch the source data.
-  urls: https://webxdev.ord.epa.gov/dev2/api/content?type=calendar_event&fields=all&limit=20
+  urls: https://webxdev.ord.epa.gov/dev2/api/content?type=staff_membert&fields=all&limit=20
   # For JSON, item_selector is the xpath used to select
   # our source items (tags in this case).
   item_selector: 0
@@ -26,10 +26,6 @@ source:
   # of the field in front-ends.
   fields:
     -
-      name: field_event_location
-      label: 'Event Location'
-      selector: /fields/field_event_location
-    -
       name: title
       label: 'Title'
       selector: /title
@@ -38,25 +34,49 @@ source:
       label: 'NID'
       selector: /nid
     -
-      name: body
-      label: 'Body'
-      selector: /body
+      name: field_staff_first_name
+      label: 'First Name'
+      selector: /fields/
     -
-      name: field_event_date
-      label: 'Date'
-      selector: /fields/field_event_date
+      name: field_staff_last_name
+      label: 'Last Name'
+      selector: /fields/field_staff_last_name
     -
-      name: field_event_location
-      label: 'Event Location'
-      selector: /fields/field_event_location
+      name: field_organization
+      label: 'Organization'
+      selector: /fields/field_organization
     -
-      name: field_event_section
-      label: 'Event Hosts'
-      selector: /fields/field_event_section
+      name: field_secondary_organization
+      label: 'Secondary Organization'
+      selector: /fields/field_secondary_organization
     -
-      name: field_event_type
-      label: 'Event Types'
-      selector: /fields/field_event_type
+      name: field_staff_position
+      label: 'Position'
+      selector: /fields/field_staff_position
+    -
+      name: field_vivo_profile
+      label: 'VIVO'
+      selector: /fields/field_vivo_profile
+    -
+      name: field_staff_email
+      label: 'Email'
+      selector: /fields/field_staff_email
+    -
+      name: field_staff_phone
+      label: 'Phone'
+      selector: /fields/field_staff_phone
+    -
+      name: field_staff_location
+      label: 'Location'
+      selector: /fields/field_staff_location
+    -
+      name: field_staff_secondary_location
+      label: 'Secondary Location'
+      selector: /fields/field_staff_secondary_location
+    -
+      name: field_staff_bio
+      label: 'Biography'
+      selector: /fields/field_staff_bio
 
   # Under ids, we specify which of the source fields retrieved
   # above (product_id in this case) represent our unique
@@ -89,23 +109,7 @@ process:
   revision_timestamp: timestamp
   type:
     plugin: default_value
-    default_value: event
-  field_event_location: field_event_location
-  field_event_description/value: body/0/value
-  field_event_description/summary: body/0/summary
-  field_event_description/format:
-    plugin: default_value
-    default_value: "rich_text"
-  field_event_date: field_event_date
-  field_event_host:
-    plugin: migration_lookup
-    migration: event_host_terms
-    source: field_event_section
-  field_event_tags:
-    plugin: migration_lookup
-    migration: event_tags
-    source: field_event_type
-migration_dependencies:
-  required:
-    - event_host_terms
-    - event_tags
+    default_value: staff_member
+  field_staff_first_name: field_first_name
+  field_staff_last_name: field_last_name
+  field_staff_position: field_staff_position
