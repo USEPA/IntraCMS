@@ -138,7 +138,7 @@ ol:last-child{
 
 ol, li{
   margin-bottom:0.25em;
-  max-width:68ex;
+  /*max-width:68ex;*/
 }
 
 ol, li:last-child{
@@ -158,9 +158,27 @@ font-style: italic;
 /* resets max-width of input field */
   .usa-form .usa-input{
     max-width:20rem;
+    margin-bottom: 10pt;
   }
 
 /* resets max-width of select field */
   .usa-form .usa-select{
     max-width:20rem;
+    margin-bottom: 10pt;
   }
+
+.webform-element-description {
+    font-size: 11pt;
+    font-style: italic;
+}
+.form-required::after {
+    content: '';
+    vertical-align: super;
+    display: inline-block;
+    background-image: url(/core/misc/icons/ee0000/required.svg);
+    background-repeat: no-repeat;
+    background-size: 6px 6px;
+    width: 6px;
+    height: 6px;
+    margin: 0 0.3em;
+    }
