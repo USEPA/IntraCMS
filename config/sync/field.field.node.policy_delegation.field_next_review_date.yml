@@ -1,0 +1,24 @@
+uuid: 243b5df1-d634-4152-b9ca-ffd5e263bac1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_next_review_date
+    - node.type.policy_delegation
+  module:
+    - datetime
+id: node.policy_delegation.field_next_review_date
+field_name: field_next_review_date
+entity_type: node
+bundle: policy_delegation
+label: 'Next Review Date'
+description: 'Enter a date in which the delegation should be reviewed again. This date could be up to and including two years.'
+required: false
+translatable: true
+default_value:
+  -
+    default_date_type: relative
+    default_date: '+2 years'
+default_value_callback: ''
+settings: {  }
+field_type: datetime
