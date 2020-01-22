@@ -1,0 +1,24 @@
+uuid: 345ce541-570a-46f5-873c-1af4e5962152
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_next_review_date
+    - node.type.policy
+  module:
+    - datetime
+id: node.policy.field_next_review_date
+field_name: field_next_review_date
+entity_type: node
+bundle: policy
+label: 'Next Review Date'
+description: 'Enter a date in which the policy should be reviewed again. This date could be up to and including five years.'
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: relative
+    default_date: '+1 year'
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -3,20 +3,29 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.media_browser
     - field.field.node.policy.field_definitions
     - field.field.node.policy.field_effective_date
+    - field.field.node.policy.field_next_review_date
+    - field.field.node.policy.field_policy_background
     - field.field.node.policy.field_policy_statement
     - field.field.node.policy.field_prior_identifier
     - field.field.node.policy.field_references
+    - field.field.node.policy.field_related_procedures
     - field.field.node.policy.field_rescind_this_policy
     - field.field.node.policy.field_rescission_date
     - field.field.node.policy.field_rescissions
+    - field.field.node.policy.field_roles_and_responsibilities
+    - field.field.node.policy.field_signed_memo
+    - field.field.node.policy.field_supplemental_documents
     - field.field.node.policy.field_topic_area_of_authority
     - node.type.policy
   module:
     - content_moderation
     - datetime
+    - entity_browser
     - field_group
+    - link
     - paragraphs
     - path
     - text
@@ -62,6 +71,20 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
+  field_next_review_date:
+    weight: 35
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_policy_background:
+    weight: 29
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
   field_policy_statement:
     weight: 13
     settings:
@@ -90,6 +113,14 @@ content:
       default_paragraph_type: governing_authorities
     third_party_settings: {  }
     region: content
+  field_related_procedures:
+    weight: 33
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_rescind_this_policy:
     weight: 14
     settings:
@@ -112,6 +143,48 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_roles_and_responsibilities:
+    type: entity_reference_paragraphs
+    weight: 34
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_signed_memo:
+    type: entity_browser_entity_reference
+    weight: 32
+    settings:
+      entity_browser: media_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: thumbnail
+      open: true
+      field_widget_replace: false
+    region: content
+    third_party_settings: {  }
+  field_supplemental_documents:
+    type: entity_browser_entity_reference
+    weight: 31
+    settings:
+      entity_browser: media_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: thumbnail
+      open: true
+      field_widget_replace: false
+    region: content
+    third_party_settings: {  }
   field_topic_area_of_authority:
     weight: 11
     settings: {  }
