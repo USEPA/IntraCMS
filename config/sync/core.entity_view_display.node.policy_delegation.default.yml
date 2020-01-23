@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.policy_delegation.field_additional_policy_role
     - field.field.node.policy_delegation.field_agency_delegation_link
     - field.field.node.policy_delegation.field_delegated_to
+    - field.field.node.policy_delegation.field_delegation_re_delegation_t
     - field.field.node.policy_delegation.field_effective_date
     - field.field.node.policy_delegation.field_next_review_date
     - field.field.node.policy_delegation.field_policy_role
@@ -19,6 +20,7 @@ dependencies:
     - datetime
     - link
     - options
+    - tablefield
     - text
     - user
 id: node.policy_delegation.default
@@ -59,6 +61,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_delegation_re_delegation_t:
+    weight: 112
+    label: above
+    settings:
+      row_header: 1
+      column_header: 0
+    third_party_settings: {  }
+    type: tablefield
     region: content
   field_effective_date:
     weight: 102

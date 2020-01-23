@@ -1,0 +1,43 @@
+uuid: 9b2be28c-5eef-45c3-8a60-ef2aa8a355e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_delegation_re_delegation_t
+    - node.type.policy_delegation
+  module:
+    - tablefield
+id: node.policy_delegation.field_delegation_re_delegation_t
+field_name: field_delegation_re_delegation_t
+entity_type: node
+bundle: policy_delegation
+label: 'Delegation/Re-Delegation Table'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    rebuild:
+      cols: '2'
+      rows: '2'
+    value:
+      0:
+        - Item
+        - 'Update Header Text Here'
+      1:
+        - ''
+        - ''
+      caption: ''
+    format: null
+    caption: ''
+default_value_callback: ''
+settings:
+  export: 0
+  restrict_rebuild: 0
+  restrict_import: 0
+  lock_values: 0
+  cell_processing: '0'
+  empty_rules:
+    ignore_table_structure: 0
+    ignore_table_header: 0
+field_type: tablefield

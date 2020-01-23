@@ -38,15 +38,44 @@ third_party_settings:
         - field_rescind_this_policy
         - field_rescission_date
       parent_name: ''
-      weight: 12
-      format_type: fieldset
+      weight: 11
+      format_type: details
       region: content
       format_settings:
         id: ''
         classes: ''
         description: ''
         required_fields: true
+        open: false
       label: 'Policy Status (Use Only to Rescind this Policy)'
+    group_references:
+      children:
+        - field_references
+      parent_name: ''
+      weight: 14
+      format_type: details
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+        open: false
+      label: 'Governing Authorities'
+    group_roles:
+      children:
+        - field_roles_and_responsibilities
+      parent_name: ''
+      weight: 21
+      format_type: details
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+        open: false
+      label: 'Roles and Responsibilities'
 id: node.policy.default
 targetEntityType: node
 bundle: policy
@@ -59,7 +88,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_definitions:
-    weight: 16
+    weight: 15
     settings:
       match_operator: CONTAINS
       size: 60
@@ -83,7 +112,7 @@ content:
     type: datetime_default
     region: content
   field_next_review_date:
-    weight: 24
+    weight: 25
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -97,13 +126,13 @@ content:
     type: text_textarea
     region: content
   field_policy_coordinator_lco:
-    weight: 23
+    weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_policy_statement:
-    weight: 13
+    weight: 16
     settings:
       rows: 3
       placeholder: ''
@@ -131,7 +160,7 @@ content:
     third_party_settings: {  }
     region: content
   field_related_procedures:
-    weight: 20
+    weight: 19
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -152,17 +181,14 @@ content:
     type: datetime_default
     region: content
   field_rescissions:
-    weight: 14
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 12
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_roles_and_responsibilities:
     type: entity_reference_paragraphs
-    weight: 21
+    weight: 22
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -173,21 +199,6 @@ content:
     third_party_settings: {  }
     region: content
   field_signed_memo:
-    type: entity_browser_entity_reference
-    weight: 19
-    settings:
-      entity_browser: media_browser
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: thumbnail
-      open: true
-      field_widget_replace: false
-    region: content
-    third_party_settings: {  }
-  field_supplemental_documents:
     type: entity_browser_entity_reference
     weight: 18
     settings:
@@ -202,11 +213,26 @@ content:
       field_widget_replace: false
     region: content
     third_party_settings: {  }
+  field_supplemental_documents:
+    type: entity_browser_entity_reference
+    weight: 20
+    settings:
+      entity_browser: media_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: thumbnail
+      open: true
+      field_widget_replace: false
+    region: content
+    third_party_settings: {  }
   field_topic_area_of_authority:
-    weight: 11
+    weight: 13
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   moderation_state:
     type: moderation_state_default

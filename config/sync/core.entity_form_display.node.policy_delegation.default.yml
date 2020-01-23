@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.policy_delegation.field_additional_policy_role
     - field.field.node.policy_delegation.field_agency_delegation_link
     - field.field.node.policy_delegation.field_delegated_to
+    - field.field.node.policy_delegation.field_delegation_re_delegation_t
     - field.field.node.policy_delegation.field_effective_date
     - field.field.node.policy_delegation.field_next_review_date
     - field.field.node.policy_delegation.field_policy_role
@@ -23,6 +24,7 @@ dependencies:
     - field_group
     - link
     - path
+    - tablefield
     - text
 third_party_settings:
   field_group:
@@ -47,7 +49,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 17
+    weight: 15
     settings:
       rows: 5
       placeholder: ''
@@ -61,7 +63,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_additional_policy_role:
-    weight: 19
+    weight: 18
     settings:
       match_operator: CONTAINS
       size: 60
@@ -70,7 +72,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_agency_delegation_link:
-    weight: 14
+    weight: 12
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -78,10 +80,17 @@ content:
     type: link_default
     region: content
   field_delegated_to:
-    weight: 13
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_delegation_re_delegation_t:
+    weight: 16
+    settings:
+      input_type: textfield
+    third_party_settings: {  }
+    type: tablefield
     region: content
   field_effective_date:
     weight: 9
@@ -90,13 +99,13 @@ content:
     type: datetime_default
     region: content
   field_next_review_date:
-    weight: 20
+    weight: 19
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_policy_role:
-    weight: 18
+    weight: 17
     settings:
       match_operator: CONTAINS
       size: 60
@@ -119,7 +128,7 @@ content:
     region: content
   field_signed_memo:
     type: entity_browser_entity_reference
-    weight: 15
+    weight: 13
     settings:
       entity_browser: media_browser
       field_widget_display: rendered_entity
@@ -133,7 +142,7 @@ content:
     region: content
     third_party_settings: {  }
   field_topic_area_of_authority:
-    weight: 16
+    weight: 14
     settings:
       match_operator: CONTAINS
       size: 60
