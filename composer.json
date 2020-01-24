@@ -4,7 +4,7 @@
     "description": "Project template for Drupal 8 sites built with the Lightning distribution.",
     "license": "GPL-2.0-or-later",
     "require": {
-        "acquia/lightning": "^4.0",
+        "acquia/lightning": "~4.1.1",
         "cweagans/composer-patches": "^1.6.0",
         "drupal-composer/drupal-scaffold": "^2.0.0",
         "drupal/group": "^1.0",
@@ -73,7 +73,7 @@
     "extra": {
         "patches": {
             "drupal/group": {
-                "2797793: Associate menu with a group": "https://www.drupal.org/files/issues/2019-07-23/group-support_string_entity_ids-2797793-164.patch",
+                "2797793: Associate menu with a group": "https://www.drupal.org/files/issues/2019-12-23/group-support_string_entity_ids-2797793-188.patch",
                 "2774827: Get a token of a node's parent group to create a pathauto pattern": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch",
                 "2984315: Media enabler": "https://www.drupal.org/files/issues/2019-05-30/media-enabler-2984315-31.patch",
                 "2999661: Views default argument for referencing current user groups": "https://www.drupal.org/files/issues/2019-06-07/user-groups-argument-2999661.patch",
@@ -92,12 +92,14 @@
                 "3083130: fieldset template missing required class": "https://www.drupal.org/files/issues/2019-09-23/fieldset-template-missing-required-class-3083130-2.patch"
             },
             "drupal/core": {
-                "3059387: Taxonomy Terms cannot be rendered when in preview: EntityMalformedException": "https://www.drupal.org/files/issues/2019-06-04/malformedentityexception-3059387.patch",
+                "3059387: Taxonomy Terms cannot be rendered when in preview: EntPermissions PatchityMalformedException": "https://www.drupal.org/files/issues/2019-11-28/malformedentityexception-3059387-combined-2.patch",
                 "2719797: New option for Views page displays to use the admin theme": "https://www.drupal.org/files/issues/2019-06-10/core-88x--views--admin-path-2719797-77.patch",
                 "2950729: Undefined offset 1 in the MenuParentFormSelector.php": "https://www.drupal.org/files/issues/2019-09-17/2950729-14.patch",
-                "2949017: Permissions Patch": "https://www.drupal.org/files/issues/2019-05-06/2949017_47.patch",
-                "3035113: JSON API": "https://www.drupal.org/files/issues/2019-10-21/LatestRevisionCheck-13092187-24.patch"
+                "2949017: There is no way to delete or update file entities of other users incl. user/1": "https://www.drupal.org/files/issues/2020-01-13/2949017-62.patch",
+                "3035113: JSON API": "https://www.drupal.org/files/issues/2019-10-21/LatestRevisionCheck-13092187-24.patch",
+                "2985882 : Error: Call to a member function getLabel() after enabling layout_builder": "https://www.drupal.org/files/issues/2020-01-20/2985882-53.patch"
             },
+
             "merge-plugin": {
                 "include": [
                     "docroot/modules/contrib/fontawesome/composer.libraries.json"
