@@ -42,18 +42,17 @@ source:
       label: 'Policy Status (Use Only to Rescind this Policy)'
       selector: /fields/group_rescind
     -
-      name: field_rescind_this_policy
-      label: 'Rescind this policy'
-      selector: /fields/field_rescind_this_policy
+      name: field_policy_statement
+      label: 'Policy Statement'
+      selector: /fields/field_policy_statement
     -
-      name: field_rescission_date
-      label: 'Recission Date'
-      selector: /fields/field_recission_date
+      name: field_policy_background
+      label: 'Policy Background'
+      selector: /fields/field_policy_background
     -
       name: field_topic_area_of_authority
       label: 'Topic Area of Authority'
       selector: /fields/field_topic_area_of_authority
-    
   # Under ids, we specify which of the source fields retrieved
   # above (product_id in this case) represent our unique
   # identifier for the item, and the schema type for that field.
@@ -86,23 +85,26 @@ process:
   type:
     plugin: default_value
     default_value: policy
-  #field_effective_date:
-    #plugin: sub_process
-    #source: field_effective_date
-    #process:
-      #value:
-        #plugin: format_date
-        #from_format: 'Y-m-d H:i:s'
-        #to_format: 'Y-m-d\TH:i:s'
-        #source: value
-  group_rescind: group_rescind
-  field_rescind_this_policy: field_rescind_this_policy
-  field_rescission_date: field_rescission_date
-  field_topic_area_of_authority:
-    plugin: migration_lookup
-    migration: policy_topic
-    source: field_topic_area_of_authority
-  migration_dependencies:
+  field_policy_background/value: field_policy_background/0/value
+  field_policy_background/safe_value: field_policy_background/0/safe_value
+  field_policy_background/format:
+    plugin: default_value
+    default_value: "rich_text"
+  field_policy_statement/value: field_policy_statement/0/value
+  field_policy_statement/safe_value: field_policy_statement/0/safe_value
+  field_policy_statement/format:
+    plugin: default_value
+    default_value: "rich_text"
+  field_effective_date:
+    plugin: iterator
+    source: field_effective_date
+    process:
+      value:
+        plugin: substr
+        source: value
+        start: 0
+        length: 10
+  field_topic_area_of_authority: field_topic_area_of_authority
+migration_dependencies:
   required:
     - policy_topics
-
