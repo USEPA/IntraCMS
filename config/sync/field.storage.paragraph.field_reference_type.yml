@@ -1,0 +1,54 @@
+uuid: a4dd8801-fc49-4d02-b103-4f9cda731f32
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_reference_type
+field_name: field_reference_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: epa-delegation
+      label: 'EPA Delegation of Authority'
+    -
+      value: epa-form
+      label: 'EPA Form'
+    -
+      value: epa-manual
+      label: 'EPA Manual or Handbook'
+    -
+      value: epa-memo
+      label: 'EPA Memorandum or Advisory'
+    -
+      value: epa-order
+      label: 'EPA Order'
+    -
+      value: executive-order
+      label: 'Executive Order'
+    -
+      value: omb-circular
+      label: 'OMB Circular'
+    -
+      value: ord-other-procedures
+      label: 'ORD Procedures'
+    -
+      value: regulation
+      label: Regulation
+    -
+      value: statute
+      label: Statute
+    -
+      value: other
+      label: 'Other Reference'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

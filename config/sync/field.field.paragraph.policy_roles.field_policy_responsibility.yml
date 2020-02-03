@@ -1,0 +1,21 @@
+uuid: d0be2b63-00b0-4937-a2cc-b6277dc26692
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_policy_responsibility
+    - paragraphs.paragraphs_type.policy_roles
+  module:
+    - text
+id: paragraph.policy_roles.field_policy_responsibility
+field_name: field_policy_responsibility
+entity_type: paragraph
+bundle: policy_roles
+label: Responsibility
+description: 'In one or two sentences, describe the responsibility of the individual as it relates to the policy. Please keep in mind that the detail role description should reside in the procedural document.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

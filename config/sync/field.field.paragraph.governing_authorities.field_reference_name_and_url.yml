@@ -1,0 +1,23 @@
+uuid: da5aa1db-1415-48eb-a073-cdb508dc6555
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_reference_name_and_url
+    - paragraphs.paragraphs_type.governing_authorities
+  module:
+    - link
+id: paragraph.governing_authorities.field_reference_name_and_url
+field_name: field_reference_name_and_url
+entity_type: paragraph
+bundle: governing_authorities
+label: 'Reference Name and URL'
+description: 'Provide the actual name of the governing authority as well as the URL that links to the authority.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

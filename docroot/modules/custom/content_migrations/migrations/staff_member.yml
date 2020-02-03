@@ -1,0 +1,115 @@
+id: staff_member
+label: 'JSON migration - Staff Member'
+migration_tags: null
+migration_group: migrate_content
+source:
+  plugin: url
+  # Specifies the http fetcher plugin.
+  data_fetcher_plugin: http
+  # Specifies the JSON parser plugin.
+  data_parser_plugin: json
+#  authentication:
+#    plugin: basic
+#    username: 'hamster'
+#    password: 'GummyBear2389'
+  headers:
+    Accept: 'application/json; charset=utf-8'
+    Content-Type: 'application/json'
+  # One or more URLs from which to fetch the source data.
+  urls: https://webxdev.ord.epa.gov/dev2/api/content?type=staff_membert&fields=all&limit=20
+  # For JSON, item_selector is the xpath used to select
+  # our source items (tags in this case).
+  item_selector: 0
+  # For each source field, we specify a selector,
+  # the field name which will be used to access the field in the
+  # process configuration, and a label to document the meaning
+  # of the field in front-ends.
+  fields:
+    -
+      name: title
+      label: 'Title'
+      selector: /title
+    -
+      name: nid
+      label: 'NID'
+      selector: /nid
+    -
+      name: field_staff_first_name
+      label: 'First Name'
+      selector: /fields/
+    -
+      name: field_staff_last_name
+      label: 'Last Name'
+      selector: /fields/field_staff_last_name
+    -
+      name: field_organization
+      label: 'Organization'
+      selector: /fields/field_organization
+    -
+      name: field_secondary_organization
+      label: 'Secondary Organization'
+      selector: /fields/field_secondary_organization
+    -
+      name: field_staff_position
+      label: 'Position'
+      selector: /fields/field_staff_position
+    -
+      name: field_vivo_profile
+      label: 'VIVO'
+      selector: /fields/field_vivo_profile
+    -
+      name: field_staff_email
+      label: 'Email'
+      selector: /fields/field_staff_email
+    -
+      name: field_staff_phone
+      label: 'Phone'
+      selector: /fields/field_staff_phone
+    -
+      name: field_staff_location
+      label: 'Location'
+      selector: /fields/field_staff_location
+    -
+      name: field_staff_secondary_location
+      label: 'Secondary Location'
+      selector: /fields/field_staff_secondary_location
+    -
+      name: field_staff_bio
+      label: 'Biography'
+      selector: /fields/field_staff_bio
+
+  # Under ids, we specify which of the source fields retrieved
+  # above (product_id in this case) represent our unique
+  # identifier for the item, and the schema type for that field.
+  ids:
+    nid:
+      type: string
+
+destination:
+  plugin: entity:node
+process:
+  # If you are using this file to build a custom migration consider removing
+  # the nid and vid fields to allow incremental migrations.
+  # In D7, nodes always have a tnid, but it's zero for untranslated nodes.
+  # We normalize it to equal the nid in that case.
+  # @see \Drupal\node\Plugin\migrate\source\d7\Node::prepareRow().
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "und"
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  type:
+    plugin: default_value
+    default_value: staff_member
+  field_staff_first_name: field_first_name
+  field_staff_last_name: field_last_name
+  field_staff_position: field_staff_position
