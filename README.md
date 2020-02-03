@@ -72,3 +72,17 @@ Use a BASH command line (e.g. GIT BASH) for a Windows environment.
     4. Click "Create pull request"
 5. Once pull request is approved, it can be merged into development by clicking "Merge pull request".
     
+## Upgrading Modules
+
+# Lightning Update
+1. Run following commands in Bash, from root project directory:
+    1. To avoid conflicts with existing "vendor" structure, deleter "vendor" directory from project root.
+    2. Import all existing configs:``drush cim`` 
+    3.Update lightning and lightning dependencies
+        ```
+        composer self-update
+        composer require acquia/lightning:~4.1.1 --no-update
+        composer update acquia/lightning --with-dependencies
+        ```
+    3. drush updb
+    4. This will only update Lightning and dependencies. Updates for other contrib modules coming soon!
