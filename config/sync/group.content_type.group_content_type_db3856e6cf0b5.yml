@@ -1,0 +1,20 @@
+uuid: cd681117-dc9a-4d1c-9513-14b35c8fde37
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.policy
+    - node.type.policy_delegation
+  module:
+    - gnode
+    - node
+id: group_content_type_db3856e6cf0b5
+label: 'Policy: Group node (Policy Delegation)'
+description: 'Adds <em class="placeholder">Policy Delegation</em> content to groups both publicly and privately.'
+group_type: policy
+content_plugin: 'group_node:policy_delegation'
+plugin_config:
+  group_cardinality: 1
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 0

@@ -1,0 +1,20 @@
+uuid: 870f4804-6bca-499e-a1d5-85758e0bf74d
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.policy
+    - node.type.landing_page
+  module:
+    - gnode
+    - node
+id: policy-group_node-landing_page
+label: 'Policy: Group node (Landing page)'
+description: 'Adds <em class="placeholder">Landing page</em> content to groups both publicly and privately.'
+group_type: policy
+content_plugin: 'group_node:landing_page'
+plugin_config:
+  group_cardinality: 1
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 0

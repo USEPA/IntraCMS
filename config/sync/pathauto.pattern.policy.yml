@@ -1,0 +1,23 @@
+uuid: 0e7ac20c-9678-4f0b-8dd2-d59dd064f2ae
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: policy
+label: Policy
+type: 'canonical_entities:node'
+pattern: '/policy/[node:title]'
+selection_criteria:
+  fa3100d1-8aec-4dd3-950f-8d7424a197d3:
+    id: node_type
+    bundles:
+      policy: policy
+      policy_delegation: policy_delegation
+    negate: false
+    context_mapping:
+      node: node
+    uuid: fa3100d1-8aec-4dd3-950f-8d7424a197d3
+selection_logic: and
+weight: -5
+relationships: {  }
