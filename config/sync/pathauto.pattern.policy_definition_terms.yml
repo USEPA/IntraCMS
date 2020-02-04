@@ -1,0 +1,23 @@
+uuid: 5931b155-ba18-42af-8a2a-e777f67f45c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: policy_definition_terms
+label: 'Policy Definition Terms'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'policy/definitions/[term:name]'
+selection_criteria:
+  421fa6ca-732f-4c9a-a755-ea3d17852592:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      policy_definitions: policy_definitions
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: 421fa6ca-732f-4c9a-a755-ea3d17852592
+selection_logic: and
+weight: -5
+relationships: {  }
