@@ -29,22 +29,22 @@ bundle: policy_delegation
 mode: default
 content:
   body:
-    label: hidden
+    label: above
     type: text_default
-    weight: 101
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     region: content
   field_additional_policy_role:
-    weight: 110
+    weight: 11
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content
   field_agency_delegation_link:
-    weight: 106
+    weight: 7
     label: above
     settings:
       trim_length: 80
@@ -56,14 +56,14 @@ content:
     type: link
     region: content
   field_delegated_to:
-    weight: 105
+    weight: 6
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_delegation_re_delegation_t:
-    weight: 112
+    weight: 12
     label: above
     settings:
       row_header: 1
@@ -72,33 +72,33 @@ content:
     type: tablefield
     region: content
   field_effective_date:
-    weight: 102
-    label: above
+    weight: 3
+    label: inline
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: day_month_year
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_next_review_date:
-    weight: 111
-    label: above
+    weight: 4
+    label: inline
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: day_month_year
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_policy_role:
-    weight: 109
+    weight: 10
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content
   field_rescind_this_delegation:
-    weight: 103
+    weight: 1
     label: above
     settings:
       format: default
@@ -108,16 +108,16 @@ content:
     type: boolean
     region: content
   field_rescission_date:
-    weight: 104
+    weight: 2
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: day_month_year
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_signed_memo:
-    weight: 107
+    weight: 8
     label: above
     settings:
       link: true
@@ -125,17 +125,18 @@ content:
     type: entity_reference_label
     region: content
   field_topic_area_of_authority:
-    weight: 108
+    weight: 9
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content
   links:
-    weight: 100
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
+  content_moderation_control: true
   search_api_excerpt: true
