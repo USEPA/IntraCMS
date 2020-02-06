@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "814b5eac231c2680434d2f4a9104496e",
+    "content-hash": "1cf9789e02b1425fac62ae0f00602128",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -6905,6 +6905,10 @@
                     "homepage": "https://www.drupal.org/node/1072922/committers"
                 },
                 {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
+                },
+                {
                     "name": "tim.plunkett",
                     "homepage": "https://www.drupal.org/user/241634"
                 }
@@ -8656,81 +8660,18 @@
             }
         },
         {
-            "name": "drupal/views_breadcrumb",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/views_breadcrumb.git",
-                "reference": "8.x-1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_breadcrumb-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "9a428d0f43b4ef9e59f1426c9a07f8db5a9f7fd2"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1462289639",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Greg Boggs",
-                    "homepage": "https://www.drupal.org/user/153069"
-                },
-                {
-                    "name": "aditya_anurag",
-                    "homepage": "https://www.drupal.org/user/2672183"
-                },
-                {
-                    "name": "manojapare",
-                    "homepage": "https://www.drupal.org/user/2825053"
-                },
-                {
-                    "name": "rakesh.gectcr",
-                    "homepage": "https://www.drupal.org/user/1177822"
-                }
-            ],
-            "description": "Setting bread crumbs for all the view's pages.",
-            "homepage": "https://www.drupal.org/project/views_breadcrumb",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/views_breadcrumb",
-                "issues": "http://drupal.org/project/issues/views_breadcrumb"
-            }
-        },
-        {
             "name": "drupal/views_bulk_operations",
-            "version": "3.3.0",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_bulk_operations.git",
-                "reference": "8.x-3.3"
+                "reference": "8.x-3.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-8.x-3.3.zip",
-                "reference": "8.x-3.3",
-                "shasum": "480fec7c4a21ce8a57328af45735b5086a5bd178"
+                "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-8.x-3.4.zip",
+                "reference": "8.x-3.4",
+                "shasum": "549eb149f82fbf30e975155a14cd7a0d4653dfe9"
             },
             "require": {
                 "drupal/core": "~8.5"
@@ -8741,8 +8682,8 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.3",
-                    "datestamp": "1570032485",
+                    "version": "8.x-3.4",
+                    "datestamp": "1580924754",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9491,14 +9432,14 @@
             "authors": [
                 {
                     "name": "Nicholas Humfrey",
+                    "role": "Developer",
                     "email": "njh@aelius.com",
-                    "homepage": "http://www.aelius.com/njh/",
-                    "role": "Developer"
+                    "homepage": "http://www.aelius.com/njh/"
                 },
                 {
                     "name": "Alexey Zakhlestin",
-                    "email": "indeyets@gmail.com",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "indeyets@gmail.com"
                 }
             ],
             "description": "EasyRdf is a PHP library designed to make it easy to consume and produce RDF.",
@@ -10308,15 +10249,15 @@
             "authors": [
                 {
                     "name": "Alex Bilbie",
+                    "role": "Developer",
                     "email": "hello@alexbilbie.com",
-                    "homepage": "http://www.alexbilbie.com",
-                    "role": "Developer"
+                    "homepage": "http://www.alexbilbie.com"
                 },
                 {
                     "name": "Andy Millington",
+                    "role": "Developer",
                     "email": "andrew@noexceptions.io",
-                    "homepage": "https://www.noexceptions.io",
-                    "role": "Developer"
+                    "homepage": "https://www.noexceptions.io"
                 }
             ],
             "description": "A lightweight and powerful OAuth 2.0 authorization and resource server library with support for all the core specification grants. This library will allow you to secure your API with OAuth and allow your applications users to approve apps that want to access their data from your API.",
@@ -14800,6 +14741,69 @@
             }
         },
         {
+            "name": "drupal/views_breadcrumb",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/views_breadcrumb.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/views_breadcrumb-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "9a428d0f43b4ef9e59f1426c9a07f8db5a9f7fd2"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1462289639",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Boggs",
+                    "homepage": "https://www.drupal.org/user/153069"
+                },
+                {
+                    "name": "aditya_anurag",
+                    "homepage": "https://www.drupal.org/user/2672183"
+                },
+                {
+                    "name": "manojapare",
+                    "homepage": "https://www.drupal.org/user/2825053"
+                },
+                {
+                    "name": "rakesh.gectcr",
+                    "homepage": "https://www.drupal.org/user/1177822"
+                }
+            ],
+            "description": "Setting bread crumbs for all the view's pages.",
+            "homepage": "https://www.drupal.org/project/views_breadcrumb",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/views_breadcrumb",
+                "issues": "http://drupal.org/project/issues/views_breadcrumb"
+            }
+        },
+        {
             "name": "drupal/views_taxonomy_term_name_depth",
             "version": "3.3.0",
             "source": {
@@ -15289,9 +15293,9 @@
             "authors": [
                 {
                     "name": "Phil Bennett",
+                    "role": "Developer",
                     "email": "philipobenito@gmail.com",
-                    "homepage": "http://www.philipobenito.com",
-                    "role": "Developer"
+                    "homepage": "http://www.philipobenito.com"
                 }
             ],
             "description": "A fast and intuitive dependency injection container.",
