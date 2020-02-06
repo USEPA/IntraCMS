@@ -1,0 +1,675 @@
+uuid: 0d49e083-5a12-46fa-babc-b2295dbc6ba6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_agency_delegation_link
+    - field.storage.paragraph.field_reference_name_and_url
+    - field.storage.paragraph.field_reference_type
+    - node.type.policy
+    - node.type.policy_delegation
+  module:
+    - link
+    - node
+    - options
+    - paragraphs
+    - user
+    - vefl
+id: policies_and_delegations_agency
+label: 'Policy and Delegation - Agency'
+module: views
+description: ''
+tag: ''
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    display_plugin: default
+    id: default
+    display_title: Master
+    position: 0
+    display_options:
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      query:
+        type: views_query
+        options:
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_comment: ''
+          query_tags: {  }
+      exposed_form:
+        type: vefl_basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+          layout:
+            layout_id: layout_twocol_section
+            change: Change
+            widget_region:
+              field_reference_type_value: first
+              field_reference_name_and_url_title: second
+              sort_by: first
+              sort_order: first
+              items_per_page: first
+              offset: first
+              submit: first
+              reset: first
+      pager:
+        type: mini
+        options:
+          items_per_page: 10
+          offset: 0
+          id: 0
+          total_pages: null
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          tags:
+            previous: ‹‹
+            next: ››
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: true
+          sticky: false
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            field_reference_name_and_url: field_reference_name_and_url
+            field_reference_type: field_reference_type
+          info:
+            field_reference_name_and_url:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_reference_type:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: '-1'
+          empty_table: false
+      row:
+        type: fields
+      fields:
+        field_reference_type:
+          id: field_reference_type
+          table: paragraph__field_reference_type
+          field: field_reference_type
+          relationship: field_references
+          group_type: group
+          admin_label: ''
+          label: 'Reference Type'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: list_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_reference_name_and_url:
+          id: field_reference_name_and_url
+          table: paragraph__field_reference_name_and_url
+          field: field_reference_name_and_url
+          relationship: field_references
+          group_type: group
+          admin_label: ''
+          label: 'Reference Name'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: title
+          type: link
+          settings:
+            trim_length: 80
+            url_only: false
+            url_plain: false
+            rel: '0'
+            target: '0'
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          value:
+            policy: policy
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        field_reference_type_value:
+          id: field_reference_type_value
+          table: paragraph__field_reference_type
+          field: field_reference_type_value
+          relationship: field_references
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_reference_type_value_op
+            label: 'Reference Type'
+            description: ''
+            use_operator: false
+            operator: field_reference_type_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_reference_type_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          plugin_id: list_field
+        field_reference_name_and_url_title:
+          id: field_reference_name_and_url_title
+          table: paragraph__field_reference_name_and_url
+          field: field_reference_name_and_url_title
+          relationship: field_references
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_reference_name_and_url_title_op
+            label: 'Reference Name'
+            description: ''
+            use_operator: false
+            operator: field_reference_name_and_url_title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_reference_name_and_url_title
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: string
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          order: DESC
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          exposed: false
+          expose:
+            label: ''
+          granularity: second
+      title: 'Agency Policies'
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: "<h1>Agency Policies</h1>\r\n<p>The items listed below are agency level policy referenced in <strong><em>active ORD Policies only</strong></em>. If you are looking for ALL agency materials, use the links below.</p>\r\n<ul>\r\n<li><a href=\"https://intranet.epa.gov/ohr/rmpolicy\">Administrative Policies</a></li>\r\n<li><a href=\"https://intranet.epa.gov/ohr/rmpolicy/ads/transorders.htm\">Orders</a></li>\r\n<li><a href=\"https://intranet.epa.gov/ohr/rmpolicy/ads/transmanuals.htm\">Manuals</a></li>\r\n<li><a href=\"https://www.epa.gov/irmpoli8/current-information-directives\">IT/IM Directives</a></li>\r\n<li><a href=\"https://oamintra.epa.gov/node/521\">EPA Acquisition Guide (EPAAG)</a></li>\r\n</ul>\r\n<p>Use the <em>Reference Name</em> field to enter the name - or partial name - of an agency policy and click the <strong>Apply</strong> button to filter the list to only include the words you've entered. Use the <em>Reference Type</em> field to filter the list by type.</p>"
+            format: full_html
+          plugin_id: text
+      footer: {  }
+      empty: {  }
+      relationships:
+        field_references:
+          id: field_references
+          table: node__field_references
+          field: field_references
+          relationship: none
+          group_type: group
+          admin_label: 'field_references: Paragraph'
+          required: false
+          plugin_id: standard
+      arguments: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.paragraph.field_reference_name_and_url'
+        - 'config:field.storage.paragraph.field_reference_type'
+  agency_delegations_page:
+    display_plugin: page
+    id: agency_delegations_page
+    display_title: 'Agency Delegations'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: policy/agency-delegations
+      display_description: ''
+      title: 'Agency Delegations'
+      defaults:
+        title: false
+        relationships: false
+        filters: false
+        filter_groups: false
+        fields: false
+        header: false
+        style: false
+        row: false
+        exposed_form: false
+      relationships: {  }
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            policy_delegation: policy_delegation
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+            argument: null
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+        field_agency_delegation_link_title:
+          id: field_agency_delegation_link_title
+          table: node__field_agency_delegation_link
+          field: field_agency_delegation_link_title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_agency_delegation_link_title_op
+            label: 'Agency Delegation'
+            description: ''
+            use_operator: false
+            operator: field_agency_delegation_link_title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_agency_delegation_link_title
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: string
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      fields:
+        field_agency_delegation_link:
+          id: field_agency_delegation_link
+          table: node__field_agency_delegation_link
+          field: field_agency_delegation_link
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: title
+          type: link
+          settings:
+            trim_length: null
+            url_only: false
+            url_plain: false
+            rel: '0'
+            target: '0'
+          group_column: ''
+          group_columns: {  }
+          group_rows: false
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: "<h1>Agency Delegations</h1>\r\n<p>The items listed below are agency level delegations referenced in <strong><em>active ORD Delegations only</strong></em>. Please refer to the <a href=\"https://intranet.epa.gov/ohr/policy/\">OHR Policies site</a> for a listing of all <a href=\"https://intranet.epa.gov/ohr/rmpolicy/ads/delegat.htm\">Agency Delegations</a>.</p>\r\n\r\n<p>Use the <em>Agency Delegation</em> field to enter the name - or partial name - of an agency delegation and click the <strong>Apply</strong> button to filter the list to only include the words you've entered. </p>"
+            format: full_html
+          plugin_id: text
+      style:
+        type: html_list
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          type: ul
+          wrapper_class: item-list
+          class: ''
+      row:
+        type: fields
+        options: {  }
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: true
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_agency_delegation_link'
+  agency_policies_page:
+    display_plugin: page
+    id: agency_policies_page
+    display_title: 'Agency Policies'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: policy/agency-policies
+      display_description: ''
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.paragraph.field_reference_name_and_url'
+        - 'config:field.storage.paragraph.field_reference_type'

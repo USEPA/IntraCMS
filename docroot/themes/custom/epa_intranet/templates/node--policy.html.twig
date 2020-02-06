@@ -81,13 +81,7 @@
   ]
 %}
 
-{%
-  set fieldclasses = [
-    'clearfix',
-    'card',
-    'mt-2',
-  ]
-%}
+
 
 
 {{ attach_library('classy/node') }}
@@ -114,77 +108,17 @@
 		</footer>
 	{% endif %}
 
-	<div class="grid-row grid-gap">
-		<div class="grid-col-8">
+    {% if 'Rescinded' in content.field_rescind_this_policy[0] %}
+    <div class="usa-alert usa-alert--error">
+    <div class="usa-alert__body">
+    <p class="usa-alert__heading">This Policy has been Rescinded</p>
+    <p class="usa-alert__text">{{ content.field_rescission_date }}
+    </div>
+    </div>
+    {% endif %}
 
-			<div{{attributes.addClass(fieldclasses)}}>
-				{% if content.field_effective_date|render is not empty %}
-					<div class="card-header m-0 font-weight-bold">
-						{{ content.field_effective_date|field_label }}
-					</div>
-					<div class="card-body py-1">
-						{{ content.field_effective_date|field_value }}
-					</div>
-				{% endif %}
-			</div>
-
-			<div{{attributes.addClass(fieldclasses)}}>
-				{% if content.field_topic_area_of_authority|render is not empty %}
-					<div class="card-header m-0 font-weight-bold">
-						{{ content.field_topic_area_of_authority|field_label }}
-					</div>
-					<div class="card-body py-1">
-						{{ content.field_topic_area_of_authority|field_value }}
-					</div>
-				{% endif %}
-			</div>
-
-			<div{{attributes.addClass(fieldclasses)}}>
-				{% if content.field_policy_statement|render is not empty %}
-					<div class="card-header m-0 font-weight-bold">
-						{{ content.field_policy_statement|field_label }}
-					</div>
-					<div class="card-body py-1">
-						{{ content.field_policy_statement|field_value }}
-					</div>
-				{% endif %}
-			</div>
-
-			<div{{attributes.addClass(fieldclasses)}}>
-				{% if content.field_policy_background|render is not empty %}
-					<div class="card-header m-0 font-weight-bold">
-						{{ content.field_policy_background|field_label }}
-					</div>
-					<div class="card-body py-1">
-						{{ content.field_policy_background|field_value }}
-					</div>
-				{% endif %}
-			</div>
-
-			<div{{content.attributes.addClas('node_content')}}>
-				{{ content|without('field_policy_statement','field_policy_background', 'field_effective_date', 'field_rescind_this_policy', 'field_topic_area_of_authority') }}
-			</div>
-
+	<div{{ content_attributes.addClass('node__content') }}>
+    {{ content|without('field_rescind_this_policy','field_rescission_date') }}
 	</div>
-
-	<div class="grid-col-4">
-					<div class="card-header m-0 font-weight-bold">
-          header
-          </div>
-					<div class="card-body py-1">
-          text
-          </div>
-
-
-
-	</div>
-
-</div>
-
-{#
-	/**
-	*  <div{{ content_attributes.addClass('node__content') }}>
-	*    {{ content }}
-	*  </div>
-	 */
-	#}</article>
+	
+	</article>

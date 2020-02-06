@@ -42,73 +42,48 @@ third_party_settings:
       allowed_blocks: {  }
       allowed_layouts: {  }
   field_group:
-    group_prior_identifier:
-      children:
-        - field_prior_identifier
-      parent_name: ''
-      weight: 11
-      format_type: details
-      region: content
-      format_settings:
-        id: ''
-        classes: ''
-        description: ''
-        open: false
-        required_fields: false
-      label: 'Prior Identifier'
-    group_next_review_date:
-      children:
-        - field_next_review_date
-      parent_name: ''
-      weight: 12
-      format_type: details
-      region: content
-      format_settings:
-        id: ''
-        classes: ''
-        description: ''
-        open: false
-        required_fields: false
-      label: 'Next Review Date'
     group_signed_memo:
       children:
         - field_signed_memo
       parent_name: ''
-      weight: 13
+      weight: 9
       format_type: details
       region: content
       format_settings:
+        description: ''
+        open: true
         id: ''
         classes: ''
-        description: ''
-        open: false
+        formatter: closed
         required_fields: false
       label: 'Signed Memo'
     group_related:
       children:
         - field_related_procedures
       parent_name: ''
-      weight: 14
+      weight: 10
       format_type: details
       region: content
       format_settings:
+        description: ''
+        open: true
         id: ''
         classes: ''
-        description: ''
-        open: false
+        formatter: closed
         required_fields: false
       label: 'Related Procedures'
     group_delegation:
       children:
         - field_delegation
       parent_name: ''
-      weight: 15
+      weight: 16
       format_type: details
       region: content
       format_settings:
+        description: ''
+        formatter: open
         id: ''
         classes: ''
-        description: ''
         open: false
         required_fields: false
       label: Delegation
@@ -120,9 +95,10 @@ third_party_settings:
       format_type: details
       region: content
       format_settings:
+        description: ''
+        formatter: closed
         id: ''
         classes: ''
-        description: ''
         open: false
         required_fields: false
       label: 'Policy Coordinator C/O'
@@ -130,49 +106,61 @@ third_party_settings:
       children:
         - field_roles_and_responsibilities
       parent_name: ''
-      weight: 8
+      weight: 13
       format_type: details
       region: content
       format_settings:
+        description: ''
         id: ''
         classes: ''
-        description: ''
         open: false
-        required_fields: false
       label: 'Roles and Responsibilities'
     group_definitions:
       children:
         - field_definitions
       parent_name: ''
-      weight: 9
+      weight: 14
       format_type: details
       region: content
       format_settings:
+        description: ''
         id: ''
         classes: ''
-        description: ''
         open: false
-        required_fields: false
       label: Definitions
     group_governing_authorities:
       children:
         - field_references
       parent_name: ''
-      weight: 10
+      weight: 15
       format_type: details
       region: content
       format_settings:
+        description: ''
         id: ''
         classes: ''
-        description: ''
         open: false
-        required_fields: false
       label: 'Governing Authorities'
     group_rescissions:
       children:
         - field_rescissions
       parent_name: ''
-      weight: 16
+      weight: 12
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        formatter: closed
+        id: ''
+        classes: ''
+        open: false
+        required_fields: false
+      label: Rescissions
+    group_supplemental_documents:
+      children:
+        - field_supplemental_documents
+      parent_name: ''
+      weight: 11
       format_type: details
       region: content
       format_settings:
@@ -181,7 +169,8 @@ third_party_settings:
         description: ''
         open: false
         required_fields: false
-      label: Rescissions
+        formatter: closed
+      label: 'Supplemental Documents'
 id: node.policy.default
 targetEntityType: node
 bundle: policy
@@ -191,12 +180,13 @@ content:
     weight: 9
     label: hidden
     settings:
-      link: true
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
     region: content
   field_delegation:
-    weight: 17
+    weight: 21
     label: hidden
     settings:
       link: true
@@ -213,31 +203,31 @@ content:
     type: datetime_default
     region: content
   field_next_review_date:
-    weight: 21
-    label: hidden
+    weight: 5
+    label: inline
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: day_month_year
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_policy_background:
-    weight: 7
+    weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_policy_coordinator_lco:
-    weight: 18
+    weight: 17
     label: hidden
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content
   field_policy_statement:
-    weight: 6
+    weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -245,7 +235,7 @@ content:
     region: content
   field_prior_identifier:
     type: string
-    weight: 13
+    weight: 3
     region: content
     label: inline
     settings:
@@ -309,25 +299,23 @@ content:
     third_party_settings: {  }
     region: content
   field_signed_memo:
-    type: entity_reference_entity_view
+    type: entity_reference_label
     weight: 14
     label: hidden
     settings:
-      view_mode: default
-      link: false
+      link: true
     third_party_settings: {  }
     region: content
   field_supplemental_documents:
-    type: entity_reference_entity_view
-    weight: 18
-    label: above
+    type: entity_reference_label
+    weight: 13
+    label: hidden
     settings:
-      view_mode: default
-      link: false
+      link: true
     third_party_settings: {  }
     region: content
   field_topic_area_of_authority:
-    weight: 5
+    weight: 6
     label: above
     settings:
       link: false

@@ -9,6 +9,8 @@ dependencies:
     - node.type.landing_page
     - node.type.page
     - node.type.photos_of_the_week
+    - node.type.policy
+    - node.type.policy_delegation
     - node.type.staff_member
     - node.type.webform
     - node.type.weekly_compass
@@ -28,7 +30,6 @@ description: 'Lists all of the nodes that have been added to a group.'
 tag: ''
 base_table: node_field_data
 base_field: nid
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -864,6 +865,8 @@ display:
               webform: '0'
               administrator: '0'
             placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -894,6 +897,8 @@ display:
             faces_of_ord: faces_of_ord
             landing_page: landing_page
             photos_of_the_week: photos_of_the_week
+            policy: policy
+            policy_delegation: policy_delegation
             staff_member: staff_member
             webform: webform
             weekly_compass: weekly_compass
@@ -905,6 +910,8 @@ display:
             description: ''
             use_operator: false
             operator: type_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: type
             required: false
             remember: false
@@ -958,6 +965,8 @@ display:
               webform: '0'
               administrator: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1002,6 +1011,8 @@ display:
             'group_node:landing_page': 'group_node:landing_page'
             'group_node:page': 'group_node:page'
             'group_node:photos_of_the_week': 'group_node:photos_of_the_week'
+            'group_node:policy': 'group_node:policy'
+            'group_node:policy_delegation': 'group_node:policy_delegation'
             'group_node:staff_member': 'group_node:staff_member'
             'group_node:webform': 'group_node:webform'
             'group_node:weekly_compass': 'group_node:weekly_compass'
