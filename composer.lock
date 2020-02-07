@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "814b5eac231c2680434d2f4a9104496e",
+    "content-hash": "c827fbb90dd8761f4e173da36f704ba9",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -8211,6 +8211,67 @@
             }
         },
         {
+            "name": "drupal/taxonomy_manager",
+            "version": "1.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/taxonomy_manager.git",
+                "reference": "8.x-1.0-alpha2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/taxonomy_manager-8.x-1.0-alpha2.zip",
+                "reference": "8.x-1.0-alpha2",
+                "shasum": "7becfad1cad0d26f471b8e097afcadde94a9f266"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha2",
+                    "datestamp": "1538074980",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Hutterer (mpdonadio)",
+                    "homepage": "https://www.drupal.org/u/mh86",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "joaogarin",
+                    "homepage": "https://www.drupal.org/user/612814"
+                },
+                {
+                    "name": "kalinchernev",
+                    "homepage": "https://www.drupal.org/user/231185"
+                },
+                {
+                    "name": "mh86",
+                    "homepage": "https://www.drupal.org/user/59747"
+                }
+            ],
+            "description": "Taxonomy_Manager provides a powerful interface for managing taxonomies via a tree view.",
+            "homepage": "https://drupal.org/project/taxonomy_manager",
+            "support": {
+                "source": "http://cgit.drupalcode.org/taxonomy_manager",
+                "issues": "https://drupal.org/project/issues/taxonomy_manager"
+            }
+        },
+        {
             "name": "drupal/token",
             "version": "1.6.0",
             "source": {
@@ -8653,69 +8714,6 @@
             "homepage": "https://www.drupal.org/project/views_add_button_group",
             "support": {
                 "source": "https://git.drupalcode.org/project/views_add_button_group"
-            }
-        },
-        {
-            "name": "drupal/views_breadcrumb",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/views_breadcrumb.git",
-                "reference": "8.x-1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_breadcrumb-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "9a428d0f43b4ef9e59f1426c9a07f8db5a9f7fd2"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1462289639",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Greg Boggs",
-                    "homepage": "https://www.drupal.org/user/153069"
-                },
-                {
-                    "name": "aditya_anurag",
-                    "homepage": "https://www.drupal.org/user/2672183"
-                },
-                {
-                    "name": "manojapare",
-                    "homepage": "https://www.drupal.org/user/2825053"
-                },
-                {
-                    "name": "rakesh.gectcr",
-                    "homepage": "https://www.drupal.org/user/1177822"
-                }
-            ],
-            "description": "Setting bread crumbs for all the view's pages.",
-            "homepage": "https://www.drupal.org/project/views_breadcrumb",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/views_breadcrumb",
-                "issues": "http://drupal.org/project/issues/views_breadcrumb"
             }
         },
         {
@@ -14797,6 +14795,69 @@
                 "source": "https://git.drupalcode.org/project/url_embed",
                 "issues": "https://www.drupal.org/project/issues/url_embed",
                 "irc": "irc://irc.freenode.org/drupal-media"
+            }
+        },
+        {
+            "name": "drupal/views_breadcrumb",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/views_breadcrumb.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/views_breadcrumb-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "9a428d0f43b4ef9e59f1426c9a07f8db5a9f7fd2"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1462289639",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Boggs",
+                    "homepage": "https://www.drupal.org/user/153069"
+                },
+                {
+                    "name": "aditya_anurag",
+                    "homepage": "https://www.drupal.org/user/2672183"
+                },
+                {
+                    "name": "manojapare",
+                    "homepage": "https://www.drupal.org/user/2825053"
+                },
+                {
+                    "name": "rakesh.gectcr",
+                    "homepage": "https://www.drupal.org/user/1177822"
+                }
+            ],
+            "description": "Setting bread crumbs for all the view's pages.",
+            "homepage": "https://www.drupal.org/project/views_breadcrumb",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/views_breadcrumb",
+                "issues": "http://drupal.org/project/issues/views_breadcrumb"
             }
         },
         {

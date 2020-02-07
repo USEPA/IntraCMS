@@ -1,0 +1,54 @@
+uuid: b90aad83-95bc-462d-8f9a-ac0789d22d75
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.policy_topics
+  module:
+    - taxonomy
+label: 'Policy Topics Import'
+id: policy_topics_import
+description: 'Import from Policy Topics Vocabulary'
+help: 'Export Policy Topics vocabulary from D7 as CSV then import here.'
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: csv
+  directory: 'public://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:taxonomy_term'
+processor_configuration:
+  update_existing: 1
+  update_non_existent: _delete
+  expire: -1
+  skip_hash_check: false
+  values:
+    vid: policy_topics
+  owner_id: 0
+  authorize: false
+  owner_feed_author: false
+custom_sources:
+  name:
+    label: Name
+    value: Name
+    machine_name: name
+  description:
+    label: Description
+    value: Description
+    machine_name: description
+mappings:
+  -
+    target: name
+    map:
+      value: name
+    unique: {  }
+  -
+    target: description
+    map:
+      value: description
+    settings:
+      format: plain_text
