@@ -1,0 +1,23 @@
+uuid: 93dead3c-ccc6-4198-b9b6-25639ae3325e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.feeds_item
+    - taxonomy.vocabulary.policy_definitions
+  module:
+    - feeds
+id: taxonomy_term.policy_definitions.feeds_item
+field_name: feeds_item
+entity_type: taxonomy_term
+bundle: policy_definitions
+label: 'Feeds item'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:feeds_feed'
+  handler_settings: {  }
+field_type: feeds_item

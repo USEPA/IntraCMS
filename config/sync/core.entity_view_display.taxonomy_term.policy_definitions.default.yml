@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.policy_definitions.feeds_item
     - taxonomy.vocabulary.policy_definitions
   module:
     - text
@@ -19,4 +20,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  feeds_item: true
   search_api_excerpt: true

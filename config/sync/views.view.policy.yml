@@ -72,7 +72,7 @@ display:
             layout_id: layout_twocol_section
             change: Change
             widget_region:
-              field_prior_identifier_value: first
+              tid: first
               title: second
               sort_by: first
               sort_order: first
@@ -252,10 +252,10 @@ display:
           operator: or
           value: {  }
           group: 1
-          exposed: false
+          exposed: true
           expose:
             operator_id: tid_op
-            label: Topic
+            label: 'Topic Area of Authority'
             description: ''
             use_operator: false
             operator: tid_op
@@ -413,23 +413,13 @@ display:
       display_extenders: {  }
       path: policy/active-policies
       display_description: ''
-      sorts:
-        field_topic_area_of_authority_target_id:
-          id: field_topic_area_of_authority_target_id
-          table: node__field_topic_area_of_authority
-          field: field_topic_area_of_authority_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: standard
+      sorts: {  }
       defaults:
         sorts: false
         fields: false
         header: false
+        filters: true
+        filter_groups: true
       fields:
         title:
           id: title
@@ -696,9 +686,9 @@ display:
         - 'config:field.storage.node.field_effective_date'
         - 'config:field.storage.node.field_policy_statement'
         - 'config:field.storage.node.field_topic_area_of_authority'
-  page_1:
+  active_policies_review_date_page:
     display_plugin: page
-    id: page_1
+    id: active_policies_review_date_page
     display_title: 'Active Policies by Review Date'
     position: 1
     display_options:
@@ -1797,6 +1787,7 @@ display:
         title: false
         filters: false
         filter_groups: false
+        exposed_form: false
       fields:
         field_prior_identifier:
           id: field_prior_identifier
@@ -2079,8 +2070,8 @@ display:
           exposed: false
           expose:
             operator_id: tid_op
-            label: Topic
-            description: ''
+            label: 'Has taxonomy term'
+            description: null
             use_operator: false
             operator: tid_op
             operator_limit_selection: false
@@ -2091,9 +2082,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -2242,6 +2230,28 @@ display:
         operator: AND
         groups:
           1: AND
+      exposed_form:
+        type: vefl_basic
+        options:
+          submit_button: Apply
+          reset_button: true
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+          layout:
+            layout_id: layout_twocol
+            change: Change
+            widget_region:
+              field_prior_identifier_value: first
+              title: second
+              sort_by: top
+              sort_order: top
+              items_per_page: top
+              offset: top
+              submit: first
+              reset: first
     cache_metadata:
       max-age: -1
       contexts:
