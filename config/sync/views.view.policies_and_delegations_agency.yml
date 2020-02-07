@@ -48,7 +48,7 @@ display:
         type: vefl_basic
         options:
           submit_button: Apply
-          reset_button: false
+          reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
@@ -229,7 +229,7 @@ display:
           click_sort_column: title
           type: link
           settings:
-            trim_length: 80
+            trim_length: null
             url_only: false
             url_plain: false
             rel: '0'
@@ -661,6 +661,163 @@ display:
       display_extenders: {  }
       path: policy/agency-policies
       display_description: ''
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          value:
+            policy: policy
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        field_reference_type_value:
+          id: field_reference_type_value
+          table: paragraph__field_reference_type
+          field: field_reference_type_value
+          relationship: field_references
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_reference_type_value_op
+            label: 'Reference Type'
+            description: ''
+            use_operator: false
+            operator: field_reference_type_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_reference_type_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          plugin_id: list_field
+        field_reference_name_and_url_title:
+          id: field_reference_name_and_url_title
+          table: paragraph__field_reference_name_and_url
+          field: field_reference_name_and_url_title
+          relationship: field_references
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_reference_name_and_url_title_op
+            label: 'Reference Name'
+            description: ''
+            use_operator: false
+            operator: field_reference_name_and_url_title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_reference_name_and_url_title
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: string
+        field_reference_name_and_url_title_1:
+          id: field_reference_name_and_url_title_1
+          table: paragraph__field_reference_name_and_url
+          field: field_reference_name_and_url_title
+          relationship: field_references
+          group_type: group
+          admin_label: ''
+          operator: 'not empty'
+          value: ''
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: string
+      defaults:
+        filters: false
+        filter_groups: false
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:
