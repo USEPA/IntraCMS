@@ -1,0 +1,20 @@
+uuid: 19673d8b-57c5-435b-aba1-4076652aaf2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.policy
+    - node.type.page
+  module:
+    - gnode
+    - node
+id: policy-group_node-page
+label: 'Policy: Group node (Basic page)'
+description: 'Adds <em class="placeholder">Basic page</em> content to groups both publicly and privately.'
+group_type: policy
+content_plugin: 'group_node:page'
+plugin_config:
+  group_cardinality: 1
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 1

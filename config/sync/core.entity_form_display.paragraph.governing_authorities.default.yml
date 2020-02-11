@@ -1,0 +1,32 @@
+uuid: 4cde6649-1691-4baa-97c4-1acf68a79ac2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.governing_authorities.field_reference_name_and_url
+    - field.field.paragraph.governing_authorities.field_reference_type
+    - paragraphs.paragraphs_type.governing_authorities
+  module:
+    - link
+id: paragraph.governing_authorities.default
+targetEntityType: paragraph
+bundle: governing_authorities
+mode: default
+content:
+  field_reference_name_and_url:
+    weight: 1
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_reference_type:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden:
+  created: true
+  status: true

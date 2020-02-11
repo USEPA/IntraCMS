@@ -1,0 +1,21 @@
+uuid: 02b0f29b-22b1-4dcc-8c4e-9375b2e288a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.group.field_group_contact
+    - group.type.policy
+id: group.policy.field_group_contact
+field_name: field_group_contact
+entity_type: group
+bundle: policy
+label: 'Primary Contact'
+description: 'Enter the email address that serves as the point of contact for this Web Area.'
+required: false
+translatable: true
+default_value:
+  -
+    value: ordatwork@epa.gov
+default_value_callback: ''
+settings: {  }
+field_type: email

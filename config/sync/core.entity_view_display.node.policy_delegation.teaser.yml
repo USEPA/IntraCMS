@@ -1,0 +1,31 @@
+uuid: 04314a41-fc2f-4fb7-b030-ac19dbe7c07d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.policy_delegation.body
+    - node.type.policy_delegation
+  module:
+    - text
+    - user
+id: node.policy_delegation.teaser
+targetEntityType: node
+bundle: policy_delegation
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  search_api_excerpt: true

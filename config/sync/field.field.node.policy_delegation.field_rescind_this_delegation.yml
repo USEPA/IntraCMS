@@ -1,0 +1,23 @@
+uuid: 34dac916-c5fd-4b48-a61b-a599b9ad8e5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rescind_this_delegation
+    - node.type.policy_delegation
+id: node.policy_delegation.field_rescind_this_delegation
+field_name: field_rescind_this_delegation
+entity_type: node
+bundle: policy_delegation
+label: 'Rescind this delegation'
+description: 'Check this box ONLY if you are rescinding a released delegation, NOT when entering in a new one.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Rescinded
+  off_label: Active
+field_type: boolean

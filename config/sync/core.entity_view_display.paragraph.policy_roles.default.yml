@@ -1,0 +1,32 @@
+uuid: bcc85b8e-a00a-4b5e-9eb3-0d150edfe8d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.policy_roles.field_policy_responsibility
+    - field.field.paragraph.policy_roles.field_policy_role
+    - paragraphs.paragraphs_type.policy_roles
+  module:
+    - text
+id: paragraph.policy_roles.default
+targetEntityType: paragraph
+bundle: policy_roles
+mode: default
+content:
+  field_policy_responsibility:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_policy_role:
+    weight: 0
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden:
+  search_api_excerpt: true

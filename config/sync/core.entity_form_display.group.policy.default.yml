@@ -1,0 +1,57 @@
+uuid: cfba00a1-7e55-446d-8d4a-14adfea2b35e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.group.policy.field_group_contact
+    - field.field.group.policy.field_group_contact_info
+    - field.field.group.policy.field_group_description
+    - group.type.policy
+  module:
+    - path
+    - text
+id: group.policy.default
+targetEntityType: group
+bundle: policy
+mode: default
+content:
+  field_group_contact:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: content
+  field_group_contact_info:
+    weight: 3
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_group_description:
+    weight: 2
+    settings:
+      rows: 2
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  label:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  uid: true
