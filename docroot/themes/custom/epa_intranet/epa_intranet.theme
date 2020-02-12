@@ -49,3 +49,13 @@ function epa_intranet_preprocess_media(&$variables) {
     $variables['attributes']['class'][] = 'grid-row';
   }
 }
+
+function hook_theme_suggestions_taxonomy_term_alter(&$suggestions, $vars, $hook) {
+  $term = $vars['elements']['#taxonomy_term'];
+  $sanitized_view_mode = strtr($vars['elements']['#view_mode'], '.', '_');
+  $suggestions[] = 'taxonomy_term__' . $term->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'taxonomy_term__' . $term->id() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'taxonomy_term__' . $sanitized_view_mode;
+
+  return $suggestions;
+}

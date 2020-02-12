@@ -1,0 +1,31 @@
+uuid: 500347bc-93e6-4ae9-befb-0a338aa65ce4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_policy_coordinator_lco
+    - node.type.policy
+    - taxonomy.vocabulary.centers_and_offices
+    - taxonomy.vocabulary.research_program_area
+id: node.policy.field_policy_coordinator_lco
+field_name: field_policy_coordinator_lco
+entity_type: node
+bundle: policy
+label: 'Policy Coordinator C/O'
+description: 'Select the Center(s)/Office(s) or National Program(s) that "own" the subject-matter expertise or that is best assigned to be the coordinator or contact for the policy.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      centers_and_offices: centers_and_offices
+      research_program_area: research_program_area
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: centers_and_offices
+field_type: entity_reference

@@ -1,0 +1,24 @@
+uuid: 6fd574b4-6fea-482b-8254-5cfea988df80
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_effective_date
+    - node.type.policy
+  module:
+    - datetime
+id: node.policy.field_effective_date
+field_name: field_effective_date
+entity_type: node
+bundle: policy
+label: 'Effective Date'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

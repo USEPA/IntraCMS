@@ -1,0 +1,24 @@
+uuid: 80d10570-d12f-4e35-b018-0afc26b0f7fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.policy_definitions.feeds_item
+    - taxonomy.vocabulary.policy_definitions
+  module:
+    - text
+id: taxonomy_term.policy_definitions.default
+targetEntityType: taxonomy_term
+bundle: policy_definitions
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  feeds_item: true
+  search_api_excerpt: true

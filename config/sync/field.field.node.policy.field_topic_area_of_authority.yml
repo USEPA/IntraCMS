@@ -1,0 +1,29 @@
+uuid: 8bc22345-a725-4d20-93d1-643e855e8437
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_topic_area_of_authority
+    - node.type.policy
+    - taxonomy.vocabulary.policy_topics
+id: node.policy.field_topic_area_of_authority
+field_name: field_topic_area_of_authority
+entity_type: node
+bundle: policy
+label: 'Topic Area of Authority'
+description: 'Identify which topics this policy relates to.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      policy_topics: policy_topics
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
