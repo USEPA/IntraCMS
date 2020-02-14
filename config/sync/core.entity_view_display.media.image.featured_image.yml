@@ -4,8 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.featured_image
+    - field.field.media.image.field_caption
+    - field.field.media.image.field_keywords
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
+    - field.field.media.image.layout_builder__translation
     - image.style.featured_image_960_350
     - media.type.image
   module:
@@ -34,6 +37,7 @@ content:
 hidden:
   created: true
   field_caption: true
+  field_keywords: true
   field_media_in_library: true
   layout_builder__translation: true
   name: true

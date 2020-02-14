@@ -1,0 +1,29 @@
+uuid: d831c857-7588-40e8-bb70-22fb229748cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_keywords
+    - media.type.audio_file
+    - taxonomy.vocabulary.tags
+id: media.audio_file.field_keywords
+field_name: field_keywords
+entity_type: media
+bundle: audio_file
+label: Keywords
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags: tags
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

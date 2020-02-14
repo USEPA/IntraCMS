@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.media.image.field_caption
+    - field.field.media.image.field_keywords
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
+    - field.field.media.image.layout_builder__translation
     - image.style.thumbnail
     - media.type.image
   module:
@@ -19,16 +21,26 @@ bundle: image
 mode: default
 content:
   field_caption:
-    weight: 2
+    weight: 3
     settings:
       rows: 3
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
     region: content
+  field_keywords:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_media_in_library:
     type: boolean_checkbox
-    weight: 3
+    weight: 4
     settings:
       display_label: true
     third_party_settings: {  }
@@ -58,7 +70,7 @@ content:
     region: content
   path:
     type: path
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -66,7 +78,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 5
+    weight: 6
     region: content
     third_party_settings: {  }
 hidden:

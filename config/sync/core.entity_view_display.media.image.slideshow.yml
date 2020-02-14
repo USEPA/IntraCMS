@@ -5,8 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.media.slideshow
     - field.field.media.image.field_caption
+    - field.field.media.image.field_keywords
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
+    - field.field.media.image.layout_builder__translation
     - media.type.image
   module:
     - image
@@ -40,6 +42,7 @@ content:
     region: content
 hidden:
   created: true
+  field_keywords: true
   field_media_in_library: true
   layout_builder__translation: true
   name: true
