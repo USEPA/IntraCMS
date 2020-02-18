@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Contains misc features for EPA intranet.
+ */
+
+/**
+ * Implements hook_views_plugins_style_alter() to show empty calendar when not events exist.
+ */
+function epa_core_views_plugins_style_alter(array &$plugins) {
+  $plugins['fullcalendar_view_display']['even empty'] = true;
+}
