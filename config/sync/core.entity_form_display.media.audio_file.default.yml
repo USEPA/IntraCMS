@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.audio_file.field_keywords
     - field.field.media.audio_file.field_media_audio_file
     - field.field.media.audio_file.field_media_in_library
     - media.type.audio_file
@@ -16,6 +17,16 @@ targetEntityType: media
 bundle: audio_file
 mode: default
 content:
+  field_keywords:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_media_audio_file:
     weight: 1
     settings:
@@ -27,7 +38,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 2
+    weight: 3
     third_party_settings: {  }
     region: content
   name:
@@ -40,7 +51,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -48,7 +59,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 3
+    weight: 4
     region: content
     third_party_settings: {  }
 hidden:

@@ -1,0 +1,29 @@
+uuid: 2530e59f-22d0-4fd1-ba01-bfc6fd4c0e0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_keywords
+    - media.type.image
+    - taxonomy.vocabulary.tags
+id: media.image.field_keywords
+field_name: field_keywords
+entity_type: media
+bundle: image
+label: Keywords
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags: tags
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

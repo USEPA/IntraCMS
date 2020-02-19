@@ -11,7 +11,7 @@ field_name: field_delegation
 entity_type: node
 bundle: policy
 label: Delegation
-description: 'Begin typing the title of the appropriate delegation and select the appropriate one from the autocomplete options.'
+description: 'Begin typing the title of the appropriate delegation and select the appropriate one from the autocomplete options. If this is a new delegation, you must <a href="/web-area/policy" target="_blank">create the delegation</a> before you can reference from within the policy.'
 required: false
 translatable: false
 default_value: {  }
@@ -24,6 +24,6 @@ settings:
     sort:
       field: title
       direction: ASC
-    auto_create: true
+    auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference

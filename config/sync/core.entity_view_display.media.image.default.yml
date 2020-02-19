@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.media.image.field_caption
+    - field.field.media.image.field_keywords
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
     - field.field.media.image.layout_builder__translation
@@ -17,6 +18,14 @@ targetEntityType: media
 bundle: image
 mode: default
 content:
+  field_keywords:
+    weight: 1
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
   image:
     type: image
     weight: 0
