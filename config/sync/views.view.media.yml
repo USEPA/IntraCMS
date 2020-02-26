@@ -855,7 +855,7 @@ display:
         type: grid
         options:
           grouping: {  }
-          columns: 4
+          columns: 8
           automatic_width: true
           alignment: horizontal
           col_class_default: true
@@ -928,7 +928,7 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: medium
+            image_style: thumbnail
             image_link: ''
           group_column: ''
           group_columns: {  }
@@ -1266,7 +1266,7 @@ display:
       pager:
         type: infinite_scroll
         options:
-          items_per_page: 12
+          items_per_page: 24
           offset: 0
           id: 0
           total_pages: null
@@ -1775,6 +1775,15 @@ display:
       display_extenders: {  }
       path: admin/content/media-table
       display_description: ''
+      menu:
+        type: none
+        title: Media2
+        description: ''
+        expanded: false
+        parent: system.admin_content
+        weight: 0
+        context: '0'
+        menu_name: admin
     cache_metadata:
       max-age: 0
       contexts:
