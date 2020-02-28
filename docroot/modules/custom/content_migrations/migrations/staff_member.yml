@@ -16,7 +16,7 @@ source:
     Accept: 'application/json; charset=utf-8'
     Content-Type: 'application/json'
   # One or more URLs from which to fetch the source data.
-  urls: https://webxdev.ord.epa.gov/dev2/api/content?type=staff_membert&fields=all&limit=20
+  urls: https://webxdev.ord.epa.gov/dev2/api/content?type=staff_member&fields=all
   # For JSON, item_selector is the xpath used to select
   # our source items (tags in this case).
   item_selector: 0
@@ -36,7 +36,7 @@ source:
     -
       name: field_staff_first_name
       label: 'First Name'
-      selector: /fields/
+      selector: /fields/field_staff_first_name
     -
       name: field_staff_last_name
       label: 'Last Name'
@@ -77,8 +77,12 @@ source:
       name: field_staff_bio
       label: 'Biography'
       selector: /fields/field_staff_bio
+    -
+      name: field_staff_image
+      label: 'Staff Image'
+      selector: /fields/field_staff_image
 
-  # Under ids, we specify which of the source fields retrieved
+    # Under ids, we specify which of the source fields retrieved
   # above (product_id in this case) represent our unique
   # identifier for the item, and the schema type for that field.
   ids:
@@ -88,28 +92,25 @@ source:
 destination:
   plugin: entity:node
 process:
-  # If you are using this file to build a custom migration consider removing
-  # the nid and vid fields to allow incremental migrations.
-  # In D7, nodes always have a tnid, but it's zero for untranslated nodes.
-  # We normalize it to equal the nid in that case.
-  # @see \Drupal\node\Plugin\migrate\source\d7\Node::prepareRow().
   langcode:
     plugin: default_value
     source: language
     default_value: "und"
   title: title
-  uid: node_uid
-  status: status
   created: created
   changed: changed
-  promote: promote
-  sticky: sticky
-  revision_uid: revision_uid
-  revision_log: log
-  revision_timestamp: timestamp
+  status: status
   type:
     plugin: default_value
     default_value: staff_member
-  field_staff_first_name: field_first_name
-  field_staff_last_name: field_last_name
+  field_first_name: field_staff_first_name
+  field_last_name: field_staff_last_name
   field_staff_position: field_staff_position
+  field_staff_photo/target_id: media_image_target_id
+  field_phone: field_staff_phone
+  field_email/value: field_staff_email/0/email
+  field_staff_biography/value: field_staff_bio/0/value
+  field_staff_biography/summary: field_staff_bio/0/summary
+  field_staff_biography/format:
+    plugin: default_value
+    default_value: "rich_text"
