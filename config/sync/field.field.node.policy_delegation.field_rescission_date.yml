@@ -1,0 +1,21 @@
+uuid: 7e25039d-74a0-48db-94db-dafa0477a8fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rescission_date
+    - node.type.policy_delegation
+  module:
+    - datetime
+id: node.policy_delegation.field_rescission_date
+field_name: field_rescission_date
+entity_type: node
+bundle: policy_delegation
+label: 'Rescission Date'
+description: 'Enter the rescission approval/effective date.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

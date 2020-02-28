@@ -1,0 +1,143 @@
+uuid: 863f7e1f-8588-493a-bae6-9434460d380a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.policy_delegation.body
+    - field.field.node.policy_delegation.field_additional_policy_role
+    - field.field.node.policy_delegation.field_agency_delegation_link
+    - field.field.node.policy_delegation.field_delegated_to
+    - field.field.node.policy_delegation.field_delegation_re_delegation_t
+    - field.field.node.policy_delegation.field_effective_date
+    - field.field.node.policy_delegation.field_next_review_date
+    - field.field.node.policy_delegation.field_policy_role
+    - field.field.node.policy_delegation.field_rescind_this_delegation
+    - field.field.node.policy_delegation.field_rescission_date
+    - field.field.node.policy_delegation.field_signed_memo
+    - field.field.node.policy_delegation.field_topic_area_of_authority
+    - node.type.policy_delegation
+  module:
+    - datetime
+    - link
+    - options
+    - tablefield
+    - text
+    - user
+id: node.policy_delegation.default
+targetEntityType: node
+bundle: policy_delegation
+mode: default
+content:
+  body:
+    label: above
+    type: text_default
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_additional_policy_role:
+    weight: 11
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_agency_delegation_link:
+    weight: 7
+    label: above
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_delegated_to:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_delegation_re_delegation_t:
+    weight: 12
+    label: above
+    settings:
+      row_header: 1
+      column_header: 0
+    third_party_settings: {  }
+    type: tablefield
+    region: content
+  field_effective_date:
+    weight: 3
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: day_month_year
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_next_review_date:
+    weight: 4
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: day_month_year
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_policy_role:
+    weight: 10
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_rescind_this_delegation:
+    weight: 1
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_rescission_date:
+    weight: 2
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: day_month_year
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_signed_memo:
+    weight: 8
+    label: above
+    settings:
+      view_mode: inline_embedded
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_topic_area_of_authority:
+    weight: 9
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  content_moderation_control: true
+  search_api_excerpt: true

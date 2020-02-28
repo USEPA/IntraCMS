@@ -16,7 +16,7 @@ source:
     Accept: 'application/json; charset=utf-8'
     Content-Type: 'application/json'
   # One or more URLs from which to fetch the source data.
-  urls: http://localhost:8085/api/content?type=calendar_event&fields=all&limit=20
+  urls: https://webxdev.ord.epa.gov/dev2/api/content?type=calendar_event&fields=all&limit=20
   # For JSON, item_selector is the xpath used to select
   # our source items (tags in this case).
   item_selector: 0
@@ -109,4 +109,3 @@ migration_dependencies:
   required:
     - event_host_terms
     - event_tags
-

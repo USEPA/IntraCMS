@@ -1,0 +1,29 @@
+uuid: 34f9738f-cb96-4dac-87ca-1aa15661e9fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_delegation
+    - node.type.policy
+    - node.type.policy_delegation
+id: node.policy.field_delegation
+field_name: field_delegation
+entity_type: node
+bundle: policy
+label: Delegation
+description: 'Begin typing the title of the appropriate delegation and select the appropriate one from the autocomplete options. If this is a new delegation, you must <a href="/web-area/policy" target="_blank">create the delegation</a> before you can reference from within the policy.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      policy_delegation: policy_delegation
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

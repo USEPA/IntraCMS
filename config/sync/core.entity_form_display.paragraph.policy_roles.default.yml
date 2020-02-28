@@ -1,0 +1,32 @@
+uuid: 00c478e9-e787-4e8a-b68e-0adf04c8e824
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.policy_roles.field_policy_responsibility
+    - field.field.paragraph.policy_roles.field_policy_role
+    - paragraphs.paragraphs_type.policy_roles
+  module:
+    - text
+id: paragraph.policy_roles.default
+targetEntityType: paragraph
+bundle: policy_roles
+mode: default
+content:
+  field_policy_responsibility:
+    weight: 1
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_policy_role:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden:
+  created: true
+  status: true

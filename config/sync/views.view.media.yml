@@ -6,6 +6,7 @@ dependencies:
     - image.style.medium
     - image.style.thumbnail
     - media.type.image
+    - media.type.video
   module:
     - entity_browser
     - file
@@ -23,7 +24,6 @@ description: ''
 tag: ''
 base_table: media_field_data
 base_field: mid
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -650,6 +650,8 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -691,6 +693,8 @@ display:
               anonymous: '0'
               administrator: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -729,6 +733,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: true
           group_info:
             label: 'Published status'
@@ -778,6 +784,8 @@ display:
               anonymous: '0'
               administrator: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -847,7 +855,7 @@ display:
         type: grid
         options:
           grouping: {  }
-          columns: 4
+          columns: 8
           automatic_width: true
           alignment: horizontal
           col_class_default: true
@@ -920,7 +928,7 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: medium
+            image_style: thumbnail
             image_link: ''
           group_column: ''
           group_columns: {  }
@@ -1074,6 +1082,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: true
           group_info:
             label: 'Publishing status'
@@ -1129,6 +1139,8 @@ display:
               landing_page_reviewer: '0'
               media_creator: '0'
               media_manager: '0'
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1154,6 +1166,7 @@ display:
           operator: in
           value:
             image: image
+            video: video
           group: 1
           exposed: false
           expose:
@@ -1179,6 +1192,8 @@ display:
               media_manager: '0'
             reduce: false
             argument: bundle
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1217,6 +1232,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1249,7 +1266,7 @@ display:
       pager:
         type: infinite_scroll
         options:
-          items_per_page: 12
+          items_per_page: 24
           offset: 0
           id: 0
           total_pages: null
@@ -1528,6 +1545,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: true
           group_info:
             label: 'Publishing status'
@@ -1583,6 +1602,8 @@ display:
               landing_page_reviewer: '0'
               media_creator: '0'
               media_manager: '0'
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1632,6 +1653,8 @@ display:
               media_creator: '0'
               media_manager: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1670,6 +1693,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1750,6 +1775,15 @@ display:
       display_extenders: {  }
       path: admin/content/media-table
       display_description: ''
+      menu:
+        type: none
+        title: Media2
+        description: ''
+        expanded: false
+        parent: system.admin_content
+        weight: 0
+        context: '0'
+        menu_name: admin
     cache_metadata:
       max-age: 0
       contexts:

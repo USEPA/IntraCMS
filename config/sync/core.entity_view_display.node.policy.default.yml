@@ -1,0 +1,334 @@
+uuid: 9ac93b3d-3479-4dd2-ae92-fba3f24697de
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.policy.field_definitions
+    - field.field.node.policy.field_delegation
+    - field.field.node.policy.field_effective_date
+    - field.field.node.policy.field_next_review_date
+    - field.field.node.policy.field_policy_background
+    - field.field.node.policy.field_policy_coordinator_lco
+    - field.field.node.policy.field_policy_statement
+    - field.field.node.policy.field_prior_identifier
+    - field.field.node.policy.field_references
+    - field.field.node.policy.field_related_procedures
+    - field.field.node.policy.field_rescind_this_policy
+    - field.field.node.policy.field_rescission_date
+    - field.field.node.policy.field_rescissions
+    - field.field.node.policy.field_roles_and_responsibilities
+    - field.field.node.policy.field_signed_memo
+    - field.field.node.policy.field_supplemental_documents
+    - field.field.node.policy.field_topic_area_of_authority
+    - node.type.policy
+  module:
+    - datetime
+    - entity_reference_revisions
+    - field_group
+    - layout_builder
+    - layout_builder_restrictions
+    - layout_library
+    - link
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+  layout_library:
+    enable: false
+  layout_builder_restrictions:
+    entity_view_mode_restriction:
+      allowed_blocks: {  }
+      allowed_layouts: {  }
+  field_group:
+    group_signed_memo:
+      children:
+        - field_signed_memo
+      parent_name: ''
+      weight: 9
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        open: true
+        id: ''
+        classes: ''
+        formatter: closed
+        required_fields: false
+      label: 'Signed Memo'
+    group_related:
+      children:
+        - field_related_procedures
+      parent_name: ''
+      weight: 10
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        open: true
+        id: ''
+        classes: ''
+        formatter: closed
+        required_fields: false
+      label: 'Related Procedures'
+    group_delegation:
+      children:
+        - field_delegation
+      parent_name: ''
+      weight: 16
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        formatter: open
+        id: ''
+        classes: ''
+        open: false
+        required_fields: false
+      label: Delegation
+    group_policy_coordinator_co:
+      children:
+        - field_policy_coordinator_lco
+      parent_name: ''
+      weight: 17
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        formatter: closed
+        id: ''
+        classes: ''
+        open: false
+        required_fields: false
+      label: 'Policy Coordinator C/O'
+    group_roles_and_responsibilities:
+      children:
+        - field_roles_and_responsibilities
+      parent_name: ''
+      weight: 13
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        id: ''
+        classes: ''
+        open: false
+      label: 'Roles and Responsibilities'
+    group_definitions:
+      children:
+        - field_definitions
+      parent_name: ''
+      weight: 14
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        id: ''
+        classes: ''
+        open: false
+      label: Definitions
+    group_governing_authorities:
+      children:
+        - field_references
+      parent_name: ''
+      weight: 15
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        id: ''
+        classes: ''
+        open: false
+      label: 'Governing Authorities'
+    group_rescissions:
+      children:
+        - field_rescissions
+      parent_name: ''
+      weight: 12
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        formatter: closed
+        id: ''
+        classes: ''
+        open: false
+        required_fields: false
+      label: Rescissions
+    group_supplemental_documents:
+      children:
+        - field_supplemental_documents
+      parent_name: ''
+      weight: 11
+      format_type: details
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: false
+        required_fields: false
+        formatter: closed
+      label: 'Supplemental Documents'
+id: node.policy.default
+targetEntityType: node
+bundle: policy
+mode: default
+content:
+  field_definitions:
+    weight: 9
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_delegation:
+    weight: 21
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_effective_date:
+    weight: 4
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: day_month_year
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_next_review_date:
+    weight: 5
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: day_month_year
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_policy_background:
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_policy_coordinator_lco:
+    weight: 17
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_policy_statement:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_prior_identifier:
+    type: string
+    weight: 3
+    region: content
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_references:
+    type: entity_reference_revisions_entity_view
+    weight: 10
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_related_procedures:
+    weight: 22
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_rescind_this_policy:
+    weight: 1
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_rescission_date:
+    weight: 2
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: day_month_year
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_rescissions:
+    weight: 16
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_roles_and_responsibilities:
+    type: entity_reference_revisions_entity_view
+    weight: 14
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_signed_memo:
+    type: entity_reference_entity_view
+    weight: 14
+    label: hidden
+    settings:
+      view_mode: inline_embedded
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_supplemental_documents:
+    type: entity_reference_entity_view
+    weight: 13
+    label: hidden
+    settings:
+      view_mode: inline_embedded
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_topic_area_of_authority:
+    weight: 6
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  content_moderation_control: true
+  search_api_excerpt: true

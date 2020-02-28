@@ -1,0 +1,54 @@
+uuid: 04314a41-fc2f-4fb7-b030-ac19dbe7c07d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.policy_delegation.body
+    - field.field.node.policy_delegation.field_additional_policy_role
+    - field.field.node.policy_delegation.field_agency_delegation_link
+    - field.field.node.policy_delegation.field_delegated_to
+    - field.field.node.policy_delegation.field_delegation_re_delegation_t
+    - field.field.node.policy_delegation.field_effective_date
+    - field.field.node.policy_delegation.field_next_review_date
+    - field.field.node.policy_delegation.field_policy_role
+    - field.field.node.policy_delegation.field_rescind_this_delegation
+    - field.field.node.policy_delegation.field_rescission_date
+    - field.field.node.policy_delegation.field_signed_memo
+    - field.field.node.policy_delegation.field_topic_area_of_authority
+    - node.type.policy_delegation
+  module:
+    - text
+    - user
+id: node.policy_delegation.teaser
+targetEntityType: node
+bundle: policy_delegation
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  content_moderation_control: true
+  field_additional_policy_role: true
+  field_agency_delegation_link: true
+  field_delegated_to: true
+  field_delegation_re_delegation_t: true
+  field_effective_date: true
+  field_next_review_date: true
+  field_policy_role: true
+  field_rescind_this_delegation: true
+  field_rescission_date: true
+  field_signed_memo: true
+  field_topic_area_of_authority: true
+  search_api_excerpt: true
