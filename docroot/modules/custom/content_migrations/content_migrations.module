@@ -42,30 +42,34 @@ function content_migrations_migrate_prepare_row(Row $row, MigrateSourceInterface
 /**
  * @param Row $row
  * @throws \Drupal\Core\Entity\EntityStorageException
+ * https://webx.ord.epa.gov/sites/default/files/blog/2018/03/laraphelps.jpg
  */
 function create_file_and_media(Row $row): void {
   $image_data = $row->getSourceProperty('field_staff_image');
-  $file_name = $image_data[0]['filename'];
-  $file_data = file_get_contents('http://localhost:8085/sites/default/files/staff/' . $file_name);
-  if ($file_data) {
-    $file = file_save_data($file_data, 'public://staff/' . $file_name, FILE_EXISTS_REPLACE);
-
-    $media = Media::create([
-        'bundle' => 'image',
-        'uid' => \Drupal::currentUser()->id(),
-        'langcode' => \Drupal::languageManager()->getDefaultLanguage()->getId(),
-        'status' => 1,
-        'name' => $file_name,
-        'field_media_in_library' => [
-          0
-        ],
-        'image' => [
-          'target_id' => $file->id(),
+  if (isset($image_data) && isset($image_data[0]) && !empty($image_data[0])) {
+    $uri_array = explode("/", $image_data[0]['uri']);
+    $file_name = $uri_array[count($uri_array) - 1];
+    $file_location = str_replace("public://", "https://webx.ord.epa.gov/sites/default/files/", $image_data[0]['uri']);
+    $file_data = file_get_contents($file_location);
+    if ($file_data) {
+      $file = file_save_data($file_data, 'public://staff/' . $file_name, FILE_EXISTS_REPLACE);
+      $media = Media::create([
+          'bundle' => 'image',
+          'uid' => \Drupal::currentUser()->id(),
+          'langcode' => \Drupal::languageManager()->getDefaultLanguage()->getId(),
+          'status' => 1,
+          'name' => $file_name,
+          'field_media_in_library' => [
+            0
+          ],
+          'image' => [
+            'target_id' => $file->id(),
+          ]
         ]
-      ]
-    );
-    $media->save();
-    $row->setSourceProperty('media_image_target_id', $media->id());
+      );
+      $media->save();
+      $row->setSourceProperty('media_image_target_id', $media->id());
+    }
   }
 }
 
