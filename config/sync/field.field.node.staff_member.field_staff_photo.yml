@@ -6,8 +6,6 @@ dependencies:
     - field.storage.node.field_staff_photo
     - media.type.image
     - node.type.staff_member
-  content:
-    - 'media:image:51fc49a6-9617-4250-a553-3df1638197fd'
 id: node.staff_member.field_staff_photo
 field_name: field_staff_photo
 entity_type: node
@@ -16,9 +14,7 @@ label: Photo
 description: 'Upload a photo. Dimensions of the photo should be approximately 100 pixels wide x 150 pixels high.'
 required: false
 translatable: false
-default_value:
-  -
-    target_uuid: 51fc49a6-9617-4250-a553-3df1638197fd
+default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:media'
