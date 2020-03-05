@@ -11,6 +11,7 @@ dependencies:
     - field.storage.node.field_staff_position
     - field.storage.node.field_staff_secondary_location
     - node.type.staff_member
+    - taxonomy.vocabulary.locations
     - taxonomy.vocabulary.organization
   content:
     - 'taxonomy_term:organization:ca7123a1-32d5-428f-9e15-895827ced5c6'
@@ -19,6 +20,7 @@ dependencies:
     - taxonomy
     - telephone
     - user
+    - vefl
 id: staff
 label: Staff
 module: views
@@ -52,7 +54,7 @@ display:
         type: basic
         options:
           submit_button: Apply
-          reset_button: false
+          reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
@@ -600,6 +602,10 @@ display:
         row: false
         fields: false
         title: false
+        filters: false
+        filter_groups: false
+        sorts: false
+        exposed_form: false
       display_description: ''
       relationships: {  }
       style:
@@ -1199,11 +1205,220 @@ display:
           field_api_classes: false
           plugin_id: field
       title: 'Staff Directory'
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          value:
+            staff_member: staff_member
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: title_op
+            label: Name
+            description: ''
+            use_operator: false
+            operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: title
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: title
+          plugin_id: string
+        field_organization_target_id:
+          id: field_organization_target_id
+          table: node__field_organization
+          field: field_organization_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_organization_target_id_op
+            label: Organization
+            description: ''
+            use_operator: false
+            operator: field_organization_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_organization_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: organization
+          hierarchy: true
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        field_location_target_id:
+          id: field_location_target_id
+          table: node__field_location
+          field: field_location_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_location_target_id_op
+            label: Location
+            description: ''
+            use_operator: false
+            operator: field_location_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_location_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: locations
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      sorts:
+        field_organization_target_id:
+          id: field_organization_target_id
+          table: node__field_organization
+          field: field_organization_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: standard
+      exposed_form:
+        type: vefl_basic
+        options:
+          submit_button: Apply
+          reset_button: true
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+          layout:
+            layout_id: layout_threecol_33_34_33
+            change: Change
+            widget_region:
+              title: first
+              field_organization_target_id: second
+              field_location_target_id: third
+              sort_by: top
+              sort_order: top
+              items_per_page: top
+              offset: top
+              submit: first
+              reset: first
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
