@@ -62,9 +62,8 @@ display:
             layout_id: lightning_threecol_33_34_33
             change: Change
             widget_region:
-              title: third
+              title: first
               tid: second
-              field_next_review_date_value: first
               sort_by: first
               sort_order: first
               items_per_page: first
@@ -101,18 +100,18 @@ display:
           summary: ''
           description: ''
           columns:
-            field_next_review_date: field_next_review_date
             field_topic_area_of_authority: field_topic_area_of_authority
+            field_effective_date: field_effective_date
             title: title
           info:
-            field_next_review_date:
-              sortable: true
-              default_sort_order: asc
+            field_topic_area_of_authority:
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_topic_area_of_authority:
+            field_effective_date:
+              sortable: true
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
@@ -365,7 +364,12 @@ display:
           plugin_id: boolean
       sorts: {  }
       title: 'Active Delegations'
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          plugin_id: text
       footer: {  }
       empty: {  }
       relationships: {  }
@@ -411,6 +415,7 @@ display:
       defaults:
         sorts: false
         fields: false
+        header: false
       fields:
         field_topic_area_of_authority:
           id: field_topic_area_of_authority
@@ -586,6 +591,20 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: "<h1>Delegations</h1>\r\n<p>You've reached ORD's Delegations page! The default display below lists the delegations alphabetically by topic. You can sort them in ascending or descending order chronologically by effective date or alphabetically by title by clicking on the header links. You can also search or filter by title by typing a keyword in the \"Title\" search box or by topic by choosing an option in the drop-down menu. Rescinded delegations are listed on the <a href=\"/policy/rescinded-delegations\">Rescinded Delegations</a> page.</p>"
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
@@ -1421,6 +1440,7 @@ display:
         filters: false
         filter_groups: false
         fields: false
+        header: false
       path: policy/rescinded-delegations
       filters:
         status:
@@ -1788,6 +1808,20 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: "<h1>Rescinded Delegations</h1>\r\n<p>The delegations listed below have been rescinded. View all active delegations on the <a href=\"/policy/active-delegations\">Active Delegations</a> page.</p>"
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:
