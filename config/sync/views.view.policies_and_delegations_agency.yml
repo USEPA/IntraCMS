@@ -357,21 +357,18 @@ display:
             group_items: {  }
           plugin_id: string
       sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          order: DESC
-          entity_type: node
-          entity_field: created
-          plugin_id: date
+        field_agency_delegation_link_title:
+          id: field_agency_delegation_link_title
+          table: node__field_agency_delegation_link
+          field: field_agency_delegation_link_title
           relationship: none
           group_type: group
           admin_label: ''
+          order: ASC
           exposed: false
           expose:
             label: ''
-          granularity: second
+          plugin_id: standard
       title: 'Agency Policies'
       header:
         area:
@@ -519,6 +516,45 @@ display:
               anonymous: '0'
               webform: '0'
               administrator: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: string
+        field_agency_delegation_link_title_1:
+          id: field_agency_delegation_link_title_1
+          table: node__field_agency_delegation_link
+          field: field_agency_delegation_link_title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: 'not empty'
+          value: ''
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
             placeholder: ''
           is_grouped: false
           group_info:
