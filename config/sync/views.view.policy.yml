@@ -15,8 +15,8 @@ dependencies:
     - node.type.policy
     - taxonomy.vocabulary.policy_topics
   content:
-    - 'taxonomy_term:policy_topics:1e57dacd-0974-47fe-b301-bcd851bdd246'
-    - 'taxonomy_term:policy_topics:4cbc30a7-4ead-45bc-9a8d-db8dd6285510'
+    - 'taxonomy_term:policy_topics:7b88e031-364c-4aa2-8a31-92f4ff9270f4'
+    - 'taxonomy_term:policy_topics:e0e74d7e-8bc8-4464-bb33-eea7418db534'
   module:
     - csv_serialization
     - datetime
@@ -1028,7 +1028,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<h1>Active Policies</h1>\r\n<p>You've reached ORD's Active Policies page! The default display below lists the policies alphabetically by topic. You can sort the table by clicking on any of the column headers. You can search by Title by typing a keyword in the <em>Title</em> search box. Filter the list by topic by selecting a topic from the <em>Topic</em> drop down list. If you wish to review any rescinded policies, you may do so on the <a href=\"/policy/rescinded-policies\">Rescinded Policies</a> page.</p>"
+            value: "<h1>Active Policies by Review Date</h1>\r\n<p>The table below lists all active policies by review date.</p>\r\n<p>\r\n<a href=\"/policy/active-policies-review-date/export.csv\" class=\"usa-button\">Export CSV</a>\r\n</p>"
             format: full_html
           plugin_id: text
       title: 'Active Policies by Review Date'
@@ -1293,7 +1293,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: policy/active-policies-review-date
+      path: policy/active-policies-review-date/export.csv
       display_description: ''
       sorts:
         field_next_review_date_value:
@@ -1745,6 +1745,12 @@ display:
             encoding: utf8
             utf8_bom: '0'
             use_serializer_encode_only: false
+      filename: ''
+      automatic_download: false
+      store_in_public_file_directory: false
+      redirect_to_display: none
+      custom_redirect_path: false
+      include_query_params: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -1775,7 +1781,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          order: DESC
+          order: ASC
           exposed: false
           expose:
             label: ''
@@ -1788,6 +1794,7 @@ display:
         filters: false
         filter_groups: false
         exposed_form: false
+        pager: false
       fields:
         field_prior_identifier:
           id: field_prior_identifier
@@ -1967,7 +1974,7 @@ display:
           click_sort_column: title
           type: link
           settings:
-            trim_length: 80
+            trim_length: null
             url_only: false
             url_plain: false
             rel: '0'
@@ -2064,8 +2071,8 @@ display:
           admin_label: ''
           operator: or
           value:
-            47: 47
-            50: 50
+            97: 97
+            98: 98
           group: 1
           exposed: false
           expose:
@@ -2252,6 +2259,10 @@ display:
               offset: top
               submit: first
               reset: first
+      pager:
+        type: none
+        options:
+          offset: 0
     cache_metadata:
       max-age: -1
       contexts:
