@@ -534,19 +534,7 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
-      sorts:
-        field_organization_target_id:
-          id: field_organization_target_id
-          table: node__field_organization
-          field: field_organization_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: standard
+      sorts: {  }
       title: Staff
       header: {  }
       footer: {  }
@@ -1125,8 +1113,9 @@ display:
           summary: ''
           description: ''
           columns:
-            field_organization: field_organization
             title: title
+            weight: weight
+            field_organization: field_organization
             field_staff_position: field_staff_position
             field_phone: field_phone
             field_email: field_email
@@ -1134,15 +1123,22 @@ display:
             field_staff_secondary_location: field_staff_secondary_location
             field_last_name: field_last_name
           info:
-            field_organization:
+            title:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            weight:
               sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            title:
-              sortable: true
+            field_organization:
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
@@ -1190,7 +1186,7 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-          default: field_last_name
+          default: weight
           empty_table: false
       row:
         type: fields
@@ -1200,69 +1196,6 @@ display:
           separator: ''
           hide_empty: false
       fields:
-        field_organization:
-          id: field_organization
-          table: node__field_organization
-          field: field_organization
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Organization
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
         title:
           id: title
           table: node_field_data
@@ -1327,6 +1260,69 @@ display:
           field_api_classes: false
           entity_type: node
           entity_field: title
+          plugin_id: field
+        field_organization:
+          id: field_organization
+          table: node__field_organization
+          field: field_organization
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Organization
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
           plugin_id: field
         field_staff_position:
           id: field_staff_position
@@ -1877,19 +1873,7 @@ display:
         operator: AND
         groups:
           1: AND
-      sorts:
-        field_organization_target_id:
-          id: field_organization_target_id
-          table: node__field_organization
-          field: field_organization_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: standard
+      sorts: {  }
       exposed_form:
         type: vefl_basic
         options:
@@ -2324,6 +2308,7 @@ display:
         title: false
         fields: false
         header: false
+        sorts: false
       display_description: ''
       relationships:
         term_node_tid:
@@ -2450,6 +2435,11 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        weight:
+          id: weight
+          table: draggableviews_structure
+          field: weight
+          plugin_id: numeric
         field_staff_position:
           id: field_staff_position
           table: node__field_staff_position
@@ -2828,6 +2818,7 @@ display:
           field_api_classes: false
           plugin_id: field
       header: {  }
+      sorts: {  }
     cache_metadata:
       max-age: -1
       contexts:
