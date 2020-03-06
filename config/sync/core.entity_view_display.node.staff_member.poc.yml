@@ -1,9 +1,9 @@
-uuid: 787fc022-f2c4-418a-936a-62755872ca3a
+uuid: 61d593e3-968e-4511-8cb7-7f31880b8f9c
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.staff_photo_grid
+    - core.entity_view_mode.node.poc
     - field.field.node.staff_member.field_email
     - field.field.node.staff_member.field_first_name
     - field.field.node.staff_member.field_last_name
@@ -21,6 +21,7 @@ dependencies:
     - layout_builder
     - layout_builder_restrictions
     - layout_library
+    - telephone
     - user
 third_party_settings:
   layout_builder:
@@ -32,27 +33,25 @@ third_party_settings:
     entity_view_mode_restriction:
       allowed_blocks: {  }
       allowed_layouts: {  }
-id: node.staff_member.staff_photo_grid
+id: node.staff_member.poc
 targetEntityType: node
 bundle: staff_member
-mode: staff_photo_grid
+mode: poc
 content:
-  field_staff_photo:
-    type: entity_reference_entity_view
+  field_email:
     weight: 1
-    label: hidden
-    settings:
-      view_mode: staff_member_card
-      link: false
+    label: inline
+    settings: {  }
     third_party_settings: {  }
+    type: email_mailto
     region: content
-  field_staff_position:
+  field_phone:
     weight: 2
-    label: hidden
+    label: inline
     settings:
-      link_to_entity: false
+      title: ''
     third_party_settings: {  }
-    type: string
+    type: telephone_link
     region: content
   links:
     weight: 0
@@ -61,14 +60,14 @@ content:
     third_party_settings: {  }
 hidden:
   content_moderation_control: true
-  field_email: true
   field_first_name: true
   field_last_name: true
   field_location: true
   field_organization: true
-  field_phone: true
   field_research_program_area: true
   field_staff_biography: true
+  field_staff_photo: true
+  field_staff_position: true
   field_staff_profile: true
   field_staff_secondary_location: true
   search_api_excerpt: true

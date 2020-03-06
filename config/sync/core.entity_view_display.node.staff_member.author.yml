@@ -1,9 +1,9 @@
-uuid: 787fc022-f2c4-418a-936a-62755872ca3a
+uuid: 490d113d-3df5-4cc8-aa73-9e7e63637e0a
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.staff_photo_grid
+    - core.entity_view_mode.node.author
     - field.field.node.staff_member.field_email
     - field.field.node.staff_member.field_first_name
     - field.field.node.staff_member.field_last_name
@@ -21,6 +21,8 @@ dependencies:
     - layout_builder
     - layout_builder_restrictions
     - layout_library
+    - link
+    - text
     - user
 third_party_settings:
   layout_builder:
@@ -32,11 +34,19 @@ third_party_settings:
     entity_view_mode_restriction:
       allowed_blocks: {  }
       allowed_layouts: {  }
-id: node.staff_member.staff_photo_grid
+id: node.staff_member.author
 targetEntityType: node
 bundle: staff_member
-mode: staff_photo_grid
+mode: author
 content:
+  field_staff_biography:
+    type: text_trimmed
+    weight: 3
+    region: content
+    label: inline
+    settings:
+      trim_length: 400
+    third_party_settings: {  }
   field_staff_photo:
     type: entity_reference_entity_view
     weight: 1
@@ -46,13 +56,17 @@ content:
       link: false
     third_party_settings: {  }
     region: content
-  field_staff_position:
+  field_staff_profile:
     weight: 2
-    label: hidden
+    label: inline
     settings:
-      link_to_entity: false
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
-    type: string
+    type: link
     region: content
   links:
     weight: 0
@@ -68,7 +82,6 @@ hidden:
   field_organization: true
   field_phone: true
   field_research_program_area: true
-  field_staff_biography: true
-  field_staff_profile: true
+  field_staff_position: true
   field_staff_secondary_location: true
   search_api_excerpt: true
