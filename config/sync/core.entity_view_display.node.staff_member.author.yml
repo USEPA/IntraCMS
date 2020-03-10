@@ -1,0 +1,87 @@
+uuid: 490d113d-3df5-4cc8-aa73-9e7e63637e0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.author
+    - field.field.node.staff_member.field_email
+    - field.field.node.staff_member.field_first_name
+    - field.field.node.staff_member.field_last_name
+    - field.field.node.staff_member.field_location
+    - field.field.node.staff_member.field_organization
+    - field.field.node.staff_member.field_phone
+    - field.field.node.staff_member.field_research_program_area
+    - field.field.node.staff_member.field_staff_biography
+    - field.field.node.staff_member.field_staff_photo
+    - field.field.node.staff_member.field_staff_position
+    - field.field.node.staff_member.field_staff_profile
+    - field.field.node.staff_member.field_staff_secondary_location
+    - node.type.staff_member
+  module:
+    - layout_builder
+    - layout_builder_restrictions
+    - layout_library
+    - link
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+  layout_library:
+    enable: false
+  layout_builder_restrictions:
+    entity_view_mode_restriction:
+      allowed_blocks: {  }
+      allowed_layouts: {  }
+id: node.staff_member.author
+targetEntityType: node
+bundle: staff_member
+mode: author
+content:
+  field_staff_biography:
+    type: text_trimmed
+    weight: 3
+    region: content
+    label: inline
+    settings:
+      trim_length: 400
+    third_party_settings: {  }
+  field_staff_photo:
+    type: entity_reference_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: staff_member_card
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_staff_profile:
+    weight: 2
+    label: inline
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  content_moderation_control: true
+  field_email: true
+  field_first_name: true
+  field_last_name: true
+  field_location: true
+  field_organization: true
+  field_phone: true
+  field_research_program_area: true
+  field_staff_position: true
+  field_staff_secondary_location: true
+  search_api_excerpt: true

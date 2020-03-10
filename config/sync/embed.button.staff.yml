@@ -1,0 +1,32 @@
+uuid: 3eb8347f-6a40-4c61-8fec-28a00b27f74f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.author
+    - core.entity_view_mode.node.poc
+    - core.entity_view_mode.node.staff_member_card
+    - core.entity_view_mode.node.staff_photo_grid
+    - node.type.staff_member
+  module:
+    - entity_embed
+    - node
+label: Staff
+id: staff
+type_id: entity
+type_settings:
+  entity_type: node
+  bundles:
+    - staff_member
+  display_plugins:
+    - 'view_mode:node.author'
+    - 'view_mode:node.poc'
+    - 'view_mode:node.staff_member_card'
+    - 'view_mode:node.staff_photo_grid'
+  entity_browser: ''
+  entity_browser_settings:
+    display_review: false
+icon:
+  data: iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABVklEQVRYhe2UsUoDQRCGvxGx0zIcgmBhEdAqY6G9pYXY5AXsUvgIeYIQUqTzBSKY2jewmtimsBCEkDplCBmLbCDG3LGnEpv9YDl2Zmfmvx1mIZFIJP4Z+W0CVc2ABlAFhu7eHQwG460IUNVj4AXIljZ3H4vIpZm9x+TYiS2kqmcbXM3V4gAikrl7MyZvtAB3b7m7qeremus8JyTP/jMBBYxK2r+xm+cI/W2F7UU421PVOdAzs0egDVzx9UfmItKOFVB0AwfAbViH4exN2J8CmNkzUAeGwDx868EeRdQU1Gq1J+BaRPbNbBqbPIbcFsQSWlVlcWMTYBg7gtECRKQHvAKzUPQEuHf3ZXvWRY3cvS8iHTN7K8wdq3Ql+R3QBdZHchNToGFmD38iQFUzd/8QkTKtmwFHZrbxeS77DlRKFodFmytFzjJM3L1fMgYRmZSNSSQSia3xCeMtZt8cyGJsAAAAAElFTkSuQmCC
+  uri: 'public://embed_buttons/Person-add-01.png'
+icon_uuid: null
