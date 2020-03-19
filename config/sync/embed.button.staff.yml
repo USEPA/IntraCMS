@@ -3,10 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.author
     - core.entity_view_mode.node.poc
-    - core.entity_view_mode.node.staff_member_card
-    - core.entity_view_mode.node.staff_photo_grid
+    - core.entity_view_mode.node.poc_simple
     - node.type.staff_member
   module:
     - entity_embed
@@ -19,10 +17,8 @@ type_settings:
   bundles:
     - staff_member
   display_plugins:
-    - 'view_mode:node.author'
     - 'view_mode:node.poc'
-    - 'view_mode:node.staff_member_card'
-    - 'view_mode:node.staff_photo_grid'
+    - 'view_mode:node.poc_simple'
   entity_browser: ''
   entity_browser_settings:
     display_review: false
