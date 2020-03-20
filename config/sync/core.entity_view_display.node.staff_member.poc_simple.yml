@@ -1,0 +1,73 @@
+uuid: 941520f8-57b7-4a10-907a-2ca7072abfd1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.poc_simple
+    - field.field.node.staff_member.field_email
+    - field.field.node.staff_member.field_first_name
+    - field.field.node.staff_member.field_last_name
+    - field.field.node.staff_member.field_location
+    - field.field.node.staff_member.field_organization
+    - field.field.node.staff_member.field_phone
+    - field.field.node.staff_member.field_research_program_area
+    - field.field.node.staff_member.field_staff_biography
+    - field.field.node.staff_member.field_staff_photo
+    - field.field.node.staff_member.field_staff_position
+    - field.field.node.staff_member.field_staff_profile
+    - field.field.node.staff_member.field_staff_secondary_location
+    - node.type.staff_member
+  module:
+    - layout_builder
+    - layout_builder_restrictions
+    - layout_library
+    - telephone
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+  layout_library:
+    enable: false
+  layout_builder_restrictions:
+    entity_view_mode_restriction:
+      allowed_blocks: {  }
+      allowed_layouts: {  }
+id: node.staff_member.poc_simple
+targetEntityType: node
+bundle: staff_member
+mode: poc_simple
+content:
+  field_email:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: email_mailto
+    region: content
+  field_phone:
+    weight: 2
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
+    type: telephone_link
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  content_moderation_control: true
+  field_first_name: true
+  field_last_name: true
+  field_location: true
+  field_organization: true
+  field_research_program_area: true
+  field_staff_biography: true
+  field_staff_photo: true
+  field_staff_position: true
+  field_staff_profile: true
+  field_staff_secondary_location: true
+  search_api_excerpt: true
