@@ -1,8 +1,9 @@
-uuid: 28843b35-2a4f-4f95-9ee4-a69e451524c0
+uuid: 29ad3043-9292-406a-abd8-a868bdea1566
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.media.link
     - field.field.media.document.field_description
     - field.field.media.document.field_document
     - field.field.media.document.field_keywords
@@ -10,45 +11,35 @@ dependencies:
     - media.type.document
   module:
     - file
+    - layout_builder
     - media_inline_embed
 third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
   media_inline_embed:
-    embed_inline: false
+    embed_inline: true
 _core:
   default_config_hash: 4tgcXj_iKv9Fw3xmONUfCHKqO7OeOa11qVesruN4k4k
-id: media.document.default
+id: media.document.link
 targetEntityType: media
 bundle: document
-mode: default
+mode: link
 content:
-  field_description:
-    type: string
-    weight: 2
-    region: content
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   field_document:
-    weight: 1
-    label: above
+    weight: 0
+    label: hidden
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
     type: file_default
     region: content
-  name:
-    label: hidden
-    type: string
-    weight: 0
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    region: content
 hidden:
   created: true
+  field_description: true
   field_keywords: true
   field_media_in_library: true
+  name: true
   search_api_excerpt: true
   thumbnail: true
   uid: true

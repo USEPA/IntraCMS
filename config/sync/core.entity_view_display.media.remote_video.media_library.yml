@@ -1,34 +1,32 @@
-uuid: 4a68ff3e-be1a-4244-b9ba-101524715959
+uuid: ea26a605-8ec5-45b9-b5cf-9a2d8935c228
 langcode: en
-status: true
+status: false
 dependencies:
   config:
-    - core.entity_view_mode.media.thumbnail
-    - field.field.media.tweet.embed_code
-    - field.field.media.tweet.field_media_in_library
+    - core.entity_view_mode.media.media_library
+    - field.field.media.remote_video.field_description
+    - field.field.media.remote_video.field_media_in_library
     - image.style.medium_220
-    - media.type.tweet
+    - media.type.remote_video
   module:
     - image
-_core:
-  default_config_hash: 7POQWMMGHaAd5G2_zxlo9bWG9g3LLLyKp0jUb6hvnHU
-id: media.tweet.thumbnail
+id: media.remote_video.media_library
 targetEntityType: media
-bundle: tweet
-mode: thumbnail
+bundle: remote_video
+mode: media_library
 content:
   thumbnail:
     type: image
-    weight: 0
     label: hidden
     settings:
       image_style: medium_220
       image_link: ''
+    weight: 0
     third_party_settings: {  }
     region: content
 hidden:
   created: true
-  embed_code: true
+  field_description: true
   field_media_in_library: true
   name: true
   search_api_excerpt: true

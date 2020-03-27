@@ -8,9 +8,14 @@ dependencies:
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
     - field.field.media.image.layout_builder__translation
+    - image.style.media_library
     - media.type.image
   module:
     - image
+    - media_inline_embed
+third_party_settings:
+  media_inline_embed:
+    embed_inline: false
 _core:
   default_config_hash: VLDxfMVPTkd2xvOjFMCh3kWmaOYnd03zggFXuUXQVEY
 id: media.image.default
@@ -18,29 +23,29 @@ targetEntityType: media
 bundle: image
 mode: default
 content:
-  field_keywords:
-    weight: 1
-    label: inline
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
   image:
     type: image
-    weight: 0
+    weight: 1
     label: hidden
     settings:
-      image_style: ''
+      image_style: media_library
       image_link: ''
     third_party_settings: {  }
     region: content
+  name:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
   created: true
   field_caption: true
+  field_keywords: true
   field_media_in_library: true
   layout_builder__translation: true
-  name: true
   search_api_excerpt: true
   thumbnail: true
   uid: true
