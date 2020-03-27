@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "72553f577a6d17482fe4789be68967e9",
+=======
+    "content-hash": "709d684b9bd9ea042c2804d42d5365ee",
+>>>>>>> 9cdfb8df9cf9609c8c1b9e964b38f4cf8b5e00a0
     "packages": [
         {
             "name": "acquia/lightning",
@@ -8520,7 +8524,7 @@
                     }
                 },
                 "patches_applied": {
-                    "3119441: Error updating from version 1.1 to version 2.2": "https://www.drupal.org/files/issues/2020-03-14/error_updating_from_version_1.1_to_version_2.2-3119441-005.patch"
+                    "3119441: Database unknown column 'field_event_date_rrule_index', schema update exception": "https://www.drupal.org/files/issues/2020-03-14/error_updating_from_version_1.1_to_version_2.2-3119441-005.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -9448,20 +9452,20 @@
         },
         {
             "name": "drupal/webform",
-            "version": "5.4.0",
+            "version": "5.9.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/webform.git",
-                "reference": "8.x-5.4"
+                "reference": "8.x-5.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.4.zip",
-                "reference": "8.x-5.4",
-                "shasum": "367de6af2485d3838ec80f41c536f6ecc52a405f"
+                "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.9.zip",
+                "reference": "8.x-5.9",
+                "shasum": "fb49b16dd0c421512834fc50c811fa2cd6c48121"
             },
             "require": {
-                "drupal/core": "*"
+                "drupal/core": "^8.7.7 || ^9"
             },
             "require-dev": {
                 "drupal/address": "~1.4",
@@ -9470,16 +9474,20 @@
                 "drupal/chosen": "~2.6",
                 "drupal/devel": "*",
                 "drupal/entity_print": "^2.1",
-                "drupal/jsonapi": "~2.0 || ~8.7",
-                "drupal/mailsystem": "~4.0",
+                "drupal/gnode": "*",
+                "drupal/group": "~1.0",
+                "drupal/mailsystem": "~4.1",
                 "drupal/select2": "~1.1",
                 "drupal/smtp": "~1.0",
                 "drupal/telephone_validation": "^2.2",
                 "drupal/token": "~1.3",
                 "drupal/webform_access": "*",
                 "drupal/webform_attachment": "*",
+                "drupal/webform_devel": "*",
                 "drupal/webform_entity_print": "*",
+                "drupal/webform_group": "*",
                 "drupal/webform_node": "*",
+                "drupal/webform_options_limit": "*",
                 "drupal/webform_scheduled_email": "*",
                 "drupal/webform_ui": "*"
             },
@@ -9489,8 +9497,13 @@
                     "dev-5.x": "5.x-dev"
                 },
                 "drupal": {
+<<<<<<< HEAD
                     "version": "8.x-5.4",
                     "datestamp": "1566209286",
+=======
+                    "version": "8.x-5.9",
+                    "datestamp": "1584560013",
+>>>>>>> 9cdfb8df9cf9609c8c1b9e964b38f4cf8b5e00a0
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9553,8 +9566,7 @@
             "description": "Enables the creation of webforms and questionnaires.",
             "homepage": "https://drupal.org/project/webform",
             "support": {
-                "source": "http://cgit.drupalcode.org/webform",
-                "error": "Invalid dependency: \"telephone_validation/telephone_validation\" is an unknown drupal 8 package name",
+                "source": "https://git.drupalcode.org/project/webform",
                 "issues": "https://www.drupal.org/project/issues/webform?version=8.x",
                 "docs": "https://www.drupal.org/docs/8/modules/webform",
                 "forum": "https://drupal.stackexchange.com/questions/tagged/webform"
@@ -9562,9 +9574,9 @@
         },
         {
             "name": "drupal/webform_access",
-            "version": "5.4.0",
+            "version": "5.9.0",
             "require": {
-                "drupal/core": "~8.0",
+                "drupal/core": "^8.7.7 || ^9",
                 "drupal/webform": "self.version",
                 "drupal/webform_node": "*"
             },
@@ -9574,8 +9586,13 @@
                     "dev-5.x": "5.x-dev"
                 },
                 "drupal": {
+<<<<<<< HEAD
                     "version": "8.x-5.4",
                     "datestamp": "1566209286",
+=======
+                    "version": "8.x-5.9",
+                    "datestamp": "1584560013",
+>>>>>>> 9cdfb8df9cf9609c8c1b9e964b38f4cf8b5e00a0
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9735,9 +9752,9 @@
         },
         {
             "name": "drupal/webform_node",
-            "version": "5.4.0",
+            "version": "5.9.0",
             "require": {
-                "drupal/core": "*",
+                "drupal/core": "^8.7.7 || ^9",
                 "drupal/webform": "self.version"
             },
             "type": "metapackage",
@@ -9746,8 +9763,13 @@
                     "dev-5.x": "5.x-dev"
                 },
                 "drupal": {
+<<<<<<< HEAD
                     "version": "8.x-5.4",
                     "datestamp": "1566209286",
+=======
+                    "version": "8.x-5.9",
+                    "datestamp": "1584560013",
+>>>>>>> 9cdfb8df9cf9609c8c1b9e964b38f4cf8b5e00a0
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9808,9 +9830,9 @@
         },
         {
             "name": "drupal/webform_ui",
-            "version": "5.4.0",
+            "version": "5.9.0",
             "require": {
-                "drupal/core": "~8.0",
+                "drupal/core": "^8.7.7 || ^9",
                 "drupal/webform": "self.version"
             },
             "type": "metapackage",
@@ -9819,8 +9841,13 @@
                     "dev-5.x": "5.x-dev"
                 },
                 "drupal": {
+<<<<<<< HEAD
                     "version": "8.x-5.4",
                     "datestamp": "1566209286",
+=======
+                    "version": "8.x-5.9",
+                    "datestamp": "1584560013",
+>>>>>>> 9cdfb8df9cf9609c8c1b9e964b38f4cf8b5e00a0
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
