@@ -9,7 +9,6 @@ dependencies:
     - media.type.document
     - media.type.image
     - media.type.remote_video
-    - media.type.video
   module:
     - entity_browser
     - file
@@ -1175,7 +1174,7 @@ display:
           operator: in
           value:
             image: image
-            video: video
+            remote_video: remote_video
           group: 1
           exposed: false
           expose:
@@ -1184,6 +1183,8 @@ display:
             description: ''
             use_operator: false
             operator: bundle_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: type
             required: false
             remember: false
@@ -1201,8 +1202,6 @@ display:
               media_manager: '0'
             reduce: false
             argument: bundle
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
