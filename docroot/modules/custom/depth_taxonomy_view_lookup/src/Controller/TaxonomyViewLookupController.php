@@ -24,6 +24,12 @@ class TaxonomyViewLookupController extends ControllerBase {
     $this->entity_manager = $entity_manager;
   }
 
+  public static function create(ContainerInterface $container) {
+    $renderer = $container->get('renderer');
+    $entity_manager = $container->get('entity_type.manager');
+    return new static($renderer, $entity_manager);
+  }
+
   private function isViewType($arg) {
     return in_array($arg, $this->view_types);
   }
@@ -73,12 +79,6 @@ class TaxonomyViewLookupController extends ControllerBase {
     return $taxonomy_terms_in_path[count($taxonomy_terms_in_path) - 1];
   }
 
-
-  public static function create(ContainerInterface $container) {
-    $renderer = $container->get('renderer');
-    $entity_manager = $container->get('entity_type.manager');
-    return new static($renderer, $entity_manager);
-  }
 
   /**
    * @param $parent_term
