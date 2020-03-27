@@ -1,0 +1,35 @@
+taxonomy_depth_lookup.parent_level:
+  #staff/Org/Child/grid or staff/Org/Child
+  path: '/staff/{parent_term}/{view_type}'
+  defaults:
+    _controller: '\Drupal\depth_taxonomy_view_lookup\Controller\TaxonomyViewLookupController::redirectToView'
+    view_type: null
+  requirements:
+    _permission: 'access content'
+
+taxonomy_depth_lookup.one_level_deep:
+  #staff/Org/Child/grid or staff/Org/Child
+  path: '/staff/{parent_term}/{arg_1}/{view_type}'
+  defaults:
+    _controller: '\Drupal\depth_taxonomy_view_lookup\Controller\TaxonomyViewLookupController::redirectToView'
+    view_type: null
+  requirements:
+    _permission: 'access content'
+
+taxonomy_depth_lookup.two_levels_deep:
+  #staff/Org/Child/DeepChild3/grid or staff/Org/Child/DeepChild3
+  path: '/staff/{parent_term}/{arg_1}/{arg_2}/{view_type}'
+  defaults:
+    _controller: '\Drupal\depth_taxonomy_view_lookup\Controller\TaxonomyViewLookupController::redirectToView'
+    view_type: null
+  requirements:
+    _permission: 'access content'
+
+taxonomy_depth_lookup.three_levels_deep:
+  #staff/Org/Child/DeepChild3/DeepChild4/grid or staff/Org/Child/DeepChild3/DeepChild4
+  path: '/staff/{parent_term}/{arg_1}/{arg_2}/{arg_3}/{view_type}'
+  defaults:
+    _controller: '\Drupal\depth_taxonomy_view_lookup\Controller\TaxonomyViewLookupController::redirectToView'
+    view_type: null
+  requirements:
+    _permission: 'access content'
