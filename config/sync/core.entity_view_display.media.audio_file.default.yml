@@ -11,6 +11,7 @@ dependencies:
   module:
     - file
     - media_inline_embed
+    - mediaelement
 third_party_settings:
   media_inline_embed:
     embed_inline: false
@@ -21,35 +22,30 @@ targetEntityType: media
 bundle: audio_file
 mode: default
 content:
-  field_keywords:
-    weight: 2
-    label: inline
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
   field_media_audio_file:
-    type: file_audio
+    type: mediaelement_file_audio
     weight: 0
     label: visually_hidden
     settings:
-      controls: true
-      autoplay: false
-      loop: false
-      multiple_file_display_type: tags
+      controls: '1'
+      multiple_file_display_type: sources
+      download_link: true
+      download_text: 'Download Audio'
+      autoplay: 0
+      loop: 0
     third_party_settings: {  }
     region: content
   field_transcript:
     weight: 1
     label: hidden
     settings:
-      use_description_as_link_text: true
+      use_description_as_link_text: false
     third_party_settings: {  }
     type: file_default
     region: content
 hidden:
   created: true
+  field_keywords: true
   field_media_in_library: true
   name: true
   search_api_excerpt: true
