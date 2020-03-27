@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - blazy
     - editor
     - entity_embed
     - linkit
@@ -84,6 +85,17 @@ filters:
     weight: -50
     settings:
       title: true
+  blazy_filter:
+    id: blazy_filter
+    provider: blazy
+    status: false
+    weight: 3
+    settings:
+      filter_tags:
+        img: img
+        iframe: iframe
+      media_switch: ''
+      use_data_uri: '0'
   media_embed:
     id: media_embed
     provider: media
