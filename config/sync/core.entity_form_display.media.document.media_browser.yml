@@ -9,8 +9,6 @@ dependencies:
     - field.field.media.document.field_keywords
     - field.field.media.document.field_media_in_library
     - media.type.document
-  module:
-    - path
 _core:
   default_config_hash: X8KEO5iV-XcsBLSyLEMOMv3sw-WxXeIdWnZZ1btyyVU
 id: media.document.media_browser
@@ -18,13 +16,24 @@ targetEntityType: media
 bundle: document
 mode: media_browser
 content:
-  field_media_in_library:
-    type: boolean_checkbox
-    settings:
-      display_label: true
+  field_description:
+    type: string_textfield
     weight: 1
-    third_party_settings: {  }
     region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_keywords:
+    type: entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0
@@ -33,22 +42,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
-  path:
-    type: path
-    weight: 30
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 100
-    region: content
-    third_party_settings: {  }
 hidden:
   created: true
-  field_description: true
   field_document: true
-  field_keywords: true
+  field_media_in_library: true
+  path: true
+  status: true
   uid: true
