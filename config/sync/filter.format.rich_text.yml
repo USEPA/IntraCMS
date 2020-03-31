@@ -15,6 +15,7 @@ dependencies:
     - linkit
     - media
     - media_inline_embed
+    - wysiwyg_template_core
 _core:
   default_config_hash: LQ7Z_f1qIeAP7aiyHGBwlgjdsAHzwISN1_6-Dvv_fVY
 name: 'Rich text'
@@ -57,7 +58,7 @@ filters:
     status: true
     weight: -44
     settings:
-      allowed_html: '<a href hreflang data-entity-type data-entity-uuid class name id data-entity-substitution> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <s> <sup> <sub> <img src width height typeof alt> <table class> <caption> <tbody> <thead> <tfoot> <th colspan rowspan scope> <td colspan rowspan> <tr> <hr> <p class> <br> <pre> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <span class> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter class data-cke-display-name data-placeholder> <figure role class> <div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button class><drupal-media data-caption data-view-mode data-align data-entity-type data-entity-uuid data-quickedit-field-id data-quickedit-entity-id><drupal-inline-media data-entity-type data-entity-uuid><audio autoplay buffered controls loop muted played preloadsrc class><embed height src type width> <source media !src type><article>'
+      allowed_html: '<a href hreflang data-entity-type data-entity-uuid class name id data-entity-substitution> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id class> <h3 id class> <h4 id class> <h5 id class> <h6 id class> <s> <sup> <sub> <img src width height typeof alt> <table class> <caption> <tbody> <thead> <tfoot> <th colspan rowspan scope> <td colspan rowspan> <tr> <hr> <p class> <br> <pre> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <span class> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter class data-cke-display-name data-placeholder> <figure role class> <div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button class><drupal-media data-caption data-view-mode data-align data-entity-type data-entity-uuid data-quickedit-field-id data-quickedit-entity-id><drupal-inline-media data-entity-type data-entity-uuid><audio autoplay buffered controls loop muted played preloadsrc class><embed height src type width> <source media !src type><article>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_autop:
@@ -120,3 +121,9 @@ filters:
       allowed_view_modes:
         link: link
         link_with_metadata: link_with_metadata
+  filter_wysiwyg_cleanup:
+    id: filter_wysiwyg_cleanup
+    provider: wysiwyg_template_core
+    status: true
+    weight: 10
+    settings: {  }
