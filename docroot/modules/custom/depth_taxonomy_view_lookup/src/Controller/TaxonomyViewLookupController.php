@@ -1,6 +1,7 @@
 <?php
 
 namespace Drupal\depth_taxonomy_view_lookup\Controller;
+
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Render\Renderer;
@@ -73,12 +74,13 @@ class TaxonomyViewLookupController extends ControllerBase {
           }
         }
       }
-      $view = $this->renderer->render(views_embed_view('organizations_with_staff', $view_type, $parent_term->id()));
+      $view = views_embed_view('organizations_with_staff', $view_type, $parent_term->id());
+      $rendered_view = $this->renderer->render($view);
     } else {
       throw new NotFoundHttpException();
     }
     return [
-      '#markup' => $view,
+      '#markup' => $rendered_view,
       '#title' => 'test'
     ];
   }

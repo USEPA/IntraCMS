@@ -34,14 +34,14 @@ class RootTaxonomyTermNameFieldFormatter extends EntityReferenceFormatterBase {
       $root = end($ancestors);
       $ret = $root->getName();
     }
-    return [['#markup' => $ret]];
-  }
+return [['#markup' => $ret]];
+}
 
-  /**
-   * {@inheritdoc}
-   */
-  public static function isApplicable(FieldDefinitionInterface $field_definition) {
+/**
+ * {@inheritdoc}
+ */
+public static function isApplicable(FieldDefinitionInterface $field_definition) {
 // This formatter is only available for taxonomy terms.
-    return $field_definition->getFieldStorageDefinition()->getSetting('target_type') == 'taxonomy_term';
-  }
+  return $field_definition->getFieldStorageDefinition()->getSetting('target_type') == 'taxonomy_term';
+}
 }

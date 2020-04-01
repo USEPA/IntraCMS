@@ -3,7 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_organization
+    - field.storage.node.field_first_name
+    - field.storage.node.field_last_name
     - field.storage.node.field_staff_position
     - node.type.staff_member
     - taxonomy.vocabulary.organization
@@ -225,15 +226,15 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_organization:
-          id: field_organization
-          table: node__field_organization
-          field: field_organization
+        field_first_name:
+          id: field_first_name
+          table: node__field_first_name
+          field: field_first_name
           relationship: none
           group_type: group
           admin_label: ''
-          label: Organization
-          exclude: false
+          label: 'First Name'
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -273,11 +274,74 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
+          click_sort_column: value
+          type: string
           settings:
-            link: true
-          group_column: target_id
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_last_name:
+          id: field_last_name
+          table: node__field_last_name
+          field: field_last_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Last Name'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -319,6 +383,30 @@ display:
           id: weight
           table: draggableviews_structure
           field: weight
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: standard
+        field_last_name_value:
+          id: field_last_name_value
+          table: node__field_last_name
+          field: field_last_name_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: standard
+        field_first_name_value:
+          id: field_first_name_value
+          table: node__field_first_name
+          field: field_first_name_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -404,7 +492,8 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_organization'
+        - 'config:field.storage.node.field_first_name'
+        - 'config:field.storage.node.field_last_name'
         - 'config:field.storage.node.field_staff_position'
   page_1:
     display_plugin: page
@@ -423,5 +512,6 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_organization'
+        - 'config:field.storage.node.field_first_name'
+        - 'config:field.storage.node.field_last_name'
         - 'config:field.storage.node.field_staff_position'
