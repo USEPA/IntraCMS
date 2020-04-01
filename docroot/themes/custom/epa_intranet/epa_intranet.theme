@@ -55,7 +55,7 @@ function epa_intranet_preprocess_views_view_table(&$variables) {
   $view = $variables['view'];
   $current_user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
   if ($current_user->hasRole('administrator') || $current_user->hasRole('editor')) {
-    if ($view->id() == 'organizations_with_staff' && $view->current_display == 'main_page') {
+    if ($view->id() == 'organizations_with_staff' && $view->current_display != 'main_page') {
       $results = $variables['result'];
       if (count($results) > 0) {
         $key = array_keys($results)[0];
