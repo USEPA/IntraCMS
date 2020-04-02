@@ -70,7 +70,6 @@ function epa_intranet_preprocess_views_view_table(&$variables) {
 
 
 function epa_intranet_preprocess_views_view__staff_order(&$variables) {
-  $a = 'a';
   $view = $variables['view'];
   if ($view->id() == 'staff_order' && count($view->args) > 0) {
     $tid = $view->args[0];
