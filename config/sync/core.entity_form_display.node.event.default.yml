@@ -11,7 +11,6 @@ dependencies:
     - field.field.node.event.field_event_tags
     - field.field.node.event.field_show_on_ord_calendar
     - node.type.event
-    - workflows.workflow.editorial
   module:
     - content_moderation
     - entity_reference_tree
@@ -42,18 +41,20 @@ content:
       rows: 5
       placeholder: ''
       summary_rows: 1
+      show_summary: false
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
   field_event_host:
     weight: 10
     settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
       theme: default
       dots: 0
+      label: 'Select the Event Host'
+      match_operator: CONTAINS
       match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
     type: entity_reference_tree
     region: content
