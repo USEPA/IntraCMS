@@ -8,6 +8,7 @@ dependencies:
     - field.storage.node.field_staff_position
     - node.type.staff_member
     - taxonomy.vocabulary.organization
+    - user.role.authenticated
   module:
     - draggableviews
     - node
@@ -28,9 +29,10 @@ display:
     position: 0
     display_options:
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            authenticated: authenticated
       cache:
         type: tag
         options: {  }
@@ -490,7 +492,7 @@ display:
         - 'languages:language_interface'
         - url
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_first_name'
         - 'config:field.storage.node.field_last_name'
@@ -502,7 +504,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: staff-order/%
+      path: staff/staff-order/%
     cache_metadata:
       max-age: 0
       contexts:
@@ -510,7 +512,7 @@ display:
         - 'languages:language_interface'
         - url
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_first_name'
         - 'config:field.storage.node.field_last_name'
