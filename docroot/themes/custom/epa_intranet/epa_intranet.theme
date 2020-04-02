@@ -54,16 +54,29 @@ function epa_intranet_preprocess_media(&$variables) {
 function epa_intranet_preprocess_views_view_table(&$variables) {
   $view = $variables['view'];
   $current_user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-  if ($current_user->hasRole('administrator') || $current_user->hasRole('editor')) {
+  if ($current_user->hasRole('authenticated')) {
     if ($view->id() == 'organizations_with_staff' && $view->current_display != 'main_page') {
       $results = $variables['result'];
       if (count($results) > 0) {
         $key = array_keys($results)[0];
         $tid = $variables["result"][$key]->tid;
         if (!empty($tid)) {
-          $variables['sort_view_link'] = '/staff-order/' . $tid;
+          $variables['sort_view_link'] = '/staff/staff-order/' . $tid;
         }
       }
+    }
+  }
+}
+
+
+function epa_intranet_preprocess_views_view__staff_order(&$variables) {
+  $view = $variables['view'];
+  if ($view->id() == 'staff_order' && count($view->args) > 0) {
+    $tid = $view->args[0];
+    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($tid);
+    if (isset($term) && !empty($term)) {
+      $name = $term->label();
+      $variables['title'] = $name;
     }
   }
 }

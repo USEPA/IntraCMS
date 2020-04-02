@@ -54,7 +54,7 @@ class TaxonomyViewLookupController extends ControllerBase {
         'vid' => 'organization',
         'name' => $parent_term
       ];
-      $view_type = 'card';
+      $view_type = 'table';
     }
     $terms = $taxonomy_service->loadByProperties($properties);
     if (count($terms)) {
@@ -80,8 +80,7 @@ class TaxonomyViewLookupController extends ControllerBase {
       throw new NotFoundHttpException();
     }
     return [
-      '#markup' => $rendered_view,
-      '#title' => 'test'
+      '#markup' => $rendered_view
     ];
   }
 
