@@ -4,10 +4,6 @@ status: true
 dependencies:
   config:
     - image.style.thumbnail
-    - media.type.audio_file
-    - media.type.document
-    - media.type.image
-    - media.type.remote_video
     - taxonomy.vocabulary.tags
   module:
     - group
@@ -810,11 +806,7 @@ display:
           group_type: group
           admin_label: ''
           operator: in
-          value:
-            audio_file: audio_file
-            document: document
-            image: image
-            remote_video: remote_video
+          value: {  }
           group: 1
           exposed: true
           expose:
@@ -823,8 +815,6 @@ display:
             description: ''
             use_operator: false
             operator: bundle_op
-            operator_limit_selection: false
-            operator_list: {  }
             identifier: bundle
             required: false
             remember: false
@@ -834,8 +824,10 @@ display:
               anonymous: '0'
               webform: '0'
               administrator: '0'
-            reduce: true
+            reduce: false
             argument: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''

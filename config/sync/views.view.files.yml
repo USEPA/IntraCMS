@@ -819,10 +819,12 @@ display:
           clear_on_exposed: false
           action_title: Action
           selected_actions:
-            -
-              action_id: views_bulk_operations_delete_entity
-              preconfiguration:
-                label_override: 'Delete Files'
+            views_bulk_operations_delete_entity: views_bulk_operations_delete_entity
+            pathauto_update_alias: 0
+            'entity:save_action:file': 0
+          preconfiguration:
+            views_bulk_operations_delete_entity:
+              label_override: 'Delete Files'
           plugin_id: views_bulk_operations_bulk_form
         fid:
           id: fid
