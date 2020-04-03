@@ -1,0 +1,19 @@
+uuid: 9d8febd7-3744-478d-bdf5-ba3f7d78807c
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.policy
+    - media.type.remote_video
+  module:
+    - groupmedia
+    - media
+id: policy-group_media-remote_video
+label: 'Policy: Group media (Remote Video)'
+description: 'Adds <em class="placeholder">Remote Video</em> content to groups both publicly and privately.'
+group_type: policy
+content_plugin: 'group_media:remote_video'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

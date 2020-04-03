@@ -1,0 +1,27 @@
+uuid: ceb2c092-effc-4db7-a011-e0a48aa898f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_transcript
+    - media.type.audio_file
+  module:
+    - file
+id: media.audio_file.field_transcript
+field_name: field_transcript
+entity_type: media
+bundle: audio_file
+label: Transcript
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'transcipts/[date:custom:Ymd]'
+  file_extensions: txt
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file
