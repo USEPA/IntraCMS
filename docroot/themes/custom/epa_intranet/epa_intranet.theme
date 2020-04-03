@@ -25,6 +25,7 @@ function epa_intranet_preprocess_image(&$variables) {
     unset($variables['attributes']['height']);
   }
 }
+
 function epa_intranet_preprocess_field(&$variables, $hook) {
   $elements = $variables['element'];
   if ($elements['#field_name'] == 'field_caption') {
@@ -50,12 +51,32 @@ function epa_intranet_preprocess_media(&$variables) {
   }
 }
 
-function hook_theme_suggestions_taxonomy_term_alter(&$suggestions, $vars, $hook) {
-  $term = $vars['elements']['#taxonomy_term'];
-  $sanitized_view_mode = strtr($vars['elements']['#view_mode'], '.', '_');
-  $suggestions[] = 'taxonomy_term__' . $term->bundle() . '__' . $sanitized_view_mode;
-  $suggestions[] = 'taxonomy_term__' . $term->id() . '__' . $sanitized_view_mode;
-  $suggestions[] = 'taxonomy_term__' . $sanitized_view_mode;
+function epa_intranet_preprocess_views_view_table(&$variables) {
+  $view = $variables['view'];
+  $current_user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+  if ($current_user->hasRole('authenticated')) {
+    if ($view->id() == 'organizations_with_staff' && $view->current_display != 'main_page') {
+      $results = $variables['result'];
+      if (count($results) > 0) {
+        $key = array_keys($results)[0];
+        $tid = $variables["result"][$key]->tid;
+        if (!empty($tid)) {
+          $variables['sort_view_link'] = '/staff/staff-order/' . $tid;
+        }
+      }
+    }
+  }
+}
 
-  return $suggestions;
+
+function epa_intranet_preprocess_views_view__staff_order(&$variables) {
+  $view = $variables['view'];
+  if ($view->id() == 'staff_order' && count($view->args) > 0) {
+    $tid = $view->args[0];
+    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($tid);
+    if (isset($term) && !empty($term)) {
+      $name = $term->label();
+      $variables['title'] = $name;
+    }
+  }
 }

@@ -2,6 +2,7 @@
 
 namespace Drupal\depth_taxonomy_view_lookup\Controller;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Render\Renderer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -41,35 +42,45 @@ class TaxonomyViewLookupController extends ControllerBase {
    *   Return markup array.
    */
   public function redirectToView($parent_term, $arg_1 = null, $arg_2 = null, $arg_3 = null, $view_type = null) {
-    $args = func_get_args();
-    $parent_term = array_shift($args);
     $taxonomy_service = $this->entity_manager->getStorage("taxonomy_term");
-    $properties = [
-      'vid' => 'organization',
-      'name' => $parent_term
-    ];
+    if ($this->isViewType($parent_term) && isset($arg_1)) {
+      $request = \Drupal::request();
+      $referer = $request->headers->get('referer');
+      return new RedirectResponse($referer);
+    } else {
+      $args = func_get_args();
+      $parent_term = array_shift($args);
+      $properties = [
+        'vid' => 'organization',
+        'name' => $parent_term
+      ];
+      $view_type = 'table';
+    }
     $terms = $taxonomy_service->loadByProperties($properties);
-    $parent_term = array_values($terms)[0];
-    $view_type = 'card';
-    foreach ($args as $arg) {
-      if (isset($arg)) {
-        if ($this->isViewType($arg)) {
-          $view_type = $arg;
-        } else {
-          $properties = $this->generate_taxonomy_properties($parent_term, $arg);
-          $terms = $taxonomy_service->loadByProperties($properties);
-          if (count($terms) > 0) {
-            $parent_term = array_values($terms)[0];
+    if (count($terms)) {
+      $parent_term = array_values($terms)[0];
+      foreach ($args as $arg) {
+        if (isset($arg)) {
+          if ($this->isViewType($arg)) {
+            $view_type = $arg;
           } else {
-            throw new NotFoundHttpException();
+            $properties = $this->generate_taxonomy_properties($parent_term, $arg);
+            $terms = $taxonomy_service->loadByProperties($properties);
+            if (count($terms) > 0) {
+              $parent_term = array_values($terms)[0];
+            } else {
+              throw new NotFoundHttpException();
+            }
           }
         }
       }
+      $view = views_embed_view('organizations_with_staff', $view_type, $parent_term->id());
+      $rendered_view = $this->renderer->render($view);
+    } else {
+      throw new NotFoundHttpException();
     }
-    $view = $this->renderer->render(views_embed_view('organizations_with_staff', $view_type, $parent_term->id()));
     return [
-      '#markup' => $view,
-      '#title' => 'test'
+      '#markup' => $rendered_view
     ];
   }
 
