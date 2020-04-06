@@ -5,8 +5,10 @@ dependencies:
   config:
     - image.style.medium
     - image.style.thumbnail
+    - media.type.audio_file
+    - media.type.document
     - media.type.image
-    - media.type.video
+    - media.type.remote_video
   module:
     - entity_browser
     - file
@@ -675,7 +677,11 @@ display:
           group_type: group
           admin_label: ''
           operator: in
-          value: {  }
+          value:
+            audio_file: audio_file
+            document: document
+            image: image
+            remote_video: remote_video
           group: 1
           exposed: true
           expose:
@@ -684,6 +690,8 @@ display:
             description: ''
             use_operator: false
             operator: bundle_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: type
             required: false
             remember: false
@@ -691,10 +699,10 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              webform: '0'
               administrator: '0'
-            reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
+            reduce: true
+            argument: ''
           is_grouped: false
           group_info:
             label: ''
@@ -1166,7 +1174,7 @@ display:
           operator: in
           value:
             image: image
-            video: video
+            remote_video: remote_video
           group: 1
           exposed: false
           expose:
@@ -1175,6 +1183,8 @@ display:
             description: ''
             use_operator: false
             operator: bundle_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: type
             required: false
             remember: false
@@ -1192,8 +1202,6 @@ display:
               media_manager: '0'
             reduce: false
             argument: bundle
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
