@@ -2,11 +2,19 @@ uuid: 8d7d69c6-3142-4d6a-8f44-5a627b83e515
 langcode: en
 status: true
 dependencies:
+  config:
+    - core.entity_view_mode.media.full_width
+    - core.entity_view_mode.media.half_width
+    - core.entity_view_mode.media.link
+    - core.entity_view_mode.media.link_with_metadata
+    - core.entity_view_mode.media.original
+    - core.entity_view_mode.media.thumbnail
   module:
     - editor
     - entity_embed
     - linkit
     - media
+    - media_inline_embed
 _core:
   default_config_hash: LQ7Z_f1qIeAP7aiyHGBwlgjdsAHzwISN1_6-Dvv_fVY
 name: 'Rich text'
@@ -49,7 +57,7 @@ filters:
     status: true
     weight: -44
     settings:
-      allowed_html: '<a href hreflang data-entity-type data-entity-uuid class name id data-entity-substitution> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <s> <sup> <sub> <img src width height typeof alt> <table class> <caption> <tbody> <thead> <tfoot> <th colspan rowspan scope width> <td colspan rowspan width> <tr> <hr> <p class> <br> <pre> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <span class> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter class data-cke-display-name data-placeholder> <figure role class> <div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button class>'
+      allowed_html: '<a href hreflang data-entity-type data-entity-uuid class name id data-entity-substitution> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id class> <h3 id class> <h4 id class> <h5 id class> <h6 id class> <s> <sup> <sub> <img src width height typeof alt> <table class> <caption> <tbody> <thead> <tfoot> <th colspan rowspan scope> <td colspan rowspan> <tr> <hr> <p class> <br> <pre> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <span class> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter class data-cke-display-name data-placeholder> <figure role class> <div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button class><drupal-media data-caption data-view-mode data-align data-entity-type data-entity-uuid data-quickedit-field-id data-quickedit-entity-id><drupal-inline-media data-entity-type data-entity-uuid><audio autoplay buffered controls loop muted played preloadsrc class><embed height src type width> <source media !src type><article>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_autop:
@@ -87,9 +95,23 @@ filters:
   media_embed:
     id: media_embed
     provider: media
-    status: false
+    status: true
     weight: 100
     settings:
-      default_view_mode: default
-      allowed_media_types: {  }
-      allowed_view_modes: {  }
+      default_view_mode: original
+      allowed_media_types:
+        image: image
+        remote_video: remote_video
+      allowed_view_modes:
+        full_width: full_width
+        half_width: half_width
+        link: link
+        original: original
+        thumbnail: thumbnail
+  media_inline_embed:
+    id: media_inline_embed
+    provider: media_inline_embed
+    status: true
+    weight: 100
+    settings:
+      default_view_mode: link_with_metadata

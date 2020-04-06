@@ -11,7 +11,7 @@ dependencies:
     - image.style.thumbnail
     - media.type.image
   module:
-    - image_widget_crop
+    - image
     - path
 _core:
   default_config_hash: kyoAHlZTGIuGTaQuBblGBk8EhfnVKOl19_0j5WbpQqM
@@ -46,23 +46,16 @@ content:
     third_party_settings: {  }
     region: content
   image:
-    type: image_widget_crop
-    weight: 0
+    type: image_image
+    weight: 1
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
-      crop_list:
-        - freeform
-      show_crop_area: true
-      crop_preview_image_style: crop_thumbnail
-      crop_types_required: {  }
-      show_default_crop: true
-      warn_multiple_usages: false
     third_party_settings: {  }
     region: content
   name:
     type: string_textfield
-    weight: 1
+    weight: 0
     settings:
       size: 60
       placeholder: ''
