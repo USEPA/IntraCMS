@@ -80,3 +80,27 @@ function epa_intranet_preprocess_views_view__staff_order(&$variables) {
     }
   }
 }
+
+function epa_intranet_preprocess_views_view_grouping(&$variables) {
+  $view = $variables['view'];
+  if ($view->id() === 'organizations_with_staff') {
+    $tid = $view->args[0];
+    $parent_terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($tid);
+    $grouping_title = '';
+    $term_count = 0;
+    foreach ($parent_terms as $term) {
+      // Do not add the final parent (or root parent)
+      if ($term_count < count($parent_terms) - 1) {
+        if (!empty($grouping_title)) {
+          $dash = ' - ';
+        } else {
+          $dash = '';
+        }
+        $grouping_title = $term->getName() . $dash . $grouping_title;
+      }
+      $term_count++;
+    }
+    $variables['title'] = $grouping_title;
+  }
+
+}
