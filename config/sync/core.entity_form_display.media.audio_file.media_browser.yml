@@ -7,10 +7,10 @@ dependencies:
     - field.field.media.audio_file.field_keywords
     - field.field.media.audio_file.field_media_audio_file
     - field.field.media.audio_file.field_media_in_library
-    - field.field.media.audio_file.field_transcript
     - media.type.audio_file
   module:
     - file
+    - path
 _core:
   default_config_hash: Vrdgai9kwD_ZilqzZCL2xnDI9c4_3s9ccRacwMQgOLc
 id: media.audio_file.media_browser
@@ -18,23 +18,20 @@ targetEntityType: media
 bundle: audio_file
 mode: media_browser
 content:
-  field_keywords:
-    type: entity_reference_autocomplete
-    weight: 2
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_transcript:
-    type: file_generic
+  field_media_audio_file:
     weight: 1
-    region: content
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_media_in_library:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 2
+    third_party_settings: {  }
+    region: content
   name:
     type: string_textfield
     weight: 0
@@ -43,10 +40,20 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 3
+    region: content
+    third_party_settings: {  }
 hidden:
   created: true
-  field_media_audio_file: true
-  field_media_in_library: true
-  path: true
-  status: true
+  field_keywords: true
   uid: true

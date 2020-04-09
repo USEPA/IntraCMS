@@ -5,10 +5,14 @@ dependencies:
   config:
     - taxonomy.vocabulary.policy_definitions
   module:
+    - csv_serialization
     - entity_reference_revisions
+    - rest
+    - serialization
     - taxonomy
     - text
     - user
+    - views_data_export
 id: policy_definitions
 label: 'Policy Definitions'
 module: views
@@ -286,6 +290,76 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.permissions
+      tags: {  }
+  data_export_1:
+    display_plugin: data_export
+    id: data_export_1
+    display_title: 'Data export'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: policy/definitions/export
+      display_description: ''
+      filename: policy-definitions.csv
+      automatic_download: false
+      store_in_public_file_directory: null
+      redirect_to_display: none
+      custom_redirect_path: false
+      include_query_params: false
+      filters:
+        status:
+          value: '1'
+          table: taxonomy_term_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: taxonomy_term
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        vid:
+          id: vid
+          table: taxonomy_term_field_data
+          field: vid
+          value:
+            policy_definitions: policy_definitions
+          entity_type: taxonomy_term
+          entity_field: vid
+          plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+      defaults:
+        filters: false
+        filter_groups: false
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: data_export
+        options:
+          formats:
+            csv: csv
+          csv_settings:
+            delimiter: ','
+            enclosure: '"'
+            escape_char: \
+            strip_tags: true
+            trim: true
+            encoding: utf8
+            utf8_bom: '0'
+            use_serializer_encode_only: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - request_format
         - user.permissions
       tags: {  }
   entity_reference_policy_definitions:
