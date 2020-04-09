@@ -5,10 +5,6 @@ dependencies:
   config:
     - core.entity_view_mode.media.media_library
     - image.style.media_library
-    - media.type.audio_file
-    - media.type.document
-    - media.type.image
-    - media.type.remote_video
     - taxonomy.vocabulary.tags
   enforced:
     module:
@@ -295,11 +291,7 @@ display:
           group_type: group
           admin_label: ''
           operator: in
-          value:
-            audio_file: audio_file
-            document: document
-            image: image
-            remote_video: remote_video
+          value: {  }
           group: 1
           exposed: true
           expose:
@@ -308,8 +300,6 @@ display:
             description: ''
             use_operator: false
             operator: bundle_op
-            operator_limit_selection: false
-            operator_list: {  }
             identifier: type
             required: false
             remember: false
@@ -317,10 +307,10 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
-              webform: '0'
               administrator: '0'
-            reduce: true
-            argument: ''
+            reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: 'Media type'
@@ -466,25 +456,18 @@ display:
       tags:
         - 'config:core.entity_view_display.media.audio_file.default'
         - 'config:core.entity_view_display.media.audio_file.embedded'
-        - 'config:core.entity_view_display.media.audio_file.link'
         - 'config:core.entity_view_display.media.audio_file.media_library'
         - 'config:core.entity_view_display.media.audio_file.thumbnail'
         - 'config:core.entity_view_display.media.document.default'
         - 'config:core.entity_view_display.media.document.embedded'
         - 'config:core.entity_view_display.media.document.inline_embedded'
-        - 'config:core.entity_view_display.media.document.link'
-        - 'config:core.entity_view_display.media.document.link_with_metadata'
         - 'config:core.entity_view_display.media.document.media_library'
         - 'config:core.entity_view_display.media.document.thumbnail'
         - 'config:core.entity_view_display.media.image.card'
         - 'config:core.entity_view_display.media.image.default'
         - 'config:core.entity_view_display.media.image.embedded'
         - 'config:core.entity_view_display.media.image.featured_image'
-        - 'config:core.entity_view_display.media.image.full_width'
-        - 'config:core.entity_view_display.media.image.half_width'
-        - 'config:core.entity_view_display.media.image.link'
         - 'config:core.entity_view_display.media.image.media_block'
-        - 'config:core.entity_view_display.media.image.original'
         - 'config:core.entity_view_display.media.image.slideshow'
         - 'config:core.entity_view_display.media.image.staff_member_card'
         - 'config:core.entity_view_display.media.image.thumbnail'
@@ -492,11 +475,6 @@ display:
         - 'config:core.entity_view_display.media.instagram.embedded'
         - 'config:core.entity_view_display.media.instagram.media_library'
         - 'config:core.entity_view_display.media.instagram.thumbnail'
-        - 'config:core.entity_view_display.media.remote_video.default'
-        - 'config:core.entity_view_display.media.remote_video.full_width'
-        - 'config:core.entity_view_display.media.remote_video.half_width'
-        - 'config:core.entity_view_display.media.remote_video.media_library'
-        - 'config:core.entity_view_display.media.remote_video.thumbnail'
         - 'config:core.entity_view_display.media.tweet.default'
         - 'config:core.entity_view_display.media.tweet.embedded'
         - 'config:core.entity_view_display.media.tweet.media_library'
@@ -537,25 +515,18 @@ display:
       tags:
         - 'config:core.entity_view_display.media.audio_file.default'
         - 'config:core.entity_view_display.media.audio_file.embedded'
-        - 'config:core.entity_view_display.media.audio_file.link'
         - 'config:core.entity_view_display.media.audio_file.media_library'
         - 'config:core.entity_view_display.media.audio_file.thumbnail'
         - 'config:core.entity_view_display.media.document.default'
         - 'config:core.entity_view_display.media.document.embedded'
         - 'config:core.entity_view_display.media.document.inline_embedded'
-        - 'config:core.entity_view_display.media.document.link'
-        - 'config:core.entity_view_display.media.document.link_with_metadata'
         - 'config:core.entity_view_display.media.document.media_library'
         - 'config:core.entity_view_display.media.document.thumbnail'
         - 'config:core.entity_view_display.media.image.card'
         - 'config:core.entity_view_display.media.image.default'
         - 'config:core.entity_view_display.media.image.embedded'
         - 'config:core.entity_view_display.media.image.featured_image'
-        - 'config:core.entity_view_display.media.image.full_width'
-        - 'config:core.entity_view_display.media.image.half_width'
-        - 'config:core.entity_view_display.media.image.link'
         - 'config:core.entity_view_display.media.image.media_block'
-        - 'config:core.entity_view_display.media.image.original'
         - 'config:core.entity_view_display.media.image.slideshow'
         - 'config:core.entity_view_display.media.image.staff_member_card'
         - 'config:core.entity_view_display.media.image.thumbnail'
@@ -563,11 +534,6 @@ display:
         - 'config:core.entity_view_display.media.instagram.embedded'
         - 'config:core.entity_view_display.media.instagram.media_library'
         - 'config:core.entity_view_display.media.instagram.thumbnail'
-        - 'config:core.entity_view_display.media.remote_video.default'
-        - 'config:core.entity_view_display.media.remote_video.full_width'
-        - 'config:core.entity_view_display.media.remote_video.half_width'
-        - 'config:core.entity_view_display.media.remote_video.media_library'
-        - 'config:core.entity_view_display.media.remote_video.thumbnail'
         - 'config:core.entity_view_display.media.tweet.default'
         - 'config:core.entity_view_display.media.tweet.embedded'
         - 'config:core.entity_view_display.media.tweet.media_library'
@@ -860,25 +826,18 @@ display:
       tags:
         - 'config:core.entity_view_display.media.audio_file.default'
         - 'config:core.entity_view_display.media.audio_file.embedded'
-        - 'config:core.entity_view_display.media.audio_file.link'
         - 'config:core.entity_view_display.media.audio_file.media_library'
         - 'config:core.entity_view_display.media.audio_file.thumbnail'
         - 'config:core.entity_view_display.media.document.default'
         - 'config:core.entity_view_display.media.document.embedded'
         - 'config:core.entity_view_display.media.document.inline_embedded'
-        - 'config:core.entity_view_display.media.document.link'
-        - 'config:core.entity_view_display.media.document.link_with_metadata'
         - 'config:core.entity_view_display.media.document.media_library'
         - 'config:core.entity_view_display.media.document.thumbnail'
         - 'config:core.entity_view_display.media.image.card'
         - 'config:core.entity_view_display.media.image.default'
         - 'config:core.entity_view_display.media.image.embedded'
         - 'config:core.entity_view_display.media.image.featured_image'
-        - 'config:core.entity_view_display.media.image.full_width'
-        - 'config:core.entity_view_display.media.image.half_width'
-        - 'config:core.entity_view_display.media.image.link'
         - 'config:core.entity_view_display.media.image.media_block'
-        - 'config:core.entity_view_display.media.image.original'
         - 'config:core.entity_view_display.media.image.slideshow'
         - 'config:core.entity_view_display.media.image.staff_member_card'
         - 'config:core.entity_view_display.media.image.thumbnail'
@@ -886,11 +845,6 @@ display:
         - 'config:core.entity_view_display.media.instagram.embedded'
         - 'config:core.entity_view_display.media.instagram.media_library'
         - 'config:core.entity_view_display.media.instagram.thumbnail'
-        - 'config:core.entity_view_display.media.remote_video.default'
-        - 'config:core.entity_view_display.media.remote_video.full_width'
-        - 'config:core.entity_view_display.media.remote_video.half_width'
-        - 'config:core.entity_view_display.media.remote_video.media_library'
-        - 'config:core.entity_view_display.media.remote_video.thumbnail'
         - 'config:core.entity_view_display.media.tweet.default'
         - 'config:core.entity_view_display.media.tweet.embedded'
         - 'config:core.entity_view_display.media.tweet.media_library'
