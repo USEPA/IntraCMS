@@ -81,13 +81,6 @@ function epa_intranet_preprocess_views_view__staff_order(&$variables) {
   }
 }
 
-/**
- *
- * Possiby grab from $variables['rows']- that has TID of actual element
- * @param $variables
- * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
- * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
- */
 function epa_intranet_preprocess_views_view_grouping(&$variables) {
   $view = $variables['view'];
   if ($view->id() === 'organizations_with_staff') {
