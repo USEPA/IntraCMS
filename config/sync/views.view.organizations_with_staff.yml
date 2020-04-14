@@ -15,7 +15,6 @@ dependencies:
     - taxonomy.vocabulary.locations
     - taxonomy.vocabulary.organization
   module:
-    - depth_taxonomy_view_lookup
     - node
     - taxonomy
     - telephone
@@ -967,7 +966,7 @@ display:
           relationship: reverse__node__field_organization
           group_type: group
           admin_label: 'field_organization: Taxonomy term'
-          required: true
+          required: false
           plugin_id: standard
         parent_target_id:
           id: parent_target_id
