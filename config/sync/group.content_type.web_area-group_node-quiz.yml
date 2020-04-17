@@ -1,0 +1,20 @@
+uuid: 2385f000-7fc9-4e68-a539-54e4152619a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.web_area
+    - node.type.quiz
+  module:
+    - gnode
+    - node
+id: web_area-group_node-quiz
+label: 'Web Area: Group node (Quiz)'
+description: 'Adds <em class="placeholder">Quiz</em> content to groups both publicly and privately.'
+group_type: web_area
+content_plugin: 'group_node:quiz'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 1
