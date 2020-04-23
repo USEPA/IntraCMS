@@ -35,20 +35,23 @@
     'align-right',
     'mx-3',
 ] %}
-<div class="grid-container border p-1">
-    <div class="grid-row m-1">
-        <div class="desktop:grid-col-3 align-right">
+<div class="grid-container border p-1 staff-fixed-height centered">
+    <div class="grid-row grid-gap m-1 w-100">
+        <div class="desktop:grid-col-4">
             {% if 'img' in  fields.field_staff_photo.content|render %}
                 {{ fields.field_staff_photo.content }}
             {% else %}
-                <img src="/sites/default/files/avatar-1577909_1280.png" alt="No Staff Member Picture" width="auto" height="150" class="pr-2"/>
+                <img src="/sites/default/files/avatar-1577909_1280.png" alt="No Staff Member Picture" width="auto"
+                     height="150" class="pr-2"/>
             {% endif %}
         </div>
-        <div class="desktop:grid-col-9">
-            <label for="staff_name"><strong>Name: </strong></label> {{ fields.title.content }}
-            <div> {{ fields.field_staff_position.content }} </div>
-            <div>{{ fields.field_email.content }}</div>
-            <div>{{ fields.field_phone.content|striptags }}</div>
+        <div class="desktop:grid-col-8">
+            <div>
+                <label for="staff_name"><strong>Name: </strong></label> {{ fields.title.content }}
+                <div> {{ fields.field_staff_position.content }} </div>
+                <div>{{ fields.field_email.content }}</div>
+                <div>{{ fields.field_phone.content|striptags }}</div>
+            </div>
         </div>
     </div>
 </div>
