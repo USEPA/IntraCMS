@@ -34,7 +34,20 @@ matchers:
         page: page
         policy: policy
         policy_delegation: policy_delegation
+        quiz: quiz
         webform: webform
       group_by_bundle: true
+      substitution_type: canonical
+      limit: 100
+  43ae6e7c-868e-438a-80cd-9f2193085b30:
+    uuid: 43ae6e7c-868e-438a-80cd-9f2193085b30
+    id: 'entity:node'
+    weight: 0
+    settings:
+      include_unpublished: false
+      metadata: 'Staff Member/[node:title]'
+      bundles:
+        staff_member: staff_member
+      group_by_bundle: false
       substitution_type: canonical
       limit: 100
