@@ -15,7 +15,6 @@ dependencies:
     - taxonomy.vocabulary.locations
     - taxonomy.vocabulary.organization
   module:
-    - depth_taxonomy_view_lookup
     - node
     - taxonomy
     - telephone
@@ -1070,7 +1069,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Organization
+          label: ''
           exclude: true
           alter:
             alter_text: false
@@ -1103,7 +1102,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1508,7 +1507,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Organization
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -1541,7 +1540,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1698,6 +1697,10 @@ display:
         options:
           grouping:
             -
+              field: parent_target_id
+              rendered: true
+              rendered_strip: false
+            -
               field: name
               rendered: true
               rendered_strip: false
@@ -1758,15 +1761,19 @@ display:
         options:
           grouping:
             -
+              field: parent_target_id
+              rendered: true
+              rendered_strip: false
+            -
               field: name
               rendered: true
               rendered_strip: false
-          columns: 4
-          automatic_width: true
+          columns: 5
+          automatic_width: false
           alignment: horizontal
-          col_class_default: true
+          col_class_default: false
           col_class_custom: ''
-          row_class_default: true
+          row_class_default: false
           row_class_custom: ''
       row:
         type: fields
@@ -1892,7 +1899,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true

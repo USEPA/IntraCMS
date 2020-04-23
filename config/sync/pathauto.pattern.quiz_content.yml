@@ -1,0 +1,22 @@
+uuid: 907c3351-d659-4cac-8a3c-e2a9847d2caf
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: quiz_content
+label: 'Quiz Content'
+type: 'canonical_entities:node'
+pattern: '[node:group:title]/[node:title]'
+selection_criteria:
+  5a7f400e-de34-45fb-b9b0-50e9dd4facf2:
+    id: node_type
+    bundles:
+      quiz: quiz
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 5a7f400e-de34-45fb-b9b0-50e9dd4facf2
+selection_logic: and
+weight: -5
+relationships: {  }
