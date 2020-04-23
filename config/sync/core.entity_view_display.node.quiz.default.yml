@@ -1,0 +1,29 @@
+uuid: 3c2d1d6e-3514-4a38-a87e-21f44bd76416
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.quiz.field_quiz_material
+    - node.type.quiz
+  module:
+    - h5p
+    - user
+id: node.quiz.default
+targetEntityType: node
+bundle: quiz
+mode: default
+content:
+  field_quiz_material:
+    weight: 101
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: h5p_default
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  search_api_excerpt: true
