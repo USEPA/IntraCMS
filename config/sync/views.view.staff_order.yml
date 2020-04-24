@@ -8,6 +8,7 @@ dependencies:
     - field.storage.node.field_staff_position
     - node.type.staff_member
     - taxonomy.vocabulary.organization
+    - taxonomy.vocabulary.research_program_area
     - user.role.authenticated
   module:
     - draggableviews
@@ -505,6 +506,72 @@ display:
     display_options:
       display_extenders: {  }
       path: staff/staff-order/%
+    cache_metadata:
+      max-age: 0
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - 'user.node_grants:view'
+        - user.roles
+      tags:
+        - 'config:field.storage.node.field_first_name'
+        - 'config:field.storage.node.field_last_name'
+        - 'config:field.storage.node.field_staff_position'
+  page_2:
+    display_plugin: page
+    id: page_2
+    display_title: 'NRP Page'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: staff/nrp/%/order
+      relationships: {  }
+      defaults:
+        relationships: false
+        arguments: false
+      arguments:
+        field_research_program_area_target_id:
+          id: field_research_program_area_target_id
+          table: node__field_research_program_area
+          field: field_research_program_area_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          default_action: empty
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: true
+          title: '{{ raw_arguments.field_research_program_area_target_id }} Staff'
+          default_argument_type: fixed
+          default_argument_options:
+            argument: ''
+          default_argument_skip_url: false
+          summary_options:
+            base_path: ''
+            count: true
+            items_per_page: 25
+            override: false
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: true
+          validate:
+            type: taxonomy_term_name_into_id
+            fail: 'not found'
+          validate_options:
+            bundles:
+              research_program_area: research_program_area
+            operation: view
+            access: false
+            transform: false
+          break_phrase: false
+          not: false
+          plugin_id: numeric
+      display_description: ''
     cache_metadata:
       max-age: 0
       contexts:
