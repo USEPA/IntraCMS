@@ -129,15 +129,5 @@ function generate_grouping_title(array $parent_terms, string $child_tid_row): st
   return $grouping_title;
 }
 
-function epa_intranet_preprocess_views_view_field(&$variables) {
-  if ($variables['view']->id() == 'organizations_with_staff') {
-    if (isset($variables['field']) && $variables['field']->field == 'parent_target_id') {
-      $tid = $variables["row"]->tid;
-      $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($tid);
-      $name = $term->label();
-      $variables['output'] = $name;
-    }
-  }
-}
 
 
