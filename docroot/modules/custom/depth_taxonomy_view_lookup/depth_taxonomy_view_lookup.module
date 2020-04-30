@@ -8,7 +8,7 @@ use Drupal\views\Plugin\views\query\QueryPluginBase;
  */
 function depth_taxonomy_view_lookup_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
   if ($view->id() === 'organizations_with_staff') {
-    $sql = <<<SQL
+    $root_parent_sql = <<<SQL
 CASE
     WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
     WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN taxonomy_term_field_data_taxonomy_term__parent_1.weight
@@ -16,8 +16,7 @@ CASE
     ELSE taxonomy_term_field_data_node__field_organization.weight
 END
 SQL;
-    $root_parent_field = $query->addField(NULL, $sql, 'root_parent_weight');
-    $sql = <<<SQL
+    $second_parent_sql = <<<SQL
 CASE
     WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN -1
     WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
@@ -25,9 +24,8 @@ CASE
     ELSE taxonomy_term_field_data_node__field_organization.weight
 END
 SQL;
-    $second_parent_weight = $query->addField(NULL, $sql, 'second_parent_weight');
 
-    $sql = <<<SQL
+    $third_parent_sql = <<<SQL
 
   CASE
     WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN -1
@@ -36,35 +34,14 @@ SQL;
     ELSE taxonomy_term_field_data_node__field_organization.weight
 END
 SQL;
-    $third_parent_weight = $query->addField(NULL, $sql, 'third_parent_weight');
+
+    $root_parent_field = $query->addField(NULL, $root_parent_sql, 'root_parent_weight');
+    $second_parent_weight = $query->addField(NULL, $second_parent_sql, 'second_parent_weight');
+    $third_parent_weight = $query->addField(NULL, $third_parent_sql, 'third_parent_weight');
 
     array_unshift($query->orderby, ['field' => $third_parent_weight, 'direction' => 'ASC']);
     array_unshift($query->orderby, ['field' => $second_parent_weight, 'direction' => 'ASC']);
     array_unshift($query->orderby, ['field' => $root_parent_field, 'direction' => 'ASC']);
 
-
   }
-}
-
-
-/**
- * Implements hook_views_data_alter().
- */
-function depth_taxonomy_view_lookup_views_data_alter(array &$data) {
-  $a = 'a';
-}
-
-/**
- * Implements hook_views_pre_build().
- */
-function depth_taxonomy_view_lookup_views_pre_build(ViewExecutable $view) {
-  $a = 'a';
-}
-
-
-/**
- * Implements hook_views_pre_render().
- */
-function depth_taxonomy_view_lookup_views_pre_render(ViewExecutable $view) {
-  $a = 'a';
 }
