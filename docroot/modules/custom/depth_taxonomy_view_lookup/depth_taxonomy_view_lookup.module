@@ -55,14 +55,12 @@ function depth_taxonomy_view_lookup_views_query_alter(ViewExecutable $view, Quer
  * @return string
  */
 function getThirdParentSQL(): string {
-  $third_parent_sql = <<<SQL
+  $third_parent_sql = "
             CASE
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN -1
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN -1
+              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN taxonomy_term_field_data_node__field_organization.weight
               WHEN taxonomy_term_field_data_node__field_organization.depth_level = 4 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
-              ELSE taxonomy_term_field_data_node__field_organization.weight
-          END
-          SQL;
+              ELSE -1
+          END";
   return $third_parent_sql;
 }
 
@@ -70,14 +68,13 @@ function getThirdParentSQL(): string {
  * @return string
  */
 function getSecondParentSQL(): string {
-  $second_parent_sql = <<<SQL
+  $second_parent_sql = "
           CASE
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN -1
+              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN taxonomy_term_field_data_node__field_organization.weight
               WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
               WHEN taxonomy_term_field_data_node__field_organization.depth_level = 4 THEN taxonomy_term_field_data_taxonomy_term__parent_1.weight
-              ELSE taxonomy_term_field_data_node__field_organization.weight
-          END
-          SQL;
+              ELSE -1
+          END";
   return $second_parent_sql;
 }
 
@@ -85,13 +82,12 @@ function getSecondParentSQL(): string {
  * @return string
  */
 function getRootSQL(): string {
-  $root_parent_sql = <<<SQL
+  $root_parent_sql = "
           CASE
               WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
               WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN taxonomy_term_field_data_taxonomy_term__parent_1.weight
               WHEN taxonomy_term_field_data_node__field_organization.depth_level = 4 THEN taxonomy_term_field_data_taxonomy_term__parent_2.weight
               ELSE taxonomy_term_field_data_node__field_organization.weight
-          END
-          SQL;
+          END";
   return $root_parent_sql;
 }
