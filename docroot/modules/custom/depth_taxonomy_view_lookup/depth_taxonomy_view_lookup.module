@@ -16,31 +16,9 @@ function depth_taxonomy_view_lookup_views_query_alter(ViewExecutable $view, Quer
     }
 
     if ($depth == 0) {
-      $root_parent_sql = <<<SQL
-          CASE
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN taxonomy_term_field_data_taxonomy_term__parent_1.weight
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 4 THEN taxonomy_term_field_data_taxonomy_term__parent_2.weight
-              ELSE taxonomy_term_field_data_node__field_organization.weight
-          END
-          SQL;
-      $second_parent_sql = <<<SQL
-          CASE
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN -1
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 4 THEN taxonomy_term_field_data_taxonomy_term__parent_1.weight
-              ELSE taxonomy_term_field_data_node__field_organization.weight
-          END
-          SQL;
-
-      $third_parent_sql = <<<SQL
-            CASE
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN -1
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN -1
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 4 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
-              ELSE taxonomy_term_field_data_node__field_organization.weight
-          END
-          SQL;
+      $root_parent_sql = getRootSQL();
+      $second_parent_sql = getSecondParentSQL();
+      $third_parent_sql = getThirdParentSQL();
 
       $root_parent_field = $query->addField(NULL, $root_parent_sql, 'root_parent_weight');
       $second_parent_weight = $query->addField(NULL, $second_parent_sql, 'second_parent_weight');
@@ -50,23 +28,8 @@ function depth_taxonomy_view_lookup_views_query_alter(ViewExecutable $view, Quer
       array_unshift($query->orderby, ['field' => $second_parent_weight, 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $root_parent_field, 'direction' => 'ASC']);
     } else if ($depth == 1) {
-      $second_parent_sql = <<<SQL
-          CASE
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN -1
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 4 THEN taxonomy_term_field_data_taxonomy_term__parent_1.weight
-              ELSE taxonomy_term_field_data_node__field_organization.weight
-          END
-          SQL;
-
-      $third_parent_sql = <<<SQL
-            CASE
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN -1
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN -1
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 4 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
-              ELSE taxonomy_term_field_data_node__field_organization.weight
-          END
-          SQL;
+      $second_parent_sql = getSecondParentSQL();
+      $third_parent_sql = getThirdParentSQL();
 
       $second_parent_weight = $query->addField(NULL, $second_parent_sql, 'second_parent_weight');
       $third_parent_weight = $query->addField(NULL, $third_parent_sql, 'third_parent_weight');
@@ -74,14 +37,7 @@ function depth_taxonomy_view_lookup_views_query_alter(ViewExecutable $view, Quer
       array_unshift($query->orderby, ['field' => $third_parent_weight, 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $second_parent_weight, 'direction' => 'ASC']);
     } else if ($depth == 2) {
-      $third_parent_sql = <<<SQL
-            CASE
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN -1
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN -1
-              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 4 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
-              ELSE taxonomy_term_field_data_node__field_organization.weight
-          END
-          SQL;
+      $third_parent_sql = getThirdParentSQL();
 
       $third_parent_weight = $query->addField(NULL, $third_parent_sql, 'third_parent_weight');
 
@@ -90,4 +46,49 @@ function depth_taxonomy_view_lookup_views_query_alter(ViewExecutable $view, Quer
       array_unshift($query->orderby, ['field' => 'taxonomy_term_field_data_node__field_organization.weight', 'direction' => 'ASC']);
     }
   }
+}
+
+/**
+ * @return string
+ */
+function getThirdParentSQL(): string {
+  $third_parent_sql = <<<SQL
+            CASE
+              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN -1
+              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN -1
+              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 4 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
+              ELSE taxonomy_term_field_data_node__field_organization.weight
+          END
+          SQL;
+  return $third_parent_sql;
+}
+
+/**
+ * @return string
+ */
+function getSecondParentSQL(): string {
+  $second_parent_sql = <<<SQL
+          CASE
+              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN -1
+              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
+              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 4 THEN taxonomy_term_field_data_taxonomy_term__parent_1.weight
+              ELSE taxonomy_term_field_data_node__field_organization.weight
+          END
+          SQL;
+  return $second_parent_sql;
+}
+
+/**
+ * @return string
+ */
+function getRootSQL(): string {
+  $root_parent_sql = <<<SQL
+          CASE
+              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 2 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
+              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 3 THEN taxonomy_term_field_data_taxonomy_term__parent_1.weight
+              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 4 THEN taxonomy_term_field_data_taxonomy_term__parent_2.weight
+              ELSE taxonomy_term_field_data_node__field_organization.weight
+          END
+          SQL;
+  return $root_parent_sql;
 }
