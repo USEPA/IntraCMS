@@ -24,6 +24,7 @@ function depth_taxonomy_view_lookup_views_query_alter(ViewExecutable $view, Quer
       $second_parent_weight = $query->addField(NULL, $second_parent_sql, 'second_parent_weight');
       $third_parent_weight = $query->addField(NULL, $third_parent_sql, 'third_parent_weight');
 
+      array_unshift($query->orderby, ['field' => 'taxonomy_term_field_data_node__field_organization.weight', 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $third_parent_weight, 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $second_parent_weight, 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $root_parent_field, 'direction' => 'ASC']);
@@ -34,6 +35,7 @@ function depth_taxonomy_view_lookup_views_query_alter(ViewExecutable $view, Quer
       $second_parent_weight = $query->addField(NULL, $second_parent_sql, 'second_parent_weight');
       $third_parent_weight = $query->addField(NULL, $third_parent_sql, 'third_parent_weight');
 
+      array_unshift($query->orderby, ['field' => 'taxonomy_term_field_data_node__field_organization.weight', 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $third_parent_weight, 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $second_parent_weight, 'direction' => 'ASC']);
     } else if ($depth == 2) {
@@ -41,6 +43,7 @@ function depth_taxonomy_view_lookup_views_query_alter(ViewExecutable $view, Quer
 
       $third_parent_weight = $query->addField(NULL, $third_parent_sql, 'third_parent_weight');
 
+      array_unshift($query->orderby, ['field' => 'taxonomy_term_field_data_node__field_organization.weight', 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $third_parent_weight, 'direction' => 'ASC']);
     } else if ($depth == 3) {
       array_unshift($query->orderby, ['field' => 'taxonomy_term_field_data_node__field_organization.weight', 'direction' => 'ASC']);
