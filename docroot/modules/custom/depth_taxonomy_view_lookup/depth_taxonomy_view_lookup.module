@@ -18,37 +18,58 @@ function depth_taxonomy_view_lookup_views_query_alter(ViewExecutable $view, Quer
     if ($depth == 0) {
       $root_parent_sql = getRootSQL();
       $second_parent_sql = getSecondParentSQL();
-      $third_parent_sql = getThirdParentSQL();
+      $final_sql = getThirdParentSQL();
+      $current_term = getCurrentTermSQL();
 
       $root_parent_field = $query->addField(NULL, $root_parent_sql, 'root_parent_weight');
       $second_parent_weight = $query->addField(NULL, $second_parent_sql, 'second_parent_weight');
-      $third_parent_weight = $query->addField(NULL, $third_parent_sql, 'third_parent_weight');
+      $third_parent_weight = $query->addField(NULL, $final_sql, 'third_parent_weight');
+      $final_weight = $query->addField(NULL, $current_term, 'final_weight');
 
-      array_unshift($query->orderby, ['field' => 'taxonomy_term_field_data_node__field_organization.weight', 'direction' => 'ASC']);
+      array_unshift($query->orderby, ['field' => $final_weight, 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $third_parent_weight, 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $second_parent_weight, 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $root_parent_field, 'direction' => 'ASC']);
     } else if ($depth == 1) {
       $second_parent_sql = getSecondParentSQL();
-      $third_parent_sql = getThirdParentSQL();
+      $final_sql = getThirdParentSQL();
+      $current_term = getCurrentTermSQL();
 
       $second_parent_weight = $query->addField(NULL, $second_parent_sql, 'second_parent_weight');
-      $third_parent_weight = $query->addField(NULL, $third_parent_sql, 'third_parent_weight');
+      $third_parent_weight = $query->addField(NULL, $final_sql, 'third_parent_weight');
+      $final_weight = $query->addField(NULL, $current_term, 'final_weight');
 
-      array_unshift($query->orderby, ['field' => 'taxonomy_term_field_data_node__field_organization.weight', 'direction' => 'ASC']);
+      array_unshift($query->orderby, ['field' => $final_weight, 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $third_parent_weight, 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $second_parent_weight, 'direction' => 'ASC']);
     } else if ($depth == 2) {
-      $third_parent_sql = getThirdParentSQL();
+      $final_sql = getThirdParentSQL();
+      $current_term = getCurrentTermSQL();
 
-      $third_parent_weight = $query->addField(NULL, $third_parent_sql, 'third_parent_weight');
+      $third_parent_weight = $query->addField(NULL, $final_sql, 'third_parent_weight');
+      $final_weight = $query->addField(NULL, $current_term, 'final_weight');
 
-      array_unshift($query->orderby, ['field' => 'taxonomy_term_field_data_node__field_organization.weight', 'direction' => 'ASC']);
+      array_unshift($query->orderby, ['field' => $final_weight, 'direction' => 'ASC']);
       array_unshift($query->orderby, ['field' => $third_parent_weight, 'direction' => 'ASC']);
     } else if ($depth == 3) {
-      array_unshift($query->orderby, ['field' => 'taxonomy_term_field_data_node__field_organization.weight', 'direction' => 'ASC']);
+      $current_term = getCurrentTermSQL();
+      $final_weight = $query->addField(NULL, $current_term, 'final_weight');
+      array_unshift($query->orderby, ['field' => $final_weight, 'direction' => 'ASC']);
     }
   }
+}
+
+
+/**
+ * @return string
+ */
+function getCurrentTermSQL(): string {
+  $final_sql = "
+            CASE
+              WHEN taxonomy_term_field_data_node__field_organization.depth_level = 4 THEN taxonomy_term_field_data_taxonomy_term__parent.weight
+              ELSE -1
+          END";
+  return $final_sql;
 }
 
 /**
