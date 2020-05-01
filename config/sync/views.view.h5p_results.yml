@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - user.role.authenticated
   module:
-    - group
     - h5p
     - node
     - user
@@ -1159,17 +1159,17 @@ display:
           plugin_id: node_nid
       display_description: ''
       access:
-        type: group_permission
+        type: role
         options:
-          group_permission: 'use editorial transition publish for group_node:quiz'
+          role:
+            authenticated: authenticated
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - route.group
         - url
         - url.query_args
-        - user.group_permissions
         - 'user.node_grants:view'
+        - user.roles
       tags: {  }
