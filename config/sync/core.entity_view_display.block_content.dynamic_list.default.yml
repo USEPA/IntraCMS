@@ -4,23 +4,14 @@ status: true
 dependencies:
   config:
     - block_content.type.dynamic_list
-    - field.field.block_content.dynamic_list.body
     - field.field.block_content.dynamic_list.field_dynamic_list
   module:
     - blizz_dynamic_entitylist
-    - text
 id: block_content.dynamic_list.default
 targetEntityType: block_content
 bundle: dynamic_list
 mode: default
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 0
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   field_dynamic_list:
     weight: 1
     label: hidden
