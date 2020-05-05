@@ -71,51 +71,19 @@
  *
  * @ingroup themeable
  */
-
-
-{% set classes = [
-    'usa-media-block',
-    'tablet:grid-col',
-] %}
-
-<div {{ attributes.addClass(classes) }}>
-    {{ content.field_article_image }}
-    <div class="usa-media-block__body">
-        {{ title_prefix }}
-        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-        {{ title_suffix }}
-        <p>{{ content.body }}</p>
-    </div>
-</div>
 #}
 
+<ul>
 <article{{ attributes }}>
-
-
-    <div{{ content_attributes.addClass('grid-row') }}>
-        <div class="grid-col-2 m-2">
-            {{ content.field_article_image }}
-        </div>
-        <div class="grid-col">
-        {{ title_prefix }}
+<li>
+    {{ title_prefix }}
     {% if label and not page %}
-        <p{{ title_attributes }}>
+        {{ title_attributes }}
             <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-        </p>
+        
     {% endif %}
     {{ title_suffix }}
-
-    {% if display_submitted %}
-        <footer>
-            {{ author_picture }}
-            <div{{ author_attributes }}>
-                {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-                {{ metadata }}
-            </div>
-        </footer>
-    {% endif %}
-            {{ content.body }}
-        </div>
-    </div>
+</li>
 
 </article>
+</ul>
