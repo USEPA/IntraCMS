@@ -5,8 +5,11 @@ dependencies:
   config:
     - block_content.type.dynamic_list
     - field.field.block_content.dynamic_list.field_dynamic_list
+    - field.field.block_content.dynamic_list.field_list_footer
+    - field.field.block_content.dynamic_list.field_list_header
   module:
     - blizz_dynamic_entitylist
+    - text
 id: block_content.dynamic_list.default
 targetEntityType: block_content
 bundle: dynamic_list
@@ -22,6 +25,20 @@ content:
       css_classes: ''
     third_party_settings: {  }
     type: blizz_dynamic_entitylist_formatter
+    region: content
+  field_list_footer:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_list_header:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
     region: content
 hidden:
   search_api_excerpt: true

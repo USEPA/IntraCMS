@@ -38,6 +38,7 @@
 
 <div {{ attributes.addClass(classes) }}>
 
+
 {{ title_prefix }}
 {% if label %}
 <div class="card-header m-0 font-weight-bold">
@@ -47,6 +48,11 @@
 {{ title_suffix }}
 
 <div class="card-body py-1">
+{{ content.field_list_header }}
     {{ content.field_dynamic_list }}
+    {{ content.field_list_footer }}
 </div>
+
+
+
 </div>
