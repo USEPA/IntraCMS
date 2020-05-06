@@ -4,9 +4,8 @@ status: true
 dependencies:
   config:
     - block_content.type.dynamic_list
+    - field.field.block_content.dynamic_list.body
     - field.field.block_content.dynamic_list.field_dynamic_list
-    - field.field.block_content.dynamic_list.field_list_footer
-    - field.field.block_content.dynamic_list.field_list_header
   module:
     - blizz_dynamic_entitylist
     - text
@@ -15,31 +14,24 @@ targetEntityType: block_content
 bundle: dynamic_list
 mode: default
 content:
+  body:
+    type: text_textarea_with_summary
+    weight: 26
+    settings:
+      rows: 3
+      placeholder: ''
+      summary_rows: 1
+    third_party_settings: {  }
+    region: content
   field_dynamic_list:
-    weight: 2
+    weight: 27
     settings: {  }
     third_party_settings: {  }
     type: blizz_dynamic_entitylist_widget
     region: content
-  field_list_footer:
-    weight: 3
-    settings:
-      rows: 3
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
-    region: content
-  field_list_header:
-    weight: 1
-    settings:
-      rows: 3
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
-    region: content
   info:
     type: string_textfield
-    weight: 0
+    weight: -5
     region: content
     settings:
       size: 60
