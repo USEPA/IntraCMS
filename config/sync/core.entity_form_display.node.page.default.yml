@@ -13,6 +13,7 @@ dependencies:
     - node.type.page
     - workflows.workflow.editorial
   module:
+    - conditional_fields
     - content_moderation
     - entity_browser
     - metatag
@@ -85,7 +86,25 @@ content:
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: title_and_text
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        f6eb2035-bffc-43b4-a982-89874c980b35:
+          dependee: layout_selection
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                target_id: page_two_column
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: page
     region: content
   layout_selection:
     type: options_select
