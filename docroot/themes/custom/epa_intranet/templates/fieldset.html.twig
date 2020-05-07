@@ -26,13 +26,14 @@
     'form-item',
     'js-form-wrapper',
     'form-wrapper',
+    'mt-3',
   ]
 %}
 <fieldset{{ attributes.addClass(classes) }}>
   {%
     set legend_span_classes = [
       'fieldset-legend',
-      'usa-legend',
+      parent_fieldset ? 'usa-legend',
       required ? 'js-form-required',
       required ? 'form-required',
       required ? 'usa-input-required',

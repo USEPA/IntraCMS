@@ -347,7 +347,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: '<p><a href="/node/add/event" class="usa-button">Create Event</a><br /><em>You must be <a href="/user">logged in</a> to create events.</em></p>'
+            value: '<p><a href="/node/add/event" class="usa-button">Create Event</a><br /><em>You may be prompted to log in before creating events.</em></p>'
             format: simple_text
           plugin_id: text
       footer: {  }
@@ -499,9 +499,10 @@ display:
           settings:
             timezone_override: ''
             format: default
+            force_chronological: true
           group_column: value
           group_columns: {  }
-          group_rows: true
+          group_rows: false
           delta_limit: 0
           delta_offset: 0
           delta_reversed: false
@@ -835,9 +836,10 @@ display:
           settings:
             timezone_override: ''
             format: default
+            force_chronological: false
           group_column: value
           group_columns: {  }
-          group_rows: true
+          group_rows: false
           delta_limit: 0
           delta_offset: 0
           delta_reversed: false
@@ -1059,7 +1061,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: '<p><a href="/node/add/event" class="usa-button">Create Event</a><br /><em>You must be <a href="/user">logged in</a> to create events.</em></p>'
+            value: '<p><a href="/node/add/event" class="usa-button">Create Event</a><br /><em>You may be prompted to log in before creating events.</em></p>'
             format: simple_text
           plugin_id: text
     cache_metadata:
