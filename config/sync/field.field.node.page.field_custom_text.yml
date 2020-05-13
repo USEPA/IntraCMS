@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_custom_text
     - node.type.page
+    - paragraphs.paragraphs_type.dynamic_list
     - paragraphs.paragraphs_type.list_of_link
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.slide_show
@@ -28,54 +29,64 @@ settings:
     negate: 0
     target_bundles:
       uswds_accordion: uswds_accordion
-      list_of_link: list_of_link
-      rich_text: rich_text
       title_and_text: title_and_text
+      dynamic_list: dynamic_list
+      rich_text: rich_text
+      list_of_link: list_of_link
       slide_show: slide_show
     target_bundles_drag_drop:
       uswds_accordion:
         enabled: true
-        weight: -15
-      list_of_link:
-        enabled: true
-        weight: -14
-      rich_text:
-        enabled: true
-        weight: -13
+        weight: -37
       title_and_text:
         enabled: true
-        weight: -12
+        weight: -36
+      dynamic_list:
+        enabled: true
+        weight: -35
+      rich_text:
+        enabled: true
+        weight: -34
+      list_of_link:
+        enabled: true
+        weight: -33
       heading_title_and_text:
-        weight: -11
+        weight: -32
         enabled: false
       question_and_answer:
-        weight: -10
+        weight: -31
         enabled: false
       uswds_accordion_item:
-        weight: -9
+        weight: -30
+        enabled: false
+      governing_authorities:
+        weight: -29
         enabled: false
       slide:
-        weight: 20
+        weight: -28
         enabled: false
       slide_show:
         enabled: true
-        weight: 21
+        weight: -27
+      policy_roles:
+        weight: -26
+        enabled: false
       uswds_column:
-        weight: 25
+        weight: -25
         enabled: false
       uswds_graphic_list:
-        weight: 26
+        weight: -24
         enabled: false
       uswds_grid:
-        weight: 27
+        weight: -23
         enabled: false
       uswds_hero:
-        weight: 28
+        weight: -22
         enabled: false
       uswds_media_block:
-        weight: 29
+        weight: -21
         enabled: false
       uswds_text:
-        weight: 30
+        weight: -20
         enabled: false
 field_type: entity_reference_revisions
