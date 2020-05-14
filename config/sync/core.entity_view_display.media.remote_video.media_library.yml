@@ -1,12 +1,12 @@
-uuid: ea26a605-8ec5-45b9-b5cf-9a2d8935c228
+uuid: 6f5f6319-ba1e-4ac4-a357-22051765f134
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - core.entity_view_mode.media.media_library
-    - field.field.media.remote_video.field_description
     - field.field.media.remote_video.field_media_in_library
-    - image.style.medium
+    - field.field.media.remote_video.field_media_oembed_video
+    - image.style.thumbnail
     - media.type.remote_video
   module:
     - image
@@ -19,15 +19,15 @@ content:
     type: image
     label: hidden
     settings:
-      image_style: medium
-      image_link: ''
+      image_style: thumbnail
+      image_link: file
     weight: 0
     third_party_settings: {  }
     region: content
 hidden:
   created: true
-  field_description: true
   field_media_in_library: true
+  field_media_oembed_video: true
   name: true
   search_api_excerpt: true
   uid: true

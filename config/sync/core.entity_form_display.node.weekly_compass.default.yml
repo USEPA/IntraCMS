@@ -15,12 +15,30 @@ dependencies:
     - field.field.node.weekly_compass.field_quick_updates
     - field.field.node.weekly_compass.field_weekly_note
     - node.type.weekly_compass
+    - workflows.workflow.editorial
   module:
     - content_moderation
+    - field_group
     - link
     - paragraphs
     - path
     - text
+third_party_settings:
+  field_group:
+    group_upcoming_webinars:
+      children:
+        - field_compass_upcoming_webinars
+      parent_name: ''
+      weight: 10
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        id: ''
+        classes: ''
+        open: false
+        required_fields: false
+      label: 'Upcoming Webinars'
 id: node.weekly_compass.default
 targetEntityType: node
 bundle: weekly_compass
@@ -34,7 +52,7 @@ content:
     third_party_settings: {  }
   field_accolades:
     type: entity_reference_paragraphs
-    weight: 13
+    weight: 14
     settings:
       title: Accolades
       title_plural: Accolades
@@ -45,7 +63,7 @@ content:
     third_party_settings: {  }
     region: content
   field_compass_upcoming_webinars:
-    weight: 10
+    weight: 11
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -54,7 +72,7 @@ content:
     region: content
   field_custom_section:
     type: entity_reference_paragraphs
-    weight: 18
+    weight: 19
     settings:
       title: 'Custom Section'
       title_plural: 'Custom Sections'
@@ -65,7 +83,7 @@ content:
     third_party_settings: {  }
     region: content
   field_faces_of_ord:
-    weight: 16
+    weight: 17
     settings:
       match_operator: CONTAINS
       size: 60
@@ -76,7 +94,7 @@ content:
     region: content
   field_in_the_community:
     type: entity_reference_paragraphs
-    weight: 15
+    weight: 16
     settings:
       title: 'In the Community'
       title_plural: 'In the Community'
@@ -88,7 +106,7 @@ content:
     region: content
   field_in_the_lab:
     type: entity_reference_paragraphs
-    weight: 11
+    weight: 12
     settings:
       title: 'In the Lab'
       title_plural: 'In the Lab'
@@ -100,7 +118,7 @@ content:
     region: content
   field_in_the_news:
     type: entity_reference_paragraphs
-    weight: 14
+    weight: 15
     settings:
       title: 'In the News'
       title_plural: 'In the News'
@@ -112,7 +130,7 @@ content:
     region: content
   field_in_the_office:
     type: entity_reference_paragraphs
-    weight: 12
+    weight: 13
     settings:
       title: 'In the Office'
       title_plural: 'In the Office'
@@ -123,7 +141,7 @@ content:
     third_party_settings: {  }
     region: content
   field_photos_of_the_week:
-    weight: 17
+    weight: 18
     settings:
       match_operator: CONTAINS
       size: 60
@@ -200,8 +218,8 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden: {  }

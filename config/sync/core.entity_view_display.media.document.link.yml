@@ -1,6 +1,6 @@
-uuid: 29ad3043-9292-406a-abd8-a868bdea1566
+uuid: 0dd9980d-818d-43a7-9436-45d781279cbb
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - core.entity_view_mode.media.link
@@ -12,13 +12,10 @@ dependencies:
   module:
     - file
     - layout_builder
-    - media_inline_embed
 third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
-  media_inline_embed:
-    embed_inline: true
 _core:
   default_config_hash: 4tgcXj_iKv9Fw3xmONUfCHKqO7OeOa11qVesruN4k4k
 id: media.document.link
@@ -28,9 +25,9 @@ mode: link
 content:
   field_document:
     weight: 0
-    label: hidden
+    label: above
     settings:
-      use_description_as_link_text: true
+      use_description_as_link_text: false
     third_party_settings: {  }
     type: file_default
     region: content

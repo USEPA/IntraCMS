@@ -1,11 +1,11 @@
-uuid: 2c42fcc8-d8b0-48cb-8513-0787cfc8d9fb
+uuid: a8170cbc-4264-4a8d-9679-d8f04834e863
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.media.half_width
-    - field.field.media.remote_video.field_description
     - field.field.media.remote_video.field_media_in_library
+    - field.field.media.remote_video.field_media_oembed_video
     - media.type.remote_video
   module:
     - layout_builder
@@ -19,9 +19,9 @@ targetEntityType: media
 bundle: remote_video
 mode: half_width
 content:
-  field_description:
+  field_media_oembed_video:
     type: oembed
-    label: hidden
+    label: visually_hidden
     weight: 0
     settings:
       max_width: 510
