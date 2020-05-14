@@ -73,19 +73,9 @@
  */
 #}
 
-
-<ul>
-<article{{ attributes }}>
 <li>
-
     {{ title_prefix }}
-    {% if label and not page %}
-        {{ title_attributes }}
-            <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-        
-    {% endif %}
+    {{ title_attributes }}
+    <a href="{{ url }}" rel="bookmark">{{ label }}</a>
     {{ title_suffix }}
-
 </li>
-</article>
-</ul>

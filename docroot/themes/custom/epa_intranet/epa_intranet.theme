@@ -136,3 +136,15 @@ function epa_intranet_preprocess_fieldset(&$variables) {
   }
 }
 
+function epa_intranet_preprocess_input__submit(&$variables) {
+  $element = $variables['element'];
+  if (is_add_or_remove_button($element)) {
+    $variables['attributes']['class'][] = 'usa-button--base';
+  }
+}
+
+
+function is_add_or_remove_button($element) {
+  // Add More/ Remove elements have multiple values in Submit
+  return isset($element['#submit']) && is_array($element['#submit'][0]);
+}
