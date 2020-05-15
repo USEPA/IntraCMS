@@ -20,16 +20,17 @@ default_value:
     listdefinition: null
 default_value_callback: ''
 settings:
-  list_default_length: '10'
+  list_default_length: '5'
   constraints:
     entity_types:
       - node
     bundles:
       node:
-        - event
+        - article
     viewmodes:
       node:
-        event:
+        article:
           - list
+          - teaser
   constraints_version: 2
 field_type: blizz_dynamic_entitylist

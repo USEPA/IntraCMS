@@ -11,3 +11,16 @@ bootstrap:
   css:
     theme:
       ../../../libraries/bootstrap/css/bootstrap.css: {}
+
+
+datatables:
+  version: 1.10.2
+  css:
+    theme:
+      //cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css: {type: external, minified: true}
+      assets/css/datatable_search.css: {}
+  js:
+    //cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js: {type: external, minified: true}
+    assets/js/datatableInitialization.js: {}
+  dependencies:
+    - core/jquery

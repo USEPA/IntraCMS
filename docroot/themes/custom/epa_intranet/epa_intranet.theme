@@ -14,15 +14,21 @@ function epa_intranet_theme_suggestions_block_alter(array &$suggestions, array $
 
 
 function epa_intranet_preprocess_image(&$variables) {
-  if (isset($variables['style_name']) && $variables['style_name'] == 'media_block_image') {
-    $variables['attributes']['class'][] = 'usa-media-block__img';
-    $variables['attributes']['class'][] = 'rounded-circle';
-  }
-  if (isset($variables['style_name']) && $variables['style_name'] == 'card') {
-    $variables['attributes']['class'][] = 'card-img-top';
-    $variables['attributes']['class'][] = 'w-100';
-    unset($variables['attributes']['width']);
-    unset($variables['attributes']['height']);
+  if (isset($variables['style_name'])) {
+    if (isset($variables['style_name']) && $variables['style_name'] == 'media_block_image') {
+      $variables['attributes']['class'][] = 'usa-media-block__img';
+      $variables['attributes']['class'][] = 'rounded-circle';
+    }
+    if ($variables['style_name'] == 'card') {
+      $variables['attributes']['class'][] = 'card-img-top';
+      $variables['attributes']['class'][] = 'w-100';
+      unset($variables['attributes']['width']);
+      unset($variables['attributes']['height']);
+    }
+    if ($variables['style_name'] == 'staff_member_card') {
+      $variables['attributes']['width'] = 'auto';
+      $variables['attributes']['height'] = 150;
+    }
   }
 }
 
@@ -40,6 +46,9 @@ function epa_intranet_preprocess_field(&$variables, $hook) {
   }
   if ($elements['#bundle'] == 'staff_member' && $elements['#field_name'] == 'field_staff_photo') {
     $variables['attributes']['class'][] = 'staff-photo';
+  }
+  if ($elements['#field_name'] === 'image' && $elements['#view_mode'] == 'staff_member_card') {
+    $variables['attributes']['class'][] = 'align-center';
   }
 
 }
@@ -79,4 +88,63 @@ function epa_intranet_preprocess_views_view__staff_order(&$variables) {
       $variables['title'] = $name;
     }
   }
+}
+
+function epa_intranet_preprocess_views_view_grouping(&$variables) {
+  $view = $variables['view'];
+  if ($view->id() === 'organizations_with_staff') {
+    $parent_terms = [];
+    $child_tid_row = '-1';
+    $grouped_rows = $variables['rows'];
+    $row_data = reset($grouped_rows);
+
+    if (isset($row_data['rows']) && count($row_data['rows']) > 0) {
+      $staff_rows = $row_data['rows'];
+      $staff_row_data = reset($staff_rows);
+      $child_tid_row = $staff_row_data->tid;
+      $parent_terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($child_tid_row);
+    }
+    $variables['title'] = generate_grouping_title($parent_terms, $child_tid_row);
+  }
+
+}
+
+/**
+ * @param array $parent_terms
+ * @param string $child_tid_row
+ * @return string
+ */
+function generate_grouping_title(array $parent_terms, string $child_tid_row): string {
+  $grouping_title = '';
+  foreach ($parent_terms as $term) {
+    if ($term->id() != $child_tid_row) {
+      if (!empty($grouping_title)) {
+        $dash = ' - ';
+      } else {
+        $dash = '';
+      }
+      $grouping_title = $term->getName() . $dash . $grouping_title;
+    }
+  }
+  return $grouping_title;
+}
+
+function epa_intranet_preprocess_fieldset(&$variables) {
+  $element = $variables['element'];
+  if (isset($element['#type']) && $element['#type'] == 'fieldset') {
+    $variables['parent_fieldset'] = TRUE;
+  }
+}
+
+function epa_intranet_preprocess_input__submit(&$variables) {
+  $element = $variables['element'];
+  if (is_add_or_remove_button($element)) {
+    $variables['attributes']['class'][] = 'usa-button--base';
+  }
+}
+
+
+function is_add_or_remove_button($element) {
+  // Add More/ Remove elements have multiple values in Submit
+  return isset($element['#submit']) && is_array($element['#submit'][0]);
 }

@@ -9,18 +9,14 @@ dependencies:
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
     - field.field.media.image.layout_builder__translation
-    - image.style.slideshow
     - media.type.image
   module:
     - image
     - layout_builder
-    - media_inline_embed
 third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
-  media_inline_embed:
-    embed_inline: false
 _core:
   default_config_hash: VLDxfMVPTkd2xvOjFMCh3kWmaOYnd03zggFXuUXQVEY
 id: media.image.slideshow
@@ -40,7 +36,7 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: slideshow
+      image_style: ''
       image_link: ''
     third_party_settings: {  }
     region: content
