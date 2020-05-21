@@ -1,0 +1,20 @@
+<?php
+
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function webform_custom_submissions_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the webform_custom_submissions module.
+    case 'help.page.webform_custom_submissions':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides various submission handling services for custom webforms') . '</p>';
+      return $output;
+
+    default:
+  }
+}
