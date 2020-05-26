@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.media.embedded
     - core.entity_view_mode.media.full_width
     - core.entity_view_mode.media.half_width
     - core.entity_view_mode.media.link
@@ -14,6 +15,7 @@ dependencies:
     - entity_embed
     - linkit
     - media
+    - media_inline_embed
 name: 'Simple Text'
 format: simple_text
 weight: -10
@@ -24,7 +26,7 @@ filters:
     status: true
     weight: -49
     settings:
-      allowed_html: '<a href hreflang data-entity-type data-entity-uuid class name id data-entity-substitution> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <s> <sup> <sub> <img src width height typeof alt data-align data-caption> <table class> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <hr> <p class> <br> <pre> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <span class> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter class data-cke-display-name data-placeholder> <figure role class> <div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button class><drupal-media data-caption data-align data-entity-type data-entity-uuid data-view-mode alt><source media !src type>'
+      allowed_html: '<a href hreflang data-entity-type data-entity-uuid class name id data-entity-substitution> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <s> <sup> <sub> <img src width height typeof alt data-align data-caption> <table class> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <hr> <p class> <br> <pre> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <span class> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter class data-cke-display-name data-placeholder> <figure role class> <div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button class><drupal-media data-caption data-align data-entity-type data-entity-uuid data-view-mode alt><source media !src type><drupal-inline-media data-entity-type data-entity-uuid data-view-mode>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_url:
@@ -116,3 +118,15 @@ filters:
         iframe: iframe
       media_switch: ''
       use_data_uri: '0'
+  media_inline_embed:
+    id: media_inline_embed
+    provider: media_inline_embed
+    status: true
+    weight: 100
+    settings:
+      default_view_mode: link
+      allowed_media_types:
+        document: document
+      allowed_view_modes:
+        embedded: embedded
+        link: link
