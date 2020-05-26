@@ -6,6 +6,7 @@ dependencies:
     - field.field.media.audio_file.field_keywords
     - field.field.media.audio_file.field_media_audio_file
     - field.field.media.audio_file.field_media_in_library
+    - field.field.media.audio_file.field_transcript
     - media.type.audio_file
   module:
     - file
@@ -34,6 +35,14 @@ content:
       loop: false
       multiple_file_display_type: tags
     third_party_settings: {  }
+    region: content
+  field_transcript:
+    weight: 2
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
     region: content
 hidden:
   created: true

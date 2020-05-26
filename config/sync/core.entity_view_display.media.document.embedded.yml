@@ -11,6 +11,10 @@ dependencies:
     - media.type.document
   module:
     - file
+    - media_inline_embed
+third_party_settings:
+  media_inline_embed:
+    embed_inline: true
 _core:
   default_config_hash: qwXr3yVUHU3LwMQ1n9mTyDj2s7sUqpNtasS-nSu86rE
 id: media.document.embedded
@@ -21,7 +25,8 @@ content:
   field_document:
     weight: 0
     label: hidden
-    settings: {  }
+    settings:
+      use_description_as_link_text: false
     third_party_settings: {  }
     type: file_default
     region: content

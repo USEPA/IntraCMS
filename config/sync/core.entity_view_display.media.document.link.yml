@@ -10,12 +10,15 @@ dependencies:
     - field.field.media.document.field_media_in_library
     - media.type.document
   module:
-    - file
+    - epa_wysiwyg
     - layout_builder
+    - media_inline_embed
 third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
+  media_inline_embed:
+    embed_inline: true
 _core:
   default_config_hash: 4tgcXj_iKv9Fw3xmONUfCHKqO7OeOa11qVesruN4k4k
 id: media.document.link
@@ -25,11 +28,10 @@ mode: link
 content:
   field_document:
     weight: 0
-    label: above
-    settings:
-      use_description_as_link_text: false
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
-    type: file_default
+    type: file_with_extension
     region: content
 hidden:
   created: true

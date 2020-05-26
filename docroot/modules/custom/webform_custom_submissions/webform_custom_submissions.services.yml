@@ -1,0 +1,7 @@
+services:
+  logger.channel.webform_custom_submissions:
+    parent: logger.channel_base
+    arguments: ['webform_custom_submissions']
+  webform_custom_submissions.jira_submission_handler:
+    class: Drupal\webform_custom_submissions\JiraSubmissionHandler
+    arguments: ['@config.factory']

@@ -1,6 +1,6 @@
 uuid: 774e6a79-aca4-4993-8e21-006e08771ecd
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_form_mode.media.media_browser
@@ -22,9 +22,19 @@ targetEntityType: media
 bundle: image
 mode: media_browser
 content:
+  field_keywords:
+    type: entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_media_in_library:
     type: boolean_checkbox
-    weight: 4
+    weight: 3
     settings:
       display_label: true
     third_party_settings: {  }
@@ -49,7 +59,7 @@ content:
     region: content
   name:
     type: string_textfield
-    weight: 3
+    weight: 1
     settings:
       size: 60
       placeholder: ''
@@ -57,7 +67,7 @@ content:
     region: content
   path:
     type: path
-    weight: 30
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -65,12 +75,11 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 100
+    weight: 5
     region: content
     third_party_settings: {  }
 hidden:
   created: true
   field_caption: true
-  field_keywords: true
   layout_builder__translation: true
   uid: true

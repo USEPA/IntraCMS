@@ -259,3 +259,47 @@ ol, li:last-child {
     color: #FFF;
     min-height: 60px;
 }
+
+/* staff member author styling */
+.author-tag {
+    display: flex;
+    align-items: center;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.author-tag__image-container {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    margin-right: 1.5rem;
+}
+
+.author-tag__image-container::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: calc(100% + 5px);
+    height: calc(100% + 5px);
+    border-radius: 50%;
+    border: 2px solid #005ea2;
+}
+.author-tag__image {
+    overflow: hidden;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    position: relative;
+    border: 2px solid #fff;
+    top: 5px;
+    left: 5px;
+}
+
+.author-tag__image img {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    min-width: 100%;
+}
