@@ -1,0 +1,34 @@
+uuid: bdc02fb4-6c8d-4b7e-b2a2-c4d619c0abaf
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.list
+    - field.field.node.blog_post.body
+    - field.field.node.blog_post.field_blog_image
+    - field.field.node.blog_post.field_blog_post_author
+    - field.field.node.blog_post.field_keywords
+    - node.type.blog_post
+  module:
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: node.blog_post.list
+targetEntityType: node
+bundle: blog_post
+mode: list
+content:
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  content_moderation_control: true
+  field_blog_image: true
+  field_blog_post_author: true
+  field_keywords: true
