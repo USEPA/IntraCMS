@@ -19,12 +19,21 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 1
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     region: content
+  field_blog_post_author:
+    type: entity_reference_entity_view
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      view_mode: author
+      link: false
+    third_party_settings: {  }
   field_keywords:
-    weight: 2
+    weight: 3
     label: inline
     settings:
       link: true
@@ -39,4 +48,3 @@ content:
 hidden:
   content_moderation_control: true
   field_blog_image: true
-  field_blog_post_author: true
