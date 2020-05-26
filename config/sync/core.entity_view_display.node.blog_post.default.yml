@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.blog_post.body
     - field.field.node.blog_post.field_blog_image
     - field.field.node.blog_post.field_blog_post_author
+    - field.field.node.blog_post.field_comment
     - field.field.node.blog_post.field_keywords
     - node.type.blog_post
   module:
@@ -19,13 +20,13 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 2
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     region: content
   field_blog_post_author:
     type: entity_reference_entity_view
-    weight: 1
+    weight: 0
     region: content
     label: hidden
     settings:
@@ -33,18 +34,15 @@ content:
       link: false
     third_party_settings: {  }
   field_keywords:
-    weight: 3
+    weight: 2
     label: inline
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  links:
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
   content_moderation_control: true
   field_blog_image: true
+  field_comment: true
+  links: true
