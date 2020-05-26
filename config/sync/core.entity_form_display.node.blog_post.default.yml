@@ -3,15 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_browser
     - field.field.node.blog_post.body
     - field.field.node.blog_post.field_blog_image
     - field.field.node.blog_post.field_blog_post_author
+    - field.field.node.blog_post.field_comment
     - field.field.node.blog_post.field_keywords
     - node.type.blog_post
+    - workflows.workflow.editorial
   module:
     - content_moderation
-    - entity_browser
     - path
     - text
 id: node.blog_post.default
@@ -21,7 +21,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 11
+    weight: 10
     settings:
       rows: 9
       summary_rows: 3
@@ -35,23 +35,8 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_blog_image:
-    type: entity_browser_entity_reference
-    weight: 9
-    settings:
-      entity_browser: media_browser
-      field_widget_display: rendered_entity
-      field_widget_display_settings:
-        view_mode: thumbnail
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      field_widget_replace: false
-      open: false
-    region: content
-    third_party_settings: {  }
   field_blog_post_author:
-    weight: 10
+    weight: 9
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -61,7 +46,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_keywords:
-    weight: 12
+    weight: 11
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -126,4 +111,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_blog_image: true
+  field_comment: true
