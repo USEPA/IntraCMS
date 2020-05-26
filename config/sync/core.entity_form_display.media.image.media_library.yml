@@ -1,42 +1,49 @@
-uuid: 7e6fe9e5-bd70-4830-9b8a-5c69e64f678e
+uuid: f886c997-117f-4384-a95a-53dc808ef90b
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_form_mode.media.media_library
     - field.field.media.image.field_caption
     - field.field.media.image.field_keywords
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
     - field.field.media.image.layout_builder__translation
+    - image.style.thumbnail
     - media.type.image
   module:
     - image
-    - media_inline_embed
-third_party_settings:
-  media_inline_embed:
-    embed_inline: false
 _core:
-  default_config_hash: VLDxfMVPTkd2xvOjFMCh3kWmaOYnd03zggFXuUXQVEY
-id: media.image.default
+  default_config_hash: kyoAHlZTGIuGTaQuBblGBk8EhfnVKOl19_0j5WbpQqM
+id: media.image.media_library
 targetEntityType: media
 bundle: image
-mode: default
+mode: media_library
 content:
   field_keywords:
-    weight: 1
-    label: inline
+    weight: 2
     settings:
-      link: true
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_autocomplete
     region: content
   image:
-    type: image
-    weight: 0
-    label: hidden
+    type: image_image
+    weight: 1
     settings:
-      image_style: ''
-      image_link: ''
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
     region: content
 hidden:
@@ -44,7 +51,6 @@ hidden:
   field_caption: true
   field_media_in_library: true
   layout_builder__translation: true
-  name: true
-  search_api_excerpt: true
-  thumbnail: true
+  path: true
+  status: true
   uid: true

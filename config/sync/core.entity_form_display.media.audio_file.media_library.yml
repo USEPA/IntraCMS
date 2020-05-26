@@ -1,8 +1,9 @@
-uuid: 8859d318-a38d-4e1d-bcd1-08267b61a6ce
+uuid: fd20d033-cede-4892-9d66-dffd67b828ce
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_form_mode.media.media_library
     - field.field.media.audio_file.field_keywords
     - field.field.media.audio_file.field_media_audio_file
     - field.field.media.audio_file.field_media_in_library
@@ -11,43 +12,41 @@ dependencies:
   module:
     - file
 _core:
-  default_config_hash: wMzduiuDbWrYcz6jGzCh_F4KHD41TnSkANACMNB4kbY
-id: media.audio_file.default
+  default_config_hash: scS6z7UbOgL-jnF_xNAMLsgYlIwhGZxu5JLNR1xDat8
+id: media.audio_file.media_library
 targetEntityType: media
 bundle: audio_file
-mode: default
+mode: media_library
 content:
   field_keywords:
-    weight: 1
-    label: inline
+    weight: 2
     settings:
-      link: true
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_media_audio_file:
-    type: file_audio
-    weight: 0
-    label: visually_hidden
-    settings:
-      controls: true
-      autoplay: false
-      loop: false
-      multiple_file_display_type: tags
-    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_transcript:
-    weight: 2
-    label: above
-    settings:
-      use_description_as_link_text: true
-    third_party_settings: {  }
-    type: file_default
+    type: file_generic
+    weight: 1
     region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
 hidden:
   created: true
+  field_media_audio_file: true
   field_media_in_library: true
-  name: true
-  search_api_excerpt: true
-  thumbnail: true
+  path: true
+  status: true
   uid: true
