@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - node.type.article
+    - node.type.blog_post
     - node.type.event
     - node.type.faces_of_ord
     - node.type.landing_page
@@ -22,6 +23,7 @@ dependencies:
     - group
     - node
     - user
+    - views_autocomplete_filters
 _core:
   default_config_hash: za6rNdVPn3HsOOwx2Yka3EmWEkXSdUIlaUpT8qOAxG0
 id: group_nodes
@@ -894,6 +896,7 @@ display:
           value:
             article: article
             page: page
+            blog_post: blog_post
             event: event
             faces_of_ord: faces_of_ord
             landing_page: landing_page
@@ -1009,6 +1012,7 @@ display:
           required: true
           group_content_plugins:
             'group_node:article': 'group_node:article'
+            'group_node:blog_post': 'group_node:blog_post'
             'group_node:faces_of_ord': 'group_node:faces_of_ord'
             'group_node:landing_page': 'group_node:landing_page'
             'group_node:page': 'group_node:page'
