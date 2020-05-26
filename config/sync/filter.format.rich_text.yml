@@ -7,7 +7,6 @@ dependencies:
     - core.entity_view_mode.media.full_width
     - core.entity_view_mode.media.half_width
     - core.entity_view_mode.media.link
-    - core.entity_view_mode.media.original
     - core.entity_view_mode.media.thumbnail
   module:
     - blazy
@@ -99,14 +98,13 @@ filters:
     status: true
     weight: -41
     settings:
-      default_view_mode: original
+      default_view_mode: full_width
       allowed_media_types:
         image: image
         remote_video: remote_video
       allowed_view_modes:
         full_width: full_width
         half_width: half_width
-        link: link
         thumbnail: thumbnail
   blazy_filter:
     id: blazy_filter
@@ -127,6 +125,7 @@ filters:
     settings:
       default_view_mode: link
       allowed_media_types:
+        audio_file: audio_file
         document: document
       allowed_view_modes:
         embedded: embedded

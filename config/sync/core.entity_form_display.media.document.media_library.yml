@@ -1,39 +1,31 @@
-uuid: 659602eb-6496-45df-aaec-2c4d5344d3e3
+uuid: 3f103757-3e1f-4a2e-9c91-83933e354bec
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_form_mode.media.media_library
     - field.field.media.document.field_description
     - field.field.media.document.field_document
     - field.field.media.document.field_keywords
     - field.field.media.document.field_media_in_library
     - media.type.document
-  module:
-    - file
 _core:
   default_config_hash: xFJUl0MccoGPEv1eb_I_XnxzjqvZ8M5HA1G3PBtv9IE
-id: media.document.default
+id: media.document.media_library
 targetEntityType: media
 bundle: document
-mode: default
+mode: media_library
 content:
   field_description:
     type: string_textfield
-    weight: 2
+    weight: 1
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_document:
-    type: file_generic
-    weight: 1
-    region: content
-    settings:
-      progress_indicator: throbber
-    third_party_settings: {  }
   field_keywords:
-    weight: 3
+    weight: 2
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -41,13 +33,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
-  field_media_in_library:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 4
-    third_party_settings: {  }
     region: content
   name:
     type: string_textfield
@@ -59,6 +44,8 @@ content:
     region: content
 hidden:
   created: true
+  field_document: true
+  field_media_in_library: true
   path: true
   status: true
   uid: true

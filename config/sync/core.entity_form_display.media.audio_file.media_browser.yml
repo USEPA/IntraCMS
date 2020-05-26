@@ -1,12 +1,13 @@
 uuid: 5e572d23-768e-4e7b-9097-0d6bfef1c3e6
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_form_mode.media.media_browser
     - field.field.media.audio_file.field_keywords
     - field.field.media.audio_file.field_media_audio_file
     - field.field.media.audio_file.field_media_in_library
+    - field.field.media.audio_file.field_transcript
     - media.type.audio_file
   module:
     - file
@@ -56,4 +57,5 @@ content:
 hidden:
   created: true
   field_keywords: true
+  field_transcript: true
   uid: true
