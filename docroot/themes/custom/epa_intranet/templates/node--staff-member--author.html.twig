@@ -1,16 +1,14 @@
-
- <div class="author-tag">
- <div class="author-tag__image-container">
+<div class="author-tag" {{ attributes }}>
+  <div class="author-tag__image-container">
     <div class="author-tag__image">
-     <a href="{{ url }}" rel="bookmark">
-     {{ content.field_staff_photo }}
-     </a>
+      <a href="{{ url }}" rel="bookmark">
+        {{ content.field_staff_photo }}
+      </a>
     </div>
-</div>
+  </div>
 
-<div class="author-tag__text">
+  <div class="author-tag__text">
     <p>Written by <a href="{{ url }}" rel="bookmark">{{ label }}</a></p>
-     {{ content.profile }}
+    {{ content.profile }}
+  </div>
 </div>
-</div>
-                                            
