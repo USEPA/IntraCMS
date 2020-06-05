@@ -12,7 +12,6 @@ class FieldHelper {
   private $jira_data = [];
 
 
-
   public function is_checkbox_field($key) {
     return ($key == 'customfield_10411' ||
       $key == 'customfield_10415' ||
@@ -201,7 +200,7 @@ class FieldHelper {
 
   public function setIssueType() {
     $mapping = [
-      'travel_amendment_form'=> '32',
+      'travel_amendment_form' => '32',
       'travel_cancellation' => '33',
       'travel_profile' => '34',
       'routing_change' => '10100',
@@ -224,13 +223,13 @@ class FieldHelper {
         ],
       'verify_your_name' => 'customfield_10493',
       'your_office_center' => 'customfield_10093',
-      'ccte_divisions' => 'customfield_10501',
-      'cemm_divisions' => 'customfield_10501',
-      'ceser_divisions' => 'customfield_10501',
-      'cphea_divisions' => 'customfield_10501',
-      'orm_division' => 'customfield_10501',
-      'osape_division' => 'customfield_10501',
-      'osim_division' => 'customfield_10501',
+      'ccte_division_traveler' => 'customfield_10501',
+      'cemm_division_traveler' => 'customfield_10501',
+      'ceser_division_traveler' => 'customfield_10501',
+      'cphea_division_traveler' => 'customfield_10501',
+      'orm_division_traveker' => 'customfield_10501',
+      'osape_division_traveler' => 'customfield_10501',
+      'osim_division_traveler' => 'customfield_10501',
       'traveler_information' =>
         [
           'traveler_name' => 'customfield_10331',
@@ -246,19 +245,9 @@ class FieldHelper {
       'emergency_contact_information' => 'customfield_10356',
       'traveler_s_grade' => 'customfield_11821',
       'title_position' => 'customfield_11822',
-      'trip_type' => NULL,
-      'one_way_flight' => NULL,
-      'round_trip_flight' => NULL,
-      'multi_city_flight' =>
-        array(),
       'is_personal_annual_leave_being_requested_' => 'customfield_10098',
       'dates_of_approved_leave' => 'customfield_10099',
-      'is_there_a_block_of_rooms_reserved_for_you_to_book_with_' => 'No',
       'do_you_already_have_a_room_reserved_' => 'customfield_10112',
-      'reservation_information' => NULL,
-      'please_stay_within_allowable_per_diem_if_selected_rate_is_over_p' => '',
-      'do_you_have_a_hotel_chain_preference_' => 'No',
-      'address_of_meeting_s_' => NULL,
       'mode_s_of_transportation' => 'customfield_10103',
       'have_you_made_your_own_airline_reservation_' => 'customfield_10435',
       'would_you_like_to_request_a_specific_flight_' => '',
@@ -269,7 +258,6 @@ class FieldHelper {
       'please_provide_the_conference_code' => 'customfield_10921',
       'travel_description' => 'customfield_10094',
       'how_will_this_trip_benefit_the_epa_' => 'customfield_10198',
-      'daily_itinerary' => NULL,
       'has_the_traveler_taken_hstos_training_' => 'customfield_11827',
       'who_is_your_deputy_ethics_official_' => 'customfield_11823',
       'sponsoring_organization' => 'customfield_11825',
@@ -287,12 +275,8 @@ class FieldHelper {
       'name_of_funding_organization' => 'customfield_11427',
       'has_an_ethics_form_been_prepared_' => 'customfield_11428',
       'has_an_ethics_form_been_approved_' => 'customfield_10193',
-      'please_attach_approved_ethics_form_' => NULL,
-      'please_attach_your_invitational_letter_' => NULL,
       'will_training_dollars_be_used_for_this_travel_' => 'customfield_10246',
-      'is_this_sf_182_approved_' => 'Yes',
       'please_provide_more_information_about_the_current_status_of_the_' => '',
-      'please_attach_the_approved_sf_182' => NULL,
       'are_others_from_your_l_c_o_attending_this_meeting_as_well_' => 'customfield_10431',
       'please_provide_the_names_of_the_others_attending_this_meeting_wi' => 'customfield_10432',
       'transportation_expenses' => 'customfield_10278',
@@ -304,14 +288,11 @@ class FieldHelper {
       'cost_of_tolls' => 'customfield_10387',
       'cost_of_rail' => 'customfield_10383',
       'additional_expenses' => 'customfield_10415',
-      'cost_of_conference_registration_fee' => NULL,
       'cost_of_hotel' => 'customfield_10375',
-      'cost_of_hotel_parking' => '214',
       'cost_of_internet_fees' => 'customfield_10377',
       'cost_of_phone_calls' => 'customfield_10416',
       'cost_of_airport_parking' => 'customfield_10412',
       'cost_of_baggage_fees' => 'customfield_10419',
-      'cost_of_cash_withdraw_finance_fees' => NULL,
       'cost_of_atm_fees' => 'customfield_10418',
       'cost_of_supplies' => 'customfield_10417',
       'cost_of_other_expenses' => 'customfield_10380',
@@ -333,27 +314,47 @@ class FieldHelper {
       'bed_size_preference' => 'customfield_10262',
       'hotel_preference' => 'customfield_10273',
       'flight_seating_preference' => 'customfield_10263',
-      'airline_preference' => NULL,
       'please_state_you_question_or_comment_in_the_filed_below_' => 'customfield_10390',
       'receipts' => 'file',
       'required_receipts' => 'file',
 
     ];
     $formatted_data = [];
+    $jira_fields = $this->returnFieldsForJiraType();
+    $allowed_custom_fields = array_keys($jira_fields);
+    // Filter out values not included in Jira Type
     foreach ($this->form_data as $key => $value) {
-      if (isset($form_to_jira_mapping[$key])) {
+      $jira_mapping = $form_to_jira_mapping[$key];
+      if (isset($jira_mapping) && !empty($value)) {
         if (is_array($value)) {
-          foreach ($form_to_jira_mapping[$key] as $nested_key => $nested_value) {
-            $formatted_data[$nested_value] = $value[$nested_key];
+          foreach ($value as $field_name => $field_value) {
+            $custom_field_id = $jira_mapping[$field_name];
+            if (in_array($custom_field_id, $allowed_custom_fields)) {
+              $formatted_data[$custom_field_id] = $field_value;
+            }
           }
         } else {
-          $formatted_data[$form_to_jira_mapping[$key]] = $value;
+          if (in_array($jira_mapping, $allowed_custom_fields)) {
+            $formatted_data[$jira_mapping] = $value;
+          }
         }
       }
     }
     $this->jira_data = $formatted_data;
   }
 
+  function returnFieldsForJiraType() {
+    switch ($this->webform_id) {
+      case 'travel_authorization':
+        $fields = $this->travel_authorization_form_fields();
+        break;
+      case 'travel_question':
+        $fields = $this->travel_question_form_fields();
+        break;
+      //TODO: add cases for other travel forms
+    }
+    return $fields;
+  }
 
   static function isFile($key) {
     // TODO: Filling out file logic for new file fields
