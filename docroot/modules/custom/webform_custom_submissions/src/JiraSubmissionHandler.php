@@ -2,13 +2,10 @@
 
 namespace Drupal\webform_custom_submissions;
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\WebformSubmissionInterface;
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Response;
 use \Exception;
 use Drupal\file\Entity\File;
-use Drupal\Core\File\FileSystem;
 
 class JiraSubmissionHandler {
 
@@ -93,17 +90,15 @@ class JiraSubmissionHandler {
     //Add POST variables to the array
     foreach ($form_data as $key => $val) {
       // ignore file uploads, we are handling these later
-      if ($val === 'file') {
+      if ($key === 'files') {
         continue;
       }
 
       if ($key == 'customfield_10191') {
         $data['fields'][$key] = array('value' => $val);
-      }
-      elseif ($key == 'customfield_10093') {
+      } elseif ($key == 'customfield_10093') {
         $data['fields'][$key] = array('value' => $val);
-      }
-    //Capture dropdowns and turn them into arrays
+      } //Capture dropdowns and turn them into arrays
       elseif (in_array($key, $dropDowns)) {
         //ignore time dropdowns if no time is selected
         if (($key == 'customfield_10322' ||
@@ -115,14 +110,12 @@ class JiraSubmissionHandler {
         ) {
           //do nothing
         } else {
-          // TODO change this to ID pending EPA decision on switching to dynamic ID.
           $data['fields'][$key] = array('value' => $val);
         }
       } //Capture Checkboxes and turn them into arrays
       elseif ($this->field_helper->is_checkbox_field($key)) {
         $checkboxArray = array();
         foreach ($val as $field2 => $value2) {
-          // TODO change this to ID pending EPA decision on switching to dynamic ID.
           array_push($checkboxArray, array('value' => $value2));
         }
         $data['fields'][$key] = $checkboxArray;
@@ -152,11 +145,7 @@ class JiraSubmissionHandler {
     $data['fields']['issuetype'] = $form_data['fields']['issuetype'];
     $data['fields']['summary'] = $form_data['fields']['summary'];
     unset($data['fields']['fields']);
-    echo $data;
     $jsonData = json_encode($data);
-    echo $jsonData;
-//    var_dump($jsonData);
-    exit();
     return $jsonData;
   }
 
@@ -193,45 +182,40 @@ class JiraSubmissionHandler {
 
     $url = $this->create_issue_url . $id . '/attachments/';
 
-    $header = array(
+    $header = [
       'auth' => ["{$this->username[0]}", "{$this->username[1]}"],
       'X-Atlassian-Token' => "nocheck"
-    );
+    ];
 
-    $fileNames = array();
-    foreach ($form_data as $key => $files) {
-      if (FieldHelper::isFile($key)) {
-        foreach ($files as $fid) {
-          $fileData = array('size' => 0);
-          $file = File::load($fid);
-          if (is_object($file)) {
-            $fileData = array(
-              'tmp_name' => \Drupal::service('file_system')->realpath($file->getFileUri()),
-              'name' => $file->getFilename(),
-              'size' => intval($file->getSize()),
-              'mime' => $file->getMimeType(),
-            );
-          }
+    $fileNames = [];
+    foreach ($form_data['files'] as $fid) {
+        $fileData = ['size' => 0];
+        $file = File::load($fid);
+        if (is_object($file)) {
+          $fileData = array(
+            'tmp_name' => \Drupal::service('file_system')->realpath($file->getFileUri()),
+            'name' => $file->getFilename(),
+            'size' => intval($file->getSize()),
+            'mime' => $file->getMimeType(),
+          );
+        }
 
-          if ($fileData['size'] > 0) {
-            $response = $this->submission_client->request('POST',
-              $url,
-              ['headers' => $header,
-                'multipart' => [
-                  'name' => $fileData['tmp_name'],
-                  'contents' => $fileData['mime'],
-                  'filename' => $fileData['name']
-                ]]);
-            $decodedResponse = json_decode($response, TRUE);
-            \Drupal::logger('Travel Services File Response')->notice($response);
-            \Drupal::logger('Travel Services File Response')->notice($response);
-            if (sizeof($decodedResponse) > 0) {
-              $fileNames[] = $$fileData['name'];
-            }
+        if ($fileData['size'] > 0) {
+          $response = $this->submission_client->request('POST',
+            $url,
+            ['headers' => $header,
+              'multipart' => [
+                'name' => $fileData['tmp_name'],
+                'contents' => $fileData['mime'],
+                'filename' => $fileData['name']
+              ]]);
+          $decodedResponse = json_decode($response, TRUE);
+          \Drupal::logger('Travel Services File Response')->notice($response);
+          if (sizeof($decodedResponse) > 0) {
+            $fileNames[] = $fileData['name'];
           }
         }
       }
-    }
     return $fileNames;
   }
 }
