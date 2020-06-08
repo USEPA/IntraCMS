@@ -1,0 +1,159 @@
+<?php
+
+/**
+ * @file
+ * Contains group_media_context.module.
+ */
+
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityForm;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\group\Entity\GroupContent;
+use Drupal\group\Entity\GroupInterface;
+use Drupal\layout_builder\Plugin\SectionStorage\OverridesSectionStorage;
+use Drupal\media_library\MediaLibraryState;
+
+/**
+ * Implements hook_field_widget_form_alter().
+ *
+ * @todo Create helper to get group.
+ */
+function group_media_context_field_widget_form_alter($element, FormStateInterface $form_state, $context) {
+  // Get the widget for media library.
+  $plugin_type = $context['widget']->getPluginId();
+  if (!empty($plugin_type)
+      && $plugin_type == 'media_library_widget'
+      && $form_state->getFormObject() instanceof EntityForm
+  ) {
+    // Get group entity is associated with.
+    // If the entity is unavailable, see if the group is provided
+    // given the entity is added via the group
+    // e.g. group/{group_id}/{entity}/add.
+    $entity = $form_state->getformObject()->getEntity();
+    $groups = [];
+    if ($entity->id()) {
+      $group_contents = GroupContent::loadByEntity($entity);
+      foreach ($group_contents as $group_content) {
+        $groups[] = $group_content->getGroup();
+      }
+    }
+    elseif (isset($form_state->getStorage()['group'])) {
+      $groups[] = $form_state->getStorage()['group'];
+    }
+
+    // Grab the media library state from the widget.
+    // When a modal is opened, the group ids will be included
+    // as a query parameter. We can extract the group ids
+    // directly from the media library state later.
+    $media_library_state = $element['open_button']['#media_library_state'];
+    $opener_parameters = $media_library_state->getOpenerParameters();
+    if (!empty($groups)) {
+      foreach ($groups as $group) {
+        $opener_parameters['group_ids'][] = $group->id();
+      }
+      $media_library_state->set('media_library_opener_parameters', $opener_parameters);
+      $media_library_state->set('hash', $media_library_state->getHash());
+      $element['open_button']['#media_library_state'] = $media_library_state;
+    }
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function group_media_context_form_media_library_add_form_alter(&$form) {
+  // Add a custom submit handler that runs after media is added and saved.
+  if (!empty($form['actions'])) {
+    $form['#submit'][] = '_group_media_context_submit';
+  }
+}
+
+/**
+ * Implements hook_editor_js_settings_alter().
+ */
+function group_media_context_editor_js_settings_alter(&$settings) {
+  // Get entity object from route if provided.
+  // If entity is not provided, group should be provided
+  // given the entity is added via the group
+  // e.g. group/{group_id}/{entity}/add.
+  $parameters = \Drupal::routeMatch()->getParameters()->all();
+  $groups = [];
+  if (!empty($parameters)) {
+    foreach ($parameters as $parameter) {
+      if ($parameter instanceof GroupInterface) {
+        $groups[] = $parameter;
+        break;
+      }
+      elseif ($parameter instanceof EntityInterface || $parameter instanceof OverridesSectionStorage) {
+        // If in layout builder, grab the entity from section storage.
+        if ($parameter instanceof OverridesSectionStorage) {
+          $contexts = $parameter->getContexts();
+          $entity = $contexts['entity']->getContextData()->getValue();
+        }
+        else {
+          $entity = $parameter;
+        }
+        if ($entity instanceof ContentEntityInterface) {
+          $group_contents = GroupContent::loadByEntity($entity);
+          foreach ($group_contents as $group_content) {
+            $groups[] = $group_content->getGroup();
+          }
+          break;
+        }
+      }
+    }
+
+    // If we have a group objects, add group ids as a query parameter
+    // to the opener parameters and rebuild query for media library
+    // ckeditor widgets. The MediaLibraryState will preserve the group ids.
+    if (!empty($groups)) {
+      foreach ($settings['editor']['formats'] as $format => $setting) {
+        foreach ($setting['editorSettings'] as $key => $value) {
+          if (strpos($key, 'MediaLibrary_url')) {
+            $parts = parse_url($value);
+            parse_str($parts['query'], $query);
+            foreach ($groups as $group) {
+              $query['media_library_opener_parameters']['group_ids'][] = $group->id();
+            }
+            $query['hash'] = MediaLibraryState::create($query['media_library_opener_id'], $query['media_library_allowed_types'], $query['media_library_selected_type'], $query['media_library_remaining'], $query['media_library_opener_parameters'])->getHash();
+            $query = http_build_query($query);
+            $url = implode('?', [$parts['path'], $query]);
+            $settings['editor']['formats'][$format]['editorSettings'][$key] = $url;
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Custom submit handler for media.
+ *
+ * @todo Factor in content and media cardinality.
+ */
+function _group_media_context_submit($form, FormStateInterface $form_state) {
+  // Get the added media.
+  $media_items = $form_state->get('media') ?: [];
+
+  // Check for the media library state.
+  $form_storage = $form_state->getStorage();
+  if (!empty($form_storage['media_library_state'])) {
+    // Get group ids from the opener parameters or from the form action.
+    $opener_parameters = $form_storage['media_library_state']->getOpenerParameters();
+    if (!empty($opener_parameters['group_ids'])) {
+      $group_ids = $opener_parameters['group_ids'];
+    }
+
+    // Add group content for the media and create a relationship to the group.
+    if (isset($group_ids)) {
+      $entity_type_manager = \Drupal::entityTypeManager();
+      foreach ($group_ids as $group_id) {
+        foreach ($media_items as $media) {
+          $group = $entity_type_manager->getStorage('group')->load($group_id);
+          $group->addContent($media, 'group_media:' . $media->bundle());
+        }
+      }
+    }
+  }
+}

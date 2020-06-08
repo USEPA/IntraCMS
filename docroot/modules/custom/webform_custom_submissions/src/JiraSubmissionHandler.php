@@ -152,7 +152,11 @@ class JiraSubmissionHandler {
     $data['fields']['issuetype'] = $form_data['fields']['issuetype'];
     $data['fields']['summary'] = $form_data['fields']['summary'];
     unset($data['fields']['fields']);
+    echo $data;
     $jsonData = json_encode($data);
+    echo $jsonData;
+//    var_dump($jsonData);
+    exit();
     return $jsonData;
   }
 

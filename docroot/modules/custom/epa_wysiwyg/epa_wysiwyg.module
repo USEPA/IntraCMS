@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Contains epa_wysiwyg.module.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function epa_wysiwyg_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'epa_wysiwyg/epa-new';
+}
