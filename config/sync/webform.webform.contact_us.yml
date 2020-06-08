@@ -1,3 +1,4 @@
+uuid: 9374117c-1d3d-4b25-b7d7-eaafe220f63d
 langcode: en
 status: open
 dependencies: {  }
@@ -9,14 +10,14 @@ template: false
 archive: false
 id: contact_us
 title: 'Contact Us'
-description: 'Something missing, broken link or just need help? then contact the Comms Team...'
+description: 'Something missing, broken link or just need help? then contact the CPHEA Comms Team...'
 category: 'Admin Forms'
-elements: "dep_name:\n  '#type': textfield\n  '#title': Name\n  '#title_display': before\nemail:\n  '#type': textfield\n  '#title': Email\n  '#title_display': before\nname:\n  '#type': textarea\n  '#title': Comment\n  '#title_display': before\n  '#required': true"
+elements: "type_of_issue:\n  '#type': checkbox\n  '#title': 'Type of issue'\n  '#description': 'Select what the issue is.'\n  '#title_display': before\ndep_name:\n  '#type': textfield\n  '#title': Name\n  '#description': 'Please tell us your name so we can get back to you (optional).'\n  '#title_display': before\nemail:\n  '#type': textfield\n  '#title': Email\n  '#description': 'Please provide your email so we can get back to you (optional).'\n  '#title_display': before\nname:\n  '#type': textarea\n  '#title': Comment\n  '#description': 'Please explain your comment here...'\n  '#title_display': before\n  '#required': true"
 css: ''
 javascript: ''
 settings:
   ajax: false
-  ajax_scroll_top: ''
+  ajax_scroll_top: form
   ajax_progress_type: ''
   ajax_effect: ''
   ajax_speed: null
@@ -175,78 +176,5 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers:
-  email:
-    id: email
-    label: Maureen
-    handler_id: email
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      states:
-        - completed
-      to_mail: Johnson.maureen@epa.gov
-      to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      from_mail: '[webform_submission:values:email:raw]'
-      from_options: {  }
-      from_name: '[webform_submission:values:dep_name:raw]'
-      subject: _default
-      body: _default
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      exclude_attachments: false
-      html: true
-      attachments: false
-      twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-      theme_name: ''
-      parameters: {  }
-  email_1:
-    id: email
-    label: Kelly
-    handler_id: email_1
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      states:
-        - completed
-      to_mail: Kelly.widener@epa.gov
-      to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      from_mail: '[webform_submission:values:email:raw]'
-      from_options: {  }
-      from_name: '[webform_submission:values:dep_name:raw]'
-      subject: _default
-      body: _default
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      exclude_attachments: false
-      html: true
-      attachments: false
-      twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-      theme_name: ''
-      parameters: {  }
+handlers: {  }
 variants: {  }
-uuid: 9374117c-1d3d-4b25-b7d7-eaafe220f63d

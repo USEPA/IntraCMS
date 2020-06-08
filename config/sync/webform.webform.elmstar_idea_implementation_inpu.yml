@@ -12,7 +12,7 @@ id: elmstar_idea_implementation_inpu
 title: 'ELMSTAR Idea Implementation Input Form'
 description: ''
 category: ELMS
-elements: "are_you_completing_this_form_for_someone_else_:\n  '#type': select\n  '#title': 'Are you completing this form for someone else?'\n  '#options': yes_no\n  '#required': true\nsubmitter_email:\n  '#type': email\n  '#title': 'Your Email'\n  '#states':\n    visible:\n      ':input[name=\"are_you_completing_this_form_for_someone_else_\"]':\n        value: 'Yes'\n  '#required': true\nepa_owner_idea_originator:\n  '#type': webform_name\n  '#title': 'EPA Owner (Idea Originator)'\n  '#title_display': before\n  '#required': true\n  '#title__access': false\n  '#middle__access': false\n  '#suffix__access': false\n  '#degree__access': false\nepa_owner_email:\n  '#type': email\n  '#title': 'EPA Owner Email'\n  '#required': true\nepa_owner_center_office:\n  '#type': select\n  '#title': 'EPA Owner Center/Office'\n  '#options': ord_centers_and_offices\n  '#required': true\nccte_divisions:\n  '#type': select\n  '#title': 'CCTE Division'\n  '#options': ccte_divisions\n  '#states':\n    visible:\n      ':input[name=\"epa_owner_center_office\"]':\n        value: CCTE\n  '#required': true\ncemm_divisions:\n  '#type': select\n  '#title': 'CEMM Division'\n  '#options': cemm_divisions\n  '#states':\n    visible:\n      ':input[name=\"epa_owner_center_office\"]':\n        value: CEMM\n  '#required': true\nceser_divisions:\n  '#type': select\n  '#title': 'CESER Division'\n  '#options': ceser_divisions\n  '#states':\n    visible:\n      ':input[name=\"epa_owner_center_office\"]':\n        value: CESER\n  '#required': true\ncphea_divisions:\n  '#type': select\n  '#title': 'CPHEA Division'\n  '#options': cphea_divisions\n  '#states':\n    visible:\n      ':input[name=\"epa_owner_center_office\"]':\n        value: CPHEA\n  '#required': true\norm_division:\n  '#type': select\n  '#title': 'ORM Division'\n  '#options': orm_divisions\n  '#states':\n    visible:\n      ':input[name=\"epa_owner_center_office\"]':\n        value: ORM\n  '#required': true\nosape_division:\n  '#type': select\n  '#title': 'OSAPE Division'\n  '#options': osape_divisions\n  '#states':\n    visible:\n      ':input[name=\"epa_owner_center_office\"]':\n        value: OSAPE\n  '#required': true\nosim_division:\n  '#type': select\n  '#title': 'OSIM Division'\n  '#options': osim_divisions\n  '#states':\n    visible:\n      ':input[name=\"epa_owner_center_office\"]':\n        value: OSIM\n  '#required': true\nimplementing_manager:\n  '#type': webform_name\n  '#title': 'Implementing Manager'\n  '#description': 'The Implementing Manager is the manager of the EPA employee that originated the idea. You do <strong>NOT </strong>need to enter the manager&#39;s name if they are not involved in the process improvement.'\n  '#title_display': before\n  '#title__access': false\n  '#middle__access': false\n  '#suffix__access': false\n  '#degree__access': false\ndate_implemented:\n  '#type': date\n  '#title': 'Date Implemented'\n  '#required': true\n  '#datepicker': true\n  '#date_date_format': m/d/Y\ndescription_of_idea:\n  '#type': textarea\n  '#title': 'Description of Idea'\n  '#required': true"
+elements: "are_you_completing_this_form_for_someone_else_:\n  '#type': select\n  '#title': 'Are you completing this form for someone else?'\n  '#options': yes_no\n  '#required': true\nyour_name:\n  '#type': webform_name\n  '#title': 'Your Name'\n  '#title_display': before\n  '#required': true\n  '#states':\n    visible:\n      ':input[name=\"are_you_completing_this_form_for_someone_else_\"]':\n        value: 'Yes'\n  '#title__access': false\n  '#middle__access': false\n  '#suffix__access': false\n  '#degree__access': false\nyour_center_office:\n  '#type': select\n  '#title': 'Your Center/Office'\n  '#options': ord_centers_and_offices\n  '#states':\n    visible:\n      ':input[name=\"are_you_completing_this_form_for_someone_else_\"]':\n        value: 'Yes'\n  '#required': true\nyour_email:\n  '#type': email\n  '#title': 'Your Email'\n  '#states':\n    visible:\n      ':input[name=\"are_you_completing_this_form_for_someone_else_\"]':\n        value: 'Yes'\n  '#required': true\nepa_owner_idea_originator:\n  '#type': webform_name\n  '#title': 'EPA Owner (Idea Originator)'\n  '#title_display': before\n  '#required': true\n  '#title__access': false\n  '#middle__access': false\n  '#suffix__access': false\n  '#degree__access': false\nepa_owner_center_office:\n  '#type': select\n  '#title': 'EPA Owner Center/Office'\n  '#options': ord_centers_and_offices\n  '#required': true\nepa_owner_email:\n  '#type': email\n  '#title': 'EPA Owner Email'\n  '#required': true\nimplementing_manager:\n  '#type': webform_name\n  '#title': 'Implementing Manager'\n  '#title_display': before\n  '#required': true\n  '#title__access': false\n  '#middle__access': false\n  '#suffix__access': false\n  '#degree__access': false\ndate_implemented:\n  '#type': date\n  '#title': 'Date Implemented'\n  '#required': true\n  '#datepicker': true\n  '#date_date_format': m/d/Y\ndescription_of_idea:\n  '#type': textarea\n  '#title': 'Description of Idea'\n  '#required': true"
 css: ''
 javascript: ''
 settings:
@@ -176,113 +176,5 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers:
-  email:
-    id: email
-    label: Email
-    handler_id: email
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      states:
-        - completed
-      to_mail: '[webform_submission:values:epa_owner_email:raw]'
-      to_options: {  }
-      cc_mail: '[webform_submission:values:submitter_email:raw]'
-      cc_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      from_mail: _default
-      from_options: {  }
-      from_name: _default
-      subject: 'Webform submission from: ELMSTAR Idea Implementation'
-      body: _default
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      exclude_attachments: false
-      html: true
-      attachments: false
-      twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-      theme_name: ''
-      parameters: {  }
-  email_1:
-    id: email
-    label: 'ORM-ELMS Email'
-    handler_id: email_1
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      states:
-        - completed
-      to_mail: 'Clausen.Rebecca@epa.gov,Cursio.Heather@epa.gov,Modafari.Nicole@epa.gov'
-      to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      from_mail: _default
-      from_options: {  }
-      from_name: _default
-      subject: 'Webform submission from: ELMSTAR Idea Implementation'
-      body: _default
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      exclude_attachments: false
-      html: true
-      attachments: false
-      twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-      theme_name: ''
-      parameters: {  }
-  email_2:
-    id: email
-    label: 'OSIM Email'
-    handler_id: email_2
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      states:
-        - completed
-      to_mail: 'adkins.carla@epa.gov,james.temberly@epa.gov,seegars.elroy@epa.gov'
-      to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      from_mail: _default
-      from_options: {  }
-      from_name: _default
-      subject: 'Webform submission from: ELMSTAR Idea Implementation'
-      body: _default
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      exclude_attachments: false
-      html: true
-      attachments: false
-      twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-      theme_name: ''
-      parameters: {  }
+handlers: {  }
 variants: {  }

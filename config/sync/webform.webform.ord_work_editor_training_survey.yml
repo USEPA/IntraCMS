@@ -1,8 +1,7 @@
+uuid: 7ed33964-6a94-4900-b945-b53839ac4279
 langcode: en
 status: open
-dependencies:
-  module:
-    - webform_analysis
+dependencies: {  }
 open: null
 close: null
 weight: 0
@@ -12,13 +11,13 @@ archive: false
 id: ord_work_editor_training_survey
 title: 'ORD@Work Editor Training Survey'
 description: 'Feedback from ORD@Work Editor training'
-category: 'Web Guide'
-elements: "what_day_did_you_attend_the_class_:\n  '#type': date\n  '#title': 'What day did you attend the class?'\n  '#required': true\ni_attended:\n  '#type': select\n  '#title': 'I attended'\n  '#options':\n    in-person: 'In Person'\n    remote: Remote\n  '#required': true\nwas_the_course_s_content_too_challenging_for_an_average_learner_:\n  '#type': select\n  '#title': 'Was the training easy for an average learner to understand?'\n  '#options':\n    'yes': 'Yes'\n    'no': 'No'\n  '#required': true\nplease_explain_:\n  '#type': textarea\n  '#title': 'Please explain:'\n  '#states':\n    visible:\n      ':input[name=\"was_the_course_s_content_too_challenging_for_an_average_learner_\"]':\n        value: 'no'\nthe_course_length_was:\n  '#type': select\n  '#title': 'The course length was'\n  '#options':\n    too-short: 'Too Short'\n    too-long: 'Too Long'\n    'Just Right': 'Just Right'\n  '#required': true\nhow_would_you_rate_the_overall_course_content_:\n  '#type': webform_rating\n  '#title': 'How would you rate the overall course content?'\n  '#required': true\nwhat_else_would_you_like_to_see_covered_in_training_:\n  '#type': textarea\n  '#title': 'What else would you like to see covered in training?'\nany_additional_thoughts_or_comments_:\n  '#type': textarea\n  '#title': 'Any additional thoughts or comments?'"
+category: IT
+elements: "which_class_did_you_attend_:\n  '#type': select\n  '#title': 'Which class did you attend?'\n  '#options':\n    tue-dc: '11/19 Tuesday Morning'\n    thur-am: '11/7 Thursday Morning'\n    wed-pm: '11/6 Wednesday Afternoon'\n    wed-am: '11/6 Wednesday Morning'\n    tue-pm: '11/5 Tuesday Afternoon'\n    jan-9-2020: '1/9/2020 Tuesday Morning'\n    jan-23-2020: '1/23/2020 Tuesday Morning'\n  '#required': true\ni_attended:\n  '#type': select\n  '#title': 'I attended'\n  '#options':\n    in-person: 'In Person'\n    remote: Remote\n  '#required': true\nwas_the_course_s_content_too_challenging_for_an_average_learner_:\n  '#type': select\n  '#title': 'Was the training easy for an average learner to understand?'\n  '#options':\n    'yes': 'Yes'\n    'no': 'No'\n  '#required': true\nplease_explain_:\n  '#type': textarea\n  '#title': 'Please explain:'\n  '#states':\n    visible:\n      ':input[name=\"was_the_course_s_content_too_challenging_for_an_average_learner_\"]':\n        value: 'no'\nthe_course_length_was:\n  '#type': select\n  '#title': 'The course length was'\n  '#options':\n    too-short: 'Too Short'\n    too-long: 'Too Long'\n    'Just Right': 'Just Right'\n  '#required': true\nhow_would_you_rate_the_overall_course_content_:\n  '#type': webform_rating\n  '#title': 'How would you rate the overall course content?'\n  '#required': true\nwhat_else_would_you_like_to_see_covered_in_training_:\n  '#type': textarea\n  '#title': 'What else would you like to see covered in training?'\nany_additional_thoughts_or_comments_:\n  '#type': textarea\n  '#title': 'Any additional thoughts or comments?'"
 css: ''
 javascript: ''
 settings:
   ajax: false
-  ajax_scroll_top: ''
+  ajax_scroll_top: form
   ajax_progress_type: ''
   ajax_effect: ''
   ajax_speed: null
@@ -179,11 +178,3 @@ access:
     permissions: {  }
 handlers: {  }
 variants: {  }
-uuid: 7ed33964-6a94-4900-b945-b53839ac4279
-third_party_settings:
-  webform_analysis:
-    chart_type: PieChart
-    components:
-      - was_the_course_s_content_too_challenging_for_an_average_learner_
-      - the_course_length_was
-      - how_would_you_rate_the_overall_course_content_

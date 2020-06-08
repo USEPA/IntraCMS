@@ -383,7 +383,6 @@ class FieldHelper {
       case 'travel_voucher':
         $fields = $this->travel_voucher_form_fields();
         break;
-      //TODO: add cases for other travel forms
       case 'travel_id_information':
         $fields = $this->traveler_id_form_fields();
         break;
