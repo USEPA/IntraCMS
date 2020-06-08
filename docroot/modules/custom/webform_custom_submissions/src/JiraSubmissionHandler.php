@@ -52,7 +52,9 @@ class JiraSubmissionHandler {
       $jira_data['fields']['summary'] = $this->getSummary($webform_submission, $jira_data);
       $postData = $this->compilePOSTData($jira_data);
       $postResponse = $this->sendPOSTData($postData);
-      \Drupal::logger('Travel Services Response')->notice(print_r($postResponse));
+      \Drupal::logger('Travel Services Response')->notice(
+        '<pre><code>' . print_r($postResponse, TRUE) . '</code></pre>'
+      );
       $decoded_response = json_decode($postResponse, TRUE);
       $issueId = $this->getIssueId($postResponse);
       $filesUploaded = $this->attachFiles($issueId, $jira_data);
