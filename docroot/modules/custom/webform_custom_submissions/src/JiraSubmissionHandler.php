@@ -56,10 +56,10 @@ class JiraSubmissionHandler {
       $decoded_response = $postResponse;
       $issueId = $this->getIssueId($postResponse);
       $filesUploaded = $this->attachFiles($issueId, $jira_data);
-      if (isset($decoded_response['errorMessages'])) {
+      if ($decoded_response->getCode() != 200) {
         \Drupal::logger('Travel Services Error')->error($postResponse);
         drupal_set_message(t('There was an error processing your request. Code-0001'), 'error');
-      } else if (!isset($decoded_response['id'])) {
+      } else if (!isset($decoded_response->id)) {
         drupal_set_message(t('There was an error processing your request. Code-0002'), 'error');
         \Drupal::logger('Travel Services Error')->error('Unidentified Error: JIRA Response = ' . $postResponse);
       }
@@ -210,10 +210,12 @@ class JiraSubmissionHandler {
                 ]
               ]
             ]);
-          $decodedResponse = $response->getBody();
-          \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($decodedResponse, TRUE) . '</code></pre>');
-          if (sizeof($decodedResponse) > 0) {
+          if ($response->getStatusCode() == 200) {
+            $decodedResponse = $response->getBody();
+            \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($decodedResponse, TRUE) . '</code></pre>');
             $fileNames[] = $fileData['name'];
+          } else {
+            \Drupal::logger('Travel Services Response')->error('<pre><code>' . print_r($response->getBody(), TRUE) . '</code></pre>');
           }
         }
       }
