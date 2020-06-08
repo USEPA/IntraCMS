@@ -166,6 +166,7 @@ class JiraSubmissionHandler {
       return $response;
     } catch (Exception $e) {
       \Drupal::logger('Travel Services Response')->error($e->getMessage());
+      exit($e->getMessage());
       return new Exception($e->getMessage());
     }
   }
