@@ -1,0 +1,374 @@
+uuid: 120cc5b0-7a42-457d-8f05-53db0f7ee418
+langcode: en
+status: open
+dependencies: {  }
+open: null
+close: null
+weight: 0
+uid: 5
+template: false
+archive: false
+id: mobile_device_request_form_for_i
+title: 'Mobile Device Request Form for International Travel'
+description: 'If an Agency-provided mobile device (e.g., mobile phone, laptop, etc.)&nbsp;is needed to accomplish official duties while on international travel, an IT risk determination and authorization must be granted by the Agency Information Security Officer.'
+category: IT
+elements: "name:\n  '#type': webform_name\n  '#title': Name\n  '#middle__access': false\n  '#suffix__access': false\n  '#degree__access': false\n  '#required': true\nemail:\n  '#type': email\n  '#title': Email\n  '#required': true\ncenter_office:\n  '#type': select\n  '#title': Center/Office\n  '#options': ord_centers_and_offices\n  '#required': true\nord_location:\n  '#type': webform_term_select\n  '#title': 'ORD Location'\n  '#vocabulary': locations\n  '#breadcrumb_delimiter': ''\n  '#required': true\ntype_of_travel:\n  '#type': select\n  '#title': 'Type of Travel'\n  '#options':\n    official: Official\n    personal: Personal\n  '#required': true\nconference_or_event_name:\n  '#type': textfield\n  '#title': 'Conference or Event Name'\n  '#description': 'Specific Name of Conference or Event'\n  '#required': true\nbrief_reason_for_travel:\n  '#type': textarea\n  '#title': 'Brief Reason for Travel'\n  '#description': 'Provide a brief reason for travel (e.g. Attending Scientific Conference)'\n  '#required': true\nintended_mobile_devices_requested:\n  '#type': textfield\n  '#title': 'Intended Mobile Devices Requested'\n  '#description': '(e.g. iPhone, Laptop)'\n  '#required': true\ndo_you_already_have_an_epa_provided_mobile_phone_:\n  '#type': select\n  '#title': 'Do you already have an EPA provided Mobile Phone?'\n  '#options': yes_no\n  '#required': true\nagency_mobile_phone_number:\n  '#type': tel\n  '#title': 'Agency Mobile Phone Number'\n  '#description': 'Please enter the area code and phone number.'\n  '#states':\n    invisible:\n      ':input[name=\"do_you_already_have_an_epa_provided_mobile_phone_\"]':\n        empty: true\n    visible:\n      ':input[name=\"do_you_already_have_an_epa_provided_mobile_phone_\"]':\n        value: 'Yes'\ncountries:\n  '#type': select\n  '#title': Countries\n  '#options': country_names\n  '#required': true\ncities:\n  '#type': textfield\n  '#title': Cities\n  '#required': true\nlast_date_in_the_office_before_the_trip:\n  '#type': date\n  '#title': 'Last Date in the Office Before the Trip'\n  '#date_date_min': today\n  '#datepicker': true\n  '#datepicker_button': true\n  '#date_time_step': '60'\n  '#required': true\ndeparture_date:\n  '#type': date\n  '#title': 'Departure Date'\n  '#date_date_min': today\n  '#datepicker': true\n  '#datepicker_button': true\n  '#required': true\nreturn_date:\n  '#type': date\n  '#title': 'Return Date'\n  '#date_date_min': today\n  '#datepicker': true\n  '#datepicker_button': true\n  '#required': true"
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_admin_theme: false
+  form_title: both
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_remote_addr: true
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  submission_label: ''
+  submission_log: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_track: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_url: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  risk_ruling_email:
+    id: email
+    label: 'Risk Ruling'
+    handler_id: risk_ruling_email
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: 'burke.pat@epa.gov,howard.fredrick@epa.gov'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: '[webform_submission:values:email:raw]'
+      subject: 'Risk ruling needed for [traveler_name] for international travel to [countries], departing [departure_date]'
+      body: "Dear Robert,<br />\r\n<br />\r\nPlease consider the details for this international trip and rule whether specially-configured mobile devices are required.&nbsp;<br />\r\n<br />\r\nThanks,<br />\r\n<br />\r\nPat Burke<br />\r\nORD/OSIM<br />\r\n<br />\r\n<br />\r\nORD TRAVELER AND TRIP DETAILS ARE AS FOLLOWS:<br />\r\n[webform_submission:values]<br />\r\n&nbsp;"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  traveler_email:
+    id: email
+    label: 'Traveler Email'
+    handler_id: traveler_email
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email:raw]'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: 'Traveler Confirmation of Request for Risk ruling needed for travel to [countries], departing [departure_date]'
+      body: "Process initiated on&nbsp;[webform_submission:completed]<br />\r\n<br />\r\nYou submitted the following information:<br />\r\n<br />\r\n[webform_submission:values]<br />\r\n&nbsp;"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  ada_csr_email:
+    id: email
+    label: 'ADA CSR Notification Email'
+    handler_id: ada_csr_email
+    status: true
+    conditions:
+      enabled:
+        ':input[name="ord_location"]':
+          value: '22'
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: 'LITZINGER.CARL@EPA.gov, richardson.jon@epa.gov'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  athens_csr_notification_email:
+    id: email
+    label: 'Athens CSR Notification Email'
+    handler_id: athens_csr_notification_email
+    status: true
+    conditions:
+      enabled:
+        ':input[name="ord_location"]':
+          value: '23'
+    weight: 3
+    settings:
+      states:
+        - completed
+      to_mail: rowan.tim@epa.gov
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  ch_rtp_csr_notification_email:
+    id: email
+    label: 'Chapel Hill RTP CSR Notification Email'
+    handler_id: ch_rtp_csr_notification_email
+    status: true
+    conditions:
+      enabled:
+        -
+          ':input[name="ord_location"]':
+            value: '23'
+        - or
+        -
+          ':input[name="ord_location"]':
+            value: '21'
+    weight: 4
+    settings:
+      states:
+        - completed
+      to_mail: seegars.elroy@epa.gov
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+variants: {  }

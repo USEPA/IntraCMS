@@ -52,8 +52,8 @@ class JiraSubmissionHandler {
       }
       $fieldHelper->setIssueType();
       $jira_data = $fieldHelper->getJiraData();
-      $postData = $this->compilePOSTData($jira_data);
       $jira_data['fields']['summary'] = $this->getSummary($webform_submission, $jira_data);
+      $postData = $this->compilePOSTData($jira_data);
       $postResponse = $this->sendPOSTData($postData);
       $decoded_response = json_decode($postResponse, TRUE);
       $issueId = $this->getIssueId($postResponse);
@@ -115,12 +115,14 @@ class JiraSubmissionHandler {
         ) {
           //do nothing
         } else {
+          // TODO change this to ID pending EPA decision on switching to dynamic ID.
           $data['fields'][$key] = array('value' => $val);
         }
       } //Capture Checkboxes and turn them into arrays
       elseif ($this->field_helper->is_checkbox_field($key)) {
         $checkboxArray = array();
         foreach ($val as $field2 => $value2) {
+          // TODO change this to ID pending EPA decision on switching to dynamic ID.
           array_push($checkboxArray, array('value' => $value2));
         }
         $data['fields'][$key] = $checkboxArray;
@@ -143,19 +145,18 @@ class JiraSubmissionHandler {
       }
     }//end foreach
 
-    //Set the Summary field
-    if ($form_data['proxy'] == 'Yes')
-      $data['fields']['summary'] = $form_data['formTitle'] . ': ' . $data['fields']['customfield_10331'];
-    else if ($form_data['proxy'] == 'No')
-      $data['fields']['summary'] = $form_data['formTitle'] . ': ' . $data['fields']['customfield_10090'];
-
     if ($form_data['customfield_10431'] == 'Yes')
       $data['fields']['customfield_10431'] = array('value' => 'Yes');
 
     $data['fields']['project'] = $form_data['fields']['project'];
     $data['fields']['issuetype'] = $form_data['fields']['issuetype'];
     $data['fields']['summary'] = $form_data['fields']['summary'];
+    unset($data['fields']['fields']);
+    echo $data;
     $jsonData = json_encode($data);
+    echo $jsonData;
+//    var_dump($jsonData);
+    exit();
     return $jsonData;
   }
 
