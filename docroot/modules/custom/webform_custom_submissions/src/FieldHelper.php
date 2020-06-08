@@ -177,7 +177,7 @@ class FieldHelper {
   public function travel_concur_routing_form_fields() {
     return array('proxy' => 'Completing for someone else?', 'customfield_10092' => 'Your @epa.gov Email', 'customfield_10090' => 'Your Name', 'customfield_10091' => 'Your Telephone',
       'customfield_10620' => 'Traveler @epa.gov Email', 'customfield_10331' => 'Traveler name', 'customfield_10093' => 'Traveler L/C/O', 'customfield_10501' => 'Traveler division or equivalent',
-      'customfield_10209' => 'Please state your requested Concur update in the box below','customfield_11423' => "Traveler's Phone Number",
+      'customfield_10209' => 'Please state your requested Concur update in the box below', 'customfield_11423' => "Traveler's Phone Number",
     );
   }
 
@@ -334,15 +334,18 @@ class FieldHelper {
         'comments' => 'Huius, Lyco, oratione locuples, rebus ipsis ielunior. Duo Reges: constructio interrete. Sed haec in pueris; Sed utrum hortandus es nobis, Luci, inquit, an etiam tua sponte propensus es? Sapiens autem semper beatus est et est aliquando in dolore; Immo videri fortasse. Paulum, cum regem Persem captum adduceret, eodem flumine invectio? Et ille ridens: Video, inquit, quid agas;',
       ]
     ];
-    $formatted_data = [];
+    $formatted_data = [
+      'files' => [],
+    ];
     $jira_fields = $this->returnFieldsForJiraType();
     $allowed_custom_fields = array_keys($jira_fields);
     // Filter out values not included in Jira Type
     foreach ($this->form_data as $key => $value) {
       $jira_mapping = $form_to_jira_mapping[$key];
       if ($jira_mapping === 'file') {
-        $this->print_missing_field('Handle File: ' . $value[0]);
-      } else if ($this->is_checkbox_field($jira_mapping)) {
+        $formatted_data['files'][] = $value[0];
+      }
+      else if ($this->is_checkbox_field($jira_mapping)) {
         $formatted_data[$jira_mapping] = $value;
       } else {
         if (isset($jira_mapping) && !empty($value)) {
@@ -351,15 +354,11 @@ class FieldHelper {
               $custom_field_id = $jira_mapping[$field_name];
               if (in_array($custom_field_id, $allowed_custom_fields)) {
                 $formatted_data[$custom_field_id] = $field_value;
-              } else {
-                $this->print_missing_field($custom_field_id);
               }
             }
           } else {
             if (in_array($jira_mapping, $allowed_custom_fields)) {
               $formatted_data[$jira_mapping] = $value;
-            } else {
-              $this->print_missing_field($jira_mapping);
             }
           }
         }
@@ -400,11 +399,6 @@ class FieldHelper {
         break;
     }
     return $fields;
-  }
-
-  static function isFile($key) {
-    // TODO: Filling out file logic for new file fields
-    return $key == 'attachment_s_';
   }
 
 }
