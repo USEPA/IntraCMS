@@ -52,7 +52,6 @@ class JiraSubmissionHandler {
       $jira_data['fields']['summary'] = $this->getSummary($webform_submission, $jira_data);
       $postData = $this->compilePOSTData($jira_data);
       $postResponse = $this->sendPOSTData($postData);
-
       $decoded_response = json_decode($postResponse, TRUE);
       $issueId = $this->getIssueId($postResponse);
       $filesUploaded = $this->attachFiles($issueId, $jira_data);
@@ -146,8 +145,7 @@ class JiraSubmissionHandler {
     $data['fields']['issuetype'] = $form_data['fields']['issuetype'];
     $data['fields']['summary'] = $form_data['fields']['summary'];
     unset($data['fields']['fields']);
-    $jsonData = json_encode($data);
-    return $jsonData;
+    return $data;
   }
 
   /**
@@ -160,13 +158,10 @@ class JiraSubmissionHandler {
       \Drupal::logger('Travel Services Payload')->info('<pre><code>' . print_r($jsonData, TRUE) . '</code></pre>');
       $response = $this->submission_client->request('POST',
         $this->create_issue_url,
-        ['json' => $jsonData, 'Content-Type' => "application/json",
-          'auth' => ["{$this->username[0]}", "{$this->username[1]}"]]);
-
+        ['json' => $jsonData, 'auth' => ["{$this->username[0]}", "{$this->username[1]}"]]);
       return $response;
     } catch (Exception $e) {
       \Drupal::logger('Travel Services Response')->error($e->getMessage());
-      exit($e->getMessage());
       return new Exception($e->getMessage());
     }
   }
