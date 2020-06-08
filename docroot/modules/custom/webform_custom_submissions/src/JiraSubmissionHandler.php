@@ -184,12 +184,6 @@ class JiraSubmissionHandler {
   protected function attachFiles($id, $form_data) {
 
     $url = $this->create_issue_url . $id . '/attachments/';
-
-    $header = [
-      'auth' => ["{$this->username[0]}", "{$this->username[1]}"],
-      'X-Atlassian-Token' => "nocheck"
-    ];
-
     $fileNames = [];
     foreach ($form_data['files'] as $fid) {
       $fileData = ['size' => 0];
@@ -206,7 +200,8 @@ class JiraSubmissionHandler {
       if ($fileData['size'] > 0) {
         $response = $this->submission_client->post(
           $url,
-          ['headers' => $header,
+          ['auth' => ["{$this->username[0]}", "{$this->username[1]}"],
+            'X-Atlassian-Token' => "nocheck",
             'multipart' => [
               [
                 'name' => $fileData['tmp_name'],
