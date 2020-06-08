@@ -162,7 +162,7 @@ class JiraSubmissionHandler {
         $this->create_issue_url,
         ['json' => $jsonData, 'auth' => ["{$this->username[0]}", "{$this->username[1]}"]]);
       $body = $response->getBody();
-      \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($response, TRUE) . '</code></pre>');
+      \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($body, TRUE) . '</code></pre>');
       return $body;
     } catch (Exception $e) {
       \Drupal::logger('Travel Services Response')->error($e->getMessage());
@@ -174,7 +174,7 @@ class JiraSubmissionHandler {
   protected function getIssueId($serverReponse) {
     $responseArray = json_decode($serverReponse);
     try {
-      return $responseArray['id'];
+      return $responseArray->id;
     } catch (Exception $e) {
       throw new Exception($e->getMessage());
     }
