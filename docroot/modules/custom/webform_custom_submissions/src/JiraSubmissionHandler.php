@@ -182,41 +182,46 @@ class JiraSubmissionHandler {
 
   //Attaches files to issue
   protected function attachFiles($id, $form_data) {
+    try {
+      $url = $this->create_issue_url . $id . '/attachments/';
+      $fileNames = [];
+      foreach ($form_data['files'] as $fid) {
+        $fileData = ['size' => 0];
+        $file = File::load($fid);
+        if (is_object($file)) {
+          $fileData = array(
+            'tmp_name' => \Drupal::service('file_system')->realpath($file->getFileUri()),
+            'name' => $file->getFilename(),
+            'size' => intval($file->getSize()),
+            'mime' => $file->getMimeType(),
+          );
+        }
 
-    $url = $this->create_issue_url . $id . '/attachments/';
-    $fileNames = [];
-    foreach ($form_data['files'] as $fid) {
-      $fileData = ['size' => 0];
-      $file = File::load($fid);
-      if (is_object($file)) {
-        $fileData = array(
-          'tmp_name' => \Drupal::service('file_system')->realpath($file->getFileUri()),
-          'name' => $file->getFilename(),
-          'size' => intval($file->getSize()),
-          'mime' => $file->getMimeType(),
-        );
-      }
-
-      if ($fileData['size'] > 0) {
-        $response = $this->submission_client->post(
-          $url,
-          ['auth' => ["{$this->username[0]}", "{$this->username[1]}"],
-            'X-Atlassian-Token' => "nocheck",
-            'multipart' => [
-              [
-                'name' => $fileData['tmp_name'],
-                'contents' => file_get_contents($fileData['tmp_name']),
-                'filename' => $fileData['name'],
+        if ($fileData['size'] > 0) {
+          $response = $this->submission_client->post(
+            $url,
+            ['auth' => ["{$this->username[0]}", "{$this->username[1]}"],
+              'X-Atlassian-Token' => "nocheck",
+              'multipart' => [
+                [
+                  'name' => $fileData['tmp_name'],
+                  'contents' => file_get_contents($fileData['tmp_name']),
+                  'filename' => $fileData['name'],
+                ]
               ]
-            ]
-          ]);
-        $decodedResponse = json_decode($response, TRUE);
-        \Drupal::logger('Travel Services File Response')->notice($response);
-        if (sizeof($decodedResponse) > 0) {
-          $fileNames[] = $fileData['name'];
+            ]);
+          $decodedResponse = $response->getBody();
+          \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($decodedResponse, TRUE) . '</code></pre>');
+          if (sizeof($decodedResponse) > 0) {
+            $fileNames[] = $fileData['name'];
+          }
         }
       }
+      return $fileNames;
+    } catch (Exception $e) {
+      \Drupal::logger('Travel Services File Upload Error')->error($e->getMessage());
+      return new Exception($e->getMessage());
     }
-    return $fileNames;
   }
+
 }
