@@ -189,33 +189,36 @@ class JiraSubmissionHandler {
 
     $fileNames = [];
     foreach ($form_data['files'] as $fid) {
-        $fileData = ['size' => 0];
-        $file = File::load($fid);
-        if (is_object($file)) {
-          $fileData = array(
-            'tmp_name' => \Drupal::service('file_system')->realpath($file->getFileUri()),
-            'name' => $file->getFilename(),
-            'size' => intval($file->getSize()),
-            'mime' => $file->getMimeType(),
-          );
-        }
+      $fileData = ['size' => 0];
+      $file = File::load($fid);
+      if (is_object($file)) {
+        $fileData = array(
+          'tmp_name' => \Drupal::service('file_system')->realpath($file->getFileUri()),
+          'name' => $file->getFilename(),
+          'size' => intval($file->getSize()),
+          'mime' => $file->getMimeType(),
+        );
+      }
 
-        if ($fileData['size'] > 0) {
-          $response = $this->submission_client->request('POST',
-            $url,
-            ['headers' => $header,
-              'multipart' => [
+      if ($fileData['size'] > 0) {
+        $response = $this->submission_client->post(
+          $url,
+          ['headers' => $header,
+            'multipart' => [
+              [
                 'name' => $fileData['tmp_name'],
-                'contents' => $fileData['mime'],
-                'filename' => $fileData['name']
-              ]]);
-          $decodedResponse = json_decode($response, TRUE);
-          \Drupal::logger('Travel Services File Response')->notice($response);
-          if (sizeof($decodedResponse) > 0) {
-            $fileNames[] = $fileData['name'];
-          }
+                'contents' => file_get_contents($fileData['tmp_name']),
+                'filename' => $fileData['name'],
+              ]
+            ]
+          ]);
+        $decodedResponse = json_decode($response, TRUE);
+        \Drupal::logger('Travel Services File Response')->notice($response);
+        if (sizeof($decodedResponse) > 0) {
+          $fileNames[] = $fileData['name'];
         }
       }
+    }
     return $fileNames;
   }
 }
