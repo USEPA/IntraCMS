@@ -157,6 +157,7 @@ class JiraSubmissionHandler {
    */
   protected function sendPOSTData($jsonData) {
     try {
+      \Drupal::logger('Travel Services Payload')->info('<pre><code>' . print_r($jsonData, TRUE) . '</code></pre>');
       $response = $this->submission_client->request('POST',
         $this->create_issue_url,
         ['json' => $jsonData, 'Content-Type' => "application/json",
