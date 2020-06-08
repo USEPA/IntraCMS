@@ -6,6 +6,7 @@ use Drupal\webform\WebformSubmissionInterface;
 use GuzzleHttp\Client;
 use \Exception;
 use Drupal\file\Entity\File;
+use Psr\Http\Message\StreamInterface;
 
 class JiraSubmissionHandler {
 
@@ -52,7 +53,7 @@ class JiraSubmissionHandler {
       $jira_data['fields']['summary'] = $this->getSummary($webform_submission, $jira_data);
       $postData = $this->compilePOSTData($jira_data);
       $postResponse = $this->sendPOSTData($postData);
-      $decoded_response = json_decode($postResponse, TRUE);
+      $decoded_response = $postResponse;
       $issueId = $this->getIssueId($postResponse);
       $filesUploaded = $this->attachFiles($issueId, $jira_data);
       if (isset($decoded_response['errorMessages'])) {
@@ -151,7 +152,8 @@ class JiraSubmissionHandler {
   /**
    * Builds and sends cURL request for the form POST data
    * @param $jsonData
-   * @return Exception|\Psr\Http\Message\ResponseInterface
+   * @return StreamInterface|Exception Returns the body as a stream.
+   *
    */
   protected function sendPOSTData($jsonData) {
     try {
@@ -159,7 +161,9 @@ class JiraSubmissionHandler {
       $response = $this->submission_client->request('POST',
         $this->create_issue_url,
         ['json' => $jsonData, 'auth' => ["{$this->username[0]}", "{$this->username[1]}"]]);
-      return $response;
+      $body = $response->getBody();
+      \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($response, TRUE) . '</code></pre>');
+      return $body;
     } catch (Exception $e) {
       \Drupal::logger('Travel Services Response')->error($e->getMessage());
       return new Exception($e->getMessage());
