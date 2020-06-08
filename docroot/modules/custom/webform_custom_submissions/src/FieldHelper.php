@@ -12,7 +12,6 @@ class FieldHelper {
   private $jira_data = [];
 
 
-
   public function is_checkbox_field($key) {
     return ($key == 'customfield_10411' ||
       $key == 'customfield_10415' ||
@@ -87,12 +86,14 @@ class FieldHelper {
       'customfield_10380' => 'Other Expenses', 'customfield_10422' => 'Please Explain (Other Expenses)', 'showMealsSelect' => 'Were any meals provided through your registration costs or by the meeting sponsor?',
       'customfield_10148' => 'Breakfast', 'customfield_10149' => 'Lunch', 'customfield_10150' => 'Dinner', 'customfield_11420' => 'Reimburse to Government Credit Card', 'customfield_10151' => 'Meals Paid for All Days of Travel',
       'customfield_10141' => 'Please provide/explain any special requirements related to this travel request', 'customfield_10308' => 'Comments on Travel Experience', 'customfield_10191' => 'Travel Type',
+      'customfield_11423' => "Traveler's Phone Number", 'customfield_10413' => 'Taxi, approximate cost', 'customfield_10419' => 'Baggage Fee', 'customfield_10418' => 'ATM Fees'
     );
   }
 
   public function traveler_id_form_fields() {
     return array('proxy' => 'Completing for someone else?', 'customfield_10092' => 'Your @epa.gov Email', 'customfield_10090' => 'Your Name', 'customfield_10091' => 'Your Telephone',
       'customfield_10620' => 'Traveler @epa.gov Email', 'customfield_10331' => 'Traveler name', 'customfield_10093' => 'Traveler L/C/O', 'customfield_10501' => 'Traveler division or equivalent',
+      'customfield_11423' => "Traveler's Phone Number",
     );
   }
 
@@ -147,6 +148,7 @@ class FieldHelper {
     return array('proxy' => 'Completing for someone else?', 'customfield_10092' => 'Your @epa.gov Email', 'customfield_10090' => 'Your Name', 'customfield_10091' => 'Your Telephone',
       'customfield_10620' => 'Traveler @epa.gov Email', 'customfield_10331' => 'Traveler name', 'customfield_10093' => 'Traveler L/C/O', 'customfield_10501' => 'Traveler division or equivalent',
       'customfield_10208' => 'Travel Request Number', 'customfield_10303' => 'Destination', 'customfield_10095' => 'Departure Date', 'customfield_10209' => 'Requested Change', 'customfield_10191' => 'Travel Type',
+      'customfield_11423' => "Traveler's Phone Number",
     );
   }
 
@@ -154,13 +156,14 @@ class FieldHelper {
     return array('proxy' => 'Completing for someone else?', 'customfield_10092' => 'Your @epa.gov Email', 'customfield_10090' => 'Your Name', 'customfield_10091' => 'Your Telephone',
       'customfield_10620' => 'Traveler @epa.gov Email', 'customfield_10331' => 'Traveler name', 'customfield_10093' => 'Traveler L/C/O', 'customfield_10501' => 'Traveler division or equivalent',
       'customfield_10208' => 'Travel Request Number', 'customfield_10303' => 'Destination', 'customfield_10095' => 'Departure Date', 'customfield_10290' => 'Explanation', 'customfield_10191' => 'Travel Type',
+      'customfield_11423' => "Traveler's Phone Number",
     );
   }
 
   public function travel_question_form_fields() {
     return array('proxy' => 'Completing for someone else?', 'customfield_10092' => 'Your @epa.gov Email', 'customfield_10090' => 'Your Name', 'customfield_10091' => 'Your Telephone',
       'customfield_10620' => 'Traveler @epa.gov Email', 'customfield_10331' => 'Traveler name', 'customfield_10093' => 'Traveler L/C/O', 'customfield_10501' => 'Traveler division or equivalent',
-      'customfield_10390' => 'Please state your question/comment in the field below',
+      'customfield_10390' => 'Please state your question/comment in the field below', 'customfield_11423' => "Traveler's Phone Number",
     );
   }
 
@@ -174,16 +177,16 @@ class FieldHelper {
   public function travel_concur_routing_form_fields() {
     return array('proxy' => 'Completing for someone else?', 'customfield_10092' => 'Your @epa.gov Email', 'customfield_10090' => 'Your Name', 'customfield_10091' => 'Your Telephone',
       'customfield_10620' => 'Traveler @epa.gov Email', 'customfield_10331' => 'Traveler name', 'customfield_10093' => 'Traveler L/C/O', 'customfield_10501' => 'Traveler division or equivalent',
-      'customfield_10209' => 'Please state your requested Concur update in the box below',
+      'customfield_10209' => 'Please state your requested Concur update in the box below', 'customfield_11423' => "Traveler's Phone Number",
     );
   }
 
   function isInternational() {
-    return strpos($this->jira_data['customfield_10191'], 'International') >= 0;
+    return strpos($this->jira_data['customfield_10191'], 'International') !== false;
   }
 
   function isVoucher() {
-    return strpos($this->webform_id, 'voucher') >= 0;
+    return strpos($this->webform_id, 'voucher') !== false;
   }
 
   public function getJiraData() {
@@ -201,14 +204,14 @@ class FieldHelper {
 
   public function setIssueType() {
     $mapping = [
-      'travel_amendment_form'=> '32',
+      'travel_amendment' => '32',
       'travel_cancellation' => '33',
       'travel_profile' => '34',
-      'routing_change' => '10100',
+      'travel_concur_routing' => '10100',
       'travel_question' => '37',
       'travel_authorization' => '23',
       'travel_voucher' => '24',
-      'traveler_id' => '35',
+      'travel_id_information' => '35',
     ];
 
     $this->jira_data['fields']['issuetype'] = ['id' => $mapping[$this->webform_id]];
@@ -224,13 +227,13 @@ class FieldHelper {
         ],
       'verify_your_name' => 'customfield_10493',
       'your_office_center' => 'customfield_10093',
-      'ccte_divisions' => 'customfield_10501',
-      'cemm_divisions' => 'customfield_10501',
-      'ceser_divisions' => 'customfield_10501',
-      'cphea_divisions' => 'customfield_10501',
-      'orm_division' => 'customfield_10501',
-      'osape_division' => 'customfield_10501',
-      'osim_division' => 'customfield_10501',
+      'ccte_division_traveler' => 'customfield_10501',
+      'cemm_division_traveler' => 'customfield_10501',
+      'ceser_division_traveler' => 'customfield_10501',
+      'cphea_division_traveler' => 'customfield_10501',
+      'orm_division_traveker' => 'customfield_10501',
+      'osape_division_traveler' => 'customfield_10501',
+      'osim_division_traveler' => 'customfield_10501',
       'traveler_information' =>
         [
           'traveler_name' => 'customfield_10331',
@@ -246,19 +249,9 @@ class FieldHelper {
       'emergency_contact_information' => 'customfield_10356',
       'traveler_s_grade' => 'customfield_11821',
       'title_position' => 'customfield_11822',
-      'trip_type' => NULL,
-      'one_way_flight' => NULL,
-      'round_trip_flight' => NULL,
-      'multi_city_flight' =>
-        array(),
       'is_personal_annual_leave_being_requested_' => 'customfield_10098',
       'dates_of_approved_leave' => 'customfield_10099',
-      'is_there_a_block_of_rooms_reserved_for_you_to_book_with_' => 'No',
       'do_you_already_have_a_room_reserved_' => 'customfield_10112',
-      'reservation_information' => NULL,
-      'please_stay_within_allowable_per_diem_if_selected_rate_is_over_p' => '',
-      'do_you_have_a_hotel_chain_preference_' => 'No',
-      'address_of_meeting_s_' => NULL,
       'mode_s_of_transportation' => 'customfield_10103',
       'have_you_made_your_own_airline_reservation_' => 'customfield_10435',
       'would_you_like_to_request_a_specific_flight_' => '',
@@ -269,7 +262,6 @@ class FieldHelper {
       'please_provide_the_conference_code' => 'customfield_10921',
       'travel_description' => 'customfield_10094',
       'how_will_this_trip_benefit_the_epa_' => 'customfield_10198',
-      'daily_itinerary' => NULL,
       'has_the_traveler_taken_hstos_training_' => 'customfield_11827',
       'who_is_your_deputy_ethics_official_' => 'customfield_11823',
       'sponsoring_organization' => 'customfield_11825',
@@ -287,12 +279,8 @@ class FieldHelper {
       'name_of_funding_organization' => 'customfield_11427',
       'has_an_ethics_form_been_prepared_' => 'customfield_11428',
       'has_an_ethics_form_been_approved_' => 'customfield_10193',
-      'please_attach_approved_ethics_form_' => NULL,
-      'please_attach_your_invitational_letter_' => NULL,
       'will_training_dollars_be_used_for_this_travel_' => 'customfield_10246',
-      'is_this_sf_182_approved_' => 'Yes',
       'please_provide_more_information_about_the_current_status_of_the_' => '',
-      'please_attach_the_approved_sf_182' => NULL,
       'are_others_from_your_l_c_o_attending_this_meeting_as_well_' => 'customfield_10431',
       'please_provide_the_names_of_the_others_attending_this_meeting_wi' => 'customfield_10432',
       'transportation_expenses' => 'customfield_10278',
@@ -304,14 +292,11 @@ class FieldHelper {
       'cost_of_tolls' => 'customfield_10387',
       'cost_of_rail' => 'customfield_10383',
       'additional_expenses' => 'customfield_10415',
-      'cost_of_conference_registration_fee' => NULL,
       'cost_of_hotel' => 'customfield_10375',
-      'cost_of_hotel_parking' => '214',
       'cost_of_internet_fees' => 'customfield_10377',
       'cost_of_phone_calls' => 'customfield_10416',
       'cost_of_airport_parking' => 'customfield_10412',
       'cost_of_baggage_fees' => 'customfield_10419',
-      'cost_of_cash_withdraw_finance_fees' => NULL,
       'cost_of_atm_fees' => 'customfield_10418',
       'cost_of_supplies' => 'customfield_10417',
       'cost_of_other_expenses' => 'customfield_10380',
@@ -333,31 +318,87 @@ class FieldHelper {
       'bed_size_preference' => 'customfield_10262',
       'hotel_preference' => 'customfield_10273',
       'flight_seating_preference' => 'customfield_10263',
-      'airline_preference' => NULL,
       'please_state_you_question_or_comment_in_the_filed_below_' => 'customfield_10390',
       'receipts' => 'file',
       'required_receipts' => 'file',
-
+      'comments_on_travel_experience' => 'customfield_10308',
+      'were_all_meals_provided_through_your_registration_costs_or_by_th' => 'customfield_10151',
+      'do_you_have_any_other_expense_you_would_like_to_reimburse_to_you' => 'customfield_11420',
+      'round_trip_flight' => [
+        'flying_from' => 'Dixisset',
+        'flying_to' => 'Loremipsum',
+        'departing_date' => 'customfield_10095',
+        'departing_time' => 'customfield_10343',
+        'returning_date' => 'customfield_10096',
+        'returning_time' => 'customfield_10302',
+        'comments' => 'Huius, Lyco, oratione locuples, rebus ipsis ielunior. Duo Reges: constructio interrete. Sed haec in pueris; Sed utrum hortandus es nobis, Luci, inquit, an etiam tua sponte propensus es? Sapiens autem semper beatus est et est aliquando in dolore; Immo videri fortasse. Paulum, cum regem Persem captum adduceret, eodem flumine invectio? Et ille ridens: Video, inquit, quid agas;',
+      ]
     ];
-    $formatted_data = [];
+    $formatted_data = [
+      'files' => [],
+    ];
+    $jira_fields = $this->returnFieldsForJiraType();
+    $allowed_custom_fields = array_keys($jira_fields);
+    // Filter out values not included in Jira Type
     foreach ($this->form_data as $key => $value) {
-      if (isset($form_to_jira_mapping[$key])) {
-        if (is_array($value)) {
-          foreach ($form_to_jira_mapping[$key] as $nested_key => $nested_value) {
-            $formatted_data[$nested_value] = $value[$nested_key];
+      $jira_mapping = $form_to_jira_mapping[$key];
+      if ($jira_mapping === 'file') {
+        $formatted_data['files'][] = $value[0];
+      }
+      else if ($this->is_checkbox_field($jira_mapping)) {
+        $formatted_data[$jira_mapping] = $value;
+      } else {
+        if (isset($jira_mapping) && !empty($value)) {
+          if (is_array($value)) {
+            foreach ($value as $field_name => $field_value) {
+              $custom_field_id = $jira_mapping[$field_name];
+              if (in_array($custom_field_id, $allowed_custom_fields)) {
+                $formatted_data[$custom_field_id] = $field_value;
+              }
+            }
+          } else {
+            if (in_array($jira_mapping, $allowed_custom_fields)) {
+              $formatted_data[$jira_mapping] = $value;
+            }
           }
-        } else {
-          $formatted_data[$form_to_jira_mapping[$key]] = $value;
         }
       }
     }
     $this->jira_data = $formatted_data;
   }
 
+  function print_missing_field($field_id) {
+    echo $field_id . '<br />';
+  }
 
-  static function isFile($key) {
-    // TODO: Filling out file logic for new file fields
-    return $key == 'attachment_s_';
+  function returnFieldsForJiraType() {
+    switch ($this->webform_id) {
+      case 'travel_authorization':
+        $fields = $this->travel_authorization_form_fields();
+        break;
+      case 'travel_question':
+        $fields = $this->travel_question_form_fields();
+        break;
+      case 'travel_voucher':
+        $fields = $this->travel_voucher_form_fields();
+        break;
+      case 'travel_id_information':
+        $fields = $this->traveler_id_form_fields();
+        break;
+      case 'travel_profile':
+        $fields = $this->travel_profile_form_fields();
+        break;
+      case 'travel_cancellation':
+        $fields = $this->travel_cancellation_form_fields();
+        break;
+      case 'travel_amendment':
+        $fields = $this->travel_amendment_form_fields();
+        break;
+      case 'travel_concur_routing':
+        $fields = $this->travel_concur_routing_form_fields();
+        break;
+    }
+    return $fields;
   }
 
 }
