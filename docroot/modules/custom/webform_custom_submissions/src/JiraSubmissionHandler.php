@@ -198,21 +198,26 @@ class JiraSubmissionHandler {
             'mime' => $file->getMimeType(),
           );
         }
+        $payload = ['auth' => ["{$this->username[0]}", "{$this->username[1]}"],
+          'X-Atlassian-Token' => "nocheck",
+          'Content-Type' => 'multipart/form-data',
+          'multipart' => [
+            [
+              'name' => 'file',
+              'contents' => file_get_contents($fileData['tmp_name']),
+              'filename' => $fileData['name'],
+            ]
+          ]
+        ];
 
         if ($fileData['size'] > 0) {
+          \Drupal::logger('Travel Services POST')->info('<pre><code>' . print_r($payload, TRUE) . '</code></pre>');
+          \Drupal::logger('Travel Services URL')->info($url);
+
           $response = $this->submission_client->post(
             $url,
-            ['auth' => ["{$this->username[0]}", "{$this->username[1]}"],
-              'X-Atlassian-Token' => "nocheck",
-              'Content-Type' => 'multipart/form-data',
-              'multipart' => [
-                [
-                  'name' => 'file',
-                  'contents' => file_get_contents($fileData['tmp_name']),
-                  'filename' => $fileData['name'],
-                ]
-              ]
-            ]);
+            $payload
+          );
           if ($response->getStatusCode() == 200) {
             $decodedResponse = $response->getBody();
             \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($decodedResponse, TRUE) . '</code></pre>');
