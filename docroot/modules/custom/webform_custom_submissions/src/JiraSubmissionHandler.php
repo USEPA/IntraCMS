@@ -52,16 +52,12 @@ class JiraSubmissionHandler {
       $jira_data = $fieldHelper->getJiraData();
       $jira_data['fields']['summary'] = $this->getSummary($webform_submission, $jira_data);
       $postData = $this->compilePOSTData($jira_data);
-      $postResponse = $this->sendPOSTData($postData);
-      $decoded_response = $postResponse;
-      $issueId = $this->getIssueId($postResponse);
-      $filesUploaded = $this->attachFiles($issueId, $jira_data);
-      if ($decoded_response->getCode() != 200) {
-        \Drupal::logger('Travel Services Error')->error($postResponse);
-        drupal_set_message(t('There was an error processing your request. Code-0001'), 'error');
-      } else if (!isset($decoded_response->id)) {
+      $issueId = $this->sendPOSTData($postData);
+      if (isset($issueId)) {
+        $filesUploaded = $this->attachFiles($issueId, $jira_data);
+      } else {
         drupal_set_message(t('There was an error processing your request. Code-0002'), 'error');
-        \Drupal::logger('Travel Services Error')->error('Unidentified Error: JIRA Response = ' . $postResponse);
+        \Drupal::logger('Travel Services Error')->error('Unidentified Error: JIRA Response');
       }
     } catch (Exception $e) {
       \Drupal::logger('Travel Services Exception')->error($e->getMessage());
@@ -156,18 +152,25 @@ class JiraSubmissionHandler {
    *
    */
   protected function sendPOSTData($jsonData) {
+    $issue_id = null;
     try {
       \Drupal::logger('Travel Services Payload')->info('<pre><code>' . print_r($jsonData, TRUE) . '</code></pre>');
       $response = $this->submission_client->request('POST',
         $this->create_issue_url,
         ['json' => $jsonData, 'auth' => ["{$this->username[0]}", "{$this->username[1]}"]]);
-      $body = $response->getBody();
-      \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($body, TRUE) . '</code></pre>');
+      if ($response->getBody()) {
+        $body = json_decode($response->getBody());
+        if (isset($body->id)) {
+          $issue_id = $body->id;
+        }
+        \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($body, TRUE) . '</code></pre>');
+      }
       return $body;
     } catch (Exception $e) {
       \Drupal::logger('Travel Services Response')->error($e->getMessage());
-      return new Exception($e->getMessage());
+      drupal_set_message(t('There was an error processing your request. Code-0001'), 'error');
     }
+    return $issue_id;
   }
 
   //Extracts the issue id from the server response so we can submit file attachment
