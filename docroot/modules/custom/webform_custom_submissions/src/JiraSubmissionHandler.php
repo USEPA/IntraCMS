@@ -211,9 +211,6 @@ class JiraSubmissionHandler {
         ];
 
         if ($fileData['size'] > 0) {
-          \Drupal::logger('Travel Services POST')->info('<pre><code>' . print_r($payload, TRUE) . '</code></pre>');
-          \Drupal::logger('Travel Services URL')->info($url);
-
           $response = $this->submission_client->post(
             $url,
             $payload
