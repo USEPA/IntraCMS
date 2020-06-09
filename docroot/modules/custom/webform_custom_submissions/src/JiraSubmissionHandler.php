@@ -202,9 +202,10 @@ class JiraSubmissionHandler {
             $url,
             ['auth' => ["{$this->username[0]}", "{$this->username[1]}"],
               'X-Atlassian-Token' => "nocheck",
+              'Content-Type' => 'multipart/form-data',
               'multipart' => [
                 [
-                  'name' => $fileData['tmp_name'],
+                  'name' => 'file',
                   'contents' => file_get_contents($fileData['tmp_name']),
                   'filename' => $fileData['name'],
                 ]
