@@ -52,7 +52,7 @@ class JiraSubmissionHandler {
       $jira_data = $fieldHelper->getJiraData();
       $jira_data['fields']['summary'] = $this->getSummary($webform_submission, $jira_data);
       $postData = $this->compilePOSTData($jira_data);
-      $issueId = $this->sendPOSTData($postData);
+      $issueId = $this->createIssueAndReturnID($postData);
       if (isset($issueId)) {
         $filesUploaded = $this->attachFiles($issueId, $jira_data);
       } else {
@@ -151,7 +151,7 @@ class JiraSubmissionHandler {
    * @return StreamInterface|Exception Returns the body as a stream.
    *
    */
-  protected function sendPOSTData($jsonData) {
+  protected function createIssueAndReturnID($jsonData) {
     $issue_id = null;
     try {
       \Drupal::logger('Travel Services Payload')->info('<pre><code>' . print_r($jsonData, TRUE) . '</code></pre>');
@@ -165,7 +165,6 @@ class JiraSubmissionHandler {
         }
         \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($body, TRUE) . '</code></pre>');
       }
-      return $body;
     } catch (Exception $e) {
       \Drupal::logger('Travel Services Response')->error($e->getMessage());
       drupal_set_message(t('There was an error processing your request. Code-0001'), 'error');
