@@ -1,7 +1,8 @@
-uuid: a1255579-d6ac-4cd5-8465-7978eff8fbf3
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - webform_analysis
 open: null
 close: null
 weight: 0
@@ -9,15 +10,15 @@ uid: 37
 template: false
 archive: false
 id: elisa_test_webform
-title: 'Elisa Test Webform'
-description: ''
+title: 'Stakeholder Engagement Tracker'
+description: 'Use this form to document your stakeholder engagement activities.&nbsp;'
 category: 'Solutions-Driven Research'
-elements: null
+elements: "name:\n  '#type': webform_name\n  '#title': Name\n  '#title_display': before\n  '#required': true\n  '#wrapper_type': form_element\n  '#title__access': false\n  '#middle__access': false\n  '#suffix__access': false\n  '#degree__access': false\nstakeholders_involved:\n  '#type': webform_name\n  '#title': 'Stakeholders Involved'\n  '#multiple': true\n  '#title_display': before\n  '#required': true\n  '#multiple__sorting': false\n  '#multiple__operations': false\n  '#multiple__add_more_input_label': 'more stakeholders'\n  '#wrapper_type': form_element\n  '#title__access': false\n  '#middle__access': false\n  '#suffix__access': false\n  '#degree__access': false\nteam_members_involved:\n  '#type': webform_name\n  '#title': 'Team Members Involved'\n  '#multiple': true\n  '#required': true\n  '#multiple__sorting': false\n  '#multiple__operations': false\n  '#multiple__add_more_input_label': 'more team members'\n  '#wrapper_type': form_element\n  '#title__access': false\n  '#middle__access': false\n  '#suffix__access': false\n  '#degree__access': false\nstart_date:\n  '#type': date\n  '#title': 'Start Date'\n  '#datepicker': true\n  '#required': true\nend_date_if_applicable_:\n  '#type': date\n  '#title': 'End Date (if applicable)'\n  '#datepicker': true\nactivity_type:\n  '#type': webform_select_other\n  '#title': 'Activity Type'\n  '#options':\n    In-Person: In-Person\n    Webinar: Webinar\n    'Phone Conference': 'Phone Conference'\n    Email: Email\n  '#required': true\n  '#wrapper_type': form_element\nagenda_topics_of_discussion:\n  '#type': textarea\n  '#title': 'Agenda/Topics of Discussion'\n  '#multiple': true\n  '#description': 'Enter the agenda of the activity here, or attach below.'\n  '#required': true\n  '#multiple__sorting': false\n  '#multiple__operations': false\n  '#multiple__add_more_input_label': 'more topics'\nattach_agenda:\n  '#type': managed_file\n  '#title': 'Attach Agenda'\n  '#multiple': true\n  '#required': true\n  '#file_preview': name\n  '#max_filesize': '20'\n  '#file_extensions': 'txt rtf odf pdf doc docx ppt pptx xls xlsx xml tar zip'\n  '#sanitize': true\ngoals_objectives_of_activity:\n  '#type': textarea\n  '#title': 'Goals/Objectives of Activity'\n  '#multiple': true\n  '#multiple__sorting': false\n  '#multiple__operations': false\n  '#multiple__add_more_input_label': 'more goals'\nmaterials_provided_prior_to_or_during_the_activity:\n  '#type': textarea\n  '#title': 'Materials provided prior to or during the activity'\nissues_raised_during_the_activity:\n  '#type': textarea\n  '#title': 'Issues raised during the activity'\nkey_takeaways_from_the_engagement_activity:\n  '#type': textarea\n  '#title': 'Key takeaways from the engagement activity'\nspecific_action_items_resulting_from_the_activity:\n  '#type': textfield\n  '#title': 'Specific action items resulting from the activity'\n  '#multiple': true\n  '#multiple__sorting': false\n  '#multiple__operations': false\n  '#multiple__add_more_input_label': 'more action items'\ndid_you_use_any_specific_engagement_methods_:\n  '#type': textarea\n  '#title': 'Did you use any specific engagement methods?'\nadditional_comments_notes:\n  '#type': textarea\n  '#title': 'Additional Comments/Notes'"
 css: ''
 javascript: ''
 settings:
   ajax: false
-  ajax_scroll_top: form
+  ajax_scroll_top: ''
   ajax_progress_type: ''
   ajax_effect: ''
   ajax_speed: null
@@ -178,3 +179,12 @@ access:
     permissions: {  }
 handlers: {  }
 variants: {  }
+uuid: a1255579-d6ac-4cd5-8465-7978eff8fbf3
+third_party_settings:
+  webform_analysis:
+    chart_type: ColumnChart
+    components:
+      - your_name
+      - stakeholders_involved
+      - team_members_involved
+      - start_date

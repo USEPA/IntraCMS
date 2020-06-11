@@ -52,6 +52,8 @@ class JiraSubmissionHandler {
       $jira_data = $fieldHelper->getJiraData();
       $jira_data['fields']['summary'] = $this->getSummary($webform_submission, $jira_data);
       $postData = $this->compilePOSTData($jira_data);
+      echo json_encode($postData);
+      exit();
       $issueId = $this->createIssueAndReturnID($postData);
       if (isset($issueId)) {
         $filesUploaded = $this->attachFiles($issueId, $jira_data);
