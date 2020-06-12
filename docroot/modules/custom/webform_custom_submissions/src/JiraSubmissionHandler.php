@@ -17,18 +17,21 @@ class JiraSubmissionHandler {
   protected $username;
   protected $vouchers_project;
   protected $field_helper;
+  protected $travel_services_config;
+  protected $password;
 
   public function __construct($config) {
-    $travel_services_config = $config->get('webform_custom_submissions.form');
-    $raw_username = $travel_services_config->get('USERNAME');
-    $issue_creation_url = $travel_services_config->get('CREATE_ISSUE_URL');
+    $this->travel_services_config = $config->get('webform_custom_submissions.form');
+    $system_config = $config->get('system.passwords');
+    $this->username = $this->travel_services_config->get('USERNAME');
+    $this->password = $system_config->get('jira');
+    $issue_creation_url = $this->travel_services_config->get('CREATE_ISSUE_URL');
 
-    $this->create_issue_url = $travel_services_config->get('CREATE_ISSUE_URL');
-    $this->domestic_project = $travel_services_config->get('DOMESTIC_PROJECT');
-    $this->international_project = $travel_services_config->get('INTERNATIONAL_PROJECT');
+    $this->create_issue_url = $this->travel_services_config->get('CREATE_ISSUE_URL');
+    $this->domestic_project = $this->travel_services_config->get('DOMESTIC_PROJECT');
+    $this->international_project = $this->travel_services_config->get('INTERNATIONAL_PROJECT');
     $this->submission_client = new Client(['base_uri' => $issue_creation_url]);
-    $this->username = explode(':', $raw_username);
-    $this->vouchers_project = $travel_services_config->get('VOUCHERS_PROJECT');
+    $this->vouchers_project = $this->travel_services_config->get('VOUCHERS_PROJECT');
     $this->field_helper = new FieldHelper();
   }
 
@@ -39,43 +42,28 @@ class JiraSubmissionHandler {
   public function submitToJira(WebformSubmissionInterface $webform_submission) {
     try {
       $fieldHelper = new FieldHelper();
-      $fieldHelper->prepareFormData($webform_submission);
+
+      $fieldHelper->prepareFormData($this->travel_services_config, $webform_submission);
       $fieldHelper->prepareJiraData();
-      if ($fieldHelper->isInternational()) {
-        $fieldHelper->setProjectID($this->international_project);
-      } else if ($fieldHelper->isVoucher()) {
-        $fieldHelper->setProjectID($this->vouchers_project);
-      } else {
-        $fieldHelper->setProjectID($this->domestic_project);
-      }
-      $fieldHelper->setIssueType();
       $jira_data = $fieldHelper->getJiraData();
-      $jira_data['fields']['summary'] = $this->getSummary($webform_submission, $jira_data);
       $postData = $this->compilePOSTData($jira_data);
       $issueId = $this->createIssueAndReturnID($postData);
       if (isset($issueId)) {
-        $filesUploaded = $this->attachFiles($issueId, $jira_data);
+        try {
+          $this->attachFiles($issueId, $jira_data);
+        } catch (Exception $e) {
+          drupal_set_message(t('There was an error uploading your files to JIRA.'), 'error');
+          \Drupal::logger('Travel Services File Upload Exception')->error($e->getMessage());
+        }
       } else {
         drupal_set_message(t('There was an error processing your request. Code-0002'), 'error');
-        \Drupal::logger('Travel Services Error')->error('Unidentified Error: JIRA Response');
+        \Drupal::logger('Travel Services Error')->error('Unidentified Error: JIRA Response did not return Issue ID');
       }
     } catch (Exception $e) {
       \Drupal::logger('Travel Services Exception')->error($e->getMessage());
       drupal_set_message(t('Unable to process request at this time, please try again later.'), 'error');
     }
   }
-
-  public function getSummary(WebformSubmissionInterface $webform_submission, $jira_data) {
-    $title = $webform_submission->getWebform()->get('title');
-    $name = '';
-    if (!empty($jira_data['customfield_10090'])) {
-      $name = $jira_data['customfield_10090'];
-    } else if (!empty($jira_data['customfield_10331'])) {
-      $name = $jira_data['customfield_10331'];
-    }
-    return $title . ': ' . $name;
-  }
-
 
   //Compiles POST data and returns the data formatted as JSON
   protected function compilePOSTData($form_data) {
@@ -110,7 +98,7 @@ class JiraSubmissionHandler {
           $data['fields'][$key] = array('value' => $val);
         }
       } //Capture Checkboxes and turn them into arrays
-      elseif ($this->field_helper->is_checkbox_field($key)) {
+      elseif ($this->field_helper->isCheckboxField($key)) {
         $checkboxArray = array();
         foreach ($val as $field2 => $value2) {
           array_push($checkboxArray, array('value' => $value2));
@@ -157,7 +145,7 @@ class JiraSubmissionHandler {
       \Drupal::logger('Travel Services Payload')->info('<pre><code>' . print_r($jsonData, TRUE) . '</code></pre>');
       $response = $this->submission_client->request('POST',
         $this->create_issue_url,
-        ['json' => $jsonData, 'auth' => ["{$this->username[0]}", "{$this->username[1]}"]]);
+        ['json' => $jsonData, 'auth' => ["{$this->username}", "{$this->password}"]]);
       if ($response->getBody()) {
         $body = json_decode($response->getBody());
         if (isset($body->id)) {
@@ -172,63 +160,56 @@ class JiraSubmissionHandler {
     return $issue_id;
   }
 
-  //Extracts the issue id from the server response so we can submit file attachment
-  protected function getIssueId($serverReponse) {
-    $responseArray = json_decode($serverReponse);
-    try {
-      return $responseArray->id;
-    } catch (Exception $e) {
-      throw new Exception($e->getMessage());
-    }
-  }
 
-  //Attaches files to issue
+  /**
+   * @param $id
+   * @param $form_data
+   * @return array
+   * @throws Exception
+   */
   protected function attachFiles($id, $form_data) {
-    try {
-      $url = $this->create_issue_url . $id . '/attachments/';
-      $fileNames = [];
-      foreach ($form_data['files'] as $fid) {
-        $fileData = ['size' => 0];
-        $file = File::load($fid);
-        if (is_object($file)) {
-          $fileData = array(
-            'tmp_name' => \Drupal::service('file_system')->realpath($file->getFileUri()),
-            'name' => $file->getFilename(),
-            'size' => intval($file->getSize()),
-            'mime' => $file->getMimeType(),
-          );
-        }
-        $payload = ['auth' => ["{$this->username[0]}", "{$this->username[1]}"],
-          'X-Atlassian-Token' => "nocheck",
-          'Content-Type' => 'multipart/form-data',
-          'multipart' => [
-            [
-              'name' => 'file',
-              'contents' => file_get_contents($fileData['tmp_name']),
-              'filename' => $fileData['name'],
-            ]
+    $url = $this->create_issue_url . $id . '/attachments/';
+    $fileNames = [];
+    foreach ($form_data['files'] as $fid) {
+      $fileData = ['size' => 0];
+      $file = File::load($fid);
+      if (is_object($file)) {
+        $fileData = array(
+          'tmp_name' => \Drupal::service('file_system')->realpath($file->getFileUri()),
+          'name' => $file->getFilename(),
+          'size' => intval($file->getSize()),
+          'mime' => $file->getMimeType(),
+        );
+      }
+      $payload = ['auth' => ["{$this->username[0]}", "{$this->username[1]}"],
+        'X-Atlassian-Token' => "nocheck",
+        'Content-Type' => 'multipart/form-data',
+        'multipart' => [
+          [
+            'name' => 'file',
+            'contents' => file_get_contents($fileData['tmp_name']),
+            'filename' => $fileData['name'],
           ]
-        ];
+        ]
+      ];
 
-        if ($fileData['size'] > 0) {
-          $response = $this->submission_client->post(
-            $url,
-            $payload
-          );
-          if ($response->getStatusCode() == 200) {
-            $decodedResponse = $response->getBody();
-            \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($decodedResponse, TRUE) . '</code></pre>');
-            $fileNames[] = $fileData['name'];
-          } else {
-            \Drupal::logger('Travel Services Response')->error('<pre><code>' . print_r($response->getBody(), TRUE) . '</code></pre>');
-          }
+      if ($fileData['size'] > 0) {
+        $response = $this->submission_client->post(
+          $url,
+          $payload
+        );
+        if ($response->getStatusCode() == 200) {
+          $decodedResponse = $response->getBody();
+          \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($decodedResponse, TRUE) . '</code></pre>');
+          $fileNames[] = $fileData['name'];
+        } else {
+          \Drupal::logger('Travel Services Response')->error('<pre><code>' . print_r($response->getBody(), TRUE) . '</code></pre>');
+          throw new \Exception("File Upload error. Did not recieve 200 code response");
         }
       }
-      return $fileNames;
-    } catch (Exception $e) {
-      \Drupal::logger('Travel Services File Upload Error')->error($e->getMessage());
-      return new Exception($e->getMessage());
     }
+    return $fileNames;
+
   }
 
 }

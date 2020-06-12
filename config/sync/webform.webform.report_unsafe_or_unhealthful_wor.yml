@@ -145,10 +145,14 @@ access:
     users:
       - 203
       - 35
+      - 263
+      - 264
+      - 475
     permissions: {  }
   update_any:
     roles:
-      - authenticated
+      - webform
+      - administrator
     users: {  }
     permissions: {  }
   delete_any:
@@ -181,7 +185,9 @@ access:
       - 35
     permissions: {  }
   test:
-    roles: {  }
+    roles:
+      - webform
+      - administrator
     users:
       - 35
     permissions: {  }
@@ -191,189 +197,9 @@ access:
       - 35
     permissions: {  }
 handlers:
-  email:
-    id: email
-    label: stout.dan@epa.gov
-    handler_id: email
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      states:
-        - completed
-      to_mail: stout.dan@epa.gov
-      to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      from_mail: _default
-      from_options: {  }
-      from_name: _default
-      subject: 'Unsafe or Unhealthy Working Conditions Has Been Reported'
-      body: _default
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      exclude_attachments: false
-      html: true
-      attachments: false
-      twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-      theme_name: ''
-      parameters: {  }
-  email_1:
-    id: email
-    label: baker.todd@epa.gov
-    handler_id: email_1
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      states:
-        - completed
-      to_mail: baker.todd@epa.gov
-      to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      from_mail: _default
-      from_options: {  }
-      from_name: _default
-      subject: 'Employee Report of Unsafe or Unhealthful Working Conditions'
-      body: _default
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      exclude_attachments: false
-      html: true
-      attachments: false
-      twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-      theme_name: ''
-      parameters: {  }
-  email_2:
-    id: email
-    label: mugford.christopher@epa.gov
-    handler_id: email_2
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      states:
-        - completed
-      to_mail: mugford.christopher@epa.gov
-      to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      from_mail: _default
-      from_options: {  }
-      from_name: _default
-      subject: 'Employee Report of Unsafe or Unhealthful Working Conditions'
-      body: _default
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      exclude_attachments: false
-      html: true
-      attachments: false
-      twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-      theme_name: ''
-      parameters: {  }
-  email_3:
-    id: email
-    label: jones.mike@epa.gov
-    handler_id: email_3
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      states:
-        - completed
-      to_mail: jones.mike@epa.gov
-      to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      from_mail: _default
-      from_options: {  }
-      from_name: _default
-      subject: 'Employee Report of Unsafe or Unhealthful Working Conditions'
-      body: _default
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      exclude_attachments: false
-      html: true
-      attachments: false
-      twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-      theme_name: ''
-      parameters: {  }
-  email_4:
-    id: email
-    label: caler.christopher@epa.gov
-    handler_id: email_4
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      states:
-        - completed
-      to_mail: caler.christopher@epa.gov
-      to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      from_mail: _default
-      from_options: {  }
-      from_name: _default
-      subject: 'Employee Report of Unsafe or Unhealthful Working Conditions'
-      body: _default
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      exclude_attachments: false
-      html: true
-      attachments: false
-      twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-      theme_name: ''
-      parameters: {  }
   email_5:
     id: email
-    label: adams.danield@epa.gov
+    label: 'RTP H&S Committee'
     handler_id: email_5
     status: true
     conditions: {  }
@@ -381,9 +207,9 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: adams.danield@epa.gov
+      to_mail: 'adams.danield@epa.gov, hartman.kaitlin@epa.gov, jones.mike@epa.gov, mugford.christopher@epa.gov, baker.todd@epa.gov, stout.dan@epa.gov, baese.anne-marie@epa.gov, caler.christopher@epa.gov, blanchard.thomas@epa.gov'
       to_options: {  }
-      cc_mail: ''
+      cc_mail: swain.sydney@epa.gov
       cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }

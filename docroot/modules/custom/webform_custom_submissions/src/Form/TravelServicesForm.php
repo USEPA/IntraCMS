@@ -63,23 +63,13 @@ class TravelServicesForm extends ConfigFormBase {
     ];
     $form['USERNAME'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('User credentials in name:password format'),
+      '#title' => $this->t('User name authenticated with JIRA issue creation'),
       '#default_value' => $config->get('USERNAME'),
     ];
     $form['SERVER'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Server'),
       '#default_value' => $config->get('SERVER'),
-    ];
-    $form['SUBMIT_MESSAGE'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Submit Message'),
-      '#default_value' => $config->get('SUBMIT_MESSAGE'),
-    ];
-    $form['OPTIONS'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Options'),
-      '#default_value' => $config->get('OPTIONS'),
     ];
     $form['DOMESTIC_PROJECT'] = [
       '#type' => 'textfield',
@@ -110,8 +100,6 @@ class TravelServicesForm extends ConfigFormBase {
       ->set('CREATE_ISSUE_URL', $form_state->getValue('CREATE_ISSUE_URL'))
       ->set('USERNAME', $form_state->getValue('USERNAME'))
       ->set('SERVER', $form_state->getValue('SERVER'))
-      ->set('SUBMIT_MESSAGE', $form_state->getValue('SUBMIT_MESSAGE'))
-      ->set('OPTIONS', $form_state->getValue('OPTIONS'))
       ->set('DOMESTIC_PROJECT', $form_state->getValue('DOMESTIC_PROJECT'))
       ->set('INTERNATIONAL_PROJECT', $form_state->getValue('INTERNATIONAL_PROJECT'))
       ->set('VOUCHERS_PROJECT', $form_state->getValue('VOUCHERS_PROJECT'))
