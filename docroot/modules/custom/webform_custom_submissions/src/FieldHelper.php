@@ -377,7 +377,7 @@ class FieldHelper {
   /**
    * @param $value
    */
-  public function addMultiFlightField($value): array {
+  public function addMultiFlightField($value) {
     $length_of_flights = count($value) - 1;
     $this->jira_data[$this->form_to_jira_mapping['returning_time']] = $value[$length_of_flights]['departing_time'];
     $this->jira_data[$this->form_to_jira_mapping['return_date']] = $value[$length_of_flights]['departing_date'];
