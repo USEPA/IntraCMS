@@ -22,7 +22,7 @@ class JiraSubmissionHandler {
 
   public function __construct($config) {
     $this->travel_services_config = $config->get('webform_custom_submissions.form');
-    $system_config = $config->get('system.passwords');
+     $system_config = $config->get('system.passwords');
     $this->username = $this->travel_services_config->get('USERNAME');
     $this->password = $system_config->get('jira');
     $issue_creation_url = $this->travel_services_config->get('CREATE_ISSUE_URL');
@@ -181,7 +181,7 @@ class JiraSubmissionHandler {
           'mime' => $file->getMimeType(),
         );
       }
-      $payload = ['auth' => ["{$this->username[0]}", "{$this->username[1]}"],
+      $payload = ['auth' => ["{$this->username}", "{$this->password}"],
         'X-Atlassian-Token' => "nocheck",
         'Content-Type' => 'multipart/form-data',
         'multipart' => [
