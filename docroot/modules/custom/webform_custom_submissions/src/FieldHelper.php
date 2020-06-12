@@ -9,7 +9,11 @@ use Drupal\webform\webformSubmissionInterface;
 class FieldHelper {
   private $form_data = [];
   private $webform_id;
-  private $jira_data = [];
+  private $jira_data = ['files' => [],];
+  private $webform_title;
+  private $vouchers_project;
+  private $international_project;
+  private $domestic_project;
 
   private $form_to_jira_mapping = [
     'your_information' =>
@@ -103,8 +107,10 @@ class FieldHelper {
     'please_enter_your_date_of_birth' => 'customfield_11429',
     'please_enter_the_traveler_s_date_of_birth' => 'customfield_11429',
     'emergency_contact_information_new' => 'customfield_11430',
-    'preferred_home_airport_new' => 'customfield_10266',
-    'have_a_frequent_flyer_account_with_an_airline_that_you_would_lik' => 'customfield_10354',
+    'preferred_home_airport_new' => [
+      'multi' => true,
+      'preferred_home_airport_new' => 'customfield_10266',
+    ],
     'smoking_preference' => 'customfield_10120',
     'any_additional_requests_' => 'customfield_10291',
     'bed_size_preference' => 'customfield_10262',
@@ -142,17 +148,18 @@ class FieldHelper {
     ],
     'multi_city_flight' => 'customfield_11926',
     'reservation_information' => [
-      "multi" => true,
+      "multi_fieldset" => true,
       "hotel_name" => "customfield_10281",
       "hotel_location" => "customfield_11923",
       "hotel_phone" => "customfield_11922",
       "room_rate" => "customfield_10370"
     ],
     'please_provide_more_information_about_the_current_status_of_the_' => 'customfield_11924',
-    'provided_meals' => "customfield_11925"
+    'provided_meals' => "customfield_11925",
+    "airline_preference" => "customfield_10354",
   ];
 
-  public function is_checkbox_field($key) {
+  public function isCheckboxField($key) {
     return ($key == 'customfield_10411' ||
       $key == 'customfield_10415' ||
       $key == 'customfield_10150' ||
@@ -220,9 +227,24 @@ class FieldHelper {
     return $this->jira_data;
   }
 
-  public function prepareFormData(WebformSubmissionInterface $webform_submission) {
+  public function addSummary() {
+    $name = '';
+    if (!empty($this->jira_data['customfield_10090'])) {
+      $name = $this->jira_data['customfield_10090'];
+    } else if (!empty($this->jira_data['customfield_10331'])) {
+      $name = $this->jira_data['customfield_10331'];
+    }
+    $this->jira_data['fields']['summary'] = $this->webform_title . ': ' . $name;
+  }
+
+  public function prepareFormData($config, WebformSubmissionInterface $webform_submission) {
+    $this->domestic_project = $config->get('DOMESTIC_PROJECT');
+    $this->international_project = $config->get('INTERNATIONAL_PROJECT');
+    $this->vouchers_project = $config->get('VOUCHERS_PROJECT');
+
     $this->form_data = $webform_submission->getData();
     $this->webform_id = $webform_submission->getWebform()->getOriginalId();
+    $this->webform_title = $webform_submission->getWebform()->get('title');
   }
 
   public function setProjectID($project_id) {
@@ -246,37 +268,26 @@ class FieldHelper {
 
   public function isComposite($field_name) {
     $composite_fields = [
-      'dates_of_approved_leave', 'emergency_contact_information', 'hotel_preference', 'reservation_information', 'provided_meals', 'multi_city_flight'
+      'dates_of_approved_leave', 'emergency_contact_information', 'hotel_preference', 'reservation_information', 'provided_meals', 'emergency_contact_information_new', 'airline_preference'
     ];
     return in_array($field_name, $composite_fields);
   }
 
   public function prepareJiraData() {
-    $formatted_data = ['files' => [],];
-    // Filter out values not included in Jira Type
     foreach ($this->form_data as $key => $value) {
-      $jira_mapping = $this->form_to_jira_mapping[$key];
-      if ($key === 'multi_city_flight') {
-        $formatted_data = $this->parseMultiFlightField($value, $formatted_data);
-      } else if ($this->isMulti($jira_mapping)) {
-        $this->parseMultiFields($value, $jira_mapping, $formatted_data);
-      } else if ($this->isComposite($key)) {
-        $formatted_data[$jira_mapping] = $this->parseCompositeIntoSingleField($this->form_data[$key]);
-      } else if ($jira_mapping === 'file') {
-        $this->setFileIds($value, $formatted_data);
-      } else if ($this->is_checkbox_field($jira_mapping)) {
-        $formatted_data[$jira_mapping] = $value;
-      } else {
-        if (isset($jira_mapping) && !empty($value)) {
-          if (is_array($value)) {
-            $formatted_data = $this->handleFieldSet($value, $jira_mapping, $formatted_data);
-          } else {
-            $formatted_data[$jira_mapping] = $value;
-          }
-        }
+      if (!empty($value)) {
+        $this->mapDataToJiraFields($key, $value);
       }
     }
-    $this->jira_data = $formatted_data;
+    if ($this->isInternational()) {
+      $this->setProjectID($this->international_project);
+    } else if ($this->isVoucher()) {
+      $this->setProjectID($this->vouchers_project);
+    } else {
+      $this->setProjectID($this->domestic_project);
+    }
+    $this->setIssueType();
+    $this->addSummary();
   }
 
   function print_missing_field($field_id) {
@@ -307,15 +318,13 @@ class FieldHelper {
 
   /**
    * @param $value
-   * @param array $formatted_data
-   * @return array
    */
-  public function setFileIds($value, array &$formatted_data) {
+  public function setFileIds($value) {
     if (is_numeric($value)) {
-      $formatted_data['files'][] = $value;
+      $this->jira_data['files'][] = $value;
     } else if (is_array($value)) {
       foreach ($value as $file) {
-        $formatted_data['files'][] = $file;
+        $this->jira_data['files'][] = $file;
       }
     }
   }
@@ -323,60 +332,107 @@ class FieldHelper {
   /**
    * @param array $value
    * @param $jira_mapping
-   * @param array $allowed_custom_fields
-   * @param array $formatted_data
-   * @param $key
-   * @return array
    */
-  public function handleFieldSet(array $value, $jira_mapping, array $formatted_data): array {
+  public function handleFieldSet(array $value, $jira_mapping) {
     foreach ($value as $field_name => $field_value) {
       if (!empty($field_value)) {
-        $custom_field_id = $jira_mapping[$field_name];
-        $formatted_data[$custom_field_id] = $field_value;
-      }
-    }
-    return $formatted_data;
-  }
-
-  /**
-   * @param $jira_mapping
-   * @return bool
-   */
-  public function isMulti($jira_mapping): bool {
-    return isset($jira_mapping['multi']);
-  }
-
-  /**
-   * @param $value
-   * @param $jira_mapping
-   * @param array $formatted_data
-   * @return mixed
-   */
-  public function parseMultiFields($value, $jira_mapping, array &$formatted_data) {
-    foreach ($value as $set_of_fields) {
-      foreach ($set_of_fields as $field_name => $field_value) {
-        if (isset($jira_mapping[$field_name])) {
-          $formatted_data[$jira_mapping[$field_name]] .= $field_value . "\n";
+        if (is_array($jira_mapping)) {
+          $custom_field_id = $jira_mapping[$field_name];
+          $this->jira_data[$custom_field_id] = $field_value;
+        } else {
+          $this->jira_data[$jira_mapping] .= $field_name . "/n";
         }
       }
     }
   }
 
   /**
-   * @param $value
-   * @param array $formatted_data
    * @param $jira_mapping
-   * @param string $key
-   * @return array
+   * @return bool
    */
-  public function parseMultiFlightField($value, array &$formatted_data): array {
+  public function isMultiFieldset($jira_mapping): bool {
+    return isset($jira_mapping['multi_fieldset']);
+  }
+
+  /**
+   * @param $array_of_fieldsets
+   * @param $jira_mapping
+   */
+  public function addMultiFieldsets($array_of_fieldsets, $jira_mapping) {
+    foreach ($array_of_fieldsets as $set_of_fields) {
+      foreach ($set_of_fields as $field_name => $field_value) {
+        if (isset($jira_mapping[$field_name])) {
+          $this->jira_data[$jira_mapping[$field_name]] .= $field_value . "\n";
+        }
+      }
+    }
+  }
+
+  public function addMultiFields($array_of_field_values, $jira_field_id) {
+    foreach ($array_of_field_values as $field_value) {
+      $this->jira_data[$jira_field_id] .= $field_value . "\n";
+    }
+  }
+
+  /**
+   * @param $value
+   */
+  public function addMultiFlightField($value): array {
     $length_of_flights = count($value) - 1;
-    $formatted_data[$this->form_to_jira_mapping['returning_time']] = $value[$length_of_flights]['departing_time'];
-    $formatted_data[$this->form_to_jira_mapping['return_date']] = $value[$length_of_flights]['departing_date'];
-    $formatted_data[$this->form_to_jira_mapping['departing_time']] = $value[0]['departing_time'];
-    $formatted_data[$this->form_to_jira_mapping['departure_date']] = $value[0]['departing_date'];
-    $formatted_data[$this->form_to_jira_mapping['multi_city_flight']] = $this->parseCompositeIntoSingleField($this->form_data['multi_city_flight']);
-    return $formatted_data;
+    $this->jira_data[$this->form_to_jira_mapping['returning_time']] = $value[$length_of_flights]['departing_time'];
+    $this->jira_data[$this->form_to_jira_mapping['return_date']] = $value[$length_of_flights]['departing_date'];
+    $this->jira_data[$this->form_to_jira_mapping['departing_time']] = $value[0]['departing_time'];
+    $this->jira_data[$this->form_to_jira_mapping['departure_date']] = $value[0]['departing_date'];
+    $this->jira_data[$this->form_to_jira_mapping['multi_city_flight']] = $this->parseCompositeIntoSingleField($this->form_data['multi_city_flight']);
+  }
+
+  /**
+   * @param $key
+   * @return bool
+   */
+  public function isMultiCityFlight($key): bool {
+    return $key === 'multi_city_flight';
+  }
+
+  /**
+   * @param $jira_mapping
+   * @return bool
+   */
+  public function isFile($jira_mapping): bool {
+    return $jira_mapping === 'file';
+  }
+
+  /**
+   * @param $key
+   * @param $value
+   */
+  private function mapDataToJiraFields($key, $value) {
+    $jira_mapping = $this->form_to_jira_mapping[$key];
+    if (!empty($jira_mapping)) {
+      if ($this->isMultiCityFlight($key)) {
+        $this->addMultiFlightField($value);
+      } else if ($this->isMultiFieldset($jira_mapping)) {
+        $this->addMultiFieldsets($value, $jira_mapping);
+      } else if ($this->isMulti($jira_mapping)) {
+        $this->addMultiFields($value, $jira_mapping[$key]);
+      } else if ($this->isComposite($key)) {
+        $this->jira_data[$jira_mapping] = $this->parseCompositeIntoSingleField($this->form_data[$key]);
+      } else if ($this->isFile($jira_mapping)) {
+        $this->setFileIds($value);
+      } else if ($this->isCheckboxField($jira_mapping)) {
+        $this->jira_data[$jira_mapping] = $value;
+      } else {
+        if (is_array($value)) {
+          $this->handleFieldSet($value, $jira_mapping);
+        } else {
+          $this->jira_data[$jira_mapping] = $value;
+        }
+      }
+    }
+  }
+
+  private function isMulti($jira_mapping) {
+    return isset($jira_mapping['multi']);
   }
 
 }
