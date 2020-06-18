@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - views.view.media
+    - views.view.media_browser
   module:
     - lightning_media
     - views
@@ -22,24 +22,24 @@ selection_display_configuration: {  }
 widget_selector: tabs
 widget_selector_configuration: {  }
 widgets:
-  44d52e51-9627-43b5-a637-3b0462041d1c:
-    settings:
-      submit_text: Select
-      target_bundles: {  }
-      form_mode: media_browser
-      return_file: true
-      upload_validators: {  }
-    uuid: 44d52e51-9627-43b5-a637-3b0462041d1c
-    weight: -9
-    label: Upload
-    id: file_upload
   eb8e0fc7-3085-480a-bf7f-9ba64c54214d:
     settings:
-      view: media
-      view_display: entity_browser_2
+      view: media_browser
+      view_display: media_entity_browser
       submit_text: Select
       auto_select: false
     uuid: eb8e0fc7-3085-480a-bf7f-9ba64c54214d
     weight: -10
     label: Library
     id: view
+  9401520e-f309-49b0-a577-089bf7e31a29:
+    settings:
+      submit_text: Select
+      target_bundles: {  }
+      form_mode: media_browser
+      return_file: false
+      upload_validators: {  }
+    uuid: 9401520e-f309-49b0-a577-089bf7e31a29
+    weight: 2
+    label: Upload
+    id: file_upload
