@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - block_content.type.media_block
-    - entity_browser.browser.image_browser
+    - entity_browser.browser.media_browser
     - field.field.block_content.media_block.field_link
     - field.field.block_content.media_block.field_usa_media_block_heading
     - field.field.block_content.media_block.field_usa_media_block_img
@@ -37,15 +37,15 @@ content:
     type: entity_browser_entity_reference
     weight: 1
     settings:
-      entity_browser: image_browser
+      entity_browser: media_browser
       field_widget_display: rendered_entity
-      field_widget_display_settings:
-        view_mode: media_block
       field_widget_remove: true
       field_widget_replace: true
+      open: true
       selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: thumbnail
       field_widget_edit: false
-      open: false
     region: content
     third_party_settings: {  }
   field_usa_media_block_text:
