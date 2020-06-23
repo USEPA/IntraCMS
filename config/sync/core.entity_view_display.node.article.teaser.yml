@@ -20,26 +20,23 @@ content:
   body:
     label: hidden
     type: text_summary_or_trimmed
-    weight: 2
+    weight: 1
     settings:
       trim_length: 300
     third_party_settings: {  }
     region: content
   field_article_image:
     type: entity_reference_entity_view
-    weight: 1
+    weight: 0
     region: content
     label: hidden
     settings:
       view_mode: thumbnail
       link: false
     third_party_settings: {  }
-  links:
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
+  content_moderation_control: true
   field_article_featured: true
   field_keywords: true
+  links: true
   search_api_excerpt: true
