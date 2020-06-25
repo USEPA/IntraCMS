@@ -8,7 +8,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use \Exception;
 use Drupal\file\Entity\File;
-use Drupal\Core\File\FileSystem;
+use Psr\Http\Message\StreamInterface;
+
 
 class JiraSubmissionHandler {
 
@@ -19,18 +20,21 @@ class JiraSubmissionHandler {
   protected $username;
   protected $vouchers_project;
   protected $field_helper;
+  protected $travel_services_config;
+  protected $password;
 
   public function __construct($config) {
-    $travel_services_config = $config->get('webform_custom_submissions.form');
-    $raw_username = $travel_services_config->get('USERNAME');
-    $issue_creation_url = $travel_services_config->get('CREATE_ISSUE_URL');
+    $this->travel_services_config = $config->get('webform_custom_submissions.form');
+     $system_config = $config->get('system.passwords');
+    $this->username = $this->travel_services_config->get('USERNAME');
+    $this->password = $system_config->get('jira');
+    $issue_creation_url = $this->travel_services_config->get('CREATE_ISSUE_URL');
 
-    $this->create_issue_url = $travel_services_config->get('CREATE_ISSUE_URL');
-    $this->domestic_project = $travel_services_config->get('DOMESTIC_PROJECT');
-    $this->international_project = $travel_services_config->get('INTERNATIONAL_PROJECT');
+    $this->create_issue_url = $this->travel_services_config->get('CREATE_ISSUE_URL');
+    $this->domestic_project = $this->travel_services_config->get('DOMESTIC_PROJECT');
+    $this->international_project = $this->travel_services_config->get('INTERNATIONAL_PROJECT');
     $this->submission_client = new Client(['base_uri' => $issue_creation_url]);
-    $this->username = explode(':', $raw_username);
-    $this->vouchers_project = $travel_services_config->get('VOUCHERS_PROJECT');
+    $this->vouchers_project = $this->travel_services_config->get('VOUCHERS_PROJECT');
     $this->field_helper = new FieldHelper();
   }
 
@@ -41,47 +45,29 @@ class JiraSubmissionHandler {
   public function submitToJira(WebformSubmissionInterface $webform_submission) {
     try {
       $fieldHelper = new FieldHelper();
-      $fieldHelper->prepareFormData($webform_submission);
+
+      $fieldHelper->prepareFormData($this->travel_services_config, $webform_submission);
       $fieldHelper->prepareJiraData();
-      if ($fieldHelper->isInternational()) {
-        $fieldHelper->setProjectID($this->international_project);
-      } else if ($fieldHelper->isVoucher()) {
-        $fieldHelper->setProjectID($this->vouchers_project);
-      } else {
-        $fieldHelper->setProjectID($this->domestic_project);
-      }
-      $fieldHelper->setIssueType();
       $jira_data = $fieldHelper->getJiraData();
       $postData = $this->compilePOSTData($jira_data);
-      $jira_data['fields']['summary'] = $this->getSummary($webform_submission, $jira_data);
-      $postResponse = $this->sendPOSTData($postData);
-      $decoded_response = json_decode($postResponse, TRUE);
-      $issueId = $this->getIssueId($postResponse);
-      $filesUploaded = $this->attachFiles($issueId, $jira_data);
-      if (isset($decoded_response['errorMessages'])) {
-        \Drupal::logger('Travel Services Error')->error($postResponse);
-        drupal_set_message(t('There was an error processing your request. Code-0001'), 'error');
-      } else if (!isset($decoded_response['id'])) {
+      $issueId = $this->createIssueAndReturnID($postData);
+      if (isset($issueId)) {
+        try {
+          $this->attachFiles($issueId, $jira_data);
+        } catch (Exception $e) {
+          drupal_set_message(t('There was an error uploading your files to JIRA.'), 'error');
+          \Drupal::logger('Travel Services File Upload Exception')->error($e->getMessage());
+        }
+      } else {
+
         drupal_set_message(t('There was an error processing your request. Code-0002'), 'error');
-        \Drupal::logger('Travel Services Error')->error('Unidentified Error: JIRA Response = ' . $postResponse);
+        \Drupal::logger('Travel Services Error')->error('Unidentified Error: JIRA Response did not return Issue ID');
       }
     } catch (Exception $e) {
       \Drupal::logger('Travel Services Exception')->error($e->getMessage());
       drupal_set_message(t('Unable to process request at this time, please try again later.'), 'error');
     }
   }
-
-  public function getSummary(WebformSubmissionInterface $webform_submission, $jira_data) {
-    $title = $webform_submission->getWebform()->get('title');
-    $name = '';
-    if (!empty($jira_data['customfield_10090'])) {
-      $name = $jira_data['customfield_10090'];
-    } else if (!empty($jira_data['customfield_10331'])) {
-      $name = $jira_data['customfield_10331'];
-    }
-    return $title . ': ' . $name;
-  }
-
 
   //Compiles POST data and returns the data formatted as JSON
   protected function compilePOSTData($form_data) {
@@ -118,7 +104,7 @@ class JiraSubmissionHandler {
           $data['fields'][$key] = array('value' => $val);
         }
       } //Capture Checkboxes and turn them into arrays
-      elseif ($this->field_helper->is_checkbox_field($key)) {
+      elseif ($this->field_helper->isCheckboxField($key)) {
         $checkboxArray = array();
         foreach ($val as $field2 => $value2) {
           array_push($checkboxArray, array('value' => $value2));
@@ -155,82 +141,88 @@ class JiraSubmissionHandler {
     $data['fields']['project'] = $form_data['fields']['project'];
     $data['fields']['issuetype'] = $form_data['fields']['issuetype'];
     $data['fields']['summary'] = $form_data['fields']['summary'];
-    $jsonData = json_encode($data);
-    return $jsonData;
+    unset($data['fields']['fields']);
+    return $data;
   }
 
   /**
    * Builds and sends cURL request for the form POST data
    * @param $jsonData
-   * @return Exception|\Psr\Http\Message\ResponseInterface
+   * @return StreamInterface|Exception Returns the body as a stream.
+   *
    */
-  protected function sendPOSTData($jsonData) {
+  protected function createIssueAndReturnID($jsonData) {
+    $issue_id = null;
     try {
+      \Drupal::logger('Travel Services Payload')->info('<pre><code>' . print_r($jsonData, TRUE) . '</code></pre>');
       $response = $this->submission_client->request('POST',
         $this->create_issue_url,
-        ['json' => $jsonData, 'Content-Type' => "application/json",
-          'auth' => ["{$this->username[0]}", "{$this->username[1]}"]]);
-
-      return $response;
+        ['json' => $jsonData, 'auth' => ["{$this->username}", "{$this->password}"]]);
+      if ($response->getBody()) {
+        $body = json_decode($response->getBody());
+        if (isset($body->id)) {
+          $issue_id = $body->id;
+        }
+        \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($body, TRUE) . '</code></pre>');
+      }
     } catch (Exception $e) {
-      return new Exception($e->getMessage());
+      \Drupal::logger('Travel Services Response')->error($e->getMessage());
+      drupal_set_message(t('There was an error processing your request. Code-0001'), 'error');
     }
+    return $issue_id;
   }
 
-  //Extracts the issue id from the server response so we can submit file attachment
-  protected function getIssueId($serverReponse) {
-    $responseArray = json_decode($serverReponse);
-    try {
-      return $responseArray['id'];
-    } catch (Exception $e) {
-      throw new Exception($e->getMessage());
-    }
-  }
 
-  //Attaches files to issue
+  /**
+   * @param $id
+   * @param $form_data
+   * @return array
+   * @throws Exception
+   */
   protected function attachFiles($id, $form_data) {
-
     $url = $this->create_issue_url . $id . '/attachments/';
+    $fileNames = [];
+    foreach ($form_data['files'] as $fid) {
+      $fileData = ['size' => 0];
+      $file = File::load($fid);
+      if (is_object($file)) {
+        $fileData = array(
+          'tmp_name' => \Drupal::service('file_system')->realpath($file->getFileUri()),
+          'name' => $file->getFilename(),
+          'size' => intval($file->getSize()),
+          'mime' => $file->getMimeType(),
+        );
+      }
+      $payload = ['auth' => ["{$this->username}", "{$this->password}"],
+        'X-Atlassian-Token' => "nocheck",
+        'Content-Type' => 'multipart/form-data',
+        'multipart' => [
+          [
+            'name' => 'file',
+            'contents' => file_get_contents($fileData['tmp_name']),
+            'filename' => $fileData['name'],
+          ]
+        ]
+      ];
 
-    $header = array(
-      'auth' => ["{$this->username[0]}", "{$this->username[1]}"],
-      'X-Atlassian-Token' => "nocheck"
-    );
+      if ($fileData['size'] > 0) {
+        $response = $this->submission_client->post(
+          $url,
+          $payload
+        );
+        if ($response->getStatusCode() == 200) {
+          $decodedResponse = $response->getBody();
+          \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($decodedResponse, TRUE) . '</code></pre>');
+          $fileNames[] = $fileData['name'];
+        } else {
+          \Drupal::logger('Travel Services Response')->error('<pre><code>' . print_r($response->getBody(), TRUE) . '</code></pre>');
+          throw new \Exception("File Upload error. Did not recieve 200 code response");
 
-    $fileNames = array();
-    foreach ($form_data as $key => $files) {
-      if (FieldHelper::isFile($key)) {
-        foreach ($files as $fid) {
-          $fileData = array('size' => 0);
-          $file = File::load($fid);
-          if (is_object($file)) {
-            $fileData = array(
-              'tmp_name' => \Drupal::service('file_system')->realpath($file->getFileUri()),
-              'name' => $file->getFilename(),
-              'size' => intval($file->getSize()),
-              'mime' => $file->getMimeType(),
-            );
-          }
-
-          if ($fileData['size'] > 0) {
-            $response = $this->submission_client->request('POST',
-              $url,
-              ['headers' => $header,
-                'multipart' => [
-                  'name' => $fileData['tmp_name'],
-                  'contents' => $fileData['mime'],
-                  'filename' => $fileData['name']
-                ]]);
-            $decodedResponse = json_decode($response, TRUE);
-            \Drupal::logger('Travel Services File Response')->notice($response);
-            \Drupal::logger('Travel Services File Response')->notice($response);
-            if (sizeof($decodedResponse) > 0) {
-              $fileNames[] = $$fileData['name'];
-            }
-          }
         }
       }
     }
     return $fileNames;
+
   }
+
 }
