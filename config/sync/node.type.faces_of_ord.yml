@@ -4,10 +4,15 @@ status: true
 dependencies:
   module:
     - menu_ui
+    - node_revision_delete
 third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
+  node_revision_delete:
+    minimum_revisions_to_keep: 50
+    minimum_age_to_delete: 0
+    when_to_delete: 0
 name: 'Faces of ORD'
 type: faces_of_ord
 description: '<em>Faces of ORD</em> is content created weekly and highlighted on the site home page and referenced in the <em>Weekly Compass</em>.'
