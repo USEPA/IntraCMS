@@ -1,0 +1,23 @@
+diff --git a/js/plugins/drupalinlinemedia/plugin.js b/js/plugins/drupalinlinemedia/plugin.js
+index d52d059..38c8e38 100644
+--- a/js/plugins/drupalinlinemedia/plugin.js
++++ b/js/plugins/drupalinlinemedia/plugin.js
+@@ -3,12 +3,15 @@
+     requires: 'drupalmedia',
+     icons: 'drupalinlinemedia',
+     beforeInit: function beforeInit(editor) {
+-      
++
+       var dtd = CKEDITOR.dtd;
+       dtd['drupal-inline-media'] = { '#': 1 };
+ 
+-      dtd.a['drupal-inline-media'] = 1;
+-      dtd.p['drupal-inline-media'] = 1;
++      Object.keys(dtd).forEach(function (tagName) {
++        if (dtd[tagName].a) {
++          dtd[tagName]['drupal-inline-media'] = 1;
++        }
++      });
+ 
+       drupalmediawidget = editor.widgets.registered.drupalmedia;
+ 
