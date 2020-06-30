@@ -76,13 +76,14 @@
 <div class="grid-row">
 <div class="grid-col-auto text-center p-2 centered">
     <div class="align-center">
+    <div class="staff-profile">
         {% if content.field_staff_photo.0 %}
             {{ content.field_staff_photo }}
         {% else %}
             <img class="align-center" src="/sites/default/files/avatar-1577909_1280.png" alt="No Staff Member Picture"
                  width="auto"
                  height="100"/>
-        {% endif %}
+        {% endif %}</div>
         <div class="align-center"><a href="{{ url }}" rel="bookmark">{{ label }}</a></div>
         <div class="align-center">{{ content.field_staff_position }}</div>
     </div>
