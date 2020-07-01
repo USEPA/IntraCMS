@@ -257,13 +257,12 @@ class FieldHelper {
   }
 
 
-
   function isInternational() {
-    return strpos($this->jira_data['customfield_10191'], 'International') >= 0;
+    return strpos($this->jira_data['customfield_10191'], 'International') !== false;
   }
 
   function isVoucher() {
-    return strpos($this->webform_id, 'voucher') >= 0;
+    return strpos($this->webform_id, 'voucher') !== false;
   }
 
   public function getJiraData() {
@@ -296,14 +295,14 @@ class FieldHelper {
 
   public function setIssueType() {
     $mapping = [
-      'travel_amendment_form'=> '32',
+      'travel_amendment' => '32',
       'travel_cancellation' => '33',
       'travel_profile' => '34',
-      'routing_change' => '10100',
+      'travel_concur_routing' => '10100',
       'travel_question' => '37',
       'travel_authorization' => '23',
       'travel_voucher' => '24',
-      'traveler_id' => '35',
+      'travel_id_information' => '35',
     ];
 
     $this->jira_data['fields']['issuetype'] = ['id' => $mapping[$this->webform_id]];
@@ -362,7 +361,6 @@ class FieldHelper {
         $text .= $field;
         if ($i < $length - 1) {
           $text .= ", ";
-
         }
       }
       $i++;
