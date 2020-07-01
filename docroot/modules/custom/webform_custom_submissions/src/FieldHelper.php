@@ -14,6 +14,20 @@ class FieldHelper {
   private $vouchers_project;
   private $international_project;
   private $domestic_project;
+  private const FLYING_OUT_OF_COUNTRY = 'customfield_11826';
+  private const CHECKBOX_FIELDS = [
+    'customfield_10411',
+    'customfield_10415',
+    'customfield_10150',
+    'customfield_10149',
+    'customfield_10148',
+    'customfield_10151',
+    'customfield_10278',
+    'customfield_10280',
+    'customfield_12027',
+    'customfield_12028',
+    'customfield_10103'
+  ];
 
   private $form_to_jira_mapping = [
     'your_information' =>
@@ -31,6 +45,13 @@ class FieldHelper {
     'orm_division_traveker' => 'customfield_10501',
     'osape_division_traveler' => 'customfield_10501',
     'osim_division_traveler' => 'customfield_10501',
+    'ccte_division' => 'customfield_10501',
+    'cemm_division' => 'customfield_10501',
+    'ceser_division' => 'customfield_10501',
+    'cphea_division' => 'customfield_10501',
+    'orm_division' => 'customfield_10501',
+    'osape_division' => 'customfield_10501',
+    'osim_division' => 'customfield_10501',
     'traveler_information' =>
       [
         'traveler_name' => 'customfield_10331',
@@ -52,7 +73,7 @@ class FieldHelper {
     'mode_s_of_transportation' => 'customfield_10103',
     'have_you_made_your_own_airline_reservation_' => 'customfield_10435',
     'would_you_like_to_request_a_specific_flight_' => '',
-    'information_about_specific_flight' => '',
+    'information_about_specific_flight' => 'customfield_12025',
     'additional_information_transportation' => 'customfield_10111',
     'travel_purpose' => 'customfield_10922',
     'is_this_travel_for_an_epa_conference_' => 'customfield_10426',
@@ -96,7 +117,10 @@ class FieldHelper {
     'cost_of_atm_fees' => 'customfield_10418',
     'cost_of_supplies' => 'customfield_10417',
     'cost_of_other_expenses' => 'customfield_10380',
+    'cost_of_conference_registration_fee' => "customfield_12022",
+    'cost_of_hotel_parking' => "customfield_12023",
     'additional_info_text' => 'customfield_10141',
+    'cost_of_cash_withdraw_finance_fees' => 'customfield_12023',
     'attachment_s_' => 'file',
     'travel_request_number' => 'customfield_10208',
     'destination' => 'customfield_10303',
@@ -117,10 +141,6 @@ class FieldHelper {
     'hotel_preference' => 'customfield_10273',
     'flight_seating_preference' => 'customfield_10263',
     'please_state_you_question_or_comment_in_the_filed_below_' => 'customfield_10390',
-    'receipts' => 'file',
-    'required_receipts' => 'file',
-    'daily_itinerary' => 'file',
-    'please_attach_the_approved_sf_182' => 'file',
     'comments_on_travel_experience' => 'customfield_10308',
     'were_all_meals_provided_through_your_registration_costs_or_by_th' => 'customfield_10151',
     'do_you_have_any_other_expense_you_would_like_to_reimburse_to_you' => 'customfield_11420',
@@ -157,18 +177,39 @@ class FieldHelper {
     'please_provide_more_information_about_the_current_status_of_the_' => 'customfield_11924',
     'provided_meals' => "customfield_11925",
     "airline_preference" => "customfield_10354",
+    "trip_type" => "customfield_12020",
+    "please_stay_within_allowable_per_diem_if_selected_rate_is_over_p" => "customfield_12021",
+    'address_of_meeting_s_' => 'customfield_12026',
+    'transportation_expenses_rr' => 'customfield_12027',
+    'additional_expenses_rr' => 'customfield_12028',
+    'cost_of_taxi_uber_lyft_rr' => 'customfield_12029',
+    'cost_of_metro_bus_public_transportation_rr' => 'customfield_12030',
+    'cost_of_pov_rr' => 'customfield_12031',
+    'cost_of_rental_car_fee_rr' => 'customfield_12032',
+    'cost_of_rental_car_fuel_rr' => 'customfield_12033',
+    'cost_of_tolls_rr' => 'customfield_12034',
+    'cost_of_rail_rr' => 'customfield_12035',
+    'cost_of_conference_registration_fee_rr' => 'customfield_12037',
+    'cost_of_hotel_rr' => 'customfield_12038',
+    'cost_of_hotel_parking_rr' => 'customfield_12039',
+    'cost_of_internet_fees_rr' => 'customfield_12040',
+    'cost_of_phone_calls_rr' => 'customfield_12041',
+    'cost_of_airport_parking_rr' => 'customfield_12042',
+    'cost_of_baggage_fees_rr' => 'customfield_12043',
+    'cost_of_cash_withdraw_finance_fees_rr' => 'customfield_12044',
+    'cost_of_atm_fees_rr' => 'customfield_12045',
+    'cost_of_supplies_rr' => 'customfield_12046',
+    'cost_of_other_expenses_rr' => 'customfield_12047',
+    'receipts' => 'file',
+    'required_receipts' => 'file',
+    'daily_itinerary' => 'file',
+    'please_attach_the_approved_sf_182' => 'file',
+    'please_attach_approved_ethics_form_' => 'file',
+    'please_attach_your_invitational_letter_' => 'file',
   ];
 
   public function isCheckboxField($key) {
-    return ($key == 'customfield_10411' ||
-      $key == 'customfield_10415' ||
-      $key == 'customfield_10150' ||
-      $key == 'customfield_10149' ||
-      $key == 'customfield_10148' ||
-      $key == 'customfield_10151' ||
-      $key == 'customfield_10278' ||
-      $key == 'customfield_10280' ||
-      $key == 'customfield_10103');
+    return (in_array($key, self::CHECKBOX_FIELDS));
   }
 
 
@@ -211,6 +252,7 @@ class FieldHelper {
       'customfield_11428',
       'customfield_11826',
       'customfield_11827',
+      'customfield_12020'
     );
   }
 
@@ -268,7 +310,8 @@ class FieldHelper {
 
   public function isComposite($field_name) {
     $composite_fields = [
-      'dates_of_approved_leave', 'emergency_contact_information', 'hotel_preference', 'reservation_information', 'provided_meals', 'emergency_contact_information_new', 'airline_preference'
+      'dates_of_approved_leave', 'emergency_contact_information', 'hotel_preference', 'reservation_information', 'provided_meals',
+      'emergency_contact_information_new', 'airline_preference', 'address_of_meeting_s_'
     ];
     return in_array($field_name, $composite_fields);
   }
@@ -279,6 +322,7 @@ class FieldHelper {
         $this->mapDataToJiraFields($key, $value);
       }
     }
+    $this->setFlyingOutOfCountry();
     if ($this->isInternational()) {
       $this->setProjectID($this->international_project);
     } else if ($this->isVoucher()) {
@@ -292,6 +336,14 @@ class FieldHelper {
 
   function print_missing_field($field_id) {
     echo $field_id . '<br />';
+  }
+
+  private function setFlyingOutOfCountry() {
+    if ($this->isInternational()) {
+      $this->jira_data[self::FLYING_OUT_OF_COUNTRY] = 'Yes';
+    } else {
+      $this->jira_data[self::FLYING_OUT_OF_COUNTRY] = 'No';
+    }
   }
 
 
