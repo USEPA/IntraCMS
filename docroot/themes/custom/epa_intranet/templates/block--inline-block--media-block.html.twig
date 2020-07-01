@@ -34,7 +34,7 @@
 ] %}
 
 <div {{ attributes.addClass(classes) }}>
-    {{ content.field_usa_media_block_img }}
+    <a href="{{ content.field_link.0['#url'] }}">{{ content.field_usa_media_block_img }}</a>
     <div class="usa-media-block__body">
         {{ title_prefix }}
         <a href="{{ content.field_link.0['#url'] }}"

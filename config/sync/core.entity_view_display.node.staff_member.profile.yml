@@ -1,9 +1,9 @@
-uuid: 787fc022-f2c4-418a-936a-62755872ca3a
+uuid: 2c448de8-cc25-4c51-a7d2-6c0a4087a54c
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.staff_photo_grid
+    - core.entity_view_mode.node.profile
     - field.field.node.staff_member.field_email
     - field.field.node.staff_member.field_first_name
     - field.field.node.staff_member.field_last_name
@@ -32,22 +32,38 @@ third_party_settings:
     entity_view_mode_restriction:
       allowed_blocks: {  }
       allowed_layouts: {  }
-id: node.staff_member.staff_photo_grid
+id: node.staff_member.profile
 targetEntityType: node
 bundle: staff_member
-mode: staff_photo_grid
+mode: profile
 content:
+  field_first_name:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_last_name:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
   field_staff_photo:
     type: entity_reference_entity_view
     weight: 1
     label: hidden
     settings:
-      view_mode: thumbnail
+      view_mode: staff_member_card
       link: false
     third_party_settings: {  }
     region: content
   field_staff_position:
-    weight: 2
+    weight: 4
     label: hidden
     settings:
       link_to_entity: false
@@ -62,8 +78,6 @@ content:
 hidden:
   content_moderation_control: true
   field_email: true
-  field_first_name: true
-  field_last_name: true
   field_location: true
   field_organization: true
   field_phone: true
