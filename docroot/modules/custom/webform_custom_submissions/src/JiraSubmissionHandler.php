@@ -2,14 +2,11 @@
 
 namespace Drupal\webform_custom_submissions;
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\WebformSubmissionInterface;
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Response;
 use \Exception;
 use Drupal\file\Entity\File;
 use Psr\Http\Message\StreamInterface;
-
 
 class JiraSubmissionHandler {
 
@@ -79,17 +76,15 @@ class JiraSubmissionHandler {
     //Add POST variables to the array
     foreach ($form_data as $key => $val) {
       // ignore file uploads, we are handling these later
-      if ($val === 'file') {
+      if ($key === 'files') {
         continue;
       }
 
       if ($key == 'customfield_10191') {
         $data['fields'][$key] = array('value' => $val);
-      }
-      elseif ($key == 'customfield_10093') {
+      } elseif ($key == 'customfield_10093') {
         $data['fields'][$key] = array('value' => $val);
-      }
-    //Capture dropdowns and turn them into arrays
+      } //Capture dropdowns and turn them into arrays
       elseif (in_array($key, $dropDowns)) {
         //ignore time dropdowns if no time is selected
         if (($key == 'customfield_10322' ||
@@ -128,12 +123,6 @@ class JiraSubmissionHandler {
         $data['fields'][$key] = $val;
       }
     }//end foreach
-
-    //Set the Summary field
-    if ($form_data['proxy'] == 'Yes')
-      $data['fields']['summary'] = $form_data['formTitle'] . ': ' . $data['fields']['customfield_10331'];
-    else if ($form_data['proxy'] == 'No')
-      $data['fields']['summary'] = $form_data['formTitle'] . ': ' . $data['fields']['customfield_10090'];
 
     if ($form_data['customfield_10431'] == 'Yes')
       $data['fields']['customfield_10431'] = array('value' => 'Yes');
@@ -217,7 +206,6 @@ class JiraSubmissionHandler {
         } else {
           \Drupal::logger('Travel Services Response')->error('<pre><code>' . print_r($response->getBody(), TRUE) . '</code></pre>');
           throw new \Exception("File Upload error. Did not recieve 200 code response");
-
         }
       }
     }
