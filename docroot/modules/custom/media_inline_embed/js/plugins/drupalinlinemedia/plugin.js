@@ -7,10 +7,13 @@
       var dtd = CKEDITOR.dtd;
       dtd['drupal-inline-media'] = { '#': 1 };
 
-      dtd.a['drupal-inline-media'] = 1;
-      dtd.p['drupal-inline-media'] = 1;
-
-      drupalmediawidget = editor.widgets.registered.drupalmedia;
+            Object.keys(dtd).forEach(function (tagName) {
+                if (dtd[tagName].a) {
+                  dtd[tagName]['drupal-inline-media'] = 1;
+                }
+              });
+         
+               drupalmediawidget = editor.widgets.registered.drupalmedia;
 
       editor.widgets.add('drupalinlinemedia', CKEDITOR.tools.extend({
         upcast: function upcast(element, data) {
