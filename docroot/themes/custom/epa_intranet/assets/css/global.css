@@ -8,7 +8,7 @@ h2, h3, h4, h5, h6 {
     text-decoration: none;
 }
 
-
+/* overriding links to apply uswds standards */
 ol.usa-list a, ul.usa-list a {
     color: #005ea2 !important;
 }
@@ -21,7 +21,6 @@ p a, article a{
 p a:hover, article a:hover{
   color:#1a4480;
 }
-
 
 p a:active, article a:active{
   color:#162e51;
@@ -51,9 +50,24 @@ nav .usa-button:visited {
   text-decoration:none !important;
 }
 
+
+div[class^=”usa-media-block”] a {
+  text-decoration:none !important;
+}
+
+h2 a {
+  text-decoration: none !important;
+}
+
 .usa-footer a {
   text-decoration: none !important;
 }
+
+.usa-footer a:hover {
+  text-decoration: underline !important;
+}
+
+/* END overriding */
 
 .micro {
     font-size: 13px;
