@@ -4159,32 +4159,29 @@
         },
         {
             "name": "drupal/entity_reference_revisions",
-            "version": "1.7.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/entity_reference_revisions.git",
-                "reference": "8.x-1.7"
+                "reference": "8.x-1.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_reference_revisions-8.x-1.7.zip",
-                "reference": "8.x-1.7",
-                "shasum": "4e3b849b0d984cd3c0a4330c9aa4cb16bf1f79f6"
+                "url": "https://ftp.drupal.org/files/projects/entity_reference_revisions-8.x-1.8.zip",
+                "reference": "8.x-1.8",
+                "shasum": "c1279e6c683edc2dbccedba8de1505340c8a62b6"
             },
             "require": {
-                "drupal/core": "~8.0"
+                "drupal/core": "^8.7.7 || ^9"
             },
             "require-dev": {
-                "drupal/diff": "*"
+                "drupal/diff": "1.x-dev"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.7",
-                    "datestamp": "1570284187",
+                    "version": "8.x-1.8",
+                    "datestamp": "1583961846",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4193,7 +4190,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0"
             ],
             "authors": [
                 {
@@ -4213,7 +4210,7 @@
                     "homepage": "https://www.drupal.org/user/227761"
                 }
             ],
-            "description": "Adds a Entity Reference field type with revision support.",
+            "description": "Entity Reference Revisions",
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "support": {
                 "source": "https://git.drupalcode.org/project/entity_reference_revisions"
@@ -4265,29 +4262,26 @@
         },
         {
             "name": "drupal/externalauth",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/externalauth.git",
-                "reference": "8.x-1.2"
+                "reference": "8.x-1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/externalauth-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "957cf6e8033c192d7a20379869298063058cff7b"
+                "url": "https://ftp.drupal.org/files/projects/externalauth-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "b1b38e6718fe66bd38fc894dab1f9d7a7d60f10b"
             },
             "require": {
-                "drupal/core": "~8.0"
+                "drupal/core": "^8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1569251888",
+                    "version": "8.x-1.3",
+                    "datestamp": "1587629529",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4320,29 +4314,26 @@
         },
         {
             "name": "drupal/extlink",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/extlink.git",
-                "reference": "8.x-1.2"
+                "reference": "8.x-1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/extlink-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "42252138bde4440c0edf2ceabee798f678ba2af1"
+                "url": "https://ftp.drupal.org/files/projects/extlink-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "7944eed4aae0327f0c5189fe72ed6e6cd6e22ecf"
             },
             "require": {
                 "drupal/core": "^8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1580335956",
+                    "version": "8.x-1.3",
+                    "datestamp": "1587027151",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4351,53 +4342,58 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
-                    "name": "elachlan",
-                    "homepage": "https://www.drupal.org/user/1021502"
+                    "name": "Nate Lampton",
+                    "homepage": "https://www.drupal.org/u/quicksketch",
+                    "role": "Maintainer"
                 },
                 {
-                    "name": "jjeff",
-                    "homepage": "https://www.drupal.org/user/17190"
+                    "name": "Lachlan Ennis",
+                    "homepage": "https://www.drupal.org/u/elachlan",
+                    "role": "Maintainer"
                 },
                 {
-                    "name": "quicksketch",
-                    "homepage": "https://www.drupal.org/user/35821"
+                    "name": "Neslee Canil Pinto",
+                    "homepage": "https://www.drupal.org/u/neslee-canil-pinto",
+                    "role": "Maintainer"
                 }
             ],
             "description": "Modify behavior and appearance of external links.",
             "homepage": "https://www.drupal.org/project/extlink",
+            "keywords": [
+                "Drupal",
+                "External Links"
+            ],
             "support": {
-                "source": "https://git.drupalcode.org/project/extlink"
+                "source": "https://git.drupalcode.org/project/extlink",
+                "issues": "https://www.drupal.org/project/issues/extlink"
             }
         },
         {
             "name": "drupal/feeds",
-            "version": "3.0.0-alpha6",
+            "version": "3.0.0-alpha8",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/feeds.git",
-                "reference": "8.x-3.0-alpha6"
+                "reference": "8.x-3.0-alpha8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/feeds-8.x-3.0-alpha6.zip",
-                "reference": "8.x-3.0-alpha6",
-                "shasum": "f387e6d3cf0d065143c2fec45277d57223e64bb5"
+                "url": "https://ftp.drupal.org/files/projects/feeds-8.x-3.0-alpha8.zip",
+                "reference": "8.x-3.0-alpha8",
+                "shasum": "d28a51aa5fce7e5d8ce533f61b6f3ada554688cb"
             },
             "require": {
-                "drupal/core": "^8.6.0"
+                "drupal/core": "^8.8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-3.0-alpha6",
-                    "datestamp": "1572170584",
+                    "version": "8.x-3.0-alpha8",
+                    "datestamp": "1591294325",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -4406,7 +4402,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -4472,39 +4468,39 @@
                 "Drupal"
             ],
             "support": {
-                "source": "http://cgit.drupalcode.org/feeds",
+                "source": "https://git.drupalcode.org/project/feeds",
                 "issues": "https://www.drupal.org/project/issues/feeds"
             }
         },
         {
             "name": "drupal/feeds_ex",
-            "version": "1.0.0-alpha2",
+            "version": "1.0.0-alpha4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/feeds_ex.git",
-                "reference": "8.x-1.0-alpha2"
+                "reference": "8.x-1.0-alpha4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/feeds_ex-8.x-1.0-alpha2.zip",
-                "reference": "8.x-1.0-alpha2",
-                "shasum": "a65773fb8ab6d0a91c8be65eb74da779f5124e49"
+                "url": "https://ftp.drupal.org/files/projects/feeds_ex-8.x-1.0-alpha4.zip",
+                "reference": "8.x-1.0-alpha4",
+                "shasum": "b1b5d5478335c133af1f6eb6bb3434aad9d202b7"
             },
             "require": {
-                "drupal/core": "^8.5.0",
+                "drupal/core": "^8 || ^9",
                 "drupal/feeds": "*",
-                "mtdowling/jmespath.php": "2.*",
-                "peekmo/jsonpath": "1.*",
-                "querypath/querypath": "3.*"
+                "flow/jsonpath": "~0.3",
+                "mtdowling/jmespath.php": "^2.0",
+                "querypath/querypath": "^3.0"
+            },
+            "require-dev": {
+                "drupal/feeds": "3.x-dev"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.0-alpha2",
-                    "datestamp": "1536249180",
+                    "version": "8.x-1.0-alpha4",
+                    "datestamp": "1591295180",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -4538,26 +4534,29 @@
         },
         {
             "name": "drupal/field_group",
-            "version": "3.0.0",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/field_group.git",
-                "reference": "8.x-3.0"
+                "reference": "8.x-3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/field_group-8.x-3.0.zip",
-                "reference": "8.x-3.0",
-                "shasum": "8d87cdc4abc417aa4d411bffcaeb0a3ef1afa497"
+                "url": "https://ftp.drupal.org/files/projects/field_group-8.x-3.1.zip",
+                "reference": "8.x-3.1",
+                "shasum": "8a719eaea594f0ba874172831cb28da93c66b77a"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8.8 || ^9"
+            },
+            "require-dev": {
+                "drupal/jquery_ui_accordion": "^1.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.0",
-                    "datestamp": "1580250787",
+                    "version": "8.x-3.1",
+                    "datestamp": "1591772567",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4566,7 +4565,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -4593,34 +4592,32 @@
             "description": "Provides the field_group module.",
             "homepage": "https://www.drupal.org/project/field_group",
             "support": {
-                "source": "https://git.drupalcode.org/project/field_group"
+                "source": "https://git.drupalcode.org/project/field_group",
+                "issues": "https://www.drupal.org/project/issues/field_group"
             }
         },
         {
             "name": "drupal/fixed_block_content",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/fixed_block_content.git",
-                "reference": "8.x-1.0"
+                "reference": "8.x-1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/fixed_block_content-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "ebd2474259f45b738aa46a48b8f439de9b2f2bc7"
+                "url": "https://ftp.drupal.org/files/projects/fixed_block_content-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "567351ee7a1f40b43ff81ede9afc085f78752d20"
             },
             "require": {
-                "drupal/core": "~8"
+                "drupal/core": "~8.7 || ^9"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1542482880",
+                    "version": "8.x-1.1",
+                    "datestamp": "1585994766",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5148,20 +5145,20 @@
         },
         {
             "name": "drupal/image_widget_crop",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/image_widget_crop.git",
-                "reference": "8.x-2.2"
+                "reference": "8.x-2.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/image_widget_crop-8.x-2.2.zip",
-                "reference": "8.x-2.2",
-                "shasum": "0a61cfedc409c5ef448174f26060cd6c291d6a11"
+                "url": "https://ftp.drupal.org/files/projects/image_widget_crop-8.x-2.3.zip",
+                "reference": "8.x-2.3",
+                "shasum": "20f9e98bd6503699576ada6f4fd4c9fd06686361"
             },
             "require": {
-                "drupal/core": "*",
+                "drupal/core": "^8 || ^9",
                 "drupal/crop": "^1.0 || ^2.0"
             },
             "require-dev": {
@@ -5169,17 +5166,13 @@
                 "drupal/ctools": "3.x-dev",
                 "drupal/entity_browser": "1.x-dev",
                 "drupal/file_entity": "*",
-                "drupal/inline_entity_form": "*",
-                "drupal/media": "*"
+                "drupal/inline_entity_form": "*"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-2.2",
-                    "datestamp": "1530698921",
+                    "version": "8.x-2.3",
+                    "datestamp": "1585408029",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5199,6 +5192,10 @@
                 {
                     "name": "Drupal media CI",
                     "homepage": "https://www.drupal.org/user/3057985"
+                },
+                {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
                 },
                 {
                     "name": "slashrsm",
@@ -5307,29 +5304,26 @@
         },
         {
             "name": "drupal/layout_builder_modal",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/layout_builder_modal.git",
-                "reference": "8.x-1.0"
+                "reference": "8.x-1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/layout_builder_modal-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "d8680bd1cc203600db91545d2ee9eba4220f506f"
+                "url": "https://ftp.drupal.org/files/projects/layout_builder_modal-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "5063c2d5e33265c92bfeed34df6682d74c973c51"
             },
             "require": {
-                "drupal/core": "^8.7.0"
+                "drupal/core": "^8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1579042983",
+                    "version": "8.x-1.1",
+                    "datestamp": "1588175915",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -10465,6 +10459,47 @@
             "time": "2019-10-28T03:44:26+00:00"
         },
         {
+            "name": "flow/jsonpath",
+            "version": "0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FlowCommunications/JSONPath.git",
+                "reference": "b9738858c75d008c1211612b973e9510f8b7f8ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FlowCommunications/JSONPath/zipball/b9738858c75d008c1211612b973e9510f8b7f8ea",
+                "reference": "b9738858c75d008c1211612b973e9510f8b7f8ea",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "peekmo/jsonpath": "dev-master",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Flow\\JSONPath": "src/",
+                    "Flow\\JSONPath\\Test": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Frank",
+                    "email": "stephen@flowsa.com"
+                }
+            ],
+            "description": "JSONPath implementation for parsing, searching and flattening arrays",
+            "time": "2019-07-15T17:23:22+00:00"
+        },
+        {
             "name": "fontawesome/fontawesome",
             "version": "5.9.0",
             "dist": {
@@ -11664,46 +11699,6 @@
                 "exception"
             ],
             "time": "2019-12-10T10:24:42+00:00"
-        },
-        {
-            "name": "peekmo/jsonpath",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Peekmo/JsonPath.git",
-                "reference": "b5e14d95473932a236fdbff8f3c8e9f5f533e7eb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Peekmo/JsonPath/zipball/b5e14d95473932a236fdbff8f3c8e9f5f533e7eb",
-                "reference": "b5e14d95473932a236fdbff8f3c8e9f5f533e7eb",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "project",
-            "autoload": {
-                "psr-0": {
-                    "Peekmo\\JsonPath": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stefan Goessner"
-                },
-                {
-                    "name": "Axel Anceau",
-                    "email": "axel.anceau@gmail.com"
-                }
-            ],
-            "description": "Library to use JsonPath",
-            "homepage": "https://github.com/Peekmo/JsonPath",
-            "time": "2014-05-18T12:18:50+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -17992,6 +17987,46 @@
                 "php"
             ],
             "time": "2019-09-01T07:51:21+00:00"
+        },
+        {
+            "name": "peekmo/jsonpath",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Peekmo/JsonPath.git",
+                "reference": "b5e14d95473932a236fdbff8f3c8e9f5f533e7eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Peekmo/JsonPath/zipball/b5e14d95473932a236fdbff8f3c8e9f5f533e7eb",
+                "reference": "b5e14d95473932a236fdbff8f3c8e9f5f533e7eb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-0": {
+                    "Peekmo\\JsonPath": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Goessner"
+                },
+                {
+                    "name": "Axel Anceau",
+                    "email": "axel.anceau@gmail.com"
+                }
+            ],
+            "description": "Library to use JsonPath",
+            "homepage": "https://github.com/Peekmo/JsonPath",
+            "time": "2014-05-18T12:18:50+00:00"
         },
         {
             "name": "psy/psysh",
