@@ -8,41 +8,51 @@ h2, h3, h4, h5, h6 {
     text-decoration: none;
 }
 
-.usa-button {
-  color:white !important;
-  text-decoration:none !important;
-}
 
-/* probably add the .usa-link class to this*/
-ol a, ul a {
+ol.usa-list a, ul.usa-list a {
     color: #005ea2 !important;
 }
 
-a{
+p a, article a{
   color:#005ea2;
   text-decoration:underline !important;
 }
 
-a:hover{
+p a:hover, article a:hover{
   color:#1a4480;
 }
 
-a:active{
+
+p a:active, article a:active{
   color:#162e51;
 }
 
-a:focus{
+p a:focus, article a:focus {
   outline:0.25rem solid #2491ff;
   outline-offset:0;
 }
 
-a:visited{
+p a:visited, article a:visited {
   color:#562b97;
 }
 
 .usa-nav__submenu-item a {
   color:white !important;
   text-decoration:none !important;
+}
+
+nav a.usa-button {
+  color:white !important;
+  text-decoration:none !important;
+}
+
+nav .usa-button:visited {
+  color:white !important;
+  text-decoration:none !important;
+}
+
+.usa-footer a {
+  text-decoration: none !important;
 }
 
 .micro {
