@@ -43,7 +43,7 @@ display:
           distinct: false
           replica: false
           query_comment: ''
-          query_tags: {  }
+          query_tags: null
       exposed_form:
         type: basic
         options:
@@ -369,6 +369,7 @@ display:
       arguments: {  }
       display_extenders: {  }
       use_ajax: true
+      group_by: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -397,6 +398,9 @@ display:
         fields: false
         filters: false
         filter_groups: false
+        group_by: true
+        query: true
+        use_ajax: false
       relationships: {  }
       fields:
         title:
@@ -700,16 +704,67 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: boolean
+        field_event_host_target_id:
+          id: field_event_host_target_id
+          table: node__field_event_host
+          field: field_event_host_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_event_host_target_id_op
+            label: 'Event Host'
+            description: ''
+            use_operator: false
+            operator: field_event_host_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_event_host_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: textfield
+          limit: true
+          vid: event_host
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
       filter_groups:
         operator: AND
         groups:
           1: AND
+      use_ajax: false
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
