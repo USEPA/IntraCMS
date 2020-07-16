@@ -16,7 +16,7 @@ dependencies:
     - text
     - user
 id: event_calendar
-label: Events
+label: Calendar
 module: views
 description: ''
 tag: ''
@@ -48,7 +48,7 @@ display:
         type: basic
         options:
           submit_button: Apply
-          reset_button: false
+          reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
@@ -401,6 +401,7 @@ display:
         group_by: true
         query: true
         use_ajax: false
+        header: false
       relationships: {  }
       fields:
         title:
@@ -757,6 +758,8 @@ display:
         groups:
           1: AND
       use_ajax: false
+      header: {  }
+      exposed_block: true
     cache_metadata:
       max-age: -1
       contexts:
