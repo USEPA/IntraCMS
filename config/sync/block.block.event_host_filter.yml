@@ -1,0 +1,50 @@
+uuid: 68293ab1-f743-4253-ab64-b2454d12295e
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.event_calendar
+  module:
+    - ctools
+    - node
+    - system
+    - views
+  theme:
+    - epa_intranet
+id: event_host_filter
+theme: epa_intranet
+region: sidebar_second
+weight: -8
+provider: null
+plugin: 'views_exposed_filter_block:event_calendar-calendar_page'
+settings:
+  id: 'views_exposed_filter_block:event_calendar-calendar_page'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  and_or:
+    id: and_or
+    all: or
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /calendar
+    negate: false
+    context_mapping: {  }
+  node_type:
+    id: node_type
+    bundles:
+      event: event
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      event: event
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
