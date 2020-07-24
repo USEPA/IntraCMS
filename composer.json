@@ -262,7 +262,7 @@
             "php docroot/core/scripts/drupal quick-start lightning --no-interaction"
         ],
         "post-drupal-scaffold-cmd": [
-            "cd docroot && git apply -v ../patches/robots_update.patch"
+            "cd docroot && git apply -v --ignore-space-change --ignore-whitespace ../patches/robots_update.patch"
         ]
     }
 }
