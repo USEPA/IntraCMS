@@ -260,6 +260,9 @@
         "quick-start": [
             "composer install",
             "php docroot/core/scripts/drupal quick-start lightning --no-interaction"
+        ],
+        "post-drupal-scaffold-cmd": [
+            "cd docroot && git apply -v ../patches/robots_update.patch"
         ]
     }
 }
