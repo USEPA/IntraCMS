@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b69bd0db00bfb7b4df114b0c0bf65bb7",
+    "content-hash": "5253ec0d97cd9e2a83f57584f5851e3c",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -211,7 +211,7 @@
             "version": "v5.7.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:enyo/dropzone.git",
+                "url": "https://github.com/enyo/dropzone.git",
                 "reference": "5b82186d5f18540a1d13b6f4914fdc6220617ef5"
             },
             "dist": {
@@ -226,7 +226,7 @@
             "version": "3.4.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
             },
             "dist": {
@@ -4714,17 +4714,17 @@
         },
         {
             "name": "drupal/fullcalendar_view",
-            "version": "2.6.0",
+            "version": "5.0.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/fullcalendar_view.git",
-                "reference": "8.x-2.6"
+                "reference": "5.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/fullcalendar_view-8.x-2.6.zip",
-                "reference": "8.x-2.6",
-                "shasum": "e6596e41ba73daa2d650b6ed0e0bfa25c0e92c46"
+                "url": "https://ftp.drupal.org/files/projects/fullcalendar_view-5.0.3.zip",
+                "reference": "5.0.3",
+                "shasum": "ff32a5743c0abe5729553f67c84558008fabbcfd"
             },
             "require": {
                 "drupal/core": "^8 || ^9"
@@ -4732,20 +4732,17 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.6",
-                    "datestamp": "1580427909",
+                    "version": "5.0.3",
+                    "datestamp": "1591919325",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "patches_applied": {
-                    "3061341: Provide support for Smart Date": "https://www.drupal.org/files/issues/2019-10-19/fullcalendar_view-smart_date-support-3061341-21.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
@@ -4753,10 +4750,15 @@
                     "homepage": "https://www.drupal.org/user/2986445"
                 }
             ],
-            "description": "A view plugin to present contents in FullCalendar view",
-            "homepage": "https://www.drupal.org/project/fullcalendar_view",
+            "description": "This is a lightweight View plugin module that provides a calendar view format powered by FullCalendar JavaScript.",
+            "homepage": "http://drupal.org/project/fullcalendar_view",
+            "keywords": [
+                "Drupal",
+                "fullcalendar_view"
+            ],
             "support": {
-                "source": "https://git.drupalcode.org/project/fullcalendar_view"
+                "source": "http://cgit.drupalcode.org/fullcalendar_view",
+                "issues": "http://drupal.org/project/issues/fullcalendar_view"
             }
         },
         {
@@ -8545,43 +8547,37 @@
         },
         {
             "name": "drupal/smart_date",
-            "version": "2.2.0",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/smart_date.git",
-                "reference": "8.x-2.2"
+                "reference": "8.x-2.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/smart_date-8.x-2.2.zip",
-                "reference": "8.x-2.2",
-                "shasum": "6f20f6bef06d92e0ec19d70f727611bbbf7ef730"
+                "url": "https://ftp.drupal.org/files/projects/smart_date-8.x-2.7.zip",
+                "reference": "8.x-2.7",
+                "shasum": "752f690feafab4a332dc3d26faa7842330baace9"
             },
             "require": {
-                "drupal/core": "^8.6",
+                "drupal/core": "^8 || ^9",
                 "php": "^7.1",
                 "simshaun/recurr": "^4"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-2.2",
-                    "datestamp": "1583947030",
+                    "version": "8.x-2.7",
+                    "datestamp": "1591262576",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "patches_applied": {
-                    "3119441: Database unknown column 'field_event_date_rrule_index', schema update exception": "https://www.drupal.org/files/issues/2020-03-14/error_updating_from_version_1.1_to_version_2.2-3119441-005.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -8591,6 +8587,10 @@
                 {
                     "name": "mparker17",
                     "homepage": "https://www.drupal.org/user/536298"
+                },
+                {
+                    "name": "stefan.korn",
+                    "homepage": "https://www.drupal.org/user/1942204"
                 }
             ],
             "description": "Adds app-like date and recurring date functionality.",
@@ -8600,7 +8600,8 @@
             ],
             "support": {
                 "source": "http://cgit.drupalcode.org/smart_date",
-                "issues": "https://www.drupal.org/project/issues/smart_date"
+                "issues": "https://www.drupal.org/project/issues/smart_date",
+                "documentation": "https://www.drupal.org/docs/contributed-modules/smart-date"
             }
         },
         {
