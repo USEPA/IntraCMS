@@ -339,11 +339,17 @@ class FieldHelper {
   }
 
   private function setFlyingOutOfCountry() {
-    if ($this->isInternational()) {
-      $this->jira_data[self::FLYING_OUT_OF_COUNTRY] = 'Yes';
-    } else {
-      $this->jira_data[self::FLYING_OUT_OF_COUNTRY] = 'No';
+    if ($this->isAuthorizationOrVoucher()) {
+      if ($this->isInternational()) {
+        $this->jira_data[self::FLYING_OUT_OF_COUNTRY] = 'Yes';
+      } else {
+        $this->jira_data[self::FLYING_OUT_OF_COUNTRY] = 'No';
+      }
     }
+  }
+
+  private function isAuthorizationOrVoucher() {
+    return $this->webform_id == 'travel_authorization' || $this->webform_id == 'travel_voucher';
   }
 
 
