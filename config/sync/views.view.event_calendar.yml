@@ -16,7 +16,7 @@ dependencies:
     - text
     - user
 id: event_calendar
-label: Calendar
+label: Events
 module: views
 description: ''
 tag: ''
@@ -43,12 +43,12 @@ display:
           distinct: false
           replica: false
           query_comment: ''
-          query_tags: null
+          query_tags: {  }
       exposed_form:
         type: basic
         options:
           submit_button: Apply
-          reset_button: true
+          reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
@@ -80,46 +80,40 @@ display:
           start: field_event_date
           end: field_event_date
           title: title
-          right_buttons: 'dayGridMonth,timeGridWeek,timeGridDay,listYear'
-          left_buttons: 'prev,next today'
-          default_view: dayGridMonth
+          des:
+            field_event_description: field_event_description
+          use_entity_fields: 1
+          right_buttons:
+            agendaWeek: agendaWeek
+            agendaDay: agendaDay
+            listYear: listYear
+          default_view: month
           firstDay: '0'
           nav_links: 1
-          timeFormat: 'hh:mm a'
-          allowEventOverlap: 1
-          updateAllowed: 1
+          alloweventOverlap: 1
           updateConfirm: 1
           defaultLanguage: en
           languageSelector: 0
-          dialogWindow: 0
-          openEntityInNewTab: 1
           createEventLink: 0
+          openEntityInNewTab: 1
           tax_field: field_event_host
           vocabularies: event_host
           color_bundle:
             article: '#3a87ad'
-            blog_post: '#3a87ad'
             event: '#3a87ad'
             faces_of_ord: '#3a87ad'
             landing_page: '#3a87ad'
             page: '#3a87ad'
             photos_of_the_week: '#3a87ad'
-            policy: '#3a87ad'
-            policy_delegation: '#3a87ad'
-            qapp: '#3a87ad'
-            quiz: '#3a87ad'
-            sop: '#3a87ad'
             staff_member: '#3a87ad'
             webform: '#3a87ad'
             weekly_compass: '#3a87ad'
-          rrule: ''
-          duration: ''
           bundle_type: event
           classes: ''
           color_taxonomies:
-            4: '#008000'
             5: '#3a87ad'
-            6: '#3a87ad'
+            3: '#004080'
+            4: '#008000'
       row:
         type: fields
       fields:
@@ -375,7 +369,6 @@ display:
       arguments: {  }
       display_extenders: {  }
       use_ajax: true
-      group_by: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -404,10 +397,6 @@ display:
         fields: false
         filters: false
         filter_groups: false
-        group_by: true
-        query: true
-        use_ajax: false
-        header: false
       relationships: {  }
       fields:
         title:
@@ -711,69 +700,16 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: boolean
-        field_event_host_target_id:
-          id: field_event_host_target_id
-          table: node__field_event_host
-          field: field_event_host_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_event_host_target_id_op
-            label: 'Event Host'
-            description: ''
-            use_operator: false
-            operator: field_event_host_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_event_host_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: textfield
-          limit: true
-          vid: event_host
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
       filter_groups:
         operator: AND
         groups:
           1: AND
-      use_ajax: true
-      header: {  }
-      exposed_block: true
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
