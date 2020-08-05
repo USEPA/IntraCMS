@@ -8,6 +8,19 @@ h2, h3, h4, h5, h6 {
     text-decoration: none;
 }
 
+/* Provides spacing between the calendar toolbar and the filter */
+.fc-toolbar {
+  margin-top: 1em;
+}
+
+.fc-content a {
+  color: white;
+}
+
+.fc-content a:hover {
+  color: white;
+}
+
 /* overriding links to apply uswds standards */
 ol.usa-list a, ul.usa-list a,
 ol.uswds-breadcrumbs a, ul.uswds-breadcrumbs a{
@@ -278,6 +291,13 @@ ol, li:last-child {
     max-width: 20rem;
 }
 
+/* override margin to provide proper spacing between elements*/
+fieldset .usa-checkbox__label,
+fieldset .usa-radio__label {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 /* provides spacing equivalent to uswds standard*/
 .usa-sr-label {
     margin-top: 1.5rem;
@@ -286,13 +306,6 @@ ol, li:last-child {
 /* provides spacing equivalent to uswds standard*/
 .usa-alert {
     margin-top: 1.5rem;
-}
-
-/* override margin to provide proper spacing between elements*/
-.usa-checkbox__label,
-.usa-radio__label {
-    margin-top: 0.375rem;
-    margin-bottom: 0.375rem;
 }
 
 .webform-element-description {
