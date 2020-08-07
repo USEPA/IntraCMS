@@ -120,6 +120,7 @@ class FieldHelper {
     'cost_of_conference_registration_fee' => "customfield_12022",
     'cost_of_hotel_parking' => "customfield_12023",
     'additional_info_text' => 'customfield_10141',
+    'additional_information_textarea' => 'customfield_10141',
     'cost_of_cash_withdraw_finance_fees' => 'customfield_10373',
     'attachment_s_' => 'file',
     'travel_request_number' => 'customfield_10208',
