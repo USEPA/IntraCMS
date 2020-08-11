@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_display.comment.comment.default
     - field.field.node.blog_post.body
     - field.field.node.blog_post.field_blog_image
     - field.field.node.blog_post.field_blog_post_author
@@ -10,6 +11,7 @@ dependencies:
     - field.field.node.blog_post.field_keywords
     - node.type.blog_post
   module:
+    - comment
     - text
     - user
 id: node.blog_post.default
@@ -33,6 +35,15 @@ content:
       view_mode: author
       link: false
     third_party_settings: {  }
+  field_comment:
+    type: comment_default
+    weight: 3
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
   field_keywords:
     weight: 2
     label: inline
@@ -44,5 +55,4 @@ content:
 hidden:
   content_moderation_control: true
   field_blog_image: true
-  field_comment: true
   links: true
