@@ -113,7 +113,7 @@ svg.ext, svg.mailto {
   vertical-align: baseline;
 }
 
-/* Mimicking usa-button styling. Applied to actions beneath comments */
+/* Applied styling to actions associated with comments */
 /* Additionally applying proper reply styling, hiding redundant labels, cleaning up margins */
 
 form.comment-form div.form-wrapper {
@@ -135,52 +135,38 @@ section.comment-wrapper div.indented {
   margin-left: 1.5em; /* LTR */
 }
 
-section.comment-wrapper ul.links a {
-  color: white;
-  text-decoration: none !important;
+.comment-delete:after {
+  content: " | ";
+  padding: 0 10px;
+}
+
+.comment-edit:after {
+  content: " | ";
+  padding: 0 10px;
 }
 
 section.comment-wrapper ul.links li {
+  display: contents;
   font-family: Source Sans Pro Web, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
   font-size: 1.06471rem;
-  line-height: .93923;
+  line-height: .7;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: #005ea2;
   border: 0;
   border-radius: .25rem;
-  color: #fff !important;
   cursor: pointer;
-  display: inline-block;
-  font-weight: 700;
   margin-right: .5rem;
   margin-bottom: auto;
-  padding: .75rem 1.25rem;
   text-align: center;
-  text-decoration: none;
   width: 100%
 }
 
-section.comment-wrapper ul.links li:hover {
-  background-color: #1a4480;
-  border-bottom: 0;
-  color: #fff !important;
-  text-decoration: none
+section.comment-wrapper ul.links li.comment-forbidden {
+  display: none;
 }
-
-section.comment-wrapper ul.links li:active {
-  background-color: #162e51;
-  color: #fff !important;
-}
-
-section.comment-wrapper ul.links li:focus {
-  outline-offset: .25rem;
-}
-
-/* END usa-button mimicking */
 
 /* END overriding */
 
