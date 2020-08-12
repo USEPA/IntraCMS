@@ -51,13 +51,9 @@
   {% if comment_form %}
     {{ comment_form }}
   {% else %}
-    <ul class="links inline">
-      <li class="comment-forbidden usa-label">
-        <a class="usa-button-sm" href="/user/login?destination={{ path('<current>') }}">
-          Log in to post comments
-        </a>
-      </li>
-    </ul>
+    <button class="usa-button" href="/user/login?destination={{ path('<current>') }}">
+      Log in to post comments
+    </button>
   {% endif %}
 
 </section>
