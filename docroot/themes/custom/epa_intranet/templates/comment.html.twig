@@ -100,7 +100,7 @@
     {% if parent %}
       <p class="visually-hidden">{{ parent }}</p>
     {% endif %}
-    <p><em>{{ submitted }}</em></p>
+    <p><em>Submitted by {{ author }} on {{ created }}</em></p>
     {{ content.links }}
   </footer>
 </article>
