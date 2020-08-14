@@ -51,7 +51,7 @@
   {% if comment_form %}
     {{ comment_form }}
   {% else %}
-    <button type="button" class="usa-button" onclick="location.href='/user/login?destination={{ path('<current>') }}'">
+    <button type="button" class="usa-button" onclick="location.href='/saml_login?destination={{ path('<current>') }}'">
       Log in to post comments
     </button>
   {% endif %}
