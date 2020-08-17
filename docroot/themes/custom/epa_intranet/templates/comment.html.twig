@@ -89,10 +89,7 @@
     {% if status == 'unpublished' %}
       <mark class="unpublished">{{ 'Unpublished'|trans }}</mark>
     {% endif %}
-    {{ content }}
-    {% if title %}
-      {{ title_suffix }}
-    {% endif %}
+    {{ content|without('links') }}
   </div>
   <footer>
     {#
@@ -103,6 +100,7 @@
     {% if parent %}
       <p class="visually-hidden">{{ parent }}</p>
     {% endif %}
-    <p>{{ submitted }}</p>
+    <p><em>Submitted by {{ author }} on {{ created }}</em></p>
+    {{ content.links }}
   </footer>
 </article>
