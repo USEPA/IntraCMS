@@ -1,0 +1,39 @@
+uuid: 4068c1e9-28f2-4f04-9dac-7a588318e0c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_box_style
+field_name: field_box_style
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: gray
+      label: 'Standard Gray'
+    -
+      value: related-info
+      label: 'Related Info Box'
+    -
+      value: highlight
+      label: 'Highlight Box'
+    -
+      value: news
+      label: 'News Box'
+    -
+      value: multipurpose
+      label: 'Multipurpose Box'
+    -
+      value: special
+      label: 'Special One Item Box'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
