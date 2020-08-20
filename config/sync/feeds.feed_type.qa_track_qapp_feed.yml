@@ -19,15 +19,16 @@ dependencies:
   module:
     - feeds_ex
     - node
-label: 'QA Track QAPP Feed'
 id: qa_track_qapp_feed
+label: 'QA Track QAPP Feed'
 description: 'Imports QAPP records from QA Track'
 help: ''
-import_period: 3600
+import_period: 86400
 fetcher: http
 fetcher_configuration:
   auto_detect_feeds: false
   use_pubsubhubbub: false
+  always_download: false
   fallback_hub: ''
   request_timeout: 30
 parser: xml
@@ -79,11 +80,12 @@ parser_configuration:
   line_limit: 100
 processor: 'entity:node'
 processor_configuration:
+  langcode: en
   update_existing: 1
   update_non_existent: _delete
   expire: -1
   owner_feed_author: true
-  owner_id: 4
+  owner_id: 0
   authorize: true
   skip_hash_check: false
   values:
