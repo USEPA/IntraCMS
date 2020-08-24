@@ -9,10 +9,11 @@ dependencies:
     - field.field.paragraph.title_and_text.field_paragraph_text
     - field.field.paragraph.title_and_text.field_paragraph_title
     - paragraphs.paragraphs_type.title_and_text
+    - responsive_image.styles.responsive_box_image
   module:
-    - image
     - link
     - options
+    - responsive_image
     - text
 id: paragraph.title_and_text.default
 targetEntityType: paragraph
@@ -30,10 +31,10 @@ content:
     weight: 1
     label: hidden
     settings:
-      image_style: ''
+      responsive_image_style: responsive_box_image
       image_link: ''
     third_party_settings: {  }
-    type: image
+    type: responsive_image
     region: content
   field_link:
     weight: 4

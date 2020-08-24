@@ -37,7 +37,7 @@
  *
  * @ingroup themeable
  */
-#}
+
 
 {% set isPage = paragraph.getParentEntity().bundle() == 'page' %}
 {% set classes = [
@@ -55,5 +55,50 @@
         </div>
     </div>
 {% endblock paragraph %}
+#}
+
+{#
+/**
+ * @file
+ * Theme override to display a paragraph.
+ */
+#}
+
+{% set boxStyle = content.field_box_style['#items'].getString() %}
+
+{%
+    set classes = [
+    'box',
+    'box--' ~ boxStyle|clean_class, 
+    'has-image-header'
+]
+%}
+
+{% if content.field_image[0]is not empty %}
+<div {{ attributes.addClass(classes)}}>
+{% else %}
+<div {{ attributes.addClass(classes).removeClass('has-image-header')}}>
+{% endif %}
+
+    <div class="box__title">
+      {{ content.field_paragraph_title }}
+    </div>
+
+{% if content.field_image[0]is not empty %}
+            <span class="box__image">
+            {{ content.field_image }}
+            </span>
+          {% endif %}
+  
+  <div class="box__content">{{ content.field_paragraph_text }}</div>
+
+    <div class="box__footer">
+    
+    <a class="box__footer-link" href="{{ content.field_link.0['#url'] }}">
+    {{ content.field_link.0['#title'] }}
+    </a>
 
 
+    </div>
+
+</div>
