@@ -85,20 +85,17 @@
     </div>
 
 {% if content.field_image[0]is not empty %}
-            <span class="box__image">
             {{ content.field_image }}
-            </span>
           {% endif %}
   
   <div class="box__content">{{ content.field_paragraph_text }}</div>
 
-    <div class="box__footer">
-    
+{% if content.field_link[0] is not empty %}
+    <div class="box__footer"> 
     <a class="box__footer-link" href="{{ content.field_link.0['#url'] }}">
     {{ content.field_link.0['#title'] }}
     </a>
-
-
     </div>
+{% endif %}
 
 </div>
