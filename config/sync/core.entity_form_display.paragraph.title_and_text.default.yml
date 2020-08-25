@@ -22,7 +22,7 @@ third_party_settings:
       children:
         - field_link
       parent_name: ''
-      weight: 4
+      weight: 5
       format_type: details
       region: content
       format_settings:
@@ -32,6 +32,20 @@ third_party_settings:
         open: false
         required_fields: false
       label: 'Footer Link'
+    group_header_image:
+      children:
+        - field_image
+      parent_name: ''
+      weight: 2
+      format_type: details
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: false
+        required_fields: true
+      label: 'Header Image'
 id: paragraph.title_and_text.default
 targetEntityType: paragraph
 bundle: title_and_text
@@ -45,7 +59,7 @@ content:
     region: content
   field_image:
     type: image_image
-    weight: 2
+    weight: 3
     settings:
       preview_image_style: thumbnail
       progress_indicator: throbber
@@ -63,7 +77,7 @@ content:
     type: link_default
     region: content
   field_paragraph_text:
-    weight: 3
+    weight: 4
     settings:
       rows: 3
       placeholder: ''
