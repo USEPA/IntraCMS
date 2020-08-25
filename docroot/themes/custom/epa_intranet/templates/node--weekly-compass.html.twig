@@ -119,60 +119,40 @@
         {{ content.field_quick_updates|field_value }}
     {% endif %}
 
-    <div class="usa-accordion usa-accordion--bordered">
+  
         {% if content.field_in_the_lab|render is not empty %}
-            <h2 class="usa-accordion__heading">
-                <button class="usa-accordion__button" aria-expanded="true" aria-controls="a1">
-                    {{ content.field_in_the_lab|field_label }}
-                </button>
-            </h2>
-            <div id="a1" class="usa-accordion__content">
+            <h2>{{ content.field_in_the_lab|field_label }}</h2>
+            <div>
                 {{ content.field_in_the_lab|field_value }}
             </div>
         {% endif %}
 
 
         {% if content.field_in_the_office|render is not empty %}
-            <h2 class="usa-accordion__heading">
-                <button class="usa-accordion__button" aria-expanded="true" aria-controls="a2">
-                    {{ content.field_in_the_office|field_label }}
-                </button>
-            </h2>
-            <div id="a2" class="usa-accordion__content">
+            <h2>{{ content.field_in_the_office|field_label }}</h2>
+            <div>
                 {{ content.field_in_the_office|field_value }}
             </div>
         {% endif %}
 
 
         {% if content.field_in_the_news|render is not empty %}
-            <h2 class="usa-accordion__heading">
-                <button class="usa-accordion__button" aria-expanded="true" aria-controls="a3">
-                    {{ content.field_in_the_news|field_label }}
-                </button>
-            </h2>
-            <div id="a3" class="usa-accordion__content">
+            <h2>{{ content.field_in_the_news|field_label }}</h2>
+            <div>
                 {{ content.field_in_the_news|field_value }}
             </div>
         {% endif %}
 
         {% if content.field_in_the_community|render is not empty %}
-            <h2 class="usa-accordion__heading">
-                <button class="usa-accordion__button" aria-expanded="true" aria-controls="a4">
-                    {{ content.field_in_the_community|field_label }}
-                </button>
-            </h2>
-            <div id="a4" class="usa-accordion__content">
+            <h2>{{ content.field_in_the_community|field_label }}</h2>
+            <div>
                 {{ content.field_in_the_community|field_value }}
             </div>
         {% endif %}
 
         {% if content.field_accolades|render is not empty %}
-        <h2 class="usa-accordion__heading">
-            <button class="usa-accordion__button" aria-expanded="true" aria-controls="a5">
-                {{ content.field_accolades|field_label }}
-            </button>
-        </h2>
-        <div id="a5" class="usa-accordion__content">
+        <h2>{{ content.field_accolades|field_label }}</h2>
+        <div>
             {{ content.field_accolades|field_value }}
         </div>
     {% endif %}
@@ -193,5 +173,5 @@
             {{ content.field_photos_of_the_week|field_value }}
         {% endif %}
 
-    </div>
+
 </article>
