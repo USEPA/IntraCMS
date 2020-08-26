@@ -64,11 +64,18 @@ ins {
    width:33%;
   }
  }
-
  
  .box.has-image-header {
   max-width:20rem;
  }
+
+ div.box__title, .box--special > .box__title {
+  font-family: Merriweather Web,Georgia,Cambria,Times New Roman,Times,serif;
+  font-size: 0.98rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
 
  .box--highlight > .box__title,
  .box--multipurpose > .box__title,
@@ -150,6 +157,7 @@ ins {
   margin-bottom:0;
  }
  
+ .box--highlight > .box__footer,
  .box--multipurpose > .box__footer,
  .box--news > .box__footer,
  .box--related-info > .box__footer {
@@ -171,6 +179,7 @@ ins {
  .box--related-info > .box__footer > .box__footer-link:visited,
  .box--highlight > .box__footer > .box__footer-link:hover,
  .box--multipurpose > .box__footer > .box__footer-link:hover,
+ .box--n > .box__footer > .box__footer-link:hover,
  .box--news > .box__footer > .box__footer-link:hover,
  .box--related-info > .box__footer > .box__footer-link:hover,
  .box--highlight > .box__footer > .box__footer-link:focus,
@@ -211,11 +220,11 @@ ins {
  .box--news > .box__content {
   border-color:#1a4480;
  }
+
  .box--related-info > .box__title,
  .box--related-info > .box__footer {
   background-color:#4d8055;
   border-color:#4d8055;
-  color:#fff;
  }
  .box--related-info > .box__content {
   border-color:#4d8055;
