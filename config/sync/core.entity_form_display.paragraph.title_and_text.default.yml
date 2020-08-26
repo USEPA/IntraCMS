@@ -11,6 +11,7 @@ dependencies:
     - image.style.thumbnail
     - paragraphs.paragraphs_type.title_and_text
   module:
+    - conditional_fields
     - field_group
     - image
     - lightning_media
@@ -40,11 +41,11 @@ third_party_settings:
       format_type: details
       region: content
       format_settings:
+        description: ''
         id: ''
         classes: ''
-        description: ''
         open: false
-        required_fields: true
+        required_fields: false
       label: 'Header Image'
 id: paragraph.title_and_text.default
 targetEntityType: paragraph
@@ -68,6 +69,7 @@ content:
       lightning_media:
         file_links: true
         remove_button: true
+      conditional_fields: {  }
   field_link:
     weight: 5
     settings:
