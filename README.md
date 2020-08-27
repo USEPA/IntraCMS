@@ -23,6 +23,8 @@ Use a BASH command line (e.g. GIT BASH) for a Windows environment.
 6. Change the PHP version to 7.2.18 (or 7.3.x when ADD supports that)
 7. Click **OK**
 8. Once the site has been created in ADD, click on the local site URL to view the site in your browser.
+9. Run through the Drupal installation - checking Lightning as the distro
+
 
 #### Setup your config sync folder for ADD
 1. Create a 'sync' folder at 'ORDatWork/config' path. NOTE: This should be in the same directory as your docroot folder. You may need to cut the folder from inside '/sites/default/'
@@ -33,6 +35,12 @@ Use a BASH command line (e.g. GIT BASH) for a Windows environment.
     ];`
 
 3. Check your sites Status Report page (/admin/reports/status#error) to ensure the error the sync error is not there.
+
+## Initial configuration import
+1. After site is fully installed, it's time to import the configuration.
+      1. In order to run `drush config:import`, you must first set your site UUID once.
+      2. `drush config-set "system.site" uuid "a20f8b2d-8c57-4965-bb1c-d142c5b66431"`
+2. Then run `drush config:import` or `drush cim` and import the config into your sync folder
 
 ## Feature Development
 
@@ -46,7 +54,7 @@ Use a BASH command line (e.g. GIT BASH) for a Windows environment.
     1. `composer install` -- Update your dependencies with latest changes
     2. It's possible the a dependency was removed from composer.json and your project must be updated. If this is the case, you will be prompted after running `composer install` to run `composer update --lock`. This will only remove the dependencies from your local project. Never run `composer update` or delete the composer.lock file. 
     3. `drush config:import` -- Updates your Drupal Database with the last configuration changes. It will prompt you to confirm the configurations being imported. Type `y` and enter.   
-      1. In order to run `drush config:import`, you must first set your site UUID once.
+      1. In order to run `drush config:import`, you must first set your site UUID once. You should have already completed this step in the initial setup.
       2. `drush config-set "system.site" uuid "a20f8b2d-8c57-4965-bb1c-d142c5b66431"`
 
 ### Committing and pushing code

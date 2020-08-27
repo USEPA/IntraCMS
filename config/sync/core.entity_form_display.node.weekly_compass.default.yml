@@ -19,8 +19,6 @@ dependencies:
   module:
     - content_moderation
     - field_group
-    - link
-    - paragraphs
     - path
     - text
 third_party_settings:
@@ -29,9 +27,9 @@ third_party_settings:
       children:
         - field_compass_upcoming_webinars
       parent_name: ''
-      weight: 10
+      weight: 13
       format_type: details
-      region: content
+      region: hidden
       format_settings:
         description: ''
         id: ''
@@ -50,113 +48,25 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_accolades:
-    type: entity_reference_paragraphs
-    weight: 14
-    settings:
-      title: Accolades
-      title_plural: Accolades
-      edit_mode: closed
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: title_and_text
-    third_party_settings: {  }
-    region: content
-  field_compass_upcoming_webinars:
-    weight: 11
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
-  field_custom_section:
-    type: entity_reference_paragraphs
-    weight: 19
-    settings:
-      title: 'Custom Section'
-      title_plural: 'Custom Sections'
-      edit_mode: closed
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: heading_title_and_text
-    third_party_settings: {  }
-    region: content
   field_faces_of_ord:
-    weight: 17
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_in_the_community:
-    type: entity_reference_paragraphs
-    weight: 16
-    settings:
-      title: 'In the Community'
-      title_plural: 'In the Community'
-      edit_mode: closed
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: title_and_text
-    third_party_settings: {  }
-    region: content
-  field_in_the_lab:
-    type: entity_reference_paragraphs
-    weight: 12
-    settings:
-      title: 'In the Lab'
-      title_plural: 'In the Lab'
-      edit_mode: closed
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: title_and_text
-    third_party_settings: {  }
-    region: content
-  field_in_the_news:
-    type: entity_reference_paragraphs
-    weight: 15
-    settings:
-      title: 'In the News'
-      title_plural: 'In the News'
-      edit_mode: closed
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: title_and_text
-    third_party_settings: {  }
-    region: content
-  field_in_the_office:
-    type: entity_reference_paragraphs
-    weight: 13
-    settings:
-      title: 'In the Office'
-      title_plural: 'In the Office'
-      edit_mode: closed
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: title_and_text
-    third_party_settings: {  }
-    region: content
-  field_photos_of_the_week:
-    weight: 18
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_quick_updates:
     weight: 9
     settings:
-      rows: 5
+      match_operator: CONTAINS
+      size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
-    type: text_textarea
+    type: entity_reference_autocomplete
+    region: content
+  field_photos_of_the_week:
+    weight: 10
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_weekly_note:
     weight: 8
@@ -218,8 +128,16 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 20
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_accolades: true
+  field_compass_upcoming_webinars: true
+  field_custom_section: true
+  field_in_the_community: true
+  field_in_the_lab: true
+  field_in_the_news: true
+  field_in_the_office: true
+  field_quick_updates: true

@@ -3,18 +3,83 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.title_and_text.field_box_style
+    - field.field.paragraph.title_and_text.field_image
+    - field.field.paragraph.title_and_text.field_link
     - field.field.paragraph.title_and_text.field_paragraph_text
     - field.field.paragraph.title_and_text.field_paragraph_title
+    - image.style.thumbnail
     - paragraphs.paragraphs_type.title_and_text
   module:
+    - conditional_fields
+    - field_group
+    - image
+    - lightning_media
+    - link
     - text
+third_party_settings:
+  field_group:
+    group_footer_link:
+      children:
+        - field_link
+      parent_name: ''
+      weight: 5
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        id: ''
+        classes: ''
+        open: false
+        required_fields: false
+      label: 'Footer Link'
+    group_header_image:
+      children:
+        - field_image
+      parent_name: ''
+      weight: 2
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        id: ''
+        classes: ''
+        open: false
+        required_fields: false
+      label: 'Header Image'
 id: paragraph.title_and_text.default
 targetEntityType: paragraph
 bundle: title_and_text
 mode: default
 content:
+  field_box_style:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_image:
+    type: image_image
+    weight: 3
+    settings:
+      preview_image_style: thumbnail
+      progress_indicator: throbber
+    region: content
+    third_party_settings:
+      lightning_media:
+        file_links: true
+        remove_button: true
+      conditional_fields: {  }
+  field_link:
+    weight: 5
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_paragraph_text:
-    weight: 1
+    weight: 4
     settings:
       rows: 3
       placeholder: ''
@@ -22,7 +87,7 @@ content:
     type: text_textarea
     region: content
   field_paragraph_title:
-    weight: 0
+    weight: 1
     settings:
       size: 60
       placeholder: ''
