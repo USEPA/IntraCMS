@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42517d805d111bcfa8bd4bb9e97f1f45",
+    "content-hash": "fc773f08f79037cd1f0f9829f7fc959f",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -4408,26 +4408,26 @@
         },
         {
             "name": "drupal/feeds",
-            "version": "3.0.0-alpha8",
+            "version": "3.0.0-alpha6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/feeds.git",
-                "reference": "8.x-3.0-alpha8"
+                "reference": "8.x-3.0-alpha6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/feeds-8.x-3.0-alpha8.zip",
-                "reference": "8.x-3.0-alpha8",
-                "shasum": "d28a51aa5fce7e5d8ce533f61b6f3ada554688cb"
+                "url": "https://ftp.drupal.org/files/projects/feeds-8.x-3.0-alpha6.zip",
+                "reference": "8.x-3.0-alpha6",
+                "shasum": "f387e6d3cf0d065143c2fec45277d57223e64bb5"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9"
+                "drupal/core": "^8.6.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.0-alpha8",
-                    "datestamp": "1591294325",
+                    "version": "8.x-3.0-alpha6",
+                    "datestamp": "1583091709",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -4436,7 +4436,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
@@ -4476,6 +4476,10 @@
                     "homepage": "https://www.drupal.org/user/31731"
                 },
                 {
+                    "name": "joelpittet",
+                    "homepage": "https://www.drupal.org/user/160302"
+                },
+                {
                     "name": "kking",
                     "homepage": "https://www.drupal.org/user/24399"
                 },
@@ -4502,39 +4506,36 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://git.drupalcode.org/project/feeds",
+                "source": "http://cgit.drupalcode.org/feeds",
                 "issues": "https://www.drupal.org/project/issues/feeds"
             }
         },
         {
             "name": "drupal/feeds_ex",
-            "version": "1.0.0-alpha4",
+            "version": "1.0.0-alpha2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/feeds_ex.git",
-                "reference": "8.x-1.0-alpha4"
+                "reference": "8.x-1.0-alpha2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/feeds_ex-8.x-1.0-alpha4.zip",
-                "reference": "8.x-1.0-alpha4",
-                "shasum": "b1b5d5478335c133af1f6eb6bb3434aad9d202b7"
+                "url": "https://ftp.drupal.org/files/projects/feeds_ex-8.x-1.0-alpha2.zip",
+                "reference": "8.x-1.0-alpha2",
+                "shasum": "a65773fb8ab6d0a91c8be65eb74da779f5124e49"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
+                "drupal/core": "^8.5.0",
                 "drupal/feeds": "*",
-                "flow/jsonpath": "~0.3",
-                "mtdowling/jmespath.php": "^2.0",
-                "querypath/querypath": "^3.0"
-            },
-            "require-dev": {
-                "drupal/feeds": "3.x-dev"
+                "mtdowling/jmespath.php": "2.*",
+                "peekmo/jsonpath": "1.*",
+                "querypath/querypath": "3.*"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0-alpha4",
-                    "datestamp": "1591295180",
+                    "version": "8.x-1.0-alpha2",
+                    "datestamp": "1536249180",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -10546,47 +10547,6 @@
             "time": "2020-06-29T00:56:53+00:00"
         },
         {
-            "name": "flow/jsonpath",
-            "version": "0.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FlowCommunications/JSONPath.git",
-                "reference": "b9738858c75d008c1211612b973e9510f8b7f8ea"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FlowCommunications/JSONPath/zipball/b9738858c75d008c1211612b973e9510f8b7f8ea",
-                "reference": "b9738858c75d008c1211612b973e9510f8b7f8ea",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "peekmo/jsonpath": "dev-master",
-                "phpunit/phpunit": "^7.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Flow\\JSONPath": "src/",
-                    "Flow\\JSONPath\\Test": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stephen Frank",
-                    "email": "stephen@flowsa.com"
-                }
-            ],
-            "description": "JSONPath implementation for parsing, searching and flattening arrays",
-            "time": "2019-07-15T17:23:22+00:00"
-        },
-        {
             "name": "fontawesome/fontawesome",
             "version": "5.13.1",
             "dist": {
@@ -12137,6 +12097,46 @@
                 "exception"
             ],
             "time": "2019-12-10T10:24:42+00:00"
+        },
+        {
+            "name": "peekmo/jsonpath",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Peekmo/JsonPath.git",
+                "reference": "b5e14d95473932a236fdbff8f3c8e9f5f533e7eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Peekmo/JsonPath/zipball/b5e14d95473932a236fdbff8f3c8e9f5f533e7eb",
+                "reference": "b5e14d95473932a236fdbff8f3c8e9f5f533e7eb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-0": {
+                    "Peekmo\\JsonPath": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Goessner"
+                },
+                {
+                    "name": "Axel Anceau",
+                    "email": "axel.anceau@gmail.com"
+                }
+            ],
+            "description": "Library to use JsonPath",
+            "homepage": "https://github.com/Peekmo/JsonPath",
+            "time": "2014-05-18T12:18:50+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -18387,6 +18387,47 @@
             "time": "2018-05-22T20:22:20+00:00"
         },
         {
+            "name": "flow/jsonpath",
+            "version": "0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FlowCommunications/JSONPath.git",
+                "reference": "b9738858c75d008c1211612b973e9510f8b7f8ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FlowCommunications/JSONPath/zipball/b9738858c75d008c1211612b973e9510f8b7f8ea",
+                "reference": "b9738858c75d008c1211612b973e9510f8b7f8ea",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "peekmo/jsonpath": "dev-master",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Flow\\JSONPath": "src/",
+                    "Flow\\JSONPath\\Test": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Frank",
+                    "email": "stephen@flowsa.com"
+                }
+            ],
+            "description": "JSONPath implementation for parsing, searching and flattening arrays",
+            "time": "2019-07-15T17:23:22+00:00"
+        },
+        {
             "name": "grasmash/expander",
             "version": "1.0.0",
             "source": {
@@ -18737,46 +18778,6 @@
             "time": "2019-09-01T07:51:21+00:00"
         },
         {
-            "name": "peekmo/jsonpath",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Peekmo/JsonPath.git",
-                "reference": "b5e14d95473932a236fdbff8f3c8e9f5f533e7eb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Peekmo/JsonPath/zipball/b5e14d95473932a236fdbff8f3c8e9f5f533e7eb",
-                "reference": "b5e14d95473932a236fdbff8f3c8e9f5f533e7eb",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "project",
-            "autoload": {
-                "psr-0": {
-                    "Peekmo\\JsonPath": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stefan Goessner"
-                },
-                {
-                    "name": "Axel Anceau",
-                    "email": "axel.anceau@gmail.com"
-                }
-            ],
-            "description": "Library to use JsonPath",
-            "homepage": "https://github.com/Peekmo/JsonPath",
-            "time": "2014-05-18T12:18:50+00:00"
-        },
-        {
             "name": "psy/psysh",
             "version": "v0.9.9",
             "source": {
@@ -18995,9 +18996,7 @@
         "drupal/webform_views": 15,
         "drupal/webform_analysis": 10,
         "drupal/views_taxonomy_term_name_into_id": 15,
-        "drupal/groupmedia": 15,
-        "drupal/feeds": 15,
-        "drupal/feeds_ex": 15
+        "drupal/groupmedia": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,
