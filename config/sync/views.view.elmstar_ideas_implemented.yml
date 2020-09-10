@@ -387,8 +387,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '<br />{{ webform_submission_value_2 }}'
             make_link: false
             path: ''
             absolute: false
@@ -439,8 +439,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '<br />{{ webform_submission_value_5 }}'
             make_link: false
             path: ''
             absolute: false
@@ -491,8 +491,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '<br />{{ webform_submission_value_6 }}'
             make_link: false
             path: ''
             absolute: false
@@ -543,8 +543,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '<br />{{ webform_submission_value_7 }}'
             make_link: false
             path: ''
             absolute: false
@@ -595,8 +595,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '<br />{{ webform_submission_value_8 }}'
             make_link: false
             path: ''
             absolute: false
@@ -647,8 +647,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '<br />{{ webform_submission_value_9 }}'
             make_link: false
             path: ''
             absolute: false
@@ -699,8 +699,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '<br />{{ webform_submission_value_10 }}'
             make_link: false
             path: ''
             absolute: false
@@ -836,7 +836,19 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: webform_submission_select_filter
-      sorts: {  }
+      sorts:
+        webform_submission_value:
+          id: webform_submission_value
+          table: webform_submission_field_elmstar_idea_implementation_inpu_date_implemented
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: webform_submission_field_sort
       title: 'ELMSTAR Ideas'
       header:
         area:
@@ -853,7 +865,20 @@ display:
             format: full_html
           plugin_id: text
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'There are no submissions available for review.'
+            format: simple_text
+          plugin_id: text
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
