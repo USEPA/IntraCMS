@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8786eb21478f15ecfc7a9a5d8abbf253",
+    "content-hash": "22785946f0b586752777c65988e7c2e0",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -200,7 +200,7 @@
             "version": "v2.3.4",
             "source": {
                 "type": "git",
-                "url": "git@github.com:fengyuanchen/cropper.git",
+                "url": "https://github.com/fengyuanchen/cropper.git",
                 "reference": "30c58b29ee21010e17e58ebab165fbd84285c685"
             },
             "dist": {
@@ -1920,6 +1920,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-4.x": "4.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-4.1",
                     "datestamp": "1535186880",
@@ -2145,6 +2148,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-1.1",
                     "datestamp": "1574874780",
@@ -2585,6 +2591,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-2.2",
                     "datestamp": "1576528386",
@@ -3189,6 +3198,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-1.4",
                     "datestamp": "1531841921",
@@ -3379,6 +3391,58 @@
             }
         },
         {
+            "name": "drupal/dblog_filter",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/dblog_filter.git",
+                "reference": "8.x-2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/dblog_filter-8.x-2.1.zip",
+                "reference": "8.x-2.1",
+                "shasum": "dac52da201e140634da90c6902e1958dde8ac955"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.1",
+                    "datestamp": "1591609373",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "N.kishorekumar",
+                    "homepage": "https://www.drupal.org/user/2887361"
+                },
+                {
+                    "name": "harika gujjula",
+                    "homepage": "https://www.drupal.org/user/2978505"
+                },
+                {
+                    "name": "rajeshwari10",
+                    "homepage": "https://www.drupal.org/user/3270754"
+                }
+            ],
+            "description": "Enables to log DB messages based on type and severity.",
+            "homepage": "https://www.drupal.org/project/dblog_filter",
+            "support": {
+                "source": "https://git.drupalcode.org/project/dblog_filter"
+            }
+        },
+        {
             "name": "drupal/devel",
             "version": "2.1.0",
             "source": {
@@ -3442,6 +3506,18 @@
                 {
                     "name": "See contributors",
                     "homepage": "https://www.drupal.org/node/3236/committers"
+                },
+                {
+                    "name": "pcambra",
+                    "homepage": "https://www.drupal.org/user/122101"
+                },
+                {
+                    "name": "salvis",
+                    "homepage": "https://www.drupal.org/user/82964"
+                },
+                {
+                    "name": "willzyx",
+                    "homepage": "https://www.drupal.org/user/1043862"
                 }
             ],
             "description": "Various blocks, pages, and functions for developers.",
@@ -4088,6 +4164,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-1.1",
                     "datestamp": "1581284770",
@@ -5142,12 +5221,15 @@
                 "shasum": "16d9f920e09c082a3b3f2f2ab98902cbc85957db"
             },
             "require": {
-                "drupal/core": "^8",
+                "drupal/core": "*",
                 "h5p/h5p-core": "1.24.0",
                 "h5p/h5p-editor": "1.24.1"
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-1.0-rc17",
                     "datestamp": "1572512585",
@@ -7224,6 +7306,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-2.0-rc2",
                     "datestamp": "1583438671",
@@ -7871,10 +7956,13 @@
                 "shasum": "a1a8b8ed16121adea44e2d0126da624e31b27dcd"
             },
             "require": {
-                "drupal/core": "^8"
+                "drupal/core": "*"
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-1.0",
                     "datestamp": "1482357483",
@@ -7991,6 +8079,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-1.1",
                     "datestamp": "1533913684",
@@ -8475,6 +8566,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-3.2",
                     "datestamp": "1580423953",
@@ -8658,6 +8752,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-2.0",
                     "datestamp": "1552057684",
@@ -8842,7 +8939,7 @@
                 "shasum": "f31df87ad48c43484948414760da70afa1ced8af"
             },
             "require": {
-                "drupal/core": "^8"
+                "drupal/core": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -8863,10 +8960,6 @@
                 "GPL-2.0-or-later"
             ],
             "authors": [
-                {
-                    "name": "JeroenT",
-                    "homepage": "https://www.drupal.org/user/2228934"
-                },
                 {
                     "name": "Kevin Hankens",
                     "homepage": "https://www.drupal.org/user/78090"
@@ -8982,10 +9075,13 @@
                 "shasum": "ed48f628cc21239c0775105e13b73775fe782061"
             },
             "require": {
-                "drupal/core": "^8"
+                "drupal/core": "*"
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-2.4",
                     "datestamp": "1576619584",
@@ -9256,11 +9352,14 @@
                 "shasum": "902793c92fe686bed4df4ac714f26bbf357f4494"
             },
             "require": {
-                "drupal/core": "^8",
+                "drupal/core": "*",
                 "drupal/paragraphs": "*"
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-1.0-beta3",
                     "datestamp": "1502243644",
@@ -9278,14 +9377,6 @@
                 {
                     "name": "brockfanning",
                     "homepage": "https://www.drupal.org/user/709486"
-                },
-                {
-                    "name": "fskreuz",
-                    "homepage": "https://www.drupal.org/user/3426415"
-                },
-                {
-                    "name": "jrglasgow",
-                    "homepage": "https://www.drupal.org/user/36590"
                 }
             ],
             "description": "Paragraph types intended for use with the U.S. Web Design Standards library.",
@@ -9317,6 +9408,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-3.0",
                     "datestamp": "1581161122",
@@ -9417,11 +9511,14 @@
                 "shasum": "6e219b9219266d988c7215b7a74088009dbe57ac"
             },
             "require": {
-                "drupal/core": "^8",
+                "drupal/core": "*",
                 "drupal/token": "~1.5"
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-1.6",
                     "datestamp": "1583899910",
@@ -9467,12 +9564,15 @@
                 "shasum": "f48a134f532a1157f8a38cfecfbb124d298480f7"
             },
             "require": {
-                "drupal/core": "^8",
+                "drupal/core": "*",
                 "drupal/group": "*",
                 "drupal/views_add_button": "*"
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-1.4",
                     "datestamp": "1567491487",
@@ -9931,7 +10031,7 @@
             "extra": {
                 "drupal": {
                     "version": "8.x-5.19",
-                    "datestamp": "1596102131",
+                    "datestamp": "1593681136",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -10013,6 +10113,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-1.0-beta7",
                     "datestamp": "1540735084",
@@ -10103,6 +10206,9 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-1.0",
                     "datestamp": "1531724021",
@@ -10209,7 +10315,7 @@
             "extra": {
                 "drupal": {
                     "version": "8.x-5.19",
-                    "datestamp": "1596102131",
+                    "datestamp": "1593681136",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -10283,11 +10389,14 @@
                 "shasum": "6c9bb51735a106729dcfa08372e987ebf95d38f2"
             },
             "require": {
-                "drupal/core": "^8",
+                "drupal/core": "*",
                 "drupal/webform": "*"
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-5.x": "5.x-dev"
+                },
                 "drupal": {
                     "version": "8.x-5.0-alpha7",
                     "datestamp": "1557288185",
@@ -10302,10 +10411,6 @@
                 "GPL-2.0-or-later"
             ],
             "authors": [
-                {
-                    "name": "acbramley",
-                    "homepage": "https://www.drupal.org/user/1036766"
-                },
                 {
                     "name": "bucefal91",
                     "homepage": "https://www.drupal.org/user/504128"
