@@ -1,0 +1,266 @@
+langcode: en
+status: open
+dependencies: {  }
+open: null
+close: null
+weight: 0
+uid: 5
+template: false
+archive: false
+id: video_teleconference_support_req
+title: 'Video Teleconference Support Request (DC ONLY)   '
+description: '<p>OSIM provides support and services for ORD- sponsored conferences, meetings, and presentations in ORD space<strong>&nbsp;only</strong>.&nbsp; Delivery, set-up and removal of media equipment along with operational support can be arranged. Services include assistance with video and audio conferences. Use this form to request assistance from&nbsp;ORD Support.</p>'
+category: 'Conferences and Meetings'
+elements: "did_you_already_book_a_room_in_outlook_:\n  '#type': webform_buttons\n  '#title': 'Did You Already Book a Room In Outlook? '\n  '#description': 'If not, go back and reserve one before sending this support form'\n  '#options':\n    'Yes': 'Yes'\n  '#required': true\nwhich_wdc_room_have_you_reserved_:\n  '#type': select\n  '#title': 'Which WDC Room Have You Reserved?'\n  '#options':\n    '41102 – Hurd Hall': '41102 – Hurd Hall'\n    '41104- Pollinator Room': '41104- Pollinator Room'\n    '41107- Fishbowl': '41107- Fishbowl'\n    '41213- AA’s Conference Room': '41213- AA’s Conference Room'\n    '41213 (with permission)': '41213 (with permission)'\n    51132: '51132'\n    '51109-1 - Fishbowl': '51109-1 - Fishbowl'\n    51104: '51104'\n    '51161- Polycium': '51161- Polycium'\n    '51145- Phone Booth': '51145- Phone Booth'\n    '71214 & 71215-Delaware': '71214 & 71215-Delaware'\n    '71257- Florida': '71257- Florida'\n    71258: '71258'\n  '#required': true\n  '#states':\n    visible:\n      ':input[name=\"did_you_already_book_a_room_in_outlook_\"]':\n        checked: true\n  '#attributes':\n    style: usa-select\nwhat_is_the_day_and_time_of_the_meeting:\n  '#type': datetime\n  '#title': 'What is the day and time of the meeting?'\n  '#required': true\n  '#states':\n    visible:\n      ':input[name=\"did_you_already_book_a_room_in_outlook_\"]':\n        checked: true\n  '#date_date_min': now\n  '#date_year_range': 2019-2021\n  '#date_time_step': '60'\nmeeting_title:\n  '#type': textfield\n  '#title': 'Meeting Title'\n  '#autocomplete': 'off'\n  '#required': true\n  '#states':\n    visible:\n      ':input[name=\"did_you_already_book_a_room_in_outlook_\"]':\n        checked: true\n  '#states_clear': false\nis_this_a_recurring_call:\n  '#type': select\n  '#title': 'Is This a Recurring Call?'\n  '#options':\n    'Yes': 'Yes'\n    'No': 'No'\n  '#required': true\n  '#states':\n    visible:\n      ':input[name=\"did_you_already_book_a_room_in_outlook_\"]':\n        checked: true\nis_audio_connection_required_:\n  '#type': webform_select_other\n  '#title': 'Is Audio Connection Required?'\n  '#options':\n    'Yes': 'Yes'\n    'No': 'No'\n  '#required': true\n  '#states':\n    visible:\n      ':input[name=\"did_you_already_book_a_room_in_outlook_\"]':\n        checked: true\nis_this_a_point_point_or_multipoint_conference_:\n  '#type': webform_select_other\n  '#title': 'Is This a Point-Point or Multipoint Conference?'\n  '#description': 'If meeting is multipoint you will be contacted by ITI2 support personnel to get the information for the remote locations that will participate'\n  '#options':\n    Point-Point: Point-Point\n    'Multipoint ': 'Multipoint '\n  '#required': true\n  '#states':\n    visible:\n      ':input[name=\"did_you_already_book_a_room_in_outlook_\"]':\n        checked: true\nremote_poc:\n  '#type': textfield\n  '#title': 'Remote POC Name'\n  '#multiple': 5\n  '#required': true\n  '#states':\n    visible:\n      ':input[name=\"is_this_a_point_point_or_multipoint_conference_\"]':\n        value: Point-Point\n  '#multiple__sorting': false\n  '#multiple__operations': false\n  '#multiple__add_more_input_label': 'more remote POCs'\nremote_site:\n  '#type': select\n  '#title': 'Remote Site'\n  '#description': 'Select the site where support is needed'\n  '#options':\n    ADA: ADA\n    ATH: ATH\n    CIN: CIN\n    COR: COR\n    DUL: DUL\n    EDI: EDI\n    GBR: GBR\n    LAS: LAS\n    NAR: NAR\n    NEW: NEW\n    RTP: RTP\n    WDC: WDC\n  '#states':\n    visible:\n      ':input[name=\"is_this_a_point_point_or_multipoint_conference_\"]':\n        value: Point-Point\n  '#required': true\nconference_number_code_and_pin_:\n  '#type': textfield\n  '#title': 'Conference Number, Code, and Pin '\n  '#states':\n    visible:\n      ':input[name=\"is_audio_connection_required_\"]':\n        value: 'Yes'\n  '#required': true\nemail:\n  '#type': email\n  '#title': 'Primary POC Email'\n  '#required': true\n  '#states':\n    visible:\n      ':input[name=\"did_you_already_book_a_room_in_outlook_\"]':\n        checked: true\nadditional_information:\n  '#type': textarea\n  '#title': 'Additional Information'\n  '#states':\n    visible:\n      ':input[name=\"did_you_already_book_a_room_in_outlook_\"]':\n        checked: true\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#states':\n    visible:\n      ':input[name=\"did_you_already_book_a_room_in_outlook_\"]':\n        checked: true"
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: ''
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_remote_addr: true
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: true
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_log: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_auto_forward: true
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_title: 'Thank you for your submission!'
+  confirmation_message: "<h4>Thank you for your submission!</h4>\r\nYou will be contacted shortly"
+  confirmation_url: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  email:
+    id: email
+    label: 'EISD Email'
+    handler_id: email
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: EISD@epa.gov
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: '[webform_submission:values:email:raw]'
+      from_options: {  }
+      from_name: _default
+      subject: 'Route to DC ORD Service Desk-Video Teleconference Support Request '
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_1:
+    id: email
+    label: 'Email user submission'
+    handler_id: email_1
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email:raw]'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: 'Submission Successful: Video Conference Support Request'
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+variants: {  }
+uuid: dc09e09e-d32a-4705-96fa-595ebcf270a8

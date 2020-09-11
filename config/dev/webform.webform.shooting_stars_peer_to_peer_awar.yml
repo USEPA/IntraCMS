@@ -1,0 +1,227 @@
+uuid: 8a6c521f-92ab-47a9-929b-ed707a1f063b
+langcode: en
+status: open
+dependencies: {  }
+open: null
+close: null
+weight: 0
+uid: 5
+template: false
+archive: false
+id: shooting_stars_peer_to_peer_awar
+title: 'Shooting Stars Peer To Peer Award Submission Form'
+description: ''
+category: Awards
+elements: "notice:\n  '#type': webform_message\n  '#message_type': info\n  '#message_message': '<p>Shooting Stars&nbsp;is a peer to peer recognition program designed to increase and encourage employee engagement through positive reinforcement.&nbsp;We expect all users will refrain from using inappropriate language.</p>'\n  '#message_close': true\nyour_name:\n  '#type': webform_name\n  '#title': 'Your Information'\n  '#description': 'Enter the name of the person giving the award.'\n  '#title_display': ''\n  '#required': true\n  '#title__access': false\n  '#first__title': 'First Name'\n  '#first__required': true\n  '#middle__access': false\n  '#last__title': 'Last Name'\n  '#last__required': true\n  '#suffix__access': false\n  '#degree__access': false\nyour_email:\n  '#type': email\n  '#title': Email\n  '#description': 'Enter the email address of the person giving the award.'\n  '#required': true\naward_recipient_name:\n  '#type': webform_name\n  '#title': 'Award Recipient Information'\n  '#description': 'Enter information for the person receiving the award.'\n  '#title_display': ''\n  '#required': true\n  '#title__access': false\n  '#first__title': 'First Name'\n  '#first__required': true\n  '#middle__access': false\n  '#last__title': 'Last Name'\n  '#last__required': true\n  '#suffix__access': false\n  '#degree__access': false\ncenter_office:\n  '#type': select\n  '#title': Center/Office\n  '#options': ord_centers_and_offices\n  '#required': true\naward_recipient_email:\n  '#type': email\n  '#title': 'Award Recipient Email'\n  '#description': 'Enter the email of the person receiving the award.'\n  '#required': true\naward_recipient_supervisor_email:\n  '#type': email\n  '#title': 'Award Recipient''s Supervisor Email'\n  '#description': 'Enter the email address of the award recipient&#39;s supervisor. They will receive email notification of their employee&#39;s award.&nbsp;'\n  '#required': true\naward_reason:\n  '#type': webform_select_other\n  '#title': 'Award Reason'\n  '#options':\n    'demonstrating great care and patience for completing a task employee...': 'demonstrating great care and patience for completing a task'\n    'going above and beyond the call of duty': 'going above and beyond the call of duty'\n    'resolving an issue, dispute, or conflict': 'resolving an issue, dispute, or conflict'\n    'being helpful and provided great assistance': 'being helpful and provided great assistance'\n    'displaying leadership skills and guidance': 'displaying leadership skills and guidance'\n  '#required': true\nstar_choice:\n  '#type': webform_image_select\n  '#title': 'Star Choice'\n  '#description': 'Select the star image you would like added to the certificate.'\n  '#title_display': before\n  '#images':\n    1:\n      text: 'Star 1'\n      src: /sites/default/files/2020-09/shooting-start-1.png\n    2:\n      text: 'Star 2'\n      src: /sites/default/files/2020-09/shooting-star-2.png\n    3:\n      text: 'Star 3'\n      src: /sites/default/files/2020-09/shooting-star-3.png\n  '#filter__placeholder': ''\n  '#filter__singlular': ''\n  '#filter__plural': ''\n  '#filter__no_results': ''\n  '#required': true\n  '#format_attributes':\n    class:\n      - thumbnail\ninclude_additional_comments:\n  '#type': checkbox\n  '#title': 'Include Additional Comments?'\n  '#description': 'Check this box to include additional comments for the award recipient.'\n  '#title_display': before\n  '#description_display': before\naward_comments_included_on_the_certificate_:\n  '#type': textarea\n  '#title': 'Award Comments (included on the certificate)'\n  '#description': 'Comments added in this field will be included on the award certificate.'\n  '#states':\n    visible:\n      ':input[name=\"include_additional_comments\"]':\n        checked: true\nadditional_comments_sent_in_email_:\n  '#type': textarea\n  '#title': 'Additional Comments (sent in email)'\n  '#description': 'Comments added in this field will be included in the email sent to the award recipient.'\n  '#states':\n    visible:\n      ':input[name=\"include_additional_comments\"]':\n        checked: true"
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: both
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_remote_addr: true
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_log: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_auto_forward: true
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_url: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  email:
+    id: email
+    label: '[webform_submission:values:?]Email'
+    handler_id: email
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:award_recipient_email:raw]'
+      to_options: {  }
+      cc_mail: '[webform_submission:values:award_recipient_supervisor_email:raw]'
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: '[webform_submission:values:your_email:raw]'
+      from_options: {  }
+      from_name: '[webform_submission:values:your_name:value]'
+      subject: 'You''ve Received a Shooting Star Award!'
+      body: "<h1>Congratulations!</h1>\r\n<p>You've received a Shooting Star Award from {{ webform_token('[webform_submission:values:your_name]', webform_submission) }}!</p>\r\n<p>{{ webform_token('[webform_submission:values:additional_comments_sent_in_email_]', webform_submission) }}\r\n\r\n\r\n<table style=\"width:1200px; padding:20px; text-align:center; border: 10px solid #D4AF37\">\r\n<tr>\r\n<td>\r\n\r\n<table style=\"width:1150px; padding:20px; text-align:center; border: 5px solid #000\">\r\n\r\n<tr>\r\n<td colspan=\"2\">\r\n\r\n<span style=\"font-family:'Brush Script MT', cursive; color:#003399;font-size:86px;\">Shooting Star Award</span>\r\n{{ webform_token('[webform_submission:values:star_choice]', webform_submission) }}\r\n\r\n<h2 align=\"center\">{{ webform_token('[webform_submission:values:award_recipient_name]', webform_submission) }}</h2>\r\n<hr style=\"height:2px;border-width:0;color:gray;background-color:gray\">\r\n<p><strong>is hereby receiving this Shooting Start Award for</strong></p>\r\n<p>{{ webform_token('[webform_submission:values:award_reason]', webform_submission) }}<br />\r\n{{ webform_token('[webform_submission:values:award_comments_included_on_the_certificate_]', webform_submission) }}</p>\r\n</td>\r\n\r\n</tr>\r\n\r\n\r\n\r\n\r\n\r\n<tr>\r\n  <td><img src=\"https://webx8dev.ord.epa.gov/sites/default/files/2020-09/seal_0.png\" height=\"200\" /></td>\r\n  <td>\r\n  <p style=\"font-size:24px;\">PRESENTED BY: {{ webform_token('[webform_submission:values:your_name]', webform_submission) }}</p>\r\n<hr style=\"height:2px;border-width:0;color:gray;background-color:gray\">\r\n<p style=\"font-size:24px;\">ON THIS DAY: {{ webform_token('[webform_submission:created]', webform_submission) }}</p>\r\n\r\n\r\n<hr style=\"height:2px;border-width:0;color:gray;background-color:gray\">\r\n</td>\r\n</tr>\r\n</table>\r\n</td>\r\n</tr>\r\n</table>\r\n"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: true
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+variants: {  }
