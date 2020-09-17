@@ -1,0 +1,28 @@
+uuid: c1ba6737-b7a4-424d-8b2d-554de26a9795
+langcode: en
+status: true
+dependencies:
+  module:
+    - jquery_countdown_timer
+    - system
+  theme:
+    - epa_intranet
+id: countdowntimer
+theme: epa_intranet
+region: content
+weight: -4
+provider: null
+plugin: jquery_countdown_timer
+settings:
+  id: jquery_countdown_timer
+  label: 'Countdown Timer'
+  provider: jquery_countdown_timer
+  label_display: '0'
+  countdown_datetime: '2020-09-30 00:00:00'
+  font_size: '28'
+visibility:
+  request_path:
+    id: request_path
+    pages: /elms/elms-efforts
+    negate: false
+    context_mapping: {  }

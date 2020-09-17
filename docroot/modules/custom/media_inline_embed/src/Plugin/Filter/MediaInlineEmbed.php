@@ -3,8 +3,8 @@
 namespace Drupal\media_inline_embed\Plugin\Filter;
 
 use Drupal\Component\Utility\Html;
-use Drupal\filter\FilterProcessResult;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
+use Drupal\filter\FilterProcessResult;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\Filter\MediaEmbed;
 
@@ -41,6 +41,13 @@ class MediaInlineEmbed extends MediaEmbed {
 
     foreach ($xpath->query('//*[@data-entity-type="media" and normalize-space(@data-entity-uuid)!=""]') as $node) {
       /** @var \DOMElement $node */
+
+      // Nodes with this attribute are provided by linkit. Therefore, they should not be handled as inline-media, but as a linkit link.
+      // Pass over these entities instead of processing them.
+      if ($node->hasAttribute('data-entity-substitution')) {
+        continue;
+      }
+
       $uuid = $node->getAttribute('data-entity-uuid');
       $view_mode_id = $node->getAttribute('data-view-mode') ?: $this->settings['default_view_mode'];
 
