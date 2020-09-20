@@ -32,6 +32,10 @@ class JiraSubmissionHandler {
     $this->international_project = $this->travel_services_config->get('INTERNATIONAL_PROJECT');
     $this->submission_client = new Client(['base_uri' => $issue_creation_url]);
     $this->vouchers_project = $this->travel_services_config->get('VOUCHERS_PROJECT');
+    $this->cin_project = $this->travel_services_config->get('CIN_PROJECT');
+    $this->rtp_project = $this->travel_services_config->get('RTP_PROJECT');
+    $this->dc_project = $this->travel_services_config->get('DC_PROJECT');
+
     $this->field_helper = new FieldHelper();
   }
 
