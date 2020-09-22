@@ -38,15 +38,22 @@
  * @ingroup themeable
  */
 #}
-{% set classes = [
-  'tablet:grid-col-4'
+
+{% set extended_media_class = [
+  'usa-card__media--exdent'
+] %}
+
+{% set inset_media_class = [
+  'usa-card__media--inset'
 ] %}
 
 {% block paragraph %}
-  <li class="tablet:grid-col-4">
+  <li
+    class="tablet:grid-col-4 margin-bottom-4{% if paragraph.field_card_type.value == 'card_header_first' %}  usa-card--header-first{% endif %}">
     <div class="usa-card__container">
+      {{ paragraph.field_card_type.value }}
       <header class="usa-card__header">
-        {{ content.field_uswds_card_heading }}
+        <h2 class="usa-card__heading">{{ content.field_uswds_card_heading }}</h2>
       </header>
       {% if content.field_uswds_card_media|render is not empty %}
         <div class="usa-card__media">

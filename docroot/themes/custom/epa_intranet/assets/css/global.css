@@ -145,8 +145,16 @@ ul.usa-card-group div.field__items div.field__item {
   display: contents;
 }
 
+ul.usa-card-group div.field__label {
+  display: none;
+}
+
 div.usa-card__media {
   align-self: center;
+}
+
+.usa-card--header-first .usa-card__media {
+  order: 0;
 }
 
 div.usa-card__body {
@@ -392,7 +400,7 @@ ol, li {
   /*max-width:68ex;*/
 }
 
-ol, li:last-child {
+ol:not('usa-card-group'), li:last-child {
   margin-bottom: 0;
 }
 
