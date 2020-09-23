@@ -46,19 +46,19 @@
 ] %}
 
 {% if paragraph.field_card_type.value == 'card_header_first' %}
-  {% set card_class = ['usa-card', 'usa-card--header-first', 'tablet:grid-col-4'] %}
+  {% set card_class = ['usa-card--header-first', 'tablet:grid-col-4'] %}
 {% elseif paragraph.field_card_type.value == 'card_extended_media' %}
-  {% set card_class = ['usa-card', 'usa-card--header-first', 'tablet:grid-col-4'] %}
+  {% set card_class = ['usa-card--header-first', 'tablet:grid-col-4'] %}
   {% set media_class = 'usa-card__media--exdent' %}
 {% elseif paragraph.field_card_type.value == 'card_inset_media' %}
-  {% set card_class = ['usa-card', 'usa-card--header-first', 'tablet:grid-col-4'] %}
+  {% set card_class = ['usa-card--header-first', 'tablet:grid-col-4'] %}
   {% set media_class = 'usa-card__media--inset' %}
 {% elseif paragraph.field_card_type.value == 'card_flag_left' %}
-  {% set card_class = ['usa-card', 'usa-card--flag', 'tablet:grid-col-6'] %}
+  {% set card_class = ['usa-card--flag', 'tablet:grid-col-6'] %}
 {% elseif paragraph.field_card_type.value == 'card_flag_right' %}
-  {% set card_class = ['usa-card', 'usa-card--flag', 'tablet:grid-col-6', 'usa-card--media-right'] %}
+  {% set card_class = ['usa-card--flag', 'tablet:grid-col-6', 'usa-card--media-right'] %}
 {% else %}
-  {% set card_class = ['usa-card', 'tablet:grid-col-4'] %}
+  {% set card_class = ['tablet:grid-col-4'] %}
 {% endif %}
 
 {% block paragraph %}

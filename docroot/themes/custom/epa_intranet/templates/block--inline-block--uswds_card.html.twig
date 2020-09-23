@@ -27,10 +27,12 @@
  * @ingroup themeable
  */
 #}
+{% extends "block.html.twig" %}
 
-<div>
-  <ul class="usa-card-group">
-    {{ content.field_uswds_card }}
-  </ul>
-</div>
-
+{% block content %}
+  <div {{ attributes }}>
+    <ul class="usa-card-group">
+      {{ content }}
+    </ul>
+  </div>
+{% endblock content %}
