@@ -39,24 +39,36 @@
  */
 #}
 
-{% set extended_media_class = [
-  'usa-card__media--exdent'
-] %}
+{% set media_class = '' %}
 
 {% set inset_media_class = [
   'usa-card__media--inset'
 ] %}
 
+{% if paragraph.field_card_type.value == 'card_header_first' %}
+  {% set card_class = ['usa-card', 'usa-card--header-first', 'tablet:grid-col-4'] %}
+{% elseif paragraph.field_card_type.value == 'card_extended_media' %}
+  {% set card_class = ['usa-card', 'usa-card--header-first', 'tablet:grid-col-4'] %}
+  {% set media_class = 'usa-card__media--exdent' %}
+{% elseif paragraph.field_card_type.value == 'card_inset_media' %}
+  {% set card_class = ['usa-card', 'usa-card--header-first', 'tablet:grid-col-4'] %}
+  {% set media_class = 'usa-card__media--inset' %}
+{% elseif paragraph.field_card_type.value == 'card_flag_left' %}
+  {% set card_class = ['usa-card', 'usa-card--flag', 'tablet:grid-col-6'] %}
+{% elseif paragraph.field_card_type.value == 'card_flag_right' %}
+  {% set card_class = ['usa-card', 'usa-card--flag', 'tablet:grid-col-6', 'usa-card--media-right'] %}
+{% else %}
+  {% set card_class = ['usa-card', 'tablet:grid-col-4'] %}
+{% endif %}
+
 {% block paragraph %}
-  <li
-    class="tablet:grid-col-4 margin-bottom-4{% if paragraph.field_card_type.value == 'card_header_first' %}  usa-card--header-first{% endif %}">
+  <li {{ attributes.addClass(card_class) }}>
     <div class="usa-card__container">
-      {{ paragraph.field_card_type.value }}
       <header class="usa-card__header">
         <h2 class="usa-card__heading">{{ content.field_uswds_card_heading }}</h2>
       </header>
       {% if content.field_uswds_card_media|render is not empty %}
-        <div class="usa-card__media">
+        <div class="usa-card__media {{ media_class }}">
           {{ content.field_uswds_card_media }}
         </div>
       {% endif %}
