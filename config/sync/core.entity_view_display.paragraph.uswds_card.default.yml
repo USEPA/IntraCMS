@@ -8,11 +8,28 @@ dependencies:
     - field.field.paragraph.uswds_card.field_uswds_button
     - field.field.paragraph.uswds_card.field_uswds_card_heading
     - field.field.paragraph.uswds_card.field_uswds_card_media
+    - field.field.paragraph.uswds_card.paragraph_view_mode
     - paragraphs.paragraphs_type.uswds_card
   module:
+    - layout_builder
+    - layout_builder_restrictions
+    - layout_discovery
+    - layout_library
     - link
     - paragraph_view_mode
     - text
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+  layout_library:
+    enable: false
+  layout_builder_restrictions:
+    allowed_block_categories: {  }
+    entity_view_mode_restriction:
+      whitelisted_blocks: {  }
+      blacklisted_blocks: {  }
+      allowed_layouts: {  }
 id: paragraph.uswds_card.default
 targetEntityType: paragraph
 bundle: uswds_card
@@ -61,4 +78,5 @@ content:
       link: false
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  paragraph_view_mode: true

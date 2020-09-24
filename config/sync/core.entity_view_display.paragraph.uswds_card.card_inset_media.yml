@@ -1,14 +1,15 @@
-uuid: 996e3e9c-7c8f-4237-8166-b7fa4c25a96a
+uuid: 1896e34f-ab38-41fe-8656-a570d719ef8d
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.paragraph.standard_card
+    - core.entity_view_mode.paragraph.card_inset_media
     - field.field.paragraph.uswds_card.field_card_type
     - field.field.paragraph.uswds_card.field_uswds_body
     - field.field.paragraph.uswds_card.field_uswds_button
     - field.field.paragraph.uswds_card.field_uswds_card_heading
     - field.field.paragraph.uswds_card.field_uswds_card_media
+    - field.field.paragraph.uswds_card.paragraph_view_mode
     - paragraphs.paragraphs_type.uswds_card
   module:
     - layout_builder
@@ -19,10 +20,10 @@ third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
-id: paragraph.uswds_card.standard_card
+id: paragraph.uswds_card.card_inset_media
 targetEntityType: paragraph
 bundle: uswds_card
-mode: standard_card
+mode: card_inset_media
 content:
   field_card_type:
     weight: 0
@@ -50,6 +51,14 @@ content:
     third_party_settings: {  }
     type: link
     region: content
+  field_uswds_card_heading:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
   field_uswds_card_media:
     type: entity_reference_entity_view
     weight: 1
@@ -60,5 +69,4 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
-  field_uswds_card_heading: true
   paragraph_view_mode: true

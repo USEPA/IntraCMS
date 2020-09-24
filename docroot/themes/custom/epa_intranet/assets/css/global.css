@@ -137,6 +137,39 @@ div.usa-media-block__body a.ext div.field--name-field-usa-media-block-heading {
   display: contents;
 }
 
+ul.usa-card-group div.field__items {
+  display: -webkit-box;
+}
+
+ul.usa-card-group div.field__items div.field__item {
+  display: contents;
+}
+
+ul.usa-card-group div.field__label {
+  display: none;
+}
+
+div.usa-card__media {
+  align-self: center;
+}
+
+.usa-card--header-first .usa-card__media {
+  order: 0;
+}
+
+div.usa-card__body {
+  overflow-wrap: break-word;
+}
+
+div.field--name-field-uswds-button .usa-legend {
+  font-size: unset;
+  font-weight: unset;
+}
+
+.usa-card-group {
+  display: unset;
+}
+
 /* Applied styling to actions associated with comments */
 /* Additionally applying proper reply styling, hiding redundant labels, cleaning up margins */
 
@@ -311,6 +344,10 @@ section.comment-wrapper ul.links li.comment-forbidden {
   margin: auto;
 }
 
+div.usa-card__media img {
+  height: auto;
+}
+
 /* remove display block so that label is inline with form element */
 .usa-label {
   display: inline-block;
@@ -372,7 +409,7 @@ ol, li {
   /*max-width:68ex;*/
 }
 
-ol, li:last-child {
+ol:not('usa-card-group'), li:last-child {
   margin-bottom: 0;
 }
 
