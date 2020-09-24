@@ -75,10 +75,12 @@
       <div class="usa-card__body">
         {{ content.field_uswds_body }}
       </div>
-      <div class="usa-card__footer">
-        <a class="usa-button"
-           href="{{ content.field_uswds_button[0]['#url'] }}">{{ content.field_uswds_button[0]['#title'] }}</a>
-      </div>
+      {% if content.field_uswds_button|render is not empty %}
+        <div class="usa-card__footer">
+          <a class="usa-button"
+             href="{{ content.field_uswds_button[0]['#url'] }}">{{ content.field_uswds_button[0]['#title'] }}</a>
+        </div>
+      {% endif %}
     </div>
   </li>
 {% endblock paragraph %}
