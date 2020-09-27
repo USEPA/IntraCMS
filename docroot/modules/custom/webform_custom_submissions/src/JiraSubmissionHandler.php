@@ -6,7 +6,7 @@ use Drupal\webform\WebformSubmissionInterface;
 use GuzzleHttp\Client;
 use \Exception;
 use Drupal\file\Entity\File;
-use Psr\Http\Message\StreamInterface;
+use GuzzleHttp\Exception\GuzzleException;
 
 class JiraSubmissionHandler {
 
@@ -19,10 +19,12 @@ class JiraSubmissionHandler {
   protected $field_helper;
   protected $travel_services_config;
   protected $password;
+  protected $submitted_ticket;
+  protected $uploaded_file_names;
 
   public function __construct($config) {
     $this->travel_services_config = $config->get('webform_custom_submissions.form');
-     $system_config = $config->get('system.passwords');
+    $system_config = $config->get('system.passwords');
     $this->username = $this->travel_services_config->get('USERNAME');
     $this->password = $system_config->get('jira');
     $issue_creation_url = $this->travel_services_config->get('CREATE_ISSUE_URL');
@@ -39,10 +41,11 @@ class JiraSubmissionHandler {
     $this->field_helper = new FieldHelper();
   }
 
-  /*
-   * Script for getting, formatting and submitting travel services form data to JIRA
+  /**
+   * Generate POST JSON and submit to JIRA API. Handle Exceptions if JIRA fails, or uploading files fail.
+   * @param WebformSubmissionInterface $webform_submission
+   * @throws Exception
    */
-
   public function submitToJira(WebformSubmissionInterface $webform_submission) {
     try {
       $fieldHelper = new FieldHelper();
@@ -51,23 +54,34 @@ class JiraSubmissionHandler {
       $fieldHelper->prepareJiraData();
       $jira_data = $fieldHelper->getJiraData();
       $postData = $this->compilePOSTData($jira_data);
-      $issueId = $this->createIssueAndReturnID($postData);
-      if (isset($issueId)) {
+      $jira_api_response_body = $this->createIssueAndResponse($postData);
+      if (isset($jira_api_response_body->id) && isset($jira_api_response_body->ticket)) {
+        $this->submitted_ticket = $jira_api_response_body->ticket;
         try {
-          $this->attachFiles($issueId, $jira_data);
+          $this->uploaded_file_names = $this->uploadFiles($jira_api_response_body->id, $jira_data);
         } catch (Exception $e) {
-          drupal_set_message(t('There was an error uploading your files to JIRA.'), 'error');
           \Drupal::logger('Travel Services File Upload Exception')->error($e->getMessage());
+          throw new Exception('There was an error uploading your files to JIRA.');
         }
       } else {
-
-        drupal_set_message(t('There was an error processing your request. Code-0002'), 'error');
         \Drupal::logger('Travel Services Error')->error('Unidentified Error: JIRA Response did not return Issue ID');
+        throw new Exception('There was an error processing your request. Code-0002');
       }
+    } catch (GuzzleException $ge) {
+      \Drupal::logger('Travel Services Exception')->error($ge->getMessage());
+      throw new Exception('There was an error processing your request. Code-0001');
     } catch (Exception $e) {
       \Drupal::logger('Travel Services Exception')->error($e->getMessage());
-      drupal_set_message(t('Unable to process request at this time, please try again later.'), 'error');
+      throw new Exception('Unable to process request at this time, please try again later.');
     }
+  }
+
+  public function getSubmittedTicket() {
+    return $this->submitted_ticket;
+  }
+
+  public function getUploadedFileNames() {
+    return $this->uploaded_file_names;
   }
 
   //Compiles POST data and returns the data formatted as JSON
@@ -128,8 +142,9 @@ class JiraSubmissionHandler {
       }
     }//end foreach
 
-    if ($form_data['customfield_10431'] == 'Yes')
+    if (isset($form_data['customfield_10431']) && $form_data['customfield_10431'] == 'Yes') {
       $data['fields']['customfield_10431'] = array('value' => 'Yes');
+    }
 
     $data['fields']['project'] = $form_data['fields']['project'];
     $data['fields']['issuetype'] = $form_data['fields']['issuetype'];
@@ -141,28 +156,25 @@ class JiraSubmissionHandler {
   /**
    * Builds and sends cURL request for the form POST data
    * @param $jsonData
-   * @return StreamInterface|Exception Returns the body as a stream.
-   *
+   * @return mixed|null
+   * @throws Exception | GuzzleException
    */
-  protected function createIssueAndReturnID($jsonData) {
-    $issue_id = null;
+  protected function createIssueAndResponse($jsonData) {
+    $jira_api_response_body = null;
     try {
       \Drupal::logger('Travel Services Payload')->info('<pre><code>' . print_r($jsonData, TRUE) . '</code></pre>');
       $response = $this->submission_client->request('POST',
         $this->create_issue_url,
         ['json' => $jsonData, 'auth' => ["{$this->username}", "{$this->password}"]]);
       if ($response->getBody()) {
-        $body = json_decode($response->getBody());
-        if (isset($body->id)) {
-          $issue_id = $body->id;
-        }
-        \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($body, TRUE) . '</code></pre>');
+        $jira_api_response_body = json_decode($response->getBody());
+        \Drupal::logger('Travel Services Response')->info('<pre><code>' . print_r($jira_api_response_body, TRUE) . '</code></pre>');
       }
     } catch (Exception $e) {
       \Drupal::logger('Travel Services Response')->error($e->getMessage());
-      drupal_set_message(t('There was an error processing your request. Code-0001'), 'error');
+      throw $e;
     }
-    return $issue_id;
+    return $jira_api_response_body;
   }
 
 
@@ -172,7 +184,7 @@ class JiraSubmissionHandler {
    * @return array
    * @throws Exception
    */
-  protected function attachFiles($id, $form_data) {
+  protected function uploadFiles($id, $form_data) {
     $url = $this->create_issue_url . $id . '/attachments/';
     $fileNames = [];
     foreach ($form_data['files'] as $fid) {

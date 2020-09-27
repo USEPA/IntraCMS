@@ -258,8 +258,16 @@ class FieldHelper {
   }
 
 
+  /**
+   * Determine if form is International
+   * @return bool
+   */
   function isInternational() {
-    return strpos($this->jira_data['customfield_10191'], 'International') !== false;
+    $is_international = false;
+    if (isset($this->jira_data['customfield_10191'])) {
+      $is_international = strpos($this->jira_data['customfield_10191'], 'International') !== false;
+    }
+    return $is_international;
   }
 
   function isVoucher() {
@@ -466,25 +474,27 @@ class FieldHelper {
    * @param $value
    */
   private function mapDataToJiraFields($key, $value) {
-    $jira_mapping = $this->form_to_jira_mapping[$key];
-    if (!empty($jira_mapping)) {
-      if ($this->isMultiCityFlight($key)) {
-        $this->addMultiFlightField($value);
-      } else if ($this->isMultiFieldset($jira_mapping)) {
-        $this->addMultiFieldsets($value, $jira_mapping);
-      } else if ($this->isMulti($jira_mapping)) {
-        $this->addMultiFields($value, $jira_mapping[$key]);
-      } else if ($this->isComposite($key)) {
-        $this->jira_data[$jira_mapping] = $this->parseCompositeIntoSingleField($this->form_data[$key]);
-      } else if ($this->isFile($jira_mapping)) {
-        $this->setFileIds($value);
-      } else if ($this->isCheckboxField($jira_mapping)) {
-        $this->jira_data[$jira_mapping] = $value;
-      } else {
-        if (is_array($value)) {
-          $this->handleFieldSet($value, $jira_mapping);
-        } else {
+    if (isset($this->form_to_jira_mapping[$key])) {
+      $jira_mapping = $this->form_to_jira_mapping[$key];
+      if (!empty($jira_mapping)) {
+        if ($this->isMultiCityFlight($key)) {
+          $this->addMultiFlightField($value);
+        } else if ($this->isMultiFieldset($jira_mapping)) {
+          $this->addMultiFieldsets($value, $jira_mapping);
+        } else if ($this->isMulti($jira_mapping)) {
+          $this->addMultiFields($value, $jira_mapping[$key]);
+        } else if ($this->isComposite($key)) {
+          $this->jira_data[$jira_mapping] = $this->parseCompositeIntoSingleField($this->form_data[$key]);
+        } else if ($this->isFile($jira_mapping)) {
+          $this->setFileIds($value);
+        } else if ($this->isCheckboxField($jira_mapping)) {
           $this->jira_data[$jira_mapping] = $value;
+        } else {
+          if (is_array($value)) {
+            $this->handleFieldSet($value, $jira_mapping);
+          } else {
+            $this->jira_data[$jira_mapping] = $value;
+          }
         }
       }
     }
