@@ -76,6 +76,10 @@ class JiraSubmissionHandler {
     }
   }
 
+  public function getSubmittedTicket() {
+    return $this->submitted_ticket;
+  }
+
   public function getSubmittedTicketURL() {
     return $this->base_url . '/browse/' . $this->submitted_ticket;
   }
