@@ -55,7 +55,7 @@ class TravelformHandler extends WebformHandlerBase {
     if (count($form_state->getErrors()) == 0) {
       try {
         $this->jira_submission_service->submitToJira($webform_submission);
-        $this->messenger()->addMessage($this->t('Ticket successfully created: %ticket', [
+        $this->messenger()->addMessage($this->t('Ticket successfully created: <a href="@ticket">@ticket</a>', [
           '%ticket' => $this->jira_submission_service->getSubmittedTicketURL(),
         ]));
         if (count($this->jira_submission_service->getUploadedFileNames()) > 0) {
