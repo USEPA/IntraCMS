@@ -12,6 +12,9 @@ use \Exception;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\webformSubmissionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
+
 
 /**
  * Form submission handler.
@@ -55,8 +58,10 @@ class TravelformHandler extends WebformHandlerBase {
     if (count($form_state->getErrors()) == 0) {
       try {
         $this->jira_submission_service->submitToJira($webform_submission);
-        $this->messenger()->addMessage($this->t('Ticket successfully created: %ticket', [
-          '%ticket' => $this->jira_submission_service->getSubmittedTicketURL(),
+        $link = Link::fromTextAndUrl($this->jira_submission_service->getSubmittedTicketURL(), Url::fromUri($this->jira_submission_service->getSubmittedTicketURL()));
+
+        $this->messenger()->addMessage($this->t('Ticket successfully created: @link', [
+          '@link' => $link,
         ]));
         if (count($this->jira_submission_service->getUploadedFileNames()) > 0) {
           $this->messenger()->addMessage($this->t('Files successfully uploaded: %files_html', [

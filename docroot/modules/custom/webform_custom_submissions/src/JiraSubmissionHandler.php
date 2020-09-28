@@ -77,8 +77,7 @@ class JiraSubmissionHandler {
   }
 
   public function getSubmittedTicketURL() {
-    $url = $this->base_url . '/browse/' . $this->submitted_ticket;
-    return '<a href = "' . $url . '">' . $url . '</a>';
+    return $this->base_url . '/browse/' . $this->submitted_ticket;
   }
 
   public function getUploadedFileNames() {
