@@ -52,7 +52,7 @@ class TravelformHandler extends WebformHandlerBase {
   public function validateForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
     parent::validateForm($form, $form_state, $webform_submission);
     // Only run Jira submissions if other form validation has passed.
-    if (count($form_state->getErrors()) < 0) {
+    if (count($form_state->getErrors()) == 0) {
       try {
         $this->jira_submission_service->submitToJira($webform_submission);
         $this->messenger()->addMessage($this->t('Ticket successfully created: %ticket', [
