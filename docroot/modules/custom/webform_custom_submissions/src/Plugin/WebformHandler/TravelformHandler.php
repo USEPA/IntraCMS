@@ -57,15 +57,15 @@ class TravelformHandler extends WebformHandlerBase {
       $container->get('entity_type.manager'),
       $container->get('webform_submission.conditions_validator'),
       $container->get('webform_custom_submissions.jira_submission_handler'),
-      $container->get('renderer'),
+      $container->get('renderer')
     );
   }
 
 
   public function validateForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
     parent::validateForm($form, $form_state, $webform_submission);
-    // Only run Jira submissions if other form validation has passed.
-    if (count($form_state->getErrors()) == 0) {
+    // Only run Jira submissions if other form validation has passed and this is actual submission
+    if ($form_state->getTriggeringElement()['#value'] === 'Submit' && count($form_state->getErrors()) == 0) {
       try {
         $this->jira_submission_service->submitToJira($webform_submission);
 
