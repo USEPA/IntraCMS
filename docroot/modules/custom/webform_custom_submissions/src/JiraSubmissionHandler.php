@@ -84,14 +84,12 @@ class JiraSubmissionHandler {
     return $this->base_url . '/browse/' . $this->submitted_ticket;
   }
 
-  public
-  function getUploadedFileNames() {
+  public function getUploadedFileNames() {
     return $this->uploaded_file_names;
   }
 
   //Compiles POST data and returns the data formatted as JSON
-  protected
-  function compilePOSTData($form_data) {
+  protected function compilePOSTData($form_data) {
 
     $dropDowns = $this->field_helper->get_dropdown_fields();
 
@@ -165,8 +163,7 @@ class JiraSubmissionHandler {
    * @return mixed|null
    * @throws Exception | GuzzleException
    */
-  protected
-  function createIssueAndResponse($jsonData) {
+  protected function createIssueAndResponse($jsonData) {
     $jira_api_response_body = null;
     try {
       \Drupal::logger('Travel Services Payload')->info('<pre><code>' . print_r($jsonData, TRUE) . '</code></pre>');
@@ -191,8 +188,7 @@ class JiraSubmissionHandler {
    * @return array
    * @throws Exception
    */
-  protected
-  function uploadFiles($id, $form_data) {
+  protected function uploadFiles($id, $form_data) {
     $url = $this->create_issue_url . $id . '/attachments/';
     $fileNames = [];
     foreach ($form_data['files'] as $fid) {
