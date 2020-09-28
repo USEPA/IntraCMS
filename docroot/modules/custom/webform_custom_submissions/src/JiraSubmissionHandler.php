@@ -21,6 +21,7 @@ class JiraSubmissionHandler {
   protected $password;
   protected $submitted_ticket;
   protected $uploaded_file_names;
+  protected $base_url;
 
   public function __construct($config) {
     $this->travel_services_config = $config->get('webform_custom_submissions.form');
@@ -30,13 +31,11 @@ class JiraSubmissionHandler {
     $issue_creation_url = $this->travel_services_config->get('CREATE_ISSUE_URL');
 
     $this->create_issue_url = $this->travel_services_config->get('CREATE_ISSUE_URL');
+    $this->base_url = $this->travel_services_config->get('BASE_URL');
     $this->domestic_project = $this->travel_services_config->get('DOMESTIC_PROJECT');
     $this->international_project = $this->travel_services_config->get('INTERNATIONAL_PROJECT');
     $this->submission_client = new Client(['base_uri' => $issue_creation_url]);
     $this->vouchers_project = $this->travel_services_config->get('VOUCHERS_PROJECT');
-    $this->cin_project = $this->travel_services_config->get('CIN_PROJECT');
-    $this->rtp_project = $this->travel_services_config->get('RTP_PROJECT');
-    $this->dc_project = $this->travel_services_config->get('DC_PROJECT');
 
     $this->field_helper = new FieldHelper();
   }
@@ -77,8 +76,8 @@ class JiraSubmissionHandler {
     }
   }
 
-  public function getSubmittedTicket() {
-    return $this->submitted_ticket;
+  public function getSubmittTicketURL() {
+    return $this->base_url . '/browse/' . $this->submitted_ticket;
   }
 
   public function getUploadedFileNames() {

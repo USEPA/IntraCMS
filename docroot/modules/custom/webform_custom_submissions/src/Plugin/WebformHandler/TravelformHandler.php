@@ -56,11 +56,11 @@ class TravelformHandler extends WebformHandlerBase {
       try {
         $this->jira_submission_service->submitToJira($webform_submission);
         $this->messenger()->addMessage($this->t('Ticket successfully created: %ticket', [
-          '%ticket' => $this->jira_submission_service->getSubmittedTicket(),
+          '%ticket' => $this->jira_submission_service->getSubmittedTicketURL(),
         ]));
         if (count($this->jira_submission_service->getUploadedFileNames()) > 0) {
           $this->messenger()->addMessage($this->t('Files successfully uploaded: %files_html', [
-            '%files_html' => implode('<br />', $this->jira_submission_service->getUploadedFileNames())
+            '%files_html' => implode(', ', $this->jira_submission_service->getUploadedFileNames())
           ]));
         }
       } catch (Exception $e) {
