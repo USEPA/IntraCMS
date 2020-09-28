@@ -55,8 +55,9 @@ class JiraSubmissionHandler {
       $jira_data = $fieldHelper->getJiraData();
       $postData = $this->compilePOSTData($jira_data);
       $jira_api_response_body = $this->createIssueAndResponse($postData);
-      if (isset($jira_api_response_body->id) && isset($jira_api_response_body->ticket)) {
-        $this->submitted_ticket = $jira_api_response_body->ticket;
+
+      if (isset($jira_api_response_body->id) && isset($jira_api_response_body->key)) {
+        $this->submitted_ticket = $jira_api_response_body->key;
         try {
           $this->uploaded_file_names = $this->uploadFiles($jira_api_response_body->id, $jira_data);
         } catch (Exception $e) {
