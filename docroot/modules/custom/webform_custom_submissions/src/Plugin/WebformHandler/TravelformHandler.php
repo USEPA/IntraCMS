@@ -60,8 +60,8 @@ class TravelformHandler extends WebformHandlerBase {
         $this->jira_submission_service->submitToJira($webform_submission);
         $link = Link::fromTextAndUrl($this->jira_submission_service->getSubmittedTicketURL(), Url::fromUri($this->jira_submission_service->getSubmittedTicketURL()));
 
-        $this->messenger()->addMessage($this->t('Ticket successfully created: @link', [
-          '@link' => $link,
+        $this->messenger()->addMessage($this->t('Ticket successfully created: <a href=":link">:link</a>', [
+          ':link' => $link->toString(),
         ]));
         if (count($this->jira_submission_service->getUploadedFileNames()) > 0) {
           $this->messenger()->addMessage($this->t('Files successfully uploaded: %files_html', [
