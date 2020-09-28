@@ -49,12 +49,8 @@ class TravelformHandler extends WebformHandlerBase {
   }
 
 
-  /**
-   * @param array $form
-   * @param FormStateInterface $form_state
-   * @param webformSubmissionInterface $webform_submission
-   */
   public function validateForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
+    parent::validateForm($form, $form_state, $webform_submission);
     try {
       $this->jira_submission_service->submitToJira($webform_submission);
       $this->messenger()->addMessage($this->t('Ticket successfully created: %ticket', [
@@ -69,4 +65,5 @@ class TravelformHandler extends WebformHandlerBase {
       $form_state->setError($form, $this->t($e->getMessage()));
     }
   }
+
 }
