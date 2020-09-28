@@ -2,6 +2,7 @@
 
 namespace Drupal\webform_custom_submissions\Plugin\WebformHandler;
 
+use Drupal\Core\Render\RendererInterface;
 use Drupal\webform_custom_submissions\JiraSubmissionHandler;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -31,9 +32,17 @@ use Drupal\Core\Url;
 class TravelformHandler extends WebformHandlerBase {
   private $jira_submission_service;
 
-  public function __construct(array $config, $plugin_id, $plugin_definition, LoggerChannelFactoryInterface $logger_factory, ConfigFactoryInterface $config_factory, EntityTypeManagerInterface $entity_type_manager, WebformSubmissionConditionsValidatorInterface $conditions_validator, JiraSubmissionHandler $submission_service) {
+  /**
+   * The renderer service.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  public function __construct(array $config, $plugin_id, $plugin_definition, LoggerChannelFactoryInterface $logger_factory, ConfigFactoryInterface $config_factory, EntityTypeManagerInterface $entity_type_manager, WebformSubmissionConditionsValidatorInterface $conditions_validator, JiraSubmissionHandler $submission_service, RendererInterface $renderer) {
     parent::__construct($config, $plugin_id, $plugin_definition, $logger_factory, $config_factory, $entity_type_manager, $conditions_validator);
     $this->jira_submission_service = $submission_service;
+    $this->renderer = $renderer;
   }
 
   public static function create(ContainerInterface $container, array $config, $plugin_id, $plugin_definition) {
@@ -47,7 +56,8 @@ class TravelformHandler extends WebformHandlerBase {
       $container->get('config.factory'),
       $container->get('entity_type.manager'),
       $container->get('webform_submission.conditions_validator'),
-      $container->get('webform_custom_submissions.jira_submission_handler')
+      $container->get('webform_custom_submissions.jira_submission_handler'),
+      $container->get('renderer'),
     );
   }
 
@@ -58,11 +68,15 @@ class TravelformHandler extends WebformHandlerBase {
     if (count($form_state->getErrors()) == 0) {
       try {
         $this->jira_submission_service->submitToJira($webform_submission);
-        $link = Link::fromTextAndUrl($this->jira_submission_service->getSubmittedTicketURL(), Url::fromUri($this->jira_submission_service->getSubmittedTicketURL()));
 
-        $this->messenger()->addMessage($this->t('Ticket successfully created: :link', [
-          ':link' => $link->toString(),
-        ]));
+        $build = [
+          '#type' => 'link',
+          '#title' => $this->t('View ticket %ticket', ['%ticket' => $this->jira_submission_service->getSubmittedTicket()]),
+          '#url' => Url::fromUri($this->jira_submission_service->getSubmittedTicketURL()),
+          '#prefix' => "View: ",
+        ];
+        $this->messenger()->addMessage($this->renderer->renderPlain($build));
+
         if (count($this->jira_submission_service->getUploadedFileNames()) > 0) {
           $this->messenger()->addMessage($this->t('Files successfully uploaded: %files_html', [
             '%files_html' => implode(', ', $this->jira_submission_service->getUploadedFileNames())
