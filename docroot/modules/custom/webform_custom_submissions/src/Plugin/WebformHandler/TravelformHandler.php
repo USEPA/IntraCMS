@@ -8,7 +8,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\webform\WebformSubmissionConditionsValidatorInterface;
 use Drupal\webform\Plugin\WebformHandlerBase;
-use Drupal\Core\Url;
+use \Exception;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\webformSubmissionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -48,7 +48,25 @@ class TravelformHandler extends WebformHandlerBase {
     );
   }
 
-  public function submitForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
-    $this->jira_submission_service->submitToJira($webform_submission);
+
+  /**
+   * @param array $form
+   * @param FormStateInterface $form_state
+   * @param webformSubmissionInterface $webform_submission
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
+    try {
+      $this->jira_submission_service->submitToJira($webform_submission);
+      $this->messenger()->addMessage($this->t('Ticket successfully created: %ticket', [
+        '%ticket' => $this->jira_submission_service->getSubmittedTicket(),
+      ]));
+      if (count($this->jira_submission_service->getUploadedFileNames()) > 0) {
+        $this->messenger()->addMessage($this->t('Files successfully uploaded: %files_html', [
+          '%files_html' => implode('<br />', $this->jira_submission_service->getUploadedFileNames())
+        ]));
+      }
+    } catch (Exception $e) {
+      $form_state->setError($form, $this->t($e->getMessage()));
+    }
   }
 }

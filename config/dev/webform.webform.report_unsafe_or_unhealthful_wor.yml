@@ -1,0 +1,247 @@
+langcode: en
+status: open
+dependencies: {  }
+open: null
+close: null
+weight: 0
+uid: 35
+template: false
+archive: false
+id: report_unsafe_or_unhealthful_wor
+title: 'Report Unsafe or Unhealthful Working Conditions'
+description: '<strong>If you need immediate assistance, DO NOT USE THIS FORM. Please call the ORD SHEM Office (1-2613), Security (1-2900), and/or OARM SHEM (1-7976).</strong>'
+category: 'RTP SHEM & EMS'
+elements: "this_concern_is_:\n  '#type': select\n  '#title': 'This concern is:'\n  '#options':\n    Recurring: Recurring\n    Immediate: Immediate\n    Unique: Unique\n  '#options_randomize': true\n  '#required': true\nis_the_condition_life_threatening_or_have_the_potential_for_seri:\n  '#type': select\n  '#title': 'Is the condition life-threatening or have the potential for serious physical harm?'\n  '#options': yes_no\n  '#options_randomize': true\n  '#required': true\nbrief_description_of_unsafe_of_unhealthful_working_condition_s_:\n  '#type': textarea\n  '#title': 'Brief Description of Unsafe of Unhealthful Working Condition(s): '\n  '#required': true\nexact_location_of_concern_:\n  '#type': textfield\n  '#title': 'Exact Location of Concern: '\n  '#required': true\nif_you_have_any_pictures_that_would_help_illustrate_your_concern:\n  '#type': managed_file\n  '#title': 'If you have any pictures that would help illustrate your concern, please attach them here. If you have multiple pictures, please insert all of them into a Word document or Powerpoint. The maximum file size is 20 MB.'\n  '#multiple': true\n  '#file_extensions': 'gif jpg png bmp txt rtf html pdf doc docx ppt pptx xls xlsx xml avi mov mp3 wav zip'\nrecommendation_to_correct_the_condition_:\n  '#type': textarea\n  '#title': 'Recommendation to Correct the Condition:'\n  '#required': true\nconfidentiality_request_check_one_:\n  '#type': radios\n  '#title': 'Confidentiality Request (Check one)'\n  '#options':\n    'I do not want my name disclosed': 'I DO NOT want my name disclosed'\n    ' I do want my name disclosed': ' I DO want my name disclosed'\nname_include_your_name_only_if_anonymity_is_not_desired_:\n  '#type': textfield\n  '#title': 'Name (include your name only if anonymity is NOT desired)'\n  '#states':\n    visible:\n      ':input[name=\"confidentiality_request_check_one_\"]':\n        value: ' I do want my name disclosed'"
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: ''
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: both
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: ''
+  form_previous_submissions: false
+  form_confidential: false
+  form_confidential_message: ''
+  form_remote_addr: true
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_log: true
+  submission_views: {  }
+  submission_views_replace:
+    webform_routes: {  }
+    node_routes: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: login
+  submission_access_denied_title: ''
+  submission_access_denied_message: 'Please log in to view this submission. If you have any issues, contact <a href="mailto:swain.sydney@epa.gov?subject=Form%20submission%20issue">Sydney Swain</a>'
+  submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_auto_forward: true
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_url: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles:
+      - webform
+      - administrator
+    users:
+      - 203
+      - 35
+      - 263
+      - 264
+      - 475
+    permissions: {  }
+  update_any:
+    roles:
+      - webform
+      - administrator
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users:
+      - 35
+    permissions: {  }
+  test:
+    roles:
+      - webform
+      - administrator
+    users:
+      - 35
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users:
+      - 35
+    permissions: {  }
+handlers:
+  email_5:
+    id: email
+    label: 'RTP H&S Committee'
+    handler_id: email_5
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: 'adams.danield@epa.gov, hartman.kaitlin@epa.gov, jones.mike@epa.gov, mugford.christopher@epa.gov, baker.todd@epa.gov, stout.dan@epa.gov, baese.anne-marie@epa.gov, caler.christopher@epa.gov, blanchard.thomas@epa.gov'
+      to_options: {  }
+      cc_mail: swain.sydney@epa.gov
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: 'Employee Report of Unsafe or Unhealthful Working Conditions'
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+variants: {  }
+uuid: 6f1df498-b9e4-4292-8fdd-49cfa8602dcf

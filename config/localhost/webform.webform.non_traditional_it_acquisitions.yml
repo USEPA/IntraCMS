@@ -1,0 +1,384 @@
+langcode: en
+status: open
+dependencies: {  }
+open: null
+close: null
+weight: 0
+uid: 22
+template: false
+archive: false
+id: non_traditional_it_acquisitions
+title: 'Non-Traditional IT Acquisitions'
+description: ''
+category: 'IT Acquisitions'
+elements: "fitara_request_for_approval_:\n  '#type': textfield\n  '#title': 'FITARA Request for Approval:'\n  '#description': 'Provide a short description or title to use as the email subject-line.'\n  '#required': true\ntotal_price_of_procurement_:\n  '#type': number\n  '#title': 'Total price of procurement:'\n  '#description': 'Enter the dollar amount of the PR.'\n  '#required': true\ndescription:\n  '#type': textarea\n  '#title': Description\n  '#description': 'Provide a description of the needed IT equipment and its intended use.'\n  '#required': true\nitems:\n  '#type': webform_document_file\n  '#title': Items\n  '#required': true\n  '#file_placeholder': 'Provide the (1)&nbsp;Item title/description, (2)&nbsp;Quantity requested, (3)&nbsp;Estimated unit price, and (4)&nbsp;Estimated total price for each item using the&nbsp;<a href=\"http://intranet.ord.epa.gov/sites/default/files/2020-01/items_template.xlsx\">IT Hardware Template</a> (xlsx),&nbsp;then save and upload the file.&nbsp;'\nstrategic_sourcing:\n  '#type': textarea\n  '#title': 'Strategic Sourcing'\n  '#description': 'Provide a statement that strategic sourcing vehicles were considered. Identify if a strategic sourcing or other existing EPA contract will be used to acquire the hardware. View the&nbsp;<a href=\"http://oamintra.epa.gov/node/659\" target=\"_blank\">OARM Strategic Sourcing Webpage</a>.'\n  '#required': true\ncompetition:\n  '#type': textarea\n  '#title': Competition\n  '#description': 'Provide a statement whether the IT equipment is being limited to a specific brand name item or sole source vendor. If so, provide a brand name justification and/or sole source justification as applicable.'\n  '#required': true\nsustainability:\n  '#type': textarea\n  '#title': Sustainability\n  '#description': 'Provide a statement whether IT equipment will be acquired as &ldquo;green&rdquo; (e.g., ENERGY STAR, EPEAT).'\n  '#required': true\naccessibility:\n  '#type': textarea\n  '#title': Accessibility\n  '#description': 'Provide a statement whether IT equipment will be acquired as Section 508 compliant. If not, provide details on the exception to Section 508 accessibility requirements.&nbsp;<a href=\"/section-508\">Guidance on acquiring&nbsp;508 Compliant EIT</a>&nbsp;is available on&nbsp;<a href=\"https://intranet.ord.epa.gov/\">ORD@Work</a>, including a repository&nbsp;of&nbsp;<a href=\"/section-508/repository-previously-approved-508-exceptions\">previously approved 508 exception forms</a>.'\n  '#required': true\nother:\n  '#type': textarea\n  '#title': Other\n  '#description': 'Provide any additional information necessary about the acquisition.'\nadditional_supporting_documentation:\n  '#type': managed_file\n  '#title': 'Additional Supporting Documentation'\n  '#multiple': true\n  '#file_placeholder': 'Attach additional supporting documentation as warranted (i.e. Section 508 VPAT or exception form). Multiple files and file archives are permitted (i.e. ZIP).'\n  '#required': true\nemail_address:\n  '#type': email\n  '#title': 'Email Address'\n  '#description': 'Enter your email address or the email address of the point-of-contact for this information, in case follow-up questions are necessary.'\n  '#required': true\n  '#default_value': '[current-user:mail]'\nrequesting_organization:\n  '#type': select\n  '#title': 'Requesting Organization'\n  '#options':\n    ORD-CCTE: ORD-CCTE\n    ORD-CEMM: ORD-CEMM\n    ORD-CESER: ORD-CESER\n    ORD-CPHEA: ORD-CPHEA\n    ORD-IOAA: ORD-IOAA\n    ORD-OSIM: ORD-OSIM\n    ORD-ORM: ORD-ORM\n    ORD-OSAPE: ORD-OSAPE\n  '#required': true\nlocation:\n  '#type': webform_select_other\n  '#title': Location\n  '#options':\n    Ada: Ada\n    Athens: Athens\n    'Chapel Hill': 'Chapel Hill'\n    Cincinnati: Cincinnati\n    Corvallis: Corvallis\n    Duluth: Duluth\n    Edison: Edison\n    'Gross Ile': 'Gross Ile'\n    'Gulf Breeze': 'Gulf Breeze'\n    'Las Vegas': 'Las Vegas'\n    Narragansett: Narragansett\n    Newport: Newport\n    RTP: RTP\n    'Washington, DC': 'Washington, DC'\n  '#required': true\nadditional_email_addresses_for_inclusion_on_subsequent_messages_:\n  '#type': textarea\n  '#title': 'Additional email addresses for inclusion on subsequent messages (i.e. Reply All)'\n  '#description': 'Enter email addresses for inclusion on notifications and correspondence, as warranted.'\nis_this_acquisition_for_a_service_maintenance_agreement_for_scie:\n  '#type': radios\n  '#title': 'Is this acquisition for a service/maintenance agreement for scientific equipment for which the original piece of equipment received a FITARA approval?'\n  '#options': yes_no\n  '#required': true\n  '#options__properties': ''\nyes_te_form:\n  '#type': processed_text\n  '#states':\n    visible:\n      ':input[name=\"is_this_acquisition_for_a_service_maintenance_agreement_for_scie\"]':\n        value: 'No'\n  '#text': |\n    <h2><span><span><span><span>Please select Preview below and then after you submit the form you will be taken to a link to the Technical Exceptions (TE) form to complete and submit.</span></span> This must be approved by the ORD Information Security Officer (ISO) prior to SITL review. Please reach out to Caroline Parton (ISO) for questions at </span></span> <strong><span><span><a href=\"mailto:Parton.Caroline@EPA.gov\">Parton.Caroline@EPA.gov</a></span></span></strong></h2>\n    \n  '#format': rich_text\nmust_preview_message:\n  '#type': webform_message\n  '#message_type': warning\n  '#message_message': '<span style=\"font-size:11pt\"><span style=\"font-family:Calibri,sans-serif\"><span style=\"font-size:11.5pt\"><span style=\"background:white\"><span style=\"font-family:&quot;Myriad Pro&quot;,sans-serif\"><span style=\"color:#1b1b1b\">You must&nbsp;<strong><span style=\"border:none windowtext 1.0pt; font-family:&quot;Myriad Pro&quot;,sans-serif; padding:0in\">Preview</span></strong>&nbsp;your submission in order to submit it for review. &nbsp;Your submission is not complete until you click the&nbsp;<strong><span style=\"border:none windowtext 1.0pt; font-family:&quot;Myriad Pro&quot;,sans-serif; padding:0in\">&quot;Submit&quot;</span></strong>&nbsp;button. &nbsp;If your submission is not complete, you will again be able to&nbsp;<strong><span style=\"border:none windowtext 1.0pt; font-family:&quot;Myriad Pro&quot;,sans-serif; padding:0in\">&quot;Save Draft&quot;</span></strong>&nbsp;or return to the previous page. &nbsp;Click&nbsp;<strong><span style=\"border:none windowtext 1.0pt; font-family:&quot;Myriad Pro&quot;,sans-serif; padding:0in\">Submit</span></strong>&nbsp;to save your information and route for review.</span></span></span></span></span></span>'\n  '#message_close': true"
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: ''
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_remote_addr: true
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_access_denied: login
+  form_access_denied_title: ''
+  form_access_denied_message: 'You must be <a href="http://intranet.ord.epa.gov/user/login">logged in</a> to complete this form.'
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_log: false
+  submission_views: {  }
+  submission_views_replace:
+    webform_routes: {  }
+    node_routes: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_auto_forward: true
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  preview: 2
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: authenticated
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_title: 'Please Fill Out TE Form'
+  confirmation_message: "<h2><span style=\"font-size:18pt\"><span style=\"font-family:&quot;Calibri&quot;,sans-serif\">Please Fill Out The <a href=\"http://ordsecurity.epa.gov/resources/Lists/TechnicalExceptions/newform.aspx?ContentTypeID=0x010044F20C34F96C94498DEBE5C4D6697815003E991001447C684196DD385A0A293663&amp;source=http://ordsecurity.epa.gov/resources/Thankyou.aspx\" style=\"color:blue; text-decoration:underline\">Technical Exception Form.</a> This must be approved by the ORD Information Security Officer (ISO) prior to SITL review. Please reach out to Caroline Parton (ISO) for questions at </span></span> <strong><span style=\"font-family:&quot;Calibri&quot;,sans-serif; font-size:11.0pt; mso-ansi-language:EN-US; mso-bidi-language:AR-SA; mso-fareast-font-family:&quot;Times New Roman&quot;; mso-fareast-language:EN-US\"><a href=\"mailto:Parton.Caroline@EPA.gov\">Parton.Caroline@EPA.gov</a></span></strong></h2>\r\n<br />\r\n<strong>*** (Do not fill out the TE form if this acquisition is for a service/maintenance agreement for scientific equipment for which the original piece of equipment received a FITARA approval)***</strong>"
+  confirmation_url: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+access:
+  create:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles:
+      - anonymous
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  email:
+    id: email
+    label: 'FITARA Request for Approval of (NT ID -)'
+    handler_id: email
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: 'Burke.Pat@epa.gov, rowan.tim@epa.gov, Marshall.Kelley@epa.gov, Corbin.Cameron@epa.gov, Lopez.Sarah@epa.gov, Parton.Caroline@epa.gov, Broom.Nancy@epa.gov, Brennan.Beverly@epa.gov, Scheitlin.Tom@epa.gov, Seegars.Elroy@epa.gov, young.brenda@epa.gov'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: '[webform_submission:values:email_address:raw]'
+      from_options: {  }
+      from_name: 'ORD-OSIM FITARA Review Team'
+      subject: 'FITARA Request for Approval of [webform_submission:values:fitara_request_for_approval_] (NT ID [webform_submission:sid] - [webform_submission:serial])'
+      body: "<h1>Non Traditional IT Request for FITARA Approval</h1>\r\n\r\n<h2>[webform_submission:values:fitara_request_for_approval_]</h2>\r\nIT Code: N/A<br />\r\n<br />\r\n<strong>E-mail Address of Requester:</strong><br />\r\n[webform_submission:values:email_address]<br />\r\n<br />\r\n<strong>Email Distribution List (i.e. Reply All):</strong><br />\r\n[webform_submission:values:email_address]<br />\r\nRowan.Tim@EPA.gov<br />\r\nMarshall.Kelley@EPA.gov<br />\r\nCorbin.Cameron@EPA.gov<br />\r\nLopez.Sarah@EPA.gov<br />\r\nParton.Caroline@EPA.gov<br />\r\nBroom.Nancy@EPA.gov<br />\r\nBurke.Pat@EPA.gov<br />\r\nScheitlin.Tom@EPA.gov<br />\r\nSeegars.Elroy@epa.gov<br />\r\nyoung.brenda@epa.gov<br />\r\n[webform_submission:values:additional_email_addresses_for_inclusion_on_subsequent_messages_]<br />\r\n<br />\r\n<strong>Requesting Organization:</strong><br />\r\n[webform_submission:values:requesting_organization]<br />\r\n<br />\r\n<strong>Location:</strong><br />\r\n[webform_submission:values:location]<br />\r\n<br />\r\n<strong>Total price of procurement:</strong><br />\r\n$[webform_submission:values:total_price_of_procurement_]<br />\r\n<br />\r\n<strong>Description:</strong>\r\n\r\n<p>[webform_submission:values:description]</p>\r\n<br />\r\n<strong>Items:</strong> [webform_submission:values:items]<br />\r\n<br />\r\n<strong>Strategic Sourcing:</strong>\r\n\r\n<p>[webform_submission:values:strategic_sourcing]</p>\r\n<br />\r\n<strong>Competition:</strong>\r\n\r\n<p>[webform_submission:values:competition]</p>\r\n<br />\r\n<strong>Sustainability:</strong>\r\n\r\n<p>[webform_submission:values:sustainability]</p>\r\n<br />\r\n<strong>Accessibility:</strong>\r\n\r\n<p>[webform_submission:values:accessibility]<br />\r\n<br />\r\n<strong>Is this acquisition for a service/maintenance agreement for scientific equipment for which the original piece of equipment received a FITARA approval?:</strong></p>\r\n\r\n<p>[webform_submission:values:is_this_acquisition_for_a_service_maintenance_agreement_for_scie]</p>\r\n<br />\r\n<strong>Other:</strong>\r\n\r\n<p>[webform_submission:values:other]</p>\r\n[webform_submission:values:additional_supporting_documentation]<br />\r\n<br />\r\n<strong>Disclaimer:</strong>\r\n\r\n<p>This email may contain source selection information and should only be released within the Government to those who have a bona-fide need to know. Unauthorized release of source selection information is prohibited by law.</p>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_1:
+    id: email
+    label: 'Courtesy copy of your FITARA Request for Approval of (NT ID -)'
+    handler_id: email_1
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email_address:raw]'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: 'ORD-OSIM FITARA Review Team'
+      subject: 'Courtesy copy of your FITARA Request for Approval of [webform_submission:values:fitara_request_for_approval_] (NT ID [webform_submission:sid] - [webform_submission:serial])'
+      body: "<h1>Non Traditional IT Request for FITARA Approval</h1>\r\n\r\n<h2>[webform_submission:values:fitara_request_for_approval_]</h2>\r\nIT Code: N/A<br />\r\n<br />\r\n<strong>E-mail Address of Requester:</strong><br />\r\n[webform_submission:values:email_address]<br />\r\n<br />\r\n<strong>Email Distribution List (i.e. Reply All):</strong><br />\r\n[webform_submission:values:email_address]<br />\r\nRowan.Tim@EPA.gov<br />\r\nMarshall.Kelley@EPA.gov<br />\r\nCorbin.Cameron@EPA.gov<br />\r\nLopez.Sarah@EPA.gov<br />\r\nParton.Caroline@EPA.gov<br />\r\nBroom.Nancy@EPA.gov<br />\r\nBurke.Pat@EPA.gov<br />\r\nScheitlin.Tom@EPA.gov<br />\r\nSeegars.Elroy@epa.gov<br />\r\nyoung.brenda@epa.gov<br />\r\n[webform_submission:values:additional_email_addresses_for_inclusion_on_subsequent_messages_]<br />\r\n<br />\r\n<strong>Requesting Organization:</strong><br />\r\n[webform_submission:values:requesting_organization]<br />\r\n<br />\r\n<strong>Location:</strong><br />\r\n[webform_submission:values:location]<br />\r\n<br />\r\n<strong>Total price of procurement:</strong><br />\r\n$[webform_submission:values:total_price_of_procurement_]<br />\r\n<br />\r\n<strong>Description:</strong>\r\n\r\n<p>[webform_submission:values:description]</p>\r\n<br />\r\n<strong>Items:</strong> [webform_submission:values:items]<br />\r\n<br />\r\n<strong>Strategic Sourcing:</strong>\r\n\r\n<p>[webform_submission:values:strategic_sourcing]</p>\r\n<br />\r\n<strong>Competition:</strong>\r\n\r\n<p>[webform_submission:values:competition]</p>\r\n<br />\r\n<strong>Sustainability:</strong>\r\n\r\n<p>[webform_submission:values:sustainability]</p>\r\n<br />\r\n<strong>Accessibility:</strong>\r\n\r\n<p>[webform_submission:values:accessibility]<br />\r\n<br />\r\n<strong>Is this acquisition for a service/maintenance agreement for scientific equipment for which the original piece of equipment received a FITARA approval?:</strong></p>\r\n\r\n<p>[webform_submission:values:is_this_acquisition_for_a_service_maintenance_agreement_for_scie]</p>\r\n<br />\r\n<strong>Other:</strong>\r\n\r\n<p>[webform_submission:values:other]</p>\r\n[webform_submission:values:additional_supporting_documentation]<br />\r\n<br />\r\n<strong>Disclaimer:</strong>\r\n\r\n<p>This email may contain source selection information and should only be released within the Government to those who have a bona-fide need to know. Unauthorized release of source selection information is prohibited by law.</p>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_2:
+    id: email
+    label: 'SharePoint List | FITARA Requests: (NT ID -)'
+    handler_id: email_2
+    status: false
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: corbin.cameron@epa.gov
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: 'ORD-OSIM FITARA Review Team'
+      subject: 'SharePoint List | FITARA Requests: [webform_submission:values:fitara_request_for_approval_] (NT ID [webform_submission:sid] - [webform_submission:serial])'
+      body: "<h1>Non Traditional IT Request for FITARA Approval</h1>\r\n\r\n<h2>Note: The <a href=\"http://ordsecurity.epa.gov/resources/Lists/TechnicalExceptions/newform.aspx?ContentTypeID=0x010044F20C34F96C94498DEBE5C4D6697815003E991001447C684196DD385A0A293663&amp;source=http://ordsecurity.epa.gov/resources/Thankyou.aspx\">Technical Exception Form</a> must be approved by the ORD Information Security Officer (ISO) prior to SITL review.</h2>\r\n\r\n<h2>[webform_submission:values:fitara_request_for_approval_]</h2>\r\nIT Code: N/A<br />\r\n<br />\r\n<strong>E-mail Address of Requester:</strong><br />\r\n[webform_submission:values:email_address]<br />\r\n<br />\r\n<strong>Email Distribution List (i.e. Reply All):</strong><br />\r\n[webform_submission:values:email_address]<br />\r\nRowan.Tim@EPA.gov<br />\r\nMarshall.Kelley@EPA.gov<br />\r\nCorbin.Cameron@EPA.gov<br />\r\nLopez.Sarah@EPA.gov<br />\r\nParton.Caroline@EPA.gov<br />\r\nBroom.Nancy@EPA.gov<br />\r\nBurke.Pat@EPA.gov<br />\r\nScheitlin.Tom@EPA.gov<br />\r\nSeegars.Elroy@epa.gov<br />\r\nyoung.brenda@epa.gov<br />\r\n[webform_submission:values:additional_email_addresses_for_inclusion_on_subsequent_messages_]<br />\r\n<br />\r\n<strong>Requesting Organization:</strong><br />\r\n[webform_submission:values:requesting_organization]<br />\r\n<br />\r\n<strong>Location:</strong><br />\r\n[webform_submission:values:location]<br />\r\n<br />\r\n<strong>Total price of procurement:</strong><br />\r\n$[webform_submission:values:total_price_of_procurement_]<br />\r\n<br />\r\n<strong>Description:</strong>\r\n\r\n<p>[webform_submission:values:description]</p>\r\n<br />\r\n<strong>Items:</strong> [webform_submission:values:items]<br />\r\n<br />\r\n<strong>Strategic Sourcing:</strong>\r\n\r\n<p>[webform_submission:values:strategic_sourcing]</p>\r\n<br />\r\n<strong>Competition:</strong>\r\n\r\n<p>[webform_submission:values:competition]</p>\r\n<br />\r\n<strong>Sustainability:</strong>\r\n\r\n<p>[webform_submission:values:sustainability]</p>\r\n<br />\r\n<strong>Accessibility:</strong>\r\n\r\n<p>[webform_submission:values:accessibility]<br />\r\n<br />\r\n<strong>Is this acquisition for a service/maintenance agreement for scientific equipment for which the original piece of equipment received a FITARA approval?:</strong></p>\r\n\r\n<p>[webform_submission:values:is_this_acquisition_for_a_service_maintenance_agreement_for_scie]</p>\r\n<br />\r\n<strong>Other:</strong>\r\n\r\n<p>[webform_submission:values:other]</p>\r\n[webform_submission:values:additional_supporting_documentation]<br />\r\n<br />\r\n<strong>Disclaimer:</strong>\r\n\r\n<p>This email may contain source selection information and should only be released within the Government to those who have a bona-fide need to know. Unauthorized release of source selection information is prohibited by law.</p>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_3:
+    id: email
+    label: 'CSR HEADS UP: NO ACTION REQUIRED | FITARA Requests: (NT ID -)'
+    handler_id: email_3
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:location:raw]'
+      to_options:
+        -
+          value: Ada
+          text: rowen.tim@epa.gov
+        -
+          value: Athens
+          text: rowen.tim@epa.gov
+        -
+          value: 'Chapel Hill'
+          text: seegars.elroy@epa.gov
+        -
+          value: Cincinnati
+          text: 'smith.rick@epa.gov, Austin.Dwayne@epa.gov'
+        -
+          value: Corvallis
+          text: lopez.sarah@epa.gov
+        -
+          value: Duluth
+          text: lopez.sarah@epa.gov
+        -
+          value: Edison
+          text: 'smith.rick@epa.gov, Austin.Dwayne@epa.gov'
+        -
+          value: 'Gross Ile'
+          text: lopez.sarah@epa.gov
+        -
+          value: 'Gulf Breeze'
+          text: rowen.tim@epa.gov
+        -
+          value: 'Las Vegas'
+          text: richardson.jon@epa.gov
+        -
+          value: Narragansett
+          text: richardson.jon@epa.gov
+        -
+          value: Newport
+          text: lopez.sarah@epa.gov
+        -
+          value: RTP
+          text: seegars.elroy@epa.gov
+        -
+          value: 'Washington, DC'
+          text: 'knudsen.keeley@epa.gov, kress.jay@epa.gov'
+        -
+          value: _other_
+          text: corbin.cameron@epa.gov
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: ORD@WORK
+      subject: 'CSR HEADS UP: NO ACTION REQUIRED | FITARA Requests: [webform_submission:values:fitara_request_for_approval_] (NT ID [webform_submission:sid] - [webform_submission:serial])'
+      body: "<h1>Non Traditional IT Request for FITARA Approval</h1>\r\n\r\n<h2>[webform_submission:values:fitara_request_for_approval_]</h2>\r\nIT Code: N/A<br />\r\n<br />\r\n<strong>E-mail Address of Requester:</strong><br />\r\n[webform_submission:values:email_address]<br />\r\n<br />\r\n<strong>Email Distribution List (i.e. Reply All):</strong><br />\r\n[webform_submission:values:email_address]<br />\r\nRowan.Tim@EPA.gov<br />\r\nMarshall.Kelley@EPA.gov<br />\r\nCorbin.Cameron@EPA.gov<br />\r\nLopez.Sarah@EPA.gov<br />\r\nParton.Caroline@EPA.gov<br />\r\nBroom.Nancy@EPA.gov<br />\r\nBurke.Pat@EPA.gov<br />\r\nScheitlin.Tom@EPA.gov<br />\r\nSeegars.Elroy@epa.gov<br />\r\nyoung.brenda@epa.gov<br />\r\n[webform_submission:values:additional_email_addresses_for_inclusion_on_subsequent_messages_]<br />\r\n<br />\r\n<strong>Requesting Organization:</strong><br />\r\n[webform_submission:values:requesting_organization]<br />\r\n<br />\r\n<strong>Location:</strong><br />\r\n[webform_submission:values:location]<br />\r\n<br />\r\n<strong>Total price of procurement:</strong><br />\r\n$[webform_submission:values:total_price_of_procurement_]<br />\r\n<br />\r\n<strong>Description:</strong>\r\n\r\n<p>[webform_submission:values:description]</p>\r\n<br />\r\n<strong>Items:</strong> [webform_submission:values:items]<br />\r\n<br />\r\n<strong>Strategic Sourcing:</strong>\r\n\r\n<p>[webform_submission:values:strategic_sourcing]</p>\r\n<br />\r\n<strong>Competition:</strong>\r\n\r\n<p>[webform_submission:values:competition]</p>\r\n<br />\r\n<strong>Sustainability:</strong>\r\n\r\n<p>[webform_submission:values:sustainability]</p>\r\n<br />\r\n<strong>Accessibility:</strong>\r\n\r\n<p>[webform_submission:values:accessibility]<br />\r\n<br />\r\n<strong>Is this acquisition for a service/maintenance agreement for scientific equipment for which the original piece of equipment received a FITARA approval?:</strong></p>\r\n\r\n<p>[webform_submission:values:is_this_acquisition_for_a_service_maintenance_agreement_for_scie]</p>\r\n<br />\r\n<strong>Other:</strong>\r\n\r\n<p>[webform_submission:values:other]</p>\r\n[webform_submission:values:additional_supporting_documentation]<br />\r\n<br />\r\n<strong>Disclaimer:</strong>\r\n\r\n<p>This email may contain source selection information and should only be released within the Government to those who have a bona-fide need to know. Unauthorized release of source selection information is prohibited by law.</p>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+variants: {  }
+uuid: 246b33a3-9696-4384-9980-a285dd62618a

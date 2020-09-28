@@ -1,0 +1,357 @@
+langcode: en
+status: open
+dependencies: {  }
+open: null
+close: null
+weight: 0
+uid: 22
+template: false
+archive: false
+id: it_hardware
+title: 'IT Hardware'
+description: ''
+category: 'IT Acquisitions'
+elements: "fitara_request_for_approval_:\n  '#type': textfield\n  '#title': 'FITARA Request for Approval:'\n  '#description': 'Provide a short description or title to use as the email subject-line.'\n  '#required': true\npr_number:\n  '#type': textfield\n  '#title': 'PR Number'\n  '#description': 'Provide the PR number associated to this FITARA approval request. If not yet assigned, enter TBD.'\n  '#required': true\ntotal_price_of_procurement_:\n  '#type': number\n  '#title': 'Total price of procurement:'\n  '#description': 'Enter the dollar amount of the PR.'\n  '#required': true\ndescription:\n  '#type': textarea\n  '#title': Description\n  '#description': 'Provide a description of the needed IT equipment and its intended use.'\n  '#required': true\nitems:\n  '#type': webform_document_file\n  '#title': Items\n  '#required': true\n  '#file_placeholder': 'Provide the (1)&nbsp;Item title/description, (2)&nbsp;Quantity requested, (3)&nbsp;Estimated unit price, and (4)&nbsp;Estimated total price for each item using the&nbsp;<a href=\"http://intranet.ord.epa.gov/sites/default/files/2020-01/items_template.xlsx\">IT Hardware Template</a> (xlsx),&nbsp;then save and upload the file.&nbsp;'\n  '#file_extensions': 'xls xlsx'\nsystem_form:\n  '#type': select\n  '#title': 'System Form'\n  '#description': 'Please select the option that describes your type of hardware that is being purchased.'\n  '#options':\n    Desktop: Desktop\n    Laptop: Laptop\n    'Virtual Machine': 'Virtual Machine'\n    Tablet: Tablet\n    'Scientific Instrument': 'Scientific Instrument'\n    Server: Server\n    'None of the above': 'None of the above'\n  '#required': true\nte_form:\n  '#type': processed_text\n  '#states':\n    visible:\n      - ':input[name=\"system_form\"]':\n          value: Desktop\n      - or\n      - ':input[name=\"system_form\"]':\n          value: 'Scientific Instrument'\n      - or\n      - ':input[name=\"system_form\"]':\n          value: Tablet\n      - or\n      - ':input[name=\"system_form\"]':\n          value: Laptop\n      - or\n      - ':input[name=\"system_form\"]':\n          value: 'Virtual Machine'\n      - or\n      - ':input[name=\"system_form\"]':\n          value: Server\n  '#text': |\n    <p>&nbsp;</p>\n    \n    <p><strong>Due to the choice selected above, you must fill out a Technical Exception Form located&nbsp;<a href=\"http://ordsecurity.epa.gov/resources/Lists/TechnicalExceptions/newform.aspx?ContentTypeID=0x010044F20C34F96C94498DEBE5C4D6697815003E991001447C684196DD385A0A293663&amp;source=http://ordsecurity.epa.gov/resources/Thankyou.aspx\">here</a>.</strong></p>\n    \n  '#format': simple_text\nnew_or_maintenance:\n  '#type': select\n  '#title': 'New or Maintenance'\n  '#description': 'Is this new hardware or maintenance of existing hardware?'\n  '#options':\n    'New Hardware': 'New Hardware'\n    'Maintenance of Existing Hardware': 'Maintenance of Existing Hardware'\n  '#required': true\nvendor_quotes:\n  '#type': webform_document_file\n  '#title': 'Vendor Quotes'\n  '#multiple': true\n  '#file_placeholder': 'Attach Any Vendor Quotes for Hardware Purchases'\nstrategic_sourcing:\n  '#type': textarea\n  '#title': 'Strategic Sourcing'\n  '#description': 'Provide a statement that strategic sourcing vehicles were considered. Identify if a strategic sourcing or other existing EPA contract will be used to acquire the hardware. View the&nbsp;<a href=\"http://oamintra.epa.gov/node/659\" target=\"_blank\">OARM Strategic Sourcing Webpage</a>.'\n  '#required': true\nomb_policy:\n  '#type': processed_text\n  '#text': |\n    <p>&nbsp;</p>\n    \n    <p>Per&nbsp;<a href=\"https://www.whitehouse.gov/sites/default/files/omb/memoranda/2016/m-16-02.pdf\">OMB policy</a>&nbsp;(page 3), laptops and desktops must be purchased through one of the following GWACs:</p>\n    \n    <ul>\n    \t<li><a href=\"https://nitaac.nih.gov/nitaac/\">NITAAC</a></li>\n    \t<li><a href=\"http://www.gsa.gov/portal/content/104506\">GSA IT Schedule 70</a></li>\n    \t<li><a href=\"http://www.sewp.nasa.gov/\">NASA SEWP</a></li>\n    </ul>\n    \n  '#format': simple_text\nwaiver:\n  '#type': webform_document_file\n  '#title': Waiver\n  '#file_placeholder': 'Does this item require a waiver? If so, please attach the waiver.'\ncompetition:\n  '#type': textarea\n  '#title': Competition\n  '#description': 'Provide a statement whether the IT equipment is being limited to a specific brand name item or sole source vendor. If so, provide a brand name justification and/or sole source justification as applicable.'\n  '#required': true\nsustainability:\n  '#type': textarea\n  '#title': Sustainability\n  '#description': 'Provide a statement whether IT equipment will be acquired as &ldquo;green&rdquo; (e.g., ENERGY STAR, EPEAT).'\n  '#required': true\nipv6:\n  '#type': select\n  '#title': IPv6\n  '#description': 'Confirm whether the equipment to be purchased is IPv6 compliant.'\n  '#options':\n    'Equipment is IPv6 Compliant': 'Equipment is IPv6 Compliant'\n    'Equipment is NOT IPv6 Compliant': 'Equipment is NOT IPv6 Compliant'\naccessibility:\n  '#type': textarea\n  '#title': Accessibility\n  '#description': 'Provide a statement whether IT equipment will be acquired as Section 508 compliant. If not, provide details on the exception to Section 508 accessibility requirements.&nbsp;<a href=\"/section-508\">Guidance on acquiring&nbsp;508 Compliant EIT</a>&nbsp;is available on&nbsp;<a href=\"https://intranet.ord.epa.gov/\">ORD@Work</a>, including a repository&nbsp;of&nbsp;<a href=\"/section-508/repository-previously-approved-508-exceptions\">previously approved 508 exception forms</a>.'\n  '#required': true\nother:\n  '#type': textarea\n  '#title': Other\n  '#description': 'Provide any additional information necessary about the acquisition.'\nadditional_supporting_documentation:\n  '#type': managed_file\n  '#title': 'Additional Supporting Documentation'\n  '#multiple': true\n  '#file_placeholder': 'Attach additional supporting documentation as warranted (i.e. Section 508 VPAT or exception form). Multiple files and file archives are permitted (i.e. ZIP).'\n  '#sanitize': true\nemail_address:\n  '#type': email\n  '#title': 'Email Address'\n  '#description': 'Enter your email address or the email address of the point-of-contact for this information, in case follow-up questions are necessary.'\n  '#required': true\n  '#default_value': '[current-user:mail]'\nphone_number:\n  '#type': tel\n  '#title': 'Phone Number'\n  '#required': true\nrequesting_organization:\n  '#type': select\n  '#title': 'Requesting Organization'\n  '#options':\n    ORD-CCTE: ORD-CCTE\n    ORD-CEMM: ORD-CEMM\n    ORD-CESER: ORD-CESER\n    ORD-CPHEA: ORD-CPHEA\n    ORD-IOAA: ORD-IOAA\n    ORD-OSIM: ORD-OSIM\n    ORD-ORM: ORD-ORM\n    ORD-OSAPE: ORD-OSAPE\n  '#required': true\nlocation:\n  '#type': webform_select_other\n  '#title': Location\n  '#options':\n    Ada: Ada\n    Athens: Athens\n    'Chapel Hill': 'Chapel Hill'\n    Cincinnati: Cincinnati\n    Corvallis: Corvallis\n    Duluth: Duluth\n    Edison: Edison\n    'Gross Ile': 'Gross Ile'\n    'Gulf Breeze': 'Gulf Breeze'\n    'Las Vegas': 'Las Vegas'\n    Narragansett: Narragansett\n    Newport: Newport\n    RTP: RTP\n    'Washington, DC': 'Washington, DC'\n  '#required': true\nadditional_email_addresses_for_inclusion_on_subsequent_messages_:\n  '#type': textarea\n  '#title': 'Additional email addresses for inclusion on subsequent messages (i.e. Reply All)'\n  '#description': 'Enter email addresses for inclusion on notifications and correspondence, as warranted. Don&#39;t include Kelley Marshall, Tim Rowan, Sarah Lopez, or Cam Corbin as they are included by default.'\nmust_preview_message:\n  '#type': webform_message\n  '#message_type': warning\n  '#message_message': 'You must&nbsp;<strong>Preview</strong>&nbsp;your submission in order to submit it for review. &nbsp;Your submission is not complete until you click the&nbsp;<strong>&quot;Submit&quot;</strong>&nbsp;button. &nbsp;If your submission is not complete, you will again be able to&nbsp;<strong>&quot;Save Draft&quot;</strong>&nbsp;or return to the previous page. &nbsp;Click&nbsp;<strong>Submit</strong>&nbsp;to save your information and route for review.'\n  '#message_close': true"
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: ''
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_remote_addr: true
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_access_denied: login
+  form_access_denied_title: ''
+  form_access_denied_message: 'You must be <a href="http://intranet.ord.epa.gov/user/login">logged in</a> to complete this form.'
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_log: false
+  submission_views: {  }
+  submission_views_replace:
+    webform_routes: {  }
+    node_routes: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_auto_forward: true
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  preview: 2
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: authenticated
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_url: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+access:
+  create:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles:
+      - anonymous
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  email:
+    id: email
+    label: 'FITARA Request for Approval of (HW ID -)'
+    handler_id: email
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: 'Burke.Pat@epa.gov, rowan.tim@epa.gov, Marshall.Kelley@epa.gov, Corbin.Cameron@epa.gov, Lopez.Sarah@epa.gov, Brennan.Beverly@epa.gov, hammel.craig@epa.gov, McDowell.Mike@epa.gov, young.brenda@epa.gov'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: '[webform_submission:values:email_address:raw]'
+      from_options: {  }
+      from_name: 'ORD-OSIM FITARA Review Team'
+      subject: 'FITARA Request for Approval of [webform_submission:values:fitara_request_for_approval_] (HW ID [webform_submission:sid] - [webform_submission:serial])'
+      body: "On behalf of [webform_submission:values:email_address], please review and consider this FITARA Request for Approval\r\n<h1>IT Hardware Request for Approval</h1>\r\n\r\n<h2>[webform_submission:values:fitara_request_for_approval_]</h2>\r\n<strong>IT Code:<br />\r\n<br />\r\nE-mail Address of Requester:</strong><br />\r\n[webform_submission:values:email_address]<br />\r\n<br />\r\n<strong>Phone Number of Requester:</strong><br />\r\n[webform_submission:values:phone_number]<br />\r\n<br />\r\n<strong>Email Distribution List (i.e. Reply All):</strong><br />\r\n[webform_submission:values:email_address]<br />\r\nRowan.Tim@EPA.gov<br />\r\nBurke.Pat@epa.gov<br />\r\nMarshall.Kelley@epa.gov<br />\r\nCorbin.Cameron@EPA.gov<br />\r\nLopez.Sarah@EPA.gov<br />\r\nHammel.Craig@epa.gov<br />\r\nMcDowell.Mike@epa.gov<br />\r\nBenton.Melissa@epa.gov<br />\r\nDowd.Sean@EPA.gov<br />\r\nSykes.John@EPA.gov<br />\r\nyoung.brenda@epa.gov<br />\r\nscheitlin.tom@epa.gov<br />\r\nRichardson.Jon@epa.gov<br />\r\nBrennan.Beverly@epa.gov<br />\r\n[webform_submission:values:additional_email_addresses_for_inclusion_on_subsequent_messages_]<br />\r\n<br />\r\n<strong>Requesting Organization:</strong><br />\r\n[webform_submission:values:requesting_organization]<br />\r\n<br />\r\n<strong>Location:</strong><br />\r\n[webform_submission:values:location]<br />\r\n<br />\r\n<strong>PR Number:</strong><br />\r\n[webform_submission:values:pr_number]<br />\r\n<br />\r\n<strong>Total price of procurement:</strong><br />\r\n$[webform_submission:values:total_price_of_procurement_]<br />\r\n<br />\r\n<strong>Description:</strong>\r\n\r\n<p>[webform_submission:values:description]</p>\r\n<br />\r\n<strong>Items:</strong> [webform_submission:values:items]<br />\r\n<br />\r\n<strong>Is this new hardware or maintenance of existing hardware?:</strong>\r\n\r\n<p>[webform_submission:values:new_or_maintenance]</p>\r\n<br />\r\n<strong>Vendor Quotes:</strong>\r\n\r\n<p>[webform_submission:values:vendor_quotes]</p>\r\n<br />\r\n<strong>Strategic Sourcing:</strong>\r\n\r\n<p>[webform_submission:values:strategic_sourcing]</p>\r\n<br />\r\n<strong>Does this item require a waiver?:</strong>\r\n\r\n<p>[webform_submission:values:waiver]</p>\r\n<br />\r\n<strong>Competition:</strong>\r\n\r\n<p>[webform_submission:values:competition]</p>\r\n<br />\r\n<strong>Sustainability:</strong>\r\n\r\n<p>[webform_submission:values:sustainability]</p>\r\n<br />\r\n<strong>Confirm whether the equipment to be purchased is IPv6 compliant:</strong>\r\n\r\n<p>[webform_submission:values:ipv6]</p>\r\n<br />\r\n<strong>Accessibility:</strong>\r\n\r\n<p>[webform_submission:values:accessibility]</p>\r\n<br />\r\n<strong>Other:</strong>\r\n\r\n<p>[webform_submission:values:other]</p>\r\n[webform_submission:values:additional_supporting_documentation]<br />\r\n<br />\r\n<strong>Disclaimer:</strong>\r\n\r\n<p>This email may contain source selection information and should only be released within the Government to those who have a bona-fide need to know. Unauthorized release of source selection information is prohibited by law.</p>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_1:
+    id: email
+    label: 'Courtesy copy of your FITARA Request for Approval of (HW ID -)'
+    handler_id: email_1
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email_address:raw]'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: 'ORD-OSIM FITARA Review Team'
+      subject: 'Courtesy copy of your FITARA Request for Approval of [webform_submission:values:fitara_request_for_approval_] (HW ID [webform_submission:sid] - [webform_submission:serial])'
+      body: "On behalf of [webform_submission:values:email_address], please review and consider this FITARA Request for Approval\r\n<h1>IT Hardware Request for Approval</h1>\r\n\r\n<h2>[webform_submission:values:fitara_request_for_approval_]</h2>\r\n<strong>E-mail Address of Requester:</strong><br />\r\n[webform_submission:values:email_address]<br />\r\n<br />\r\n<strong>Phone Number of Requester:</strong><br />\r\n[webform_submission:values:phone_number]<br />\r\n<br />\r\n<strong>Email Distribution List (i.e. Reply All):</strong><br />\r\n[webform_submission:values:email_address]<br />\r\nRowan.Tim@EPA.gov<br />\r\nBurke.Pat@epa.gov<br />\r\nMarshall.Kelley@epa.gov<br />\r\nCorbin.Cameron@EPA.gov<br />\r\nLopez.Sarah@EPA.gov<br />\r\nHammel.Craig@epa.gov<br />\r\nMcDowell.Mike@epa.gov<br />\r\nBenton.Melissa@epa.gov<br />\r\nDowd.Sean@EPA.gov<br />\r\nSykes.John@EPA.gov<br />\r\nyoung.brenda@epa.gov<br />\r\nscheitlin.tom@epa.gov<br />\r\nRichardson.Jon@epa.gov<br />\r\nBrennan.Beverly@epa.gov<br />\r\n[webform_submission:values:additional_email_addresses_for_inclusion_on_subsequent_messages_]<br />\r\n<br />\r\n<strong>Requesting Organization:</strong><br />\r\n[webform_submission:values:requesting_organization]<br />\r\n<br />\r\n<strong>Location:</strong><br />\r\n[webform_submission:values:location]<br />\r\n<br />\r\n<strong>PR Number:</strong><br />\r\n[webform_submission:values:pr_number]<br />\r\n<br />\r\n<strong>Total price of procurement:</strong><br />\r\n$[webform_submission:values:total_price_of_procurement_]<br />\r\n<br />\r\n<strong>Description:</strong>\r\n\r\n<p>[webform_submission:values:description]</p>\r\n<br />\r\n<strong>Items:</strong> [webform_submission:values:items]<br />\r\n<br />\r\n<strong>Is this new hardware or maintenance of existing hardware?:</strong>\r\n\r\n<p>[webform_submission:values:new_or_maintenance]</p>\r\n<br />\r\n<strong>Vendor Quotes:</strong>\r\n\r\n<p>[webform_submission:values:vendor_quotes]</p>\r\n<br />\r\n<strong>Strategic Sourcing:</strong>\r\n\r\n<p>[webform_submission:values:strategic_sourcing]</p>\r\n<br />\r\n<strong>Does this item require a waiver?:</strong>\r\n\r\n<p>[webform_submission:values:waiver]</p>\r\n<br />\r\n<strong>Competition:</strong>\r\n\r\n<p>[webform_submission:values:competition]</p>\r\n<br />\r\n<strong>Sustainability:</strong>\r\n\r\n<p>[webform_submission:values:sustainability]</p>\r\n<br />\r\n<strong>Confirm whether the equipment to be purchased is IPv6 compliant:</strong>\r\n\r\n<p>[webform_submission:values:ipv6]</p>\r\n<br />\r\n<strong>Accessibility:</strong>\r\n\r\n<p>[webform_submission:values:accessibility]</p>\r\n<br />\r\n<strong>Other:</strong>\r\n\r\n<p>[webform_submission:values:other]</p>\r\n[webform_submission:values:additional_supporting_documentation]<br />\r\n<br />\r\n<strong>Disclaimer:</strong>\r\n\r\n<p>This email may contain source selection information and should only be released within the Government to those who have a bona-fide need to know. Unauthorized release of source selection information is prohibited by law.</p>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_2:
+    id: email
+    label: '[current-page:url][current-user:name]SharePoint List | FITARA Requests: (HW ID -)[current-user:name][current-page:url]'
+    handler_id: email_2
+    status: false
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: corbin.cameron@epa.gov
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: 'ORD-OSIM FITARA Review Team'
+      subject: 'SharePoint List | FITARA Requests: [webform_submission:values:fitara_request_for_approval_] (HW ID [webform_submission:sid] - [webform_submission:serial])'
+      body: "On behalf of [webform_submission:values:email_address], please review and consider this FITARA Request for Approval\r\n<h1>IT Hardware Request for Approval</h1>\r\n\r\n<h2>[webform_submission:values:fitara_request_for_approval_]</h2>\r\n<strong>IT Code:</strong><br />\r\n<br />\r\n<strong>E-mail Address of Requester:</strong><br />\r\n[webform_submission:values:email_address]<br />\r\n<br />\r\n<strong>Phone Number of Requester:</strong><br />\r\n[webform_submission:values:phone_number]<br />\r\n<br />\r\n<strong>Email Distribution List (i.e. Reply All):</strong><br />\r\n[webform_submission:values:email_address]<br />\r\nRowan.Tim@EPA.gov<br />\r\nBurke.Pat@epa.gov<br />\r\nMarshall.Kelley@epa.gov<br />\r\nCorbin.Cameron@EPA.gov<br />\r\nLopez.Sarah@EPA.gov<br />\r\nHammel.Craig@epa.gov<br />\r\nMcDowell.Mike@epa.gov<br />\r\nBenton.Melissa@epa.gov<br />\r\nDowd.Sean@EPA.gov<br />\r\nSykes.John@EPA.gov<br />\r\nyoung.brenda@epa.gov<br />\r\nscheitlin.tom@epa.gov<br />\r\nRichardson.Jon@epa.gov<br />\r\nBrennan.Beverly@epa.gov<br />\r\n[webform_submission:values:additional_email_addresses_for_inclusion_on_subsequent_messages_]<br />\r\n<br />\r\n<strong>Requesting Organization:</strong><br />\r\n[webform_submission:values:requesting_organization]<br />\r\n<br />\r\n<strong>Location:</strong><br />\r\n[webform_submission:values:location]<br />\r\n<br />\r\n<strong>PR Number:</strong><br />\r\n[webform_submission:values:pr_number]<br />\r\n<br />\r\n<strong>Total price of procurement:</strong><br />\r\n$[webform_submission:values:total_price_of_procurement_]<br />\r\n<br />\r\n<strong>Description:</strong>\r\n\r\n<p>[webform_submission:values:description]</p>\r\n<br />\r\n<strong>Items:</strong> [webform_submission:values:items]<br />\r\n<br />\r\n<strong>Is this new hardware or maintenance of existing hardware?:</strong>\r\n\r\n<p>[webform_submission:values:new_or_maintenance]</p>\r\n<br />\r\n<strong>Vendor Quotes:</strong>\r\n\r\n<p>[webform_submission:values:vendor_quotes]</p>\r\n<br />\r\n<strong>Strategic Sourcing:</strong>\r\n\r\n<p>[webform_submission:values:strategic_sourcing]</p>\r\n<br />\r\n<strong>Does this item require a waiver?:</strong>\r\n\r\n<p>[webform_submission:values:waiver]</p>\r\n<br />\r\n<strong>Competition:</strong>\r\n\r\n<p>[webform_submission:values:competition]</p>\r\n<br />\r\n<strong>Sustainability:</strong>\r\n\r\n<p>[webform_submission:values:sustainability]</p>\r\n<br />\r\n<strong>Confirm whether the equipment to be purchased is IPv6 compliant:</strong>\r\n\r\n<p>[webform_submission:values:ipv6]</p>\r\n<br />\r\n<strong>Accessibility:</strong>\r\n\r\n<p>[webform_submission:values:accessibility]</p>\r\n<br />\r\n<strong>Other:</strong>\r\n\r\n<p>[webform_submission:values:other]</p>\r\n[webform_submission:values:additional_supporting_documentation]<br />\r\n<br />\r\n<strong>Disclaimer:</strong>\r\n\r\n<p>This email may contain source selection information and should only be released within the Government to those who have a bona-fide need to know. Unauthorized release of source selection information is prohibited by law.</p>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_3:
+    id: email
+    label: 'IT Hardware FITARA (TE Submitted For Review)'
+    handler_id: email_3
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:system_form:raw]'
+      to_options:
+        -
+          value: Desktop
+          text: Parton.Caroline@epa.gov
+        -
+          value: Laptop
+          text: Parton.Caroline@epa.gov
+        -
+          value: 'Virtual Machine'
+          text: Parton.Caroline@epa.gov
+        -
+          value: Tablet
+          text: Parton.Caroline@epa.gov
+        -
+          value: 'Scientific Instrument'
+          text: Parton.Caroline@epa.gov
+        -
+          value: Server
+          text: Parton.Caroline@epa.gov
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: ORD@Work
+      subject: 'IT Hardware FITARA (TE Submitted For Review)'
+      body: "On behalf of [webform_submission:values:email_address], please review and consider this FITARA Request for Approval\r\n<h1>IT Hardware Request for Approval</h1>\r\n\r\n<h2>[webform_submission:values:fitara_request_for_approval_]</h2>\r\n<strong>IT Code:<br />\r\n<br />\r\nE-mail Address of Requester:</strong><br />\r\n[webform_submission:values:email_address]<br />\r\n<br />\r\n<strong>Phone Number of Requester:</strong><br />\r\n[webform_submission:values:phone_number]<br />\r\n<br />\r\n<strong>Email Distribution List (i.e. Reply All):</strong><br />\r\n[webform_submission:values:email_address]<br />\r\nRowan.Tim@EPA.gov<br />\r\nBurke.Pat@epa.gov<br />\r\nMarshall.Kelley@epa.gov<br />\r\nCorbin.Cameron@EPA.gov<br />\r\nLopez.Sarah@EPA.gov<br />\r\nHammel.Craig@epa.gov<br />\r\nMcDowell.Mike@epa.gov<br />\r\nBenton.Melissa@epa.gov<br />\r\nDowd.Sean@EPA.gov<br />\r\nSykes.John@EPA.gov<br />\r\nyoung.brenda@epa.gov<br />\r\nscheitlin.tom@epa.gov<br />\r\nRichardson.Jon@epa.gov<br />\r\nBrennan.Beverly@epa.gov<br />\r\n[webform_submission:values:additional_email_addresses_for_inclusion_on_subsequent_messages_]<br />\r\n<br />\r\n<strong>Requesting Organization:</strong><br />\r\n[webform_submission:values:requesting_organization]<br />\r\n<br />\r\n<strong>Location:</strong><br />\r\n[webform_submission:values:location]<br />\r\n<br />\r\n<strong>PR Number:</strong><br />\r\n[webform_submission:values:pr_number]<br />\r\n<br />\r\n<strong>Total price of procurement:</strong><br />\r\n$[webform_submission:values:total_price_of_procurement_]<br />\r\n<br />\r\n<strong>Description:</strong>\r\n\r\n<p>[webform_submission:values:description]</p>\r\n<br />\r\n<strong>Items:</strong> [webform_submission:values:items]<br />\r\n<br />\r\n<strong>Is this new hardware or maintenance of existing hardware?:</strong>\r\n\r\n<p>[webform_submission:values:new_or_maintenance]</p>\r\n<br />\r\n<strong>Vendor Quotes:</strong>\r\n\r\n<p>[webform_submission:values:vendor_quotes]</p>\r\n<br />\r\n<strong>Strategic Sourcing:</strong>\r\n\r\n<p>[webform_submission:values:strategic_sourcing]</p>\r\n<br />\r\n<strong>Does this item require a waiver?:</strong>\r\n\r\n<p>[webform_submission:values:waiver]</p>\r\n<br />\r\n<strong>Competition:</strong>\r\n\r\n<p>[webform_submission:values:competition]</p>\r\n<br />\r\n<strong>Sustainability:</strong>\r\n\r\n<p>[webform_submission:values:sustainability]</p>\r\n<br />\r\n<strong>Confirm whether the equipment to be purchased is IPv6 compliant:</strong>\r\n\r\n<p>[webform_submission:values:ipv6]</p>\r\n<br />\r\n<strong>Accessibility:</strong>\r\n\r\n<p>[webform_submission:values:accessibility]</p>\r\n<br />\r\n<strong>Other:</strong>\r\n\r\n<p>[webform_submission:values:other]</p>\r\n[webform_submission:values:additional_supporting_documentation]<br />\r\n<br />\r\n<strong>Disclaimer:</strong>\r\n\r\n<p>This email may contain source selection information and should only be released within the Government to those who have a bona-fide need to know. Unauthorized release of source selection information is prohibited by law.</p>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+variants: {  }
+uuid: d7c87d78-d92b-4bc2-9908-cd11303a2832
