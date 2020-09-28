@@ -70,9 +70,33 @@ p a:visited {
   text-decoration: none !important;
 }
 
-.usa-nav__submenu-item a:hover {
-  color: white !important;
-  text-decoration: underline !important;
+@media (min-width: 64em) {
+  .usa-nav__submenu-item a:hover {
+    color: white !important;
+    text-decoration: underline !important;
+  }
+}
+
+
+@media (max-width: 63.99em) {
+  .usa-nav__primary button[aria-expanded="true"]{
+    background-color: #162e51;
+    color: white;
+  }
+
+  .usa-nav__primary button[aria-expanded="true"]:hover {
+    background-color: #162e51;
+    color: white;
+  }
+
+  .usa-nav__submenu {
+    background-color: #162e51;
+  }
+
+  .usa-nav__submenu-item a:hover {
+    background-color: #162e51 !important;
+    text-decoration: underline !important;
+  }
 }
 
 nav a.usa-button {
@@ -135,6 +159,48 @@ div.usa-media-block__body a.ext {
 
 div.usa-media-block__body a.ext div.field--name-field-usa-media-block-heading {
   display: contents;
+}
+
+ul.usa-card-group div.field__items {
+  display: -webkit-box;
+}
+
+ul.usa-card-group div.field__items div.field__item {
+  display: contents;
+}
+
+ul.usa-card-group div.field__label {
+  display: none;
+}
+
+div.usa-card__media {
+  align-self: center;
+}
+
+div.usa-card__media div.field__item article {
+  height: 100%;
+}
+
+div.usa-card__media img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.usa-card--header-first .usa-card__media {
+  order: 0;
+}
+
+div.usa-card__body {
+  overflow-wrap: break-word;
+}
+
+div.field--name-field-uswds-button .usa-legend {
+  font-size: unset;
+  font-weight: unset;
+}
+
+.usa-card-group {
+  display: unset;
 }
 
 /* Applied styling to actions associated with comments */
@@ -372,7 +438,7 @@ ol, li {
   /*max-width:68ex;*/
 }
 
-ol, li:last-child {
+ol:not('usa-card-group'), li:last-child {
   margin-bottom: 0;
 }
 
@@ -409,7 +475,7 @@ fieldset .usa-radio__label {
 }
 
 /* provides spacing and image size equivalent to uswds standard*/
-.usa-alert {
+div[class~="usa-alert"]:not(.usa-alert--slim) {
   margin-top: 1.5rem;
   background-position: 1rem 1rem;
   background-size: 3.5rem;

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "febc5b4ab325bbd9697cd90a61d04825",
+    "content-hash": "577d3ee1dace82fdc245e95c854b5a63",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -7892,6 +7892,57 @@
             }
         },
         {
+            "name": "drupal/paragraph_view_mode",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/paragraph_view_mode.git",
+                "reference": "8.x-1.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/paragraph_view_mode-8.x-1.6.zip",
+                "reference": "8.x-1.6",
+                "shasum": "83c7e8ed732a037dee7ddaf42edf68fb7befb5dc"
+            },
+            "require": {
+                "drupal/core": "^8.0 || ^9.0",
+                "drupal/paragraphs": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.6",
+                    "datestamp": "1597841636",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Mariusz Andrzejewski (sayco)",
+                    "homepage": "https://www.drupal.org/u/sayco",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "volodymyr.umanets",
+                    "homepage": "https://www.drupal.org/user/3565617"
+                }
+            ],
+            "description": "This tiny module is meant to easily reuse the same paragraph types with different view mode (display mode).",
+            "homepage": "https://www.drupal.org/project/paragraph_view_mode",
+            "support": {
+                "source": "https://git.drupalcode.org/project/paragraph_view_mode",
+                "issues": "https://www.drupal.org/project/issues/paragraph_view_mode"
+            }
+        },
+        {
             "name": "drupal/paragraphs",
             "version": "1.12.0",
             "source": {
@@ -7934,6 +7985,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "2901390: Fixes 'null langcode' error when saving paragraphs to custom layout": "https://www.drupal.org/files/issues/2020-06-25/paragraphs-2901390-51.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",

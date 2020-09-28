@@ -27,12 +27,12 @@
  * @ingroup themeable
  */
 #}
+{% extends "block.html.twig" %}
 
-<div {{ attributes }}>
-  {{ title_prefix }}
-  <h2 class="font-heading-xl margin-y-0">{{ content.field_usa_section_heading }}</h2>
-  {{ title_suffix }}
-  <p class="usa-intro">{{ content.field_usa_intro_text }}</p>
-  <a class="usa-button usa-button--big"
-     href="{{ content.field_usa_cta_button[0]['#url'] }}">{{ content.field_usa_cta_button[0]['#title'] }}</a>
-</div>
+{% block content %}
+  <div {{ attributes }}>
+    <ul class="usa-card-group">
+      {{ content }}
+    </ul>
+  </div>
+{% endblock content %}
