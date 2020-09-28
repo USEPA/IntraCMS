@@ -73,7 +73,7 @@ class TravelformHandler extends WebformHandlerBase {
           '#type' => 'link',
           '#title' => $this->t('%ticket', ['%ticket' => $this->jira_submission_service->getSubmittedTicket()]),
           '#url' => Url::fromUri($this->jira_submission_service->getSubmittedTicketURL()),
-          '#prefix' => "View ticket: ",
+          '#prefix' => "View request: ",
         ];
         $this->messenger()->addMessage($this->renderer->renderPlain($build));
 
