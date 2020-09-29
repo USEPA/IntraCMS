@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.uswds_card.field_body
     - field.field.paragraph.uswds_card.field_card_type
-    - field.field.paragraph.uswds_card.field_uswds_body
     - field.field.paragraph.uswds_card.field_uswds_button
     - field.field.paragraph.uswds_card.field_uswds_card_heading
     - field.field.paragraph.uswds_card.field_uswds_card_media
@@ -13,11 +13,9 @@ dependencies:
   module:
     - layout_builder
     - layout_builder_restrictions
-    - layout_discovery
     - layout_library
     - link
     - paragraph_view_mode
-    - text
 third_party_settings:
   layout_builder:
     allow_custom: false
@@ -35,19 +33,19 @@ targetEntityType: paragraph
 bundle: uswds_card
 mode: default
 content:
+  field_body:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
   field_card_type:
     weight: 0
     label: above
     settings: {  }
     third_party_settings: {  }
     type: paragraph_view_mode
-    region: content
-  field_uswds_body:
-    weight: 3
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
     region: content
   field_uswds_button:
     weight: 4

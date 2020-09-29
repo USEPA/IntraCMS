@@ -4,17 +4,17 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.card_extended_media
+    - field.field.paragraph.uswds_card.field_body
     - field.field.paragraph.uswds_card.field_card_type
-    - field.field.paragraph.uswds_card.field_uswds_body
     - field.field.paragraph.uswds_card.field_uswds_button
     - field.field.paragraph.uswds_card.field_uswds_card_heading
     - field.field.paragraph.uswds_card.field_uswds_card_media
+    - field.field.paragraph.uswds_card.paragraph_view_mode
     - paragraphs.paragraphs_type.uswds_card
   module:
     - layout_builder
     - link
     - paragraph_view_mode
-    - text
 third_party_settings:
   layout_builder:
     allow_custom: false
@@ -30,13 +30,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: paragraph_view_mode
-    region: content
-  field_uswds_body:
-    weight: 3
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
     region: content
   field_uswds_button:
     weight: 4
@@ -60,5 +53,6 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_body: true
   field_uswds_card_heading: true
   paragraph_view_mode: true
