@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.uswds_card.field_body
     - field.field.paragraph.uswds_card.field_card_type
-    - field.field.paragraph.uswds_card.field_uswds_body
     - field.field.paragraph.uswds_card.field_uswds_button
     - field.field.paragraph.uswds_card.field_uswds_card_heading
     - field.field.paragraph.uswds_card.field_uswds_card_media
@@ -14,12 +14,19 @@ dependencies:
     - link
     - media_library
     - paragraph_view_mode
-    - text
 id: paragraph.uswds_card.default
 targetEntityType: paragraph
 bundle: uswds_card
 mode: default
 content:
+  field_body:
+    weight: 3
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
   field_card_type:
     weight: 0
     settings:
@@ -34,14 +41,6 @@ content:
       default_view_mode: standard_card
     third_party_settings: {  }
     type: paragraph_view_mode
-    region: content
-  field_uswds_body:
-    weight: 3
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
     region: content
   field_uswds_button:
     weight: 4
