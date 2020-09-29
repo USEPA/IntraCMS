@@ -65,12 +65,12 @@ p a:visited {
   color: #562b97;
 }
 
-.usa-nav__submenu-item a {
-  color: white !important;
-  text-decoration: none !important;
-}
 
 @media (min-width: 64em) {
+  .usa-nav__submenu-item a {
+    color: white !important;
+    text-decoration: none !important;
+  }
   .usa-nav__submenu-item a:hover {
     color: white !important;
     text-decoration: underline !important;
@@ -79,23 +79,9 @@ p a:visited {
 
 
 @media (max-width: 63.99em) {
-  .usa-nav__primary button[aria-expanded="true"]{
-    background-color: #162e51;
-    color: white;
-  }
-
-  .usa-nav__primary button[aria-expanded="true"]:hover {
-    background-color: #162e51;
-    color: white;
-  }
-
-  .usa-nav__submenu {
-    background-color: #162e51;
-  }
-
-  .usa-nav__submenu-item a:hover {
-    background-color: #162e51 !important;
-    text-decoration: underline !important;
+  .usa-nav__submenu-item:hover > a {
+    color: #005ea2; !important;
+    text-decoration: none;
   }
 }
 
