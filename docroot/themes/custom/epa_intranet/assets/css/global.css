@@ -79,9 +79,23 @@ p a:visited {
 
 
 @media (max-width: 63.99em) {
+  .usa-nav__submenu .usa-nav__submenu-item {
+    width: 100%
+  }
+
   .usa-nav__submenu-item:hover > a {
     color: #005ea2; !important;
     text-decoration: none;
+  }
+
+  .usa-nav__submenu div.grid-row.grid-gap-4 {
+     padding-left: 1rem;
+     padding-right: 1rem;
+  }
+
+  .usa-nav__submenu div.grid-row.grid-gap-4 > * {
+    padding-left: unset;
+    padding-right: unset;
   }
 }
 

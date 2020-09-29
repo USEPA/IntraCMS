@@ -23,7 +23,6 @@
   {% elseif menu_level == 1 %}
   <ul id="megamenu-{{ button_id }}" class="usa-nav__submenu {% if megamenu %}usa-megamenu{% endif %}">
     <div class="grid-row grid-gap-4">
-      <div class="usa-col">
       {% if duplicate_parent %}
         <li class="usa-nav__submenu-item">
           <a class="usa-nav__link" href="{{ parent.url }}">
@@ -42,8 +41,7 @@
               <li class="{% if menu_level == 0 %}usa-nav__primary-item{% endif %} {% if menu_level > 0 %}usa-nav__submenu-item{% endif %}">
             {% endif %}
             {% if menu_level == 0 and item.below %}
-              <button class="usa-accordion__button usa-nav__link " aria-expanded="false"
-                      aria-controls="megamenu-{{ loop.index }}">
+                <button class="usa-accordion__button usa-nav__link " aria-expanded="false" aria-controls="megamenu-{{ loop.index }}">
                 <span>{{ item.title }}</span>
               </button>
             {% endif %}
@@ -59,8 +57,7 @@
                   </a>
                 </strong>
               {% else %}
-                <a
-                  href="{{ item.url }}"{% if menu_level == 0 %} class="usa-nav__link{% if item.in_active_trail %} usa-current{% endif %}" {% endif %}>
+                    <a href="{{ item.url }}"{% if menu_level == 0 %} class="usa-nav__link{% if item.in_active_trail %} usa-current{% endif %}" {% endif %}>
                   <span>{{ item.title }}</span>
                 </a>
               {% endif %}
@@ -72,7 +69,6 @@
       {% endif %}
   </ul>
   {% if menu_level > 1 %}
-    </div>
     </div>
   {% endif %}
   {% endif %}
