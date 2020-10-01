@@ -1,0 +1,191 @@
+langcode: en
+status: open
+dependencies: {  }
+open: null
+close: null
+weight: 0
+uid: 90
+template: false
+archive: false
+id: 2020_fmfia_certification_form
+title: '2020 FMFIA Certification Form'
+description: "<p><strong>Instructions:</strong>&nbsp;Use this form to provide a brief, high-level discussion of your office, program or region&#39;s&nbsp;efforts to ensure the integrity of scientific information in FY20. Offices, programs, and regions may submit multiple reports or combine information into one report. EPA&rsquo;s Scientific Integrity Committee will review summary documents encompassing content from all completed forms and use this&nbsp;information to identify potential issues for the attention of senior managers (for example, during the Agency&rsquo;s End-of-Year Management Integrity Meeting) and to develop the Agency&rsquo;s annual&nbsp;report on the status of scientific integrity within EPA.&nbsp; Responses will be used in anonymous aggregate form, except for accomplishments that will identify the office submitting them.&nbsp; All information submitted is transferred/stored using a secure server and only accessible by Scientific Integrity Staff.</p>\r\n\r\n<p><em>(NOTE:&nbsp; If you are recommending that a scientific integrity issue be identified as a potential, Agency-level, or office-level material weakness, please also complete form&nbsp;</em>&quot;<a href=\"https://usepa.sharepoint.com/:w:/r/sites/OCFO_Work/FMFIA%20Team/_layouts/15/Doc.aspx?sourcedoc=%7B7FFC25A3-DE54-42FD-988D-F328865EA944%7D&amp;file=AL%20FORM%20-%20FY%202019%20New%20Identified%20Weaknesses%20and%20Significant%20Deficiencies%20(2-21-19).doc&amp;action=default&amp;mobileredirect=true\">FY 2020&nbsp;New Weaknesses and Deficiencies</a>.&quot;)</p>"
+category: 'Scientific Integrity'
+elements: "name:\n  '#type': textfield\n  '#title': Name\ntitle:\n  '#type': textfield\n  '#title': Title\norganization:\n  '#type': textfield\n  '#title': Organization\nemail_address:\n  '#type': textfield\n  '#title': 'Email Address'\nphone_number:\n  '#type': textfield\n  '#title': 'Phone Number'\nmy_office_does:\n  '#type': checkbox\n  '#title': 'My office DOES'\n  '#description': '<h2><em>My office generates, manages, uses, influences, communicates or otherwise deals with scientific information.</em></h2>'\n  '#description_display': before\n  '#states':\n    disabled:\n      ':input[name=\"my_office_does_not\"]':\n        checked: true\nmy_office_does_not:\n  '#type': checkbox\n  '#title': 'My office DOES NOT'\n  '#description': 'Before choosing this option, consider the integrity of research, numbers, and statistics your office creates, communicates, or utilizes'\n  '#states':\n    disabled:\n      ':input[name=\"my_office_does\"]':\n        checked: true\naccomplishments:\n  '#type': textarea\n  '#title': 'FY20 Accomplishments'\n  '#description': |\n    <div style=\"margin-left:8px\"><span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Describe accomplishments or best practices in scientific integrity in FY20 from your office, program, or region. Please provide URLs as necessary to further describe or share illustrations of the work.</span></span></span></span><br />\n    <span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\">&nbsp;</span></span><br />\n    <span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">NOTE: Please focus on accomplishments related to implementation of scientific integrity policies or practices, such as: supporting differing scientific opinions, supporting best practices for clearance of scientific products; including scientific integrity language in employee handbooks or grant solicitation materials; outreach by managers or senior officials to promote scientific integrity. This list is not exhaustive, but it is illustrative.</span></span></span></span><br />\n    <br />\n    <span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Examples that are not directly related to scientific integrity: research accomplishments; regular meetings of science committees; routine support of ORD or another office&rsquo;s programs. </span></span></span></span><br />\n    <br />\n    <span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">We may not be able to include all your office&rsquo;s accomplishments in the next Annual Report; therefore, please list them in the order of importance to your office.&nbsp; </span></span></span></span></div>\n    \n  '#states':\n    visible:\n      ':input[name=\"my_office_does\"]':\n        checked: true\nfy20_innovations:\n  '#type': textarea\n  '#title': 'FY20 Innovations'\n  '#description': |\n    <span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Describe&nbsp;any innovations or new initiatives that further the culture of scientific integrity at the Agency that your office, program or region&nbsp;is planning to implement during FY21. </span></span></span></span><br />\n    <br />\n    <span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">NOTE: Please focus on innovations or new initiatives related to implementation of scientific integrity policies or practices, such as: supporting differing scientific opinions, supporting best practices for clearance of scientific products; including scientific integrity language in employee handbooks or grant solicitation materials; outreach by managers or senior officials to promote scientific integrity. This list is not exhaustive, but it is illustrative.</span></span></span></span>\n    \n  '#states':\n    visible:\n      ':input[name=\"my_office_does\"]':\n        checked: true\nfy20_challenges:\n  '#type': textarea\n  '#title': 'FY20 Challenges'\n  '#description': '<span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Describe any problems or challenges you are experiencing in scientific integrity in FY20 and any steps that you have taken to address them.</span></span></span></span>'\n  '#states':\n    visible:\n      ':input[name=\"my_office_does\"]':\n        checked: true\nfy20_assistance:\n  '#type': textarea\n  '#title': 'FY20 Assistance'\n  '#description': '<span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Are there ways in which the Scientific Integrity Program can be of assistance, or are there issues that you would like the Scientific Integrity Committee to consider addressing?</span></span></span></span>'\n  '#states':\n    visible:\n      ':input[name=\"my_office_does\"]':\n        checked: true\nfy20_vulnerabilities:\n  '#type': textarea\n  '#title': 'FY20 Vulnerabilities'\n  '#description': '<span style=\"font-size:12pt\"><span style=\"font-family:&quot;Times New Roman&quot;,serif\"><span style=\"font-size:10.0pt\"><span style=\"font-family:&quot;Arial&quot;,sans-serif\">Based on your review of your office&rsquo;s implementation of the Policy, did you identify any vulnerabilities or weaknesses in scientific integrity? Please explain.</span></span></span></span>'\n  '#states':\n    visible:\n      ':input[name=\"my_office_does\"]':\n        checked: true"
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: both
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_remote_addr: true
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_log: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_auto_forward: true
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_url: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }
+uuid: a9282245-8607-40e4-a175-41f821effdf9

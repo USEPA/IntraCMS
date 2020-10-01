@@ -31,21 +31,6 @@ class TravelServicesForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('webform_custom_submissions.form');
-    $form['DC_PROJECT'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('DC Project ID'),
-      '#default_value' => $config->get('DC_PROJECT'),
-    ];
-    $form['CIN_PROJECT'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('CIN Project ID'),
-      '#default_value' => $config->get('CIN_PROJECT'),
-    ];
-    $form['RTP_PROJECT'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('RTP Project ID'),
-      '#default_value' => $config->get('RTP_PROJECT'),
-    ];
     $form['BASE_URL'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Base Url for Jira'),
@@ -92,9 +77,6 @@ class TravelServicesForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     parent::submitForm($form, $form_state);
     $this->config('webform_custom_submissions.form')
-      ->set('DC_PROJECT', $form_state->getValue('DC_PROJECT'))
-      ->set('CIN_PROJECT', $form_state->getValue('CIN_PROJECT'))
-      ->set('RTP_PROJECT', $form_state->getValue('RTP_PROJECT'))
       ->set('BASE_URL', $form_state->getValue('BASE_URL'))
       ->set('REST_URL', $form_state->getValue('REST_URL'))
       ->set('CREATE_ISSUE_URL', $form_state->getValue('CREATE_ISSUE_URL'))

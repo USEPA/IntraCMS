@@ -1,0 +1,238 @@
+langcode: en
+status: open
+dependencies:
+  module:
+    - webform_analysis
+open: null
+close: null
+weight: 0
+uid: 37
+template: false
+archive: false
+id: elisa_test_webform
+title: 'Stakeholder Engagement Tracker'
+description: 'Use this form to document your stakeholder engagement activities.&nbsp;'
+category: 'Solutions-Driven Research'
+elements: "flexbox:\n  '#type': webform_flexbox\n  '#align_items': center\nname:\n  '#type': webform_name\n  '#title': Name\n  '#title_display': before\n  '#wrapper_type': form_element\n  '#wrapper_attributes':\n    style: 'margin-bottom: 60px; margin-top: 5px; '\n  '#label_attributes':\n    style: 'font-weight: bold;'\n  '#title__access': false\n  '#middle__access': false\n  '#suffix__access': false\n  '#degree__access': false\nflexbox_06:\n  '#type': webform_flexbox\n  stakeholders_involved:\n    '#type': webform_name\n    '#title': 'Stakeholders Involved'\n    '#multiple': true\n    '#title_display': before\n    '#multiple__sorting': false\n    '#multiple__operations': false\n    '#multiple__add_more_input_label': 'more stakeholders'\n    '#multiple__add_more_items': 10\n    '#wrapper_type': form_element\n    '#wrapper_attributes':\n      style: 'margin-bottom: 60px;'\n    '#label_attributes':\n      style: 'font-weight: bold;'\n    '#title__access': false\n    '#middle__access': false\n    '#suffix__access': false\n    '#degree__access': false\n  team_members_involved:\n    '#type': webform_name\n    '#title': 'Team Members Involved'\n    '#multiple': true\n    '#multiple__sorting': false\n    '#multiple__operations': false\n    '#multiple__add_more_input_label': 'more team members'\n    '#wrapper_type': form_element\n    '#wrapper_attributes':\n      style: 'margin-bottom: 60px;'\n    '#label_attributes':\n      style: 'font-weight: bold;'\n    '#title__access': false\n    '#middle__access': false\n    '#suffix__access': false\n    '#degree__access': false\nmaterials_provided_prior_to_or_during_the_activity:\n  '#type': textarea\n  '#title': 'Materials provided prior to or during the activity'\n  '#wrapper_attributes':\n    style: 'margin-bottom: 40px;'\n  '#label_attributes':\n    style: 'font-weight: bold;'\nflexbox_02:\n  '#type': webform_flexbox\n  start_date:\n    '#type': date\n    '#title': 'Start Date'\n    '#label_attributes':\n      style: 'font-weight: bold;'\n    '#datepicker': true\n  end_date_if_applicable_:\n    '#type': date\n    '#title': 'End Date (if applicable)'\n    '#wrapper_attributes':\n      style: 'margin-bottom: 60px;'\n    '#label_attributes':\n      style: 'font-weight: bold;'\n    '#datepicker': true\nactivity_type:\n  '#type': webform_select_other\n  '#title': 'Activity Type'\n  '#options':\n    In-Person: In-Person\n    Webinar: Webinar\n    'Phone Conference': 'Phone Conference'\n    Email: Email\n  '#wrapper_type': form_element\n  '#wrapper_attributes':\n    style: 'margin-bottom: 60px;'\n  '#label_attributes':\n    style: 'font-weight: bold;'\nflexbox_01:\n  '#type': webform_flexbox\n  agenda_topics_of_discussion:\n    '#type': textfield\n    '#title': 'Agenda/Topics of Discussion'\n    '#multiple': true\n    '#description': 'Enter the agenda of the activity here, or attach.'\n    '#multiple__sorting': false\n    '#multiple__operations': false\n    '#multiple__add_more_input_label': 'more topics'\n    '#wrapper_attributes':\n      style: 'margin-bottom: 60px;'\n    '#label_attributes':\n      style: 'font-weight: bold;'\n  attach_agenda:\n    '#type': managed_file\n    '#title': 'Attach Agenda'\n    '#multiple': true\n    '#wrapper_attributes':\n      style: 'margin-bottom: 60px;'\n    '#label_attributes':\n      style: 'font-weight: bold;'\n    '#file_preview': name\n    '#max_filesize': '20'\n    '#file_extensions': 'txt rtf odf pdf doc docx ppt pptx xls xlsx xml tar zip'\n    '#sanitize': true\nflexbox_03:\n  '#type': webform_flexbox\n  goals_objectives_of_activity:\n    '#type': textarea\n    '#title': 'Goals/Objectives of Activity'\n    '#multiple': true\n    '#multiple__sorting': false\n    '#multiple__operations': false\n    '#multiple__add_more_input_label': 'more goals'\n    '#wrapper_attributes':\n      style: 'margin-bottom: 60px;'\n    '#label_attributes':\n      style: 'font-weight: bold;'\nflexbox_07:\n  '#type': webform_flexbox\n  issues_raised_during_the_activity:\n    '#type': textarea\n    '#title': 'Issues raised during the activity'\n    '#wrapper_attributes':\n      style: 'margin-bottom: 40px;'\n    '#label_attributes':\n      style: 'font-weight: bold;'\n  specific_action_items_resulting_from_the_activity:\n    '#type': textfield\n    '#title': 'Specific action items resulting from the activity'\n    '#multiple': true\n    '#multiple__sorting': false\n    '#multiple__operations': false\n    '#multiple__add_more_input_label': 'more action items'\n    '#wrapper_attributes':\n      style: 'margin-bottom: 60px; '\n    '#label_attributes':\n      style: 'font-weight: bold;'\nflexbox_04:\n  '#type': webform_flexbox\n  key_takeaways_from_the_engagement_activity:\n    '#type': textarea\n    '#title': 'Key takeaways from the engagement activity'\n    '#wrapper_attributes':\n      style: 'margin-bottom: 60px;'\n    '#label_attributes':\n      style: 'font-weight: bold;'\nflexbox_05:\n  '#type': webform_flexbox\n  did_you_use_any_specific_engagement_methods_:\n    '#type': textarea\n    '#title': 'Did you use any specific engagement methods?'\n    '#wrapper_attributes':\n      style: 'margin-bottom: 40px;'\n    '#label_attributes':\n      style: 'font-weight: bold;'\n  additional_comments_notes:\n    '#type': textarea\n    '#title': 'Additional Comments/Notes'\n    '#label_attributes':\n      style: 'font-weight: bold;'"
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: ''
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_remote_addr: true
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: true
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_unsaved: true
+  form_disable_back: false
+  form_submit_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_access_denied: login
+  form_access_denied_title: ''
+  form_access_denied_message: 'You must log in with your LAN ID and password to access this form.&nbsp;'
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_log: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_auto_forward: true
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_url: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+access:
+  create:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  email:
+    id: email
+    label: Email
+    handler_id: email
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: lazzarino.elisa@epa.gov
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+variants: {  }
+uuid: a1255579-d6ac-4cd5-8465-7978eff8fbf3
+third_party_settings:
+  webform_analysis:
+    chart_type: ColumnChart
+    components:
+      - materials_provided_prior_to_or_during_the_activity
+      - activity_type
+      - specific_action_items_resulting_from_the_activity

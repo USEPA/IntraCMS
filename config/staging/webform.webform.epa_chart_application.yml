@@ -1,0 +1,197 @@
+langcode: en
+status: open
+dependencies: {  }
+open: null
+close: null
+weight: 0
+uid: 198
+template: false
+archive: false
+id: epa_chart_application
+title: 'EPA ChaRT Application'
+description: "<span style=\"font-size:11pt\"><span style=\"line-height:115%\"><span style=\"font-family:Calibri,sans-serif\"><a name=\"_Hlk33689124\">All EPA Challenges and Prize Competitions must complete this application and provide it to </a><a href=\"mailto:shaw.denice@epa.gov\" style=\"color:blue; text-decoration:underline\">shaw.denice@epa.gov</a>&nbsp; two months prior to proposed launch date.&nbsp; This includes all Challenges and Prizes conducted under Section 24 (15 U.S.C. 3719) of the Stevenson-Wydler Technology Innovation Act or &ldquo;COMPETES authority&rdquo; as well as the others authorities identified below*. &nbsp;&nbsp;All sections are required to be completed.&nbsp; Incomplete applications will delay ChaRT review.&nbsp;&nbsp;</span></span></span><br />\r\n&nbsp;"
+category: Innovations
+elements: "processed_text:\n  '#type': processed_text\n  '#display_on': both\n  '#text': |\n    <h2>EPA ChaRT Application</h2>\n    \n    <p><a name=\"_Hlk33689124\">All EPA Challenges and Prize Competitions must complete this application and provide it to&nbsp;</a><a href=\"mailto:shaw.denice@epa.gov\">shaw.denice@epa.gov</a>&nbsp; within two months prior to proposed launch date.&nbsp; This includes all Challenges and Prizes conducted under Section 24 (15 U.S.C. 3719) of the Stevenson-Wydler Technology Innovation Act or “COMPETES authority” as well as the others authorities identified below*. &nbsp;&nbsp;All sections are required to be completed.&nbsp; Incomplete applications will delay ChaRT review.&nbsp;&nbsp;</p>\n    \n  '#format': simple_text\nchallenge_lead_name:\n  '#type': textfield\n  '#title': 'Challenge Lead'\n  '#description': 'First and Last Name'\n  '#title_display': before\n  '#description_display': before\n  '#required': true\nemail_address:\n  '#type': email\n  '#title': 'Email Address'\n  '#title_display': before\n  '#required': true\nphone_number:\n  '#type': number\n  '#title': 'Phone Number'\n  '#title_display': before\n  '#required': true\n  '#required_error': 'Phone Number is Required'\n  '#min': 0\n  '#max': 9\nchallenge_name_:\n  '#type': textarea\n  '#title': 'Challenge Title '\n  '#placeholder': 'Please provide the title of the prize competition or challenge. '\n  '#required': true\n  '#required_error': 'Challenge Name is Required '\nurl_if_available_:\n  '#type': textfield\n  '#title': 'URL (if available):  '\n  '#required': true\nch:\n  '#type': textarea\n  '#title': 'Challenge Description (For example - timeline, objectives, requirements)'\n  '#multiple': true\n  '#required': true\nchallenge_summary:\n  '#type': textarea\n  '#title': 'Challenge Public-Facing Summary'\n  '#placeholder': 'Please provide a summary of the competition intended for broad, public dissemination. '\n  '#required': true\nauthority:\n  '#type': webform_checkboxes_other\n  '#title': Authority\n  '#description': 'Under which authorization is this challenge being conducted (see EPA Policies and Procedures Handbook for a list of authorizations)? Please select the authority under which the prize competition or challenge was conducted:&nbsp;'\n  '#title_display': before\n  '#description_display': before\n  '#options':\n    'America COMPETES Act': 'America COMPETES Act'\n  '#other__option_label': 'Other:'\n  '#required': true\n  '#options__properties': ''\nchallenge_and_prize_competitions_at_epa:\n  '#type': processed_text\n  '#text': |\n    <p><a href=\"https://intranet.ord.epa.gov/sites/default/files/inline-files/managing-c-p-competitions.pdf\">Managing Challenge and Prize Competitions at the U.S. EPA&nbsp;</a></p>\n    \n  '#format': simple_text\ntotal_prize_purse_offered:\n  '#type': textarea\n  '#title': 'Total Prize Purse Offered'\n  '#placeholder': 'Please provide the total amount of prize purse offered. '\n  '#required': true\nnon_monetary_incentives_:\n  '#type': textarea\n  '#title': 'Non-Monetary Awards and or Incentives '\n  '#placeholder': 'If appropriate, please describe the non-monetary incentives offered to the participants from example. '\n  '#required': true\nevaluation_of_submissions_and_choosing_winners:\n  '#type': textarea\n  '#title': 'Evaluation of Submissions and Choosing Winners'\n  '#placeholder': 'Please describe the approach you plan to use to evaluate or judge submissions to the competition. '\n  '#required': true\n  '#counter_type': word\n  '#counter_maximum': 100\nobjectives_and_outcomes_of_the_prize_or_competition_goals_of_the:\n  '#type': webform_checkboxes_other\n  '#title': 'Objectives and outcomes of the Prize or Competition – Goals of the prize or competition – please indicate all that apply'\n  '#title_display': before\n  '#options':\n    'Improve a process/procedure/service carried out by EPA': 'Improve a process/procedure/service carried out by EPA'\n    'Generate innovative ideas/designs/concepts (ideation)': 'Generate innovative ideas/designs/concepts (ideation)'\n    'Develop/demonstrate technology (hardware or software)': 'Develop/demonstrate technology (hardware or software)'\n    Education/training: Education/training\n    'Outreach/information dissemination': 'Outreach/information dissemination'\n    'Build or strengthen a community': 'Build or strengthen a community'\n  '#other__option_label': 'Other: '\n  '#required': true\nplease_describe_how_the_competition_will_advance_epa_s_mission:\n  '#type': textarea\n  '#title': 'Please describe how the Competition will advance EPA’s Mission'\n  '#required': true\nplease_explain_why_a_competition_was_the_method_chosen_to_achiev:\n  '#type': textarea\n  '#title': 'Please explain why a competition was the method chosen to achieve the goal and advance the agency’s mission.   Please explain why a competition was chosen as opposed to other mechanisms such as contracts, grants etc. '\n  '#required': true\nuse_of_prize_competition_results_:\n  '#type': textarea\n  '#title': 'Intended use of Prize/Competition Results'\n  '#placeholder': 'Please describe how the results are envisioned to be use. '\n  '#required': true\nfunding_:\n  '#type': webform_document_file\n  '#title': 'Funding (Funding Obligation Memo)'\n  '#title_display': before\n  '#description_display': before\n  '#required': true\nfunding_3:\n  '#type': webform_document_file\n  '#title': 'Funding (Signed Miscellaneous Obligation Document (MOD) )'\n  '#required': true\nplease_identify_any_partnerships_with_other_organizations_and_th:\n  '#type': textarea\n  '#title': 'Please identify any partnerships with other organizations and their contribution or role.'\n  '#required': true\nproposed_start_date_for_challenge_:\n  '#type': textfield\n  '#title': 'Proposed Start Date for Challenge '\n  '#required': true\nproposed_close_date_for_challenge_:\n  '#type': textfield\n  '#title': 'Proposed Close Date for Challenge '\n  '#required': true\ntargeted_participants:\n  '#type': webform_checkboxes_other\n  '#title': \"Targeted Participants - Please identify the targeted participants of the challenge. \\_Select all that apply:\"\n  '#options':\n    K-12: K-12\n    'University Undergraduate Students': 'University Undergraduate Students'\n    'University Graduate Students': 'University Graduate Students'\n    'University/academic researchers': 'University/academic researchers'\n    Industry: Industry\n    'Non-profit organization': 'Non-profit organization'\n    'Private Individuals': 'Private Individuals'\n  '#other__option_label': 'Other: '\n  '#required': true\n  '#required_error': 'Please identify your target audience '\nsolicitation_of_submissions_please_select_which_of_the_following:\n  '#type': webform_checkboxes_other\n  '#title': 'Solicitation of Submissions – identify from the list below what outreach your plan to use'\n  '#title_display': before\n  '#options':\n    'Social media (e.g. Twitter, Facebook)': 'Social media (e.g. Twitter, Facebook)'\n    'Email (e.g. listservs)': 'Email (e.g. listservs)'\n    'Press release': 'Press release'\n    'Live event(s) prior to the competition': 'Live event(s) prior to the competition'\n    'Live video streaming announcement': 'Live video streaming announcement'\n  '#other__option_label': Other\n  '#required': true\n  '#options__properties': ''\nplease_attach_communication_plan:\n  '#type': webform_document_file\n  '#title': 'Please attach communication plan'\n  '#required': true\nimmediate_supervisor_name_title_email_:\n  '#type': textarea\n  '#title': 'Immediate Supervisor (name/title/email): '\n  '#title_display': before\n  '#required': true\nsignature:\n  '#type': webform_signature\n  '#title': Signature\n  '#required': true\nprogram_region_communications_lead_name_title_e_mail_:\n  '#type': textarea\n  '#title': 'Program/Region Communications Lead (name/title/e-mail): '\n  '#required': true\nsupervisor_approving_submission_form:\n  '#type': webform_signature\n  '#title': Signature\n  '#required': true\nplease_attach_copy_of_the_chart_application_doc_docx_:\n  '#type': webform_document_file\n  '#title': 'Please attach copy the most recent version of the Challenge (doc., docx.)'\n  '#required': true"
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: ''
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: both
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_remote_addr: true
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_log: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_auto_forward: true
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_url: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles:
+      - anonymous
+      - authenticated
+    users:
+      - 233
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles:
+      - anonymous
+      - authenticated
+    users:
+      - 233
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }
+uuid: f75f327e-c655-473e-86f5-f2eb4a7612b3

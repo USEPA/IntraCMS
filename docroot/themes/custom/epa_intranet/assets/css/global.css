@@ -65,14 +65,38 @@ p a:visited {
   color: #562b97;
 }
 
-.usa-nav__submenu-item a {
-  color: white !important;
-  text-decoration: none !important;
+
+@media (min-width: 64em) {
+  .usa-nav__submenu-item a {
+    color: white !important;
+    text-decoration: none !important;
+  }
+  .usa-nav__submenu-item a:hover {
+    color: white !important;
+    text-decoration: underline !important;
+  }
 }
 
-.usa-nav__submenu-item a:hover {
-  color: white !important;
-  text-decoration: underline !important;
+
+@media (max-width: 63.99em) {
+  .usa-nav__submenu .usa-nav__submenu-item {
+    width: 100%
+  }
+
+  .usa-nav__submenu-item:hover > a {
+    color: #005ea2; !important;
+    text-decoration: none;
+  }
+
+  .usa-nav__submenu div.grid-row.grid-gap-4 {
+     padding-left: 1rem;
+     padding-right: 1rem;
+  }
+
+  .usa-nav__submenu div.grid-row.grid-gap-4 > * {
+    padding-left: unset;
+    padding-right: unset;
+  }
 }
 
 nav a.usa-button {
@@ -136,6 +160,93 @@ div.usa-media-block__body a.ext {
 div.usa-media-block__body a.ext div.field--name-field-usa-media-block-heading {
   display: contents;
 }
+
+ul.usa-card-group div.field__items {
+  display: -webkit-box;
+}
+
+ul.usa-card-group div.field__items div.field__item {
+  display: contents;
+}
+
+ul.usa-card-group div.field__label {
+  display: none;
+}
+
+div.usa-card__media {
+  align-self: center;
+}
+
+div.usa-card__media div.field__item article {
+  height: 100%;
+}
+
+div.usa-card__media img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.usa-card--header-first .usa-card__media {
+  order: 0;
+}
+
+div.usa-card__body {
+  overflow-wrap: break-word;
+}
+
+div.field--name-field-uswds-button .usa-legend {
+  font-size: unset;
+  font-weight: unset;
+}
+
+.usa-card-group {
+  display: unset;
+}
+
+/* Styling overwrites for USWDS Card block layout */
+div.field--name-field-uswds-card .usa-sr-label,
+div.field--name-field-uswds-card div.paragraph-type-title {
+  font-size: 1.5rem;
+}
+
+div.field--name-field-uswds-card table td:not([class]) {
+  padding: 1rem;
+  width: 100%;
+}
+
+div.field--name-field-uswds-card table td .usa-accordion__button {
+  margin-top: 0.5rem;
+}
+
+div.field--name-field-uswds-card table td .handle {
+  padding: 1.5rem;
+}
+
+div.field--name-field-uswds-card table td.delta-order {
+  padding-left: 10px;
+}
+
+div.field--name-field-uswds-card table fieldset.media-library-widget {
+  margin-top: 1rem;
+}
+
+div.field--name-field-uswds-card table fieldset:not(.media-library-widget) legend {
+  margin-bottom: -1.5rem;
+}
+
+div.field--name-field-uswds-card table fieldset > *:not(legend) {
+  padding-left: 1.2rem;
+}
+
+div.field--name-field-uswds-card table div.media-library-item {
+  display: table-caption;
+}
+
+table button.media-library-widget__toggle-weight {
+  display: none;
+}
+
+/* END USWDS Card modal styling overwrites */
 
 /* Applied styling to actions associated with comments */
 /* Additionally applying proper reply styling, hiding redundant labels, cleaning up margins */
@@ -372,7 +483,7 @@ ol, li {
   /*max-width:68ex;*/
 }
 
-ol, li:last-child {
+ol:not('usa-card-group'), li:last-child {
   margin-bottom: 0;
 }
 
@@ -409,10 +520,15 @@ fieldset .usa-radio__label {
 }
 
 /* provides spacing and image size equivalent to uswds standard*/
-.usa-alert {
+div[class~="usa-alert"]:not(.usa-alert--slim) {
   margin-top: 1.5rem;
   background-position: 1rem 1rem;
   background-size: 3.5rem;
+}
+
+div.usa-alert--slim {
+  background-position: 1.4rem 0.70rem;
+  background-size: 2.5rem;
 }
 
 .webform-element-description {

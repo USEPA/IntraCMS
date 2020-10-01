@@ -1,0 +1,273 @@
+uuid: 743999b1-4ccc-4dec-a5a2-439f6a214822
+langcode: en
+status: open
+dependencies:
+  module:
+    - webform_custom_submissions
+open: null
+close: null
+weight: 0
+uid: 7
+template: false
+archive: false
+id: travel_authorization
+title: 'Travel Authorization'
+description: ''
+category: 'Travel Forms'
+elements: "traveler_information_section:\n  '#type': fieldset\n  '#title': 'Traveler Information'\n  are_you_completing_this_form_for_someone_else_:\n    '#type': select\n    '#title': 'Are you completing this form for someone else?'\n    '#options': yes_no\n    '#required': true\n  your_information:\n    '#type': 'webform_composite:completer_information'\n    '#title': 'Your Information'\n    '#required': true\n  verify_your_name:\n    '#type': textfield\n    '#title': 'Verify Your Name'\n    '#description': 'Please verify your name as it appears on government issued ID being used for travel.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"are_you_completing_this_form_for_someone_else_\"]':\n          value: 'No'\n  your_office_center:\n    '#type': select\n    '#title': 'Your Office / Center'\n    '#options': ord_centers_and_offices\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"are_you_completing_this_form_for_someone_else_\"]':\n          value: 'No'\n  ccte_divisions:\n    '#type': select\n    '#title': 'CCTE Division'\n    '#options': ccte_divisions\n    '#states':\n      visible:\n        ':input[name=\"your_office_center\"]':\n          value: CCTE\n    '#required': true\n  cemm_divisions:\n    '#type': select\n    '#title': 'CEMM Division'\n    '#options': cemm_divisions\n    '#states':\n      visible:\n        ':input[name=\"your_office_center\"]':\n          value: CEMM\n    '#required': true\n  ceser_divisions:\n    '#type': select\n    '#title': 'CESER Division'\n    '#options': ceser_divisions\n    '#states':\n      visible:\n        ':input[name=\"your_office_center\"]':\n          value: CESER\n    '#required': true\n  cphea_divisions:\n    '#type': select\n    '#title': 'CPHEA Division'\n    '#options': cphea_divisions\n    '#states':\n      visible:\n        ':input[name=\"your_office_center\"]':\n          value: CPHEA\n    '#required': true\n  orm_division:\n    '#type': select\n    '#title': 'ORM Division'\n    '#options': orm_divisions\n    '#states':\n      visible:\n        ':input[name=\"your_office_center\"]':\n          value: ORM\n    '#required': true\n  osape_division:\n    '#type': select\n    '#title': 'OSAPE Division'\n    '#options': osape_divisions\n    '#states':\n      visible:\n        ':input[name=\"your_office_center\"]':\n          value: OSAPE\n    '#required': true\n  osim_division:\n    '#type': select\n    '#title': 'OSIM Division'\n    '#options': osim_divisions\n    '#states':\n      visible:\n        ':input[name=\"your_office_center\"]':\n          value: OSIM\n    '#required': true\n  traveler_information:\n    '#type': 'webform_composite:traveler_information'\n    '#title': 'Traveler Information'\n    '#states':\n      visible:\n        ':input[name=\"are_you_completing_this_form_for_someone_else_\"]':\n          value: 'Yes'\n    '#required': true\n  verify_traveler_s_name:\n    '#type': textfield\n    '#title': 'Verify Traveler''s Name'\n    '#description': 'Please verify the traveler&#39;s name as it appears on government issued ID being used for travel.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"are_you_completing_this_form_for_someone_else_\"]':\n          value: 'Yes'\n  traveler_s_office_center:\n    '#type': select\n    '#title': 'Traveler''s Office / Center'\n    '#options': ord_centers_and_offices\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"are_you_completing_this_form_for_someone_else_\"]':\n          value: 'Yes'\n  ccte_division_traveler:\n    '#type': select\n    '#title': 'CCTE Division'\n    '#options': ccte_divisions\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"traveler_s_office_center\"]':\n          value: CCTE\n  cemm_division_traveler:\n    '#type': select\n    '#title': 'CEMM Division'\n    '#options': cemm_divisions\n    '#states':\n      visible:\n        ':input[name=\"traveler_s_office_center\"]':\n          value: CEMM\n    '#required': true\n  ceser_division_traveler:\n    '#type': select\n    '#title': 'CESER Division'\n    '#options': ceser_divisions\n    '#states':\n      visible:\n        ':input[name=\"traveler_s_office_center\"]':\n          value: CESER\n    '#required': true\n  cphea_division_traveler:\n    '#type': select\n    '#title': 'CPHEA Division'\n    '#options': cphea_divisions\n    '#states':\n      visible:\n        ':input[name=\"traveler_s_office_center\"]':\n          value: CPHEA\n    '#required': true\n  orm_division_traveker:\n    '#type': select\n    '#title': 'ORM Division'\n    '#options': orm_divisions\n    '#states':\n      visible:\n        ':input[name=\"traveler_s_office_center\"]':\n          value: ORM\n    '#required': true\n  osape_division_traveler:\n    '#type': select\n    '#title': 'OSAPE Division'\n    '#options': osape_divisions\n    '#states':\n      visible:\n        ':input[name=\"traveler_s_office_center\"]':\n          value: OSAPE\n    '#required': true\n  osim_division_traveler:\n    '#type': select\n    '#title': 'OSIM Division'\n    '#options': osim_divisions\n    '#states':\n      visible:\n        ':input[name=\"traveler_s_office_center\"]':\n          value: OSIM\n    '#required': true\n  office_point_of_contact:\n    '#type': textfield\n    '#title': 'Office Point of Contact'\n    '#description': 'Please provide a first and last name.'\n  traveler_type:\n    '#type': radios\n    '#title': 'Traveler Type'\n    '#options':\n      'EPA Employee': 'EPA Employee'\n      'Non-EPA Employee': 'Non-EPA Employee (Invitational)'\n    '#required': true\n  travel_type:\n    '#type': radios\n    '#title': 'Travel Type'\n    '#options': travel_type\n    '#required': true\n  passport_expiration_date:\n    '#type': date\n    '#title': 'Passport Expiration Date'\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\n    '#datepicker': true\n    '#date_date_format': m/d/Y\n  emergency_contact_information:\n    '#type': 'webform_composite:emergency_contact_information'\n    '#title': 'Emergency Contact Information'\n    '#multiple': 2\n    '#title_display': none\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\n    '#multiple__header_label': 'Emergency Contact Information'\n    '#multiple__sorting': false\n    '#multiple__operations': false\n    '#multiple__add_more_input': false\n    '#multiple__add_more_button_label': 'Add Additional Contact'\n  traveler_s_grade:\n    '#type': textfield\n    '#title': 'Traveler''s Grade'\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\n  title_position:\n    '#type': textfield\n    '#title': 'Position Title'\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\ntravel_details:\n  '#type': fieldset\n  '#title': 'Travel Details and Itinerary'\n  trip_type:\n    '#type': radios\n    '#title': 'Trip Type'\n    '#options': trip_type\n    '#required': true\n  one_way_flight:\n    '#type': 'webform_composite:one_way_flight'\n    '#title': 'One-way Flight'\n    '#states':\n      visible:\n        ':input[name=\"trip_type\"]':\n          value: 'One Way'\n    '#flying_from__required': true\n    '#flying_to__required': true\n    '#departing_date__required': true\n    '#departing_time__required': true\n  round_trip_flight:\n    '#type': 'webform_composite:round_trip_flight'\n    '#title': 'Round Trip Flight'\n    '#title_display': none\n    '#states':\n      visible:\n        ':input[name=\"trip_type\"]':\n          value: 'Round Trip'\n    '#flying_from__required': true\n    '#flying_to__required': true\n    '#departing_date__required': true\n    '#departing_time__required': true\n    '#returning_date__required': true\n    '#returning_time__required': true\n  multi_city_flight:\n    '#type': 'webform_composite:one_way_flight'\n    '#title': 'Multi-city Flight'\n    '#multiple': true\n    '#title_display': none\n    '#states':\n      visible:\n        ':input[name=\"trip_type\"]':\n          value: Multi-city\n    '#multiple__header_label': 'Flight Information'\n    '#multiple__sorting': false\n    '#multiple__operations': false\n    '#multiple__add_more_input': false\n    '#multiple__add_more_button_label': 'Add Stop'\n    '#flying_from__required': true\n    '#flying_to__required': true\n    '#departing_date__required': true\n    '#departing_time__required': true\n  is_personal_annual_leave_being_requested_:\n    '#type': select\n    '#title': 'Is Personal/Annual leave being requested?'\n    '#options': yes_no\n    '#required': true\n  dates_of_approved_leave:\n    '#type': date\n    '#title': 'Dates of Approved Leave'\n    '#multiple': true\n    '#title_display': none\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"is_personal_annual_leave_being_requested_\"]':\n          value: 'Yes'\n    '#multiple__header_label': 'Dates of Approved Leave'\n    '#multiple__sorting': false\n    '#multiple__operations': false\n    '#multiple__add_more_input': false\n    '#multiple__add_more_button_label': 'Add Date'\n    '#date_date_format': ''\n    '#date_part_order':\n      - year\n      - month\n      - day\nlodging:\n  '#type': fieldset\n  '#title': Lodging\n  per_diem_message:\n    '#type': webform_message\n    '#message_type': info\n    '#message_message': 'Please remind your traveler to stay within the <a href=\"http://www.gsa.gov/HP_01_Requested_perdiem\" target=\"_blank\">Government Per Diem Rates</a>&nbsp;when making Hotel Reservations.'\n    '#message_close': true\n  lodging_message:\n    '#type': webform_message\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: 'Invitational (non-EPA)'\n    '#message_type': info\n    '#message_message': 'Note: For Invitation Travel, it is the Traveler&#39;s responsibility to make hotel reservations.&nbsp;'\n  is_there_a_block_of_rooms_reserved_for_you_to_book_with_:\n    '#type': select\n    '#title': 'Is there a block of rooms reserved for you to book with?'\n    '#options': yes_no\n    '#required': true\n  block_of_rooms_message:\n    '#type': webform_message\n    '#states':\n      visible:\n        ':input[name=\"is_there_a_block_of_rooms_reserved_for_you_to_book_with_\"]':\n          value: 'Yes'\n    '#message_type': info\n    '#message_message': 'You will need to make your own reservation using the room block information. Please provide the hotel name and room rate to your travel preparer.'\n  do_you_already_have_a_room_reserved_:\n    '#type': select\n    '#title': 'Do you already have a room reserved?'\n    '#options': yes_no\n    '#required': true\n  reservation_information:\n    '#type': 'webform_composite:hotel_reserveation'\n    '#title': 'Reservation Information'\n    '#multiple': true\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"do_you_already_have_a_room_reserved_\"]':\n          value: 'Yes'\n    '#multiple__sorting': false\n    '#multiple__operations': false\n    '#multiple__add_more_input': false\n    '#multiple__add_more_button_label': 'Add another hotel'\n  please_stay_within_allowable_per_diem_if_selected_rate_is_over_p:\n    '#type': textarea\n    '#title': 'Over Per-Diem Justification'\n    '#description': 'Please stay within allowable per diem. If any hotel rate is over per diem, please provide a justification for the higher rate below.'\n    '#states':\n      visible:\n        ':input[name=\"do_you_already_have_a_room_reserved_\"]':\n          value: 'Yes'\n  do_you_have_a_hotel_chain_preference_:\n    '#type': select\n    '#title': 'Do you have a preferred hotel chain that you would like to use (if possible)?'\n    '#options': yes_no\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"do_you_already_have_a_room_reserved_\"]':\n          value: 'No'\n        ':input[name=\"is_there_a_block_of_rooms_reserved_for_you_to_book_with_\"]':\n          value: 'No'\n  hotel_preference:\n    '#type': 'webform_composite:hotel_preference'\n    '#title': 'Hotel Preference'\n    '#description_display': before\n    '#states':\n      visible:\n        ':input[name=\"do_you_have_a_hotel_chain_preference_\"]':\n          value: 'Yes'\n  address_of_meeting_s_:\n    '#type': webform_address\n    '#title': 'Address of Meeting(s)'\n    '#multiple': true\n    '#description': |\n      <span style=\"font-size:11.0pt\"><span style=\"font-family:Calibri\">Please make sure to add all locations for a multi-city trip.</span></span><br />\n      &nbsp;\n      \n    '#title_display': none\n    '#description_display': after\n    '#states':\n      visible:\n        ':input[name=\"do_you_already_have_a_room_reserved_\"]':\n          value: 'No'\n        ':input[name=\"is_there_a_block_of_rooms_reserved_for_you_to_book_with_\"]':\n          value: 'No'\n    '#multiple__header_label': 'Address of Meeting(s)'\n    '#multiple__sorting': false\n    '#multiple__operations': false\n    '#multiple__add_more_input': false\n    '#multiple__add_more_button_label': 'Add Location'\n    '#address_2__access': false\ntransportation:\n  '#type': fieldset\n  '#title': Transportation\n  airline_message:\n    '#type': webform_message\n    '#message_type': info\n    '#message_message': 'Please note, all airline and Amtrak reservations must be made in Concur or through BCD Travel directly.'\n  mode_s_of_transportation:\n    '#type': checkboxes\n    '#title': 'Mode(s) of Transportation'\n    '#options':\n      Air: Air\n      'Privately Owned Vehicle (POV)': 'Privately Owned Vehicle (POV)'\n      'Rental Car': 'Rental Car'\n      Rail: Rail\n      'Government Vehicle': 'Governmnet Vehicle'\n  fedtravel_message:\n    '#type': webform_message\n    '#states':\n      visible:\n        ':input[name=\"mode_s_of_transportation[Air]\"]':\n          checked: true\n    '#message_type': info\n    '#message_message': '<span style=\"font-size:11.0pt\"><span style=\"font-family:Calibri\"><em style=\"font-style:italic\"><span style=\"color:#1b1b1b\">If you would like to view contract carriers/flight options without booking visit&nbsp;</span></em><a href=\"http://www.fedtravel.com/\"><em style=\"font-style:italic\">www.fedtravel.com</em></a><em style=\"font-style:italic\">.</em></span></span>'\n  have_you_made_your_own_airline_reservation_:\n    '#type': select\n    '#title': 'Have you made your own airline reservation?'\n    '#options': yes_no\n    '#states':\n      visible:\n        ':input[name=\"mode_s_of_transportation[Air]\"]':\n          checked: true\n  would_you_like_to_request_a_specific_flight_:\n    '#type': select\n    '#title': 'Would you like to request a specific flight?'\n    '#options': yes_no\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"have_you_made_your_own_airline_reservation_\"]':\n          value: 'No'\n  information_about_specific_flight:\n    '#type': textarea\n    '#title': 'Information about specific flight'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"would_you_like_to_request_a_specific_flight_\"]':\n          value: 'Yes'\n  additional_information_transportation:\n    '#type': textarea\n    '#title': 'Additional Information'\n    '#description': 'If you have any additional transportation requirements, please specify those below.'\npurpose_and_funding:\n  '#type': fieldset\n  '#title': 'Purpose and Funding'\n  travel_purpose:\n    '#type': select\n    '#title': 'Travel Purpose'\n    '#options': travel_purpose\n    '#required': true\n  is_this_travel_for_an_epa_conference_:\n    '#type': select\n    '#title': 'Is this travel for an EPA conference?'\n    '#options': yes_no\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"travel_purpose\"]':\n          value: 'P4- Conference'\n  please_provide_the_conference_code:\n    '#type': textfield\n    '#title': 'Please provide the conference code'\n    '#states':\n      visible:\n        ':input[name=\"is_this_travel_for_an_epa_conference_\"]':\n          value: 'Yes'\n  travel_description:\n    '#type': textarea\n    '#title': 'Travel Description'\n    '#required': true\n  how_will_this_trip_benefit_the_epa_:\n    '#type': textarea\n    '#title': 'How will this trip benefit the EPA?'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\n  daily_itinerary:\n    '#type': managed_file\n    '#title': 'Daily Itinerary'\n    '#description': '<strong>Please attach a daily itinerary for what you will be doing while out of the country.</strong>'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\n    '#file_extensions': 'gif jpg png pdf doc docx ppt pptx xls xlsx xml tar zip'\n    '#sanitize': true\n  has_the_traveler_taken_hstos_training_:\n    '#type': select\n    '#title': 'Has the HSTOS training been taken?'\n    '#options': yes_no\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\n  who_is_your_deputy_ethics_official_:\n    '#type': textfield\n    '#title': 'Who is your Deputy Ethics Official?'\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\n  sponsoring_organization:\n    '#type': textfield\n    '#title': 'Sponsoring Organization'\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\n  division_director_and_or_branch_chief_s_name:\n    '#type': textarea\n    '#title': \"Division Director and/or\\_Branch Chief's Name\"\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\n  traveler_s_qualifications:\n    '#type': textarea\n    '#title': 'Traveler''s Qualifications'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\n  destination_country_contact_s_name:\n    '#type': textfield\n    '#title': 'Destination Country Contact''s Name'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\n  destination_country_contact_s_telephone:\n    '#type': tel\n    '#title': 'Destination Country Contact''s Telephone'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\n    '#international': true\n    '#international_initial_country': US\n  destination_country_contact_s_org:\n    '#type': textfield\n    '#title': 'Destination Country Contact''s Organization'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: International\n  hosting_organization_point_of_contact:\n    '#type': textfield\n    '#title': 'Hosting Organization Point of Contact'\n    '#description': 'Please provide name and phone number.'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"travel_type\"]':\n          value: 'Invitational (Non-EPA)'\n  is_someone_else_paying_for_a_portion_or_all_of_the_travel_:\n    '#type': select\n    '#title': 'Is someone else paying for a portion or all of the travel?'\n    '#options': yes_no\n    '#required': true\n  who_is_paying_:\n    '#type': radios\n    '#title': 'Who is paying?'\n    '#options':\n      'EPA Office': 'EPA Office'\n      'Non-EPA, US Federal Agency': 'Non-EPA, US Federal Agency'\n      'Non-Federal Source': 'Non-Federal Source'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"is_someone_else_paying_for_a_portion_or_all_of_the_travel_\"]':\n          value: 'Yes'\n  epa_office_paying:\n    '#type': textfield\n    '#title': 'EPA Office Paying'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"who_is_paying_\"]':\n          value: 'EPA Office'\n  cross_funding_label_:\n    '#type': textfield\n    '#title': \"Cross-funding Label\\_\"\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"who_is_paying_\"]':\n          value: 'EPA Office'\n  agency_name:\n    '#type': textfield\n    '#title': 'Agency Name'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"who_is_paying_\"]':\n          value: 'Non-EPA, US Federal Agency'\n  name_of_funding_organization:\n    '#type': textfield\n    '#title': 'Name of Funding Organization'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"who_is_paying_\"]':\n          value: 'Non-Federal Source'\n  has_an_ethics_form_been_prepared_:\n    '#type': select\n    '#title': \"Has an ethics form been prepared?\\_\"\n    '#options': yes_no\n    '#states':\n      visible:\n        ':input[name=\"who_is_paying_\"]':\n          value: 'Non-Federal Source'\n    '#required': true\n  has_an_ethics_form_been_approved_:\n    '#type': select\n    '#title': 'Has an ethics form been approved?'\n    '#options': yes_no\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"has_an_ethics_form_been_prepared_\"]':\n          value: 'Yes'\n  please_attach_approved_ethics_form_:\n    '#type': managed_file\n    '#title': \"Please attach approved ethics form.\\_\"\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"has_an_ethics_form_been_approved_\"]':\n          value: 'Yes'\n    '#file_extensions': 'gif jpg png pdf doc docx ppt pptx xls xlsx tar zip'\n    '#sanitize': true\n  please_attach_your_invitational_letter_:\n    '#type': managed_file\n    '#title': 'Please attach your invitational letter.'\n    '#required': true\n    '#states':\n      visible:\n        - ':input[name=\"has_an_ethics_form_been_approved_\"]':\n            value: 'No'\n        - xor\n        - ':input[name=\"has_an_ethics_form_been_prepared_\"]':\n            value: 'No'\n    '#file_extensions': 'gif jpg png pdf doc docx ppt pptx xls xlsx tar zip'\n    '#sanitize': true\n  will_training_dollars_be_used_for_this_travel_:\n    '#type': select\n    '#title': 'Will training dollars be used for this travel?'\n    '#options': yes_no\n    '#required': true\n  is_this_sf_182_approved_:\n    '#type': select\n    '#title': 'Is this SF-182 approved?'\n    '#options': yes_no\n    '#states':\n      visible:\n        ':input[name=\"will_training_dollars_be_used_for_this_travel_\"]':\n          value: 'Yes'\n  please_provide_more_information_about_the_current_status_of_the_:\n    '#type': textarea\n    '#title': 'Please provide more information about the current status of the SF-182.'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"is_this_sf_182_approved_\"]':\n          value: 'No'\n  please_attach_the_approved_sf_182:\n    '#type': managed_file\n    '#title': 'Please attach the approved SF-182'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"is_this_sf_182_approved_\"]':\n          value: 'Yes'\n    '#file_extensions': 'gif jpg png pdf doc docx ppt pptx xls xlsx tar zip'\n    '#sanitize': true\n  are_others_from_your_l_c_o_attending_this_meeting_as_well_:\n    '#type': select\n    '#title': 'Are others from your L/C/O attending this meeting as well?'\n    '#options': yes_no\n    '#required': true\n  please_provide_the_names_of_the_others_attending_this_meeting_wi:\n    '#type': textarea\n    '#title': \"Please provide the names of the others attending this meeting with you.\\_\"\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"are_others_from_your_l_c_o_attending_this_meeting_as_well_\"]':\n          value: 'Yes'\nexpenses:\n  '#type': fieldset\n  '#title': Expenses\n  transportation_expenses:\n    '#type': checkboxes\n    '#title': 'Anticipated Transportation Expenses'\n    '#options': transportation_expense\n  cost_of_taxi_uber_lyft:\n    '#type': number\n    '#title': 'Cost of Taxi/ Uber/ Lyft'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"transportation_expenses[Taxi / Uber/ Lyft]\"]':\n          checked: true\n  cost_of_metro_bus_public_transportation:\n    '#type': number\n    '#title': 'Cost of Metro/ Bus / Public Transportation'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"transportation_expenses[Metro / Bus / Public Transportation]\"]':\n          checked: true\n    '#min': 0\n  cost_of_pov:\n    '#type': number\n    '#title': 'Cost of POV'\n    '#description': 'Please enter the POV mileage (and indicate one-way or round trip).&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"transportation_expenses[POV]\"]':\n          checked: true\n    '#min': 0\n  cost_of_rental_car_fee:\n    '#type': number\n    '#title': 'Cost of Rental Car Fee'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"transportation_expenses[Rental Car]\"]':\n          checked: true\n    '#min': 0\n  cost_of_rental_car_fuel:\n    '#type': number\n    '#title': 'Cost of Rental Car Fuel'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"transportation_expenses[Rental Car Fuel]\"]':\n          checked: true\n    '#min': 0\n  cost_of_tolls:\n    '#type': number\n    '#title': 'Cost of Tolls'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"transportation_expenses[Tolls]\"]':\n          checked: true\n    '#min': 0\n  cost_of_rail:\n    '#type': number\n    '#title': 'Cost of Rail'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"transportation_expenses[Rail]\"]':\n          checked: true\n    '#min': 0\n  additional_expenses:\n    '#type': checkboxes\n    '#title': 'Additional Anticipated Expenses'\n    '#options': additional_trip_expenses\n  cost_of_conference_registration_fee:\n    '#type': number\n    '#title': 'Cost of Conference Registration Fee'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"additional_expenses[Conference Registration Fees]\"]':\n          checked: true\n    '#min': 0\n  cost_of_hotel:\n    '#type': number\n    '#title': 'Cost of Hotel'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"additional_expenses[Hotel Costs]\"]':\n          checked: true\n    '#min': 0\n  cost_of_hotel_parking:\n    '#type': number\n    '#title': 'Cost of Hotel Parking'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"additional_expenses[Hotel Parking]\"]':\n          checked: true\n    '#min': 0\n  cost_of_internet_fees:\n    '#type': number\n    '#title': 'Cost of Internet Fees'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"additional_expenses[Internet Fees]\"]':\n          checked: true\n    '#min': 0\n  cost_of_phone_calls:\n    '#type': number\n    '#title': 'Cost of Phone Calls'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"additional_expenses[Phone Calls]\"]':\n          checked: true\n    '#min': 0\n  cost_of_airport_parking:\n    '#type': number\n    '#title': 'Cost of Airport Parking'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"additional_expenses[Airport Parking]\"]':\n          checked: true\n    '#min': 0\n  cost_of_baggage_fees:\n    '#type': number\n    '#title': 'Cost of Baggage Fees'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"additional_expenses[Baggage Fee]\"]':\n          checked: true\n    '#min': 0\n  cost_of_cash_withdraw_finance_fees:\n    '#type': number\n    '#title': 'Cost of Cash Withdraw Finance Fees'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"additional_expenses[Cash Withdraw Finance Fees]\"]':\n          checked: true\n    '#min': 0\n  cost_of_atm_fees:\n    '#type': number\n    '#title': 'Cost of ATM Fees'\n    '#description': 'Please enter the dollar amount for this expense.&nbsp;'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"additional_expenses[ATM Fees]\"]':\n          checked: true\n    '#min': 0\n  cost_of_supplies:\n    '#type': textarea\n    '#title': 'Cost of Supplies'\n    '#description': 'Please itemize.'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"additional_expenses[Supplies]\"]':\n          checked: true\n  cost_of_other_expenses:\n    '#type': textarea\n    '#title': 'Cost of Other Expenses'\n    '#description': 'Please itemize any other expenses (name and dollar amount for each expense) and provide an explanation for each.'\n    '#required': true\n    '#states':\n      visible:\n        ':input[name=\"additional_expenses[Other]\"]':\n          checked: true\nadditional_information:\n  '#type': fieldset\n  '#title': 'Additional Information'\n  additional_info_text:\n    '#type': textarea\n    '#title': 'Additional Information'\n    '#description': '<span style=\"font-size:11.0pt\"><span style=\"font-family:Calibri\"><span style=\"color:#1b1b1b\">Please provide/explain any special requirements related to this travel request.</span></span></span>'\n  attachment_s_:\n    '#type': managed_file\n    '#title': Attachment(s)\n    '#multiple': true\n    '#description': '<strong><span style=\"font-size:11.0pt\"><span style=\"font-family:Calibri\"><span style=\"color:#1b1b1b\">Please attach any necessary documents related to this travel request.</span></span></span></strong>'\n    '#description_display': before\n    '#file_placeholder': |\n      <br />\n      &nbsp;\n      \n    '#file_extensions': 'gif jpg png pdf doc docx tar zip'\n    '#sanitize': true"
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_remote_addr: true
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_log: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_auto_forward: true
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: true
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_title: ''
+  confirmation_message: "Thank you for submitting this form. Your submission has been received.<br />\r\n<br />\r\n[webform_submission:values:html]"
+  confirmation_url: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  email:
+    id: email
+    label: 'Completer Confirmation Email'
+    handler_id: email
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:your_information:your_email:raw]'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  completer_confirmation_email:
+    id: email
+    label: 'Non-completer Confirmation Email'
+    handler_id: completer_confirmation_email
+    status: true
+    conditions: {  }
+    weight: 1
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:traveler_information:traveler_email:raw]'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  travelform_submission_handler:
+    id: webform_custom_submissions
+    label: 'Travelform Submission Handler'
+    handler_id: travelform_submission_handler
+    status: true
+    conditions: {  }
+    weight: 2
+    settings: {  }
+variants: {  }
