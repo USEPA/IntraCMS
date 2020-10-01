@@ -10,16 +10,37 @@ dependencies:
     - field.field.paragraph.uswds_card.field_uswds_card_media
     - paragraphs.paragraphs_type.uswds_card
   module:
+    - field_group
     - link
     - media_library
     - paragraph_view_mode
+third_party_settings:
+  field_group:
+    group_card_details:
+      children:
+        - field_card_type
+        - field_uswds_card_media
+        - field_uswds_card_heading
+        - field_body
+        - field_uswds_button
+      parent_name: ''
+      weight: 0
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        open: true
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Card Details'
 id: paragraph.uswds_card.default
 targetEntityType: paragraph
 bundle: uswds_card
 mode: default
 content:
   field_body:
-    weight: 3
+    weight: 4
     settings:
       rows: 3
       placeholder: ''
@@ -27,7 +48,7 @@ content:
     type: string_textarea
     region: content
   field_card_type:
-    weight: 0
+    weight: 1
     settings:
       view_modes:
         card_extended_media: card_extended_media
@@ -42,7 +63,7 @@ content:
     type: paragraph_view_mode
     region: content
   field_uswds_button:
-    weight: 4
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -50,7 +71,7 @@ content:
     type: link_default
     region: content
   field_uswds_card_heading:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -59,7 +80,7 @@ content:
     region: content
   field_uswds_card_media:
     type: media_library_widget
-    weight: 1
+    weight: 2
     settings:
       media_types: {  }
     third_party_settings: {  }
