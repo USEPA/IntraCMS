@@ -50,12 +50,68 @@ display:
         options:
           offset: 0
       style:
-        type: default
+        type: table
         options:
           grouping: {  }
           row_class: ''
           default_row_class: true
-          uses_fields: false
+          override: true
+          sticky: false
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            info: info
+            view_block_content: view_block_content
+            delete_block_content: delete_block_content
+            changed: changed
+            status: status
+            link_to_latest_version: link_to_latest_version
+          info:
+            info:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            view_block_content:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            delete_block_content:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            changed:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            status:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            link_to_latest_version:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: '-1'
+          empty_table: false
       row:
         type: fields
         options:
@@ -65,16 +121,13 @@ display:
           hide_empty: false
       fields:
         info:
+          id: info
           table: block_content_field_data
           field: info
-          id: info
-          entity_type: null
-          entity_field: info
-          plugin_id: field
           relationship: none
           group_type: group
           admin_label: ''
-          label: ''
+          label: Description
           exclude: false
           alter:
             alter_text: false
@@ -117,7 +170,8 @@ display:
           hide_alter_empty: true
           click_sort_column: value
           type: string
-          settings: {  }
+          settings:
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -128,6 +182,9 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+          entity_type: null
+          entity_field: info
+          plugin_id: field
         view_block_content:
           id: view_block_content
           table: block_content
@@ -135,7 +192,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: ''
+          label: 'Link to Block'
           exclude: false
           alter:
             alter_text: false
@@ -188,7 +245,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: ''
+          label: 'Delete Block'
           exclude: false
           alter:
             alter_text: false
@@ -241,7 +298,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: ''
+          label: 'Last Changed Date'
           exclude: false
           alter:
             alter_text: false
@@ -308,7 +365,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: ''
+          label: Published
           exclude: false
           alter:
             alter_text: false
@@ -352,7 +409,7 @@ display:
           click_sort_column: value
           type: boolean
           settings:
-            format: default
+            format: yes-no
             format_custom_true: ''
             format_custom_false: ''
           group_column: value
@@ -432,9 +489,9 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
       tags: {  }
-  block_1:
-    display_plugin: block
-    id: block_1
+  page_1:
+    display_plugin: page
+    id: page_1
     display_title: 'Card with Image'
     position: 1
     display_options:
@@ -496,20 +553,22 @@ display:
         groups:
           1: AND
       display_description: ''
+      path: admin/blockdata/card-with-image
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
       tags: {  }
-  block_2:
-    display_plugin: block
-    id: block_2
+  page_2:
+    display_plugin: page
+    id: page_2
     display_title: 'USWDS-style Cards'
     position: 2
     display_options:
       display_extenders: {  }
       display_description: ''
+      path: admin/blockdata/card
     cache_metadata:
       max-age: -1
       contexts:
