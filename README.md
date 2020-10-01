@@ -8,7 +8,7 @@ The codebase of the US EPA's Intranet WebCMS
 * Enter `php –v` in the command line (cmd) to confirm PHP is properly installed.
 * Open the `php.ini` file in the PHP directory using a text editor and make the following changes:
    #### Resource Limits
-  * Set `memory_limit = 256M`.
+  * Set `memory_limit = 2048M`.
    #### Dynamic Extensions
   * Enable (remove leading semi-colon) `extension=gd2`.
   * Enable `extension=pdo_mysql`.
@@ -89,13 +89,29 @@ The codebase of the US EPA's Intranet WebCMS
 * Select the `SQLite` database when prompted.
 * Enter the site name, email address, username & password when prompted.
 # Importing Drupal Configurations
-### Update Sync Folder Location
+### Update Sync & Temp Folder Locations
 * Open the `settings.php` file in the `IntraCMS\docroot\sites\default` directory using a text editor and make the following change:
   * Set `$settings['config_sync_directory'] = '../config/sync';`.
+  * Set ` $settings['file_temp_path'] = './files/temp';`.  
+* Create a folder called `temp` in the `IntraCMS\docroot\sites\default\files` directory.
 ### Set Site UUID & Import Configurations
 *	Using Git Bash, navigate to the IntraCMS cloned repo/folder.
 * Enter `drush config-set "system.site" uuid "a20f8b2d-8c57-4965-bb1c-d142c5b66431"` to set the site UUID.
 * Enter `drush config:import` or `drush cim`  to import the site configurations.
 * Enter `yes` to confirm the configuration import.
-
-
+# Troubleshooting
+### 1 Too Many Variables (SQLite variable limit issue when running drush cim)
+* Visit this [issue](https://www.drupal.org/project/drupal/issues/2031261) and apply the following [Patch](https://www.drupal.org/files/issues/2020-03-30/2031261-112.patch).
+### Site UUID in Source Storage Does Not Match the Target Storage (when running drush cim)
+* Visit this [issue](https://www.drupal.org/project/drupal/issues/3047392) and apply the following [Patch](https://www.drupal.org/files/issues/2020-03-28/3047392-17_0.patch).
+* Typically occurs when the uuid of the current site does not match the uuid in the configuration you are attempting to import (see system.site.yml file).
+* Enter `drush cget system.site` to see the current site information.
+* Enter `drush config-set "system.site" uuid "a20f8b2d-8c57-4965-bb1c-d142c5b66431"` to set the site UUID.
+ ### Unexpected Error During Import With Operation Delete
+* Attempt to create a field body that does not exist on entity type node.
+* Attempt to creat a field field_xyz that does not exist on entity type z.
+* This issue typically occurs when a yml file is deleted and re-created within the same import (avoid doing this).
+* To resolve the issue of config files being deleted and re-created within the same import, export your configuration files to a new folder right after the fresh Drupal install. Next, copy the files that were mentioned in the error from the new folder and paste them in the sync folder from the repo (folder you want to import). When prompoted, select to  overwrite the existing files in the sync folder with the copied files from the new folder. Confirm that the next time you run drush cim, that the files that were previously throwing errors are not listed in the import statment (since they are exactly the same between the new folder and the sync).
+### General Error: 1 Near "XYZ": Syntax Error
+* This error is indicative of a syntax error within one or more of the SQL statments made during the config import process. The erroneous query is typically shown next to the error.
+* To resolve this issue, copy the erroneous query, open your DBMS and manually enter/execute the query. If the error continues, edit the SQL statement to remove any unsupported functions or characters.
