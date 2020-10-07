@@ -76,7 +76,6 @@ third_party_settings:
         - layout_threecol_section
       whitelisted_blocks:
         'Content fields': {  }
-        Devel: {  }
         'Entity Block':
           - 'entity_block:node'
           - 'entity_block:media'
@@ -96,18 +95,21 @@ third_party_settings:
         Webform: {  }
         'Webform access': {  }
         core: {  }
+        'jQuery Countdown Timer': {  }
       blacklisted_blocks:
         'Chaos Tools':
           - 'entity_view:node'
           - 'entity_view:user'
         'Custom block types':
           - banner
+          - card_with_image
           - google_map
         'Custom blocks':
           - 'block_content:e841ddc9-4e65-4f8c-bed4-ffd53f7d7221'
           - 'block_content:5ea3ec0a-53cd-4615-b1e0-e18fb4608341'
         'Inline blocks':
           - 'inline_block:banner'
+          - 'inline_block:card_with_image'
           - 'inline_block:google_map'
         'SimpleSAMLphp Authentication':
           - simplesamlphp_auth_block
@@ -116,7 +118,6 @@ third_party_settings:
       - 'Content fields'
       - 'Custom block types'
       - 'Custom blocks'
-      - Devel
       - 'Entity Block'
       - 'Entity Browser'
       - 'Fixed custom'
@@ -134,6 +135,7 @@ third_party_settings:
       - Webform
       - 'Webform access'
       - core
+      - 'jQuery Countdown Timer'
 id: node.landing_page.default
 targetEntityType: node
 bundle: landing_page
