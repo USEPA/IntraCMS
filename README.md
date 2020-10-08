@@ -36,12 +36,23 @@ The codebase of the US EPA's Intranet WebCMS
 * Enter `git –-version` in the command line (cmd) to confirm Git is properly installed.
 
 ### Drush
-*	Using Git Bash, enter `git clone https://github.com/drush-ops/drush.git` to clone Drush into your current directory.
-*	Enter `cd drush` to navigate in to the cloned drush repo/folder.
+* Using Git Bash, enter `git clone https://github.com/drush-ops/drush.git` to clone Drush into your current directory.
+* Enter `cd drush` to navigate in to the cloned drush repo/folder.
 * Enter `composer install` to install/update the project dependencies.
-*	Enter `chmod u+x drush.bat` to make the file executable as a program by the owner.
-*	Add the Drush directory to the system environment PATH variable (typically done manually).
+* Enter `chmod u+x drush.bat` to make the file executable as a program by the owner.
+* Add the Drush directory to the system environment PATH variable (typically done manually).
 * Enter `drush status` in the command line (cmd) to confirm Drush is properly installed.
+
+
+### PostgreSQL
+* Download and install the latest version of PostgreSQL - https://www.enterprisedb.com/downloads/postgres-postgresql-downloads.
+* During installation, use the default settings and make sure to install the PG extension.
+* Open the application and create a new connection to the database server.
+* Expand the Objects section, then right click on Databases and select to Add a New Database.
+
+### SQLite DB Browser
+* Download and install the latest version of SQLite DB Browser - https://sqlitebrowser.org/dl/.
+* This tool allows you to execute queries to add, edit and delete data tables in your SQLite database. 
 
 ### IIS Express
 * Download and install the latest version of IIS Express - https://www.microsoft.com/en-us/download/details.aspx?id=48264.
@@ -49,10 +60,10 @@ The codebase of the US EPA's Intranet WebCMS
 * Enter `iisexpress /?` in the command line (cmd) to confirm IIS Express is properly installed.
 
 # Cloning Repository & Installing Dependencies
-*	Using Git Bash, enter `git clone https://github.com/USEPA/IntraCMS.git` to clone the IntraCMS project into your current directory.
+* Using Git Bash, enter `git clone https://github.com/USEPA/IntraCMS.git` to clone the IntraCMS project into your current directory.
 * If required, enter you Git username/email and password when prompted.
-*	Enter `cd IntraCMS` to navigate in to the cloned IntraCMS repo/folder.
-*	Enter `git checkout -b origin/development` to checkout the development branch.
+* Enter `cd IntraCMS` to navigate in to the cloned IntraCMS repo/folder.
+* Enter `git checkout -b origin/development` to checkout the development branch.
 * Enter `composer install` to install/update the project dependencies.
 # Configuring & Starting Web-Server
 * Open the `applicationhost.config` file in the `C:\Users\[USER]\Documents\IISExpress\config` directory using a text editor and make the following changes:
@@ -115,3 +126,8 @@ The codebase of the US EPA's Intranet WebCMS
 ### General Error: 1 Near "XYZ": Syntax Error
 * This error is indicative of a syntax error within one or more of the SQL statments made during the config import process. The erroneous query is typically shown next to the error.
 * To resolve this issue, copy the erroneous query, open your DBMS and manually enter/execute the query. If the error continues, edit the SQL statement to remove any unsupported functions or characters.
+### Temporary File "XYZ" Could Not Be Created
+* This error occurs when the Temp folder is not writeable. To resolve this issue, update the write permissions for the Temp directory, or move it to a writeable location.
+* Open the `settings.php` file in the `IntraCMS\docroot\sites\default` directory using a text editor and make the following change:
+  * Set ` $settings['file_temp_path'] = './files/temp';`.  
+* Create a folder called `temp` in the `IntraCMS\docroot\sites\default\files` directory.
