@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_hero
     - node.type.landing_page
-    - paragraphs.paragraphs_type.slide_show
+    - paragraphs.paragraphs_type.hero_carousel
     - paragraphs.paragraphs_type.uswds_hero
   module:
     - entity_reference_revisions
@@ -24,8 +24,8 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      slide_show: slide_show
       uswds_hero: uswds_hero
+      hero_carousel: hero_carousel
     target_bundles_drag_drop:
       dynamic_list:
         weight: 21
@@ -36,6 +36,9 @@ settings:
       heading_title_and_text:
         weight: 14
         enabled: false
+      hero_carousel:
+        enabled: true
+        weight: 25
       list_of_link:
         weight: 15
         enabled: false
@@ -52,8 +55,8 @@ settings:
         weight: 20
         enabled: false
       slide_show:
-        enabled: true
         weight: 21
+        enabled: false
       slides:
         weight: 29
         enabled: false

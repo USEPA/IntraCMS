@@ -1,17 +1,17 @@
-uuid: 32a8a46b-3a26-40e1-8e0a-86500fab5fce
+uuid: d48ac988-7119-4502-b748-b1b884a3b471
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_slide
-    - paragraphs.paragraphs_type.slides
+    - field.storage.paragraph.field_heroes
+    - paragraphs.paragraphs_type.hero_carousel
     - paragraphs.paragraphs_type.uswds_hero
   module:
     - entity_reference_revisions
-id: paragraph.slides.field_slide
-field_name: field_slide
+id: paragraph.hero_carousel.field_heroes
+field_name: field_heroes
 entity_type: paragraph
-bundle: slides
+bundle: hero_carousel
 label: Heroes
 description: ''
 required: false
@@ -26,66 +26,66 @@ settings:
       uswds_hero: uswds_hero
     target_bundles_drag_drop:
       dynamic_list:
-        weight: 21
-        enabled: false
-      governing_authorities:
         weight: 22
         enabled: false
-      heading_title_and_text:
+      governing_authorities:
         weight: 23
+        enabled: false
+      heading_title_and_text:
+        weight: 24
         enabled: false
       hero_carousel:
         weight: 25
         enabled: false
       list_of_link:
-        weight: 24
-        enabled: false
-      policy_roles:
-        weight: 25
-        enabled: false
-      question_and_answer:
         weight: 26
         enabled: false
-      rich_text:
+      policy_roles:
         weight: 27
         enabled: false
-      slide:
+      question_and_answer:
         weight: 28
         enabled: false
-      slide_show:
+      rich_text:
         weight: 29
         enabled: false
-      slides:
+      slide:
         weight: 30
         enabled: false
-      title_and_text:
+      slide_show:
         weight: 31
         enabled: false
-      uswds_accordion:
+      slides:
         weight: 32
         enabled: false
-      uswds_accordion_item:
+      title_and_text:
         weight: 33
         enabled: false
-      uswds_card:
+      uswds_accordion:
         weight: 34
         enabled: false
-      uswds_column:
+      uswds_accordion_item:
         weight: 35
         enabled: false
-      uswds_graphic_list:
+      uswds_card:
         weight: 36
         enabled: false
-      uswds_grid:
+      uswds_column:
         weight: 37
+        enabled: false
+      uswds_graphic_list:
+        weight: 38
+        enabled: false
+      uswds_grid:
+        weight: 39
         enabled: false
       uswds_hero:
         enabled: true
-        weight: 38
+        weight: 40
       uswds_media_block:
-        weight: 39
+        weight: 41
         enabled: false
       uswds_text:
-        weight: 40
+        weight: 42
         enabled: false
 field_type: entity_reference_revisions

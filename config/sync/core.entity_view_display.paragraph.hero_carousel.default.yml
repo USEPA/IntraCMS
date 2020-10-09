@@ -1,20 +1,20 @@
-uuid: 23331381-c0b5-4ec4-b67b-40b411838526
+uuid: dbae2e58-9290-48d0-8ed8-3c7a4635e8f8
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.slides.field_slide
-    - paragraphs.paragraphs_type.slides
+    - field.field.paragraph.hero_carousel.field_heroes
+    - paragraphs.paragraphs_type.hero_carousel
   module:
     - slick_paragraphs
-id: paragraph.slides.default
+id: paragraph.hero_carousel.default
 targetEntityType: paragraph
-bundle: slides
+bundle: hero_carousel
 mode: default
 content:
-  field_slide:
+  field_heroes:
     type: slick_paragraphs_vanilla
-    weight: 0
+    weight: 2
     label: above
     settings:
       optionset: default
