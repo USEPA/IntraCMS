@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_hero
     - node.type.landing_page
+    - paragraphs.paragraphs_type.slide_show
     - paragraphs.paragraphs_type.uswds_hero
   module:
     - entity_reference_revisions
@@ -23,13 +24,23 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
+      slide_show: slide_show
       uswds_hero: uswds_hero
     target_bundles_drag_drop:
+      dynamic_list:
+        weight: 21
+        enabled: false
+      governing_authorities:
+        weight: 22
+        enabled: false
       heading_title_and_text:
         weight: 14
         enabled: false
       list_of_link:
         weight: 15
+        enabled: false
+      policy_roles:
+        weight: 25
         enabled: false
       question_and_answer:
         weight: 16
@@ -41,7 +52,10 @@ settings:
         weight: 20
         enabled: false
       slide_show:
+        enabled: true
         weight: 21
+      slides:
+        weight: 29
         enabled: false
       title_and_text:
         weight: 18
@@ -51,6 +65,9 @@ settings:
         enabled: false
       uswds_accordion_item:
         weight: 20
+        enabled: false
+      uswds_card:
+        weight: 33
         enabled: false
       uswds_column:
         weight: 21
