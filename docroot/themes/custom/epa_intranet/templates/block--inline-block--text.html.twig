@@ -27,26 +27,18 @@
  * @ingroup themeable
  */
 #}
-
+<div {{ attributes }}>
+    <div class="usa-card__container">
+      <header class="usa-card__header">
+      {{ title_prefix }}
         {% if label %}
-            {% set classes = [
-                'card',
-                'mt-2',
-            ] %}
+        <h2 class="usa-card__heading">{{ label }}</h2>
         {% endif %}
-
-
-<div {{ attributes.addClass(classes) }}>
-
-    {{ title_prefix }}
-    {% if label %}
-        <div class="card-header m-0 font-weight-bold">
-            <h2 class="font-heading-xl margin-y-0=">{{ label }}</h2>
-        </div>
-    {% endif %}
-    {{ title_suffix }}
-
-    <div class="card-body py-1">
+        {{ title_suffix }}
+      </header>
+ 
+      <div class="usa-card__body">
         {{ content }}
+      </div>
     </div>
 </div>
