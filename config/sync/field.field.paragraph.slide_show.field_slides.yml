@@ -4,16 +4,16 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_slides
+    - paragraphs.paragraphs_type.slide
     - paragraphs.paragraphs_type.slide_show
-    - paragraphs.paragraphs_type.uswds_hero
   module:
     - entity_reference_revisions
 id: paragraph.slide_show.field_slides
 field_name: field_slides
 entity_type: paragraph
 bundle: slide_show
-label: Heroes
-description: 'Acts like a slideshow, with each hero being its own slide. Up to 4 heroes can be added.'
+label: Slides
+description: ''
 required: false
 translatable: false
 default_value: {  }
@@ -23,22 +23,13 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      uswds_hero: uswds_hero
+      slide: slide
     target_bundles_drag_drop:
-      dynamic_list:
-        weight: 21
-        enabled: false
-      governing_authorities:
-        weight: 22
-        enabled: false
       heading_title_and_text:
         weight: 16
         enabled: false
       list_of_link:
         weight: 17
-        enabled: false
-      policy_roles:
-        weight: 25
         enabled: false
       question_and_answer:
         weight: 18
@@ -47,13 +38,10 @@ settings:
         weight: 19
         enabled: false
       slide:
+        enabled: true
         weight: 20
-        enabled: false
       slide_show:
         weight: 21
-        enabled: false
-      slides:
-        weight: 29
         enabled: false
       title_and_text:
         weight: 22
@@ -63,9 +51,6 @@ settings:
         enabled: false
       uswds_accordion_item:
         weight: 24
-        enabled: false
-      uswds_card:
-        weight: 33
         enabled: false
       uswds_column:
         weight: 25
@@ -77,8 +62,8 @@ settings:
         weight: 27
         enabled: false
       uswds_hero:
-        enabled: true
         weight: 28
+        enabled: false
       uswds_media_block:
         weight: 29
         enabled: false
