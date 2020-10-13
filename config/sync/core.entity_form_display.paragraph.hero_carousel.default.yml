@@ -1,20 +1,20 @@
-uuid: fd982f03-2149-4bdb-ba65-0bb648b65580
+uuid: fc359c80-a650-4982-9f45-bbc8b067d026
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.slides.field_slide
-    - paragraphs.paragraphs_type.slides
+    - field.field.paragraph.hero_carousel.field_heroes
+    - paragraphs.paragraphs_type.hero_carousel
   module:
     - paragraphs
-id: paragraph.slides.default
+id: paragraph.hero_carousel.default
 targetEntityType: paragraph
-bundle: slides
+bundle: hero_carousel
 mode: default
 content:
-  field_slide:
+  field_heroes:
     type: entity_reference_paragraphs
-    weight: 0
+    weight: 2
     settings:
       title: Paragraph
       title_plural: Paragraphs

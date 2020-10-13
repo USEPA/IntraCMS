@@ -1,41 +1,41 @@
-uuid: bfa69331-9630-4de4-84f1-7e6b6818b7f2
+uuid: dbae2e58-9290-48d0-8ed8-3c7a4635e8f8
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.slide_show.field_slides
-    - paragraphs.paragraphs_type.slide_show
+    - field.field.paragraph.hero_carousel.field_heroes
+    - paragraphs.paragraphs_type.hero_carousel
   module:
     - slick_paragraphs
-id: paragraph.slide_show.default
+id: paragraph.hero_carousel.default
 targetEntityType: paragraph
-bundle: slide_show
+bundle: hero_carousel
 mode: default
 content:
-  field_slides:
+  field_heroes:
     type: slick_paragraphs_vanilla
-    weight: 0
+    weight: 2
     label: above
     settings:
       optionset: default
-      skin: classic
+      skin: default
       view_mode: default
       cache: 0
-      current_view_mode: default
-      override: false
+      override: true
       overridables:
-        arrows: '0'
+        arrows: arrows
+        dots: dots
+        infinite: infinite
         autoplay: '0'
-        dots: '0'
         draggable: '0'
-        infinite: '0'
         mouseWheel: '0'
         randomize: '0'
         variableWidth: '0'
+      current_view_mode: default
       skin_arrows: ''
       skin_dots: ''
+      fx: ''
       style: ''
     third_party_settings: {  }
     region: content
-hidden:
-  search_api_excerpt: true
+hidden: {  }
