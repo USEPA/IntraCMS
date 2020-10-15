@@ -1,0 +1,908 @@
+uuid: 6e147ea8-e19b-468d-918b-2ed9276c0846
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.elmstar_idea_implementation_inpu
+  module:
+    - webform
+    - webform_views
+id: elmstar_ideas_implemented
+label: 'ELMSTAR Ideas'
+module: views
+description: ''
+tag: ''
+base_table: webform_submission
+base_field: sid
+display:
+  default:
+    display_plugin: default
+    id: default
+    display_title: Master
+    position: 0
+    display_options:
+      access:
+        type: none
+        options: {  }
+      cache:
+        type: tag
+        options: {  }
+      query:
+        type: views_query
+        options:
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_comment: ''
+          query_tags: {  }
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: true
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      pager:
+        type: mini
+        options:
+          items_per_page: 25
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: true
+          sticky: false
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            webform_submission_value: webform_submission_value
+            webform_submission_value_3: webform_submission_value_3
+            webform_submission_value_1: webform_submission_value_1
+            webform_submission_value_4: webform_submission_value_4
+            webform_submission_value_2: webform_submission_value_3
+            webform_submission_value_5: webform_submission_value_3
+            webform_submission_value_6: webform_submission_value_3
+            webform_submission_value_7: webform_submission_value_3
+            webform_submission_value_8: webform_submission_value_3
+            webform_submission_value_9: webform_submission_value_3
+            webform_submission_value_10: webform_submission_value_3
+          info:
+            webform_submission_value:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_3:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_1:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_4:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_2:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_5:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_6:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_7:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_8:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_9:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_10:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: '-1'
+          empty_table: false
+      row:
+        type: fields
+      fields:
+        webform_submission_value:
+          id: webform_submission_value
+          table: webform_submission_field_elmstar_idea_implementation_inpu_date_implemented
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Date Implemented'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: month_day_year
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          plugin_id: webform_submission_field
+        webform_submission_value_3:
+          id: webform_submission_value_3
+          table: webform_submission_field_elmstar_idea_implementation_inpu_epa_owner_center_office
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: C/O
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          plugin_id: webform_submission_field
+        webform_submission_value_1:
+          id: webform_submission_value_1
+          table: webform_submission_field_elmstar_idea_implementation_inpu_description_of_idea
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Description of Idea'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          plugin_id: webform_submission_field
+        webform_submission_value_4:
+          id: webform_submission_value_4
+          table: webform_submission_field_elmstar_idea_implementation_inpu_has_this_idea_been_implemented
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          plugin_id: webform_submission_field
+        webform_submission_value_2:
+          id: webform_submission_value_2
+          table: webform_submission_field_elmstar_idea_implementation_inpu_ceser_divisions
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<br />{{ webform_submission_value_2 }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          plugin_id: webform_submission_field
+        webform_submission_value_5:
+          id: webform_submission_value_5
+          table: webform_submission_field_elmstar_idea_implementation_inpu_orm_division
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<br />{{ webform_submission_value_5 }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          plugin_id: webform_submission_field
+        webform_submission_value_6:
+          id: webform_submission_value_6
+          table: webform_submission_field_elmstar_idea_implementation_inpu_ccte_divisions
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<br />{{ webform_submission_value_6 }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          plugin_id: webform_submission_field
+        webform_submission_value_7:
+          id: webform_submission_value_7
+          table: webform_submission_field_elmstar_idea_implementation_inpu_cemm_divisions
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<br />{{ webform_submission_value_7 }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          plugin_id: webform_submission_field
+        webform_submission_value_8:
+          id: webform_submission_value_8
+          table: webform_submission_field_elmstar_idea_implementation_inpu_cphea_divisions
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<br />{{ webform_submission_value_8 }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          plugin_id: webform_submission_field
+        webform_submission_value_9:
+          id: webform_submission_value_9
+          table: webform_submission_field_elmstar_idea_implementation_inpu_osape_division
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<br />{{ webform_submission_value_9 }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          plugin_id: webform_submission_field
+        webform_submission_value_10:
+          id: webform_submission_value_10
+          table: webform_submission_field_elmstar_idea_implementation_inpu_osim_division
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<br />{{ webform_submission_value_10 }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          plugin_id: webform_submission_field
+      filters:
+        webform_id:
+          id: webform_id
+          table: webform_submission
+          field: webform_id
+          value:
+            elmstar_idea_implementation_inpu: elmstar_idea_implementation_inpu
+          entity_type: webform_submission
+          entity_field: webform_id
+          plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        webform_submission_value:
+          id: webform_submission_value
+          table: webform_submission_field_elmstar_idea_implementation_inpu_has_this_idea_been_implemented
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            'Yes': 'Yes'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: webform_submission_select_filter
+        webform_submission_value_1:
+          id: webform_submission_value_1
+          table: webform_submission_field_elmstar_idea_implementation_inpu_epa_owner_center_office
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: webform_submission_value_1_op
+            label: 'EPA Owner Center/Office'
+            description: ''
+            use_operator: false
+            operator: webform_submission_value_1_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: webform_submission_value_1
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: webform_submission_select_filter
+      sorts:
+        webform_submission_value:
+          id: webform_submission_value
+          table: webform_submission_field_elmstar_idea_implementation_inpu_date_implemented
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: webform_submission_field_sort
+      title: 'ELMSTAR Ideas'
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: "<h1>ELMSTAR Ideas</h1>\r\n<p>Listed below are the ideas that were submitted through the <a href=\"/elms/elmstar-idea-implementation-input\">ELMSTAR Idea Implementation Input</a> form.  Use the drop down list to filter the results by Center/Office.</p>"
+            format: full_html
+          plugin_id: text
+      footer: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'There are no submissions available for review.'
+            format: simple_text
+          plugin_id: text
+      relationships: {  }
+      arguments: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
+      tags: {  }
+  elmstar_results:
+    display_plugin: page
+    id: elmstar_results
+    display_title: Page
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: elms/elmstar-ideas
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
+      tags: {  }

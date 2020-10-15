@@ -200,7 +200,31 @@ div.field--name-field-uswds-button .usa-legend {
 }
 
 .usa-card-group {
-  display: unset;
+  display: block;
+}
+
+.slick-arrow {
+  width: auto;
+}
+
+.slick-arrow::before {
+  color: white;
+  font-size: 3.25rem;
+  opacity: 85%;
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 1px;
+}
+
+/* Extends edges to the sides of the screen */
+div.layout {
+  margin-left: -45%;
+  margin-right: -45%;
+  padding: 20px 45%;
+}
+
+/* When editing with background color present */
+div.layout-builder__section div.layout {
+  opacity: 85%;
 }
 
 /* Styling overwrites for USWDS Card block layout */
@@ -377,6 +401,10 @@ section.comment-wrapper ul.links li.comment-forbidden {
   margin-bottom: 1em;
 }
 
+.paragraph.paragraph--type--uswds-card {
+  margin-top: 0;
+}
+
 .field .field--name-name, .field--name-description, .field--name-field-policy-role, .field--name-field-policy-responsibility, .field--name-field-reference-type, .field--name-field-reference-name-and-url {
   margin-top: 0;
   margin-bottom: 0;
@@ -409,12 +437,6 @@ section.comment-wrapper ul.links li.comment-forbidden {
 
 .media--view-mode-media-block {
   float: left;
-}
-
-
-.layout {
-  margin-top: 15px;
-  margin-bottom: 15px;
 }
 
 .max-image-div img {
@@ -870,4 +892,57 @@ ins {
  .box--special > * + .box__footer {
   margin-top:-0.25rem;
   padding-top:0;
+ }
+
+ /* Section styling */
+
+ .section-blue-dark {
+  background-color: #1a4480;
+ }
+
+ .section-blue-light {
+  background-color: #4f97d1;
+ }
+
+ .section-blue-light-1 {
+  background-color: #aacdec;
+ }
+
+ .section-acqua-dark-1{
+  background-color: #07648d;
+ }
+
+ .section-acqua-light{
+  background-color: #97d4ea;
+ }
+
+ .section-acqua-light-1{
+  background-color: #e1f3f8;
+ }
+
+ .section-green-dark{
+  background-color: #4d8055;
+ }
+
+ .section-green-dark-1{
+  background-color: #37493b;
+ }
+ .section-green-light{
+  background-color: #86b98e;
+ }
+
+ .section-green-light-1{
+  background-color: #dbedbe;
+ }
+
+ .section-accent-warm-dark{
+  background-color: #c05600;
+ }
+
+ .section-accent-warm-darker{
+  background-color: #775540;
+ }
+
+ .section-accent-warm-lighter{
+  background-color: #f2e4d4;
  }

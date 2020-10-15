@@ -1,0 +1,41 @@
+uuid: dbae2e58-9290-48d0-8ed8-3c7a4635e8f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hero_carousel.field_heroes
+    - paragraphs.paragraphs_type.hero_carousel
+  module:
+    - slick_paragraphs
+id: paragraph.hero_carousel.default
+targetEntityType: paragraph
+bundle: hero_carousel
+mode: default
+content:
+  field_heroes:
+    type: slick_paragraphs_vanilla
+    weight: 2
+    label: above
+    settings:
+      optionset: default
+      skin: default
+      view_mode: default
+      cache: 0
+      override: true
+      overridables:
+        arrows: arrows
+        dots: dots
+        infinite: infinite
+        autoplay: '0'
+        draggable: '0'
+        mouseWheel: '0'
+        randomize: '0'
+        variableWidth: '0'
+      current_view_mode: default
+      skin_arrows: ''
+      skin_dots: ''
+      fx: ''
+      style: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }
