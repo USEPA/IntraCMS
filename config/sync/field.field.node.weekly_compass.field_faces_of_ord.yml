@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_faces_of_ord
-    - node.type.faces_of_ord
     - node.type.weekly_compass
 id: node.weekly_compass.field_faces_of_ord
 field_name: field_faces_of_ord
@@ -19,8 +18,7 @@ default_value_callback: ''
 settings:
   handler: 'default:node'
   handler_settings:
-    target_bundles:
-      faces_of_ord: faces_of_ord
+    target_bundles: {  }
     sort:
       field: title
       direction: ASC
