@@ -119,7 +119,7 @@
         {{ content.field_quick_updates|field_value }}
     {% endif %}
 
-  
+
         {% if content.field_in_the_lab|render is not empty %}
             <h2 class="highlight">{{ content.field_in_the_lab|field_label }}</h2>
             <div>
@@ -161,11 +161,6 @@
             {{ content.field_custom_section }}
         {% endif %}
 
-        {% if content.field_faces_of_ord|render is not empty %}
-            <hr/>
-            <h2 class="highlight">{{ content.field_faces_of_ord|field_label }}</h2>
-            {{ content.field_faces_of_ord|field_value }}
-        {% endif %}
 
         {% if content.field_photos_of_the_week|render is not empty %}
             <hr/>
