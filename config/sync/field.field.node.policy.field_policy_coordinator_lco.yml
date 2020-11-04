@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_policy_coordinator_lco
     - node.type.policy
-    - taxonomy.vocabulary.centers_and_offices
+    - taxonomy.vocabulary.program_offices_and_regions
     - taxonomy.vocabulary.research_program_area
 id: node.policy.field_policy_coordinator_lco
 field_name: field_policy_coordinator_lco
@@ -21,11 +21,11 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      centers_and_offices: centers_and_offices
+      program_offices_and_regions: program_offices_and_regions
       research_program_area: research_program_area
     sort:
       field: name
       direction: asc
     auto_create: false
-    auto_create_bundle: centers_and_offices
+    auto_create_bundle: program_offices_and_regions
 field_type: entity_reference
