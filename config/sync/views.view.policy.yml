@@ -1,6 +1,6 @@
 uuid: f04d2896-4a3f-48d2-98f1-a2417bee17c6
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - field.storage.node.field_delegation
@@ -14,9 +14,6 @@ dependencies:
     - field.storage.node.field_topic_area_of_authority
     - node.type.policy
     - taxonomy.vocabulary.policy_topics
-  content:
-    - 'taxonomy_term:policy_topics:7b88e031-364c-4aa2-8a31-92f4ff9270f4'
-    - 'taxonomy_term:policy_topics:e0e74d7e-8bc8-4464-bb33-eea7418db534'
   module:
     - csv_serialization
     - datetime
@@ -28,6 +25,7 @@ dependencies:
     - text
     - user
     - vefl
+    - views_autocomplete_filters
     - views_data_export
 id: policy
 label: Policy
