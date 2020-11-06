@@ -9,7 +9,7 @@ dependencies:
     - field.field.node.event.field_event_location
     - field.field.node.event.field_event_recording
     - field.field.node.event.field_event_tags
-    - field.field.node.event.field_show_on_ord_calendar
+    - field.field.node.event.field_show_on_agency_calendar
     - node.type.event
   module:
     - layout_builder
@@ -50,6 +50,24 @@ third_party_settings:
             additional:
               layout_builder_styles_style: ''
             weight: 0
+          b827b438-0c04-4606-8975-0082b25b1853:
+            uuid: b827b438-0c04-4606-8975-0082b25b1853
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:event:field_show_on_agency_calendar'
+              formatter:
+                label: above
+                settings:
+                  format: default
+                  format_custom_false: ''
+                  format_custom_true: ''
+                third_party_settings: {  }
+                type: boolean
+            additional: {  }
+            weight: 1
         third_party_settings: {  }
       -
         layout_id: layout_twocol_section
@@ -175,7 +193,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_show_on_ord_calendar:
+  field_show_on_agency_calendar:
     weight: 114
     label: above
     settings:
