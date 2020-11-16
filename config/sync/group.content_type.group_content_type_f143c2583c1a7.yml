@@ -1,0 +1,20 @@
+uuid: 8b0f4779-06dc-4349-a2b6-0e41522e43b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.communications
+    - node.type.mass_mailer
+  module:
+    - gnode
+    - node
+id: group_content_type_f143c2583c1a7
+label: 'Communications: Group node (Mass Mailer)'
+description: 'Adds <em class="placeholder">Mass Mailer</em> content to groups both publicly and privately.'
+group_type: communications
+content_plugin: 'group_node:mass_mailer'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 0

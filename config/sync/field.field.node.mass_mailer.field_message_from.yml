@@ -1,0 +1,29 @@
+uuid: 41570d18-b068-42cd-8efa-36ad3188bb30
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_message_from
+    - node.type.mass_mailer
+    - taxonomy.vocabulary.mass_mailer_categories
+id: node.mass_mailer.field_message_from
+field_name: field_message_from
+entity_type: node
+bundle: mass_mailer
+label: 'Message From'
+description: 'Select the originator of the message. The banner associated with the position you select will be displayed above the message body.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      mass_mailer_categories: mass_mailer_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

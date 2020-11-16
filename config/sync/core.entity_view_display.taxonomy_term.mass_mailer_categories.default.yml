@@ -1,0 +1,32 @@
+uuid: 2a2d25b3-4a59-4a6b-8f73-d412d6ef8c94
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.mass_mailer_categories.field_banner
+    - taxonomy.vocabulary.mass_mailer_categories
+  module:
+    - image
+    - text
+id: taxonomy_term.mass_mailer_categories.default
+targetEntityType: taxonomy_term
+bundle: mass_mailer_categories
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_banner:
+    weight: 1
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+hidden: {  }

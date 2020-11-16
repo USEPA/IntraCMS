@@ -1,0 +1,23 @@
+uuid: 3326dd01-ec1a-4810-aa66-33450a9ffbf4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_include_special_message
+    - node.type.mass_mailer
+id: node.mass_mailer.field_include_special_message
+field_name: field_include_special_message
+entity_type: node
+bundle: mass_mailer
+label: 'Include Special Message'
+description: 'Check this box if you have custom text you would like shown below the banner.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

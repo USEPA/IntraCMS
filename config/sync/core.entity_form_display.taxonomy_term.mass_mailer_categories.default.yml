@@ -1,0 +1,55 @@
+uuid: 81ca8602-f41f-41da-9dd0-739385009551
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.mass_mailer_categories.field_banner
+    - image.style.thumbnail
+    - taxonomy.vocabulary.mass_mailer_categories
+  module:
+    - image
+    - path
+    - text
+id: taxonomy_term.mass_mailer_categories.default
+targetEntityType: taxonomy_term
+bundle: mass_mailer_categories
+mode: default
+content:
+  description:
+    type: text_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_banner:
+    weight: 101
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 100
+    region: content
+    third_party_settings: {  }
+hidden: {  }
