@@ -1,0 +1,27 @@
+uuid: e0407afc-4908-40ba-9d4c-9fdedf67414f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.employee_profile.field_employee_photo
+    - field.field.node.employee_profile.field_employee_profile
+    - field.field.node.employee_profile.field_office_region
+    - node.type.employee_profile
+  module:
+    - user
+id: node.employee_profile.teaser
+targetEntityType: node
+bundle: employee_profile
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  content_moderation_control: true
+  field_employee_photo: true
+  field_employee_profile: true
+  field_office_region: true

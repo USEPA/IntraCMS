@@ -1,0 +1,48 @@
+uuid: 46c53964-dc8c-4231-8419-6172b7d557a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.employee_profile.field_employee_photo
+    - field.field.node.employee_profile.field_employee_profile
+    - field.field.node.employee_profile.field_office_region
+    - node.type.employee_profile
+  module:
+    - text
+    - user
+id: node.employee_profile.default
+targetEntityType: node
+bundle: employee_profile
+mode: default
+content:
+  field_employee_photo:
+    type: entity_reference_entity_view
+    weight: 102
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_employee_profile:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_office_region:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  content_moderation_control: true
