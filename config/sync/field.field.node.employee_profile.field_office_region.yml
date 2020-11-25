@@ -1,0 +1,29 @@
+uuid: 00b6bd81-b8be-4a52-a325-6edd7b668177
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_office_region
+    - node.type.employee_profile
+    - taxonomy.vocabulary.program_offices_and_regions
+id: node.employee_profile.field_office_region
+field_name: field_office_region
+entity_type: node
+bundle: employee_profile
+label: Office/Region
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      program_offices_and_regions: program_offices_and_regions
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
