@@ -1,0 +1,22 @@
+uuid: 4357992c-9d15-4250-b7b9-75ab61198223
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: mass_mailers
+label: 'Mass Mailers'
+type: 'canonical_entities:node'
+pattern: '/mass-mailers/[node:title]'
+selection_criteria:
+  cbc97725-e599-49b6-935e-94d06574da48:
+    id: node_type
+    bundles:
+      mass_mailer: mass_mailer
+    negate: false
+    context_mapping:
+      node: node
+    uuid: cbc97725-e599-49b6-935e-94d06574da48
+selection_logic: and
+weight: -5
+relationships: {  }
