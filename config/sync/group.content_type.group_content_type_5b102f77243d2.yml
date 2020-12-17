@@ -1,0 +1,20 @@
+uuid: 36a6f018-a454-4c6d-9311-1b08d7e9a1ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.communications
+    - node.type.employee_profile
+  module:
+    - gnode
+    - node
+id: group_content_type_5b102f77243d2
+label: 'Communications: Group node (Employee Profile)'
+description: 'Adds <em class="placeholder">Employee Profile</em> content to groups both publicly and privately.'
+group_type: communications
+content_plugin: 'group_node:employee_profile'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 0
