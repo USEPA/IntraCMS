@@ -1,4 +1,4 @@
-uuid: a3b54dbc-d89c-468c-86a7-181ef4526019
+uuid: a06e9a90-af12-4197-a834-05287db1af65
 langcode: en
 status: true
 dependencies:
@@ -13,9 +13,11 @@ entity_type: node
 bundle: mass_mailer
 label: Message
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: text_long
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary
