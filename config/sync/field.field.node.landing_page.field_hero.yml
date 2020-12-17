@@ -6,7 +6,6 @@ dependencies:
     - field.storage.node.field_hero
     - node.type.landing_page
     - paragraphs.paragraphs_type.hero_carousel
-    - paragraphs.paragraphs_type.uswds_hero
   module:
     - entity_reference_revisions
 id: node.landing_page.field_hero
@@ -24,64 +23,60 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      uswds_hero: uswds_hero
       hero_carousel: hero_carousel
     target_bundles_drag_drop:
       dynamic_list:
-        weight: 21
+        weight: -31
         enabled: false
       governing_authorities:
-        weight: 22
+        weight: -28
         enabled: false
       heading_title_and_text:
-        weight: 14
+        weight: -37
         enabled: false
       hero_carousel:
         enabled: true
-        weight: 25
+        weight: -25
       list_of_link:
-        weight: 15
+        weight: -36
         enabled: false
       policy_roles:
-        weight: 25
+        weight: -23
         enabled: false
       question_and_answer:
-        weight: 16
+        weight: -35
         enabled: false
       rich_text:
-        weight: 17
+        weight: -34
         enabled: false
       slide:
-        weight: 20
+        weight: -32
         enabled: false
       slide_show:
-        weight: 21
-        enabled: false
-      slides:
-        weight: 29
+        weight: -29
         enabled: false
       title_and_text:
-        weight: 18
+        weight: -33
         enabled: false
       uswds_card:
-        weight: 33
+        weight: -20
         enabled: false
       uswds_column:
-        weight: 21
+        weight: -30
         enabled: false
       uswds_graphic_list:
-        weight: 22
+        weight: -27
         enabled: false
       uswds_grid:
-        weight: 23
+        weight: -26
         enabled: false
       uswds_hero:
-        enabled: true
-        weight: 24
+        weight: -24
+        enabled: false
       uswds_media_block:
-        weight: 25
+        weight: -22
         enabled: false
       uswds_text:
-        weight: 26
+        weight: -21
         enabled: false
 field_type: entity_reference_revisions
