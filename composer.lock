@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c172e349e84a0a491f7287c0bf2a3a43",
+    "content-hash": "67f0625ce5b32df4740fce33b9b284c9",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -7175,6 +7175,77 @@
             "homepage": "https://www.drupal.org/project/moderation_sidebar",
             "support": {
                 "source": "https://git.drupalcode.org/project/moderation_sidebar"
+            }
+        },
+        {
+            "name": "drupal/node_export",
+            "version": "1.0.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/node_export.git",
+                "reference": "8.x-1.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/node_export-8.x-1.0-alpha1.zip",
+                "reference": "8.x-1.0-alpha1",
+                "shasum": "c50801696d54461d3b14ed782dbf030a6b6ebd2e"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "ext-json": "*",
+                "php": ">7.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-alpha1",
+                    "datestamp": "1604598439",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "James Andres",
+                    "homepage": "https://www.drupal.org/user/33827"
+                },
+                {
+                    "name": "cgmonroe",
+                    "homepage": "https://www.drupal.org/user/563114"
+                },
+                {
+                    "name": "chia",
+                    "homepage": "https://www.drupal.org/user/398572"
+                },
+                {
+                    "name": "danielb",
+                    "homepage": "https://www.drupal.org/user/134005"
+                },
+                {
+                    "name": "gaurav.kapoor",
+                    "homepage": "https://www.drupal.org/user/3495331"
+                }
+            ],
+            "description": "Allows users to export content and then import into another Drupal installation.",
+            "homepage": "https://www.drupal.org/project/node_export",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/node_export",
+                "issues": "https://www.drupal.org/project/issues/node_export"
             }
         },
         {
@@ -17956,9 +18027,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-2.34",
                     "datestamp": "1529421225",
@@ -17966,10 +18034,6 @@
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
                     }
-                },
-                "patches_applied": {
-                    "3128363: Use admin theme for Ajax routes": "https://www.drupal.org/files/issues/2020-04-16/blizz-dynamic-entitylist_use-admin-theme-for-ajax_3128363-2.patch",
-                    "3138556: Remove automatic 'checked' attribute from bundle selection": "https://www.drupal.org/files/issues/2020-05-21/remove_automatic_checked_attribute-3138556.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -18050,13 +18114,10 @@
                 "shasum": "b024eca179b94ffa691296001ef9817211a157fc"
             },
             "require": {
-                "drupal/core": "*"
+                "drupal/core": "^8"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-2.0-beta1",
                     "datestamp": "1527782939",
@@ -18109,15 +18170,12 @@
                 "shasum": "01a6b3ae79f315318d2b2ff7a37c76db95d3af0b"
             },
             "require": {
-                "drupal/core": "*",
+                "drupal/core": "^8",
                 "drupal/embed": "*",
                 "embed/embed": "~2.2"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.0-alpha1",
                     "datestamp": "1483115583",
@@ -18132,6 +18190,10 @@
                 "GPL-2.0+"
             ],
             "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
                 {
                     "name": "Dave Reid",
                     "homepage": "https://www.drupal.org/user/53892"
@@ -18180,9 +18242,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.0",
                     "datestamp": "1462289639",
@@ -18243,9 +18302,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-3.3",
                     "datestamp": "1570980057",
@@ -18260,6 +18316,10 @@
                 "GPL-2.0-or-later"
             ],
             "authors": [
+                {
+                    "name": "JayKandari",
+                    "homepage": "https://www.drupal.org/user/2876519"
+                },
                 {
                     "name": "baikho",
                     "homepage": "https://www.drupal.org/user/2727459"
@@ -19139,7 +19199,8 @@
         "drupal/webform_views": 15,
         "drupal/webform_analysis": 10,
         "drupal/views_taxonomy_term_name_into_id": 15,
-        "drupal/groupmedia": 15
+        "drupal/groupmedia": 15,
+        "drupal/node_export": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,
