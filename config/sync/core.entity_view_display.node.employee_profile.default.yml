@@ -17,7 +17,7 @@ mode: default
 content:
   field_employee_photo:
     type: entity_reference_entity_view
-    weight: 102
+    weight: 0
     label: above
     settings:
       view_mode: default
@@ -25,24 +25,20 @@ content:
     third_party_settings: {  }
     region: content
   field_employee_profile:
-    weight: 104
+    weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_office_region:
-    weight: 103
+    weight: 1
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
-    region: content
 hidden:
   content_moderation_control: true
+  links: true

@@ -7,32 +7,23 @@ dependencies:
     - field.field.node.employee_profile.field_employee_profile
     - field.field.node.employee_profile.field_office_region
     - node.type.employee_profile
-    - workflows.workflow.editorial
   module:
-    - content_moderation
     - media_library
-    - path
     - text
 id: node.employee_profile.default
 targetEntityType: node
 bundle: employee_profile
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 10
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_employee_photo:
     type: media_library_widget
-    weight: 122
+    weight: 1
     settings:
       media_types: {  }
     third_party_settings: {  }
     region: content
   field_employee_profile:
-    weight: 124
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
@@ -40,7 +31,7 @@ content:
     type: text_textarea
     region: content
   field_office_region:
-    weight: 123
+    weight: 2
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -49,60 +40,20 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  moderation_state:
-    type: moderation_state_default
-    weight: 100
-    settings: {  }
-    region: content
-    third_party_settings: {  }
-  path:
-    type: path
-    weight: 30
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 15
-    region: content
-    third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 120
-    region: content
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 16
-    region: content
-    third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -5
+    weight: 0
     region: content
     settings:
       size: 60
-      placeholder: ''
+      placeholder: 'Enter the name of the employee you wish to spotlight in this Employee Profile'
     third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 5
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
-    region: content
-    third_party_settings: {  }
-  url_redirects:
-    weight: 50
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-hidden: {  }
+hidden:
+  created: true
+  moderation_state: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true
+  url_redirects: true
