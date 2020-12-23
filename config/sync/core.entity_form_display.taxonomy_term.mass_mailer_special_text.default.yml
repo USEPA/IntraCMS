@@ -1,0 +1,32 @@
+uuid: 8ac58d84-94e5-407a-8c2b-1090149f2c1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.mass_mailer_special_text
+  module:
+    - text
+id: taxonomy_term.mass_mailer_special_text.default
+targetEntityType: taxonomy_term
+bundle: mass_mailer_special_text
+mode: default
+content:
+  description:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+      rows: 5
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  path: true
+  status: true
