@@ -10,8 +10,10 @@ dependencies:
     - field.field.node.mass_mailer.field_message_from
     - field.field.node.mass_mailer.field_special_message_text
     - node.type.mass_mailer
+    - workflows.workflow.editorial
   module:
     - conditional_fields
+    - content_moderation
     - datetime
     - text
 id: node.mass_mailer.default
@@ -81,6 +83,12 @@ content:
           bundle: mass_mailer
     type: options_select
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0
@@ -91,7 +99,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  moderation_state: true
   path: true
   promote: true
   status: true
