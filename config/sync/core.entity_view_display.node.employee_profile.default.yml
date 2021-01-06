@@ -1,4 +1,4 @@
-uuid: 1189e17a-1d81-413a-b02a-698482472abc
+uuid: 46c53964-dc8c-4231-8419-6172b7d557a5
 langcode: en
 status: true
 dependencies:
@@ -7,60 +7,31 @@ dependencies:
     - field.field.node.employee_profile.field_employee_profile
     - field.field.node.employee_profile.field_office_region
     - node.type.employee_profile
-    - workflows.workflow.editorial
   module:
-    - content_moderation
-    - media_library
     - text
+    - user
 id: node.employee_profile.default
 targetEntityType: node
 bundle: employee_profile
 mode: default
 content:
   field_employee_photo:
-    type: media_library_widget
-    weight: 1
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
     settings:
-      media_types: {  }
+      view_mode: original
+      link: false
     third_party_settings: {  }
     region: content
   field_employee_profile:
-    weight: 3
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
-    region: content
-  field_office_region:
-    weight: 2
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  moderation_state:
-    type: moderation_state_default
-    weight: 4
-    region: content
+    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-  title:
-    type: string_textfield
-    weight: 0
+    type: text_default
     region: content
-    settings:
-      size: 60
-      placeholder: 'Enter the name of the employee you wish to spotlight in this Employee Profile'
-    third_party_settings: {  }
 hidden:
-  created: true
-  path: true
-  promote: true
-  status: true
-  sticky: true
-  uid: true
-  url_redirects: true
+  content_moderation_control: true
+  field_office_region: true
+  links: true
