@@ -9,19 +9,27 @@ dependencies:
     - field.field.node.employee_profile.field_office_region
     - node.type.employee_profile
   module:
+    - text
     - user
 id: node.employee_profile.teaser
 targetEntityType: node
 bundle: employee_profile
 mode: teaser
 content:
+  field_employee_profile:
+    type: text_trimmed
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
   links:
-    weight: 100
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   content_moderation_control: true
   field_employee_photo: true
-  field_employee_profile: true
   field_office_region: true

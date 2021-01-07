@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "167db04c40e24054bba8467fbb4cf4d0",
+    "content-hash": "11dc4bf1cec2e38c154aaddc248b3c6d",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -5407,6 +5407,58 @@
             }
         },
         {
+            "name": "drupal/jira_issue_collector",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/jira_issue_collector.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/jira_issue_collector-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "5d7295ee2931d4726b7db2fa8e17453f26846c9b"
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1585036506",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "JeroenT",
+                    "homepage": "https://www.drupal.org/user/2228934"
+                },
+                {
+                    "name": "jvandooren",
+                    "homepage": "https://www.drupal.org/user/428432"
+                },
+                {
+                    "name": "kasperg",
+                    "homepage": "https://www.drupal.org/user/331389"
+                }
+            ],
+            "description": "Adds a JIRA Issue Collector widget to your site's pages.",
+            "homepage": "https://www.drupal.org/project/jira_issue_collector",
+            "support": {
+                "source": "https://git.drupalcode.org/project/jira_issue_collector"
+            }
+        },
+        {
             "name": "drupal/jquery_countdown_timer",
             "version": "1.2.0",
             "source": {
@@ -6246,9 +6298,6 @@
                     "drupal/core": "-p2"
                 },
                 "patches": {
-                    "drupal/panels": {
-                        "2878684 - Use String.match to correlate regions when switching Layouts in Panels IPE": "https://www.drupal.org/files/issues/panels-ipe-2878684-3.patch"
-                    },
                     "drupal/panelizer": {
                         "2778565 - Multilingual support for Panelizer": "https://www.drupal.org/files/issues/2020-03-23/2778565-47.patch"
                     }
@@ -7836,9 +7885,6 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "patches_applied": {
-                    "2878684 - Use String.match to correlate regions when switching Layouts in Panels IPE": "https://www.drupal.org/files/issues/panels-ipe-2878684-3.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -18027,9 +18073,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-2.34",
                     "datestamp": "1529421225",
@@ -18037,10 +18080,6 @@
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
                     }
-                },
-                "patches_applied": {
-                    "3128363: Use admin theme for Ajax routes": "https://www.drupal.org/files/issues/2020-04-16/blizz-dynamic-entitylist_use-admin-theme-for-ajax_3128363-2.patch",
-                    "3138556: Remove automatic 'checked' attribute from bundle selection": "https://www.drupal.org/files/issues/2020-05-21/remove_automatic_checked_attribute-3138556.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -18121,13 +18160,10 @@
                 "shasum": "b024eca179b94ffa691296001ef9817211a157fc"
             },
             "require": {
-                "drupal/core": "*"
+                "drupal/core": "^8"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-2.0-beta1",
                     "datestamp": "1527782939",
@@ -18180,15 +18216,12 @@
                 "shasum": "01a6b3ae79f315318d2b2ff7a37c76db95d3af0b"
             },
             "require": {
-                "drupal/core": "*",
+                "drupal/core": "^8",
                 "drupal/embed": "*",
                 "embed/embed": "~2.2"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.0-alpha1",
                     "datestamp": "1483115583",
@@ -18203,6 +18236,10 @@
                 "GPL-2.0+"
             ],
             "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
                 {
                     "name": "Dave Reid",
                     "homepage": "https://www.drupal.org/user/53892"
@@ -18251,9 +18288,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.0",
                     "datestamp": "1462289639",
@@ -18314,9 +18348,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-3.3",
                     "datestamp": "1570980057",
@@ -18331,6 +18362,10 @@
                 "GPL-2.0-or-later"
             ],
             "authors": [
+                {
+                    "name": "JayKandari",
+                    "homepage": "https://www.drupal.org/user/2876519"
+                },
                 {
                     "name": "baikho",
                     "homepage": "https://www.drupal.org/user/2727459"

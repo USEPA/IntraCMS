@@ -3,12 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - field.storage.node.field_employee_profile
     - node.type.employee_profile
     - taxonomy.vocabulary.program_offices_and_regions
   module:
     - node
     - taxonomy
+    - text
     - user
     - vefl
     - views_autocomplete_filters
@@ -52,17 +53,17 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
           layout:
-            layout_id: vefl_onecol
+            layout_id: layout_threecol_section
             change: Change
             widget_region:
-              title: middle
-              field_office_region_target_id: middle
-              sort_by: middle
-              sort_order: middle
-              items_per_page: middle
-              offset: middle
-              submit: middle
-              reset: middle
+              title: first
+              field_office_region_target_id: second
+              sort_by: third
+              sort_order: first
+              items_per_page: second
+              offset: third
+              submit: first
+              reset: first
       pager:
         type: full
         options:
@@ -85,11 +86,18 @@ display:
             offset_label: Offset
           quantity: 9
       style:
-        type: html_list
-      row:
-        type: 'entity:node'
+        type: default
         options:
-          view_mode: teaser
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
       fields:
         title:
           id: title
@@ -138,20 +146,137 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-      filters:
-        status:
-          value: '1'
+        created:
+          id: created
           table: node_field_data
-          field: status
-          plugin_id: boolean
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: em
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: timestamp
+          settings:
+            date_format: month_day_year
+            custom_date_format: ''
+            timezone: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
           entity_type: node
-          entity_field: status
-          id: status
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-          group: 1
+          entity_field: created
+          plugin_id: field
+        field_employee_profile:
+          id: field_employee_profile
+          table: node__field_employee_profile
+          field: field_employee_profile
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_trimmed
+          settings:
+            trim_length: 600
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+      filters:
         type:
           id: type
           table: node_field_data
@@ -162,6 +287,19 @@ display:
           entity_field: type
           plugin_id: bundle
           expose:
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
             operator_limit_selection: false
             operator_list: {  }
           group: 1
@@ -178,7 +316,7 @@ display:
           exposed: true
           expose:
             operator_id: title_op
-            label: Title
+            label: Name
             description: ''
             use_operator: false
             operator: title_op
@@ -229,7 +367,7 @@ display:
           exposed: true
           expose:
             operator_id: field_office_region_target_id_op
-            label: 'Office/Region (field_office_region)'
+            label: Office/Region
             description: ''
             use_operator: false
             operator: field_office_region_target_id_op
@@ -314,7 +452,8 @@ display:
         - user
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_employee_profile'
   page_1:
     display_plugin: page
     id: page_1
@@ -333,4 +472,5 @@ display:
         - user
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_employee_profile'
