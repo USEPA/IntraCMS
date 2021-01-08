@@ -5,6 +5,7 @@ dependencies:
   module:
     - file
     - user
+    - views_autocomplete_filters
     - views_bulk_operations
 _core:
   default_config_hash: rRWxAX-IQkJ5viACQRovRkC784EyCl9493GU_G23n2Q
@@ -819,9 +820,10 @@ display:
           clear_on_exposed: false
           action_title: Action
           selected_actions:
-            views_bulk_operations_delete_entity: views_bulk_operations_delete_entity
-            pathauto_update_alias: 0
-            'entity:save_action:file': 0
+          1:
+            action_id: views_bulk_operations_delete_entity
+            preconfiguration:
+              label_override: 'Delete File'
           preconfiguration:
             views_bulk_operations_delete_entity:
               label_override: 'Delete Files'

@@ -65,15 +65,15 @@
   <li {{ attributes.addClass(card_class) }}>
     <div class="usa-card__container">
       <header class="usa-card__header">
-        <h2 class="usa-card__heading">{{ content.field_uswds_card_heading }}</h2>
+        <h2 class="usa-card__heading">{{ content.field_uswds_card_heading|field_value  }}</h2>
       </header>
       {% if content.field_uswds_card_media|render is not empty %}
         <div class="usa-card__media {{ media_class }}">
-          {{ content.field_uswds_card_media }}
+          {{ content.field_uswds_card_media|field_value  }}
         </div>
       {% endif %}
       <div class="usa-card__body">
-        {{ content.field_body }}
+        {{ content.field_body|field_value  }}
       </div>
       {% if content.field_uswds_button|render is not empty %}
         <div class="usa-card__footer">

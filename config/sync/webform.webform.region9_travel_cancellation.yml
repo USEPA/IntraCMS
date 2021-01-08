@@ -1,18 +1,20 @@
-uuid: bc7c8883-ef5b-4194-9d1a-c773b1ae00a3
+uuid: cae72f2e-93c4-4fb3-bd92-e55533e6e26d
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - webform_custom_submissions
 open: null
 close: null
 weight: 0
-uid: 5
+uid: 1
 template: false
 archive: false
-id: coronavirus_covid_19_questions
-title: 'Coronavirus (COVID-19) Questions'
+id: region9_travel_cancellation
+title: 'Travel Cancellation'
 description: ''
-category: 'About ORD'
-elements: "question:\n  '#type': textarea\n  '#title': Question\n  '#required': true\nemail:\n  '#type': email\n  '#title': Email\n  '#description': 'If you wish to receive a personal response, please include your email address.'"
+category: 'Region 9 Travel Forms'
+elements: "are_you_completing_this_form_for_someone_else_:\n  '#type': select\n  '#title': 'Are you completing this form for someone else?'\n  '#options': yes_no\n  '#required': true\nyour_information:\n  '#type': 'webform_composite:completer_information'\n  '#title': 'Your Information'\n  '#required': true\nyour_division:\n  '#type': select\n  '#title': 'Your Division'\n  '#options': traveler_division\n  '#required': true\n  '#states':\n    visible:\n      ':input[name=\"are_you_completing_this_form_for_someone_else_\"]':\n        value: 'No'\ntraveler_information:\n  '#type': 'webform_composite:traveler_information'\n  '#title': 'Traveler Information'\n  '#states':\n    visible:\n      ':input[name=\"are_you_completing_this_form_for_someone_else_\"]':\n        value: 'Yes'\n  '#required': true\ntraveler_division:\n  '#type': select\n  '#title': 'Traveler Division'\n  '#options': traveler_division\n  '#required': true\n  '#states':\n    visible:\n      ':input[name=\"are_you_completing_this_form_for_someone_else_\"]':\n        value: 'Yes'\ndo_you_know_the_travel_request_number_:\n  '#type': select\n  '#title': 'Do you know the Travel Request Number?'\n  '#options': yes_no\n  '#required': true\ntravel_request_number:\n  '#type': textfield\n  '#title': 'Travel Request Number'\n  '#states':\n    visible:\n      ':input[name=\"do_you_know_the_travel_request_number_\"]':\n        value: 'Yes'\n  '#required': true\ndestination:\n  '#type': textfield\n  '#title': Destination\n  '#required': true\n  '#states':\n    visible:\n      ':input[name=\"do_you_know_the_travel_request_number_\"]':\n        value: 'No'\ndeparture_date:\n  '#type': date\n  '#title': 'Departure Date'\n  '#required': true\n  '#datepicker': true\n  '#date_date_format': m/d/Y\nexplanation:\n  '#type': textarea\n  '#title': Explanation\nattachment_s_:\n  '#type': managed_file\n  '#title': Attachment(s)\n  '#multiple': true\n  '#description': '<strong>Please attach any relevant documents.</strong>'\n  '#description_display': before\n  '#file_extensions': 'gif jpg png pdf doc docx tar zip'\n  '#sanitize': true"
 css: ''
 javascript: ''
 settings:
@@ -25,7 +27,7 @@ settings:
   page_submit_path: ''
   page_confirm_path: ''
   page_theme_name: ''
-  form_title: both
+  form_title: source_entity_webform
   form_submit_once: false
   form_exception_message: ''
   form_open_message: ''
@@ -92,7 +94,7 @@ settings:
   wizard_track: ''
   wizard_prev_button_label: ''
   wizard_next_button_label: ''
-  wizard_toggle: false
+  wizard_toggle: true
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
   preview: 0
@@ -112,7 +114,7 @@ settings:
   draft_pending_multiple_message: ''
   confirmation_type: page
   confirmation_title: ''
-  confirmation_message: ''
+  confirmation_message: "Thank you for submitting this form. Your submission has been received.<br />\r\n<br />\r\n[webform_submission:values:html]"
   confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: true
@@ -190,7 +192,7 @@ access:
 handlers:
   email:
     id: email
-    label: Email
+    label: 'Completer Confirmation Email'
     handler_id: email
     status: true
     conditions: {  }
@@ -198,7 +200,7 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: _default
+      to_mail: '[webform_submission:values:your_information:your_email:raw]'
       to_options: {  }
       cc_mail: ''
       cc_options: {  }
@@ -224,17 +226,17 @@ handlers:
       sender_name: ''
       theme_name: ''
       parameters: {  }
-  email_1:
+  completer_confirmation_email:
     id: email
-    label: Email
-    handler_id: email_1
+    label: 'Non-completer Confirmation Email'
+    handler_id: completer_confirmation_email
     status: true
     conditions: {  }
-    weight: 0
+    weight: 1
     settings:
       states:
         - completed
-      to_mail: 'gibbons.dayna@epa.gov,hubbard.carolyn@epa.gov'
+      to_mail: '[webform_submission:values:traveler_information:traveler_email:raw]'
       to_options: {  }
       cc_mail: ''
       cc_options: {  }
@@ -260,4 +262,12 @@ handlers:
       sender_name: ''
       theme_name: ''
       parameters: {  }
+  travelform_submission_handler:
+    id: webform_custom_submissions
+    label: 'Travelform Submission Handler'
+    handler_id: travelform_submission_handler
+    status: true
+    conditions: {  }
+    weight: 2
+    settings: {  }
 variants: {  }

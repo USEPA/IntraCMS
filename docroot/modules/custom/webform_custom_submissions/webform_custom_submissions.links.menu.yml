@@ -1,6 +1,18 @@
-webform_custom_submissions.webform_custom_submissions_form:
-  title: 'Travel Services Configurations'
-  route_name: webform_custom_submissions.webform_custom_submissions_form
-  description: 'Configure settings for Travel Form submissions'
-  parent: system.admin_config_system
+webform_custom_submissions.form:
+  title: 'JIRA connection'
+  route_name: webform_custom_submissions.form
+  description: 'Configure settings for JIRA service'
+  parent: webform_custom_submissions.group.admin
   weight: 99
+webform_custom_submissions.jira_custom_fields_form:
+  title: 'JIRA Custom Fields'
+  route_name: webform_custom_submissions.jira_custom_fields_form
+  description: 'Configure custom fields for JIRA service'
+  parent: webform_custom_submissions.group.admin
+  weight: 99
+webform_custom_submissions.group.admin:
+  title: 'Travel Forms'
+  route_name: system.admin_config_webform_custom_submissions
+  parent: system.admin_config
+  description: 'Configuratiosn for Travel Forms'
+  weight: -999

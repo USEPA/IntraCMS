@@ -1,8 +1,25 @@
-webform_custom_submissions.webform_custom_submissions_form:
-  path: '/admin/config/system/webform_custom_submissions'
+webform_custom_submissions.form:
+  path: '/admin/config/travel_forms/webform_custom_submissions'
   defaults:
     _form: '\Drupal\webform_custom_submissions\Form\TravelServicesForm'
-    _title: 'Travel Services settings'
-  description: 'Configure Travel Services settings'
+    _title: 'Jira Connection Settings'
+  description: 'Configure Jira Services settings'
   requirements:
     _permission: 'administer site configuration'
+
+webform_custom_submissions.jira_custom_fields_form:
+  path: '/admin/config/travel_forms/jira_custom_field_settings'
+  defaults:
+    _form: '\Drupal\webform_custom_submissions\Form\JiraCustomFieldsForm'
+    _title: 'Jira Custom Field Settings'
+  description: 'Configure Custom Field IDs and their webform mappints'
+  requirements:
+    _permission: 'administer site configuration'
+
+system.admin_config_webform_custom_submissions:
+  path: '/admin/config/travel_forms'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Travel Forms'
+  requirements:
+    _permission: 'access administration pages'

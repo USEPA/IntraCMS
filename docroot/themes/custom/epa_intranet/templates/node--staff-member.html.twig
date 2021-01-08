@@ -94,7 +94,15 @@
 
     <div{{ content_attributes.addClass('grid-row') }}>
         <div class="grid-col-2 m-2">
+            {% if content.field_staff_photo|render is not empty %}
             {{ content.field_staff_photo }}
+            {% else %}
+                <div class="staff-photo">
+                    <img class="align-center cover-object-fit" src="/sites/default/files/avatar-1577909_1280.png" alt="No Staff Member Picture"
+                         width="110"
+                         height="150"/>
+                </div>
+            {% endif %}
         </div>
         <div class="grid-col">
             {{ content|without('field_first_name', 'field_last_name', 'field_staff_photo') }}

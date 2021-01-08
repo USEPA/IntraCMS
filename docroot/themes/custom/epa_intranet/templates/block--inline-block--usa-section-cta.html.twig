@@ -30,9 +30,9 @@
 
 <div {{ attributes }}>
   {{ title_prefix }}
-  <h2 class="font-heading-xl margin-y-0">{{ content.field_usa_section_heading }}</h2>
+  <h2 class="font-heading-xl mb-3 font-weight-bold">{{ content.field_usa_section_heading }}</h2>
   {{ title_suffix }}
-  <p class="usa-intro">{{ content.field_usa_intro_text }}</p>
+  <p class="usa-intro">{{ content.field_usa_intro_text|field_value }}</p>
   <a class="usa-button usa-button--big"
      href="{{ content.field_usa_cta_button[0]['#url'] }}">{{ content.field_usa_cta_button[0]['#title'] }}</a>
 </div>

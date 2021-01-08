@@ -5,9 +5,9 @@
  */
 #}
 
-{% if page.header_top or government_banner %}
-    {{ government_banner }}
-{% endif %}
+    {% if page.header_top or government_banner %}
+        {{ government_banner }}
+    {% endif %}
 
 <div class="usa-overlay"></div>
 
@@ -41,8 +41,18 @@
                 {% if page.secondary_menu %}
                     <div class="usa-nav__secondary">
                         {{ page.secondary_menu }}
-              <form action="https://intrasearch.epa.gov/epasearch" class="usa-search usa-search--small" method="GET" data-drupal-form-fields="extended-mega-search-field-small">
-                  <div role="search"><label class="usa-sr-only" for="extended-mega-search-field-small">Search small</label> <input name="typeofsearch" type="hidden" value="area"> <input name="inmeta" type="hidden" value="URL:intranet.ord.epa.gov|webx.ord.epa.gov"> <input name="areaname" type="hidden" value="ORD@Work"> <input class="usa-input" id="extended-mega-search-field-small" name="querytext" type="search"><button class="usa-button" type="submit"><span class="usa-sr-only">Search</span></button></div>
+                        <form action="https://intrasearch.epa.gov/epasearch" class="usa-search usa-search--small"
+                              method="GET" data-drupal-form-fields="extended-mega-search-field-small">
+                            <div role="search"><label class="usa-sr-only" for="extended-mega-search-field-small">Search
+                                    small</label> <input name="typeofsearch" type="hidden" value="area"> <input
+                                        name="inmeta" type="hidden" value="URL:intranet.ord.epa.gov|webx.ord.epa.gov">
+                                <input name="areaname" type="hidden" value="ORD@Work"> <input class="usa-input"
+                                                                                              id="extended-mega-search-field-small"
+                                                                                              name="querytext"
+                                                                                              type="search">
+                                <button class="usa-button" type="submit"><span class="usa-sr-only">Search</span>
+                                </button>
+                            </div>
                         </form>
                     </div>
                 {% endif %}
@@ -58,8 +68,8 @@
 
 </header>
 
-{% if node.field_hero %}
-    {{ bamboo_render_entity('paragraph', node.field_hero.target_id) }}
+{% if hero_field %}
+    {{ hero_field|field_value }}
 {% endif %}
 
 <main class="usa-section">
