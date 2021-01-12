@@ -35,16 +35,17 @@
     'align-right',
     'mx-3',
 ] %}
-<div class="border text-center p-2 staff-fixed-height-grid centered">
+<div class="border text-center p-2 staff-fixed-height-grid align-items-start">
     <div class="w-100">
         {% if 'img' in  fields.field_staff_photo.content|render %}
             {{ fields.field_staff_photo.content }}
         {% else %}
-            <img class="align-center" src="/sites/default/files/avatar-1577909_1280.png" alt="No Staff Member Picture"
-                 width="auto"
-                 height="100"/>
+            <img class="align-center cover-object-fit" src="/sites/default/files/avatar-1577909_1280.png" alt="No Staff Member Picture"
+                 width="110"
+                 height="150"/>
         {% endif %}
         <div class="align-center">{{ fields.title.content }}</div>
         <div class="align-center"> {{ fields.field_staff_position.content }} </div>
     </div>
 </div>
+

@@ -1,0 +1,24 @@
+uuid: 108fbd2d-ff86-4fec-a4cb-04be55de2f65
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.uswds_card_set.field_card
+    - paragraphs.paragraphs_type.uswds_card_set
+  module:
+    - entity_reference_revisions
+id: paragraph.uswds_card_set.default
+targetEntityType: paragraph
+bundle: uswds_card_set
+mode: default
+content:
+  field_card:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

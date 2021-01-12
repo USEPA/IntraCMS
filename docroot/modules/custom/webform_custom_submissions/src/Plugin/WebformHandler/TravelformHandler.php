@@ -68,14 +68,7 @@ class TravelformHandler extends WebformHandlerBase {
     if ($form_state->getTriggeringElement()['#value'] === 'Submit' && count($form_state->getErrors()) == 0) {
       try {
         $this->jira_submission_service->submitToJira($webform_submission);
-
-        $build = [
-          '#type' => 'link',
-          '#title' => $this->t('%ticket', ['%ticket' => $this->jira_submission_service->getSubmittedTicket()]),
-          '#url' => Url::fromUri($this->jira_submission_service->getSubmittedTicketURL()),
-          '#prefix' => "View request: ",
-        ];
-        $this->messenger()->addMessage($this->renderer->renderPlain($build));
+        $this->messenger()->addMessage("Your Travel Request Number: " . $this->jira_submission_service->getSubmittedTicket());
 
         if (count($this->jira_submission_service->getUploadedFileNames()) > 0) {
           $this->messenger()->addMessage($this->t('Files successfully uploaded: %files_html', [

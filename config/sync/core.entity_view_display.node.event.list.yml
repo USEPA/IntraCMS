@@ -15,7 +15,7 @@ dependencies:
   module:
     - layout_builder
     - layout_library
-    - smart_date
+    - smart_date_recur
     - user
 third_party_settings:
   layout_builder:
@@ -34,9 +34,12 @@ content:
     settings:
       timezone_override: ''
       format: compact
+      past_display: '0'
+      upcoming_display: '4'
+      force_chronological: 0
       format_type: medium
     third_party_settings: {  }
-    type: smartdate_default
+    type: smartdate_recurring
     region: content
 hidden:
   content_moderation_control: true

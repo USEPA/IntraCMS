@@ -1,0 +1,28 @@
+uuid: 4ad84435-4ec1-453f-a997-f26e811978da
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - epa_intranet
+id: region9_sitebranding
+theme: epa_intranet
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Region 9'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility:
+  request_path:
+    id: request_path
+    pages: '*region9*'
+    negate: false
+    context_mapping: {  }

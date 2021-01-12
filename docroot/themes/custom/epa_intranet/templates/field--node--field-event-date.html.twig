@@ -23,15 +23,29 @@
 {% set view_mode = element['#view_mode'] %}
 
 {% if view_mode == 'list' %}
-
-{% for item in items %}
+  {% if items|length > 1 %}
+    <em>
+      <details open>
+        <summary>{{ 'Event Dates'|t }}</summary>
+        <div class="details-wrapper">
+          <ul>
+            {% for item in items %}
+              <li>
+                {{ item.content }}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
+    </em>
+  {% else %}
+    {% for item in items %}
       <em>{{ item.content }}</em>
     {% endfor %}
-
+  {% endif %}
 {% else %}
 
-{%
-  set classes = [
+  {% set classes = [
     'field',
     'field--name-' ~ field_name|clean_class,
     'field--type-' ~ field_type|clean_class,
@@ -39,22 +53,19 @@
     'clearfix',
     'card',
     'mt-2',
-  ]
-%}
-{%
-  set title_classes = [
+  ] %}
+  {% set title_classes = [
     'field__label',
     label_display == 'inline' ? 'inline',
-  ]
-%}
-<div{{ attributes.addClass(classes) }}>
-  {% if not label_hidden %}
-    <div class="card-header m-0 font-weight-bold">{{ label }}</div>
-  {% endif %}
-  <div class="card-body py-1">
-    {% for item in items %}
-      <p{{ item.attributes }}>{{ item.content }}</p>
-    {% endfor %}
+  ] %}
+  <div{{ attributes.addClass(classes) }}>
+    {% if not label_hidden %}
+      <div class="card-header m-0 font-weight-bold">{{ label }}</div>
+    {% endif %}
+    <div class="card-body py-1">
+      {% for item in items %}
+        <p{{ item.attributes }}>{{ item.content }}</p>
+      {% endfor %}
+    </div>
   </div>
-</div>
 {% endif %}
