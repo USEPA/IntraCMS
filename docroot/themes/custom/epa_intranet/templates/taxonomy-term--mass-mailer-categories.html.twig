@@ -1,0 +1,16 @@
+{%
+    set classes = [
+    'taxonomy-term',
+    'vocabulary-' ~ term.bundle|clean_class,
+]
+%}
+<div{{ attributes.setAttribute('id', 'taxonomy-term-' ~ term.id).addClass(classes) }}>
+    {{ title_prefix }}
+    {% if name and not page %}
+        <h2>{{ name }}</h2>
+    {% endif %}
+    {{ title_suffix }}
+    <div class="content">
+        {{ content }}
+    </div>
+</div>
