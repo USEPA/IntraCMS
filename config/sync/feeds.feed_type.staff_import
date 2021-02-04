@@ -1,0 +1,90 @@
+uuid: 51ac97bc-f1f9-4618-bf5f-52f231fa9ff7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.staff_member.field_email
+    - field.field.node.staff_member.field_first_name
+    - field.field.node.staff_member.field_last_name
+    - field.field.node.staff_member.field_organization
+    - field.field.node.staff_member.field_phone
+    - node.type.staff_member
+  module:
+    - node
+label: 'Staff Import'
+id: staff_import
+description: 'Import from CSV to staff member nodes'
+help: ''
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: csv
+  directory: 'public://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  update_existing: 0
+  update_non_existent: _keep
+  expire: -1
+  owner_feed_author: false
+  owner_id: 125
+  authorize: true
+  skip_hash_check: false
+  values:
+    type: staff_member
+custom_sources:
+  first:
+    label: first
+    value: first
+    machine_name: first
+  last:
+    label: last
+    value: last
+    machine_name: last
+  phone:
+    label: phone
+    value: phone
+    machine_name: phone
+  email:
+    label: email
+    value: email
+    machine_name: email
+  org_id:
+    label: org_id
+    value: org_id
+    machine_name: org_id
+mappings:
+  -
+    target: field_first_name
+    map:
+      value: first
+    unique: {  }
+  -
+    target: field_last_name
+    map:
+      value: last
+    unique: {  }
+  -
+    target: field_phone
+    map:
+      value: phone
+  -
+    target: field_email
+    map:
+      value: email
+    unique:
+      value: '1'
+    settings:
+      defuse: false
+  -
+    target: field_organization
+    map:
+      target_id: org_id
+    settings:
+      reference_by: tid
+      feeds_item: guid
+      autocreate: 0
