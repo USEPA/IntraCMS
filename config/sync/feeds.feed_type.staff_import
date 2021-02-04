@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.staff_member.field_email
     - field.field.node.staff_member.field_first_name
     - field.field.node.staff_member.field_last_name
+    - field.field.node.staff_member.field_location
     - field.field.node.staff_member.field_organization
     - field.field.node.staff_member.field_phone
     - node.type.staff_member
@@ -57,6 +58,14 @@ custom_sources:
     label: org_id
     value: org_id
     machine_name: org_id
+  title:
+    label: title
+    value: title
+    machine_name: title
+  location:
+    label: location
+    value: location
+    machine_name: location
 mappings:
   -
     target: field_first_name
@@ -84,6 +93,19 @@ mappings:
     target: field_organization
     map:
       target_id: org_id
+    settings:
+      reference_by: tid
+      feeds_item: guid
+      autocreate: 0
+  -
+    target: title
+    map:
+      value: title
+    unique: {  }
+  -
+    target: field_location
+    map:
+      target_id: location
     settings:
       reference_by: tid
       feeds_item: guid
