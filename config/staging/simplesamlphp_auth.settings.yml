@@ -1,28 +1,35 @@
-allow:
-  default_login: true
-  set_drupal_pwd: true
-  default_login_roles:
-    authenticated: authenticated
-    webform: webform
-    administrator: administrator
-  default_login_users: ''
-logout_goto_url: ''
+langcode: en
+default_langcode: en
 activate: true
-auth_source: default-sp
-login_link_display_name: 'Enterprise/PIV Login'
-login_link_show: true
-debug: false
-secure: true
-httponly: false
-register_users: true
-header_no_cache: false
+mail_attr: mail
 unique_id: uid
 user_name: uid
-sync:
-  user_name: true
-  mail: true
-mail_attr: mail
+auth_source: default-sp
+login_link_display_name: 'Enterprise/PIV Login'
+header_no_cache: false
 role:
   population: ''
   eval_every_time: false
+register_users: true
+allow:
+  set_drupal_pwd: false
+  default_login: true
+  default_login_roles:
+    authenticated: authenticated
+    author: '0'
+    comms: '0'
+    editor: '0'
+    administrator: '0'
+  default_login_users: ''
+logout_goto_url: 'https://workstg.epa.gov'
+user_register_original: null
+sync:
+  mail: true
+  user_name: true
 autoenablesaml: false
+debug: false
+secure: true
+httponly: false
+_core:
+  default_config_hash: BuLah1nwoT5oUjn6XIuKnXkjcvdt5tDIGQ6gAflOY0s
+login_link_show: true
