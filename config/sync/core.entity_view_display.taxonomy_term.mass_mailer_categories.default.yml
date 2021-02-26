@@ -8,21 +8,13 @@ dependencies:
     - taxonomy.vocabulary.mass_mailer_categories
   module:
     - image
-    - text
 id: taxonomy_term.mass_mailer_categories.default
 targetEntityType: taxonomy_term
 bundle: mass_mailer_categories
 mode: default
 content:
-  description:
-    label: hidden
-    type: text_default
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_banner:
-    weight: 1
+    weight: 0
     label: above
     settings:
       image_style: banner
@@ -30,4 +22,5 @@ content:
     third_party_settings: {  }
     type: image
     region: content
-hidden: {  }
+hidden:
+  description: true
