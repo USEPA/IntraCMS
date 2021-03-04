@@ -39,20 +39,28 @@ bundle: staff_member
 mode: poc_simple
 content:
   field_email:
-    weight: 1
+    weight: 2
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: email_mailto
     region: content
   field_phone:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       title: ''
     third_party_settings: {  }
     type: telephone_link
     region: content
+  field_staff_position:
+    type: string
+    weight: 1
+    region: content
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   links:
     weight: 0
     region: content
@@ -67,7 +75,6 @@ hidden:
   field_organization: true
   field_staff_biography: true
   field_staff_photo: true
-  field_staff_position: true
   field_staff_profile: true
   field_staff_secondary_location: true
   search_api_excerpt: true
