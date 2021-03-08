@@ -9,15 +9,18 @@ dependencies:
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
     - field.field.media.image.layout_builder__translation
-    - image.style.medium
     - media.type.image
+    - responsive_image.styles.responsive_medium
   module:
-    - image
     - layout_builder
+    - media_inline_embed
+    - responsive_image
 third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
+  media_inline_embed:
+    embed_inline: false
 _core:
   default_config_hash: VLDxfMVPTkd2xvOjFMCh3kWmaOYnd03zggFXuUXQVEY
 id: media.image.half_width
@@ -26,11 +29,11 @@ bundle: image
 mode: half_width
 content:
   image:
-    type: image
+    type: responsive_image
     weight: 0
     label: hidden
     settings:
-      image_style: medium
+      responsive_image_style: responsive_medium
       image_link: ''
     third_party_settings: {  }
     region: content
