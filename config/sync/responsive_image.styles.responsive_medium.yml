@@ -1,0 +1,25 @@
+uuid: 11bd970d-0025-4388-ab2a-89dd30ba3e99
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.huge
+    - image.style.large
+    - image.style.medium
+    - image.style.small
+id: responsive_medium
+label: 'Responsive Medium'
+image_style_mappings:
+  -
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(max-width: 640px) calc(100vw - 4rem), 640px'
+      sizes_image_styles:
+        - huge
+        - large
+        - medium
+        - small
+breakpoint_group: responsive_image
+fallback_image_style: medium
