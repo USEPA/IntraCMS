@@ -8,8 +8,59 @@ dependencies:
     - field.field.node.employee_profile.field_office_region
     - node.type.employee_profile
   module:
+    - layout_builder
+    - layout_library
     - text
     - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: ''
+          column_widths: 25-75
+          layout_builder_styles_style: ''
+        components:
+          ce1355a2-9232-4c08-9944-16f31256e61f:
+            uuid: ce1355a2-9232-4c08-9944-16f31256e61f
+            region: second
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:employee_profile:field_employee_profile'
+              formatter:
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+                type: text_default
+            additional: {  }
+            weight: 0
+          5f329317-2b01-4d24-b30f-75981a59b296:
+            uuid: 5f329317-2b01-4d24-b30f-75981a59b296
+            region: first
+            configuration:
+              id: 'field_block:node:employee_profile:field_employee_photo'
+              label: 'Employee Photo'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: thumbnail
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+  layout_library:
+    enable: false
 id: node.employee_profile.default
 targetEntityType: node
 bundle: employee_profile
