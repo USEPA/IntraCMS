@@ -112,7 +112,7 @@ function epa_intranet_preprocess_page(&$variables) {
         $node = \Drupal::entityTypeManager()->getStorage('node')->loadRevision($node_revision);
       }
     }
-    if (isset($node) && in_array('field_hero', array_keys($node->getFields()))) {
+    if (isset($node) && !is_string($node) && in_array('field_hero', array_keys($node->getFields()))) {
       $variables['hero_field'] = $node->get('field_hero')->view();
     }
   }
