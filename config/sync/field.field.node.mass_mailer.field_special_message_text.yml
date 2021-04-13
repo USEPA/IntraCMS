@@ -6,6 +6,8 @@ dependencies:
     - field.storage.node.field_special_message_text
     - node.type.mass_mailer
     - taxonomy.vocabulary.mass_mailer_special_text
+  content:
+    - 'taxonomy_term:mass_mailer_special_text:2d00a4f6-b153-4617-9e39-957c253f2ed2'
 id: node.mass_mailer.field_special_message_text
 field_name: field_special_message_text
 entity_type: node
@@ -14,7 +16,9 @@ label: 'Special Message Text'
 description: 'Select the special message text to be displayed below the banner.'
 required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    target_uuid: 2d00a4f6-b153-4617-9e39-957c253f2ed2
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
