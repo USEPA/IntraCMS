@@ -12,12 +12,19 @@ dependencies:
   module:
     - content_moderation
     - entity_browser
+    - path
     - text
 id: node.employee_profile.default
 targetEntityType: node
 bundle: employee_profile
 mode: default
 content:
+  created:
+    type: datetime_timestamp
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_employee_photo:
     type: entity_browser_entity_reference
     weight: 1
@@ -57,6 +64,19 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  path:
+    type: path
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0
@@ -65,11 +85,21 @@ content:
       size: 60
       placeholder: 'Enter the name of the employee you wish to spotlight in this Employee Profile'
     third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 8
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
-  created: true
-  path: true
   promote: true
-  status: true
   sticky: true
-  uid: true
-  url_redirects: true
