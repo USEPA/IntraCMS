@@ -6,8 +6,10 @@ dependencies:
     - field.field.node.employee_profile.field_employee_photo
     - field.field.node.employee_profile.field_employee_profile
     - field.field.node.employee_profile.field_office_region
+    - fixed_block_content.fixed_block_content.nominate_an_employee
     - node.type.employee_profile
   module:
+    - fixed_block_content
     - layout_builder
     - layout_library
     - text
@@ -58,6 +60,18 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 0
+          ff7c8845-ab65-4cb6-b606-213037db9393:
+            uuid: ff7c8845-ab65-4cb6-b606-213037db9393
+            region: second
+            configuration:
+              id: 'fixed_block_content:nominate_an_employee'
+              label: 'Nominate an Employee'
+              provider: fixed_block_content
+              label_display: '0'
+              view_mode: ''
+              context_mapping: {  }
+            additional: {  }
+            weight: 1
         third_party_settings: {  }
   layout_library:
     enable: false
