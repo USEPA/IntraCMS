@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Url;
+
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for form templates.
  * @param array $suggestions
@@ -101,6 +103,44 @@ function epa_intranet_preprocess_views_view_table(&$variables) {
     }
   }
 }
+
+/**
+ * Overwrite login links to include the current destination
+ * @param $variables
+ */
+function epa_intranet_preprocess_menu(&$variables) {
+  $routes = [
+    'user.login',
+    'user.logout'
+  ];
+  $variables['#cache']['contexts'][] = 'url.query_args:destination';
+  $renderer = \Drupal::service('renderer');
+  $renderer->addCacheableDependency($variables, \Drupal::service('path.current')->getPath());
+  foreach ($variables['items'] as &$key) {
+    $url = $key['url'];
+    if ($url->isRouted() && in_array($url->getRouteName(), $routes)) {
+      $base = \Drupal::request()->getSchemeAndHttpHost();
+      // Get current path.
+      $current = \Drupal::service('path.current')->getPath();
+      if ($url->getRouteName() == 'user.login') {
+
+        $productionSplitConfig = \Drupal::config('config_split.config_split.production_config');
+        // Check if we are in Production
+        if (isset($productionSplitConfig) && $productionSplitConfig->get('status')) {
+          //@todo update /saml_login to use the path from route: simplesamlphp_auth.saml_login
+          $uriString = $base . '/saml_login?destination=' . $current;
+        } else {
+          $uriString = $base . '/user/login?destination=' . $current;
+        }
+      } else {
+        $uriString = $base . '/user/logout?destination=' . $current;
+      }
+      $newUrl = Url::fromUri($uriString);
+      $key['url'] = $newUrl;
+    }
+  }
+}
+
 
 function epa_intranet_preprocess_page(&$variables) {
   //   Load correct Hero revision for page
