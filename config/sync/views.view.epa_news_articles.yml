@@ -326,7 +326,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: word
+          operator: contains
           value: ''
           group: 1
           exposed: true
@@ -346,6 +346,7 @@ display:
               authenticated: authenticated
               anonymous: '0'
               webform: '0'
+              system_editor: '0'
               administrator: '0'
             placeholder: ''
             autocomplete_filter: 1
@@ -450,7 +451,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: "<h1>EPA News</h1>\r\n<p class=\"usa-intro\">Listed below is the collection of news articles published across all of EPA@Work.  You can find or browse EPA News several ways. To search by keyword, simply use the <em>Search</em> box. You may also use the <em>Title</em> filter to filter the list of News.</p>"
+            value: "<h1>EPA News</h1>\r\n<p class=\"usa-intro\">Listed below is the collection of news articles published across all of EPA@Work.  You can find or browse EPA News several ways. To search by keyword, simply use the <em>Search</em> box. You may also use the <em>Title</em> filter to filter the list of News by the news article's title.</p>"
             format: full_html
           plugin_id: text
       footer: {  }
