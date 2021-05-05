@@ -54,8 +54,8 @@ display:
             layout_id: layout_threecol_section
             change: Change
             widget_region:
-              field_keywords_target_id: second
               title: first
+              combine: second
               sort_by: first
               sort_order: first
               items_per_page: first
@@ -326,7 +326,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: word
+          operator: contains
           value: ''
           group: 1
           exposed: true
@@ -346,6 +346,7 @@ display:
               authenticated: authenticated
               anonymous: '0'
               webform: '0'
+              system_editor: '0'
               administrator: '0'
             placeholder: ''
             autocomplete_filter: 1
@@ -370,6 +371,58 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: views_autocomplete_filters_string
+        combine:
+          id: combine
+          table: views
+          field: combine
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: combine_op
+            label: Search
+            description: ''
+            use_operator: false
+            operator: combine_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: combine
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              system_editor: '0'
+              administrator: '0'
+            placeholder: ''
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          fields:
+            title: title
+            body: body
+          plugin_id: views_autocomplete_filters_combine
       sorts:
         created:
           id: created
@@ -387,7 +440,20 @@ display:
             label: ''
           granularity: second
       title: 'EPA News Articles'
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: "<h1>EPA News</h1>\r\n<p class=\"usa-intro\">Listed below is the collection of news articles published across all of EPA@Work.  You can find or browse EPA News several ways. To search by keyword, simply use the <em>Search</em> box. You may also use the <em>Title</em> filter to filter the list of News by the news article's title.</p>"
+            format: full_html
+          plugin_id: text
       footer: {  }
       empty:
         area:
