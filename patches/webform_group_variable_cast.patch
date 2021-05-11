@@ -1,0 +1,13 @@
+diff --git a/modules/webform_group/src/WebformGroupManager.php b/modules/webform_group/src/WebformGroupManager.php
+index b1f5125..ea0e0de 100644
+--- a/modules/webform_group/src/WebformGroupManager.php
++++ b/modules/webform_group/src/WebformGroupManager.php
+@@ -162,7 +162,7 @@ public function getCurrentGroupContent() {
+
+     // Get group content id for the source entity.
+     $group_content_ids = $group_content_storage->getQuery()
+-      ->condition('entity_id', $source_entity->id())
++      ->condition('entity_id', (int)$source_entity->id())
+       ->execute();
+     /** @var \Drupal\group\Entity\GroupContentInterface[] $group_contents */
+     $group_contents = $group_content_storage->loadMultiple($group_content_ids);
