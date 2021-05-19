@@ -4,6 +4,7 @@
  * USWDS theme implementation to display a single page.
  */
 #}
+<a href="#" id="altwdg-trigger" class="altwdg-trigger altwdg-TOP">Provide feedback</a>
 
     {% if page.header_top or government_banner %}
         {{ government_banner }}
@@ -46,6 +47,7 @@
                             <div role="search"><label class="usa-sr-only" for="extended-mega-search-field-small">Search
                                     small</label> <input name="typeofsearch" type="hidden" value="epa"> <input
                                         name="result_template" type="hidden" value="agcyintr_default.xsl">
+                                <input type="hidden" name="token" value="{{ csrf_token }}" />
                                 <input name="areasidebar" type="hidden" value="epaatwork_sidebar"> <input class="usa-input"
                                                                                               id="extended-mega-search-field-small"
                                                                                               name="querytext"
