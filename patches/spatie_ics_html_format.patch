@@ -1,0 +1,13 @@
+diff --git a/vendor/spatie/calendar-links/src/Generators/Ics.php b/vendor/spatie/calendar-links/src/Generators/Ics.php
+index fc1713a..01366fd 100644
+--- a/vendor/spatie/calendar-links/src/Generators/Ics.php
++++ b/vendor/spatie/calendar-links/src/Generators/Ics.php
+@@ -44,7 +44,7 @@ class Ics implements Generator
+         }
+
+         if ($link->description) {
+-            $url[] = 'DESCRIPTION:'.$this->escapeString($link->description);
++            $url[] = 'X-ALT-DESC;FMTTYPE=text/html:'.$this->escapeString($link->description);
+         }
+         if ($link->address) {
+             $url[] = 'LOCATION:'.$this->escapeString($link->address);
