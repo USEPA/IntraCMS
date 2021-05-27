@@ -8,6 +8,10 @@ dependencies:
     - media.type.remote_video
   module:
     - media
+    - media_inline_embed
+third_party_settings:
+  media_inline_embed:
+    embed_inline: false
 id: media.remote_video.default
 targetEntityType: media
 bundle: remote_video
@@ -19,7 +23,7 @@ content:
     weight: 0
     settings:
       max_width: 510
-      max_height: 0
+      max_height: 287
     third_party_settings: {  }
     region: content
 hidden:
