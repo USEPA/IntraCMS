@@ -10,10 +10,13 @@ dependencies:
   module:
     - layout_builder
     - media
+    - media_inline_embed
 third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
+  media_inline_embed:
+    embed_inline: false
 id: media.remote_video.half_width
 targetEntityType: media
 bundle: remote_video
@@ -25,7 +28,7 @@ content:
     weight: 0
     settings:
       max_width: 510
-      max_height: 0
+      max_height: 287
     third_party_settings: {  }
     region: content
 hidden:
