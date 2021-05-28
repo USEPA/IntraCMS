@@ -18,6 +18,7 @@ dependencies:
     - link
     - path
     - smart_date
+    - smart_date_recur
     - text
 third_party_settings:
   field_group:
@@ -49,11 +50,21 @@ content:
   field_event_date:
     weight: 8
     settings:
+      show_extra: true
+      hide_date: false
       modal: false
       default_duration: 60
       default_duration_increments: "30\n60|1 hour\n90\n120|2 hours\ncustom"
-      show_extra: true
-    third_party_settings: {  }
+    third_party_settings:
+      smart_date_recur:
+        modal: true
+        allowed_recur_freq_values:
+          DAILY: DAILY
+          WEEKLY: WEEKLY
+          MONTHLY: MONTHLY
+          YEARLY: YEARLY
+          MINUTELY: '0'
+          HOURLY: '0'
     type: smartdate_default
     region: content
   field_event_description:
@@ -76,6 +87,7 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
+      dialog_title: ''
     third_party_settings: {  }
     type: entity_reference_tree
     region: content
