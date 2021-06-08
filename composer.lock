@@ -1708,7 +1708,83 @@
                 "source": "https://git.drupalcode.org/project/address"
             }
         },
-         {
+        {
+            "name": "drupal/addtocal",
+            "version": "2.0.0-beta3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/addtocal.git",
+                "reference": "8.x-2.0-beta3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/addtocal-8.x-2.0-beta3.zip",
+                "reference": "8.x-2.0-beta3",
+                "shasum": "149d0cab29cb1edeee3ff5f9005d0a135afc7559"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "spatie/calendar-links": "^1.4"
+            },
+            "suggest": {
+                "drupal/token": "Enables addtocal token ui and field tokens."
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.0-beta3",
+                    "datestamp": "1607099904",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                },
+                "patches_applied": {
+                    "1551026: Allow compatibility with smart date": "https://www.drupal.org/files/issues/2021-02-26/1551026-smart_date.patch"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Boggs",
+                    "homepage": "https://www.drupal.org/user/153069"
+                },
+                {
+                    "name": "andrei.colesnic",
+                    "homepage": "https://www.drupal.org/user/3272384"
+                },
+                {
+                    "name": "bdimaggio",
+                    "homepage": "https://www.drupal.org/user/70688"
+                },
+                {
+                    "name": "gcb",
+                    "homepage": "https://www.drupal.org/user/1682976"
+                },
+                {
+                    "name": "levelos",
+                    "homepage": "https://www.drupal.org/user/54135"
+                },
+                {
+                    "name": "tauno",
+                    "homepage": "https://www.drupal.org/user/105595"
+                },
+                {
+                    "name": "wxactly",
+                    "homepage": "https://www.drupal.org/user/3181097"
+                }
+            ],
+            "description": "Drupal field formatter providing Add to Calendar links.",
+            "homepage": "https://www.drupal.org/project/addtocal",
+            "support": {
+                "source": "https://git.drupalcode.org/project/addtocal",
+                "issues": "https://www.drupal.org/project/issues/addtocal"
+            }
+        },
+        {
             "name": "drupal/admin_toolbar",
             "version": "3.0.0",
             "source": {
@@ -19579,7 +19655,8 @@
         "drupal/bulk_update_fields": 15,
         "drupal/h5p": 5,
         "drupal/node_revision_delete": 5,
-        "drupal/node_export": 15
+        "drupal/node_export": 15,
+        "drupal/addtocal": 10
     },
     "prefer-stable": true,
     "prefer-lowest": false,

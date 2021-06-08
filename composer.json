@@ -89,6 +89,7 @@
         "drupal/jira_issue_collector": "1.1.0",
         "drupal/node_export": "^1.0@alpha",
         "drupal/variationcache": "^1.0",
+        "drupal/addtocal": "^2.0@beta",
         "drupal/editoria11y": "^1.0",
         "drupal/override_node_options": "^2.6",
         "drupal/image_style_quality": "^1.4"
@@ -103,6 +104,9 @@
         "patches": {
             "spatie/calendar-links": {
                 "Fix ICS HTML formatting": "patches/spatie_ics_html_format.patch"
+            },
+            "drupal/addtocal": {
+                "1551026: Allow compatibility with smart date": "https://www.drupal.org/files/issues/2021-02-26/1551026-smart_date.patch"
             },
             "drupal/diff": {
                 "2980335: Establish class attribute as array instead of string.": "https://www.drupal.org/files/issues/2018-06-18/2980335_2_define_classes_as_array.patch"
