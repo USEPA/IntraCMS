@@ -12,7 +12,7 @@ dependencies:
     - image.style.thumbnail
     - media.type.image
   module:
-    - image
+    - focal_point
 _core:
   default_config_hash: kyoAHlZTGIuGTaQuBblGBk8EhfnVKOl19_0j5WbpQqM
 id: media.image.media_library
@@ -31,11 +31,13 @@ content:
     type: entity_reference_autocomplete
     region: content
   image:
-    type: image_image
+    type: image_focal_point
     weight: 1
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
+      preview_link: true
+      offsets: '50,50'
     third_party_settings: {  }
     region: content
   name:
