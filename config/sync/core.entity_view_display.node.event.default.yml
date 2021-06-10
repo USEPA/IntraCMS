@@ -37,6 +37,31 @@ third_party_settings:
           label: ''
           column_widths: 67-33
         components:
+          a123568d-c573-411b-bbe6-866be42f59e3:
+            uuid: a123568d-c573-411b-bbe6-866be42f59e3
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_event_date'
+              label: 'Event Date'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: above
+                type: smartdate_recurring
+                settings:
+                  timezone_override: ''
+                  format: default
+                  force_chronological: false
+                  add_classes: 0
+                  past_display: '2'
+                  upcoming_display: '2'
+                  show_next: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
           9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84:
             uuid: 9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84
             region: first
@@ -110,31 +135,6 @@ third_party_settings:
             additional:
               layout_builder_styles_style: ''
             weight: 0
-            a123568d-c573-411b-bbe6-866be42f59e3:
-              uuid: a123568d-c573-411b-bbe6-866be42f59e3
-              region: first
-              configuration:
-                id: 'field_block:node:event:field_event_date'
-                label: 'Event Date'
-                provider: layout_builder
-                label_display: '0'
-                formatter:
-                  label: above
-                  type: smartdate_recurring
-                  settings:
-                    timezone_override: ''
-                    format: default
-                    force_chronological: false
-                    add_classes: 0
-                    past_display: '2'
-                    upcoming_display: '2'
-                    show_next: false
-                  third_party_settings: {  }
-                context_mapping:
-                  entity: layout_builder.entity
-                  view_mode: view_mode
-              additional: {  }
-              weight: 1
           a1c59067-8f3d-491c-8384-a49f2703466a:
             uuid: a1c59067-8f3d-491c-8384-a49f2703466a
             region: second
@@ -165,9 +165,6 @@ third_party_settings:
     entity_view_mode_restriction:
       allowed_blocks: {  }
       allowed_layouts: {  }
-      whitelisted_blocks: {  }
-      blacklisted_blocks: {  }
-    allowed_block_categories: {  }
 id: node.event.default
 targetEntityType: node
 bundle: event
