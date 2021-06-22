@@ -1,0 +1,23 @@
+uuid: d526698d-5b15-446d-8d39-cea0fe4d56e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_on_official_portraits
+    - node.type.staff_member
+id: node.staff_member.field_show_on_official_portraits
+field_name: field_show_on_official_portraits
+entity_type: node
+bundle: staff_member
+label: 'Show on Official Portraits Page'
+description: 'Check the box to have the member''s photo show on the Official Portraits page managed by the Office of Multimedia.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Show
+  off_label: 'Don''t Show'
+field_type: boolean
