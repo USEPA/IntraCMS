@@ -52,9 +52,9 @@ third_party_settings:
                   timezone_override: ''
                   format: default
                   force_chronological: false
-                  add_classes: 0
-                  past_display: '2'
-                  upcoming_display: '2'
+                  add_classes: false
+                  past_display: 2
+                  upcoming_display: 2
                   show_next: false
                 third_party_settings: {  }
               context_mapping:
@@ -125,13 +125,18 @@ third_party_settings:
               label_display: '0'
               formatter:
                 label: above
-                type: smartdate_default
+                type: addtocal_view
                 settings:
                   timezone_override: ''
-                  format: default
+                  date_format: 'D, M j Y, g:ia T'
+                  event_title: ''
+                  location: ''
+                  description: ''
+                  past_events: false
                 third_party_settings: {  }
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
             additional:
               layout_builder_styles_style: ''
             weight: 0
