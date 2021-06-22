@@ -15,6 +15,7 @@ dependencies:
     - taxonomy
     - text
     - user
+    - views_autocomplete_filters
 id: event_calendar
 label: Calendar
 module: views
@@ -99,8 +100,10 @@ display:
           color_bundle:
             article: '#3a87ad'
             blog_post: '#3a87ad'
+            employee_profile: '#3a87ad'
             event: '#3a87ad'
             landing_page: '#3a87ad'
+            mass_mailer: '#3a87ad'
             page: '#3a87ad'
             photos_of_the_week: '#3a87ad'
             policy: '#3a87ad'
@@ -113,9 +116,30 @@ display:
           bundle_type: event
           classes: ''
           color_taxonomies:
+            1: '#3a87ad'
+            23: '#269c2a'
+            250: '#3a87ad'
+            2: '#3a87ad'
+            3: '#3a87ad'
             4: '#008000'
             5: '#3a87ad'
             6: '#3a87ad'
+            7: '#3a87ad'
+            8: '#3a87ad'
+            9: '#3a87ad'
+            10: '#3a87ad'
+            11: '#3a87ad'
+            12: '#3a87ad'
+            13: '#3a87ad'
+            22: '#3a87ad'
+            14: '#3a87ad'
+            15: '#3a87ad'
+            16: '#3a87ad'
+            17: '#3a87ad'
+            18: '#3a87ad'
+            19: '#3a87ad'
+            20: '#3a87ad'
+            21: '#3a87ad'
       row:
         type: fields
       fields:
@@ -755,6 +779,58 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: boolean
+        combine:
+          id: combine
+          table: views
+          field: combine
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: word
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: combine_op
+            label: 'Search Events'
+            description: ''
+            use_operator: false
+            operator: combine_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: combine
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              system_editor: '0'
+              administrator: '0'
+            placeholder: ''
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          fields:
+            title: title
+            field_event_description: field_event_description
+          plugin_id: views_autocomplete_filters_combine
       filter_groups:
         operator: AND
         groups:
