@@ -239,6 +239,47 @@ display:
           hierarchy_depth: 0
           required_depth: 0
           plugin_id: taxonomy_index_tid
+        field_show_on_agency_calendar_value:
+          id: field_show_on_agency_calendar_value
+          table: node__field_show_on_agency_calendar
+          field: field_show_on_agency_calendar_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: boolean
         field_event_host_target_id:
           id: field_event_host_target_id
           table: node__field_event_host
@@ -270,16 +311,19 @@ display:
             reduce: false
           is_grouped: false
           group_info:
-            label: ''
-            description: ''
-            identifier: ''
+            label: 'Event Host (field_event_host)'
+            description: null
+            identifier: field_event_host_target_id
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
             default_group_multiple: {  }
-            group_items: {  }
+            group_items:
+              1: {  }
+              2: {  }
+              3: {  }
           reduce_duplicates: false
           type: textfield
           limit: true
@@ -293,45 +337,20 @@ display:
           hierarchy_depth: 0
           required_depth: 0
           plugin_id: taxonomy_index_tid
-        field_show_on_ord_calendar_value:
-          id: field_show_on_ord_calendar_value
-          table: node__field_show_on_ord_calendar
-          field: field_show_on_ord_calendar_value
+      sorts:
+        field_event_date_value:
+          id: field_event_date_value
+          table: node__field_event_date
+          field: field_event_date_value
           relationship: none
-          group_type: group
+          group_type: max
           admin_label: ''
-          operator: '='
-          value: '1'
-          group: 3
+          order: DESC
           exposed: false
           expose:
-            operator_id: ''
             label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: boolean
-      sorts: {  }
+          granularity: second
+          plugin_id: date
       header: {  }
       footer: {  }
       empty: {  }
@@ -339,15 +358,14 @@ display:
       arguments: {  }
       display_extenders: {  }
       title: ''
-      group_by: false
+      group_by: true
       show_admin_links: true
       use_ajax: true
       filter_groups:
         operator: OR
         groups:
           1: AND
-          2: AND
-          3: AND
+          2: OR
     cache_metadata:
       max-age: -1
       contexts:
