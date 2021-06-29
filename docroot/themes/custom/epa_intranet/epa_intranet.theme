@@ -83,7 +83,8 @@ function epa_intranet_preprocess_field(&$variables, $hook) {
   // Multi-date events that appear in dynamic lists will not have their past dates appear
   // Examine the date items and remove them if they are in the past
   if ($elements['#field_name'] === 'field_event_date' && $elements['#bundle'] === 'event') {
-    if ($elements['#view_mode'] === 'list' && count($variables['items']) > 1) {
+    if (($elements['#view_mode'] === 'reference_list' || $elements['#view_mode'] === 'list')
+      && count($variables['items']) > 1) {
       // If it is a list, and ALL of the events are in the past, we still want to display one date
       // so keep track of the index and flag if any events have been included
       $final_element_index = count($variables['items']) - 1;
