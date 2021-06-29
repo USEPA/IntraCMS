@@ -1,0 +1,44 @@
+uuid: 633bab23-0d53-41ac-a7c7-384ec25f31cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.views_reference_list
+    - field.field.block_content.views_reference_list.field_list_footer
+    - field.field.block_content.views_reference_list.field_list_header
+    - field.field.block_content.views_reference_list.field_views_reference
+  module:
+    - entity_reference_revisions
+    - text
+id: block_content.views_reference_list.default
+targetEntityType: block_content
+bundle: views_reference_list
+mode: default
+content:
+  field_list_footer:
+    weight: 3
+    label: hidden
+    settings: { }
+    third_party_settings: { }
+    type: text_default
+    region: content
+  field_list_header:
+    weight: 2
+    label: hidden
+    settings: { }
+    third_party_settings: { }
+    type: text_default
+    region: content
+  field_views_reference:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true

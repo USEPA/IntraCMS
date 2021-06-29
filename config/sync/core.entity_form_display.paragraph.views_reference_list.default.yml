@@ -1,0 +1,32 @@
+uuid: 1e1bfeba-2241-4cb4-aee9-7653cba001c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.views_reference_list.field_list_header
+    - field.field.paragraph.views_reference_list.field_views_reference
+    - paragraphs.paragraphs_type.views_reference_list
+  module:
+    - viewsreference
+id: paragraph.views_reference_list.default
+targetEntityType: paragraph
+bundle: views_reference_list
+mode: default
+content:
+  field_list_header:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_views_reference:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: viewsreference_select
+    region: content
+hidden:
+  created: true
+  status: true

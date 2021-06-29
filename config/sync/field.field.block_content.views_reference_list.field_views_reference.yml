@@ -1,22 +1,19 @@
-uuid: f13b0f27-4a74-4abd-b4e3-3458d764ed0b
+uuid: 449672d8-234a-4e2c-9880-8a1bfd690358
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_sidebar_content
-    - node.type.page
-    - paragraphs.paragraphs_type.dynamic_list
-    - paragraphs.paragraphs_type.list_of_link
-    - paragraphs.paragraphs_type.title_and_text
+    - block_content.type.views_reference_list
+    - field.storage.block_content.field_views_reference
     - paragraphs.paragraphs_type.views_reference_list
   module:
     - entity_reference_revisions
-id: node.page.field_sidebar_content
-field_name: field_sidebar_content
-entity_type: node
-bundle: page
-label: 'Sidebar Content'
-description: 'Select the type of content you would like to include in the sidebar column of this page.'
+id: block_content.views_reference_list.field_views_reference
+field_name: field_views_reference
+entity_type: block_content
+bundle: views_reference_list
+label: 'Views Reference'
+description: ''
 required: false
 translatable: false
 default_value: {  }
@@ -26,69 +23,75 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      title_and_text: title_and_text
-      dynamic_list: dynamic_list
-      list_of_link: list_of_link
       views_reference_list: views_reference_list
     target_bundles_drag_drop:
       dynamic_list:
-        enabled: true
-        weight: -36
+        weight: 24
+        enabled: false
       governing_authorities:
-        weight: -32
-        enabled: false
-      heading_title_and_text:
-        weight: -34
-        enabled: false
-      hero_carousel:
         weight: 25
         enabled: false
+      heading_title_and_text:
+        weight: 26
+        enabled: false
+      hero_carousel:
+        weight: 27
+        enabled: false
       list_of_link:
-        enabled: true
-        weight: -35
+        weight: 28
+        enabled: false
+      policy_delegation_authorization:
+        weight: 29
+        enabled: false
       policy_roles:
-        weight: -28
+        weight: 30
         enabled: false
       question_and_answer:
-        weight: -33
+        weight: 31
         enabled: false
       rich_text:
-        weight: -31
+        weight: 32
         enabled: false
       slide:
-        weight: -30
-        enabled: false
-      slide_show:
-        weight: -29
-        enabled: false
-      title_and_text:
-        enabled: true
-        weight: -37
-      uswds_card:
         weight: 33
         enabled: false
-      uswds_card_set:
+      slide_show:
         weight: 34
         enabled: false
+      title_and_text:
+        weight: 35
+        enabled: false
+      uswds_accordion:
+        weight: 36
+        enabled: false
+      uswds_accordion_item:
+        weight: 37
+        enabled: false
+      uswds_card:
+        weight: 38
+        enabled: false
+      uswds_card_set:
+        weight: 39
+        enabled: false
       uswds_column:
-        weight: -25
+        weight: 40
         enabled: false
       uswds_graphic_list:
-        weight: -24
+        weight: 41
         enabled: false
       uswds_grid:
-        weight: -23
+        weight: 42
         enabled: false
       uswds_hero:
-        weight: -22
+        weight: 43
         enabled: false
       uswds_media_block:
-        weight: -21
+        weight: 44
         enabled: false
       uswds_text:
-        weight: -20
+        weight: 45
         enabled: false
       views_reference_list:
         enabled: true
-        weight: 21
+        weight: 46
 field_type: entity_reference_revisions
