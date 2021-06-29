@@ -1,0 +1,66 @@
+uuid: fe761f33-7d50-4bfe-b61e-dcc64c001589
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.reference_list
+    - field.field.node.event.field_event_date
+    - field.field.node.event.field_event_description
+    - field.field.node.event.field_event_host
+    - field.field.node.event.field_event_location
+    - field.field.node.event.field_event_recording
+    - field.field.node.event.field_event_tags
+    - field.field.node.event.field_show_on_agency_calendar
+    - node.type.event
+  module:
+    - layout_builder
+    - layout_builder_restrictions
+    - layout_library
+    - smart_date_recur
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+  layout_library:
+    enable: false
+  layout_builder_restrictions:
+    entity_view_mode_restriction:
+      allowed_blocks: {  }
+      allowed_layouts: {  }
+      whitelisted_blocks: {  }
+      blacklisted_blocks: {  }
+    allowed_block_categories: {  }
+id: node.event.reference_list
+targetEntityType: node
+bundle: event
+mode: reference_list
+content:
+  field_event_date:
+    weight: 0
+    label: hidden
+    settings:
+      timezone_override: ''
+      format: compact
+      past_display: '0'
+      upcoming_display: '4'
+      force_chronological: false
+      add_classes: 0
+      show_next: false
+      format_type: medium
+    third_party_settings: {  }
+    type: smartdate_recurring
+    region: content
+hidden:
+  content_moderation_control: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_event_description: true
+  field_event_host: true
+  field_event_location: true
+  field_event_recording: true
+  field_event_tags: true
+  field_show_on_agency_calendar: true
+  links: true
+  search_api_excerpt: true

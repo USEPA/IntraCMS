@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.list
+    - core.entity_view_mode.node.reference_list
     - core.entity_view_mode.node.teaser
     - node.type.blog_post
     - taxonomy.vocabulary.tags
@@ -12,7 +12,7 @@ dependencies:
     - taxonomy
     - user
 id: blog_post_list
-label: 'Blog Post List'
+label: 'Blog Posts'
 module: views
 description: 'Blog Post view for use in Dynamic Lists'
 tag: ''
@@ -79,7 +79,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: list
+          view_mode: reference_list
       fields:
         title:
           id: title

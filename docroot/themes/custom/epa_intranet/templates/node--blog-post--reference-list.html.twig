@@ -73,19 +73,13 @@
  */
 #}
 
-<p>
-  <article{{ attributes }}>
-
+<li class="usa-collection__item">
+  <div class="usa-collection__body">
     {{ title_prefix }}
-    {% if label and not page %}
-      {{ title_attributes }}
+    {{ title_attributes }}
+    <h3 class="usa-collection__heading">
       <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-
-    {% endif %}
+    </h3>
     {{ title_suffix }}
-
-    <br/>
-    {{ content.field_event_date }}
-
-  </article>
-</p>
+  </div>
+</li>
