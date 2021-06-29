@@ -73,9 +73,14 @@
  */
 #}
 
-<li>
-  {{ title_prefix }}
-  {{ title_attributes }}
-  <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-  {{ title_suffix }}
+
+<li class="usa-collection__item">
+  <div class="usa-collection__body">
+    {{ title_prefix }}
+    {{ title_attributes }}
+    <h3 class="usa-collection__heading">
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h3>
+    {{ title_suffix }}
+  </div>
 </li>
