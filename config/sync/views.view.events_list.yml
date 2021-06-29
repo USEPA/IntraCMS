@@ -185,60 +185,6 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
-        field_event_host_target_id:
-          id: field_event_host_target_id
-          table: node__field_event_host
-          field: field_event_host_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_event_host_target_id_op
-            label: 'Event Host'
-            description: ''
-            use_operator: false
-            operator: field_event_host_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_event_host_target_id
-            required: false
-            remember: false
-            multiple: true
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: textfield
-          limit: true
-          vid: event_host
-          hierarchy: false
-          error_message: true
-          parent: 0
-          level_labels: ''
-          force_deepest: false
-          save_lineage: false
-          hierarchy_depth: 0
-          required_depth: 0
-          plugin_id: taxonomy_index_tid
         field_event_tags_target_id:
           id: field_event_tags_target_id
           table: node__field_event_tags
@@ -293,35 +239,99 @@ display:
           hierarchy_depth: 0
           required_depth: 0
           plugin_id: taxonomy_index_tid
-      sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
+        field_event_host_target_id:
+          id: field_event_host_target_id
+          table: node__field_event_host
+          field: field_event_host_target_id
           relationship: none
           group_type: group
           admin_label: ''
-          order: DESC
-          exposed: false
+          operator: or
+          value: {  }
+          group: 2
+          exposed: true
           expose:
+            operator_id: field_event_host_target_id_op
+            label: 'Event Host'
+            description: ''
+            use_operator: false
+            operator: field_event_host_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_event_host_target_id
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
             label: ''
-          granularity: second
-          entity_type: node
-          entity_field: created
-          plugin_id: date
-        field_event_date_value:
-          id: field_event_date_value
-          table: node__field_event_date
-          field: field_event_date_value
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: textfield
+          limit: true
+          vid: event_host
+          hierarchy: false
+          error_message: true
+          parent: 0
+          level_labels: ''
+          force_deepest: false
+          save_lineage: false
+          hierarchy_depth: 0
+          required_depth: 0
+          plugin_id: taxonomy_index_tid
+        field_show_on_ord_calendar_value:
+          id: field_show_on_ord_calendar_value
+          table: node__field_show_on_ord_calendar
+          field: field_show_on_ord_calendar_value
           relationship: none
           group_type: group
           admin_label: ''
-          order: DESC
+          operator: '='
+          value: '1'
+          group: 3
           exposed: false
           expose:
+            operator_id: ''
             label: ''
-          granularity: second
-          plugin_id: date
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: boolean
+      sorts: {  }
       header: {  }
       footer: {  }
       empty: {  }
@@ -332,6 +342,12 @@ display:
       group_by: false
       show_admin_links: true
       use_ajax: true
+      filter_groups:
+        operator: OR
+        groups:
+          1: AND
+          2: AND
+          3: AND
     cache_metadata:
       max-age: -1
       contexts:
