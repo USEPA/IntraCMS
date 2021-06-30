@@ -95,7 +95,8 @@
         "drupal/image_style_quality": "^1.4",
         "drupal/viewsreference": "^1.7",
         "drupal/entityreference_filter": "^1.4",
-        "drupal/viewsreference_filter": "^1.0"
+        "drupal/viewsreference_filter": "^1.0",
+        "drupal/block_list_override": "^1.0"
     },
     "require-dev": {
         "drush/drush": "^9.0"
@@ -116,6 +117,9 @@
             },
             "drupal/webform": {
                 "Cast variable to int for postgreSQL DBs": "patches/webform_group_variable_cast.patch"
+            },
+            "drupal/viewsreference": {
+                "3166490: Fixes missing display upon first adding a list": "https://www.drupal.org/files/issues/2021-01-15/viewsreference-ajax_after_display_selection-3166490-6.patch"
             },
             "drupal/viewsreference_filter": {
                 "3201294: Allows editing of autocompleted taxonomy filters": "https://www.drupal.org/files/issues/2021-03-26/viewsreference_filter-autocomplete_problems-3201294-6.patch"
