@@ -9,6 +9,7 @@ use Drupal\media\Entity\Media;
 use Drupal\migrate\Row;
 use Drupal\migrate\Plugin\MigrateSourceInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
+use Drupal\Core\File\FileSystemInterface;
 
 use Drupal\Core\Routing\RouteMatchInterface;
 
@@ -49,10 +50,10 @@ function create_file_and_media(Row $row): void {
   if (isset($image_data) && isset($image_data[0]) && !empty($image_data[0])) {
     $uri_array = explode("/", $image_data[0]['uri']);
     $file_name = $uri_array[count($uri_array) - 1];
-    $file_location = str_replace("public://", "https://webx.ord.epa.gov/sites/default/files/", $image_data[0]['uri']);
+    $file_location = str_replace("public://", "https://oneintranetpilot.epa.gov/sites/default/files/", $image_data[0]['uri']);
     $file_data = file_get_contents($file_location);
     if ($file_data) {
-      $file = file_save_data($file_data, 'public://staff/' . $file_name, FILE_EXISTS_REPLACE);
+      $file = file_save_data($file_data, 'public://staff/' . $file_name, EXISTS_REPLACE);
       $media = Media::create([
           'bundle' => 'image',
           'uid' => \Drupal::currentUser()->id(),
