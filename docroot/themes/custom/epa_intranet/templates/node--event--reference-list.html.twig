@@ -72,20 +72,27 @@
  * @ingroup themeable
  */
 #}
-
 <p>
-  <article{{ attributes }}>
-
+<li {{ attributes.addClass('usa-collection__item') }}>
+  <div class="usa-collection__calendar-date">
+    <time datetime="{{ rawDateTime }}">
+      <span class="usa-collection__calendar-date-month">{{ displayMonth }}</span>
+      <span class="usa-collection__calendar-date-day">{{ displayDay }}</span>
+    </time>
+  </div>
+  <div class="usa-collection__body">
     {{ title_prefix }}
     {% if label and not page %}
       {{ title_attributes }}
-      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-
+      <h3 class="usa-collection__heading">
+        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+      </h3>
     {% endif %}
     {{ title_suffix }}
+    <div class="usa-collection__description">
+      {{ content.field_event_date }}
+    </div>
+  </div>
 
-    <br/>
-    {{ content.field_event_date }}
-
-  </article>
+</li>
 </p>

@@ -21,7 +21,6 @@
  */
 #}
 {% set view_mode = element['#view_mode'] %}
-
 {% if view_mode == 'reference_list' or view_mode == 'list' %}
   {% if items|length > 1 %}
     <em>
@@ -59,7 +58,7 @@
     label_display == 'inline' ? 'inline',
   ] %}
 
-  {% if (formatter == 'smartdate_recurring' and showRecurring) or (formatter == 'addtocal_view' and showEventDate) or (formatter == 'smartdate_default' and showEventDate) %}
+  {% if (formatter == 'smartdate_recurring' and showRecurring) or (formatter == 'addtocal_view' and showEventDate) %}
     <div{{ attributes.addClass(classes) }}>
       {% if not label_hidden %}
         {% if formatter == 'smartdate_recurring' %}
@@ -70,11 +69,11 @@
       {% endif %}
       <div class="card-body py-1 display-grid">
         {% for item in items %}
-          {% if (item.recurring and formatter == 'smartdate_recurring') or (not item.recurring and formatter == 'addtocal_view') or (not item.recurring and formatter == 'smartdate_default') %}
+          {% if (item.recurring and formatter == 'smartdate_recurring') or (not item.recurring and formatter == 'addtocal_view') %}
             <p{{ item.attributes }}>{{ item.content }}</p>
           {% endif %}
         {% endfor %}
       </div>
     </div>
-    {% endif %}
+  {% endif %}
 {% endif %}
