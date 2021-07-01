@@ -47,10 +47,10 @@
 
 {% block paragraph %}
   <div {{ attributes.addClass(classes) }}>
-    <div class="{{ isPage ? 'site-preview-heading' : 'm-0 font-weight-bold'}}">
+    <div class="site-preview-heading {{ not isPage ? 'm-0 p-0'}}">
       {{ content.field_list_header }}
     </div>
-    <article class="{{ isPage ? 'card-body' }}  py-1">
+    <article class="{{ isPage ? 'card-body' }} py-1">
       <ul class="usa-collection">
         {{ content.field_views_reference }}
       </ul>

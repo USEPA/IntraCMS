@@ -108,6 +108,19 @@ function epa_intranet_preprocess_field(&$variables, $hook) {
   }
 }
 
+// Determine final date value for recurring dates and make vals accessible via twig
+function epa_intranet_preprocess_node__event(&$variables) {
+  if ($variables['view_mode'] == 'reference_list') {
+    $final_index = count($variables['elements']['field_event_date']['#items'])-1;
+    $last_element = $variables['elements']['field_event_date']['#items'][$final_index];
+    foreach($variables['elements']['field_event_date']['#items'] as $key => $item) {
+      $event_start_date = $item->getValue()['value'];
+      $variables['rawDateTime'] = date("Y-M-d H:i:s", $event_start_date);
+      $variables['displayMonth'] = date("M", $event_start_date);
+      $variables['displayDay'] = date("d", $event_start_date);
+    }
+  }
+}
 
 function epa_intranet_preprocess_media(&$variables) {
   if ($variables['view_mode'] == 'slideshow') {
