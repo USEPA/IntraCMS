@@ -5,9 +5,21 @@
  * Contains misc features for EPA intranet.
  */
 
+
 /**
  * Implements hook_views_plugins_style_alter() to show empty calendar when not events exist.
  */
 function epa_core_views_plugins_style_alter(array &$plugins) {
   $plugins['fullcalendar_view_display']['even empty'] = true;
+}
+
+/**
+ * Attach handler js if a hierarchy input type is detected
+ * Implements hook_form_alter().
+ */
+function epa_core_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if (str_contains($form_id, 'webform') && $form_id != "webform_source_form") {
+    $form['#attached']['library'][] = 'epa_core/hierarchy-handler';
+  }
+  $form['#attached']['library'][] = 'epa_core/admin-forms';
 }
