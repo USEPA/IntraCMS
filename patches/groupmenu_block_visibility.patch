@@ -1,0 +1,13 @@
+diff --git a/modules/groupmenu_block/src/Plugin/Block/GroupMenuBlock.php b/modules/groupmenu_block/src/Plugin/Block/GroupMenuBlock.php
+index 138867f23c77648d9426627ecf651a50f49859a1..da396e6b0dcfeda739cf32ea5976e214a8ffaa07 100644
+--- a/modules/groupmenu_block/src/Plugin/Block/GroupMenuBlock.php
++++ b/modules/groupmenu_block/src/Plugin/Block/GroupMenuBlock.php
+@@ -13,7 +13,7 @@ use Drupal\group\Entity\GroupInterface;
+  * @Block(
+  *   id = "groupmenus",
+  *   admin_label = @Translation("Group menus"),
+- *   context = {
++ *   context_definitions = {
+  *     "group" = @ContextDefinition("entity:group", required = FALSE),
+  *     "node" = @ContextDefinition("entity:node", required = FALSE)
+  *   }
