@@ -118,7 +118,8 @@ function epa_intranet_preprocess_node__event(&$variables) {
   if (!isset($_SESSION["processed_recurring_dates"])) {
     $_SESSION["processed_recurring_dates"] = [];
   }
-  if ($variables['view_mode'] == 'reference_list' || $variables['view_mode'] == 'teaser') {
+  if ($variables['view_mode'] == 'reference_list' || $variables['view_mode'] == 'teaser'
+    || $variables['view_mode'] == 'sidebar_teaser') {
     $variables['#cache']['max-age'] = 0;
     $node = $variables["elements"]["#node"];
     foreach ($variables["view"]->result as $current_result) {
@@ -157,7 +158,8 @@ function epa_intranet_preprocess_views_view(array &$variables) {
     unset($variables['feed_icons']);
   }
   if ($id == 'events_list') {
-    if ($view->rowPlugin->options["view_mode"] == 'reference_list' || $view->rowPlugin->options["view_mode"] == 'teaser') {
+    if ($view->rowPlugin->options["view_mode"] == 'reference_list' || $view->rowPlugin->options["view_mode"] == 'teaser'
+      || $view->rowPlugin->options["view_mode"] == 'sidebar_teaser') {
       unset($_SESSION["processed_recurring_dates"]);
     }
   }
@@ -244,6 +246,7 @@ function epa_intranet_preprocess_views_view__staff_order(&$variables) {
     }
   }
 }
+
 function epa_intranet_preprocess_views_view_grouping(&$variables) {
   $view = $variables['view'];
   if ($view->id() === 'organizations_with_staff') {
