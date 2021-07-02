@@ -1,9 +1,9 @@
-uuid: 3ace0472-b55e-453b-961d-62c141d26971
+uuid: 134cb58b-ffc6-4b15-9eaf-1e25801d10b5
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.sidebar_teaser
     - field.field.node.event.field_event_date
     - field.field.node.event.field_event_description
     - field.field.node.event.field_event_host
@@ -13,18 +13,32 @@ dependencies:
     - field.field.node.event.field_show_on_agency_calendar
     - node.type.event
   module:
+    - layout_builder
+    - layout_builder_restrictions
+    - layout_library
     - smart_date_recur
     - text
     - user
-id: node.event.teaser
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+  layout_library:
+    enable: false
+  layout_builder_restrictions:
+    entity_view_mode_restriction:
+      allowed_blocks: {  }
+      allowed_layouts: {  }
+      whitelisted_blocks: {  }
+      blacklisted_blocks: {  }
+    allowed_block_categories: {  }
+id: node.event.sidebar_teaser
 targetEntityType: node
 bundle: event
-mode: teaser
+mode: sidebar_teaser
 content:
   field_event_date:
-    type: smartdate_recurring
     weight: 0
-    region: content
     label: hidden
     settings:
       timezone_override: ''
@@ -36,22 +50,24 @@ content:
       show_next: false
       format_type: medium
     third_party_settings: {  }
-  field_event_description:
-    type: text_summary_or_trimmed
-    weight: 1
+    type: smartdate_recurring
     region: content
+  field_event_description:
+    weight: 1
     label: hidden
     settings:
-      trim_length: 160
+      trim_length: 60
     third_party_settings: {  }
-  field_event_host:
-    type: entity_reference_label
-    weight: 2
+    type: text_summary_or_trimmed
     region: content
+  field_event_host:
+    weight: 2
     label: hidden
     settings:
       link: true
     third_party_settings: {  }
+    type: entity_reference_label
+    region: content
 hidden:
   content_moderation_control: true
   entity_print_view_epub: true

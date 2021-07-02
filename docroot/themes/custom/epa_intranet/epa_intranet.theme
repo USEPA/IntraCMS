@@ -31,6 +31,11 @@ function epa_intranet_preprocess_image(&$variables) {
       $variables['attributes']['width'] = 'auto';
       $variables['attributes']['height'] = 150;
     }
+    if ($variables['style_name'] == 'dynamic_list_teaser') {
+      $variables['attributes']['class'][] = 'usa-collection__img';
+      unset($variables['attributes']['width']);
+      unset($variables['attributes']['height']);
+    }
   }
 }
 
@@ -53,37 +58,37 @@ function epa_intranet_preprocess_field(&$variables, $hook) {
     $variables['attributes']['class'][] = 'align-center';
   }
 
-    if ($elements['#field_name'] === 'field_event_date') {
-      $variables['showEventDate'] = false;
-      $variables['showRecurring'] = false;
-      $variables['formatter'] = $variables['element']['#formatter'];
-      if (isset($variables['items'])) {
-        foreach ($variables['items'] as $index => $item) {
-          try {
-            $recurring = (Boolean) $elements['#items'][$index]->get('rrule')->getValue();
-          } catch (Exception $e) {
-            // Unable to grab rrule
-            $recurring = false;
-          }
-
-          // Flag if there is at least one recurring or not recurring to show the appropriate sections
-          if (!$recurring) {
-            $variables['showEventDate'] = true;
-          }
-          if ($recurring) {
-            $variables['showRecurring'] = true;
-          }
-          $item['recurring'] = $recurring;
-          $variables['items'][$index] = $item;
+  if ($elements['#field_name'] === 'field_event_date') {
+    $variables['showEventDate'] = false;
+    $variables['showRecurring'] = false;
+    $variables['formatter'] = $variables['element']['#formatter'];
+    if (isset($variables['items'])) {
+      foreach ($variables['items'] as $index => $item) {
+        try {
+          $recurring = (Boolean)$elements['#items'][$index]->get('rrule')->getValue();
+        } catch (Exception $e) {
+          // Unable to grab rrule
+          $recurring = false;
         }
+
+        // Flag if there is at least one recurring or not recurring to show the appropriate sections
+        if (!$recurring) {
+          $variables['showEventDate'] = true;
+        }
+        if ($recurring) {
+          $variables['showRecurring'] = true;
+        }
+        $item['recurring'] = $recurring;
+        $variables['items'][$index] = $item;
       }
     }
-
+  }
 
   // Multi-date events that appear in dynamic lists will not have their past dates appear
   // Examine the date items and remove them if they are in the past
   if ($elements['#field_name'] === 'field_event_date' && $elements['#bundle'] === 'event') {
-    if (($elements['#view_mode'] === 'reference_list' || $elements['#view_mode'] === 'list')
+    if (($elements['#view_mode'] === 'reference_list' || $elements['#view_mode'] === 'list'
+        || $elements['#view_mode'] === 'teaser' || $elements['#view_mode'] === 'sidebar_teaser')
       && count($variables['items']) > 1) {
       // If it is a list, and ALL of the events are in the past, we still want to display one date
       // so keep track of the index and flag if any events have been included
@@ -110,14 +115,27 @@ function epa_intranet_preprocess_field(&$variables, $hook) {
 
 // Determine final date value for recurring dates and make vals accessible via twig
 function epa_intranet_preprocess_node__event(&$variables) {
-  if ($variables['view_mode'] == 'reference_list') {
-    $final_index = count($variables['elements']['field_event_date']['#items'])-1;
-    $last_element = $variables['elements']['field_event_date']['#items'][$final_index];
-    foreach($variables['elements']['field_event_date']['#items'] as $key => $item) {
-      $event_start_date = $item->getValue()['value'];
-      $variables['rawDateTime'] = date("Y-M-d H:i:s", $event_start_date);
-      $variables['displayMonth'] = date("M", $event_start_date);
-      $variables['displayDay'] = date("d", $event_start_date);
+  if (!isset($_SESSION["processed_recurring_dates"])) {
+    $_SESSION["processed_recurring_dates"] = [];
+  }
+  if ($variables['view_mode'] == 'reference_list' || $variables['view_mode'] == 'teaser'
+    || $variables['view_mode'] == 'sidebar_teaser') {
+    $variables['#cache']['max-age'] = 0;
+    $node = $variables["elements"]["#node"];
+    foreach ($variables["view"]->result as $current_result) {
+      if ($node->id() === $current_result->_entity->id()) {
+        $event_start_date = $current_result->node__field_event_date_field_event_date_value;
+        if (!isset($_SESSION['processed_recurring_dates'][$current_result->_entity->id()])) {
+          $_SESSION['processed_recurring_dates'][$current_result->_entity->id()] = [];
+        }
+        if (!in_array($event_start_date, $_SESSION['processed_recurring_dates'][$current_result->_entity->id()])) {
+          $variables['rawDateTime'] = date("Y-M-d H:i:s", $event_start_date);
+          $variables['displayMonth'] = date("M", $event_start_date);
+          $variables['displayDay'] = date("d", $event_start_date);
+          $_SESSION['processed_recurring_dates'][$current_result->_entity->id()][] = $event_start_date;
+          break;
+        }
+      }
     }
   }
 }
@@ -125,6 +143,25 @@ function epa_intranet_preprocess_node__event(&$variables) {
 function epa_intranet_preprocess_media(&$variables) {
   if ($variables['view_mode'] == 'slideshow') {
     $variables['attributes']['class'][] = 'grid-row';
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function epa_intranet_preprocess_views_view(array &$variables) {
+  $view = $variables['view'];
+  $id = $view->storage->id();
+  // Move feed icon to the top of the result, instead of buttom.
+  if (isset($variables['feed_icons'])) {
+    $variables['header'] = array_merge($variables['header'], $variables['feed_icons']);
+    unset($variables['feed_icons']);
+  }
+  if ($id == 'events_list') {
+    if ($view->rowPlugin->options["view_mode"] == 'reference_list' || $view->rowPlugin->options["view_mode"] == 'teaser'
+      || $view->rowPlugin->options["view_mode"] == 'sidebar_teaser') {
+      unset($_SESSION["processed_recurring_dates"]);
+    }
   }
 }
 
@@ -181,7 +218,6 @@ function epa_intranet_preprocess_menu(&$variables) {
     }
   }
 }
-
 
 function epa_intranet_preprocess_page(&$variables) {
   //   Load correct Hero revision for page

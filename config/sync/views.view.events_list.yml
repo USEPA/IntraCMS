@@ -3,7 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.reference_list
+    - core.entity_view_mode.node.sidebar_teaser
+    - core.entity_view_mode.node.teaser
     - node.type.event
     - taxonomy.vocabulary.event_host
     - taxonomy.vocabulary.event_tags
@@ -79,7 +80,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: reference_list
+          view_mode: teaser
       fields:
         title:
           id: title
@@ -239,10 +240,10 @@ display:
           hierarchy_depth: 0
           required_depth: 0
           plugin_id: taxonomy_index_tid
-        field_show_on_agency_calendar_value:
-          id: field_show_on_agency_calendar_value
-          table: node__field_show_on_agency_calendar
-          field: field_show_on_agency_calendar_value
+        field_show_on_ord_calendar_value:
+          id: field_show_on_ord_calendar_value
+          table: node__field_show_on_ord_calendar
+          field: field_show_on_ord_calendar_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -337,15 +338,60 @@ display:
           hierarchy_depth: 0
           required_depth: 0
           plugin_id: taxonomy_index_tid
+        field_event_date_value:
+          id: field_event_date_value
+          table: node__field_event_date
+          field: field_event_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '>'
+          value:
+            min: ''
+            max: ''
+            value: '-1 hours'
+            type: offset
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: date
       sorts:
         field_event_date_value:
           id: field_event_date_value
           table: node__field_event_date
           field: field_event_date_value
           relationship: none
-          group_type: max
+          group_type: group
           admin_label: ''
-          order: DESC
+          order: ASC
           exposed: false
           expose:
             label: ''
@@ -358,7 +404,7 @@ display:
       arguments: {  }
       display_extenders: {  }
       title: ''
-      group_by: true
+      group_by: false
       show_admin_links: true
       use_ajax: true
       filter_groups:
@@ -380,11 +426,87 @@ display:
   block_1:
     display_plugin: block
     id: block_1
-    display_title: List
+    display_title: Teaser
     position: 2
     display_options:
       display_extenders: {  }
       display_description: ''
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  block_2:
+    display_plugin: block
+    id: block_2
+    display_title: 'Archive/All Items - Teaser'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      pager:
+        type: full
+        options:
+          items_per_page: 6
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 5
+      defaults:
+        pager: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  block_3:
+    display_plugin: block
+    id: block_3
+    display_title: 'Sidebar Teaser'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
+      defaults:
+        style: false
+        row: false
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: sidebar_teaser
     cache_metadata:
       max-age: -1
       contexts:
