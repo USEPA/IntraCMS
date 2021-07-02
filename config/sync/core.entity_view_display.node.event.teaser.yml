@@ -13,7 +13,7 @@ dependencies:
     - field.field.node.event.field_show_on_agency_calendar
     - node.type.event
   module:
-    - smart_date
+    - smart_date_recur
     - text
     - user
 id: node.event.teaser
@@ -22,26 +22,41 @@ bundle: event
 mode: teaser
 content:
   field_event_date:
-    type: smartdate_default
+    type: smartdate_recurring
     weight: 0
     region: content
     label: hidden
     settings:
       timezone_override: ''
-      format: default
+      format: time_only
+      past_display: '0'
+      upcoming_display: '0'
+      force_chronological: false
+      add_classes: 0
+      show_next: false
       format_type: medium
     third_party_settings: {  }
   field_event_description:
     type: text_summary_or_trimmed
     weight: 1
     region: content
-    label: above
+    label: hidden
     settings:
-      trim_length: 600
+      trim_length: 160
+    third_party_settings: {  }
+  field_event_host:
+    type: entity_reference_label
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link: true
     third_party_settings: {  }
 hidden:
   content_moderation_control: true
-  field_event_host: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
   field_event_location: true
   field_event_recording: true
   field_event_tags: true
