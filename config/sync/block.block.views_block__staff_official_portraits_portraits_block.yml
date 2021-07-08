@@ -1,0 +1,30 @@
+uuid: 1f99503c-c2ff-4818-a0b2-97e3cfb50fd5
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.staff_official_portraits
+  module:
+    - system
+    - views
+  theme:
+    - epa_intranet
+id: views_block__staff_official_portraits_portraits_block
+theme: epa_intranet
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:staff_official_portraits-portraits_block'
+settings:
+  id: 'views_block:staff_official_portraits-portraits_block'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: '48'
+visibility:
+  request_path:
+    id: request_path
+    pages: /multimedia/official-portraits
+    negate: false
+    context_mapping: {  }
