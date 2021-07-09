@@ -9,8 +9,10 @@ dependencies:
     - field.field.node.staff_member.field_first_name
     - field.field.node.staff_member.field_last_name
     - field.field.node.staff_member.field_location
+    - field.field.node.staff_member.field_official_portrait_link
     - field.field.node.staff_member.field_organization
     - field.field.node.staff_member.field_phone
+    - field.field.node.staff_member.field_show_on_official_portraits
     - field.field.node.staff_member.field_staff_biography
     - field.field.node.staff_member.field_staff_photo
     - field.field.node.staff_member.field_staff_position
@@ -36,7 +38,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_email:
-    weight: 13
+    weight: 15
     settings:
       size: 60
       placeholder: ''
@@ -44,7 +46,7 @@ content:
     type: email_default
     region: content
   field_first_name:
-    weight: 9
+    weight: 11
     settings:
       size: 60
       placeholder: ''
@@ -52,7 +54,7 @@ content:
     type: string_textfield
     region: content
   field_last_name:
-    weight: 10
+    weight: 12
     settings:
       size: 60
       placeholder: ''
@@ -60,26 +62,41 @@ content:
     type: string_textfield
     region: content
   field_location:
+    weight: 18
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_official_portrait_link:
+    weight: 10
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_organization:
     weight: 17
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
-  field_organization:
-    weight: 15
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_phone:
-    weight: 12
+    weight: 14
     settings:
       placeholder: xxx-xxx-xxxx
     third_party_settings: {  }
     type: telephone_default
     region: content
+  field_show_on_official_portraits:
+    weight: 9
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_staff_biography:
-    weight: 19
+    weight: 20
     settings:
       rows: 5
       placeholder: ''
@@ -102,7 +119,7 @@ content:
     region: content
     third_party_settings: {  }
   field_staff_position:
-    weight: 11
+    weight: 13
     settings:
       size: 60
       placeholder: ''
@@ -110,7 +127,7 @@ content:
     type: string_textfield
     region: content
   field_staff_profile:
-    weight: 14
+    weight: 16
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -118,7 +135,7 @@ content:
     type: link_default
     region: content
   field_staff_secondary_location:
-    weight: 18
+    weight: 19
     settings:
       size: 60
       placeholder: ''
@@ -177,7 +194,7 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
