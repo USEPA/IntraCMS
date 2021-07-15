@@ -29,7 +29,84 @@ dependencies:
 third_party_settings:
   layout_builder:
     allow_custom: false
-    enabled: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: ''
+          column_widths: 25-75
+          layout_builder_styles_style: ''
+        components:
+          4ee75a75-dff8-4942-8c3c-6a382dd1b835:
+            uuid: 4ee75a75-dff8-4942-8c3c-6a382dd1b835
+            region: first
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:staff_member:field_staff_photo'
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: staff_member_card
+                  link: false
+                third_party_settings: {  }
+            additional: {  }
+            weight: 0
+          acf4438e-b2b0-415e-b67b-193fa4d2d478:
+            uuid: acf4438e-b2b0-415e-b67b-193fa4d2d478
+            region: second
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:staff_member:field_staff_profile'
+              formatter:
+                label: inline
+                settings:
+                  trim_length: null
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: '0'
+                third_party_settings: {  }
+                type: link
+            additional: {  }
+            weight: 2
+          ec5e40f7-f55f-4cc8-9229-4b280c41dcb2:
+            uuid: ec5e40f7-f55f-4cc8-9229-4b280c41dcb2
+            region: second
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:staff_member:field_email'
+              formatter:
+                label: inline
+                settings: {  }
+                third_party_settings: {  }
+                type: email_mailto
+            additional: {  }
+            weight: 1
+          19f537a0-658d-4e53-81ac-ff61142d6d77:
+            uuid: 19f537a0-658d-4e53-81ac-ff61142d6d77
+            region: second
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:staff_member:field_phone'
+              formatter:
+                label: inline
+                settings:
+                  title: ''
+                third_party_settings: {  }
+                type: telephone_link
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
   layout_library:
     enable: false
   layout_builder_restrictions:
