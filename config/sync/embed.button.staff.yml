@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.leadership
     - core.entity_view_mode.node.poc
     - core.entity_view_mode.node.poc_simple
     - core.entity_view_mode.node.profile
@@ -18,6 +19,7 @@ type_settings:
   bundles:
     - staff_member
   display_plugins:
+    - 'view_mode:node.leadership'
     - 'view_mode:node.poc'
     - 'view_mode:node.poc_simple'
     - 'view_mode:node.profile'
