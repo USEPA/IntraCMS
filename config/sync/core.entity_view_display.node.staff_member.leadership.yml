@@ -1,0 +1,93 @@
+uuid: 356ee6d7-efc0-45e9-a0c4-39f5f3e9e1f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.leadership
+    - field.field.node.staff_member.feeds_item
+    - field.field.node.staff_member.field_email
+    - field.field.node.staff_member.field_first_name
+    - field.field.node.staff_member.field_last_name
+    - field.field.node.staff_member.field_location
+    - field.field.node.staff_member.field_official_portrait_link
+    - field.field.node.staff_member.field_organization
+    - field.field.node.staff_member.field_phone
+    - field.field.node.staff_member.field_show_on_official_portraits
+    - field.field.node.staff_member.field_staff_biography
+    - field.field.node.staff_member.field_staff_photo
+    - field.field.node.staff_member.field_staff_position
+    - field.field.node.staff_member.field_staff_profile
+    - field.field.node.staff_member.field_staff_secondary_location
+    - node.type.staff_member
+  module:
+    - layout_builder
+    - layout_builder_restrictions
+    - layout_library
+    - link
+    - telephone
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+  layout_library:
+    enable: false
+  layout_builder_restrictions:
+    entity_view_mode_restriction:
+      allowed_blocks: {  }
+      allowed_layouts: {  }
+id: node.staff_member.leadership
+targetEntityType: node
+bundle: staff_member
+mode: leadership
+content:
+  field_email:
+    weight: 2
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: email_mailto
+    region: content
+  field_phone:
+    weight: 3
+    label: inline
+    settings:
+      title: ''
+    third_party_settings: {  }
+    type: telephone_link
+    region: content
+  field_staff_photo:
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: staff_member_card
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_staff_profile:
+    weight: 1
+    label: inline
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  content_moderation_control: true
+  feeds_item: true
+  field_first_name: true
+  field_last_name: true
+  field_location: true
+  field_official_portrait_link: true
+  field_organization: true
+  field_show_on_official_portraits: true
+  field_staff_biography: true
+  field_staff_position: true
+  field_staff_secondary_location: true
+  links: true
+  search_api_excerpt: true
