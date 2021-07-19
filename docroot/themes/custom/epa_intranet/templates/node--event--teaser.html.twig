@@ -90,7 +90,11 @@
     {% endif %}
     {{ title_suffix }}
     <div class="usa-collection__description">
-      {{ content.field_event_date }}
+      {% if displayTime %}
+        <em>{{ displayTime }}</em>
+      {% else %}
+        {{ content.field_event_date }}
+      {% endif %}
     </div>
     <div class="usa-collection__description">
       {{ content.field_event_description|field_value }}

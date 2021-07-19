@@ -121,15 +121,45 @@ function epa_intranet_preprocess_node__event(&$variables) {
   if ($variables['view_mode'] == 'reference_list' || $variables['view_mode'] == 'teaser'
     || $variables['view_mode'] == 'sidebar_teaser') {
     $variables['#cache']['max-age'] = 0;
-    $node = $variables["elements"]["#node"];
+    $node = $variables["node"];
+    $isRepeating = false;
+    $isMultiple = false;
+    $event_start_date = null;
+    $event_end_date = null;
     foreach ($variables["view"]->result as $current_result) {
       if ($node->id() === $current_result->_entity->id()) {
         $event_start_date = $current_result->node__field_event_date_field_event_date_value;
+        if ($current_result->_entity->get('field_event_date')->getValue()[0]['rrule'] == 1) {
+          $isRepeating = true;
+        }
+
+        if (!$isRepeating) {
+          if (count($variables["node"]->get('field_event_date')) > 1) {
+            $isMultiple = true;
+          }
+          for ($i = count($variables["node"]->get('field_event_date'))-1; $i >= 0; $i--) {
+            $event_occurrence = $variables["node"]->get('field_event_date')->getValue()[$i];
+            if ($event_occurrence['value'] == $event_start_date) {
+              $event_end_date = $event_occurrence['end_value'];
+            }
+          }
+        }
+
         if (!isset($_SESSION['processed_recurring_dates'][$current_result->_entity->id()])) {
           $_SESSION['processed_recurring_dates'][$current_result->_entity->id()] = [];
         }
         if (!in_array($event_start_date, $_SESSION['processed_recurring_dates'][$current_result->_entity->id()])) {
           $variables['rawDateTime'] = date("Y-M-d H:i:s", $event_start_date);
+          if (!$isRepeating && $isMultiple) {
+            $variables['rawStartDate'] = $event_start_date;
+            $variables['rawEndDate'] = $event_end_date;
+            // if overlaps between AM and PM, then display for both
+            if (date("a", $event_start_date) != date("a", $event_end_date)) {
+              $variables['displayTime'] = date("g:ia", $event_start_date) . " - " . date("g:ia", $event_end_date);
+            } else {
+              $variables['displayTime'] = date("g:i", $event_start_date) . " - " . date("g:ia", $event_end_date);
+            }
+          }
           $variables['displayMonth'] = date("M", $event_start_date);
           $variables['displayDay'] = date("d", $event_start_date);
           $_SESSION['processed_recurring_dates'][$current_result->_entity->id()][] = $event_start_date;
@@ -181,6 +211,7 @@ function epa_intranet_preprocess_views_view_table(&$variables) {
     }
   }
 }
+
 
 /**
  * Overwrite login links to include the current destination
@@ -246,6 +277,7 @@ function epa_intranet_preprocess_views_view__staff_order(&$variables) {
     }
   }
 }
+
 
 function epa_intranet_preprocess_views_view_grouping(&$variables) {
   $view = $variables['view'];
