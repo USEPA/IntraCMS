@@ -11,6 +11,10 @@ dependencies:
     - media.type.audio_file
   module:
     - file
+    - media_inline_embed
+third_party_settings:
+  media_inline_embed:
+    embed_inline: false
 _core:
   default_config_hash: sM6UMbqZ5X3WRQ464PE3wFYF9svnQWCmrBRbRQAyMl4
 id: media.audio_file.embedded
@@ -29,11 +33,18 @@ content:
       multiple_file_display_type: tags
     third_party_settings: {  }
     region: content
+  field_transcript:
+    type: file_default
+    weight: 1
+    region: content
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
 hidden:
   created: true
   field_keywords: true
   field_media_in_library: true
-  field_transcript: true
   name: true
   search_api_excerpt: true
   thumbnail: true
