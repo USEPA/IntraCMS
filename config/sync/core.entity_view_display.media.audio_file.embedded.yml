@@ -24,7 +24,7 @@ mode: embedded
 content:
   field_media_audio_file:
     type: file_audio
-    weight: 0
+    weight: 1
     label: visually_hidden
     settings:
       controls: true
@@ -35,17 +35,24 @@ content:
     region: content
   field_transcript:
     type: file_default
-    weight: 1
+    weight: 2
     region: content
     label: above
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
+  name:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
   created: true
   field_keywords: true
   field_media_in_library: true
-  name: true
   search_api_excerpt: true
   thumbnail: true
   uid: true
