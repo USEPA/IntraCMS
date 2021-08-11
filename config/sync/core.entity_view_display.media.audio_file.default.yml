@@ -10,6 +10,10 @@ dependencies:
     - media.type.audio_file
   module:
     - file
+    - media_inline_embed
+third_party_settings:
+  media_inline_embed:
+    embed_inline: false
 _core:
   default_config_hash: wMzduiuDbWrYcz6jGzCh_F4KHD41TnSkANACMNB4kbY
 id: media.audio_file.default
@@ -18,7 +22,7 @@ bundle: audio_file
 mode: default
 content:
   field_keywords:
-    weight: 1
+    weight: 2
     label: inline
     settings:
       link: true
@@ -27,7 +31,7 @@ content:
     region: content
   field_media_audio_file:
     type: file_audio
-    weight: 0
+    weight: 1
     label: visually_hidden
     settings:
       controls: true
@@ -37,17 +41,24 @@ content:
     third_party_settings: {  }
     region: content
   field_transcript:
-    weight: 2
+    weight: 3
     label: above
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
     type: file_default
     region: content
+  name:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
   created: true
   field_media_in_library: true
-  name: true
   search_api_excerpt: true
   thumbnail: true
   uid: true

@@ -9,15 +9,18 @@ dependencies:
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
     - field.field.media.image.layout_builder__translation
-    - image.style.featured_image
     - media.type.image
+    - responsive_image.styles.responsive_featured_image
   module:
-    - image
     - layout_builder
+    - media_inline_embed
+    - responsive_image
 third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
+  media_inline_embed:
+    embed_inline: false
 _core:
   default_config_hash: VLDxfMVPTkd2xvOjFMCh3kWmaOYnd03zggFXuUXQVEY
 id: media.image.featured_image
@@ -26,11 +29,11 @@ bundle: image
 mode: featured_image
 content:
   image:
-    type: image
+    type: responsive_image
     weight: 0
     label: hidden
     settings:
-      image_style: featured_image
+      responsive_image_style: responsive_featured_image
       image_link: ''
     third_party_settings: {  }
     region: content

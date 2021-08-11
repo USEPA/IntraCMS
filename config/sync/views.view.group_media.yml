@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - image.style.thumbnail
+    - media.type.audio_file
     - media.type.document
     - media.type.image
     - media.type.remote_video
@@ -811,6 +812,7 @@ display:
           admin_label: ''
           operator: in
           value:
+            audio_file: audio_file
             document: document
             image: image
             remote_video: remote_video
@@ -832,6 +834,7 @@ display:
               authenticated: authenticated
               anonymous: '0'
               webform: '0'
+              system_editor: '0'
               administrator: '0'
             reduce: true
             argument: ''
