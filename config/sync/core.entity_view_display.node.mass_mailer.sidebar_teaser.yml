@@ -1,0 +1,49 @@
+uuid: f1cc2ebb-133f-42b2-a08f-804b78615473
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.sidebar_teaser
+    - field.field.node.mass_mailer.field_include_special_message
+    - field.field.node.mass_mailer.field_keywords
+    - field.field.node.mass_mailer.field_message
+    - field.field.node.mass_mailer.field_message_date
+    - field.field.node.mass_mailer.field_message_from
+    - field.field.node.mass_mailer.field_special_message_text
+    - node.type.mass_mailer
+  module:
+    - layout_builder
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: node.mass_mailer.sidebar_teaser
+targetEntityType: node
+bundle: mass_mailer
+mode: sidebar_teaser
+content:
+  field_keywords:
+    weight: 1
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_message:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: 60
+    third_party_settings: {  }
+    type: text_summary_or_trimmed
+    region: content
+hidden:
+  content_moderation_control: true
+  field_include_special_message: true
+  field_message_date: true
+  field_message_from: true
+  field_special_message_text: true
+  links: true
