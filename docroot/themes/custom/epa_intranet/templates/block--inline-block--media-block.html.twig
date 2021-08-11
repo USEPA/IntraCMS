@@ -30,12 +30,13 @@
 
 {% set classes = [
     'usa-media-block',
+    'media-block-text-decoration',
     'tablet:grid-col',
 ] %}
 
 <div {{ attributes.addClass(classes) }}>
     {{ content.field_usa_media_block_img }}
-    <div class="usa-media-block__body">
+    <div class="usa-media-block__body media-block-body-decoration">
         {{ title_prefix }}
         <a href="{{ content.field_link.0['#url'] }}"
            class="usa-graphic-list__heading text-dark">

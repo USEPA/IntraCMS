@@ -27,7 +27,7 @@
  * @ingroup themeable
  */
 #}
-<div {{ attributes }}>
+<div {{ attributes.addClass('mb-3') }}>
   <div class="usa-card__container">
     <header class="usa-card__header">
       {{ title_prefix }}
@@ -37,7 +37,7 @@
       {{ title_suffix }}
     </header>
 
-    <div class="usa-card__body">
+    <<div class="usa-card__body list-card">
       {{ content.field_views_reference }}
       {{ content.field_list_footer }}
     </div>

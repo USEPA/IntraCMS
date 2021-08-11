@@ -45,20 +45,20 @@ div.more-link {
   display: grid;
 }
 
-.addtocal.usa-button.usa-button--outline {
+.addtocal-button.addtocal-outline {
   padding: 0.75rem 1.25rem;
   background-color: transparent;
   color: #005ea2;
 
 }
 
-.addtocal.usa-button:hover, .addtocal.usa-button:focus {
+.addtocal-button:hover, .addtocal-button:focus {
   background-color: transparent;
   box-shadow: inset 0 0 0 2px #1a4480;
   color: #1a4480;
 }
 
-.addtocal.usa-button  {
+.addtocal-button  {
   padding: 0.75rem 1.25rem;
   background-color: transparent;
   color: #005ea2;
@@ -184,8 +184,7 @@ blockquote p {
 }
 
 /* overriding links to apply uswds standards */
-ol.usa-list a, ul.usa-list a,
-ol.uswds-breadcrumbs a, ul.uswds-breadcrumbs a {
+ol.links-list a, ul.links-list a:not(.usa-button), ol.uswds-breadcrumbs a, ul.uswds-breadcrumbs a {
   color: #005ea2 !important;
 }
 
@@ -213,11 +212,11 @@ p a:visited {
 
 
 @media (min-width: 64em) {
-  .usa-nav__submenu-item a {
+  .nav-text-decoration a {
     color: white !important;
     text-decoration: none !important;
   }
-  .usa-nav__submenu-item a:hover {
+  .nav-text-decoration a:hover {
     color: white !important;
     text-decoration: underline !important;
   }
@@ -225,34 +224,24 @@ p a:visited {
 
 
 @media (max-width: 63.99em) {
-  .usa-nav__submenu .usa-nav__submenu-item {
+  .nav-sizing .nav-text-decoration {
     width: 100%
   }
 
-  .usa-nav__submenu-item:hover > a {
+  .nav-text-decoration:hover > a {
     color: #005ea2; !important;
     text-decoration: none;
   }
 
-  .usa-nav__submenu div.grid-row.grid-gap-4 {
+  .nav-sizing div.grid-row.grid-gap-4 {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
-  .usa-nav__submenu div.grid-row.grid-gap-4 > * {
+  .nav-sizing div.grid-row.grid-gap-4 > * {
     padding-left: unset;
     padding-right: unset;
   }
-}
-
-nav a.usa-button {
-  color: white !important;
-  text-decoration: none !important;
-}
-
-nav a.usa-button:visited {
-  color: white !important;
-  text-decoration: none !important;
 }
 
 h2 a {
@@ -265,27 +254,30 @@ h2 a:hover {
   text-decoration: underline !important;
 }
 
-.usa-footer a {
+.footer-text-decoration a {
   text-decoration: none !important;
 }
 
-.usa-footer a:hover {
+.footer-text-decoration a:hover  {
   text-decoration: underline !important;
 }
 
 
-div.usa-media-block a, div.usa-media-block__body a {
+div.media-block-text-decoration a, div.media-block-body-decoration a {
   text-decoration: none !important;
 }
 
-div.usa-media-block a:hover, div.usa-media-block__body a:hover {
+div.media-block-text-decoration a:hover, div.media-block-body-decoration a:hover {
   text-decoration: underline !important;
 }
 
-.usa-card__body > :last-child.usa-button {
+.block-card > :last-child.epa-intranet-button,
+.list-card > :last-child.epa-intranet-button,
+.paragraph-card > :last-child.epa-intranet-button {
   padding-bottom: 1rem;
 }
 
+/* Regarding as not an override of a usa style. Treating as 'if ext or mailto appears without usa-button' so leaving as-is*/
 a.ext:not('usa-button'), a.mailto:not('usa-button') {
   color: #005ea2;
   text-decoration: underline;
@@ -302,7 +294,7 @@ svg.ext, svg.mailto {
   padding-left: 0.2em;
   vertical-align: baseline;
 }
-
+/* Regarding as not an override of a usa style. Treating as 'if svg appears in a usa-button' so leaving as-is*/
 .usa-button svg.ext,
 .usa-button svg.mailto {
   fill: white;
@@ -314,45 +306,45 @@ svg.ext, svg.mailto {
   stroke-width: 3;
 }
 
-div.usa-media-block__body a.ext {
+div.media-block-body-decoration a.ext {
   display: -webkit-box;
 }
 
-div.usa-media-block__body a.ext div.field--name-field-usa-media-block-heading {
+div.media-block-body-decoration a.ext div.field--name-field-usa-media-block-heading {
   display: contents;
 }
 
-ul.usa-card-group div.field__items {
+ul.ul-cards div.field__items {
   display: -webkit-box;
 }
 
-ul.usa-card-group div.field__items div.field__item {
+ul.ul-cards div.field__items div.field__item {
   display: contents;
 }
 
-ul.usa-card-group div.field__label {
+ul.ul-cards div.field__label {
   display: none;
 }
 
-div.usa-card__media {
+div.paragraph-card__media {
   align-self: center;
 }
 
-div.usa-card__media div.field__item article {
+div.paragraph-card__media div.field__item article {
   height: 100%;
 }
 
-div.usa-card__media img {
+div.paragraph-card__media img {
   height: 100%;
   object-fit: cover;
   border-radius: 0.25rem;
 }
 
-.usa-card--header-first .usa-card__media {
+.first-card-header .usa-card__media {
   order: 0;
 }
 
-div.usa-card__body {
+div.block-card, div.list-card, div.paragraph-card {
   overflow-wrap: break-word;
 }
 
@@ -361,7 +353,7 @@ div.field--name-field-uswds-button .usa-legend {
   font-weight: unset;
 }
 
-.usa-card-group {
+.ul-cards {
   display: block;
 }
 
@@ -611,7 +603,7 @@ section.comment-wrapper ul.links li.comment-forbidden {
 }
 
 /* remove display block so that label is inline with form element */
-.usa-label {
+.usa-sr-label {
   display: inline-block;
   line-height: 1.12707;
   margin-top: 1.5rem;
@@ -628,7 +620,7 @@ section.comment-wrapper ul.links li.comment-forbidden {
   height: auto;
 }
 
-.usa-table {
+.auto-width {
   width: auto;
 }
 
@@ -671,27 +663,18 @@ ol, li {
   /*max-width:68ex;*/
 }
 
-ol:not('usa-card-group'), li:last-child {
-  margin-bottom: 0;
-}
-
 .caption > figcaption {
   font-size: smaller;
   font-style: italic;
 }
 
 /* increase max-width of forms */
-.usa-form {
+.full-width-form {
   max-width: none;
 }
 
 /* resets max-width of input field */
-.usa-form .usa-input {
-  max-width: 20rem;
-}
-
-/* resets max-width of select field */
-.usa-form .usa-select {
+.full-width-form .form-input, .full-width-form .form-select {
   max-width: 20rem;
 }
 
@@ -702,19 +685,14 @@ fieldset .usa-radio__label {
   margin-bottom: 0.75rem;
 }
 
-/* provides spacing equivalent to uswds standard*/
-.usa-sr-label {
-  margin-top: 1.5rem;
-}
-
 /* provides spacing and image size equivalent to uswds standard*/
-div[class~="usa-alert"]:not(.usa-alert--slim) {
+div[class~="usa-alert-normalizer"]:not(.usa-alert--slim) {
   margin-top: 1.5rem;
   background-position: 1rem 1rem;
   background-size: 3.5rem;
 }
 
-div.usa-alert--slim {
+div.slim-normalizer {
   background-position: 1.4rem 0.70rem;
   background-size: 2.5rem;
 }
@@ -838,7 +816,7 @@ div.usa-alert--slim {
 ins {
   text-decoration: none;
 }
-
+/* this class isn't actually part of uswds and does not need to be separated */
 .usa-tag--accent, .new::before {
   background-color: #97d4ea;
   color: #1a4480;
@@ -850,7 +828,7 @@ ins {
   margin-right: 0.25rem !important;
 }
 
-.usa-tag, .new::before {
+.li-tag, .new::before {
   font-size: 0.93rem;
   text-transform: uppercase;
   border-radius: 2px;

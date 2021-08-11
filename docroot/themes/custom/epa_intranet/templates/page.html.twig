@@ -80,7 +80,7 @@
                 {{ page.highlighted }}
 
                 {% if page.help|render|trim %}
-                    <div class="usa-alert usa-alert--info">
+                    <div class="usa-alert usa-alert-normalizer usa-alert--info">
                         <div class="usa-alert__body">
                             <p class="usa-alert__text">
                                 {{ page.help }}
@@ -115,7 +115,7 @@
 
 </main>
 
-<footer class="{{ footer_classes }}" role="contentinfo">
+<footer class="{{ footer_classes }} footer-text-decoration" role="contentinfo">
     <div class="grid-container usa-footer__return-to-top">
         <a href="#">Return to top</a>
       {% if node.getType is not empty and (node.getType == 'page' or node.getType == 'landing_page') %}
