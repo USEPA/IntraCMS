@@ -196,6 +196,7 @@ function epa_intranet_preprocess_views_view(array &$variables) {
 }
 
 function epa_intranet_preprocess_views_view_table(&$variables) {
+  $variables['attributes']['class'][] = 'auto-width';
   $view = $variables['view'];
   $current_user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
   if ($current_user->hasRole('authenticated')) {

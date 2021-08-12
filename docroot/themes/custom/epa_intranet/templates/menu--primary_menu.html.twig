@@ -21,10 +21,10 @@
     {% if menu_level == 0 %}
 <ul class="usa-nav__primary usa-accordion">
   {% elseif menu_level == 1 %}
-  <ul id="megamenu-{{ button_id }}" class="usa-nav__submenu {% if megamenu %}usa-megamenu{% endif %}">
+  <ul id="megamenu-{{ button_id }}" class="usa-nav__submenu nav-sizing {% if megamenu %}usa-megamenu{% endif %}">
     <div class="grid-row grid-gap-4">
       {% if duplicate_parent %}
-        <li class="usa-nav__submenu-item">
+        <li class="usa-nav__submenu-item nav-text-decoration">
           <a class="usa-nav__link" href="{{ parent.url }}">
             <span>{{ parent.title }}</span>
           </a>
@@ -38,7 +38,7 @@
 
           {% for item in items %}
             {% if not (megamenu and menu_level == 1 and item.below) %}
-              <li class="{% if menu_level == 0 %}usa-nav__primary-item{% endif %} {% if menu_level > 0 %}usa-nav__submenu-item{% endif %}">
+              <li class="{% if menu_level == 0 %}usa-nav__primary-item{% endif %} {% if menu_level > 0 %}usa-nav__submenu-item nav-text-decoration{% endif %}">
             {% endif %}
             {% if menu_level == 0 and item.below %}
                 <button class="usa-accordion__button usa-nav__link " aria-expanded="false" aria-controls="megamenu-{{ loop.index }}">

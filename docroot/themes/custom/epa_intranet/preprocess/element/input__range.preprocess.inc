@@ -11,4 +11,5 @@
 function epa_intranet_preprocess_input__range(&$variables) {
   $variables['attributes']['class'][] = 'usa-range';
   $variables['attributes']['class'][] = 'usa-input';
+  $variables['attributes']['class'][] = 'form-input';
 }

@@ -8,13 +8,13 @@
 <div role="contentinfo" aria-label="{{ status_headings[type] }}"{{ attributes|without('role', 'aria-label') }}>
 
   {% if type == 'error' %}
-  <div class="usa-alert usa-alert--error">
+  <div class="usa-alert usa-alert-normalizer usa-alert--error">
   {% elseif type == 'warning' %}
-  <div class="usa-alert usa-alert--warning">
+  <div class="usa-alert usa-alert-normalizer usa-alert--warning">
   {% elseif type == 'info' %}
-  <div class="usa-alert usa-alert--info">
+  <div class="usa-alert usa-alert-normalizer usa-alert--info">
   {% else %}
-  <div class="usa-alert usa-alert--success">
+  <div class="usa-alert usa-alert-normalizer usa-alert--success">
   {% endif %}
 
     <div class="usa-alert__body">

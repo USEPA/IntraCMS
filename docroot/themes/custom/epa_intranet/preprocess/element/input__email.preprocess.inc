@@ -10,4 +10,5 @@
  */
 function epa_intranet_preprocess_input__email(&$variables) {
   $variables['attributes']['class'][] = 'usa-input';
+  $variables['attributes']['class'][] = 'form-input';
 }

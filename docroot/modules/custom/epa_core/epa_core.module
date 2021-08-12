@@ -18,6 +18,9 @@ function epa_core_views_plugins_style_alter(array &$plugins) {
  * Implements hook_form_alter().
  */
 function epa_core_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+        $form['#attributes']['class'][] = 'full-width-form';
+    }
   if (str_contains($form_id, 'webform') && $form_id != "webform_source_form") {
     $form['#attached']['library'][] = 'epa_core/hierarchy-handler';
   }
