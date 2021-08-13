@@ -46,9 +46,14 @@
         {% endif %}
         <div class="align-center"><strong>{{ fields.title.content }}</strong></div>
         <div class="align-center"><span class="small"> {{ fields.field_staff_position.content }} </span></div>
-        <div class="align-center"> <span class="small">
-        <a href="{{ fields.field_official_portrait_link.content|striptags|trim }}">Download Portrait</a><br>
-        </span></div>
+        <div class="align-center">
+        <span class="small">
+            {{ fields.field_official_portrait_link.content }}
+            {#<a href="{{ fields.field_official_portrait_link.content|striptags|trim }}">Download Portrait</a>#}
+            <br>
+           
+        </span>
+        </div>
     </div>
 </div>
 
