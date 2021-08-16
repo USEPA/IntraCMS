@@ -32,22 +32,7 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings:
           label: ''
-        components:
-          321dae54-4782-46db-9b8b-d7d8b2260430:
-            uuid: 321dae54-4782-46db-9b8b-d7d8b2260430
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:event:field_event_location_logistics'
-              formatter:
-                label: above
-                settings: {  }
-                third_party_settings: {  }
-                type: list_default
-            additional: {  }
-            weight: 0
+        components: {  }
         third_party_settings: {  }
       -
         layout_id: layout_twocol_section
@@ -132,7 +117,7 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
-            weight: 1
+            weight: 2
           d85c9582-7126-4288-a154-3981c572676f:
             uuid: d85c9582-7126-4288-a154-3981c572676f
             region: first
@@ -175,7 +160,30 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
             additional: {  }
-            weight: 2
+            weight: 3
+          ab71cf51-34ad-482f-a8a9-7301b4850270:
+            uuid: ab71cf51-34ad-482f-a8a9-7301b4850270
+            region: second
+            configuration:
+              id: 'field_block:node:event:field_event_link'
+              label: 'Event Link'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: above
+                type: link
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: '0'
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
         third_party_settings: {  }
   layout_library:
     enable: false
