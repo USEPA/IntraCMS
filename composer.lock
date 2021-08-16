@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4de49f8b52c40d7c27ff03a7a279f841",
+    "content-hash": "a044d589885bb749f84333931aedab0a",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -185,10 +185,10 @@
         },
         {
             "name": "bootstrap/bootstrap",
-            "version": "5.0.2",
+            "version": "5.1.0",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/twbs/bootstrap/releases/download/v5.0.2/bootstrap-5.0.2-dist.zip"
+                "url": "https://github.com/twbs/bootstrap/releases/download/v5.1.0/bootstrap-5.1.0-dist.zip"
             },
             "require": {
                 "composer/installers": "^1.2.0"
@@ -5346,6 +5346,58 @@
             }
         },
         {
+            "name": "drupal/entity_clone",
+            "version": "1.0.0-beta6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/entity_clone.git",
+                "reference": "8.x-1.0-beta6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_clone-8.x-1.0-beta6.zip",
+                "reference": "8.x-1.0-beta6",
+                "shasum": "35d04649b6fb349df761abab37506a94f172981f"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-beta6",
+                    "datestamp": "1617209997",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "NickDickinsonWilde",
+                    "homepage": "https://www.drupal.org/user/3094661"
+                },
+                {
+                    "name": "colan",
+                    "homepage": "https://www.drupal.org/user/58704"
+                },
+                {
+                    "name": "vpeltot",
+                    "homepage": "https://www.drupal.org/user/1361586"
+                }
+            ],
+            "description": "Add a clone action for all entities",
+            "homepage": "https://www.drupal.org/project/entity_clone",
+            "support": {
+                "source": "https://git.drupalcode.org/project/entity_clone"
+            }
+        },
+        {
             "name": "drupal/entity_embed",
             "version": "1.1.0",
             "source": {
@@ -8807,6 +8859,57 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/node_revision_delete",
                 "issues": "https://www.drupal.org/project/issues/node_revision_delete"
+            }
+        },
+        {
+            "name": "drupal/oembed_providers",
+            "version": "1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/oembed_providers.git",
+                "reference": "1.1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/oembed_providers-1.1.5.zip",
+                "reference": "1.1.5",
+                "shasum": "5bfe095f65514246f6c15d1bafbe5b2454e2a53e"
+            },
+            "require": {
+                "drupal/core": "^8.8.0 || ^9.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.1.5",
+                    "datestamp": "1615050712",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Burge",
+                    "homepage": "https://www.drupal.org/u/chris-burge",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Allows site builders and developers to manage oEmbed providers.",
+            "homepage": "https://drupal.org/project/oembed_providers",
+            "keywords": [
+                "Drupal",
+                "Media",
+                "oEmbed"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/oembed_providers",
+                "issues": "https://www.drupal.org/project/issues/oembed_providers"
             }
         },
         {
@@ -12296,27 +12399,27 @@
         },
         {
             "name": "drupal/webform_config_ignore",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/webform_config_ignore.git",
-                "reference": "8.x-1.1"
+                "reference": "8.x-1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform_config_ignore-8.x-1.1.zip",
-                "reference": "8.x-1.1",
-                "shasum": "9debfe3932c80a6aa0792c1c9b2831ffa4f0c865"
+                "url": "https://ftp.drupal.org/files/projects/webform_config_ignore-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "8a906f3609047136b569200e4dc68c5e65e94e3a"
             },
             "require": {
-                "drupal/config_filter": "^1 || ^2",
+                "drupal/config_filter": "^1",
                 "drupal/core": "^8.8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1615570980",
+                    "version": "8.x-1.2",
+                    "datestamp": "1615703756",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -12627,7 +12730,7 @@
                     "email": "greg.1.anderson@greenknowe.org"
                 },
                 {
-                    "name": "Jonathan Araña Cruz",
+                    "name": "Jonathan AraĂąa Cruz",
                     "email": "jonhattan@faita.net"
                 },
                 {
@@ -12921,10 +13024,10 @@
         },
         {
             "name": "fontawesome/fontawesome",
-            "version": "5.13.1",
+            "version": "5.15.4",
             "dist": {
                 "type": "zip",
-                "url": "https://use.fontawesome.com/releases/v5.13.1/fontawesome-free-5.13.1-web.zip"
+                "url": "https://github.com/FortAwesome/Font-Awesome/releases/download/5.15.4/fontawesome-free-5.15.4-web.zip"
             },
             "require": {
                 "composer/installers": "^1.2.0"
@@ -13655,10 +13758,10 @@
         },
         {
             "name": "jquery/inputmask",
-            "version": "5.0.3",
+            "version": "5.0.6",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/RobinHerbots/jquery.inputmask/archive/5.0.3.zip"
+                "url": "https://github.com/RobinHerbots/jquery.inputmask/archive/5.0.6.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -20020,7 +20123,8 @@
         "drupal/h5p": 5,
         "drupal/node_revision_delete": 5,
         "drupal/node_export": 15,
-        "drupal/addtocal": 10
+        "drupal/addtocal": 10,
+        "drupal/entity_clone": 10
     },
     "prefer-stable": true,
     "prefer-lowest": false,

@@ -1,0 +1,23 @@
+uuid: fe497b59-d245-4df3-a0eb-e17841766c4b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event_link
+    - node.type.event
+  module:
+    - link
+id: node.event.field_event_link
+field_name: field_event_link
+entity_type: node
+bundle: event
+label: 'Event Link'
+description: 'If the event will be held remotely (MS Teams, Zoom, etc), please enter the link to the online event. '
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

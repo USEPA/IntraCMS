@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_custom_text
     - node.type.page
-    - paragraphs.paragraphs_type.dynamic_list
     - paragraphs.paragraphs_type.list_of_link
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.slide_show
@@ -30,71 +29,70 @@ settings:
     negate: 0
     target_bundles:
       title_and_text: title_and_text
-      dynamic_list: dynamic_list
+      views_reference_list: views_reference_list
+      uswds_card_set: uswds_card_set
       rich_text: rich_text
       list_of_link: list_of_link
       slide_show: slide_show
-      views_reference_list: views_reference_list
-      uswds_card_set: uswds_card_set
     target_bundles_drag_drop:
       dynamic_list:
-        enabled: true
-        weight: -35
-      governing_authorities:
-        weight: -29
+        weight: -38
         enabled: false
-      heading_title_and_text:
+      governing_authorities:
         weight: -32
         enabled: false
+      heading_title_and_text:
+        weight: -34
+        enabled: false
       hero_carousel:
-        weight: 24
+        weight: -23
         enabled: false
       list_of_link:
         enabled: true
-        weight: -33
+        weight: -36
       policy_roles:
-        weight: -26
+        weight: -30
         enabled: false
       question_and_answer:
-        weight: -31
+        weight: -33
         enabled: false
       rich_text:
         enabled: true
-        weight: -34
+        weight: -37
       slide:
-        weight: -28
+        weight: -31
         enabled: false
       slide_show:
         enabled: true
-        weight: -27
+        weight: -35
       title_and_text:
         enabled: true
-        weight: -36
+        weight: -41
       uswds_card:
-        weight: 34
+        weight: -22
         enabled: false
       uswds_card_set:
         enabled: true
-        weight: 36
+        weight: -39
       uswds_column:
-        weight: -25
+        weight: -29
         enabled: false
       uswds_graphic_list:
-        weight: -24
+        weight: -28
         enabled: false
       uswds_grid:
-        weight: -23
+        weight: -27
         enabled: false
       uswds_hero:
-        weight: -22
+        weight: -26
         enabled: false
       uswds_media_block:
-        weight: -21
+        weight: -25
         enabled: false
       uswds_text:
-        weight: -20
+        weight: -24
         enabled: false
       views_reference_list:
         enabled: true
-        weight: 21
+        weight: -40
 field_type: entity_reference_revisions

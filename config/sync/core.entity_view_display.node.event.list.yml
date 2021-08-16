@@ -7,7 +7,9 @@ dependencies:
     - field.field.node.event.field_event_date
     - field.field.node.event.field_event_description
     - field.field.node.event.field_event_host
+    - field.field.node.event.field_event_link
     - field.field.node.event.field_event_location
+    - field.field.node.event.field_event_location_logistics
     - field.field.node.event.field_event_recording
     - field.field.node.event.field_event_tags
     - field.field.node.event.field_show_on_agency_calendar
@@ -34,9 +36,9 @@ content:
     settings:
       timezone_override: ''
       format: compact
-      past_display: '0'
-      upcoming_display: '4'
-      force_chronological: 0
+      past_display: 0
+      upcoming_display: 4
+      force_chronological: false
       format_type: medium
     third_party_settings: {  }
     type: smartdate_recurring
@@ -45,7 +47,9 @@ hidden:
   content_moderation_control: true
   field_event_description: true
   field_event_host: true
+  field_event_link: true
   field_event_location: true
+  field_event_location_logistics: true
   field_event_recording: true
   field_event_tags: true
   field_show_on_agency_calendar: true
