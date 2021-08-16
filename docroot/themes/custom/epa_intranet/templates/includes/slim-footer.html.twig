@@ -1,0 +1,69 @@
+{% if page.footer_menu or footer_contact or page.footer %}
+  <div class="usa-footer__primary-section">
+    <div class="usa-footer__primary-container grid-row">
+      {% if page.footer_menu %}
+        <div class="mobile-lg:grid-col-8">
+          <nav class="usa-footer__nav" aria-label="Footer navigation">
+            {{ page.footer_menu }}
+          </nav>
+        </div>
+      {% endif %}
+      {% if footer_contact %}
+        <div class="mobile-lg:grid-col-4">
+          <address class="usa-footer__address">
+            <div class="grid-row grid-gap">
+              {% if phone %}
+                <div class="grid-col-auto mobile-lg:grid-col-12 desktop:grid-col-auto">
+                  <div class="usa-footer__contact-info">
+                    <a href="tel:{{ phone }}">{{ phone }}</a>
+                  </div>
+                </div>
+              {% endif %}
+              {% if email %}
+                <div class="grid-col-auto mobile-lg:grid-col-12 desktop:grid-col-auto">
+                  <div class="usa-footer__contact-info">
+                    <a href="mailto:{{ email }}">{{ email }}</a>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </address>
+        </div>
+      {% endif %}
+      {% if page.footer %}
+        <div class="grid-row grid-gap">
+          <div class="mobile-lg:grid-col-12">
+            {{ page.footer }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+{% if footer_agency_logo or footer_agency_name or page.footer_secondary %}
+  <div class="usa-footer__secondary-section">
+    <div class="grid-container">
+      {% if footer_agency_logo or footer_agency_name %}
+        <div class="usa-footer__logo grid-row grid-gap-2">
+          {% if footer_agency_logo %}
+            <div class="grid-col-auto">
+              <img class="usa-footer__logo-img" src="{{ footer_agency_logo }}" alt="{{ footer_agency_name }} logo">
+            </div>
+          {% endif %}
+          {% if footer_agency_name %}
+            <div class="grid-col-auto">
+              <p class="usa-footer__logo-heading">{{ footer_agency_name }}</p>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if page.footer_secondary %}
+        <div class="grid-row grid-gap">
+          <div class="mobile-lg:grid-col-12">
+            {{ page.footer_secondary }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
