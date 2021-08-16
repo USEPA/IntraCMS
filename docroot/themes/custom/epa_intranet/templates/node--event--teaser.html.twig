@@ -101,9 +101,11 @@
       <span>...</span>
     </div>
     <ul class="usa-collection__meta">
+      {% for event_host in content.field_event_host|field_value %}
       <li class="usa-collection__meta-item usa-tag li-tag tag-color-scheme">
         {{ content.field_event_host|field_value }}
       </li>
+      {% endfor %}
     </ul>
   </div>
 
