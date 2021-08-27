@@ -4747,38 +4747,35 @@
         },
         {
             "name": "drupal/draggableviews",
-            "version": "1.2.0",
+            "version": "dev-1.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/draggableviews.git",
-                "reference": "8.x-1.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/draggableviews-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "0f5e9195ceec209552aa50f8ce3c230692c284db"
+                "reference": "c0292a46c5b1c568e0792f5f6fcce17f53a8d6d0"
             },
             "require": {
-                "drupal/core": "^8"
+                "drupal/core": "^8 || ^9"
             },
             "require-dev": {
                 "drupal/draggableviews_demo": "*"
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1541518680",
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1605126193",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
                     }
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -20236,6 +20233,7 @@
         "drupal/conditional_fields": 15,
         "drupal/group_taxonomy": 10,
         "drupal/bulk_update_fields": 15,
+        "drupal/draggableviews": 20,
         "drupal/h5p": 5,
         "drupal/node_revision_delete": 5,
         "drupal/node_export": 15,
