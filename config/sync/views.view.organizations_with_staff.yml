@@ -15,11 +15,13 @@ dependencies:
     - taxonomy.vocabulary.locations
     - taxonomy.vocabulary.organization
   module:
+    - draggableviews
     - node
     - taxonomy
     - telephone
     - user
     - vefl
+    - views_autocomplete_filters
 id: organizations_with_staff
 label: 'Staff Directory'
 module: views
@@ -1258,14 +1260,17 @@ display:
           id: weight
           table: draggableviews_structure
           field: weight
-          relationship: reverse__node__field_organization
+          relationship: none
           group_type: group
           admin_label: ''
           order: ASC
           exposed: false
           expose:
             label: ''
-          plugin_id: standard
+          draggable_views_reference: 'staff_order:page_1'
+          draggable_views_null_order: after
+          draggable_views_pass_arguments: true
+          plugin_id: draggable_views_sort_default
         field_last_name_value:
           id: field_last_name_value
           table: node__field_last_name
