@@ -282,6 +282,19 @@ div {
   padding-bottom: 1rem;
 }
 
+/* Regarding as not an override of a usa style. Treating as 'if ext or mailto appears without usa-button' so leaving as-is*/
+a {
+  &.ext:not(.usa-button), &.mailto:not(.usa-button) {
+    color: #005ea2;
+    text-decoration: underline;
+  }
+
+  &.ext:not(.usa-button):hover, &.mailto:not(.usa-button):hover {
+    color: #1a4480;
+    text-decoration: underline;
+  }
+}
+
 svg {
   &.ext, &.mailto {
     width: 22px;
@@ -1127,7 +1140,7 @@ div.box__title, .box--special > .box__title {
   background: #205081;
   padding: 5px;
   border: 2px solid #FFF;
-  boeder-top: none;
+  border-top: none;
   font-weight: bold;
   color: #FFF !important;
   display: block;
