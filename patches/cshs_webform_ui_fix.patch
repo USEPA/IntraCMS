@@ -1,0 +1,16 @@
+diff --git a/src/Plugin/WebformElement/WebformCshsSelect.php b/src/Plugin/WebformElement/WebformCshsSelect.php
+index ba2292d..0347f15 100644
+--- a/src/Plugin/WebformElement/WebformCshsSelect.php
++++ b/src/Plugin/WebformElement/WebformCshsSelect.php
+@@ -63,7 +63,10 @@ public function getSettings() {
+    * {@inheritdoc}
+    */
+   public function getVocabulary() {
+-    $vocabulary = $this->getVocabularyStorage()->load($this->configuration['#vocabulary']);
++    $vocabulary = null;
++    if (isset($this->configuration['#vocabulary'])) {
++      $vocabulary = $this->getVocabularyStorage()->load($this->configuration['#vocabulary']);
++    }
+     if (!$vocabulary) {
+       // This seems needed for webform to allow it to "preselect something" when
+       // adding a webform element.
