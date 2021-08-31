@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4af298b6fa8b5f72be3d48ced2e7b54e",
+    "content-hash": "69feb4a45acd9ff68eb3489dd1cbaf59",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -4329,6 +4329,77 @@
             }
         },
         {
+            "name": "drupal/cshs",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/cshs.git",
+                "reference": "8.x-1.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/cshs-8.x-1.7.zip",
+                "reference": "8.x-1.7",
+                "shasum": "3aa2438a7eff0a537ba504a041c4b973432472c5"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "php": ">=7.1.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.7",
+                    "datestamp": "1612535874",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "patches_applied": {
+                    "3166049: Integrate select into webform": "https://www.drupal.org/files/issues/2021-04-13/3166046-7.patch",
+                    "Fix webform UI selection of cshs type": "patches/cshs_webform_ui_fix.patch",
+                    "Fix webform UI selection of any type when preview is enabled": "patches/cshs_webform_ui_show_preview.patch"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Walter Jenner",
+                    "homepage": "https://drupal.org/u/valderama"
+                },
+                {
+                    "name": "Sergii Bondarenko",
+                    "homepage": "https://drupal.org/u/BR0kEN",
+                    "email": "sb@firstvector.org"
+                },
+                {
+                    "name": "Daneel Cruz",
+                    "homepage": "https://drupal.org/u/daneelcm"
+                },
+                {
+                    "name": "Purushotam Rai",
+                    "homepage": "https://drupal.org/u/purushotam.rai"
+                }
+            ],
+            "description": "A simple client-side hierarchical select widget for taxonomy terms.",
+            "homepage": "https://www.drupal.org/project/cshs",
+            "keywords": [
+                "client-side-select",
+                "hierarchical-select",
+                "module",
+                "select",
+                "taxonomy"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/cshs",
+                "issues": "https://www.drupal.org/project/issues/cshs"
+            }
+        },
+        {
             "name": "drupal/csv_serialization",
             "version": "1.4.0",
             "source": {
@@ -4771,6 +4842,9 @@
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "2767437: Allow sort handler to select the view that stored the order": "https://www.drupal.org/files/issues/2021-05-13/draggableviews-sort_handler_specify_order_view-2767437-116_0.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4819,7 +4893,8 @@
             "support": {
                 "source": "https://cgit.drupalcode.org/draggableviews",
                 "issues": "https://www.drupal.org/project/issues/draggableviews"
-            }
+            },
+            "time": "2020-11-11T20:22:35+00:00"
         },
         {
             "name": "drupal/dropzonejs",
@@ -12843,7 +12918,7 @@
                     "email": "greg.1.anderson@greenknowe.org"
                 },
                 {
-                    "name": "Jonathan Araña Cruz",
+                    "name": "Jonathan AraĂąa Cruz",
                     "email": "jonhattan@faita.net"
                 },
                 {
