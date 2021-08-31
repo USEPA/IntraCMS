@@ -1,0 +1,13 @@
+diff --git a/src/Element/CshsElement.php b/src/Element/CshsElement.php
+index b4eb8f0..ad06265 100644
+--- a/src/Element/CshsElement.php
++++ b/src/Element/CshsElement.php
+@@ -141,7 +141,7 @@ public static function validateElement(array &$element, FormStateInterface $form
+   protected static function formatOptions(array $element): array {
+     $options = [];
+ 
+-    if (!empty($element['#options'])) {
++    if (!empty($element['#options']) && $element['#name'] != 'elements[cshs][preview]') {
+       $parent = isset($element['#parent']) ? (string) $element['#parent'] : NULL;
+       $is_value_valid = \array_key_exists('#value', $element);
+       $is_value_array = $is_value_valid && \is_array($element['#value']);
