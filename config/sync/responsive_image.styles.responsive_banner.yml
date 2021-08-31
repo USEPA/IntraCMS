@@ -1,0 +1,23 @@
+uuid: 41ce269e-6afa-41c5-a277-571cb3d46fc6
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.banner
+    - image.style.banner_medium
+    - image.style.banner_small
+id: responsive_banner
+label: 'Responsive Banner'
+image_style_mappings:
+  -
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(max-width: 1155px) calc(100vw - 4rem), 1155px'
+      sizes_image_styles:
+        - banner
+        - banner_medium
+        - banner_small
+breakpoint_group: responsive_image
+fallback_image_style: banner
