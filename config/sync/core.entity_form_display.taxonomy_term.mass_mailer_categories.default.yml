@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.mass_mailer_categories.field_banner
+    - field.field.taxonomy_term.mass_mailer_categories.field_banner_text
     - image.style.thumbnail
     - taxonomy.vocabulary.mass_mailer_categories
   module:
@@ -16,7 +17,7 @@ mode: default
 content:
   description:
     type: text_textarea
-    weight: 2
+    weight: 3
     region: content
     settings:
       placeholder: ''
@@ -29,6 +30,14 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
+  field_banner_text:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   name:
     type: string_textfield
