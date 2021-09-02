@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c61a20299ecd513fd680970988110b7e",
+    "content-hash": "88468a5953a0f3c9f1160b20ec21aabe",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -4868,38 +4868,41 @@
         },
         {
             "name": "drupal/draggableviews",
-            "version": "dev-1.x",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/draggableviews.git",
-                "reference": "c0292a46c5b1c568e0792f5f6fcce17f53a8d6d0"
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/draggableviews-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "0f5e9195ceec209552aa50f8ce3c230692c284db"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8"
             },
             "require-dev": {
                 "drupal/draggableviews_demo": "*"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1605126193",
+                    "version": "8.x-1.2",
+                    "datestamp": "1541518680",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 },
                 "patches_applied": {
-                    "2767437: Allow sort handler to select the view that stored the order": "https://www.drupal.org/files/issues/2021-05-13/draggableviews-sort_handler_specify_order_view-2767437-116_0.patch"
+                    "2929116: Can't use Show weight values link with a draggable view": "https://www.drupal.org/files/issues/2019-05-24/draggableviews-show_row_weight_values-2929116-21.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
@@ -4943,8 +4946,7 @@
             "support": {
                 "source": "https://cgit.drupalcode.org/draggableviews",
                 "issues": "https://www.drupal.org/project/issues/draggableviews"
-            },
-            "time": "2020-11-11T20:22:35+00:00"
+            }
         },
         {
             "name": "drupal/dropzonejs",
@@ -20508,7 +20510,6 @@
         "drupal/conditional_fields": 15,
         "drupal/group_taxonomy": 10,
         "drupal/bulk_update_fields": 15,
-        "drupal/draggableviews": 20,
         "drupal/h5p": 5,
         "drupal/node_revision_delete": 5,
         "pear/archive_tar": 20,
