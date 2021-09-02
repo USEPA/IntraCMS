@@ -6,7 +6,6 @@ dependencies:
     - field.field.node.page.body
     - field.field.node.page.field_custom_text
     - field.field.node.page.field_featured_image
-    - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
     - field.field.node.page.field_sidebar_content
     - field.field.node.page.layout_selection
@@ -89,23 +88,6 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 2
-          d564cada-9ccd-40b8-801d-88ff00f03991:
-            uuid: d564cada-9ccd-40b8-801d-88ff00f03991
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:page:field_media'
-              formatter:
-                type: entity_reference_entity_view
-                label: above
-                settings:
-                  view_mode: default
-                  link: false
-                third_party_settings: {  }
-            additional: {  }
-            weight: 4
         third_party_settings: {  }
   layout_library:
     enable: true
@@ -135,15 +117,6 @@ content:
   field_featured_image:
     type: entity_reference_entity_view
     weight: 4
-    label: above
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    region: content
-  field_media:
-    type: entity_reference_entity_view
-    weight: 6
     label: above
     settings:
       view_mode: default
