@@ -19,7 +19,7 @@ bundle: audio_file
 mode: default
 content:
   field_keywords:
-    weight: 3
+    weight: 4
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -39,11 +39,11 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 4
+    weight: 5
     third_party_settings: {  }
     region: content
   field_transcript:
-    weight: 2
+    weight: 3
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
@@ -59,7 +59,12 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 6
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  replace_file:
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -67,7 +72,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 5
+    weight: 6
     region: content
     third_party_settings: {  }
 hidden:
