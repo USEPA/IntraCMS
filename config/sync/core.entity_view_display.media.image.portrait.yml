@@ -1,33 +1,39 @@
-uuid: 7e6fe9e5-bd70-4830-9b8a-5c69e64f678e
+uuid: f1ed6a67-6eaa-4acd-8667-749c698bf23b
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.media.portrait
     - field.field.media.image.field_caption
     - field.field.media.image.field_keywords
     - field.field.media.image.field_media_in_library
     - field.field.media.image.image
     - field.field.media.image.layout_builder__translation
+    - image.style.portrait
     - media.type.image
   module:
     - image
+    - layout_builder
     - media_inline_embed
 third_party_settings:
   media_inline_embed:
     embed_inline: false
+  layout_builder:
+    allow_custom: false
+    enabled: false
 _core:
   default_config_hash: VLDxfMVPTkd2xvOjFMCh3kWmaOYnd03zggFXuUXQVEY
-id: media.image.default
+id: media.image.portrait
 targetEntityType: media
 bundle: image
-mode: default
+mode: portrait
 content:
   image:
     type: image
     weight: 0
     label: hidden
     settings:
-      image_style: ''
+      image_style: portrait
       image_link: ''
     third_party_settings: {  }
     region: content

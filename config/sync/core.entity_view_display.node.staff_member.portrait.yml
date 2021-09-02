@@ -1,8 +1,9 @@
-uuid: 30737ca6-b660-4378-89d3-0fff310cdda0
+uuid: eb67d812-fb99-438b-acb8-382e48010fac
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.portrait
     - field.field.node.staff_member.feeds_item
     - field.field.node.staff_member.field_email
     - field.field.node.staff_member.field_first_name
@@ -24,8 +25,6 @@ dependencies:
     - layout_builder_restrictions
     - layout_library
     - link
-    - telephone
-    - text
     - user
 third_party_settings:
   layout_builder:
@@ -37,45 +36,26 @@ third_party_settings:
     entity_view_mode_restriction:
       allowed_blocks: {  }
       allowed_layouts: {  }
-id: node.staff_member.default
+id: node.staff_member.portrait
 targetEntityType: node
 bundle: staff_member
-mode: default
+mode: portrait
 content:
-  field_email:
-    weight: 7
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    type: email_mailto
-    region: content
-  field_first_name:
-    weight: 2
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_last_name:
-    weight: 3
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_location:
-    weight: 9
-    label: inline
-    settings:
-      link: false
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_organization:
+  field_official_portrait_link:
+    type: link
     weight: 4
-    label: inline
+    region: content
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+  field_organization:
+    weight: 2
+    label: hidden
     settings:
       link: false
       display: all
@@ -85,53 +65,18 @@ content:
     third_party_settings: {  }
     type: hierarchical_term_formatter
     region: content
-  field_phone:
-    weight: 8
-    label: inline
-    settings:
-      title: ''
-    third_party_settings: {  }
-    type: telephone_link
-    region: content
-  field_staff_biography:
-    weight: 12
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
   field_staff_photo:
     type: entity_reference_entity_view
     weight: 1
     label: hidden
     settings:
-      view_mode: staff_member_card
+      view_mode: portrait
       link: false
     third_party_settings: {  }
     region: content
   field_staff_position:
-    weight: 6
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_staff_profile:
-    weight: 11
-    label: inline
-    settings:
-      trim_length: null
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings: {  }
-    type: link
-    region: content
-  field_staff_secondary_location:
-    weight: 10
-    label: inline
+    weight: 3
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -145,6 +90,13 @@ content:
 hidden:
   content_moderation_control: true
   feeds_item: true
-  field_official_portrait_link: true
+  field_email: true
+  field_first_name: true
+  field_last_name: true
+  field_location: true
+  field_phone: true
   field_show_on_official_portraits: true
+  field_staff_biography: true
+  field_staff_profile: true
+  field_staff_secondary_location: true
   search_api_excerpt: true
