@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.page.body
     - field.field.node.page.field_custom_text
     - field.field.node.page.field_featured_image
+    - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
     - field.field.node.page.field_sidebar_content
     - field.field.node.page.layout_selection
@@ -16,6 +17,7 @@ dependencies:
     - conditional_fields
     - content_moderation
     - entity_browser
+    - media_library
     - metatag
     - paragraphs
     - path
@@ -70,6 +72,13 @@ content:
       open: false
     region: content
     third_party_settings: {  }
+  field_media:
+    type: media_library_widget
+    weight: 51
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
   field_meta_tags:
     type: metatag_firehose
     region: content
