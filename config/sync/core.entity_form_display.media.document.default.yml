@@ -19,7 +19,7 @@ mode: default
 content:
   field_description:
     type: string_textfield
-    weight: 2
+    weight: 3
     region: content
     settings:
       size: 60
@@ -33,7 +33,7 @@ content:
       progress_indicator: throbber
     third_party_settings: {  }
   field_keywords:
-    weight: 3
+    weight: 4
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -46,7 +46,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 4
+    weight: 5
     third_party_settings: {  }
     region: content
   name:
@@ -57,6 +57,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
+  replace_file:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   created: true
   path: true
