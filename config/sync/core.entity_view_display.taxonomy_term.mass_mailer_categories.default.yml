@@ -4,10 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.mass_mailer_categories.field_banner
-    - responsive_image.styles.responsive_banner
+    - image.style.banner
     - taxonomy.vocabulary.mass_mailer_categories
   module:
-    - responsive_image
+    - image
 id: taxonomy_term.mass_mailer_categories.default
 targetEntityType: taxonomy_term
 bundle: mass_mailer_categories
@@ -15,12 +15,12 @@ mode: default
 content:
   field_banner:
     weight: 0
-    label: above
+    label: hidden
     settings:
-      responsive_image_style: responsive_banner
+      image_style: banner
       image_link: ''
     third_party_settings: {  }
-    type: responsive_image
+    type: image
     region: content
 hidden:
   description: true
