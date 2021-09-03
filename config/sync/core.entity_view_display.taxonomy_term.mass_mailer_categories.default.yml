@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.mass_mailer_categories.field_banner
-    - field.field.taxonomy_term.mass_mailer_categories.field_banner_text
     - responsive_image.styles.responsive_banner
     - taxonomy.vocabulary.mass_mailer_categories
   module:
@@ -22,14 +21,6 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: responsive_image
-    region: content
-  field_banner_text:
-    weight: 1
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
     region: content
 hidden:
   description: true
