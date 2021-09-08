@@ -52,7 +52,7 @@
             {% else %}
               {% if item.original_link.pluginDefinition.description == 'strong' %}
                 <strong>
-                  <a href="#">
+                  <a href="{{ item.url }}"{% if menu_level == 0 %} class="usa-nav__link{% if item.in_active_trail %} usa-current{% endif %}" {% endif %}>
                     <span>{{ item.title }}</span>
                   </a>
                 </strong>
