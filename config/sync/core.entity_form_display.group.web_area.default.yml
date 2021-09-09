@@ -6,8 +6,13 @@ dependencies:
     - field.field.group.web_area.field_group_contact
     - field.field.group.web_area.field_group_contact_info
     - field.field.group.web_area.field_group_description
+    - field.field.group.web_area.field_program_office_region
+    - field.field.group.web_area.field_web_area_homepage
+    - field.field.group.web_area.field_webarea_archive_date
+    - field.field.group.web_area.field_webarea_status
     - group.type.web_area
   module:
+    - datetime
     - path
     - text
 id: group.web_area.default
@@ -16,7 +21,7 @@ bundle: web_area
 mode: default
 content:
   field_group_contact:
-    weight: 4
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -24,7 +29,7 @@ content:
     type: email_default
     region: content
   field_group_contact_info:
-    weight: 3
+    weight: 6
     settings:
       rows: 3
       placeholder: ''
@@ -32,12 +37,44 @@ content:
     type: text_textarea
     region: content
   field_group_description:
-    weight: 2
+    weight: 5
     settings:
       rows: 2
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+    region: content
+  field_program_office_region:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_web_area_homepage:
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_webarea_archive_date:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_webarea_status:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
     region: content
   label:
     type: string_textfield
@@ -49,7 +86,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 1
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
