@@ -21,6 +21,7 @@ dependencies:
     - node.type.staff_member
   module:
     - layout_builder
+    - layout_builder_restrictions
     - layout_library
     - link
     - telephone
@@ -156,6 +157,12 @@ third_party_settings:
         third_party_settings: {  }
   layout_library:
     enable: false
+  layout_builder_restrictions:
+    allowed_block_categories: {  }
+    entity_view_mode_restriction:
+      whitelisted_blocks: {  }
+      blacklisted_blocks: {  }
+      allowed_layouts: {  }
 id: node.staff_member.staff_member_card
 targetEntityType: node
 bundle: staff_member

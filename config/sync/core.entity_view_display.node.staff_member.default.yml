@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.staff_member.field_staff_secondary_location
     - node.type.staff_member
   module:
+    - cshs
     - layout_builder
     - layout_builder_restrictions
     - layout_library
@@ -76,9 +77,11 @@ content:
     weight: 4
     label: inline
     settings:
-      link: false
+      separator: ' » '
+      linked: false
+      reverse: false
     third_party_settings: {  }
-    type: entity_reference_label
+    type: cshs_full_hierarchy
     region: content
   field_phone:
     weight: 8
