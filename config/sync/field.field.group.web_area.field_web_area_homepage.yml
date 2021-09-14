@@ -1,0 +1,28 @@
+uuid: 61bc1ae2-0dae-4dad-ac55-3669449e5827
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.group.field_web_area_homepage
+    - group.type.web_area
+    - node.type.landing_page
+id: group.web_area.field_web_area_homepage
+field_name: field_web_area_homepage
+entity_type: group
+bundle: web_area
+label: 'Web Area Homepage'
+description: 'Enter the web area''s home page.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      landing_page: landing_page
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
