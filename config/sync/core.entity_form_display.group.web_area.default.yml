@@ -3,16 +3,18 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.group.web_area.field_group_contact
+    - field.field.group.web_area.field_eic
     - field.field.group.web_area.field_group_contact_info
     - field.field.group.web_area.field_group_description
     - field.field.group.web_area.field_program_office_region
+    - field.field.group.web_area.field_web_area_contact_us_form
     - field.field.group.web_area.field_web_area_homepage
     - field.field.group.web_area.field_webarea_archive_date
     - field.field.group.web_area.field_webarea_status
     - group.type.web_area
   module:
     - datetime
+    - link
     - path
     - text
 id: group.web_area.default
@@ -20,16 +22,18 @@ targetEntityType: group
 bundle: web_area
 mode: default
 content:
-  field_group_contact:
-    weight: 7
+  field_eic:
+    weight: 2
     settings:
+      match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: email_default
+    type: entity_reference_autocomplete
     region: content
   field_group_contact_info:
-    weight: 6
+    weight: 8
     settings:
       rows: 3
       placeholder: ''
@@ -37,7 +41,7 @@ content:
     type: text_textarea
     region: content
   field_group_description:
-    weight: 5
+    weight: 7
     settings:
       rows: 2
       placeholder: ''
@@ -54,8 +58,16 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_web_area_contact_us_form:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: 'Contact Form'
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_web_area_homepage:
-    weight: 4
+    weight: 5
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -65,13 +77,13 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_webarea_archive_date:
-    weight: 3
+    weight: 4
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_webarea_status:
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -86,7 +98,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
