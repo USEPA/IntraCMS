@@ -1,0 +1,78 @@
+uuid: 455b913e-b992-44e9-a3af-745af12452da
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.uswds_paragraphs
+  module:
+    - ckeditor
+_core:
+  default_config_hash: YgolEaVq_xw3DB4lkiz26Q_5pCORriBzqYNhmEkP2sI
+format: uswds_paragraphs
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Italic
+            - Underline
+            - HorizontalRule
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyRight
+            - JustifyBlock
+            - Outdent
+            - Indent
+        -
+          name: Links
+          items:
+            - DrupalLink
+            - DrupalUnlink
+        -
+          name: Lists
+          items:
+            - BulletedList
+            - NumberedList
+        -
+          name: Media
+          items:
+            - Blockquote
+            - Table
+        -
+          name: Embeds
+          items:
+            - paragraphs
+            - paragraph_layout
+        -
+          name: Tools
+          items:
+            - ShowBlocks
+            - Maximize
+            - Source
+            - Styles
+        -
+          name: Headers
+          items:
+            - Format
+  plugins:
+    language:
+      language_list: un
+    stylescombo:
+      styles: ''
+    templates:
+      template_path: ''
+      replace_content: 0
+    uswds_table:
+      override_table: 1
+image_upload:
+  status: false
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null
