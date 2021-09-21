@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - image.style.banner
+    - image.style.banner_large
     - image.style.banner_medium
     - image.style.banner_small
 id: responsive_banner
@@ -14,10 +14,10 @@ image_style_mappings:
     multiplier: 1x
     image_mapping_type: sizes
     image_mapping:
-      sizes: '(max-width: 1155px) calc(100vw - 4rem), 1155px'
+      sizes: '(max-width: 1200px) calc(100vw), 1200px'
       sizes_image_styles:
-        - banner
+        - banner_large
         - banner_medium
         - banner_small
 breakpoint_group: responsive_image
-fallback_image_style: banner
+fallback_image_style: banner_large
