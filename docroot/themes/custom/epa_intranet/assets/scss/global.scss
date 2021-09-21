@@ -2,24 +2,28 @@
   min-height: 0;
   min-width: 0;
 }
-
 /* Container holding the mass mailer image and the text */
 .mailer-banner-container {
   position: relative;
 }
 
-/* Centered banner text */
-.mailer-banner-text {
-  padding: 1.5%;
-  max-width: 30rem;
-  font-size: 50%;
-  background-color: #162e51;
-  color: white;
-  position: absolute;
-  top: 50%;
-  left: 35%;
-  transform: translate(-50%, -50%);
-}
+/* Mass Mailer Banner Text Styling */
+  .mailer-banner-text {
+    font-family: Merriweather Web, Georgia, Cambria, Times New Roman, Times, serif;
+    font-size: clamp(0.5rem, calc(0.5rem + ((1vw - 0.2rem) * 2.7273)), 2rem);
+    line-height: 1.2;
+    font-weight: 700;
+    padding: clamp(0.5rem, calc(0.5rem + ((1vw - 0.2rem) * 2.7273)), 2rem);
+    max-width: 35%;
+    color: white;
+    background-color: #162e51;
+
+    /*position*/
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+  }
 
 div {
   &[class*='exposed-filters-vr-exposed-filters-visible'] {
