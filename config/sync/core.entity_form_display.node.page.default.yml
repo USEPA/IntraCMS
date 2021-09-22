@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_browser
+    - entity_browser.browser.image_browser
     - field.field.node.page.body
     - field.field.node.page.field_custom_text
     - field.field.node.page.field_featured_image
@@ -59,13 +59,13 @@ content:
     type: entity_browser_entity_reference
     weight: 6
     settings:
-      entity_browser: media_browser
+      entity_browser: image_browser
       field_widget_display: rendered_entity
+      field_widget_display_settings:
+        view_mode: featured_image
       field_widget_edit: true
       field_widget_remove: true
       selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: thumbnail
       field_widget_replace: false
       open: false
     region: content
@@ -74,7 +74,8 @@ content:
     type: metatag_firehose
     region: content
     weight: 13
-    settings: {  }
+    settings:
+      sidebar: true
     third_party_settings: {  }
   field_sidebar_content:
     type: entity_reference_paragraphs
