@@ -13,8 +13,8 @@ field_name: field_views_reference
 entity_type: block_content
 bundle: views_reference_list
 label: 'Views Reference'
-description: ''
-required: false
+description: 'Select the type of content you want to include in your dynamic list.'
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -40,9 +40,6 @@ settings:
       list_of_link:
         weight: 28
         enabled: false
-      policy_delegation_authorization:
-        weight: 29
-        enabled: false
       policy_roles:
         weight: 30
         enabled: false
@@ -60,12 +57,6 @@ settings:
         enabled: false
       title_and_text:
         weight: 35
-        enabled: false
-      uswds_accordion:
-        weight: 36
-        enabled: false
-      uswds_accordion_item:
-        weight: 37
         enabled: false
       uswds_card:
         weight: 38
