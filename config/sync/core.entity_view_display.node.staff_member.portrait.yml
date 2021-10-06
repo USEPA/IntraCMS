@@ -1,0 +1,116 @@
+uuid: dbb412ef-8ace-4bb3-a8f4-48d86ff4cda2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.portrait
+    - field.field.node.staff_member.feeds_item
+    - field.field.node.staff_member.field_email
+    - field.field.node.staff_member.field_first_name
+    - field.field.node.staff_member.field_last_name
+    - field.field.node.staff_member.field_location
+    - field.field.node.staff_member.field_official_portrait_link
+    - field.field.node.staff_member.field_organization
+    - field.field.node.staff_member.field_phone
+    - field.field.node.staff_member.field_show_on_official_portraits
+    - field.field.node.staff_member.field_staff_biography
+    - field.field.node.staff_member.field_staff_photo
+    - field.field.node.staff_member.field_staff_position
+    - field.field.node.staff_member.field_staff_profile
+    - field.field.node.staff_member.field_staff_secondary_location
+    - image.style.portrait
+    - node.type.staff_member
+  module:
+    - cshs
+    - layout_builder
+    - layout_builder_restrictions
+    - layout_library
+    - link
+    - media
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+  layout_library:
+    enable: false
+  layout_builder_restrictions:
+    entity_view_mode_restriction:
+      allowed_blocks: {  }
+      allowed_layouts: {  }
+id: node.staff_member.portrait
+targetEntityType: node
+bundle: staff_member
+mode: portrait
+content:
+  field_first_name:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_last_name:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_official_portrait_link:
+    type: link
+    weight: 6
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  field_organization:
+    weight: 5
+    label: hidden
+    settings:
+      separator: ' » '
+      linked: false
+      reverse: false
+    third_party_settings: {  }
+    type: cshs_full_hierarchy
+    region: content
+  field_staff_photo:
+    type: media_thumbnail
+    weight: 1
+    label: hidden
+    settings:
+      image_style: portrait
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+  field_staff_position:
+    weight: 4
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  content_moderation_control: true
+  feeds_item: true
+  field_email: true
+  field_location: true
+  field_phone: true
+  field_show_on_official_portraits: true
+  field_staff_biography: true
+  field_staff_profile: true
+  field_staff_secondary_location: true
+  search_api_excerpt: true
