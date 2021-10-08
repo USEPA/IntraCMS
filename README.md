@@ -7,7 +7,7 @@ Required Software & Setup
 
 ### PHP
 
--   Download the latest version of PHP - <https://windows.php.net/download>.
+-   Download the latest version of PHP 7 (currently 7.2.24) - <https://windows.php.net/download>.
 -   Add the PHP directory to the system environment PATH variable (typically done manually).
 -   Enter `php --v` in the command line (cmd) to confirm PHP is properly installed.
 -   Open the `php.ini` file in the PHP directory using a text editor and make the following changes:
@@ -40,7 +40,7 @@ Required Software & Setup
 
 ### Composer
 
--   Download and install the latest version of Composer - <https://getcomposer.org/download>.
+-   Download and install the latest version of Composer (v1.10.13) - <https://getcomposer.org/download>.
 -   Add the Composer directory to the system environment PATH variable (typically occurs automatically during installation).
 -   Enter `composer --v` in the command line (cmd) to confirm Composer is properly installed.
 
@@ -66,10 +66,6 @@ Required Software & Setup
 -   Open the application and create a new connection to the database server.
 -   Expand the Objects section, then right click on Databases and select to Add a New Database.
 
-### SQLite DB Browser
-
--   Download and install the latest version of SQLite DB Browser - <https://sqlitebrowser.org/dl/>.
--   This tool allows you to execute queries to add, edit and delete data tables in your SQLite database.
 
 ### IIS Express
 
@@ -92,7 +88,7 @@ Configuring & Starting Web-Server
 -   Open the `applicationhost.config` file in the `C:\Users\[USER]\Documents\IISExpress\config` directory using a text editor and make the following changes:
 
     #### Sites
-
+    ```xml
     <site name="[site_name]" id="1" serverAutoStart="true">
        <application path="/" >
            <virtualDirectory path="/" physicalPath="[path to project directory]\docroot" />
@@ -101,20 +97,28 @@ Configuring & Starting Web-Server
            <binding protocol="http" bindingInformation=":8080:localhost" />
        </bindings>
     </site>
+    ```
+    
 
     #### Fast CGI
-
-     <fastCgi>		
+    ```xml
+    <fastCgi>		
             <application fullPath="[path to PHP directory]\php-cgi.exe" stderrMode="ReturnStdErrIn500" activityTimeout="370">		
                 <environmentVariables>		
                     <environmentVariable name="PHPRC" value="[path to PHP directory]" />		
                 </environmentVariables>		
             </application>		
         </fastCgi>
+    ```
+     
+
 
     #### Handlers
-
+    ```xml
     <add name="FastCGI" path="*.php" verb="GET,HEAD,POST,OPTIONS,PUT,DELETE,PATCH" modules="FastCgiModule" scriptProcessor="[path to PHP directory]\php-cgi.exe" resourceType="File" requireAccess="Script" />
+    ```
+    
+    
 
 -   To start the web server, run `iisexpress` in the command line. If you are managing multiple sites within the `applicationhost.config` file, run `iisexpress /site:[site_name]` or `iisexpress /site:[site_id]`
 -   Navigate to `<http://localhost:8080/>`.
