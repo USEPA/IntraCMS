@@ -1,0 +1,13 @@
+diff --git a/modules/h5peditor/h5peditor.module b/modules/h5peditor/h5peditor.module
+index 065a187..0f746c7 100644
+--- a/modules/h5peditor/h5peditor.module
++++ b/modules/h5peditor/h5peditor.module
+@@ -57,7 +57,7 @@ function h5peditor_entity_update(EntityInterface $entity) {
+             $old_content_id = $original[$delta]->getValue()['h5p_content_id'];
+             $new_content_id = $new_item->getValue()['h5p_content_id'];
+ 
+-            db_update('h5p_points')
++            \Drupal::database()->update('h5p_points')
+               ->fields([
+                 'content_id' => $new_content_id,
+               ])

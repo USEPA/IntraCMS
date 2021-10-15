@@ -19,8 +19,8 @@
         "drupal/uswds": "^2.2",
         "drupal/fontawesome": "^2.18.0",
         "wikimedia/composer-merge-plugin": "^2.0.1",
-        "drupal/config_filter": "1.5",
-        "drupal/config_ignore": "^2.3.0",
+        "drupal/config_filter": "^1.8",
+        "drupal/config_ignore": "^3.0",
         "drupal/config_split": "1.7",
         "drupal/migrate_plus": "^5.1.0",
         "drupal/migrate_tools": "^5.0.0",
@@ -28,7 +28,7 @@
         "drupal/chosen": "^3.0",
         "drupal/layout_builder_styles": "^1.0@beta",
         "drupal/devel": "^4.1.1",
-        "drupal/path_file": "^1.0",
+        "drupal/path_file": "^1.1",
         "drupal/linkit": "^6.0@beta",
         "drupal/views_bulk_operations": "^3.13",
         "drupal/views_add_button": "^1.7",
@@ -113,6 +113,7 @@
         "drupal/uswds_ckeditor_integration": "^1.0@beta"
     },
     "require-dev": {
+        "drush/drush": "^10.0"
     },
     "config": {
         "process-timeout": 0
@@ -132,6 +133,12 @@
             },
             "drupal/diff": {
                 "2980335: Establish class attribute as array instead of string.": "https://www.drupal.org/files/issues/2018-06-18/2980335_2_define_classes_as_array.patch"
+            },
+            "drupal/draggableviews": {
+                "Drupal 9 compatibility": "patches/draggableviews_compatibility.patch",
+                "Drupal 9 submodule compatibility": "patches/draggableviews_demo_compatibility.patch",
+                "Drupal 9 migrate class compatibility": "patches/draggableviews_migrate_compatibility.patch",
+                "Drupal 9 classes compatibility": "patches/draggableviews_classes_compatibility.patch"
             },
             "drupal/fullcalendar_view": {
                 "3168071: Mouse-hover tool-tip option for version since 8.x.4.2": "https://www.drupal.org/files/issues/2021-03-18/3168071-13.patch"
@@ -161,7 +168,9 @@
             },
             "drupal/h5p": {
                 "2774947: Allow disabling the reset of user data results": "https://www.drupal.org/files/issues/2020-05-14/2774947-keep-user-data-in-sync-with-content-7.patch",
-                "3129142: D9 Compatibility": "https://www.drupal.org/files/issues/2020-04-19/d9-compatibility-3129142-3.patch"
+                "3129142: Drupal 9 compatibility": "https://www.drupal.org/files/issues/2021-05-28/3150110-drupal9_deprecated_report-27.patch",
+                "Drupal 9 module compatibility": "patches/h5p_module_compatibility_patch.patch",
+                "Drupal 9 widget compatibility": "patches/h5p_widget_compatibility_patch.patch"
             },
             "drupal/paragraphs": {
                 "3090200: Fixes permission issues when editing non-published paragraphs": "https://www.drupal.org/files/issues/2020-07-08/access-controll-issue-3090200-22.patch",
@@ -182,7 +191,9 @@
                 "3104901: Entity Browser used in a entity referenced field of a layout builder custom block is not working": "https://www.drupal.org/files/issues/2020-03-25/3104901.patch"
             },
             "drupal/webform_analysis": {
-                "3137161: Google Charts version downgrade to eliminate isHtml error": "https://www.drupal.org/files/issues/2020-06-07/google_charts_version_downgrade-3137161-5.patch"
+                "3137161: Google Charts version downgrade to eliminate isHtml error": "https://www.drupal.org/files/issues/2020-06-07/google_charts_version_downgrade-3137161-5.patch",
+                "Drupal 9 compatibility": "patches/webform_analysis_compatibility.patch",
+                "Drupal 9 submodule compatibility": "patches/webform_node_analysis_compatibility.patch"
             },
             "drupal/core": {
                 "3020876: Custom block contextual links": "https://www.drupal.org/files/issues/2020-02-22/contextual_links_layout_builder_0.patch",
