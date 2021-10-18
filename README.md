@@ -7,9 +7,10 @@ Required Software & Setup
 
 ### PHP
 
--   Download the latest version of PHP 7 (currently 7.2.24) - <https://windows.php.net/download>.
--   Add the PHP directory to the system environment PATH variable (typically done manually).
--   Enter `php --v` in the command line (cmd) to confirm PHP is properly installed.
+-   Download PHP 7 (v7.4.24) - <https://windows.php.net/download>.
+-   Add the PHP directory to the system environment PATH variable.
+-   If using CMD to add PHP to PATH, enter `set PATH=%PATH%;C:\path\to\php\`.
+-   Enter `php -v` in the command line (cmd) to confirm PHP is properly installed.
 -   Open the `php.ini` file in the PHP directory using a text editor and make the following changes:
 
     #### Resource Limits
@@ -20,8 +21,6 @@ Required Software & Setup
 
     -   Enable (remove leading semi-colon) `extension=gd2`.
     -   Enable `extension=pdo_mysql`.
-    -   Enable `extension=pdo_pgsql`.
-    -   Enable `extension=pdo_sqlite`.
 
     #### Paths and Directories
 
@@ -40,43 +39,54 @@ Required Software & Setup
 
 ### Composer
 
--   Download and install the latest version of Composer (v1.10.13) - <https://getcomposer.org/download>.
--   Add the Composer directory to the system environment PATH variable (typically occurs automatically during installation).
--   Enter `composer --v` in the command line (cmd) to confirm Composer is properly installed.
+-   Download and install Composer (v1.10.13) - <https://getcomposer.org/download>.
+-   Add the Composer directory to the system environment PATH variable (occurs during install).
+-   If using CMD to add Composer to PATH, enter `set PATH=%PATH%;C:\path\to\composer\`.
+-   Enter `composer -V` in the command line (cmd) to confirm Composer is properly installed.
+-   Enter `composer self-update 1.10.13` in the command line (cmd) to update Composer to a specific version. 
 
 ### Git / Git Bash
 
--   Download and install the latest version of Git - <https://git-scm.com/downloads>.
--   Add the Git directory to the system environment PATH variable (typically occurs automatically during installation).
--   Enter `git ---version` in the command line (cmd) to confirm Git is properly installed.
+-   Download and install Git (v2.33.0) - <https://git-scm.com/downloads>.
+-   Add the Git directory to the system environment PATH variable (occurs during install).
+-   If using CMD to add Git to PATH, enter `set PATH=%PATH%;C:\path\to\git\`.
+-   Enter `git --version` in the command line (cmd) to confirm Git is properly installed.
 
 ### Drush
 
--   Using Git Bash, enter `git clone <https://github.com/drush-ops/drush.git>` to clone Drush into your current directory.
+-   Download and install Drush (v9.7.1)
+-   Using Git Bash, enter `git clone https://github.com/drush-ops/drush.git` to clone Drush into your current directory.
 -   Enter `cd drush` to navigate in to the cloned drush repo/folder.
 -   Enter `composer install` to install/update the project dependencies.
--   Enter `chmod u+x drush.bat` to make the file executable as a program by the owner.
--   Add the Drush directory to the system environment PATH variable (typically done manually).
+-   Add the Drush directory to the system environment PATH variable.
+-   If using CMD to add Drush to PATH, enter `set PATH=%PATH%;C:\path\to\drush\`.
 -   Enter `drush status` in the command line (cmd) to confirm Drush is properly installed.
 
-### PostgreSQL
+### MySQL
 
--   Download and install the latest version of PostgreSQL - <https://www.enterprisedb.com/downloads/postgres-postgresql-downloads>.
--   During installation, use the default settings and make sure to install the PG extension.
--   Open the application and create a new connection to the database server.
--   Expand the Objects section, then right click on Databases and select to Add a New Database.
+-   Download and install MySQL (v5.7) - <https://dev.mysql.com/downloads/mysql/5.7.html>.
+-   During installation, use the default settings and make sure to install MySQL Workbench.
+-   Open MySQL Workbench and create a new connection to a database server.
+-   Create a new schema/database in the connected server.
 
 
 ### IIS Express
 
--   Download and install the latest version of IIS Express - <https://www.microsoft.com/en-us/download/details.aspx?id=48264>.
--   Add the IIS Express directory to the system environment PATH variable (typically done manually).
+-   Download and install IIS Express (v10.0) - <https://www.microsoft.com/en-us/download/details.aspx?id=48264>.
+-   Add the IIS Express directory to the system environment PATH variable.
+-   If using CMD to add IIS Express to PATH, enter `set PATH=%PATH%;C:\path\to\IISexpress\`.
 -   Enter `iisexpress /?` in the command line (cmd) to confirm IIS Express is properly installed.
+
+### SASS
+
+-   Download and install SASS (v1.38.2) - <https://github.com/sass/dart-sass/releases>.
+-   Add the SASS directory to the system environment PATH variable.
+-   If using CMD to add SASS to PATH, enter `set PATH=%PATH%;C:\path\to\sass\`.
 
 Cloning Repository & Installing Dependencies
 ============================================
 
--   Using Git Bash, enter `git clone <https://github.com/USEPA/IntraCMS.git>` to clone the IntraCMS project into your current directory.
+-   Using Git Bash, enter `git clone https://github.com/USEPA/IntraCMS.git` to clone the IntraCMS project into your current directory.
 -   If required, enter you Git username/email and password when prompted.
 -   Enter `cd IntraCMS` to navigate in to the cloned IntraCMS repo/folder.
 -   Enter `git checkout -b origin/development` to checkout the development branch.
@@ -138,7 +148,7 @@ Importing Drupal Configurations
 
 -   Open the `settings.php` file in the `IntraCMS\docroot\sites\default` directory using a text editor and make the following change:
     -   Set `$settings['config_sync_directory'] = '../config/sync';`.
-    -   Set `$settings['file_temp_path'] = './files/temp';`.
+    -   Set `$settings['file_temp_path'] = 'sites/default/files/temp';`.
 -   Create a folder called `temp` in the `IntraCMS\docroot\sites\default\files` directory.
 
 ### Set Site UUID & Import Configurations
@@ -151,16 +161,19 @@ Importing Drupal Configurations
 Troubleshooting
 ===============
 
-### 1 Too Many Variables (SQLite variable limit issue when running drush cim)
-
--   Visit this [issue](https://www.drupal.org/project/drupal/issues/2031261) and apply the following [Patch](https://www.drupal.org/files/issues/2020-03-30/2031261-112.patch).
-
 ### Site UUID in Source Storage Does Not Match the Target Storage (when running drush cim)
 
 -   Visit this [issue](https://www.drupal.org/project/drupal/issues/3047392) and apply the following [Patch](https://www.drupal.org/files/issues/2020-03-28/3047392-17_0.patch).
 -   Typically occurs when the uuid of the current site does not match the uuid in the configuration you are attempting to import (see system.site.yml file).
 -   Enter `drush cget system.site` to see the current site information.
 -   Enter `drush config-set "system.site" uuid "a20f8b2d-8c57-4965-bb1c-d142c5b66431"` to set the site UUID.
+
+### Temporary File "XYZ" Could Not Be Created
+
+-   This error occurs when the Temp folder is not writeable. To resolve this issue, update the write permissions for the Temp directory, or move it to a writeable location.
+-   Open the `settings.php` file in the `IntraCMS\docroot\sites\default` directory using a text editor and make the following change:
+    -   Set `$settings['file_temp_path'] = 'sites/default/files/temp';`.
+-   Create a folder called `temp` in the `IntraCMS\docroot\sites\default\files` directory.
 
 ### Unexpected Error During Import With Operation Delete
 
@@ -174,9 +187,4 @@ Troubleshooting
 -   This error is indicative of a syntax error within one or more of the SQL statments made during the config import process. The erroneous query is typically shown next to the error.
 -   To resolve this issue, copy the erroneous query, open your DBMS and manually enter/execute the query. If the error continues, edit the SQL statement to remove any unsupported functions or characters.
 
-### Temporary File "XYZ" Could Not Be Created
 
--   This error occurs when the Temp folder is not writeable. To resolve this issue, update the write permissions for the Temp directory, or move it to a writeable location.
--   Open the `settings.php` file in the `IntraCMS\docroot\sites\default` directory using a text editor and make the following change:
-    -   Set `$settings['file_temp_path'] = './files/temp';`.
--   Create a folder called `temp` in the `IntraCMS\docroot\sites\default\files` directory.
