@@ -4,8 +4,8 @@
     "description": "Project template for Drupal 8 sites built with the Lightning distribution.",
     "license": "GPL-2.0-or-later",
     "require": {
-        "drupal/core": "8.9.18",
-        "drupal/lightning_core": "5.3.0",
+        "drupal/core": "9.2.7",
+        "drupal/lightning_core": "5.9.0",
         "drupal/lightning_media": "4.2.0",
         "drupal/lightning_scheduler": "1.3",
         "cweagans/composer-patches": "^1.7.0",
@@ -75,7 +75,7 @@
         "drupal/bulk_update_fields": "^2.0@alpha",
         "drupal/draggableviews": "1.2",
         "drupal/focal_point": "^1.5",
-        "drupal/h5p": "^1.0@RC",
+        "drupal/h5p": "^1.0-rc18",
         "drupal/r4032login": "^2.1",
         "drupal/taxonomy_term_depth": "^2.5",
         "drupal/transliterate_filenames": "^1.5",
@@ -90,6 +90,10 @@
         "drupal/jira_issue_collector": "1.1.0",
         "drupal/node_export": "^1.0@alpha",
         "drupal/variationcache": "^1.0",
+        "drupal/libraries": "^3.0@beta",
+        "drupal/openapi_ui": "^1.0-rc3",
+        "drupal/openapi_ui_redoc": "^1.0-rc3",
+        "drupal/openapi_ui_swagger": "^1.0-rc4",
         "drupal/addtocal": "^2.0@beta",
         "drupal/editoria11y": "^1.0",
         "drupal/override_node_options": "^2.6",
@@ -113,7 +117,8 @@
         "drupal/hierarchical_term_formatter": "^1.2",
         "sabre/vobject": "^4.2",
         "drupal/uswds_ckeditor_integration": "^1.0@beta",
-        "drupal/lightning_workflow": "^3.16"
+        "drupal/lightning_workflow": "^3.16",
+        "drupal/panels": "^4.6"
     },
     "require-dev": {
         "drush/drush": "^10.0"
@@ -171,7 +176,7 @@
             },
             "drupal/h5p": {
                 "2774947: Allow disabling the reset of user data results": "https://www.drupal.org/files/issues/2020-05-14/2774947-keep-user-data-in-sync-with-content-7.patch",
-                "3129142: Drupal 9 compatibility": "https://www.drupal.org/files/issues/2021-05-28/3150110-drupal9_deprecated_report-27.patch",
+                "3129142: Drupal 9 compatibility": "https://www.drupal.org/files/issues/2020-07-09/3150110-drupal9_deprecated_report-7.patch",
                 "Drupal 9 module compatibility": "patches/h5p_module_compatibility_patch.patch",
                 "Drupal 9 widget compatibility": "patches/h5p_widget_compatibility_patch.patch"
             },
@@ -185,10 +190,6 @@
             },
             "drupal/simplesamlphp_auth": {
                 "2983154: Redirect to original destination after logging in": "https://www.drupal.org/files/issues/2020-01-02/simplesamlphp_auth-return-to-destination-parameter-2983154-8-D8.patch"
-            },
-            "drupal/blizz_dynamic_entitylist": {
-                "3128363: Use admin theme for Ajax routes": "https://www.drupal.org/files/issues/2020-04-16/blizz-dynamic-entitylist_use-admin-theme-for-ajax_3128363-2.patch",
-                "3138556: Remove automatic 'checked' attribute from bundle selection": "https://www.drupal.org/files/issues/2020-05-21/remove_automatic_checked_attribute-3138556.patch"
             },
             "drupal/entity_browser": {
                 "3104901: Entity Browser used in a entity referenced field of a layout builder custom block is not working": "https://www.drupal.org/files/issues/2020-03-25/3104901.patch"
@@ -205,8 +206,7 @@
                 "2949017: There is no way to delete or update file entities of other users incl. user/1": "https://www.drupal.org/files/issues/2020-01-13/2949017-62.patch",
                 "3035113: JSON API": "https://www.drupal.org/files/issues/2019-10-21/LatestRevisionCheck-13092187-24.patch",
                 "2985882: Error: Call to a member function getLabel() after enabling layout_builder": "https://www.drupal.org/files/issues/2020-01-20/2985882-53.patch",
-                "923934: Block visibility has wrong logic": "https://www.drupal.org/files/issues/2020-02-11/block_visibility_has_wrong_logic-923934-14-reroll-32-drupal-8.8.2.patch",
-                "2016739: Prevent '@' from triggering email detection unless suffix is included": "https://www.drupal.org/files/issues/2020-09-25/2016739-86.patch"
+                "923934: Block visibility has wrong logic": "https://www.drupal.org/files/issues/2021-09-16/923934-50-d92.patch"
             },
             "merge-plugin": {
                 "include": [
@@ -268,6 +268,19 @@
             "type": "github",
             "url": "https://github.com/acquia/lightning-dev",
             "no-api": true
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drupal/h5p",
+                "type": "drupal-module",
+                "version": "1.0.0-rc18",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/project/h5p.git",
+                    "reference": "8.x-1.0-rc18"
+                }
+            }
         },
         {
             "type": "package",
@@ -392,9 +405,6 @@
         "quick-start": [
             "composer install",
             "php docroot/core/scripts/drupal quick-start lightning --no-interaction"
-        ],
-        "post-drupal-scaffold-cmd": [
-            "cd docroot && git apply -v --ignore-space-change --ignore-whitespace ../patches/robots_update.patch"
         ]
     }
 }
