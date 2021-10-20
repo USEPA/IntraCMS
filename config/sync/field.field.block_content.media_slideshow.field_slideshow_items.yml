@@ -5,14 +5,7 @@ dependencies:
   config:
     - block_content.type.media_slideshow
     - field.storage.block_content.field_slideshow_items
-    - media.type.audio_file
-    - media.type.document
     - media.type.image
-    - media.type.instagram
-    - media.type.remote_video
-    - media.type.tweet
-    - media.type.video
-    - media.type.video_file
 _core:
   default_config_hash: PHlMEKa3j0BnPe03007CexqVYd5yP3YvojlDSyNaFw0
 id: block_content.media_slideshow.field_slideshow_items
@@ -29,16 +22,9 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
-      remote_video: remote_video
-      video: video
-      video_file: video_file
-      tweet: tweet
-      audio_file: audio_file
-      document: document
       image: image
-      instagram: instagram
     sort:
       field: _none
-    auto_create: false
-    auto_create_bundle: ''
+    auto_create: true
+    auto_create_bundle: image
 field_type: entity_reference
