@@ -14,7 +14,7 @@ function epa_intranet_preprocess_paragraph__uswds_hero(&$variables) {
       $identifier = 'uswds-hero-' . $numeric_id;
       $variables['attributes']['class'][] = $identifier;
       // Inline the CSS background image.
-      $img = $variables['paragraph']->field_uswds_image->entity->url();
+      $img = $variables['paragraph']->field_uswds_image->entity->createFileUrl();
       $css = ".$identifier.paragraph--type--uswds-hero.usa-hero { background-image:url($img); }";
       $variables['#attached']['html_head'][] = [
         [

@@ -7,7 +7,7 @@ function epa_intranet_preprocess_taxonomy_term__mass_mailer_categories(&$variabl
 
   if (isset($variables['term']) && isset($variables['term']->field_banner)) {
     if (!$variables['term']->field_banner->isEmpty()) {
-    $img = $variables['term']->field_banner->entity->url();
+    $img = $variables['term']->field_banner->entity->createFileUrl();
 
     $css = ".mass-mailer-banner {
     background-image:url($img);
