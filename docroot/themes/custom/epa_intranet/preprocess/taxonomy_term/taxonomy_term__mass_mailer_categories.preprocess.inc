@@ -13,7 +13,7 @@ function epa_intranet_preprocess_taxonomy_term__mass_mailer_categories(&$variabl
     background-image:url($img);
     background-position:center;
     background-size:cover;
-    height:300px;
+    height:250px;
      }";
     $tag = [
       '#tag' => 'style',
