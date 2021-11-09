@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.taxonomy_term.field_federal_manager
     - field.storage.taxonomy_term.field_hours_staffed_for_staff
     - field.storage.taxonomy_term.field_ill_contact
     - field.storage.taxonomy_term.field_library_contact
@@ -103,27 +104,36 @@ display:
           row_class: ''
           default_row_class: true
           override: true
-          sticky: true
+          sticky: false
           caption: ''
           summary: ''
           description: ''
           columns:
             name: name
-            field_public_website: field_reference_desk
-            intranet_website: field_reference_desk
+            field_library_type: field_library_type
+            field_public_website: field_public_website
+            intranet_website: intranet_website
             field_reference_desk: field_reference_desk
-            field_library_contact: field_reference_desk
+            field_library_contact: field_library_contact
             field_ill_contact: field_ill_contact
+            field_federal_manager: field_federal_manager
             open_to_staff: open_to_staff
-            field_hours_staffed_for_staff: open_to_staff
+            field_hours_staffed_for_staff: field_hours_staffed_for_staff
             field_open_to_the_public: field_open_to_the_public
-            hours_staffed_for_the_public: field_open_to_the_public
+            hours_staffed_for_the_public: hours_staffed_for_the_public
           info:
             name:
-              sortable: true
+              sortable: false
               default_sort_order: asc
               align: ''
-              separator: '<br />'
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_library_type:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
               empty_column: false
               responsive: ''
             field_public_website:
@@ -140,7 +150,7 @@ display:
               sortable: false
               default_sort_order: asc
               align: ''
-              separator: '<br />'
+              separator: ''
               empty_column: false
               responsive: ''
             field_library_contact:
@@ -151,6 +161,13 @@ display:
               empty_column: false
               responsive: ''
             field_ill_contact:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_federal_manager:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -637,6 +654,69 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        field_federal_manager:
+          id: field_federal_manager
+          table: taxonomy_term__field_federal_manager
+          field: field_federal_manager
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Federal Manager'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_entity_view
+          settings:
+            view_mode: poc_simple
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         open_to_staff:
           id: open_to_staff
           table: taxonomy_term__open_to_staff
@@ -1090,6 +1170,7 @@ display:
         - url.query_args
         - user.permissions
       tags:
+        - 'config:field.storage.taxonomy_term.field_federal_manager'
         - 'config:field.storage.taxonomy_term.field_hours_staffed_for_staff'
         - 'config:field.storage.taxonomy_term.field_ill_contact'
         - 'config:field.storage.taxonomy_term.field_library_contact'
@@ -1117,6 +1198,7 @@ display:
         - url.query_args
         - user.permissions
       tags:
+        - 'config:field.storage.taxonomy_term.field_federal_manager'
         - 'config:field.storage.taxonomy_term.field_hours_staffed_for_staff'
         - 'config:field.storage.taxonomy_term.field_ill_contact'
         - 'config:field.storage.taxonomy_term.field_library_contact'
