@@ -9,6 +9,7 @@ dependencies:
     - field.field.taxonomy_term.libraries.field_ill_contact
     - field.field.taxonomy_term.libraries.field_ill_email
     - field.field.taxonomy_term.libraries.field_library_contact
+    - field.field.taxonomy_term.libraries.field_library_type
     - field.field.taxonomy_term.libraries.field_mailing_address
     - field.field.taxonomy_term.libraries.field_oclc_symbol
     - field.field.taxonomy_term.libraries.field_open_to_the_public
@@ -33,7 +34,7 @@ third_party_settings:
         - field_ill_contact
         - field_ill_email
       parent_name: ''
-      weight: 6
+      weight: 7
       format_type: details
       region: content
       format_settings:
@@ -49,7 +50,7 @@ third_party_settings:
         - field_library_contact
         - field_federal_manager
       parent_name: ''
-      weight: 3
+      weight: 4
       format_type: details
       region: content
       format_settings:
@@ -66,12 +67,12 @@ mode: default
 content:
   delivery_street_address:
     type: address_default
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   field_federal_manager:
-    weight: 8
+    weight: 9
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -81,7 +82,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_hours_staffed_for_staff:
-    weight: 8
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: office_hours_default
@@ -105,7 +106,7 @@ content:
     type: email_default
     region: content
   field_library_contact:
-    weight: 7
+    weight: 8
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -114,8 +115,14 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_library_type:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_mailing_address:
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: address_default
@@ -129,13 +136,13 @@ content:
     type: string_textfield
     region: content
   field_open_to_the_public:
-    weight: 9
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_public_website:
-    weight: 1
+    weight: 2
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -156,13 +163,13 @@ content:
     region: content
   hours_staffed_for_the_public:
     type: office_hours_default
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   intranet_website:
     type: link_default
-    weight: 2
+    weight: 3
     region: content
     settings:
       placeholder_url: ''
@@ -178,13 +185,13 @@ content:
     third_party_settings: {  }
   open_to_staff:
     type: options_select
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 11
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -192,7 +199,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 12
+    weight: 13
     region: content
     third_party_settings: {  }
 hidden:

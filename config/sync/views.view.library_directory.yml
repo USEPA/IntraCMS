@@ -6,6 +6,7 @@ dependencies:
     - field.storage.taxonomy_term.field_hours_staffed_for_staff
     - field.storage.taxonomy_term.field_ill_contact
     - field.storage.taxonomy_term.field_library_contact
+    - field.storage.taxonomy_term.field_library_type
     - field.storage.taxonomy_term.field_open_to_the_public
     - field.storage.taxonomy_term.field_public_website
     - field.storage.taxonomy_term.field_reference_desk
@@ -20,6 +21,9 @@ dependencies:
     - options
     - taxonomy
     - user
+    - vefl
+    - views_autocomplete_filters
+    - views_infinite_scroll
 id: library_directory
 label: 'Library Directory'
 module: views
@@ -50,22 +54,37 @@ display:
           query_comment: ''
           query_tags: {  }
       exposed_form:
-        type: basic
+        type: vefl_basic
         options:
           submit_button: Apply
-          reset_button: false
+          reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          layout:
+            layout_id: layout_twocol_section
+            change: Change
+            widget_region:
+              name: first
+              field_library_type_value: second
+              sort_by: first
+              sort_order: first
+              items_per_page: first
+              offset: first
+              submit: first
+              reset: first
       pager:
-        type: mini
+        type: infinite_scroll
         options:
           items_per_page: 10
           offset: 0
           id: 0
           total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -74,9 +93,9 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
+          views_infinite_scroll:
+            button_text: 'Load More'
+            automatically_load_content: true
       style:
         type: table
         options:
@@ -84,30 +103,35 @@ display:
           row_class: ''
           default_row_class: true
           override: true
-          sticky: false
+          sticky: true
           caption: ''
           summary: ''
           description: ''
           columns:
             name: name
             field_public_website: field_reference_desk
+            intranet_website: field_reference_desk
             field_reference_desk: field_reference_desk
             field_library_contact: field_reference_desk
             field_ill_contact: field_ill_contact
-            intranet_website: field_reference_desk
             open_to_staff: open_to_staff
             field_hours_staffed_for_staff: open_to_staff
             field_open_to_the_public: field_open_to_the_public
             hours_staffed_for_the_public: field_open_to_the_public
           info:
             name:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: '<br />'
               empty_column: false
               responsive: ''
             field_public_website:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            intranet_website:
               align: ''
               separator: ''
               empty_column: false
@@ -129,11 +153,6 @@ display:
             field_ill_contact:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            intranet_website:
               align: ''
               separator: ''
               empty_column: false
@@ -233,6 +252,68 @@ display:
           entity_type: taxonomy_term
           entity_field: name
           plugin_id: term_name
+        field_library_type:
+          id: field_library_type
+          table: taxonomy_term__field_library_type
+          field: field_library_type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Library Type'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: list_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         field_public_website:
           id: field_public_website
           table: taxonomy_term__field_public_website
@@ -868,34 +949,160 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
-      sorts: {  }
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: name_op
+            label: 'Library Name'
+            description: ''
+            use_operator: false
+            operator: name_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: name
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              system_editor: '0'
+              administrator: '0'
+            placeholder: ''
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_field: name
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: views_autocomplete_filters_string
+        field_library_type_value:
+          id: field_library_type_value
+          table: taxonomy_term__field_library_type
+          field: field_library_type_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_library_type_value_op
+            label: 'Library Type'
+            description: ''
+            use_operator: false
+            operator: field_library_type_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_library_type_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          plugin_id: list_field
+      sorts:
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: standard
       title: 'Library Directory'
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No libraries meet your search criteria. Please reset or try different criteria.'
+            format: simple_text
+          plugin_id: text
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
         - user.permissions
       tags:
         - 'config:field.storage.taxonomy_term.field_hours_staffed_for_staff'
         - 'config:field.storage.taxonomy_term.field_ill_contact'
         - 'config:field.storage.taxonomy_term.field_library_contact'
+        - 'config:field.storage.taxonomy_term.field_library_type'
         - 'config:field.storage.taxonomy_term.field_open_to_the_public'
         - 'config:field.storage.taxonomy_term.field_public_website'
         - 'config:field.storage.taxonomy_term.field_reference_desk'
         - 'config:field.storage.taxonomy_term.hours_staffed_for_the_public'
         - 'config:field.storage.taxonomy_term.intranet_website'
         - 'config:field.storage.taxonomy_term.open_to_staff'
-  page_1:
+  libraries_page:
     display_plugin: page
-    id: page_1
+    id: libraries_page
     display_title: Page
     position: 1
     display_options:
@@ -906,12 +1113,14 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
         - user.permissions
       tags:
         - 'config:field.storage.taxonomy_term.field_hours_staffed_for_staff'
         - 'config:field.storage.taxonomy_term.field_ill_contact'
         - 'config:field.storage.taxonomy_term.field_library_contact'
+        - 'config:field.storage.taxonomy_term.field_library_type'
         - 'config:field.storage.taxonomy_term.field_open_to_the_public'
         - 'config:field.storage.taxonomy_term.field_public_website'
         - 'config:field.storage.taxonomy_term.field_reference_desk'

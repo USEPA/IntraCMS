@@ -9,6 +9,7 @@ dependencies:
     - field.field.taxonomy_term.libraries.field_ill_contact
     - field.field.taxonomy_term.libraries.field_ill_email
     - field.field.taxonomy_term.libraries.field_library_contact
+    - field.field.taxonomy_term.libraries.field_library_type
     - field.field.taxonomy_term.libraries.field_mailing_address
     - field.field.taxonomy_term.libraries.field_oclc_symbol
     - field.field.taxonomy_term.libraries.field_open_to_the_public
@@ -29,6 +30,7 @@ third_party_settings:
   field_group:
     group_location:
       children:
+        - field_library_type
         - field_mailing_address
         - delivery_street_address
         - open_to_staff
@@ -36,7 +38,7 @@ third_party_settings:
         - field_open_to_the_public
         - hours_staffed_for_the_public
       parent_name: ''
-      weight: 3
+      weight: 4
       format_type: details
       region: content
       format_settings:
@@ -51,7 +53,7 @@ third_party_settings:
         - field_ill_contact
         - field_ill_email
       parent_name: ''
-      weight: 4
+      weight: 5
       format_type: details
       region: content
       format_settings:
@@ -66,7 +68,7 @@ third_party_settings:
         - field_library_contact
         - field_federal_manager
       parent_name: ''
-      weight: 2
+      weight: 3
       format_type: details
       region: content
       format_settings:
@@ -97,7 +99,7 @@ content:
     type: entity_reference_entity_view
     region: content
   field_hours_staffed_for_staff:
-    weight: 4
+    weight: 5
     label: above
     settings:
       show_closed: open
@@ -148,6 +150,13 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: content
+  field_library_type:
+    weight: 0
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
   field_mailing_address:
     weight: 1
     label: above
@@ -164,14 +173,14 @@ content:
     type: string
     region: content
   field_open_to_the_public:
-    weight: 5
+    weight: 6
     label: inline
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_public_website:
-    weight: 0
+    weight: 1
     label: inline
     settings:
       trim_length: 80
@@ -193,7 +202,7 @@ content:
     region: content
   hours_staffed_for_the_public:
     type: office_hours
-    weight: 6
+    weight: 7
     region: content
     label: above
     settings:
@@ -220,7 +229,7 @@ content:
     third_party_settings: {  }
   intranet_website:
     type: link
-    weight: 1
+    weight: 2
     region: content
     label: inline
     settings:
