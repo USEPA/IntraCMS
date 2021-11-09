@@ -111,16 +111,16 @@ display:
           columns:
             name: name
             field_library_type: field_library_type
-            field_public_website: field_public_website
-            intranet_website: intranet_website
+            field_public_website: field_reference_desk
+            intranet_website: field_reference_desk
             field_reference_desk: field_reference_desk
-            field_library_contact: field_library_contact
+            field_library_contact: field_reference_desk
             field_ill_contact: field_ill_contact
             field_federal_manager: field_federal_manager
             open_to_staff: open_to_staff
-            field_hours_staffed_for_staff: field_hours_staffed_for_staff
+            field_hours_staffed_for_staff: open_to_staff
             field_open_to_the_public: field_open_to_the_public
-            hours_staffed_for_the_public: hours_staffed_for_the_public
+            hours_staffed_for_the_public: field_open_to_the_public
           info:
             name:
               sortable: false
@@ -150,7 +150,7 @@ display:
               sortable: false
               default_sort_order: asc
               align: ''
-              separator: ''
+              separator: '<br />'
               empty_column: false
               responsive: ''
             field_library_contact:
