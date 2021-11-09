@@ -1,0 +1,29 @@
+uuid: dce94b3c-a251-4db7-be91-f7c3f0cf26d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_federal_manager
+    - node.type.staff_member
+    - taxonomy.vocabulary.libraries
+id: taxonomy_term.libraries.field_federal_manager
+field_name: field_federal_manager
+entity_type: taxonomy_term
+bundle: libraries
+label: 'Federal Manager'
+description: 'Enter the name of the federal manager for the library.  The federal manager''s individual contact information will be displayed on the library page.  If the person''s name does not appear in the autocomplete list, you will need to create their <a href="/node/add/staff_member">Staff Member</a> profile.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      staff_member: staff_member
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

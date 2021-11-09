@@ -1,0 +1,50 @@
+uuid: 3df5e7ea-ca51-4fff-be97-5f9d4a4be0e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_mailing_address
+    - taxonomy.vocabulary.libraries
+  module:
+    - address
+id: taxonomy_term.libraries.field_mailing_address
+field_name: field_mailing_address
+entity_type: taxonomy_term
+bundle: libraries
+label: 'Mailing Address'
+description: 'Enter the mailing address of the library.'
+required: false
+translatable: false
+default_value:
+  -
+    country_code: US
+    langcode: ''
+    given_name: ''
+    family_name: ''
+    organization: ''
+    address_line1: ''
+    address_line2: ''
+    locality: ''
+    administrative_area: ''
+    postal_code: ''
+    additional_name: null
+    sorting_code: null
+    dependent_locality: null
+default_value_callback: ''
+settings:
+  available_countries:
+    US: US
+  langcode_override: ''
+  field_overrides:
+    givenName:
+      override: hidden
+    additionalName:
+      override: hidden
+    familyName:
+      override: hidden
+    sortingCode:
+      override: hidden
+    dependentLocality:
+      override: hidden
+  fields: {  }
+field_type: address

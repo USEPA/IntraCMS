@@ -1,0 +1,38 @@
+uuid: ff2490c8-9e6f-437e-ba3b-6bc5de44dc2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.contact.field_email
+    - field.field.paragraph.contact.field_fax_number
+    - field.field.paragraph.contact.field_phone_number
+    - paragraphs.paragraphs_type.contact
+id: paragraph.contact.default
+targetEntityType: paragraph
+bundle: contact
+mode: default
+content:
+  field_email:
+    weight: 4
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: email_mailto
+    region: content
+  field_fax_number:
+    weight: 2
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_phone_number:
+    weight: 3
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

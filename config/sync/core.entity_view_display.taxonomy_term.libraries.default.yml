@@ -1,0 +1,241 @@
+uuid: ea98a121-b7dc-4089-bb5d-1aa8d693995e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.libraries.delivery_street_address
+    - field.field.taxonomy_term.libraries.field_federal_manager
+    - field.field.taxonomy_term.libraries.field_hours_staffed_for_staff
+    - field.field.taxonomy_term.libraries.field_ill_contact
+    - field.field.taxonomy_term.libraries.field_ill_email
+    - field.field.taxonomy_term.libraries.field_library_contact
+    - field.field.taxonomy_term.libraries.field_mailing_address
+    - field.field.taxonomy_term.libraries.field_oclc_symbol
+    - field.field.taxonomy_term.libraries.field_open_to_the_public
+    - field.field.taxonomy_term.libraries.field_public_website
+    - field.field.taxonomy_term.libraries.field_reference_desk
+    - field.field.taxonomy_term.libraries.hours_staffed_for_the_public
+    - field.field.taxonomy_term.libraries.intranet_website
+    - field.field.taxonomy_term.libraries.open_to_staff
+    - taxonomy.vocabulary.libraries
+  module:
+    - address
+    - entity_reference_revisions
+    - field_group
+    - link
+    - office_hours
+    - options
+third_party_settings:
+  field_group:
+    group_location:
+      children:
+        - field_mailing_address
+        - delivery_street_address
+        - open_to_staff
+        - field_hours_staffed_for_staff
+        - field_open_to_the_public
+        - hours_staffed_for_the_public
+      parent_name: ''
+      weight: 3
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        open: true
+        id: ''
+        classes: ''
+      label: Location
+    group_ill_information:
+      children:
+        - field_oclc_symbol
+        - field_ill_contact
+        - field_ill_email
+      parent_name: ''
+      weight: 4
+      format_type: details
+      region: content
+      format_settings:
+        description: 'If there is not a specific ILL point of contact, please use the Reference Desk and/or Librarian contact for information on ILL.'
+        open: true
+        id: ''
+        classes: ''
+      label: 'ILL Information'
+    group_reference_desk_and_library:
+      children:
+        - field_reference_desk
+        - field_library_contact
+        - field_federal_manager
+      parent_name: ''
+      weight: 2
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        open: true
+        id: ''
+        classes: ''
+      label: 'Reference Desk and Library Contact'
+id: taxonomy_term.libraries.default
+targetEntityType: taxonomy_term
+bundle: libraries
+mode: default
+content:
+  delivery_street_address:
+    type: address_default
+    weight: 2
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_federal_manager:
+    weight: 6
+    label: above
+    settings:
+      view_mode: poc_simple
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_hours_staffed_for_staff:
+    weight: 4
+    label: above
+    settings:
+      show_closed: open
+      office_hours_first_day: ''
+      day_format: short
+      time_format: g
+      compress: true
+      grouped: true
+      closed_format: Closed
+      separator:
+        days: '<br />'
+        grouped_days: ' - '
+        day_hours: ': '
+        hours_hours: '-'
+        more_hours: ', '
+      current_status:
+        position: ''
+        open_text: 'Currently open!'
+        closed_text: 'Currently closed'
+      schema:
+        enabled: false
+      timezone_field: ''
+    third_party_settings: {  }
+    type: office_hours
+    region: content
+  field_ill_contact:
+    weight: 8
+    label: above
+    settings:
+      view_mode: poc_simple
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_ill_email:
+    weight: 9
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_library_contact:
+    weight: 5
+    label: above
+    settings:
+      view_mode: poc_simple
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_mailing_address:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  field_oclc_symbol:
+    weight: 7
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_open_to_the_public:
+    weight: 5
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_public_website:
+    weight: 0
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_reference_desk:
+    type: entity_reference_revisions_entity_view
+    weight: 4
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  hours_staffed_for_the_public:
+    type: office_hours
+    weight: 6
+    region: content
+    label: above
+    settings:
+      show_closed: open
+      office_hours_first_day: ''
+      day_format: short
+      time_format: g
+      compress: true
+      grouped: true
+      closed_format: Closed
+      separator:
+        days: '<br />'
+        grouped_days: ' - '
+        day_hours: ': '
+        hours_hours: '-'
+        more_hours: ', '
+      current_status:
+        position: ''
+        open_text: 'Currently open!'
+        closed_text: 'Currently closed'
+      schema:
+        enabled: false
+      timezone_field: ''
+    third_party_settings: {  }
+  intranet_website:
+    type: link
+    weight: 1
+    region: content
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  open_to_staff:
+    type: list_default
+    weight: 3
+    region: content
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  description: true

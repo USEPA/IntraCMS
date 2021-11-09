@@ -1,0 +1,91 @@
+uuid: 67cfff77-efc8-4a4e-a97d-e2fcccda7197
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_reference_desk
+    - paragraphs.paragraphs_type.contact
+    - taxonomy.vocabulary.libraries
+  module:
+    - entity_reference_revisions
+id: taxonomy_term.libraries.field_reference_desk
+field_name: field_reference_desk
+entity_type: taxonomy_term
+bundle: libraries
+label: 'Reference Desk'
+description: 'Enter the contact information for the library reference desk.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      contact: contact
+    target_bundles_drag_drop:
+      contact:
+        enabled: true
+        weight: 22
+      dynamic_list:
+        weight: 23
+        enabled: false
+      governing_authorities:
+        weight: 24
+        enabled: false
+      heading_title_and_text:
+        weight: 25
+        enabled: false
+      hero_carousel:
+        weight: 26
+        enabled: false
+      list_of_link:
+        weight: 27
+        enabled: false
+      policy_roles:
+        weight: 28
+        enabled: false
+      question_and_answer:
+        weight: 29
+        enabled: false
+      rich_text:
+        weight: 30
+        enabled: false
+      slide:
+        weight: 31
+        enabled: false
+      slide_show:
+        weight: 32
+        enabled: false
+      title_and_text:
+        weight: 33
+        enabled: false
+      uswds_card:
+        weight: 34
+        enabled: false
+      uswds_card_set:
+        weight: 35
+        enabled: false
+      uswds_column:
+        weight: 36
+        enabled: false
+      uswds_graphic_list:
+        weight: 37
+        enabled: false
+      uswds_grid:
+        weight: 38
+        enabled: false
+      uswds_hero:
+        weight: 39
+        enabled: false
+      uswds_media_block:
+        weight: 40
+        enabled: false
+      uswds_text:
+        weight: 41
+        enabled: false
+      views_reference_list:
+        weight: 42
+        enabled: false
+field_type: entity_reference_revisions

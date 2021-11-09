@@ -1,0 +1,199 @@
+uuid: a4fd1b20-93aa-467e-b71b-1649e97a486d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.libraries.delivery_street_address
+    - field.field.taxonomy_term.libraries.field_federal_manager
+    - field.field.taxonomy_term.libraries.field_hours_staffed_for_staff
+    - field.field.taxonomy_term.libraries.field_ill_contact
+    - field.field.taxonomy_term.libraries.field_ill_email
+    - field.field.taxonomy_term.libraries.field_library_contact
+    - field.field.taxonomy_term.libraries.field_mailing_address
+    - field.field.taxonomy_term.libraries.field_oclc_symbol
+    - field.field.taxonomy_term.libraries.field_open_to_the_public
+    - field.field.taxonomy_term.libraries.field_public_website
+    - field.field.taxonomy_term.libraries.field_reference_desk
+    - field.field.taxonomy_term.libraries.hours_staffed_for_the_public
+    - field.field.taxonomy_term.libraries.intranet_website
+    - field.field.taxonomy_term.libraries.open_to_staff
+    - taxonomy.vocabulary.libraries
+  module:
+    - address
+    - field_group
+    - link
+    - office_hours
+    - paragraphs
+    - path
+third_party_settings:
+  field_group:
+    group_ill:
+      children:
+        - field_oclc_symbol
+        - field_ill_contact
+        - field_ill_email
+      parent_name: ''
+      weight: 6
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        open: true
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'ILL Information'
+    group_library_contacts:
+      children:
+        - field_reference_desk
+        - field_library_contact
+        - field_federal_manager
+      parent_name: ''
+      weight: 3
+      format_type: details
+      region: content
+      format_settings:
+        description: ''
+        open: true
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Reference Desk and Library Contact'
+id: taxonomy_term.libraries.default
+targetEntityType: taxonomy_term
+bundle: libraries
+mode: default
+content:
+  delivery_street_address:
+    type: address_default
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_federal_manager:
+    weight: 8
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_hours_staffed_for_staff:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: office_hours_default
+    region: content
+  field_ill_contact:
+    weight: 9
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_ill_email:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: content
+  field_library_contact:
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_mailing_address:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  field_oclc_symbol:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_open_to_the_public:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_public_website:
+    weight: 1
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_reference_desk:
+    type: entity_reference_paragraphs
+    weight: 6
+    settings:
+      title: 'Reference Desk'
+      title_plural: 'Reference Desk'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: contact
+    third_party_settings: {  }
+    region: content
+  hours_staffed_for_the_public:
+    type: office_hours_default
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  intranet_website:
+    type: link_default
+    weight: 2
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  open_to_staff:
+    type: options_select
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 12
+    region: content
+    third_party_settings: {  }
+hidden:
+  description: true
