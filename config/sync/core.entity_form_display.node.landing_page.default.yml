@@ -1,22 +1,45 @@
-uuid: 9fcda1ba-e571-4a3f-bf4d-8fd09f021606
+uuid: 767a7c6a-3796-4354-a917-8552301326b1
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.landing_page.field_hero
-    - field.field.node.landing_page.field_landing_description
-    - field.field.node.landing_page.layout_builder__layout
-    - field.field.node.landing_page.layout_builder__translation
-    - field.field.node.landing_page.layout_selection
-    - node.type.landing_page
-    - workflows.workflow.editorial
+    - field.field.node.event.field_event_date
+    - field.field.node.event.field_event_description
+    - field.field.node.event.field_event_host
+    - field.field.node.event.field_event_link
+    - field.field.node.event.field_event_location
+    - field.field.node.event.field_event_location_logistics
+    - field.field.node.event.field_event_recording
+    - field.field.node.event.field_event_tags
+    - field.field.node.event.field_show_on_agency_calendar
+    - node.type.event
   module:
     - content_moderation
-    - paragraphs
+    - entity_reference_tree
+    - field_group
+    - link
     - path
-id: node.landing_page.default
+    - smart_date
+    - text
+third_party_settings:
+  field_group:
+    group_recording:
+      children:
+        - field_event_recording
+      parent_name: ''
+      weight: 16
+      format_type: details
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: false
+        required_fields: false
+      label: Recording
+id: node.event.default
 targetEntityType: node
-bundle: landing_page
+bundle: event
 mode: default
 content:
   created:
@@ -25,29 +48,132 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_hero:
-    type: entity_reference_paragraphs
-    weight: 10
+  field_event_date:
+    weight: 8
     settings:
-      title: Hero
-      title_plural: Hero
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: _none
+      modal: false
+      default_duration: 60
+      default_duration_increments: |-
+        30
+        60|1 hour
+        90
+        120|2 hours
+        custom
+      show_extra: true
+      hide_date: false
     third_party_settings: {  }
+    type: smartdate_default
     region: content
-  field_landing_description:
-    weight: 9
+  field_event_description:
+    weight: 14
     settings:
       rows: 5
       placeholder: ''
+      summary_rows: 1
+      show_summary: false
     third_party_settings: {  }
-    type: string_textarea
+    type: text_textarea_with_summary
+    region: content
+  field_event_host:
+    weight: 10
+    settings:
+      theme: default
+      dots: 0
+      label: 'Select the Event Host'
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+      dialog_title: ''
+    third_party_settings: {  }
+    type: entity_reference_tree
+    region: content
+  field_event_link:
+    type: link_default
+    weight: 12
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings:
+      conditional_fields:
+        ae9afd15-a22d-4983-b80f-30a1c22ec121:
+          dependee: field_event_location_logistics
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: online
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: event
+  field_event_location:
+    weight: 13
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        d8c267ce-104d-4c96-9abc-f7b496c7b58e:
+          dependee: field_event_location_logistics
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: in-person
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: event
+    type: string_textfield
+    region: content
+  field_event_location_logistics:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_event_recording:
+    weight: 15
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_event_tags:
+    weight: 15
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_show_on_agency_calendar:
+    weight: 9
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 7
+    weight: 6
     settings: {  }
     region: content
     third_party_settings: {  }
@@ -68,7 +194,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 7
     region: content
     third_party_settings: {  }
   sticky:
@@ -97,11 +223,8 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 6
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  layout_builder__layout: true
-  layout_builder__translation: true
-  layout_selection: true
+hidden: {  }
