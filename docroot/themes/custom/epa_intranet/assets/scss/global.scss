@@ -587,6 +587,13 @@ section.comment-wrapper ul.links li {
 
 .staff-profile {
   float: none !important;
+  display: inline-grid !important;
+}
+
+/* when embedded on page, Classy automatically applies .d-inline-flex, overwritin its intended display */
+.staff-profile ~ div .d-inline-flex {
+  display: inline-grid !important;
+  max-width: 250px;
 }
 
 .layout--twocol-section .layout__region, .layout--onecol-section .layout__region {
@@ -832,6 +839,11 @@ div {
 .centered {
   display: flex;
   align-items: center;
+}
+
+/* enforce embedded entity grid rows */
+.align-center.embedded-enity .grid-row {
+  display:block;
 }
 
 .webform-message {
