@@ -17,15 +17,20 @@ function epa_intranet_theme_suggestions_block_alter(array &$suggestions, array $
 
 function epa_intranet_preprocess_image(&$variables) {
   if (isset($variables['style_name'])) {
-    if (isset($variables['style_name']) && $variables['style_name'] == 'media_block_image') {
+    if ($variables['style_name'] == 'media_block_image') {
       $variables['attributes']['class'][] = 'usa-media-block__img';
       $variables['attributes']['class'][] = 'rounded-circle';
+      $variables['attributes']['aria-hidden'] = 'true';
     }
     if ($variables['style_name'] == 'card') {
       $variables['attributes']['class'][] = 'card-img-top';
       $variables['attributes']['class'][] = 'w-100';
+      $variables['attributes']['aria-hidden'] = 'true';
       unset($variables['attributes']['width']);
       unset($variables['attributes']['height']);
+    }
+    if ($variables['style_name'] == 'uswds_card') {
+      $variables['attributes']['aria-hidden'] = 'true';
     }
     if ($variables['style_name'] == 'staff_member_card') {
       $variables['attributes']['width'] = 'auto';
@@ -33,6 +38,7 @@ function epa_intranet_preprocess_image(&$variables) {
     }
     if ($variables['style_name'] == 'dynamic_list_teaser') {
       $variables['attributes']['class'][] = 'usa-collection__img';
+      $variables['attributes']['aria-hidden'] = 'true';
       unset($variables['attributes']['width']);
       unset($variables['attributes']['height']);
     }
