@@ -1,0 +1,23 @@
+uuid: a060b145-e1cb-4630-b268-feba0c2b069b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.intranet_website
+    - taxonomy.vocabulary.libraries
+  module:
+    - link
+id: taxonomy_term.libraries.intranet_website
+field_name: intranet_website
+entity_type: taxonomy_term
+bundle: libraries
+label: 'Intranet Website'
+description: 'Enter the URL of library content on the public web.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

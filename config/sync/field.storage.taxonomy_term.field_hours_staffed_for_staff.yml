@@ -1,0 +1,33 @@
+uuid: 736e1d81-f261-4303-bd23-cad03e6931a5
+langcode: en
+status: true
+dependencies:
+  module:
+    - field_permissions
+    - office_hours
+    - taxonomy
+third_party_settings:
+  field_permissions:
+    permission_type: public
+id: taxonomy_term.field_hours_staffed_for_staff
+field_name: field_hours_staffed_for_staff
+entity_type: taxonomy_term
+type: office_hours
+settings:
+  cardinality_per_day: 2
+  time_format: h
+  element_type: office_hours_datetime
+  increment: 30
+  comment: 0
+  valhrs: true
+  required_start: true
+  required_end: true
+  limit_start: ''
+  limit_end: ''
+module: office_hours
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+uuid: 70beaee6-5653-4be7-8d4e-7a184f793302
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_open_to_the_public
+    - taxonomy.vocabulary.libraries
+  module:
+    - options
+id: taxonomy_term.libraries.field_open_to_the_public
+field_name: field_open_to_the_public
+entity_type: taxonomy_term
+bundle: libraries
+label: 'Open to the Public'
+description: 'Select how the library is available to the public, if at all. If you have set hours the library is open to the public, use the field below to identify those days/hours.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
