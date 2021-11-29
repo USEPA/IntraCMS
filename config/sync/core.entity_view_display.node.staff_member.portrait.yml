@@ -1,9 +1,9 @@
-uuid: 490d113d-3df5-4cc8-aa73-9e7e63637e0a
+uuid: c222fcc0-f287-448b-8065-b00a64400539
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.author
+    - core.entity_view_mode.node.portrait
     - field.field.node.staff_member.feeds_item
     - field.field.node.staff_member.field_email
     - field.field.node.staff_member.field_first_name
@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.staff_member.field_staff_secondary_location
     - node.type.staff_member
   module:
+    - cshs
     - layout_builder
     - layout_builder_restrictions
     - layout_library
@@ -34,22 +35,15 @@ third_party_settings:
     entity_view_mode_restriction:
       allowed_blocks: {  }
       allowed_layouts: {  }
-id: node.staff_member.author
+id: node.staff_member.portrait
 targetEntityType: node
 bundle: staff_member
-mode: author
+mode: portrait
 content:
-  field_staff_photo:
-    type: entity_reference_entity_view
-    weight: 1
-    label: hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
+  field_official_portrait_link:
+    type: link
+    weight: 4
     region: content
-  field_staff_profile:
-    weight: 2
     label: hidden
     settings:
       trim_length: null
@@ -58,7 +52,32 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    type: link
+  field_organization:
+    weight: 3
+    label: hidden
+    settings:
+      separator: ' » '
+      linked: false
+      reverse: false
+    third_party_settings: {  }
+    type: cshs_full_hierarchy
+    region: content
+  field_staff_photo:
+    type: entity_reference_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: staff_member_card
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_staff_position:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   links:
     weight: 0
@@ -72,10 +91,8 @@ hidden:
   field_first_name: true
   field_last_name: true
   field_location: true
-  field_official_portrait_link: true
-  field_organization: true
   field_phone: true
   field_staff_biography: true
-  field_staff_position: true
+  field_staff_profile: true
   field_staff_secondary_location: true
   search_api_excerpt: true
