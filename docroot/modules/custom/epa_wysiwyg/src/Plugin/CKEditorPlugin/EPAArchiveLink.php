@@ -6,18 +6,18 @@ use Drupal\ckeditor\CKEditorPluginBase;
 use Drupal\editor\Entity\Editor;
 
 /**
- * Defines the "epaBox" plugin.
+ * Defines the "epaArchiveLink" plugin.
  *
  * NOTE: The plugin ID ('id' key) corresponds to the CKEditor plugin name.
  * It is the first argument of the CKEDITOR.plugins.add() function in the
  * plugin.js file.
  *
  * @CKEditorPlugin(
- *   id = "epaBox",
- *   label = @Translation("Related Info Box")
+ *   id = "epaArchiveLink",
+ *   label = @Translation("EPA Archive Link")
  * )
  */
-class EPABox extends CKEditorPluginBase {
+class EPAArchiveLink extends CKEditorPluginBase {
 
   /**
    * {@inheritdoc}
@@ -30,9 +30,9 @@ class EPABox extends CKEditorPluginBase {
     // Make sure that the path to the image matches the file structure of
     // the CKEditor plugin you are implementing.
     return [
-      'epaBoxButton' => [
+      'epaArchiveLink' => [
         'label' => $this->t('EPA Archive Link'),
-        'image' => 'modules/custom/epa_wysiwyg/js/plugins/epaBox/images/epaBox.png',
+        'image' => 'modules/custom/epa_wysiwyg/js/plugins/epaArchiveLink/images/epaArchiveLink.png',
       ],
     ];
   }
@@ -43,7 +43,7 @@ class EPABox extends CKEditorPluginBase {
   public function getFile() {
     // Make sure that the path to the plugin.js matches the file structure of
     // the CKEditor plugin you are implementing.
-    return drupal_get_path('module', 'epa_wysiwyg') . '/js/plugins/epaBox/plugin.js';
+    return drupal_get_path('module', 'epa_wysiwyg') . '/js/plugins/epaArchiveLink/plugin.js';
   }
 
   /**
@@ -71,7 +71,8 @@ class EPABox extends CKEditorPluginBase {
    * {@inheritdoc}
    */
   public function getConfig(Editor $editor) {
-    return [];
+    $config['defaultLanguage'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    return $config;
   }
 
 }
