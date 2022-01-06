@@ -1,0 +1,39 @@
+uuid: 3da6515c-ac93-465a-8825-7865677e0481
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.other.field_limit_file_accessibility
+    - field.field.media.other.field_media_file
+    - field.field.media.other.field_media_file_1
+    - field.field.media.other.field_media_in_library
+    - field.field.media.other.field_media_tags
+    - media.type.other
+  module:
+    - epa_wysiwyg
+    - media_inline_embed
+third_party_settings:
+  media_inline_embed:
+    embed_inline: false
+id: media.other.default
+targetEntityType: media
+bundle: other
+mode: default
+content:
+  field_media_file_1:
+    weight: 0
+    label: visually_hidden
+    settings:
+      show_extension: true
+    third_party_settings: {  }
+    type: epa_media_file_link_formatter
+    region: content
+hidden:
+  created: true
+  field_limit_file_accessibility: true
+  field_media_file: true
+  field_media_in_library: true
+  field_media_tags: true
+  name: true
+  thumbnail: true
+  uid: true

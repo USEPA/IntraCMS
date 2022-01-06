@@ -1,0 +1,23 @@
+uuid: 43a11367-33bc-4b9f-bb3d-34b73652d833
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_limit_file_accessibility
+    - media.type.audio_file
+id: media.audio_file.field_limit_file_accessibility
+field_name: field_limit_file_accessibility
+entity_type: media
+bundle: audio_file
+label: 'File Availability'
+description: 'Private files are on accessible to users who are logged into EPA@Work, regardless of whether any pages they are linked to are published. If you wish to make a file available to anonymous users, you must mark the file as "public".'
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Private
+  off_label: Public
+field_type: boolean

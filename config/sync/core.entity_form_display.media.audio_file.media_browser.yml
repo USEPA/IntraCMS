@@ -5,8 +5,10 @@ dependencies:
   config:
     - core.entity_form_mode.media.media_browser
     - field.field.media.audio_file.field_keywords
+    - field.field.media.audio_file.field_limit_file_accessibility
     - field.field.media.audio_file.field_media_audio_file
     - field.field.media.audio_file.field_media_in_library
+    - field.field.media.audio_file.field_media_tags
     - field.field.media.audio_file.field_transcript
     - media.type.audio_file
   module:
@@ -57,6 +59,8 @@ content:
 hidden:
   created: true
   field_keywords: true
+  field_limit_file_accessibility: true
+  field_media_tags: true
   field_transcript: true
   replace_file: true
   uid: true

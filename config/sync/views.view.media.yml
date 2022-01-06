@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - image.style.thumbnail
-    - taxonomy.vocabulary.tags
+    - taxonomy.vocabulary.media_tags
   module:
     - group
     - image
@@ -718,10 +718,10 @@ display:
           entity_type: media
           entity_field: name
           plugin_id: views_autocomplete_filters_string
-        field_keywords_target_id:
-          id: field_keywords_target_id
-          table: media__field_keywords
-          field: field_keywords_target_id
+        field_media_tags_target_id:
+          id: field_media_tags_target_id
+          table: media__field_media_tags
+          field: field_media_tags_target_id
           relationship: none
           group_type: group
           admin_label: ''
@@ -730,23 +730,22 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_keywords_target_id_op
+            operator_id: field_media_tags_target_id_op
             label: Tags
             description: ''
             use_operator: false
-            operator: field_keywords_target_id_op
+            operator: field_media_tags_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_keywords_target_id
+            identifier: field_media_tags_target_id
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              webform: '0'
               system_editor: '0'
-              metadata_administrator: '0'
-              system_webmaster: '0'
               administrator: '0'
             reduce: false
           is_grouped: false
@@ -764,9 +763,15 @@ display:
           reduce_duplicates: false
           type: textfield
           limit: true
-          vid: tags
+          vid: media_tags
           hierarchy: false
           error_message: true
+          parent: 0
+          level_labels: ''
+          force_deepest: false
+          save_lineage: false
+          hierarchy_depth: 0
+          required_depth: 0
           plugin_id: taxonomy_index_tid
         uid:
           id: uid

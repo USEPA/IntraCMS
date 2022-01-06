@@ -9,10 +9,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\file\Entity\File;
-use Drupal\file\FileInterface;
-use Drupal\media\MediaInterface;
 
 /**
  * Implements hook_library_info_alter().
@@ -32,15 +28,14 @@ function epa_wysiwyg_library_info_alter(&$libraries, $extension) {
 function epa_wysiwyg_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'epa_wysiwyg/epa-new';
 }
-/**
-* function epa_wysiwyg_pathologic_alter(&$url_params, $parts, $settings) {
-*  // Do not rewrite links to minio container.  This is necessary because
-*  // Pathologic does not respect ports when matching host names.
-*  if (isset($parts['port']) && isset($parts['host']) && $parts['port'] === 8888 && $parts['host'] === 'localhost') {
-*    $url_params['options']['use_original'] = true;
-*  }
-* }
- */
+
+function epa_wysiwyg_pathologic_alter(&$url_params, $parts, $settings) {
+  // Do not rewrite links to minio container.  This is necessary because
+  // Pathologic does not respect ports when matching host names.
+  if (isset($parts['port']) && isset($parts['host']) && $parts['port'] === 8888 && $parts['host'] === 'localhost') {
+    $url_params['options']['use_original'] = true;
+  }
+}
 
 /**
  * Implements hook_theme().
@@ -112,14 +107,14 @@ function epa_wysiwyg_form_editor_link_dialog_alter(&$form, FormStateInterface $f
     '#title' => t('Filter search results'),
     '#type' => 'radios',
     '#options' => [
-      'web_area_content' => t('Your content'),
-      'default' => t('No filter: all EPA@Work content'),
+      'web_area_content' => t('Your internal links'),
+      'default' => t('No filter: all WebCMS content'),
     ],
     'web_area_content' => [
       '#description' => t('Search within your web areas only.'),
     ],
     'default' => [
-      '#description' => t('Search within your web areas and work.epa.gov'),
+      '#description' => t('Search within your web areas and www.epa.gov'),
     ],
     '#weight' => -20,
     '#default_value' => 'default',
@@ -209,40 +204,4 @@ function _epa_wysiwyg_populate_href(array &$form, FormStateInterface $form_state
     }
 
   }
-}
-
-/** taken from epa.gov epa_media custom module
- * Implements hook_form_FORM_ID_alter().
- */
-function epa_media_form_editor_media_dialog_alter(array &$form, FormStateInterface $form_state) {
-  // Extract the media UUID that is passed through from the WYSIWYG and use it
-  // to load the media entity. Then add a link through to the media edit form
-  // in the embedded media modal.
-  $editor_object = $form_state->getUserInput()['editor_object'];
-  $entity_repository = \Drupal::service('entity.repository');
-  $media = $entity_repository->loadEntityByUuid('media', $editor_object['attributes']['data-entity-uuid']);
-  $edit_url = Url::fromRoute('entity.media.edit_form', ['media' => $media->id()]);
-  $link = Link::fromTextAndUrl('Edit this media item', $edit_url);
-
-  if ($fid = $media->getSource()->getSourceFieldValue($media)){
-
-    // Remote videos don't have a File. Source field value is URL to remote video itself.
-    if ($media->bundle() == 'remote_video') {
-      $form['file_url'] = [
-        '#markup' => t('<p><strong>Remote Video URL:</strong> %remote_url</p>', ['%remote_url' => $fid])
-      ];
-    }
-    else {
-      $file_url = File::load($fid)->createFileUrl();
-      $form['file_url'] = [
-        '#markup' => t('<p><strong>File URL:</strong> %file_url</p>', ['%file_url' => $file_url])
-      ];
-    }
-  }
-
-  $form['edit_link'] = $link->toRenderable() + [
-    '#attributes' => [
-      'target' => '_blank',
-    ],
-  ];
 }

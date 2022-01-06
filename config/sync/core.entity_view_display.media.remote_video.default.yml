@@ -3,8 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.remote_video.field_limit_file_accessibility
     - field.field.media.remote_video.field_media_in_library
     - field.field.media.remote_video.field_media_oembed_video
+    - field.field.media.remote_video.field_media_tags
     - media.type.remote_video
   module:
     - media
@@ -26,8 +28,17 @@ content:
       max_height: 287
     third_party_settings: {  }
     region: content
+  field_media_tags:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
 hidden:
   created: true
+  field_limit_file_accessibility: true
   field_media_in_library: true
   name: true
   search_api_excerpt: true
