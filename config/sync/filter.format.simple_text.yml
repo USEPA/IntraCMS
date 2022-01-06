@@ -1,6 +1,6 @@
 uuid: f95f6217-3a83-4ecc-882a-c60e426d09d7
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.media.full_width
@@ -101,16 +101,16 @@ filters:
     weight: -47
     settings:
       default_view_mode: full_width
-      allowed_media_types:
-        audio_file: audio_file
-        image: image
-        remote_video: remote_video
       allowed_view_modes:
         full_width: full_width
         half_width: half_width
         original: original
         small: small
         thumbnail: thumbnail
+      allowed_media_types:
+        audio_file: audio_file
+        image: image
+        remote_video: remote_video
   blazy_filter:
     id: blazy_filter
     provider: blazy
@@ -129,10 +129,10 @@ filters:
     weight: -46
     settings:
       default_view_mode: link
-      allowed_media_types:
-        document: document
       allowed_view_modes:
         link: link
+      allowed_media_types:
+        document: document
   epa_filter_links:
     id: epa_filter_links
     provider: epa_wysiwyg
