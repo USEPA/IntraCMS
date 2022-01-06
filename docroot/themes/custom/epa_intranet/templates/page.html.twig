@@ -116,7 +116,6 @@
 </main>
 <footer class="{{ footer_classes }}" role="contentinfo">
   <div class="grid-container usa-footer__return-to-top">
-    <a href="#">Return to top</a>
     {% if node.getType is not empty and (node.getType == 'page' or node.getType == 'landing_page') %}
       <span class="align-right">
         Last updated: {{ node.changed.value|date('m-d-Y') }}
