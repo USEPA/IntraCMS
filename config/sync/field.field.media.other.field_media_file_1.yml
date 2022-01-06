@@ -1,0 +1,27 @@
+uuid: 172881cd-7b2f-4789-858c-ea11c545d2b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_file_1
+    - media.type.other
+  module:
+    - file
+id: media.other.field_media_file_1
+field_name: field_media_file_1
+entity_type: media
+bundle: other
+label: File
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]/other'
+  file_extensions: 'accdb ai csv dmg dtd eps exe ico json kml kmz msi psd r rara rtf smi svg tgz txt'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

@@ -5,8 +5,10 @@ dependencies:
   config:
     - core.entity_form_mode.media.media_library
     - field.field.media.audio_file.field_keywords
+    - field.field.media.audio_file.field_limit_file_accessibility
     - field.field.media.audio_file.field_media_audio_file
     - field.field.media.audio_file.field_media_in_library
+    - field.field.media.audio_file.field_media_tags
     - field.field.media.audio_file.field_transcript
     - media.type.audio_file
   module:
@@ -18,16 +20,16 @@ targetEntityType: media
 bundle: audio_file
 mode: media_library
 content:
-  field_keywords:
+  field_media_tags:
+    type: entity_reference_autocomplete
     weight: 2
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_transcript:
     type: file_generic
     weight: 1
@@ -45,6 +47,8 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_keywords: true
+  field_limit_file_accessibility: true
   field_media_audio_file: true
   field_media_in_library: true
   path: true

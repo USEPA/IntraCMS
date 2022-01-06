@@ -1,0 +1,61 @@
+uuid: b9b1a4a2-3086-45d1-bd07-cc74b9fe3613
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.other.field_limit_file_accessibility
+    - field.field.media.other.field_media_file
+    - field.field.media.other.field_media_file_1
+    - field.field.media.other.field_media_in_library
+    - field.field.media.other.field_media_tags
+    - media.type.other
+  module:
+    - file
+id: media.other.default
+targetEntityType: media
+bundle: other
+mode: default
+content:
+  field_limit_file_accessibility:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_media_file_1:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_media_tags:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  replace_file:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_media_file: true
+  field_media_in_library: true
+  path: true
+  status: true
+  uid: true
