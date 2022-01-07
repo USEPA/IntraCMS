@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.staff_member.field_first_name
     - field.field.node.staff_member.field_last_name
     - field.field.node.staff_member.field_location
+    - field.field.node.staff_member.field_meta_tags
     - field.field.node.staff_member.field_official_portrait_link
     - field.field.node.staff_member.field_organization
     - field.field.node.staff_member.field_phone
@@ -42,7 +43,7 @@ bundle: staff_member
 mode: default
 content:
   field_email:
-    weight: 7
+    weight: 6
     label: inline
     settings: {  }
     third_party_settings: {  }
@@ -65,7 +66,7 @@ content:
     type: string
     region: content
   field_location:
-    weight: 9
+    weight: 8
     label: inline
     settings:
       link: false
@@ -83,7 +84,7 @@ content:
     type: cshs_full_hierarchy
     region: content
   field_phone:
-    weight: 8
+    weight: 7
     label: inline
     settings:
       title: ''
@@ -91,7 +92,7 @@ content:
     type: telephone_link
     region: content
   field_staff_biography:
-    weight: 12
+    weight: 11
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -107,7 +108,7 @@ content:
     third_party_settings: {  }
     region: content
   field_staff_position:
-    weight: 6
+    weight: 5
     label: inline
     settings:
       link_to_entity: false
@@ -115,7 +116,7 @@ content:
     type: string
     region: content
   field_staff_profile:
-    weight: 11
+    weight: 10
     label: inline
     settings:
       trim_length: null
@@ -127,7 +128,7 @@ content:
     type: link
     region: content
   field_staff_secondary_location:
-    weight: 10
+    weight: 9
     label: inline
     settings:
       link_to_entity: false
@@ -142,5 +143,6 @@ content:
 hidden:
   content_moderation_control: true
   feeds_item: true
+  field_meta_tags: true
   field_official_portrait_link: true
   search_api_excerpt: true

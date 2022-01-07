@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.employee_profile.field_employee_photo
     - field.field.node.employee_profile.field_employee_profile
+    - field.field.node.employee_profile.field_meta_tags
     - field.field.node.employee_profile.field_office_region
     - fixed_block_content.fixed_block_content.nominate_an_employee
     - node.type.employee_profile
@@ -12,6 +13,7 @@ dependencies:
     - fixed_block_content
     - layout_builder
     - layout_library
+    - metatag
     - text
     - user
 third_party_settings:
@@ -72,6 +74,21 @@ third_party_settings:
               context_mapping: {  }
             additional: {  }
             weight: 1
+          b9d48cba-21b2-413b-8c60-0f71c1be7374:
+            uuid: b9d48cba-21b2-413b-8c60-0f71c1be7374
+            region: first
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:employee_profile:field_meta_tags'
+              formatter:
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+                type: metatag_empty_formatter
+            additional: {  }
+            weight: 1
         third_party_settings: {  }
   layout_library:
     enable: false
@@ -96,6 +113,13 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
+  field_meta_tags:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_empty_formatter
+    region: first
 hidden:
   content_moderation_control: true
   field_office_region: true
