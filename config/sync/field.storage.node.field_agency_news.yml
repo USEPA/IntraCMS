@@ -1,0 +1,31 @@
+uuid: 5591369c-4e89-44af-ad80-20c601c11e88
+langcode: en
+status: true
+dependencies:
+  module:
+    - field_permissions
+    - node
+    - options
+third_party_settings:
+  field_permissions:
+    permission_type: public
+id: node.field_agency_news
+field_name: field_agency_news
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'no'
+      label: 'No'
+    -
+      value: 'yes'
+      label: 'Yes'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -5,6 +5,7 @@ dependencies:
   config:
     - entity_browser.browser.image_browser
     - field.field.node.article.body
+    - field.field.node.article.field_agency_news
     - field.field.node.article.field_article_featured
     - field.field.node.article.field_article_image
     - field.field.node.article.field_keywords
@@ -24,7 +25,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 11
+    weight: 3
     settings:
       rows: 9
       summary_rows: 3
@@ -34,20 +35,19 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 2
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_article_featured:
-    weight: 9
-    settings:
-      display_label: true
+  field_agency_news:
+    weight: 2
+    settings: {  }
     third_party_settings: {  }
-    type: boolean_checkbox
+    type: options_buttons
     region: content
   field_article_image:
     type: entity_browser_entity_reference
-    weight: 10
+    weight: 1
     settings:
       entity_browser: image_browser
       field_widget_display: rendered_entity
@@ -61,7 +61,7 @@ content:
     third_party_settings: {  }
     region: content
   field_keywords:
-    weight: 12
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -71,7 +71,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_meta_tags:
-    weight: 7
+    weight: 9
     settings:
       sidebar: true
     third_party_settings: {  }
@@ -85,29 +85,15 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 5
+    weight: 10
     region: content
     settings: {  }
-    third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 3
-    region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
-    region: content
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 4
+    weight: 5
     region: content
     third_party_settings: {  }
   title:
@@ -120,7 +106,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 1
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
@@ -129,8 +115,11 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 13
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_article_featured: true
+  promote: true
+  sticky: true
