@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.landing_page.field_hero
     - field.field.node.landing_page.field_landing_description
+    - field.field.node.landing_page.field_meta_tags
     - field.field.node.landing_page.layout_builder__layout
     - field.field.node.landing_page.layout_builder__translation
     - field.field.node.landing_page.layout_selection
@@ -12,6 +13,7 @@ dependencies:
     - workflows.workflow.editorial
   module:
     - content_moderation
+    - metatag
     - paragraphs
     - path
 id: node.landing_page.default
@@ -21,13 +23,13 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 2
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   field_hero:
     type: entity_reference_paragraphs
-    weight: 10
+    weight: 2
     settings:
       title: Hero
       title_plural: Hero
@@ -38,12 +40,19 @@ content:
     third_party_settings: {  }
     region: content
   field_landing_description:
-    weight: 9
+    weight: 1
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+    region: content
+  field_meta_tags:
+    weight: 3
+    settings:
+      sidebar: true
+    third_party_settings: {  }
+    type: metatag_firehose
     region: content
   layout_selection:
     type: options_select
@@ -53,35 +62,21 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 7
+    weight: 8
     settings: {  }
     region: content
     third_party_settings: {  }
   path:
     type: path
-    weight: 5
+    weight: 4
     region: content
     settings: {  }
-    third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 3
-    region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
-    region: content
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 4
+    weight: 9
     region: content
     third_party_settings: {  }
   title:
@@ -94,7 +89,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 1
+    weight: 6
     settings:
       match_operator: CONTAINS
       size: 60
@@ -103,10 +98,12 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 6
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   layout_builder__layout: true
   layout_builder__translation: true
+  promote: true
+  sticky: true
