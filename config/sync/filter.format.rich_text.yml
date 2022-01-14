@@ -23,7 +23,7 @@ _core:
   default_config_hash: LQ7Z_f1qIeAP7aiyHGBwlgjdsAHzwISN1_6-Dvv_fVY
 name: 'Rich text'
 format: rich_text
-weight: -9
+weight: -10
 filters:
   filter_align:
     id: filter_align
@@ -103,16 +103,16 @@ filters:
     weight: -47
     settings:
       default_view_mode: full_width
-      allowed_media_types:
-        audio_file: audio_file
-        image: image
-        remote_video: remote_video
       allowed_view_modes:
         full_width: full_width
         half_width: half_width
         original: original
         small: small
         thumbnail: thumbnail
+      allowed_media_types:
+        audio_file: audio_file
+        image: image
+        remote_video: remote_video
   blazy_filter:
     id: blazy_filter
     provider: blazy
@@ -131,27 +131,27 @@ filters:
     weight: -46
     settings:
       default_view_mode: link
-      allowed_media_types:
-        document: document
       allowed_view_modes:
         link: link
+      allowed_media_types:
+        document: document
   filter_table_attributes:
     id: filter_table_attributes
     provider: uswds_ckeditor_integration
     status: true
     weight: -42
     settings: {  }
-  epa_filter_links:
-    id: epa_filter_links
-    provider: epa_wysiwyg
-    status: true
-    weight: -45
-    settings: {  }
   epa_filter_empty_paragraphs:
     id: epa_filter_empty_paragraphs
     provider: epa_wysiwyg
     status: false
     weight: -34
+    settings: {  }
+  epa_filter_links:
+    id: epa_filter_links
+    provider: epa_wysiwyg
+    status: true
+    weight: -45
     settings: {  }
   paragraphs_entity_embed:
     id: paragraphs_entity_embed
