@@ -10,6 +10,7 @@ dependencies:
     - taxonomy.vocabulary.tags
   module:
     - node
+    - options
     - taxonomy
     - user
 id: articles_list
@@ -209,6 +210,50 @@ display:
           hierarchy_depth: 0
           required_depth: 0
           plugin_id: taxonomy_index_tid
+        field_agency_news_value:
+          id: field_agency_news_value
+          table: node__field_agency_news
+          field: field_agency_news_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_agency_news_value_op
+            label: 'Agency News'
+            description: ''
+            use_operator: false
+            operator: field_agency_news_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_agency_news_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          plugin_id: list_field
       sorts:
         created:
           id: created
@@ -236,7 +281,7 @@ display:
       use_more: false
       use_more_always: true
       use_more_text: 'Go to Google with this ''more'' link'
-      link_url: 'https://www.google.com/'
+      link_url: /news
       link_display: custom_url
     cache_metadata:
       max-age: -1

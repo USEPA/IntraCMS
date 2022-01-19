@@ -21,7 +21,7 @@ dependencies:
     - uswds_ckeditor_integration
 name: 'Simple Text'
 format: simple_text
-weight: -10
+weight: -8
 filters:
   filter_html:
     id: filter_html
@@ -133,17 +133,17 @@ filters:
         link: link
       allowed_media_types:
         document: document
-  epa_filter_links:
-    id: epa_filter_links
-    provider: epa_wysiwyg
-    status: true
-    weight: -45
-    settings: {  }
   epa_filter_empty_paragraphs:
     id: epa_filter_empty_paragraphs
     provider: epa_wysiwyg
     status: false
     weight: -35
+    settings: {  }
+  epa_filter_links:
+    id: epa_filter_links
+    provider: epa_wysiwyg
+    status: true
+    weight: -45
     settings: {  }
   paragraphs_entity_embed:
     id: paragraphs_entity_embed
