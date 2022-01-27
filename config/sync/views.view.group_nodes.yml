@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.article
     - node.type.blog_post
+    - node.type.book
     - node.type.employee_profile
     - node.type.event
     - node.type.landing_page
@@ -1041,6 +1042,7 @@ display:
             article: article
             page: page
             blog_post: blog_post
+            book: book
             employee_profile: employee_profile
             event: event
             landing_page: landing_page
@@ -1067,6 +1069,8 @@ display:
               authenticated: authenticated
               anonymous: '0'
               webform: '0'
+              book_editor: '0'
+              system_editor: '0'
               administrator: '0'
             reduce: true
             argument: ''
@@ -1245,6 +1249,7 @@ display:
           group_content_plugins:
             'group_node:article': 'group_node:article'
             'group_node:blog_post': 'group_node:blog_post'
+            'group_node:book': 'group_node:book'
             'group_node:employee_profile': 'group_node:employee_profile'
             'group_node:landing_page': 'group_node:landing_page'
             'group_node:mass_mailer': 'group_node:mass_mailer'

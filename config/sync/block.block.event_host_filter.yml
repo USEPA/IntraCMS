@@ -6,7 +6,6 @@ dependencies:
     - views.view.event_calendar
   module:
     - ctools
-    - node
     - system
     - views
   theme:
@@ -34,30 +33,12 @@ visibility:
     pages: /calendar
     negate: false
     context_mapping: {  }
-  node_type:
-    id: node_type
-    bundles:
-      article: article
-      blog_post: blog_post
-      employee_profile: employee_profile
-      event: event
-      landing_page: landing_page
-      mass_mailer: mass_mailer
-      page: page
-      photos_of_the_week: photos_of_the_week
-      policy: policy
-      policy_delegation: policy_delegation
-      quiz: quiz
-      staff_member: staff_member
-      webform: webform
-    negate: true
-    context_mapping:
-      node: '@node.node_route_context:node'
   'entity_bundle:node':
     id: 'entity_bundle:node'
     bundles:
       article: article
       blog_post: blog_post
+      book: book
       employee_profile: employee_profile
       event: event
       landing_page: landing_page

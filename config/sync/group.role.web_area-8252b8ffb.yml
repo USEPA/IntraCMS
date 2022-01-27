@@ -1,0 +1,29 @@
+uuid: 10500970-2b6a-4160-a5ed-65954f4697b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.web_area
+  enforced:
+    config:
+      - user.role.book_editor
+id: web_area-8252b8ffb
+label: 'Book Editor'
+weight: -5
+internal: true
+audience: outsider
+group_type: web_area
+permissions_ui: false
+permissions:
+  - 'create group_node:book entity'
+  - 'delete any group_node:book entity'
+  - 'delete own group_node:book entity'
+  - 'update any group_node:book entity'
+  - 'update own group_node:book entity'
+  - 'use book_editorial transition create_new_draft'
+  - 'use book_editorial transition publish'
+  - 'use book_editorial transition restore_from_unpublished'
+  - 'use book_editorial transition unpublished'
+  - 'view group_node:book entity'
+  - 'view latest version'
+  - 'view unpublished group_node:book entity'
