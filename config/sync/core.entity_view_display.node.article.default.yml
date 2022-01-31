@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.node.article.body
+    - field.field.node.article.field_agency_news
     - field.field.node.article.field_article_featured
     - field.field.node.article.field_article_image
     - field.field.node.article.field_keywords
+    - field.field.node.article.field_meta_tags
     - node.type.article
   module:
     - text
@@ -38,6 +40,8 @@ content:
     third_party_settings: {  }
 hidden:
   content_moderation_control: true
+  field_agency_news: true
   field_article_featured: true
   field_article_image: true
+  field_meta_tags: true
   search_api_excerpt: true

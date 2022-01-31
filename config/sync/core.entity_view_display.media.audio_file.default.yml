@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.media.audio_file.field_keywords
+    - field.field.media.audio_file.field_limit_file_accessibility
     - field.field.media.audio_file.field_media_audio_file
     - field.field.media.audio_file.field_media_in_library
+    - field.field.media.audio_file.field_media_tags
     - field.field.media.audio_file.field_transcript
     - media.type.audio_file
   module:
@@ -21,14 +23,6 @@ targetEntityType: media
 bundle: audio_file
 mode: default
 content:
-  field_keywords:
-    weight: 2
-    label: inline
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
   field_media_audio_file:
     type: file_audio
     weight: 1
@@ -40,8 +34,16 @@ content:
       multiple_file_display_type: tags
     third_party_settings: {  }
     region: content
-  field_transcript:
+  field_media_tags:
     weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_transcript:
+    weight: 2
     label: above
     settings:
       use_description_as_link_text: true
@@ -58,6 +60,8 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_keywords: true
+  field_limit_file_accessibility: true
   field_media_in_library: true
   search_api_excerpt: true
   thumbnail: true

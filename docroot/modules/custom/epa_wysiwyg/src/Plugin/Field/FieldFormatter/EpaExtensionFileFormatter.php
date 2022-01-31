@@ -28,23 +28,27 @@ class EpaExtensionFileFormatter extends FileFormatterBase {
     $media = $items->getEntity();
 
     foreach ($this->getEntitiesToView($items, $langcode) as $delta => $file) {
-      $extension = pathinfo($file->getFilename(), PATHINFO_EXTENSION);
+      $extension = pathinfo($file->getFileUri(), PATHINFO_EXTENSION);
       $options = [];
       $options['attributes']['type'] = $file->getMimeType() . '; length=' . $file->getSize();
       $options['attributes']['title'] = $file->getFilename();
       $url = Url::fromUri($file->createFileUrl(FALSE), $options);
       $link = Link::fromTextAndUrl($media->getName() ." ($extension)", $url)->toString();
 
-      $markup = [
+      $content = [
         '#type' => 'markup',
         '#markup' => $link,
+        '#url' => $url,
+        '#name' => $media->getName(),
+        '#file_extension' => $extension,
+        '#file_mime' => $file->getMimeType(),
+        '#file_size' => $file->getSize(),
         '#cache' => [
           'tags' => $file->getCacheTags(),
         ],
       ];
-      $elements[$delta] = $markup;
+      $elements[$delta] = $content;
     }
     return $elements;
   }
-
 }

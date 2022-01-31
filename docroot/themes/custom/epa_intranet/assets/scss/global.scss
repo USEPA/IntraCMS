@@ -3,6 +3,45 @@
   min-width: 0;
 }
 
+.mass-mailer-container{
+  margin-left:auto;
+  margin-right:auto;
+  max-width:64rem;
+  padding-left:1rem;
+  padding-right:1rem;
+  padding-top: 2rem;
+}
+@media all and (min-width: 64em){
+  .mass-mailer-container{
+    padding-left:2rem;
+    padding-right:2rem;
+  }
+}
+
+.mass-mailer__callout{
+  background-color:#162e51;
+  padding:2rem;
+}
+@media all and (min-width: 40em){
+  .mass-mailer__callout{
+    max-width:22rem;
+  }
+}
+
+.mass-mailer__heading{
+  margin-bottom:0;
+  margin-top:0;
+  clear:both;
+  font-family:Merriweather Web, Georgia, Cambria, Times New Roman, Times, serif;
+  font-size:1.95rem;
+  line-height:1.3;
+  font-weight:700;
+  color:white;
+  display: block;
+
+}
+
+
 div {
   &[class*='exposed-filters-vr-exposed-filters-visible'] {
     display: none;
@@ -548,6 +587,13 @@ section.comment-wrapper ul.links li {
 
 .staff-profile {
   float: none !important;
+  display: inline-grid !important;
+}
+
+/* when embedded on page, Classy automatically applies .d-inline-flex, overwritin its intended display */
+.staff-profile ~ div .d-inline-flex {
+  display: inline-grid !important;
+  max-width: 250px;
 }
 
 .layout--twocol-section .layout__region, .layout--onecol-section .layout__region {
@@ -750,7 +796,7 @@ div {
   content: '';
   vertical-align: super;
   display: inline-block;
-  background-image: url(/docroot/core/misc/icons/ee0000/required.svg);
+  background-image: url(/core/misc/icons/ee0000/required.svg);
   background-repeat: no-repeat;
   background-size: 6px 6px;
   width: 6px;
@@ -793,6 +839,11 @@ div {
 .centered {
   display: flex;
   align-items: center;
+}
+
+/* enforce embedded entity grid rows */
+.align-center.embedded-enity .grid-row {
+  display:block;
 }
 
 .webform-message {

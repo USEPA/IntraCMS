@@ -1,0 +1,21 @@
+uuid: a2b27f9d-cb58-4967-bb07-3fe02d44d5b6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: web_area_content
+label: 'Web Area Content'
+description: 'A Linkit profile that uses the Web Area Content matcher.'
+matchers:
+  77f673bd-478e-47c1-b433-c12dab0cc5dd:
+    uuid: 77f673bd-478e-47c1-b433-c12dab0cc5dd
+    id: 'entity:webarea_node'
+    weight: 0
+    settings:
+      include_unpublished: 1
+      metadata: 'in <em>[node:group:title]</em>; [node:published_status]'
+      bundles: {  }
+      group_by_bundle: true
+      substitution_type: canonical
+      limit: 100

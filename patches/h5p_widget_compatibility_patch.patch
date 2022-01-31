@@ -1,0 +1,22 @@
+diff --git a/modules/h5peditor/src/Plugin/Field/FieldWidget/H5PEditorWidget.php b/modules/h5peditor/src/Plugin/Field/FieldWidget/H5PEditorWidget.php
+index 4f7a08d..56119b4 100644
+--- a/modules/h5peditor/src/Plugin/Field/FieldWidget/H5PEditorWidget.php
++++ b/modules/h5peditor/src/Plugin/Field/FieldWidget/H5PEditorWidget.php
+@@ -184,7 +184,7 @@ protected function massageFormValue(array $value, $delta, $do_new_revision) {
+ 
+       // Retain quiz scores when a new quiz revision is published.
+       if ($this->willBePublished) {
+-        db_update('h5p_points')
++        \Drupal::database()->update('h5p_points')
+           ->fields([
+             'content_id' => $return_value['h5p_content_id'],
+           ])
+@@ -195,7 +195,7 @@ protected function massageFormValue(array $value, $delta, $do_new_revision) {
+       // If H5P form has not changed and there is a new revision then update
+       // any existing user data with the latest content id.
+       if (!$h5p_changed && $value['id'] != $return_value['h5p_content_id'] && $this->willBePublished) {
+-        db_update('h5p_content_user_data')
++        \Drupal::database()->update('h5p_content_user_data')
+           ->fields(array(
+             'content_main_id' => $return_value['h5p_content_id']
+           ))

@@ -1,0 +1,28 @@
+uuid: 7e24673c-f5e6-4d2e-8b7c-9a56f9e8f06e
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.future_of_work_site_alert
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - epa_intranet
+id: futureofworksitealert
+theme: epa_intranet
+region: breadcrumb
+weight: -10
+provider: null
+plugin: 'fixed_block_content:future_of_work_site_alert'
+settings:
+  id: 'fixed_block_content:future_of_work_site_alert'
+  label: 'Future of Work Site Alert'
+  provider: fixed_block_content
+  label_display: '0'
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: '/future-work*'
+    negate: false

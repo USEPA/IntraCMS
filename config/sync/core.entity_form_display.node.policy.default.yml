@@ -28,7 +28,9 @@ dependencies:
     - datetime
     - entity_browser
     - field_group
+    - lightning_scheduler
     - link
+    - media_library
     - paragraphs
     - path
     - text
@@ -219,18 +221,10 @@ content:
     third_party_settings: {  }
     region: content
   field_signed_memo:
-    type: entity_browser_entity_reference
+    type: media_library_widget
     weight: 18
     settings:
-      entity_browser: media_browser
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: thumbnail
-      field_widget_replace: false
-      open: false
+      media_types: {  }
     region: content
     third_party_settings: {  }
   field_supplemental_documents:

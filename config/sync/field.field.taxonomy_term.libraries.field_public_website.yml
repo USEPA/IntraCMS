@@ -1,0 +1,23 @@
+uuid: 04f58bb0-a4f7-405b-9f2c-d7d72b7d5ae2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_public_website
+    - taxonomy.vocabulary.libraries
+  module:
+    - link
+id: taxonomy_term.libraries.field_public_website
+field_name: field_public_website
+entity_type: taxonomy_term
+bundle: libraries
+label: 'Public Website'
+description: 'Enter the URL of library content on the public web.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link

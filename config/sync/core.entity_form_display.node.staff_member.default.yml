@@ -9,10 +9,10 @@ dependencies:
     - field.field.node.staff_member.field_first_name
     - field.field.node.staff_member.field_last_name
     - field.field.node.staff_member.field_location
+    - field.field.node.staff_member.field_meta_tags
     - field.field.node.staff_member.field_official_portrait_link
     - field.field.node.staff_member.field_organization
     - field.field.node.staff_member.field_phone
-    - field.field.node.staff_member.field_show_on_official_portraits
     - field.field.node.staff_member.field_staff_biography
     - field.field.node.staff_member.field_staff_photo
     - field.field.node.staff_member.field_staff_position
@@ -24,6 +24,7 @@ dependencies:
     - cshs
     - entity_browser
     - link
+    - metatag
     - path
     - telephone
     - text
@@ -34,12 +35,12 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 2
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }
   field_email:
-    weight: 15
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -47,7 +48,7 @@ content:
     type: email_default
     region: content
   field_first_name:
-    weight: 11
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -55,7 +56,7 @@ content:
     type: string_textfield
     region: content
   field_last_name:
-    weight: 12
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -63,13 +64,20 @@ content:
     type: string_textfield
     region: content
   field_location:
-    weight: 18
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
+  field_meta_tags:
+    weight: 17
+    settings:
+      sidebar: true
+    third_party_settings: {  }
+    type: metatag_firehose
+    region: content
   field_official_portrait_link:
-    weight: 10
+    weight: 2
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -77,7 +85,7 @@ content:
     type: link_default
     region: content
   field_organization:
-    weight: 17
+    weight: 9
     settings:
       parent: '0'
       force_deepest: true
@@ -89,21 +97,14 @@ content:
     type: cshs
     region: content
   field_phone:
-    weight: 14
+    weight: 6
     settings:
       placeholder: xxx-xxx-xxxx
     third_party_settings: {  }
     type: telephone_default
     region: content
-  field_show_on_official_portraits:
-    weight: 9
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
   field_staff_biography:
-    weight: 20
+    weight: 12
     settings:
       rows: 5
       placeholder: ''
@@ -112,7 +113,7 @@ content:
     region: content
   field_staff_photo:
     type: entity_browser_entity_reference
-    weight: 8
+    weight: 1
     settings:
       entity_browser: image_browser
       field_widget_display: rendered_entity
@@ -126,7 +127,7 @@ content:
     region: content
     third_party_settings: {  }
   field_staff_position:
-    weight: 13
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -134,7 +135,7 @@ content:
     type: string_textfield
     region: content
   field_staff_profile:
-    weight: 16
+    weight: 8
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -142,7 +143,7 @@ content:
     type: link_default
     region: content
   field_staff_secondary_location:
-    weight: 19
+    weight: 11
     settings:
       size: 60
       placeholder: ''
@@ -151,35 +152,21 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 6
+    weight: 14
     settings: {  }
     region: content
     third_party_settings: {  }
   path:
     type: path
-    weight: 5
+    weight: 15
     region: content
     settings: {  }
-    third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 3
-    region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 7
-    region: content
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 4
+    weight: 13
     region: content
     third_party_settings: {  }
   title:
@@ -192,7 +179,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 1
+    weight: 18
     settings:
       match_operator: CONTAINS
       size: 60
@@ -201,9 +188,11 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 21
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   feeds_item: true
+  promote: true
+  sticky: true

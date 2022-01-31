@@ -1,0 +1,26 @@
+uuid: 6d9e6fa3-7313-411c-b116-66027b5282ba
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: default
+label: Default
+description: 'A default Linkit profile'
+matchers:
+  015bc20a-eac6-4b4f-a56e-066c258fc604:
+    uuid: 015bc20a-eac6-4b4f-a56e-066c258fc604
+    id: 'entity:node'
+    weight: 0
+    settings:
+      include_unpublished: true
+      metadata: '<em>[node:group:title]</em>'
+      bundles: {  }
+      group_by_bundle: true
+      substitution_type: canonical
+      limit: 100
+  71fd27a9-97b8-442c-aee6-fa02fad0749a:
+    uuid: 71fd27a9-97b8-442c-aee6-fa02fad0749a
+    id: email
+    weight: 0
+    settings: {  }

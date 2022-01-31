@@ -1,0 +1,23 @@
+uuid: 0cae24cd-01cf-45db-aa79-8acf93b66379
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_agency_news
+    - node.type.article
+  module:
+    - options
+id: node.article.field_agency_news
+field_name: field_agency_news
+entity_type: node
+bundle: article
+label: 'Agency News'
+description: 'Should this article be included on the EPA@Work home page in the list of Agency News?'
+required: true
+translatable: false
+default_value:
+  -
+    value: 'no'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

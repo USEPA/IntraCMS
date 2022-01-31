@@ -12,12 +12,17 @@ field_name: field_official_portrait_link
 entity_type: node
 bundle: staff_member
 label: 'Official Portrait Link'
-description: 'Enter the link where the official portrait is stored.'
+description: 'Enter the link where the official portrait is stored. Enter "Download Portrait" in the <em>Link text</em> field.'
 required: false
 translatable: false
-default_value: {  }
+default_value:
+  -
+    attributes: {  }
+    uri: 'https://www.flicr.com/gp/usepagov/'
+    title: 'Download Portrait'
+    options: {  }
 default_value_callback: ''
 settings:
   link_type: 17
-  title: 0
+  title: 2
 field_type: link

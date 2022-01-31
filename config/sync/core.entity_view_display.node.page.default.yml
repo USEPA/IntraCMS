@@ -13,6 +13,7 @@ dependencies:
   module:
     - entity_reference_revisions
     - layout_builder
+    - layout_builder_restrictions
     - layout_discovery
     - layout_library
     - metatag
@@ -26,6 +27,7 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings:
           label: ''
+          context_mapping: {  }
         components:
           0c360beb-646b-464e-9300-58f4c3abf7be:
             uuid: 0c360beb-646b-464e-9300-58f4c3abf7be
@@ -89,8 +91,19 @@ third_party_settings:
             additional: {  }
             weight: 2
         third_party_settings: {  }
+    allow_custom: false
   layout_library:
     enable: true
+  layout_builder_restrictions:
+    allowed_block_categories: {  }
+    entity_view_mode_restriction:
+      whitelisted_blocks: {  }
+      blacklisted_blocks:
+        'Custom block types':
+          - dynamic_list
+        'Inline blocks':
+          - 'inline_block:dynamic_list'
+      allowed_layouts: {  }
 _core:
   default_config_hash: Kfxnq5Imio9VFBoNa_PIkzXoTmjz_T-EY3mOrwDTddU
 id: node.page.default

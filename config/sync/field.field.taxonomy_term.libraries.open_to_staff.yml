@@ -1,0 +1,21 @@
+uuid: f26c4c68-5a05-4a77-8267-decacabd7efc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.open_to_staff
+    - taxonomy.vocabulary.libraries
+  module:
+    - options
+id: taxonomy_term.libraries.open_to_staff
+field_name: open_to_staff
+entity_type: taxonomy_term
+bundle: libraries
+label: 'Open to Staff'
+description: 'Select how the library is available to EPA Staff, if at all. If you have set hours the library is open for EPA staff, use the field below to identify those days/hours.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

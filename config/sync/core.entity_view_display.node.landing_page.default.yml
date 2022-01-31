@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.landing_page.field_hero
     - field.field.node.landing_page.field_landing_description
+    - field.field.node.landing_page.field_meta_tags
     - field.field.node.landing_page.layout_builder__layout
     - field.field.node.landing_page.layout_builder__translation
     - field.field.node.landing_page.layout_selection
@@ -15,6 +16,7 @@ dependencies:
     - layout_builder_restrictions
     - layout_discovery
     - layout_library
+    - metatag
     - user
 third_party_settings:
   layout_builder:
@@ -76,11 +78,13 @@ third_party_settings:
         - layout_threecol_section
       whitelisted_blocks:
         'Content fields': {  }
+        'Custom blocks': {  }
         'Entity Block':
           - 'entity_block:node'
           - 'entity_block:media'
         'Entity Browser': {  }
         'Fixed custom':
+          - 'fixed_block_content:desktop_library_search'
           - 'fixed_block_content:twitter_feed_epamichaelregan'
           - 'fixed_block_content:twitter_feed_epa_great_lakes'
         Forms: {  }
@@ -120,6 +124,7 @@ third_party_settings:
       - 'Chaos Tools'
       - 'Content fields'
       - 'Custom block types'
+      - 'Custom blocks'
       - 'Entity Block'
       - 'Entity Browser'
       - 'Fixed custom'
@@ -158,6 +163,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+    region: content
+  field_meta_tags:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_empty_formatter
     region: content
   links:
     weight: 100

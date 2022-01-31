@@ -6,7 +6,9 @@ dependencies:
     - field.field.media.document.field_description
     - field.field.media.document.field_document
     - field.field.media.document.field_keywords
+    - field.field.media.document.field_limit_file_accessibility
     - field.field.media.document.field_media_in_library
+    - field.field.media.document.field_media_tags
     - media.type.document
   module:
     - file
@@ -32,7 +34,13 @@ content:
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
-  field_keywords:
+  field_limit_file_accessibility:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_media_tags:
     weight: 4
     settings:
       match_operator: CONTAINS
@@ -41,13 +49,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
-  field_media_in_library:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 5
-    third_party_settings: {  }
     region: content
   name:
     type: string_textfield
@@ -64,6 +65,8 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_keywords: true
+  field_media_in_library: true
   path: true
   status: true
   uid: true

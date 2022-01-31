@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.mass_mailer.field_message
     - field.field.node.mass_mailer.field_message_date
     - field.field.node.mass_mailer.field_message_from
+    - field.field.node.mass_mailer.field_meta_tags
     - field.field.node.mass_mailer.field_special_message_text
     - node.type.mass_mailer
     - workflows.workflow.editorial
@@ -15,6 +16,7 @@ dependencies:
     - conditional_fields
     - content_moderation
     - datetime
+    - metatag
     - path
     - text
 id: node.mass_mailer.default
@@ -24,7 +26,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 12
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -67,6 +69,13 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
+  field_meta_tags:
+    weight: 9
+    settings:
+      sidebar: true
+    third_party_settings: {  }
+    type: metatag_firehose
+    region: content
   field_special_message_text:
     weight: 3
     settings: {  }
@@ -98,7 +107,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 9
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -119,7 +128,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 11
+    weight: 12
     region: content
     settings:
       match_operator: CONTAINS
@@ -128,7 +137,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }

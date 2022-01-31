@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.embedded
     - core.entity_view_mode.media.full_width
     - core.entity_view_mode.media.half_width
     - core.entity_view_mode.media.link
@@ -14,15 +13,17 @@ dependencies:
     - blazy
     - editor
     - entity_embed
+    - epa_wysiwyg
     - linkit
     - media
     - media_inline_embed
+    - paragraphs_entity_embed
     - uswds_ckeditor_integration
 _core:
   default_config_hash: LQ7Z_f1qIeAP7aiyHGBwlgjdsAHzwISN1_6-Dvv_fVY
 name: 'Rich text'
 format: rich_text
-weight: -9
+weight: -10
 filters:
   filter_align:
     id: filter_align
@@ -34,90 +35,89 @@ filters:
     id: filter_caption
     provider: filter
     status: true
-    weight: -47
+    weight: -49
     settings: {  }
   filter_htmlcorrector:
     id: filter_htmlcorrector
     provider: filter
-    status: true
-    weight: -43
+    status: false
+    weight: -38
     settings: {  }
   editor_file_reference:
     id: editor_file_reference
     provider: editor
-    status: true
-    weight: -46
+    status: false
+    weight: -40
     settings: {  }
   entity_embed:
     id: entity_embed
     provider: entity_embed
     status: true
-    weight: -44
+    weight: -43
     settings: {  }
   filter_html:
     id: filter_html
     provider: filter
     status: true
-    weight: -49
+    weight: -50
     settings:
-      allowed_html: '<a href hreflang data-entity-type data-entity-uuid class name id data-entity-substitution> <em> <strong> <cite class> <ins data-date> <blockquote cite class> <code> <ul type class> <ol start type class> <li class> <dl> <dt> <dd> <h2 id class> <h3 id class> <h4 id class> <h5 id class> <h6 id class> <s> <sup> <sub> <img src width height typeof alt data-align data-caption> <table width height style class> <caption> <tbody> <thead> <tfoot> <th style colspan rowspan scope width> <td style colspan rowspan width> <tr scope> <hr> <p class> <br> <pre> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <span class> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter class data-cke-display-name data-placeholder> <figure role class> <div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button id class data-*><drupal-media data-caption data-align data-entity-type data-entity-uuid data-view-mode alt><source media !src type><drupal-inline-media data-entity-type data-entity-uuid data-view-mode><iframe longdesc name scrolling src title align height frameborder width><button class aria-expanded aria-controls><svg class role aria-*><use xlink*>'
+      allowed_html: '<em> <strong> <ins data-date> <code> <ol start type class=""> <li class=""> <dl> <dt> <dd> <s> <sup> <sub> <img src width height typeof alt data-align data-caption> <caption> <tbody> <thead> <tfoot> <th style colspan rowspan scope width> <td style colspan rowspan width> <tr scope> <hr> <br> <pre> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter data-cke-display-name data-placeholder class=""> <figure role class=""> <div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button id data-* class=""> <source media !src type> <iframe longdesc name scrolling src title align height frameborder width> <button aria-expanded aria-controls class=""> <svg role aria-* class=""> <use xlink*> <a href hreflang data-entity-type data-entity-uuid name id data-entity-substitution class=" usa-button"> <drupal-inline-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <drupal-media data-caption data-align data-entity-type data-entity-uuid data-view-mode alt title> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button data-langcode> <h2 id class="usa-* highlight"> <h3 id class="usa-* highlight"> <h4 id class="usa-* highlight"> <h5 id class="usa-* highlight"> <h6 id class="usa-* highlight"> <blockquote cite class=" pull-quote u-align-left u-align-right"> <cite class=" pull-quote__cite"> <table width height style class="usa-* datatable"> <ul type class=" list list--pipeline"> <span lang dir class="usa-* usa-tag warning"> <p class="usa-intro usa-*">'
       filter_html_help: true
       filter_html_nofollow: false
   filter_autop:
     id: filter_autop
     provider: filter
     status: false
-    weight: -39
+    weight: -36
     settings: {  }
   filter_html_escape:
     id: filter_html_escape
     provider: filter
     status: false
-    weight: -40
+    weight: -37
     settings: {  }
   filter_html_image_secure:
     id: filter_html_image_secure
     provider: filter
-    status: true
-    weight: -45
+    status: false
+    weight: -39
     settings: {  }
   filter_url:
     id: filter_url
     provider: filter
     status: true
-    weight: -42
+    weight: -44
     settings:
       filter_url_length: 72
   linkit:
     id: linkit
     provider: linkit
-    status: true
-    weight: -50
+    status: false
+    weight: -41
     settings:
       title: true
   media_embed:
     id: media_embed
     provider: media
     status: true
-    weight: -41
+    weight: -47
     settings:
       default_view_mode: full_width
-      allowed_media_types:
-        audio_file: audio_file
-        image: image
-        remote_video: remote_video
       allowed_view_modes:
-        embedded: embedded
         full_width: full_width
         half_width: half_width
         original: original
         small: small
         thumbnail: thumbnail
+      allowed_media_types:
+        audio_file: audio_file
+        image: image
+        remote_video: remote_video
   blazy_filter:
     id: blazy_filter
     provider: blazy
     status: false
-    weight: -38
+    weight: -35
     settings:
       filter_tags:
         img: img
@@ -128,16 +128,34 @@ filters:
     id: media_inline_embed
     provider: media_inline_embed
     status: true
-    weight: 100
+    weight: -46
     settings:
       default_view_mode: link
-      allowed_media_types:
-        document: document
       allowed_view_modes:
         link: link
+      allowed_media_types:
+        document: document
   filter_table_attributes:
     id: filter_table_attributes
     provider: uswds_ckeditor_integration
     status: true
-    weight: 0
+    weight: -42
+    settings: {  }
+  epa_filter_empty_paragraphs:
+    id: epa_filter_empty_paragraphs
+    provider: epa_wysiwyg
+    status: false
+    weight: -34
+    settings: {  }
+  epa_filter_links:
+    id: epa_filter_links
+    provider: epa_wysiwyg
+    status: true
+    weight: -45
+    settings: {  }
+  paragraphs_entity_embed:
+    id: paragraphs_entity_embed
+    provider: paragraphs_entity_embed
+    status: false
+    weight: -33
     settings: {  }

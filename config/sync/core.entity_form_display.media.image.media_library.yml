@@ -6,7 +6,10 @@ dependencies:
     - core.entity_form_mode.media.media_library
     - field.field.media.image.field_caption
     - field.field.media.image.field_keywords
+    - field.field.media.image.field_limit_file_accessibility
+    - field.field.media.image.field_media_image
     - field.field.media.image.field_media_in_library
+    - field.field.media.image.field_media_tags
     - field.field.media.image.image
     - field.field.media.image.layout_builder__translation
     - image.style.thumbnail
@@ -20,16 +23,16 @@ targetEntityType: media
 bundle: image
 mode: media_library
 content:
-  field_keywords:
+  field_media_tags:
+    type: entity_reference_autocomplete
     weight: 2
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   image:
     type: image_focal_point
     weight: 1
@@ -51,6 +54,9 @@ content:
 hidden:
   created: true
   field_caption: true
+  field_keywords: true
+  field_limit_file_accessibility: true
+  field_media_image: true
   field_media_in_library: true
   layout_builder__translation: true
   path: true

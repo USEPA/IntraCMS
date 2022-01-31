@@ -1,0 +1,25 @@
+diff --git a/src/Plugin/views/field/DraggableViewsField.php b/src/Plugin/views/field/DraggableViewsField.php
+index 8f1e6ff..fae737d 100644
+--- a/src/Plugin/views/field/DraggableViewsField.php
++++ b/src/Plugin/views/field/DraggableViewsField.php
+@@ -4,9 +4,9 @@
+ 
+ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\draggableviews\DraggableViews;
+-use Drupal\system\Plugin\views\field\BulkForm;
++use Drupal\views\Plugin\views\field\BulkForm;
+ use Drupal\Core\Render\Markup;
+-use Drupal\Core\Entity\EntityManagerInterface;
++use Drupal\Core\Entity\EntityTypeManagerInterface;
+ use Drupal\Core\Language\LanguageManagerInterface;
+ use Drupal\Core\Session\AccountInterface;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
+@@ -21,7 +21,7 @@ class DraggableViewsField extends BulkForm {
+   /**
+    * The entity manager.
+    *
+-   * @var \Drupal\Core\Entity\EntityManagerInterface
++   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+    */
+   protected $entityManager;
+ 

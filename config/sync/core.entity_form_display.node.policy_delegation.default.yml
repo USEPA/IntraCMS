@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_browser
     - field.field.node.policy_delegation.body
     - field.field.node.policy_delegation.field_additional_policy_role
     - field.field.node.policy_delegation.field_agency_delegation_link
@@ -21,9 +20,10 @@ dependencies:
   module:
     - content_moderation
     - datetime
-    - entity_browser
     - field_group
+    - lightning_scheduler
     - link
+    - media_library
     - path
     - tablefield
     - text
@@ -124,17 +124,10 @@ content:
     type: datetime_default
     region: content
   field_signed_memo:
-    type: entity_browser_entity_reference
+    type: media_library_widget
     weight: 13
     settings:
-      entity_browser: media_browser
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: thumbnail
-      open: true
+      media_types: {  }
       field_widget_replace: false
     region: content
     third_party_settings: {  }
