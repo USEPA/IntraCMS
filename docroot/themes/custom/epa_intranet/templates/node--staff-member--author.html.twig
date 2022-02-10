@@ -9,6 +9,10 @@
 
   <div class="author-tag__text">
     <p>Written by <a href="{{ url }}" rel="bookmark">{{ label }}</a></p>
-    {{ content.profile }}
+      {% if content.field_staff_photo.0 %}
+          {{ content.field_staff_photo }}
+        {% else %}
+          <img class="align-center" src="/sites/default/files/avatar-1577909_1280.png" alt="No Staff Member Picture"/>
+        {% endif %}
   </div>
 </div>
