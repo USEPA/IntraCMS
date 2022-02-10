@@ -270,6 +270,35 @@ function epa_intranet_preprocess_page(&$variables) {
     if (isset($node) && !is_string($node) && in_array('field_hero', array_keys($node->getFields()))) {
       $variables['hero_field'] = $node->get('field_hero')->view();
     }
+
+    //add content type and group label info to site head
+    $node_content_type = '';
+    $node_web_area = '';
+    $node_content_type = $node->type->entity->label();
+    $group_labels = get_group_labels_by_node_id($node->id());
+
+    if ($group_labels != null) {
+      $node_web_area = $group_labels;
+    }
+
+    $node_web_area_tag = [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'WebArea',
+        'content' => $node_web_area,
+      ],
+    ];
+
+    $node_content_type_tag = [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'ContentType',
+        'content' => $node_content_type,
+      ],
+    ];
+
+    $variables['#attached']['html_head'][] = [$node_web_area_tag, 'WebArea'];
+    $variables['#attached']['html_head'][] = [$node_content_type_tag, 'ContentType'];
   }
 }
 
@@ -343,4 +372,21 @@ function epa_intranet_preprocess_input__submit(&$variables) {
 function is_add_or_remove_button($element) {
   // Add More/ Remove elements have multiple values in Submit
   return isset($element['#submit']) && is_array($element['#submit'][0]);
+}
+
+function get_group_labels_by_node_id($node_id) {
+
+  $ids = \Drupal::entityQuery('group_content')
+    ->condition('entity_id', $node_id)
+    ->execute();
+  $group_lables = array();
+  $group_ids = array();
+  $relations = \Drupal\group\Entity\GroupContent::loadMultiple($ids);
+  foreach ($relations as $rel) {
+    if ($rel->getEntity()->getEntityTypeId() == 'node') {
+      $group_ids[] = $rel->getGroup()->id();
+      $group_lables[] = $rel->getGroup()->label();
+    }
+  }
+  return implode(", ", $group_lables);
 }
