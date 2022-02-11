@@ -1196,3 +1196,10 @@ div.box__title, .box--special > .box__title {
   border-radius: 0 0 5px 5px;
 }
 
+/* IN-721 Libraries are also using the form-text class and it's overriding core styles. 
+   Resetting form-text for Webforms here. */
+   .webform-submission-form .form-text {
+    margin-top: .5rem;
+    font-size: 1.06rem;
+    color: #1b1b1b;
+  }
