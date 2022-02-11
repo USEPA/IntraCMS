@@ -1,6 +1,6 @@
 uuid: f95f6217-3a83-4ecc-882a-c60e426d09d7
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.media.full_width
@@ -133,17 +133,17 @@ filters:
         link: link
       allowed_media_types:
         document: document
-  epa_filter_empty_paragraphs:
-    id: epa_filter_empty_paragraphs
-    provider: epa_wysiwyg
-    status: false
-    weight: -35
-    settings: {  }
   epa_filter_links:
     id: epa_filter_links
     provider: epa_wysiwyg
     status: true
     weight: -45
+    settings: {  }
+  epa_filter_empty_paragraphs:
+    id: epa_filter_empty_paragraphs
+    provider: epa_wysiwyg
+    status: false
+    weight: -35
     settings: {  }
   paragraphs_entity_embed:
     id: paragraphs_entity_embed
