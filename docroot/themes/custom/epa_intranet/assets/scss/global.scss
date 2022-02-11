@@ -1198,8 +1198,52 @@ div.box__title, .box--special > .box__title {
 
 /* IN-721 Libraries are also using the form-text class and it's overriding core styles. 
    Resetting form-text for Webforms here. */
-   .webform-submission-form .form-text {
-    margin-top: .5rem;
-    font-size: 1.06rem;
-    color: #1b1b1b;
+.webform-submission-form .form-text {
+  margin-top: .5rem;
+  font-size: 1.06rem;
+  color: #1b1b1b;
+}
+
+/* IN-659 Footer menu not displaying properly. */
+.region-footer-menu .grid-row {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between; 
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
+.region-footer-menu .grid-row li {
+  list-style-type: none;
+  display: block;
+  flex: 0 1 auto;
+}
+.usa-footer__primary-container {
+  width: 100%;
+  max-width: 100%;
+}
+.usa-footer__primary-container.grid-row {
+  display: block;
+}
+.usa-footer__logo .grid-col-auto {
+  display: inline;
+}
+.usa-footer__logo .usa-footer__logo-heading {
+  display: inline;
+}
+
+@media (min-width: 30em) {
+  .region-footer-menu .mobile-lg\:grid-col-8 {
+      flex: 0 1 auto;
+      width: 100%;
+  }
+}
+
+@media (max-width: 571px) {
+  .region-footer-menu .grid-row {
+      flex-direction: column;
+  }
+  .region-footer-menu .grid-row li {
+    width: 100%;
+  }  
+}
