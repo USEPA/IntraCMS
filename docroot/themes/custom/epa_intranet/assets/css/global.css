@@ -610,6 +610,7 @@ section.comment-wrapper ul.links li.comment-forbidden {
 .align-right {
   padding-left: 10px;
 }
+
 .align-right .figcaption {
   text-align: right;
 }
@@ -759,6 +760,14 @@ li {
 fieldset .usa-checkbox__label, fieldset .usa-radio__label {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
+}
+
+/* correcting uswds syntax */
+.usa-checkbox__input:checked + .usa-checkbox__label::before,
+.usa-radio__input:checked + .usa-radio__label::before {
+  background-color: #005ea2;
+  -webkit-box-shadow: 0 0 0 2px #005ea2;
+          box-shadow: 0 0 0 2px #005ea2;
 }
 
 /* provides spacing and image size equivalent to uswds standard*/
@@ -1191,46 +1200,64 @@ div.box__title, .box--special > .box__title {
 
 /* IN-659 Footer text not displaying corectly. */
 .region-footer-menu .grid-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: stretch; /* Default */
-  justify-content: space-between; 
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  /* Default */
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 100%;
   margin: 0;
   padding: 0;
 }
+
 .region-footer-menu .grid-row li {
   list-style-type: none;
   display: block;
-  flex: 0 1 auto;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
 }
+
 .usa-footer__primary-container {
   width: 100%;
   max-width: 100%;
 }
+
 .usa-footer__primary-container.grid-row {
   display: block;
 }
+
 .usa-footer__logo .grid-col-auto {
   display: inline;
 }
+
 .usa-footer__logo .usa-footer__logo-heading {
   display: inline;
 }
 
 @media (min-width: 30em) {
   .region-footer-menu .mobile-lg\:grid-col-8 {
-      flex: 0 1 auto;
-      width: 100%;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+    width: 100%;
   }
 }
 
 @media (max-width: 571px) {
   .region-footer-menu .grid-row {
-      flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
   .region-footer-menu .grid-row li {
     width: 100%;
-  }  
+  }
 }
-
 /*# sourceMappingURL=global.css.map */
