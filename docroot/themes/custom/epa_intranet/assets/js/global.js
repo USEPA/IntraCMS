@@ -18,3 +18,8 @@ window.ATL_JQ_PAGE_PROPS = {
     }
 
 };
+
+/* IN-851 The figure needs the alignment class for the figcaption. Copying it from the article when it is there. */
+jQuery("figure.caption article.align-right").parent().addClass('align-right');
+jQuery("figure.caption article.align-left").parent().addClass('align-left');
+jQuery("figure.caption article.align-center").parent().addClass('align-center');
