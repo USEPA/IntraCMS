@@ -2,17 +2,17 @@
   <div class="author-tag__image-container">
     <div class="author-tag__image">
       <a href="{{ url }}" rel="bookmark">
-        {{ content.field_staff_photo }}
+        {% if content.field_staff_photo.0 %}
+          {{ content.field_staff_photo }}
+        {% else %}
+          <img class="align-center" src="/sites/default/files/avatar-1577909_1280.png" alt="No Staff Member Picture"/>
+        {% endif %}
       </a>
     </div>
   </div>
 
   <div class="author-tag__text">
     <p>Written by <a href="{{ url }}" rel="bookmark">{{ label }}</a></p>
-      {% if content.field_staff_photo.0 %}
-          {{ content.field_staff_photo }}
-        {% else %}
-          <img class="align-center" src="/sites/default/files/avatar-1577909_1280.png" alt="No Staff Member Picture"/>
-        {% endif %}
+    {{ content.profile }}
   </div>
 </div>
