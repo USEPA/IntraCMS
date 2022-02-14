@@ -1,14 +1,12 @@
 {% if page.footer_menu or footer_contact or page.footer %}
   <div class="usa-footer__primary-section">
     <div class="usa-footer__primary-container grid-row">
-      {% if page.footer_menu %}
+      {% if (page.footer_menu) and (footer_contact) %}
         <div class="mobile-lg:grid-col-8">
           <nav class="usa-footer__nav" aria-label="Footer navigation">
             {{ page.footer_menu }}
           </nav>
         </div>
-      {% endif %}
-      {% if footer_contact %}
         <div class="mobile-lg:grid-col-4">
           <address class="usa-footer__address">
             <div class="grid-row grid-gap">
@@ -28,6 +26,12 @@
               {% endif %}
             </div>
           </address>
+        </div>
+      {% elseif page.footer_menu and not footer_contact %}
+        <div class="mobile-lg:grid-col-12">
+          <nav class="usa-footer__nav" aria-label="Footer navigation">
+            {{ page.footer_menu }}
+          </nav>
         </div>
       {% endif %}
       {% if page.footer %}

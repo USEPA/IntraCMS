@@ -811,6 +811,13 @@ fieldset {
   }
 }
 
+/* correcting uswds syntax */
+.usa-checkbox__input:checked + .usa-checkbox__label::before,
+.usa-radio__input:checked + .usa-radio__label::before {
+  background-color: #005ea2;
+  box-shadow: 0 0 0 2px #005ea2;
+}
+
 /* provides spacing and image size equivalent to uswds standard*/
 
 div {
@@ -1292,4 +1299,39 @@ div.box__title, .box--special > .box__title {
   .region-footer-menu .grid-row li {
     width: 100%;
   }  
+}
+
+/* IN-851 Image alignment breaks when adding a caption */
+figure.caption {
+    display: flex;
+    flex-direction: column;
+}
+article {
+  &.align-center + figcaption {
+    text-align: center;
+  }
+  &.align-right + figcaption {
+    text-align: right;
+  }
+  &.align-left + figcaption {
+    text-align: left;
+  }
+}  
+
+/* IN-844 Style updates for books */
+.page-node-type-book #block-epa-intranet-content div {
+  display: flex;
+  flex-direction: column;
+}
+.page-node-type-book #block-epa-intranet-content div {
+  &.node__links {
+    order: 4;
+  }
+  &.node__links ul.links {
+    padding: 0;
+  }
+  &.node__links ul.links li {
+    float: left;
+    list-style: none;
+  }
 }
