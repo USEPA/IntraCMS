@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3877d4ebfa14c012731bb53413ac4075",
+    "content-hash": "0a3f975dd87216693b3bd42ec69bc744",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -75,7 +75,7 @@
             "version": "v2.3.4",
             "source": {
                 "type": "git",
-                "url": "git@github.com:fengyuanchen/cropper.git",
+                "url": "https://github.com/fengyuanchen/cropper.git",
                 "reference": "30c58b29ee21010e17e58ebab165fbd84285c685"
             },
             "dist": {
@@ -93,12 +93,12 @@
             "version": "v5.7.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/dropzone/dropzone.git",
+                "url": "git@github.com:enyo/dropzone.git",
                 "reference": "78424e9c97b569e698cc9175e9bc424168219162"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dropzone/dropzone/zipball/78424e9c97b569e698cc9175e9bc424168219162",
+                "url": "https://api.github.com/repos/enyo/dropzone/zipball/78424e9c97b569e698cc9175e9bc424168219162",
                 "reference": "78424e9c97b569e698cc9175e9bc424168219162"
             },
             "type": "bower-asset"
@@ -1613,6 +1613,57 @@
             }
         },
         {
+            "name": "drupal/anchor_link",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/anchor_link.git",
+                "reference": "8.x-1.9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/anchor_link-8.x-1.9.zip",
+                "reference": "8.x-1.9",
+                "shasum": "48d343f29dc034bf2deb7de858498fb80d558ca8"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.9",
+                    "datestamp": "1643826959",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "patches_applied": {
+                    "Remove overriding of CTRL+K command from ckeditor interfaces": "patches/anchor_link_shortcut_override.patch"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Mohammed J. Razem",
+                    "homepage": "https://www.drupal.org/user/255384"
+                },
+                {
+                    "name": "Rajab Natshah",
+                    "homepage": "https://www.drupal.org/user/1414312"
+                }
+            ],
+            "description": "This plugin module adds the better link dialog and anchor related features to CKEditor in Drupal 9",
+            "homepage": "https://www.drupal.org/project/anchor_link",
+            "support": {
+                "source": "https://git.drupalcode.org/project/anchor_link"
+            }
+        },
+        {
             "name": "drupal/auto_entitylabel",
             "version": "3.0.0-beta4",
             "source": {
@@ -3061,6 +3112,8 @@
                     "3035113: JSON API": "https://www.drupal.org/files/issues/2019-10-21/LatestRevisionCheck-13092187-24.patch",
                     "2985882: Error: Call to a member function getLabel() after enabling layout_builder": "https://www.drupal.org/files/issues/2020-01-20/2985882-53.patch",
                     "923934: Block visibility has wrong logic": "https://www.drupal.org/files/issues/2021-09-16/923934-50-d92.patch",
+                    "3008924: Callers of LayoutEntityHelperTrait::getEntitySections() do not account for the view mode": "https://www.drupal.org/files/issues/2020-08-27/3008924-rerolled-17.patch",
+                    "502340: hide book outline functionality on non-book-enabled node types": "https://www.drupal.org/files/issues/2021-01-18/502430-90.patch",
                     "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch"
                 }
             },
@@ -6711,17 +6764,17 @@
         },
         {
             "name": "drupal/linkit",
-            "version": "6.0.0-beta2",
+            "version": "6.0.0-beta3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/linkit.git",
-                "reference": "6.0.0-beta2"
+                "reference": "6.0.0-beta3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/linkit-6.0.0-beta2.zip",
-                "reference": "6.0.0-beta2",
-                "shasum": "388cd47159eef6c505646c7d5a96e7e653439a94"
+                "url": "https://ftp.drupal.org/files/projects/linkit-6.0.0-beta3.zip",
+                "reference": "6.0.0-beta3",
+                "shasum": "39a5bf54cbc88324d788a573df7b3fecf7622065"
             },
             "require": {
                 "drupal/core": "^8.7.7 || ^9"
@@ -6732,8 +6785,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "6.0.0-beta2",
-                    "datestamp": "1608957496",
+                    "version": "6.0.0-beta3",
+                    "datestamp": "1632946984",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -6750,6 +6803,10 @@
                     "homepage": "https://stjerneman.com",
                     "email": "emil@stjerneman.com",
                     "role": "Maintainer"
+                },
+                {
+                    "name": "johnwebdev",
+                    "homepage": "https://www.drupal.org/user/3331569"
                 }
             ],
             "description": "Linkit - Enriched linking experience",
@@ -14167,6 +14224,7 @@
                 "riak",
                 "simplesamlphp"
             ],
+            "abandoned": true,
             "time": "2019-12-03T08:28:45+00:00"
         },
         {
@@ -21392,6 +21450,7 @@
                 }
             ],
             "description": "A robust cross-platform utility for normalizing, comparing and modifying file paths.",
+            "abandoned": "symfony/filesystem",
             "time": "2015-12-17T08:42:14+00:00"
         },
         {
@@ -21443,7 +21502,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/layout_builder_styles": 10,
-        "drupal/linkit": 10,
         "drupal/auto_entitylabel": 10,
         "drupal/uswds_paragraphs": 10,
         "drupal/bamboo_twig": 15,
