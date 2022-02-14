@@ -1300,3 +1300,38 @@ div.box__title, .box--special > .box__title {
     width: 100%;
   }  
 }
+
+/* IN-851 Image alignment breaks when adding a caption */
+figure.caption {
+    display: flex;
+    flex-direction: column;
+}
+article {
+  &.align-center + figcaption {
+    text-align: center;
+  }
+  &.align-right + figcaption {
+    text-align: right;
+  }
+  &.align-left + figcaption {
+    text-align: left;
+  }
+}  
+
+/* IN-844 Style updates for books */
+.page-node-type-book #block-epa-intranet-content div {
+  display: flex;
+  flex-direction: column;
+}
+.page-node-type-book #block-epa-intranet-content div {
+  &.node__links {
+    order: 4;
+  }
+  &.node__links ul.links {
+    padding: 0;
+  }
+  &.node__links ul.links li {
+    float: left;
+    list-style: none;
+  }
+}
