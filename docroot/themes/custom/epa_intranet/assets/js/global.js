@@ -23,3 +23,6 @@ window.ATL_JQ_PAGE_PROPS = {
 jQuery("figure.caption article.align-right").parent().addClass('align-right');
 jQuery("figure.caption article.align-left").parent().addClass('align-left');
 jQuery("figure.caption article.align-center").parent().addClass('align-center');
+
+/* IN-844 Style updates for books */
+jQuery("ul.book-page li.book-pager__item a").addClass('usa-button');
