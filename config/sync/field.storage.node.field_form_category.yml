@@ -1,21 +1,21 @@
-uuid: 6803c984-8dd1-4277-86b1-0bcdff4bed1b
+uuid: 36755c7f-9edb-478d-99e4-2e42b295805e
 langcode: en
 status: true
 dependencies:
   module:
-    - datetime
     - field_permissions
     - node
+    - taxonomy
 third_party_settings:
   field_permissions:
     permission_type: public
-id: node.field_rescission_date
-field_name: field_rescission_date
+id: node.field_form_category
+field_name: field_form_category
 entity_type: node
-type: datetime
+type: entity_reference
 settings:
-  datetime_type: date
-module: datetime
+  target_type: taxonomy_term
+module: core
 locked: false
 cardinality: 1
 translatable: true
