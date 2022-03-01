@@ -8,6 +8,7 @@ dependencies:
     - field.storage.group.field_web_area_contact_us_form
     - field.storage.group.field_web_area_homepage
     - field.storage.group.field_webarea_status
+    - group.type.form
     - group.type.web_area
     - taxonomy.vocabulary.program_offices_and_regions
   module:
@@ -927,6 +928,211 @@ display:
       display_extenders: {  }
       path: web-areas
       use_admin_theme: false
+      filters:
+        type:
+          id: type
+          table: groups_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            form: form
+            web_area: web_area
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+            argument: null
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: group
+          entity_field: type
+          plugin_id: bundle
+        field_program_office_region_target_id:
+          id: field_program_office_region_target_id
+          table: group__field_program_office_region
+          field: field_program_office_region_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_program_office_region_target_id_op
+            label: 'AAship / Region'
+            description: ''
+            use_operator: false
+            operator: field_program_office_region_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_program_office_region_target_id
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: true
+          type: textfield
+          limit: true
+          vid: program_offices_and_regions
+          hierarchy: false
+          error_message: true
+          parent: 0
+          level_labels: ''
+          force_deepest: false
+          save_lineage: false
+          hierarchy_depth: 0
+          required_depth: 0
+          plugin_id: taxonomy_index_tid
+        field_webarea_status_value:
+          id: field_webarea_status_value
+          table: group__field_webarea_status
+          field: field_webarea_status_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_webarea_status_value_op
+            label: Status
+            description: ''
+            use_operator: false
+            operator: field_webarea_status_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_webarea_status_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          plugin_id: list_field
+        combine:
+          id: combine
+          table: views
+          field: combine
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: combine_op
+            label: Search
+            description: ''
+            use_operator: false
+            operator: combine_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: combine
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              system_editor: '0'
+              administrator: '0'
+            placeholder: ''
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          fields:
+            label: label
+            field_eic: field_eic
+            field_web_area_homepage: field_web_area_homepage
+            field_webarea_status: field_webarea_status
+          plugin_id: views_autocomplete_filters_combine
+      defaults:
+        filters: false
+        filter_groups: false
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:

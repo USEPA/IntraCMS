@@ -1,0 +1,19 @@
+uuid: c5911ac4-7f33-4c86-b7d1-33ed7064347f
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.form
+    - media.type.remote_video
+  module:
+    - groupmedia
+    - media
+id: form-group_media-remote_video
+label: 'Form: Group media (Remote Video)'
+description: 'Adds <em class="placeholder">Remote Video</em> content to groups both publicly and privately.'
+group_type: form
+content_plugin: 'group_media:remote_video'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
