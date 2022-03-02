@@ -1,0 +1,41 @@
+uuid: 79d416fa-ef0c-40ab-ba3d-65614006d152
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.forms_media
+  module:
+    - views
+name: form_file_browser
+label: 'Form file browser'
+display: modal
+display_configuration:
+  width: '650'
+  height: '500'
+  link_text: 'Select form'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  5ef4a2e4-2393-4ef2-a708-943d70af9916:
+    settings:
+      upload_location: 'public://'
+      multiple: true
+      submit_text: 'Select files'
+      extensions: pdf
+    uuid: 5ef4a2e4-2393-4ef2-a708-943d70af9916
+    weight: -9
+    label: upload
+    id: upload
+  5a3460fa-ed76-41b9-9675-f231783dd600:
+    settings:
+      view: forms_media
+      view_display: entity_browser_1
+      submit_text: 'Select form'
+      auto_select: false
+    uuid: 5a3460fa-ed76-41b9-9675-f231783dd600
+    weight: -10
+    label: Library
+    id: view
