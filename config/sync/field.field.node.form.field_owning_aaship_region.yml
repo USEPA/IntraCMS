@@ -1,0 +1,29 @@
+uuid: 8d3c663f-d248-4f5e-adf2-7d89a00d6d98
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_owning_aaship_region
+    - node.type.form
+    - taxonomy.vocabulary.program_offices_and_regions
+id: node.form.field_owning_aaship_region
+field_name: field_owning_aaship_region
+entity_type: node
+bundle: form
+label: 'Owning AAShip / Region'
+description: 'Select the program office or region that owns this form.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      program_offices_and_regions: program_offices_and_regions
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
