@@ -1,0 +1,19 @@
+uuid: db310fba-d4d5-481d-a854-f688d88873a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.form
+    - media.type.document
+  module:
+    - groupmedia
+    - media
+id: form-group_media-document
+label: 'Form: Group media (Document)'
+description: 'Adds <em class="placeholder">Document</em> content to groups both publicly and privately.'
+group_type: form
+content_plugin: 'group_media:document'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

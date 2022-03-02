@@ -1,0 +1,20 @@
+uuid: be93856d-4898-4d07-ad04-e86d45a5cc34
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.form
+    - node.type.form
+  module:
+    - gnode
+    - node
+id: form-group_node-form
+label: 'Form: Group node (Form)'
+description: 'Adds <em class="placeholder">Form</em> content to groups both publicly and privately.'
+group_type: form
+content_plugin: 'group_node:form'
+plugin_config:
+  group_cardinality: 1
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 0
