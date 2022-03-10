@@ -1,0 +1,29 @@
+uuid: 46716cfb-830b-431c-b9c1-3a02332dd557
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.group.field_eic
+    - group.type.form
+    - node.type.staff_member
+id: group.form.field_eic
+field_name: field_eic
+entity_type: group
+bundle: form
+label: 'Editor in Chief'
+description: 'Enter the name of the Editor in Chief. If the person''s name is not found, you will need to <a href="/node/add/staff_member">create a staff member profile</a> for the EIC.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      staff_member: staff_member
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

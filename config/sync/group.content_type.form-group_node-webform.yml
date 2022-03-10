@@ -1,0 +1,20 @@
+uuid: 61870e86-8149-48b4-87a5-176707336a18
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.form
+    - node.type.webform
+  module:
+    - gnode
+    - node
+id: form-group_node-webform
+label: 'Form: Group node (Webform)'
+description: 'Adds <em class="placeholder">Webform</em> content to groups both publicly and privately.'
+group_type: form
+content_plugin: 'group_node:webform'
+plugin_config:
+  group_cardinality: 1
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 1

@@ -1,0 +1,29 @@
+uuid: 51be3cd1-8ccd-4c73-8506-01e59048d8a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.group.field_program_office_region
+    - group.type.form
+    - taxonomy.vocabulary.program_offices_and_regions
+id: group.form.field_program_office_region
+field_name: field_program_office_region
+entity_type: group
+bundle: form
+label: 'AAShip / Region'
+description: 'Select the AAShip(s) and/or Region(s) that owns this content.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      program_offices_and_regions: program_offices_and_regions
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
