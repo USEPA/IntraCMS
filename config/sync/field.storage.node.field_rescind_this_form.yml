@@ -1,21 +1,19 @@
-uuid: 6803c984-8dd1-4277-86b1-0bcdff4bed1b
+uuid: 966f6932-af13-431e-9416-6e80aef59aba
 langcode: en
 status: true
 dependencies:
   module:
-    - datetime
     - field_permissions
     - node
 third_party_settings:
   field_permissions:
     permission_type: public
-id: node.field_rescission_date
-field_name: field_rescission_date
+id: node.field_rescind_this_form
+field_name: field_rescind_this_form
 entity_type: node
-type: datetime
-settings:
-  datetime_type: date
-module: datetime
+type: boolean
+settings: {  }
+module: core
 locked: false
 cardinality: 1
 translatable: true
