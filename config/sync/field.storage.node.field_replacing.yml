@@ -1,21 +1,20 @@
-uuid: 6803c984-8dd1-4277-86b1-0bcdff4bed1b
+uuid: e1a73d24-9d3b-46f8-9c22-3216ab447258
 langcode: en
 status: true
 dependencies:
   module:
-    - datetime
     - field_permissions
     - node
 third_party_settings:
   field_permissions:
     permission_type: public
-id: node.field_rescission_date
-field_name: field_rescission_date
+id: node.field_replacing
+field_name: field_replacing
 entity_type: node
-type: datetime
+type: entity_reference
 settings:
-  datetime_type: date
-module: datetime
+  target_type: node
+module: core
 locked: false
 cardinality: 1
 translatable: true

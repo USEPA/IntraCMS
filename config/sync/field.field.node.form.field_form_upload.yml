@@ -1,0 +1,29 @@
+uuid: c63317c2-3484-4330-9379-9647b7e9741a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_form_upload
+    - media.type.document
+    - node.type.form
+id: node.form.field_form_upload
+field_name: field_form_upload
+entity_type: node
+bundle: form
+label: 'Form Upload'
+description: 'Upload the official form.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      document: document
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference
