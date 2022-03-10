@@ -4,10 +4,12 @@ status: true
 dependencies:
   config:
     - image.style.media_block_image
+    - media.type.document
     - media.type.image
     - taxonomy.vocabulary.media_tags
   module:
     - entity_browser
+    - epa_wysiwyg
     - image
     - media
     - taxonomy
@@ -509,9 +511,9 @@ display:
         - user
         - user.permissions
       tags: {  }
-  media_entity_browser:
+  entity_browser_1:
     display_plugin: entity_browser
-    id: media_entity_browser
+    id: entity_browser_1
     display_title: 'Media Entity browser'
     position: 1
     display_options:
