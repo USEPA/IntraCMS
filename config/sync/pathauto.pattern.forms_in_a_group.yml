@@ -1,0 +1,22 @@
+uuid: b209d189-cb71-4a33-9cd5-89ee453c977b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: forms_in_a_group
+label: 'Forms in a Group'
+type: 'canonical_entities:node'
+pattern: '[node:group:title]/[node:title]'
+selection_criteria:
+  aae58b36-aca8-4472-afc3-a20e7d25e819:
+    id: node_type
+    bundles:
+      form: form
+    negate: false
+    context_mapping:
+      node: node
+    uuid: aae58b36-aca8-4472-afc3-a20e7d25e819
+selection_logic: and
+weight: -5
+relationships: {  }
