@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a3f975dd87216693b3bd42ec69bc744",
+    "content-hash": "24ad7ed461e14d112885ffeafc71e9fd",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3114,6 +3114,7 @@
                     "923934: Block visibility has wrong logic": "https://www.drupal.org/files/issues/2021-09-16/923934-50-d92.patch",
                     "3008924: Callers of LayoutEntityHelperTrait::getEntitySections() do not account for the view mode": "https://www.drupal.org/files/issues/2020-08-27/3008924-rerolled-17.patch",
                     "502340: hide book outline functionality on non-book-enabled node types": "https://www.drupal.org/files/issues/2021-01-18/502430-90.patch",
+                    "2918537: Cannot save unpublished versions of published content for users without manage book privileges.": "https://www.drupal.org/files/issues/2020-10-18/2918537-63.patch",
                     "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch"
                 }
             },
@@ -3639,17 +3640,17 @@
         },
         {
             "name": "drupal/draggableviews",
-            "version": "1.2.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/draggableviews.git",
-                "reference": "8.x-1.2"
+                "reference": "2.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/draggableviews-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "0f5e9195ceec209552aa50f8ce3c230692c284db"
+                "url": "https://ftp.drupal.org/files/projects/draggableviews-2.0.1.zip",
+                "reference": "2.0.1",
+                "shasum": "e13a6c625fb8ca370a32b76dfd9f8bea9b2e27e9"
             },
             "require": {
                 "drupal/core": "^8 || ^9"
@@ -3660,23 +3661,17 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1541518680",
+                    "version": "2.0.1",
+                    "datestamp": "1620931210",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "patches_applied": {
-                    "Drupal 9 compatibility": "patches/draggableviews_compatibility.patch",
-                    "Drupal 9 submodule compatibility": "patches/draggableviews_demo_compatibility.patch",
-                    "Drupal 9 migrate class compatibility": "patches/draggableviews_migrate_compatibility.patch",
-                    "Drupal 9 classes compatibility": "patches/draggableviews_classes_compatibility.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
