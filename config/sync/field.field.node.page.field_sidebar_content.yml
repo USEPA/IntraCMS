@@ -5,9 +5,11 @@ dependencies:
   config:
     - field.storage.node.field_sidebar_content
     - node.type.page
+    - paragraphs.paragraphs_type.dynamic_list
     - paragraphs.paragraphs_type.list_of_link
     - paragraphs.paragraphs_type.title_and_text
     - paragraphs.paragraphs_type.views_reference_list
+    - paragraphs.paragraphs_type.webform
   module:
     - entity_reference_revisions
 id: node.page.field_sidebar_content
@@ -26,9 +28,14 @@ settings:
     negate: 0
     target_bundles:
       title_and_text: title_and_text
+      dynamic_list: dynamic_list
       list_of_link: list_of_link
       views_reference_list: views_reference_list
+      webform: webform
     target_bundles_drag_drop:
+      contact:
+        weight: 23
+        enabled: false
       dynamic_list:
         enabled: true
         weight: -36
@@ -89,4 +96,7 @@ settings:
       views_reference_list:
         enabled: true
         weight: 21
+      webform:
+        enabled: true
+        weight: 44
 field_type: entity_reference_revisions
