@@ -1,0 +1,44 @@
+uuid: 40f1ffac-1816-47f8-9d3d-21ae00b1c711
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.desktop_library_search_sidebar
+  module:
+    - ctools
+    - fixed_block_content
+    - node
+    - system
+  theme:
+    - epa_intranet
+id: desktoplibrarysearchsidebar
+theme: epa_intranet
+region: sidebar_first
+weight: -9
+provider: null
+plugin: 'fixed_block_content:desktop_library_search_sidebar'
+settings:
+  id: 'fixed_block_content:desktop_library_search_sidebar'
+  label: 'Desktop Library Search Sidebar'
+  provider: fixed_block_content
+  label_display: '0'
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: '/library-services/*'
+    negate: false
+  node_type:
+    id: node_type
+    bundles:
+      landing_page: landing_page
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      landing_page: landing_page
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
