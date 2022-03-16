@@ -119,12 +119,12 @@
 
 	<div{{ content_attributes.addClass('node__content') }}>
     
-    {% if field.field_form_upload %}
-        upload button
+    {% if content.field_form_upload|render|striptags|trim %}
+        <a class="usa-button usa-button--outline" href="{{ file_url(content.field_form_upload|field_target_entity.uri.value) }}">Download/Open Form</a>
     {% endif %}
 
-      {% if field.field_link_to_form %}
-        link button
+      {% if content.field_link_to_form|render|striptags|trim %}
+         <a class="usa-button usa-button--outline" href="{{ content.field_link_to_form[0]['#url'] }}">Download/Open Form</a
     {% endif %}
 
     {{ content|without('field_rescind_this_form','field_rescission_form') }}
