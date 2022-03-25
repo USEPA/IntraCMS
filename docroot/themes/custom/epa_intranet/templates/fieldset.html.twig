@@ -26,7 +26,7 @@
     'form-item',
     'js-form-wrapper',
     'form-wrapper',
-    'mt-3',
+    'usa-form-group',
   ]
 %}
 <fieldset{{ attributes.addClass(classes) }}>
@@ -40,9 +40,16 @@
     ]
   %}
   {#  Always wrap fieldset legends in a <span> for CSS positioning. #}
-  <legend{{ legend.attributes }}>
-    <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>
-  </legend>
+  {% if attributes.hasClass('checkboxes--wrapper') or attributes.hasClass('radios--wrapper')
+    or attributes.hasClass('webform-radios-other--wrapper') or attributes.hasClass('webform-checkboxes-other--wrapper') %}
+    <label{{ legend.attributes }}>
+      <span{{ legend_span.attributes.addClass(legend_span_classes).addClass('usa-sr-label') }}>{{ legend.title }}</span>
+    </label>
+  {% else %}
+    <legend{{ legend.attributes }}>
+      <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>
+    </legend>
+  {% endif %}
   <div class="fieldset-wrapper">
     {% if errors %}
       <div class="form-item--error-message">
