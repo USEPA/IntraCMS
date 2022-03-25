@@ -3,15 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.body
     - field.storage.node.field_epa_form_number
-    - field.storage.node.field_form_effective_date
     - field.storage.node.field_form_title
+    - field.storage.node.field_owning_aaship_region
     - node.type.form
     - taxonomy.vocabulary.forms_categories
   module:
-    - datetime
     - node
     - taxonomy
+    - text
     - user
     - views_autocomplete_filters
 id: forms
@@ -86,6 +87,9 @@ display:
             title: title
             field_epa_form_number: field_epa_form_number
             field_form_title: field_form_title
+            field_form_effective_date: field_form_effective_date
+            field_form_upload: field_form_upload
+            field_link_to_form: field_form_upload
           info:
             title:
               sortable: false
@@ -104,6 +108,25 @@ display:
             field_form_title:
               sortable: true
               default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_form_effective_date:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_form_upload:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_link_to_form:
               align: ''
               separator: ''
               empty_column: false
@@ -304,14 +327,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_form_effective_date:
-          id: field_form_effective_date
-          table: node__field_form_effective_date
-          field: field_form_effective_date
+        body:
+          id: body
+          table: node__body
+          field: body
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Effective Date'
+          label: Description
           exclude: false
           alter:
             alter_text: false
@@ -353,11 +376,73 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: datetime_default
+          type: text_summary_or_trimmed
           settings:
-            timezone_override: ''
-            format_type: month_day_year
+            trim_length: 600
           group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_owning_aaship_region:
+          id: field_owning_aaship_region
+          table: node__field_owning_aaship_region
+          field: field_owning_aaship_region
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Owning AAShip / Region'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -604,9 +689,10 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_epa_form_number'
-        - 'config:field.storage.node.field_form_effective_date'
         - 'config:field.storage.node.field_form_title'
+        - 'config:field.storage.node.field_owning_aaship_region'
   entity_reference_1:
     display_plugin: entity_reference
     id: entity_reference_1
@@ -709,9 +795,10 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_epa_form_number'
-        - 'config:field.storage.node.field_form_effective_date'
         - 'config:field.storage.node.field_form_title'
+        - 'config:field.storage.node.field_owning_aaship_region'
   page_1:
     display_plugin: page
     id: page_1
@@ -732,9 +819,10 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_epa_form_number'
-        - 'config:field.storage.node.field_form_effective_date'
         - 'config:field.storage.node.field_form_title'
+        - 'config:field.storage.node.field_owning_aaship_region'
   page_2:
     display_plugin: page
     id: page_2
@@ -952,6 +1040,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_epa_form_number'
-        - 'config:field.storage.node.field_form_effective_date'
         - 'config:field.storage.node.field_form_title'
+        - 'config:field.storage.node.field_owning_aaship_region'

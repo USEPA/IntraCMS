@@ -31,7 +31,199 @@ dependencies:
 third_party_settings:
   layout_builder:
     allow_custom: false
-    enabled: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: ''
+          column_widths: 67-33
+          layout_builder_styles_style: ''
+          context_mapping: {  }
+        components:
+          c7f8042b-3b26-4ec3-9c01-c226212cefbe:
+            uuid: c7f8042b-3b26-4ec3-9c01-c226212cefbe
+            region: second
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:form:field_form_category'
+              formatter:
+                label: inline
+                settings:
+                  link: false
+                third_party_settings: {  }
+                type: entity_reference_label
+            additional: {  }
+            weight: 4
+          8278cb4e-6f3e-486e-8bad-482b1d1576f4:
+            uuid: 8278cb4e-6f3e-486e-8bad-482b1d1576f4
+            region: first
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:form:field_form_effective_date'
+              formatter:
+                label: inline
+                settings:
+                  timezone_override: ''
+                  format_type: month_day_year
+                third_party_settings: {  }
+                type: datetime_default
+            additional: {  }
+            weight: 2
+          30fc531e-66c9-4fa6-aa50-cecde0f03889:
+            uuid: 30fc531e-66c9-4fa6-aa50-cecde0f03889
+            region: first
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:node:form:links'
+            additional: {  }
+            weight: 0
+          18d4eae8-404f-4b60-bb67-412f353ac1d1:
+            uuid: 18d4eae8-404f-4b60-bb67-412f353ac1d1
+            region: second
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:form:field_form_type'
+              formatter:
+                label: inline
+                settings: {  }
+                third_party_settings: {  }
+                type: list_default
+            additional: {  }
+            weight: 3
+          b1d1f1e9-98d5-4004-9e36-b7ae4b4b0aa1:
+            uuid: b1d1f1e9-98d5-4004-9e36-b7ae4b4b0aa1
+            region: first
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:form:field_rescission_date'
+              formatter:
+                label: inline
+                settings:
+                  timezone_override: ''
+                  format_type: month_day_year
+                third_party_settings: {  }
+                type: datetime_default
+            additional: {  }
+            weight: 1
+          c2966cc4-fefc-4933-bf9b-1e457948a3e6:
+            uuid: c2966cc4-fefc-4933-bf9b-1e457948a3e6
+            region: first
+            configuration:
+              id: 'field_block:node:form:field_link_to_form'
+              label: 'Link to Form'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: link
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: '0'
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 5
+          0ca64b3d-b9dd-4d9f-946d-605293bf2ee6:
+            uuid: 0ca64b3d-b9dd-4d9f-946d-605293bf2ee6
+            region: first
+            configuration:
+              id: 'field_block:node:form:field_form_upload'
+              label: 'Form Upload'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: inline_embedded
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 4
+          d89c8b60-116b-4246-be9c-f8fab5d51d58:
+            uuid: d89c8b60-116b-4246-be9c-f8fab5d51d58
+            region: first
+            configuration:
+              id: 'field_block:node:form:body'
+              label: Description
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 3
+          7dbfb105-5d14-4528-945a-5b07485f371c:
+            uuid: 7dbfb105-5d14-4528-945a-5b07485f371c
+            region: second
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:form:field_replacing'
+              formatter:
+                label: inline
+                settings:
+                  link: true
+                third_party_settings: {  }
+                type: entity_reference_label
+            additional: {  }
+            weight: 5
+          6a1cabe6-d6c6-41c7-a290-4805c6564416:
+            uuid: 6a1cabe6-d6c6-41c7-a290-4805c6564416
+            region: first
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:form:field_form_poc'
+              formatter:
+                label: inline
+                settings: {  }
+                third_party_settings: {  }
+                type: basic_string
+            additional: {  }
+            weight: 7
+          f4b09604-6511-4950-bbfc-fb9c7587461e:
+            uuid: f4b09604-6511-4950-bbfc-fb9c7587461e
+            region: first
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:form:field_owning_aaship_region'
+              formatter:
+                label: inline
+                settings:
+                  link: false
+                third_party_settings: {  }
+                type: entity_reference_label
+            additional: {  }
+            weight: 6
+        third_party_settings: {  }
   layout_library:
     enable: false
   layout_builder_restrictions:
