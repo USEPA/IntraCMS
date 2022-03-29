@@ -3,22 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.taxonomy_term.field_federal_manager
-    - field.storage.taxonomy_term.field_hours_staffed_for_staff
     - field.storage.taxonomy_term.field_ill_contact
     - field.storage.taxonomy_term.field_library_contact
     - field.storage.taxonomy_term.field_library_type
-    - field.storage.taxonomy_term.field_open_to_the_public
-    - field.storage.taxonomy_term.field_public_website
     - field.storage.taxonomy_term.field_reference_desk
-    - field.storage.taxonomy_term.hours_staffed_for_the_public
     - field.storage.taxonomy_term.intranet_website
-    - field.storage.taxonomy_term.open_to_staff
     - taxonomy.vocabulary.libraries
   module:
     - entity_reference_revisions
     - link
-    - office_hours
     - options
     - taxonomy
     - user
@@ -111,16 +104,10 @@ display:
           columns:
             name: name
             field_library_type: field_library_type
-            field_public_website: field_reference_desk
             intranet_website: field_reference_desk
             field_reference_desk: field_reference_desk
             field_library_contact: field_reference_desk
             field_ill_contact: field_ill_contact
-            field_federal_manager: field_federal_manager
-            open_to_staff: open_to_staff
-            field_hours_staffed_for_staff: open_to_staff
-            field_open_to_the_public: field_open_to_the_public
-            hours_staffed_for_the_public: field_open_to_the_public
           info:
             name:
               sortable: false
@@ -132,11 +119,6 @@ display:
             field_library_type:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_public_website:
               align: ''
               separator: ''
               empty_column: false
@@ -163,37 +145,6 @@ display:
             field_ill_contact:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_federal_manager:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            open_to_staff:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_hours_staffed_for_staff:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_open_to_the_public:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            hours_staffed_for_the_public:
               align: ''
               separator: ''
               empty_column: false
@@ -331,73 +282,6 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_public_website:
-          id: field_public_website
-          table: taxonomy_term__field_public_website
-          field: field_public_website
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Public Website'
-          exclude: false
-          alter:
-            alter_text: true
-            text: '<a href="{{ field_public_website__uri }}">Public Website</a>'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: uri
-          type: link
-          settings:
-            trim_length: 80
-            url_only: false
-            url_plain: false
-            rel: '0'
-            target: '0'
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
         intranet_website:
           id: intranet_website
           table: taxonomy_term__intranet_website
@@ -409,9 +293,9 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<a href="{{ intranet_website__uri }}">Intranet Site</a>'
-            make_link: false
-            path: ''
+            text: 'Intranet Site'
+            make_link: true
+            path: '{{ intranet_website }} '
             absolute: false
             external: false
             replace_spaces: false
@@ -436,7 +320,7 @@ display:
             html: false
           element_type: ''
           element_class: ''
-          element_label_type: ''
+          element_label_type: strong
           element_label_class: ''
           element_label_colon: true
           element_wrapper_type: ''
@@ -654,355 +538,6 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_federal_manager:
-          id: field_federal_manager
-          table: taxonomy_term__field_federal_manager
-          field: field_federal_manager
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Federal Manager'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_entity_view
-          settings:
-            view_mode: poc_simple
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        open_to_staff:
-          id: open_to_staff
-          table: taxonomy_term__open_to_staff
-          field: open_to_staff
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Open to Staff'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_hours_staffed_for_staff:
-          id: field_hours_staffed_for_staff
-          table: taxonomy_term__field_hours_staffed_for_staff
-          field: field_hours_staffed_for_staff
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Hours Staffed for Staff'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: day
-          type: office_hours
-          settings:
-            show_closed: all
-            office_hours_first_day: ''
-            day_format: short
-            time_format: g
-            compress: true
-            grouped: true
-            closed_format: Closed
-            separator:
-              days: '<br />'
-              grouped_days: ' - '
-              day_hours: ': '
-              hours_hours: '-'
-              more_hours: ', '
-            current_status:
-              position: ''
-              open_text: 'Currently open!'
-              closed_text: 'Currently closed'
-            schema:
-              enabled: false
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_open_to_the_public:
-          id: field_open_to_the_public
-          table: taxonomy_term__field_open_to_the_public
-          field: field_open_to_the_public
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Open to the Public'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        hours_staffed_for_the_public:
-          id: hours_staffed_for_the_public
-          table: taxonomy_term__hours_staffed_for_the_public
-          field: hours_staffed_for_the_public
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Hours Staffed For the Public'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: day
-          type: office_hours
-          settings:
-            show_closed: open
-            office_hours_first_day: ''
-            day_format: short
-            time_format: g
-            compress: true
-            grouped: true
-            closed_format: Closed
-            separator:
-              days: '<br />'
-              grouped_days: ' - '
-              day_hours: ': '
-              hours_hours: '-'
-              more_hours: ', '
-            current_status:
-              position: ''
-              open_text: 'Currently open!'
-              closed_text: 'Currently closed'
-            schema:
-              enabled: false
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
       filters:
         status:
           value: '1'
@@ -1170,17 +705,11 @@ display:
         - url.query_args
         - user.permissions
       tags:
-        - 'config:field.storage.taxonomy_term.field_federal_manager'
-        - 'config:field.storage.taxonomy_term.field_hours_staffed_for_staff'
         - 'config:field.storage.taxonomy_term.field_ill_contact'
         - 'config:field.storage.taxonomy_term.field_library_contact'
         - 'config:field.storage.taxonomy_term.field_library_type'
-        - 'config:field.storage.taxonomy_term.field_open_to_the_public'
-        - 'config:field.storage.taxonomy_term.field_public_website'
         - 'config:field.storage.taxonomy_term.field_reference_desk'
-        - 'config:field.storage.taxonomy_term.hours_staffed_for_the_public'
         - 'config:field.storage.taxonomy_term.intranet_website'
-        - 'config:field.storage.taxonomy_term.open_to_staff'
   libraries_page:
     display_plugin: page
     id: libraries_page
@@ -1188,7 +717,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: library-resources/library-directory
+      path: library-services/library-directory
     cache_metadata:
       max-age: -1
       contexts:
@@ -1198,14 +727,8 @@ display:
         - url.query_args
         - user.permissions
       tags:
-        - 'config:field.storage.taxonomy_term.field_federal_manager'
-        - 'config:field.storage.taxonomy_term.field_hours_staffed_for_staff'
         - 'config:field.storage.taxonomy_term.field_ill_contact'
         - 'config:field.storage.taxonomy_term.field_library_contact'
         - 'config:field.storage.taxonomy_term.field_library_type'
-        - 'config:field.storage.taxonomy_term.field_open_to_the_public'
-        - 'config:field.storage.taxonomy_term.field_public_website'
         - 'config:field.storage.taxonomy_term.field_reference_desk'
-        - 'config:field.storage.taxonomy_term.hours_staffed_for_the_public'
         - 'config:field.storage.taxonomy_term.intranet_website'
-        - 'config:field.storage.taxonomy_term.open_to_staff'
