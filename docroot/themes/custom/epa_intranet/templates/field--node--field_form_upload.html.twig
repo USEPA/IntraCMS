@@ -22,7 +22,7 @@
  
 
     {% for item in items %}
-    <a href={{ item.content.0.url }} class="usa-button">Open Form</a>
+     <a href="{{ item.content['#uri'] }}" class="usa-button">Open Form</a>
     {% endfor %}
 
 </div>
