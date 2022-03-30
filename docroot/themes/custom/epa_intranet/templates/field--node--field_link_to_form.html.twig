@@ -18,9 +18,10 @@
     <div class="font-weight-bold">{{ label }}</div>
   {% endif %}
 
+    {% for item in items %}
+    {{ item.content }}
 
- 
-<a class="usa-button" href="{{ content.field_link_to_form[0]['#url'] }}">Open Form</a>
+    {% endfor %}
 
 
 </div>
