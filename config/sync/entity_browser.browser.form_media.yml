@@ -1,0 +1,29 @@
+uuid: f25cb59a-09de-4d2a-b970-dba2546c8027
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_browser_entity_form
+name: form_media
+label: form_media
+display: modal
+display_configuration:
+  width: '650'
+  height: '500'
+  link_text: 'Upload form'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  9aaaeb56-0cbd-4d9e-8df6-2a506b7ab637:
+    settings:
+      entity_type: media
+      bundle: document
+      form_mode: default
+      submit_text: 'Save form'
+    uuid: 9aaaeb56-0cbd-4d9e-8df6-2a506b7ab637
+    weight: 1
+    label: 'Add Form'
+    id: entity_form
