@@ -21,5 +21,7 @@
   {% for item in items %}
     <div id="form-href-source" style="display:none" aria-hidden="true">{{ item.content }}</div>
     <a id="form-href-link" href="" class="usa-button">Open Form</a>
+    /* Twig Tweak File URI Filter test */
+    <div>{{ item.content|file_uri }}</div>
   {% endfor %}
 </div>
