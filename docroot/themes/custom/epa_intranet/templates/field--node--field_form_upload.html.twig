@@ -19,6 +19,7 @@
   {% endif %}
   
   {% for item in items %}
-    <a href="{{ item.content }}" class="usa-button">Open Form</a>
+    <div id="form-href-source" style="display:none" aria-hidden="true">{{ item.content }}</div>
+    <a id="form-href-link" href="" class="usa-button">Open Form</a>
   {% endfor %}
 </div>
