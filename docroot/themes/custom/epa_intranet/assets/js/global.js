@@ -23,3 +23,7 @@ window.ATL_JQ_PAGE_PROPS = {
 jQuery("figure.caption article.align-right").parent().addClass('align-right');
 jQuery("figure.caption article.align-left").parent().addClass('align-left');
 jQuery("figure.caption article.align-center").parent().addClass('align-center');
+
+/* Update the anchor tag for form links. */
+var cleanURL = jQuery('#form-href-source a').prop('href');
+jQuery('#form-href-link').attr('href', cleanURL);
