@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.taxonomy_term.field_ill_contact
     - field.storage.taxonomy_term.field_library_contact
     - field.storage.taxonomy_term.field_library_type
+    - field.storage.taxonomy_term.field_public_website
     - field.storage.taxonomy_term.field_reference_desk
     - field.storage.taxonomy_term.intranet_website
     - taxonomy.vocabulary.libraries
@@ -17,7 +17,6 @@ dependencies:
     - user
     - vefl
     - views_autocomplete_filters
-    - views_infinite_scroll
 id: library_directory
 label: 'Library Directory'
 module: views
@@ -54,7 +53,7 @@ display:
           reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
+          expose_sort_order: false
           sort_asc_label: Asc
           sort_desc_label: Desc
           layout:
@@ -70,26 +69,9 @@ display:
               submit: first
               reset: first
       pager:
-        type: infinite_scroll
+        type: none
         options:
-          items_per_page: 10
           offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: ‹‹
-            next: ››
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          views_infinite_scroll:
-            button_text: 'Load More'
-            automatically_load_content: true
       style:
         type: table
         options:
@@ -104,26 +86,20 @@ display:
           columns:
             name: name
             field_library_type: field_library_type
-            intranet_website: field_reference_desk
             field_reference_desk: field_reference_desk
             field_library_contact: field_reference_desk
-            field_ill_contact: field_ill_contact
+            field_ill_contact: field_reference_desk
+            intranet_website: intranet_website
+            field_public_website: intranet_website
           info:
             name:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
             field_library_type:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            intranet_website:
               align: ''
               separator: ''
               empty_column: false
@@ -149,6 +125,16 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
+            intranet_website:
+              align: ''
+              separator: '<br /><br />'
+              empty_column: false
+              responsive: ''
+            field_public_website:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
           default: '-1'
           empty_table: false
       row:
@@ -161,7 +147,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Library
+          label: Library/Resource
           exclude: false
           alter:
             alter_text: false
@@ -272,73 +258,6 @@ display:
           type: list_default
           settings: {  }
           group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        intranet_website:
-          id: intranet_website
-          table: taxonomy_term__intranet_website
-          field: intranet_website
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Intranet Website'
-          exclude: false
-          alter:
-            alter_text: true
-            text: 'Intranet Site'
-            make_link: true
-            path: '{{ intranet_website }} '
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: strong
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: uri
-          type: link
-          settings:
-            trim_length: 80
-            url_only: false
-            url_plain: false
-            rel: '0'
-            target: '0'
-          group_column: ''
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -475,20 +394,87 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_ill_contact:
-          id: field_ill_contact
-          table: taxonomy_term__field_ill_contact
-          field: field_ill_contact
+        intranet_website:
+          id: intranet_website
+          table: taxonomy_term__intranet_website
+          field: intranet_website
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'ILL Contact'
+          label: Websites
           exclude: false
           alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
+            alter_text: true
+            text: 'Intranet Site'
+            make_link: true
+            path: '{{ intranet_website }} '
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: strong
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: uri
+          type: link
+          settings:
+            trim_length: 80
+            url_only: false
+            url_plain: false
+            rel: '0'
+            target: '0'
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_public_website:
+          id: field_public_website
+          table: taxonomy_term__field_public_website
+          field: field_public_website
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Public Website'
+          exclude: false
+          alter:
+            alter_text: true
+            text: 'Public Website'
+            make_link: true
+            path: '{{ field_public_website }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -519,15 +505,19 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: 'Use Reference Desk or Library point of contact.'
+          empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_entity_view
+          click_sort_column: uri
+          type: link
           settings:
-            view_mode: poc_simple
-          group_column: target_id
+            trim_length: 80
+            url_only: false
+            url_plain: false
+            rel: '0'
+            target: '0'
+          group_column: ''
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -705,19 +695,18 @@ display:
         - url.query_args
         - user.permissions
       tags:
-        - 'config:field.storage.taxonomy_term.field_ill_contact'
         - 'config:field.storage.taxonomy_term.field_library_contact'
         - 'config:field.storage.taxonomy_term.field_library_type'
+        - 'config:field.storage.taxonomy_term.field_public_website'
         - 'config:field.storage.taxonomy_term.field_reference_desk'
         - 'config:field.storage.taxonomy_term.intranet_website'
-  libraries_page:
-    display_plugin: page
-    id: libraries_page
-    display_title: Page
+  block_library_directory:
+    display_plugin: block
+    id: block_library_directory
+    display_title: Block
     position: 1
     display_options:
       display_extenders: {  }
-      path: library-services/library-directory
     cache_metadata:
       max-age: -1
       contexts:
@@ -727,8 +716,458 @@ display:
         - url.query_args
         - user.permissions
       tags:
-        - 'config:field.storage.taxonomy_term.field_ill_contact'
         - 'config:field.storage.taxonomy_term.field_library_contact'
         - 'config:field.storage.taxonomy_term.field_library_type'
+        - 'config:field.storage.taxonomy_term.field_public_website'
+        - 'config:field.storage.taxonomy_term.field_reference_desk'
+        - 'config:field.storage.taxonomy_term.intranet_website'
+  block_library_directory_list:
+    display_plugin: block
+    id: block_library_directory_list
+    display_title: 'Block List'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
+      defaults:
+        style: false
+        row: false
+        fields: false
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: true
+      fields:
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: false
+            ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: h2
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          convert_spaces: false
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: term_name
+        field_library_type:
+          id: field_library_type
+          table: taxonomy_term__field_library_type
+          field: field_library_type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Library Type'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: list_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_reference_desk:
+          id: field_reference_desk
+          table: taxonomy_term__field_reference_desk
+          field: field_reference_desk
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Reference Desk and Library Contact(s)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: h3
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_revisions_entity_view
+          settings:
+            view_mode: default
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        intranet_website:
+          id: intranet_website
+          table: taxonomy_term__intranet_website
+          field: intranet_website
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: '{{ intranet_website }} '
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: strong
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: uri
+          type: link
+          settings:
+            trim_length: null
+            url_only: false
+            url_plain: false
+            rel: '0'
+            target: '0'
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_public_website:
+          id: field_public_website
+          table: taxonomy_term__field_public_website
+          field: field_public_website
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: '{{ field_public_website }}'
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: strong
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: uri
+          type: link
+          settings:
+            trim_length: null
+            url_only: false
+            url_plain: false
+            rel: '0'
+            target: '0'
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_library_contact:
+          id: field_library_contact
+          table: taxonomy_term__field_library_contact
+          field: field_library_contact
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<br />\r\n{{ field_library_contact }}\r\n<hr>"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: div
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_entity_view
+          settings:
+            view_mode: poc_simple
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - user.permissions
+      tags:
+        - 'config:field.storage.taxonomy_term.field_library_contact'
+        - 'config:field.storage.taxonomy_term.field_library_type'
+        - 'config:field.storage.taxonomy_term.field_public_website'
+        - 'config:field.storage.taxonomy_term.field_reference_desk'
+        - 'config:field.storage.taxonomy_term.intranet_website'
+  libraries_page:
+    display_plugin: page
+    id: libraries_page
+    display_title: Page
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: library-services/library-directory-page
+      enabled: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user.permissions
+      tags:
+        - 'config:field.storage.taxonomy_term.field_library_contact'
+        - 'config:field.storage.taxonomy_term.field_library_type'
+        - 'config:field.storage.taxonomy_term.field_public_website'
         - 'config:field.storage.taxonomy_term.field_reference_desk'
         - 'config:field.storage.taxonomy_term.intranet_website'
