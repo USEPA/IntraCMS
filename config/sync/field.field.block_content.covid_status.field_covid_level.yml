@@ -1,0 +1,21 @@
+uuid: 0365e5b2-f19c-4d5e-9f1e-36b78395e820
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.covid_status
+    - field.storage.block_content.field_covid_level
+  module:
+    - options
+id: block_content.covid_status.field_covid_level
+field_name: field_covid_level
+entity_type: block_content
+bundle: covid_status
+label: Level
+description: 'Select the Highest Level that Applies to Your Community.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

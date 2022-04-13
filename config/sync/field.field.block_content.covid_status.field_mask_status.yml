@@ -1,0 +1,21 @@
+uuid: a2196811-6db0-4d7c-9c24-142b0e1a3460
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.covid_status
+    - field.storage.block_content.field_mask_status
+  module:
+    - options
+id: block_content.covid_status.field_mask_status
+field_name: field_mask_status
+entity_type: block_content
+bundle: covid_status
+label: 'Mask Status'
+description: 'Select the mask wearing requirements. '
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
