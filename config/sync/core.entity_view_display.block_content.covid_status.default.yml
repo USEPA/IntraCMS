@@ -1,0 +1,47 @@
+uuid: fd6bc2e3-f1e5-4a12-9e39-6643a0b6202f
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.covid_status
+    - field.field.block_content.covid_status.field_community_name
+    - field.field.block_content.covid_status.field_covid_level
+    - field.field.block_content.covid_status.field_mask_status
+  module:
+    - layout_builder
+    - layout_library
+    - options
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+  layout_library:
+    enable: false
+id: block_content.covid_status.default
+targetEntityType: block_content
+bundle: covid_status
+mode: default
+content:
+  field_community_name:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_covid_level:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_mask_status:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden: {  }
