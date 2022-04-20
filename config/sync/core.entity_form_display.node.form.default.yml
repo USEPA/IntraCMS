@@ -6,6 +6,7 @@ dependencies:
     - entity_browser.browser.form_media
     - field.field.node.form.body
     - field.field.node.form.field_epa_form_number
+    - field.field.node.form.field_form_additional_resources
     - field.field.node.form.field_form_category
     - field.field.node.form.field_form_effective_date
     - field.field.node.form.field_form_poc
@@ -64,7 +65,7 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 15
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -76,6 +77,14 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_form_additional_resources:
+    weight: 7
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_form_category:
     weight: 4
     settings: {  }
@@ -83,13 +92,13 @@ content:
     type: options_select
     region: content
   field_form_effective_date:
-    weight: 7
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_form_poc:
-    weight: 9
+    weight: 10
     settings:
       size: 60
       placeholder: ''
@@ -112,7 +121,7 @@ content:
     region: content
   field_form_upload:
     type: entity_browser_entity_reference
-    weight: 12
+    weight: 13
     settings:
       entity_browser: form_media
       field_widget_display: label
@@ -143,7 +152,7 @@ content:
           bundle: form
     region: content
   field_link_to_form:
-    weight: 11
+    weight: 12
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -169,7 +178,7 @@ content:
     type: link_default
     region: content
   field_owning_aaship_region:
-    weight: 8
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -194,20 +203,20 @@ content:
     type: datetime_default
     region: content
   field_upload_or_link:
-    weight: 10
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 18
+    weight: 19
     settings: {  }
     region: content
     third_party_settings: {  }
   path:
     type: path
-    weight: 13
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -215,12 +224,12 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 17
+    weight: 18
     region: content
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 16
+    weight: 17
     settings:
       match_operator: CONTAINS
       size: 60
@@ -229,7 +238,7 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 14
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
