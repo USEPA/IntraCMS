@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.form.body
     - field.field.node.form.field_epa_form_number
+    - field.field.node.form.field_form_additional_resources
     - field.field.node.form.field_form_category
     - field.field.node.form.field_form_effective_date
     - field.field.node.form.field_form_poc
@@ -52,6 +53,18 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  field_form_additional_resources:
+    weight: 8
+    label: above
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
   field_form_category:
     weight: 6
     label: inline
@@ -70,7 +83,7 @@ content:
     type: datetime_default
     region: content
   field_form_poc:
-    weight: 9
+    weight: 10
     label: inline
     settings: {  }
     third_party_settings: {  }
@@ -105,7 +118,7 @@ content:
     type: link
     region: content
   field_owning_aaship_region:
-    weight: 8
+    weight: 9
     label: inline
     settings:
       link: false
@@ -113,7 +126,7 @@ content:
     type: entity_reference_label
     region: content
   field_replacing:
-    weight: 10
+    weight: 11
     label: inline
     settings:
       link: true
