@@ -9,7 +9,7 @@ _core:
 id: landing_page
 label: 'Landing page'
 type: 'canonical_entities:node'
-pattern: '[node:title]'
+pattern: '[node:menu-link:parent:url:path]/[node:menu-link:title]'
 selection_criteria:
   357097ed-305b-4a11-9bc7-6b80f1688cd2:
     id: node_type
