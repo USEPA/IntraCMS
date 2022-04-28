@@ -403,11 +403,19 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "install.ord": [
-            "composer install",
-            "rm -f docroot/web.config"
+        "site-install": [
+            "drush site-install standard -n --ansi",
+            "drush entity:delete shortcut -y",
+            "drush cset system.site uuid a20f8b2d-8c57-4965-bb1c-d142c5b66431 -y",
+            "drush cr",
+            "drush en config_split -y",
+            "drush cim -y --ansi"
         ],
-        "post-install-cmd": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "post-install-cmd": [
+            "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+            "rm -f docroot/web.config",
+            "rm -f docroot/core/install.php"
+        ],
         "post-update-cmd": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
         "post-create-project-cmd": "rm -r -f .travis.yml behat.yml .travis-ci",
         "nuke": "rm -r -f docroot/modules/contrib docroot/profiles/contrib/lightning vendor composer.lock",
