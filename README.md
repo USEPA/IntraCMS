@@ -5,7 +5,9 @@ The United States Environmental Protection Agency (EPA) GitHub project code is p
 Required Software & Setup
 =========================
 
-### [DDEV](https://ddev.readthedocs.io/)
+
+### Using [DDEV](https://ddev.readthedocs.io/)
+## DDEV Setup
 1. From command line, run command  `git clone https://github.com/USEPA/IntraCMS.git`
 2. `cd IntraCMS` -- Navigate into the cloned git repo 
 3. `ddev config --project-type=drupal9 --docroot=docroot --create-docroot` 
