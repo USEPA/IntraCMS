@@ -5,6 +5,17 @@ The United States Environmental Protection Agency (EPA) GitHub project code is p
 Required Software & Setup
 =========================
 
+### [DDEV](https://ddev.readthedocs.io/)
+1. From command line, run command  `git clone https://github.com/USEPA/IntraCMS.git`
+2. `cd IntraCMS` -- Navigate into the cloned git repo 
+3. `ddev config --project-type=drupal9 --docroot=docroot --create-docroot` 
+4. `ddev composer site-install` Until the project installation profile transitions to minimal from standard, there will always be errors related to the shortcut menu. The install script removes existing shortcuts, sets the site UUID, enables config_split, and runs a `drush-cim`. The post install script removes web.config and install.php.
+5. Update the config.yaml file located in the .ddev directory:
+    1. Make sure the docroot is set correctly: `docroot: docroot`
+    2. Update to the appropriate php version - currently 7.3: `php_version: "7.3"`
+    3. Set the correct composer version - currently 1: `composer_version: "1"`
+6. `ddev launch'`
+
 ### PHP
 
 -   Download PHP 7 (v7.4.24) - <https://windows.php.net/download>.
