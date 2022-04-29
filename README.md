@@ -5,6 +5,19 @@ The United States Environmental Protection Agency (EPA) GitHub project code is p
 Required Software & Setup
 =========================
 
+
+### Using [DDEV](https://ddev.readthedocs.io/)
+## DDEV Setup
+1. From command line, run command  `git clone https://github.com/USEPA/IntraCMS.git`
+2. `cd IntraCMS` -- Navigate into the cloned git repo 
+3. `ddev config --project-type=drupal9 --docroot=docroot --create-docroot` 
+4. `ddev composer site-install` Until the project installation profile transitions to minimal from standard, there will always be errors related to the shortcut menu. The install script removes existing shortcuts, sets the site UUID, enables config_split, and runs a `drush-cim`. The post install script removes web.config and install.php.
+5. Update the config.yaml file located in the .ddev directory:
+    1. Make sure the docroot is set correctly: `docroot: docroot`
+    2. Update to the appropriate php version - currently 7.3: `php_version: "7.3"`
+    3. Set the correct composer version - currently 1: `composer_version: "1"`
+6. `ddev launch'`
+
 ### PHP
 
 -   Download PHP 7 (v7.4.24) - <https://windows.php.net/download>.
@@ -57,7 +70,7 @@ Required Software & Setup
 -   Download and install Drush (v9.7.1)
 -   Using Git Bash, enter `git clone https://github.com/drush-ops/drush.git` to clone Drush into your current directory.
 -   Enter `cd drush` to navigate in to the cloned drush repo/folder.
--   Enter `composer install` to install/update the project dependencies.
+-   Enter `composer site-install` to install/update the project dependencies.
 -   Add the Drush directory to the system environment PATH variable.
 -   If using CMD to add Drush to PATH, enter `set PATH=%PATH%;C:\path\to\drush\`.
 -   Enter `drush status` in the command line (cmd) to confirm Drush is properly installed.
@@ -90,7 +103,7 @@ Cloning Repository & Installing Dependencies
 -   If required, enter you Git username/email and password when prompted.
 -   Enter `cd IntraCMS` to navigate in to the cloned IntraCMS repo/folder.
 -   Enter `git checkout -b origin/development` to checkout the development branch.
--   Enter `composer install` to install/update the project dependencies.
+-   Enter `composer site-install` to install/update the project dependencies.
 
 Configuring & Starting Web-Server
 =================================
@@ -137,7 +150,7 @@ Installing Drupal
 =================
 
 -   Select the `English` language when prompted.
--   Select the `Lightning` installation profile when prompted.
+-   Select the `Standard` installation profile when prompted.
 -   Select the `SQLite` database when prompted.
 -   Enter the site name, email address, username & password when prompted.
 
@@ -153,8 +166,9 @@ Importing Drupal Configurations
 
 ### Set Site UUID & Import Configurations
 
+-   These steps should now be automated when running `composer site-install`
 -   Using Git Bash, navigate to the IntraCMS cloned repo/folder.
--   Enter `drush config-set "system.site" uuid "a20f8b2d-8c57-4965-bb1c-d142c5b66431"` to set the site UUID.
+-   Enter `drush config-set "system.site" uuid "a20f8b2d-8c57-4965-bb1c-d142c5b66431"` to set the site UUID. 
 -   Enter `drush config:import` or `drush cim` to import the site configurations.
 -   Enter `yes` to confirm the configuration import.
 
@@ -166,7 +180,7 @@ Troubleshooting
 -   Visit this [issue](https://www.drupal.org/project/drupal/issues/3047392) and apply the following [Patch](https://www.drupal.org/files/issues/2020-03-28/3047392-17_0.patch).
 -   Typically occurs when the uuid of the current site does not match the uuid in the configuration you are attempting to import (see system.site.yml file).
 -   Enter `drush cget system.site` to see the current site information.
--   Enter `drush config-set "system.site" uuid "a20f8b2d-8c57-4965-bb1c-d142c5b66431"` to set the site UUID.
+-   Enter `drush config-set "system.site" uuid "a20f8b2d-8c57-4965-bb1c-d142c5b66431"` to set the site UUID. This should already be set when running composer site-install.
 
 ### Temporary File "XYZ" Could Not Be Created
 

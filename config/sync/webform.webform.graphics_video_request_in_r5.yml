@@ -1,0 +1,897 @@
+uuid: f9ec7bfd-b140-4d4f-9d0e-c7d96d5487ed
+langcode: en
+status: open
+dependencies:
+  module:
+    - webform_analysis
+third_party_settings:
+  webform_analysis:
+    chart_type: PieChart
+    components:
+      - status
+      - project_type
+open: null
+close: null
+weight: 0
+uid: 3129
+template: false
+archive: false
+id: graphics_video_request_in_r5
+title: 'Graphics & Video Request in R5'
+description: 'Graphics &amp; Video Request form for Region 5. Requests managed by the Multimedia Communications Section in External Communications Section in the Office of the Regional Administrator.'
+category: 'Region 5'
+elements: |-
+  request_status:
+    '#type': details
+    '#title': 'Request Status'
+    '#states':
+      visible:
+        - ':input[name="status"]':
+            value: submitted
+        - or
+        - ':input[name="status"]':
+            value: 'in progress'
+        - or
+        - ':input[name="status"]':
+            value: 'on hold'
+        - or
+        - ':input[name="status"]':
+            value: canceled
+        - or
+        - ':input[name="status"]':
+            value: completed
+    status:
+      '#type': radios
+      '#title': Status
+      '#options':
+        submitted: submitted
+        'in progress': 'in progress'
+        'on hold': 'on hold'
+        canceled: canceled
+        completed: completed
+      '#options__properties': ''
+    status_notes:
+      '#type': textarea
+      '#title': 'Status Notes'
+      '#states':
+        visible:
+          ':input[name="status"]':
+            checked: true
+  project_title:
+    '#type': textfield
+    '#title': 'Project Title'
+    '#placeholder': 'What is the name of this project?'
+    '#required': true
+    '#required_error': 'Project title is required!'
+  name:
+    '#type': webform_name
+    '#title': Name
+    '#required': true
+    '#title__access': false
+    '#middle__access': false
+    '#suffix__access': false
+    '#degree__access': false
+  requester_email:
+    '#type': email
+    '#title': 'Requester email'
+    '#placeholder': 'Please enter your email'
+    '#input_mask': ''
+    '#required': true
+    '#required_error': 'Please provide an email.'
+  external_internal:
+    '#type': radios
+    '#title': 'Is this an external or internal project?'
+    '#options':
+      External: External
+      Internal: Internal
+    '#options_display': side_by_side
+    '#required': true
+    '#options__properties': ''
+  project_type:
+    '#type': checkboxes
+    '#title': 'Project type'
+    '#options':
+      'Graphic Design': 'Graphic Design'
+      Photography: Photography
+      Print: Print
+      Videography: Videography
+    '#options_display': side_by_side
+    '#required': true
+    '#required_error': 'Must select one option'
+    '#options__properties': ''
+  type_of_video_project:
+    '#type': checkboxes
+    '#title': 'Type of Video Project'
+    '#options':
+      'Person or a group of people ': 'Person or a group of people  -- i.e.: profile or award winner'
+      Event: 'Event -- i.e.: award ceremony, spill exercise'
+      'Site Project': 'Site Project -- i.e.: site restoration, cleanup work'
+      Campaign: 'Campaign -- i.e.: how to use Fleet Commander'
+      Training: 'Training -- i.e.: how to use Fleet Commander'
+      'Pre-recorded presentation ': 'Pre-recorded presentation  -- i.e.: PowerPoint pre-recorded to be shown in a public meeting'
+      'Recording of a virtual meeting ': 'Recording of a virtual meeting  -- i.e.: a meeting done in Teams or Zoom that needs captioning or minor touch-ups'
+      Other: Other
+    '#required': true
+    '#states':
+      visible:
+        ':input[name="project_type[Videography]"]':
+          checked: true
+    '#options__properties': ''
+  other_video:
+    '#type': textfield
+    '#title': 'Other type of videography project?'
+    '#description': 'Please explain thetype of video project this will be.'
+    '#required': true
+    '#states':
+      visible:
+        ':input[name="type_of_video_project[Other]"]':
+          checked: true
+  foreign_lang_cap:
+    '#type': radios
+    '#title': 'Do you need captions in a foreign language?'
+    '#options':
+      'Yes': 'Yes'
+      'No': 'No'
+    '#options_display': side_by_side
+    '#required': true
+    '#states':
+      visible:
+        ':input[name="project_type[Videography]"]':
+          checked: true
+    '#options__properties': ''
+  which_language:
+    '#type': textfield
+    '#title': 'Which foreign language?'
+    '#placeholder': 'Please enter feorign language'
+    '#required': true
+    '#states':
+      visible:
+        ':input[name="foreign_lang_cap"]':
+          value: 'Yes'
+  type_photo_project:
+    '#type': checkboxes
+    '#title': 'Type of Photography Project'
+    '#options':
+      'Employee portrait': 'Employee portrait'
+      'Group photo in EPA building': 'Group photo in EPA building'
+      'Group photo in the field': 'Group photo in the field'
+      'Meeting or Event at EPA office': 'Meeting or Event at EPA office'
+      'Meeting or Event outside of EPA office': 'Meeting or Event outside of EPA office'
+      'Award ceremony': 'Award ceremony'
+      'Site photos': 'Site photos'
+      'Other photo project': 'Other photo project'
+    '#required': true
+    '#states':
+      visible:
+        ':input[name="project_type[Photography]"]':
+          checked: true
+    '#options__properties': ''
+  new_employee:
+    '#type': radios
+    '#title': 'New employee'
+    '#description': 'For the purpose of this form, a new employee is someone who&nbsp; started at the agency after January 2020.'
+    '#options':
+      'New employee': 'New employee'
+      'Existing employee, never had an EPA portrait': 'Existing employee, never had an EPA portrait'
+      'Existing employee, need to update my portrait': 'Existing employee, need to update my portrait'
+    '#required': true
+    '#states':
+      visible:
+        ':input[name="type_photo_project[Employee portrait]"]':
+          checked: true
+    '#options__properties': ''
+  other_photo:
+    '#type': textfield
+    '#title': 'Describe other type of photo project'
+    '#description': 'Please describe other photo project.'
+    '#states':
+      visible:
+        ':input[name="type_photo_project[Other photo project]"]':
+          '': ''
+    '#required': true
+  photo_tech:
+    '#type': checkboxes
+    '#title': 'Technical considerations for Photography'
+    '#description': 'Please select all that apply'
+    '#options':
+      Outdoors: Outdoors
+      Indoors: Indoors
+      'Safety, environmental or weather concerns for camera operator': 'Safety, environmental or weather concerns for camera operator'
+      'Shooting in low light': 'Shooting in low light'
+      'Shooting in darkness': 'Shooting in darkness'
+      'Limited access to power outlets': 'Limited access to power outlets'
+      'Special permission needed to take photos ': 'Special permission needed to take photos '
+      'Overnight travel required': 'Overnight travel required'
+      Other: Other
+    '#required': true
+    '#states':
+      visible:
+        - ':input[name="type_photo_project[Meeting or Event at EPA office]"]':
+            checked: true
+        - or
+        - ':input[name="type_photo_project[Group photo in the field]"]':
+            checked: true
+        - or
+        - ':input[name="type_photo_project[Meeting or Event outside of EPA office]"]':
+            checked: true
+        - or
+        - ':input[name="type_photo_project[Award ceremony]"]':
+            checked: true
+        - or
+        - ':input[name="type_photo_project[Site photos]"]':
+            checked: true
+    '#options__properties': ''
+  other_tech_photo:
+    '#type': textarea
+    '#title': 'Other technical considerations for photography?'
+    '#description': 'Please enter other techinical considerations; must wear hazmat suit, will need to jump a fence, it will be below freezing, etc'
+    '#required': true
+    '#states':
+      visible:
+        ':input[name="photo_tech[Other]"]':
+          checked: true
+  firm_shooting_date:
+    '#type': radios
+    '#title': 'Do you have a firm shooting date?'
+    '#options':
+      'Yes': 'Yes'
+      'No': 'No'
+    '#options_display': side_by_side
+    '#required': true
+    '#states':
+      visible:
+        ':input[name="project_type[Videography]"]':
+          checked: true
+    '#options__properties': ''
+  shooting_date:
+    '#type': date
+    '#title': 'What is the shooting date?'
+    '#required': true
+    '#states':
+      visible:
+        - ':input[name="firm_shooting_date"]':
+            value: 'Yes'
+        - or
+        - ':input[name="type_photo_project[Employee portrait]"]':
+            checked: true
+        - or
+        - ':input[name="project_type[Photography]"]':
+            checked: true
+  type_graphics:
+    '#type': checkboxes
+    '#title': 'Type of Graphics project'
+    '#description': 'Please seelct all that apply.'
+    '#options':
+      Certificates: Certificates
+      ' Signs': ' Signs'
+      Posters: Posters
+      'Tent Cards': 'Tent Cards'
+      Other: Other
+    '#required': true
+    '#states':
+      visible:
+        ':input[name="project_type[Graphic Design]"]':
+          checked: true
+    '#options__properties': ''
+  number_certificates:
+    '#type': textfield
+    '#title': 'How many certificates are needed?'
+    '#placeholder': 'Please enter a number'
+    '#required': true
+    '#required_error': 'Must enter a number'
+    '#states':
+      visible:
+        ':input[name="type_graphics[Certificates]"]':
+          checked: true
+  other_graphics:
+    '#type': textfield
+    '#title': 'Other type of graphics porject'
+    '#description': 'Please describe the graphics project. Eg; graphic already exists but needs editing.'
+    '#states':
+      visible:
+        ':input[name="type_graphics[Other]"]':
+          checked: true
+    '#required': true
+  printready:
+    '#type': radios
+    '#title': 'Do you have a file ready to print or do you we need to create it?'
+    '#options':
+      'I have the files ready to print': 'I have the files ready to print'
+      'Please make the file': 'Please make the file'
+    '#required': true
+    '#states':
+      visible:
+        ':input[name="project_type[Print]"]':
+          checked: true
+        ':input[name="type_graphics[ Signs]"]':
+          checked: true
+        ':input[name="type_graphics[Certificates]"]':
+          checked: true
+        ':input[name="type_graphics[Other]"]':
+          checked: true
+    '#options__properties': ''
+  foamboard:
+    '#type': radios
+    '#title': 'Does this need to be mounted on foamboard?'
+    '#options':
+      'Yes': 'Yes'
+      'No': 'No'
+    '#required': true
+    '#states':
+      visible:
+        - ':input[name="project_type[Print]"]':
+            checked: true
+        - or
+        - ':input[name="type_graphics[Posters]"]':
+            checked: true
+        - or
+        - ':input[name="type_graphics[ Signs]"]':
+            checked: true
+    '#options__properties': ''
+  description_of_project:
+    '#type': textarea
+    '#title': 'Justification and description of project'
+    '#description': 'Who is the audience? What will the video show? Why is this needed? Location of the photography/video shoot? Any other relevant and pertinent information?'
+    '#placeholder': |
+      Headshot for new employee? Just state you are a "new employee"
+      Updating your headshot? Just state you are "updating your headshot"
+    '#required': true
+    '#required_error': 'Please explain detail what needs to be done'
+  due_date:
+    '#type': date
+    '#title': 'Project completed due date'
+    '#placeholder': 'Date when work should be completed.'
+    '#required_error': 'Please provide a date'
+    '#required': true
+  priority_status:
+    '#type': select
+    '#title': Priority
+    '#options':
+      Critical: Critical
+      High: High
+      Medium: Medium
+      Low: Low
+      'Specify your priority': 'Specify your priority'
+    '#empty_option': 'Specify your priority'
+    '#required': true
+    '#required_error': 'Add the priority of the work'
+  additional_notes:
+    '#type': textarea
+    '#title': 'Additional Notes'
+    '#description': 'Please provide names of other people involved in the project and their roles,&nbsp;provide dates/times you are not available to dicuss this project and any other helpful information.'
+  upload_audio_files:
+    '#type': webform_audio_file
+    '#title': 'Upload audio files'
+    '#multiple': true
+    '#file_preview': value
+  upload_document_file:
+    '#type': webform_document_file
+    '#title': 'Upload document file'
+    '#multiple': true
+    '#file_preview': value
+  upload_image_file:
+    '#type': webform_image_file
+    '#title': 'Upload Image file'
+    '#multiple': true
+    '#file_preview': value
+  upload_video_file:
+    '#type': webform_video_file
+    '#title': 'Upload video file'
+    '#multiple': true
+    '#file_preview': value
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: both
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_log: true
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns:
+    - created
+    - completed
+    - changed
+    - operations
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_title: 'Thanks for your request!'
+  confirmation_message: "<p>Thank you for your request, please download and return these consent forms when your video/photo shoot is approved.</p>\r\n<a href=\"https://work.epa.gov/sites/default/files/2021-09/EPA_Multimedia_Consent_Form-2021-508.pdf\">Consent form&nbsp;</a><br />\r\n<br />\r\n<a href=\"https://work.epa.gov/sites/default/files/2021-09/EPA_Location_Agreement-508.pdf\">Consent form to shoot on private property</a><br />\r\n<br />\r\n<a href=\"https://work.epa.gov/sites/default/files/2021-09/EPA_Content_License_Agreement-2021-508.pdf\">Consent form to use other folks or agency images, graphics, or b-roll for EPA projects</a><br />\r\n<br />\r\nNEW employee?! Please <a href=\"https://work.epa.gov/region-5/new-faces-submissions\">submit this form to be added to New Faces</a>."
+  confirmation_url: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  view_any:
+    roles: {  }
+    users:
+      - 872
+      - 171
+      - 3036
+      - 2845
+    permissions: {  }
+    group_roles: {  }
+  update_any:
+    roles: {  }
+    users:
+      - 872
+      - 171
+      - 3036
+      - 2845
+    permissions: {  }
+    group_roles: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  view_own:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  configuration:
+    roles:
+      - system_editor
+      - administrator
+    users:
+      - 872
+      - 171
+      - 3036
+      - 2845
+    permissions: {  }
+  administer_submissions:
+    group_roles: {  }
+handlers:
+  email:
+    id: email
+    label: Email
+    notes: ''
+    handler_id: email
+    status: true
+    conditions: {  }
+    weight: -48
+    settings:
+      states:
+        - completed
+      to_mail: wall.toby@epa.gov
+      to_options: {  }
+      cc_mail: lippert.allison@epa.gov
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: '[webform_submission:values:requester_email:raw]'
+      from_options: {  }
+      from_name: '[webform_submission:values:project_title:raw]'
+      subject: 'R5 Graphics & Video Webform Request'
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  internal_email:
+    id: email
+    label: 'Internal email'
+    notes: ''
+    handler_id: internal_email
+    status: true
+    conditions:
+      enabled:
+        ':input[name="external_internal"]':
+          value: Internal
+    weight: -46
+    settings:
+      states:
+        - completed
+      to_mail: lamberty.deborah@epa.gov
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: '[webform_submission:values:requester_email:raw]'
+      from_options: {  }
+      from_name: '[webform_submission:values:project_title:raw]'
+      subject: 'R5 Graphics & Video Webform Request'
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  external_email:
+    id: email
+    label: 'External email'
+    notes: ''
+    handler_id: external_email
+    status: true
+    conditions:
+      enabled:
+        ':input[name="external_internal"]':
+          value: External
+    weight: -47
+    settings:
+      states:
+        - completed
+      to_mail: ostermeier.jennifer@epa.gov
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: '[webform_submission:values:requester_email:raw]'
+      from_options: {  }
+      from_name: '[webform_submission:values:project_title:raw]'
+      subject: 'R5 Graphics and Video Webform Request'
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  set_initial_status:
+    id: action
+    label: 'Set initial status'
+    notes: ''
+    handler_id: set_initial_status
+    status: true
+    conditions: {  }
+    weight: -49
+    settings:
+      states:
+        - completed
+      notes: ''
+      sticky: null
+      locked: null
+      data: 'status: ''submitted'''
+      message: ''
+      message_type: status
+      debug: false
+  email_to_requestor:
+    id: email
+    label: 'Email to Requestor'
+    notes: ''
+    handler_id: email_to_requestor
+    status: true
+    conditions: {  }
+    weight: -50
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:requester_email:raw]'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements:
+        additional_notes: additional_notes
+        upload_audio_files: upload_audio_files
+        upload_document_file: upload_document_file
+        upload_image_file: upload_image_file
+        upload_video_file: upload_video_file
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_to_requester_status_change:
+    id: email
+    label: 'Email to requester status change'
+    notes: ''
+    handler_id: email_to_requester_status_change
+    status: true
+    conditions:
+      enabled:
+        ':input[name="status"]':
+          '!value': submitted
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:requester_email:raw]'
+      to_options: {  }
+      cc_mail: 'lippert.allison@epa.gov, wall.toby@epa.gov'
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: '[webform_submission:values:project_title:raw]'
+      from_options: {  }
+      from_name: 'R5 Graphics & Video Request Form'
+      subject: 'Graphics & Video request status changes '
+      body: _default
+      excluded_elements:
+        external_internal: external_internal
+        other_video: other_video
+        foreign_lang_cap: foreign_lang_cap
+        which_language: which_language
+        other_photo: other_photo
+        photo_tech: photo_tech
+        other_tech_photo: other_tech_photo
+        firm_shooting_date: firm_shooting_date
+        type_graphics: type_graphics
+        number_certificates: number_certificates
+        other_graphics: other_graphics
+        printready: printready
+        foamboard: foamboard
+        additional_notes: additional_notes
+        upload_audio_files: upload_audio_files
+        upload_document_file: upload_document_file
+        upload_image_file: upload_image_file
+        upload_video_file: upload_video_file
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_to_new_faces:
+    id: email
+    label: 'Email to new faces'
+    notes: ''
+    handler_id: email_to_new_faces
+    status: true
+    conditions:
+      enabled:
+        ':input[name="new_employee"]':
+          value: 'New employee'
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:requester_email:raw]'
+      to_options: {  }
+      cc_mail: lamberty.deborah@epa.gov
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: lamberty.deborah@epa.gov
+      from_options: {  }
+      from_name: 'Deborah Lamberty'
+      subject: 'Join New Faces!'
+      body: "<span style=\"font-size:11pt\"><span style=\"font-family:Calibri,sans-serif\">Thanks for joining the EPA family!&nbsp; Now that you have your portrait scheduled, please save this email for when your portrait is done. Submit a bio to New Faces along with your new portrait image. You can submit a bio with no portrait, or if you would like to include a selfie, or a picture of yourself&nbsp;that you love that is fine too. (I.e. picture with pet, on a kayak, out hiking, in your service uniform, etc.)<br />\r\n<br />\r\nSubmitting your New Faces profile to be posted on the <a href=\"https://work.epa.gov/region-5\" style=\"color:#0563c1; text-decoration:underline\" target=\"_blank\" title=\"https://work.epa.gov/region-5\">EPA Region 5 Intranet</a>&nbsp;is a great way to let your new colleagues get to know you.<br />\r\n<br />\r\nCheck out current and previous <a href=\"https://work.epa.gov/region-5/new-faces\" style=\"color:#0563c1; text-decoration:underline\" target=\"_blank\" title=\"https://work.epa.gov/region-5/new-faces\">New Faces</a>.<br />\r\n<br />\r\n<a href=\"https://work.epa.gov/region-5/new-faces-submissions\" style=\"color:#0563c1; text-decoration:underline\" target=\"_blank\" title=\"https://work.epa.gov/region-5/new-faces-submissions\">Submit your bio to New Faces!</a></span></span><br />\r\n<br />\r\n<span style=\"font-size:11pt\"><span style=\"font-family:Calibri,sans-serif\">And once again, Welcome to EPA!<br />\r\n<br />\r\n<br />\r\nKind regards,&nbsp;&nbsp;</span></span><br />\r\n<br />\r\n<br />\r\n<span style=\"font-size:11pt\"><span style=\"font-family:Calibri,sans-serif\">Deborah Lamberty<br />\r\nSenior Web Content Coorindator<br />\r\nMultimedia Communications Office | External Communications Office<br />\r\nU.S. EPA Region 5, Office of the Regional Administrator<br />\r\n312-886-6681 | <a href=\"mailto:lamberty.deborah@epa.gov\" style=\"color:#0563c1; text-decoration:underline\">lamberty.deborah@epa.gov</a></span></span><br />\r\n<br />\r\n<br />\r\n&nbsp;"
+      excluded_elements:
+        status: status
+        status_notes: status_notes
+        project_title: project_title
+        name: name
+        requester_email: requester_email
+        external_internal: external_internal
+        project_type: project_type
+        type_of_video_project: type_of_video_project
+        other_video: other_video
+        foreign_lang_cap: foreign_lang_cap
+        which_language: which_language
+        type_photo_project: type_photo_project
+        new_employee: new_employee
+        other_photo: other_photo
+        photo_tech: photo_tech
+        other_tech_photo: other_tech_photo
+        firm_shooting_date: firm_shooting_date
+        shooting_date: shooting_date
+        type_graphics: type_graphics
+        number_certificates: number_certificates
+        other_graphics: other_graphics
+        printready: printready
+        foamboard: foamboard
+        description_of_project: description_of_project
+        due_date: due_date
+        priority_status: priority_status
+        additional_notes: additional_notes
+        upload_audio_files: upload_audio_files
+        upload_document_file: upload_document_file
+        upload_image_file: upload_image_file
+        upload_video_file: upload_video_file
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+variants: {  }
