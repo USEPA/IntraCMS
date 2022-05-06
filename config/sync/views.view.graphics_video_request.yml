@@ -1,29 +1,36 @@
-uuid: f9e9d9c7-2a05-487f-b589-d5529b952403
+uuid: 7f5fa76a-020a-4434-a047-3d01225d0c20
 langcode: en
 status: true
 dependencies:
   config:
-    - webform.webform.graphics_video_request_in_r5
+    - field.storage.node.field_employee_profile
+    - node.type.employee_profile
+    - taxonomy.vocabulary.program_offices_and_regions
   module:
-    - webform
-    - webform_views
-id: graphics_video_request
-label: 'Graphics & Video Request'
+    - node
+    - taxonomy
+    - text
+    - user
+    - vefl
+    - views_autocomplete_filters
+id: employee_profiles
+label: 'Employee Profiles'
 module: views
 description: ''
 tag: ''
-base_table: webform_submission
-base_field: sid
+base_table: node_field_data
+base_field: nid
 display:
   default:
     display_plugin: default
     id: default
-    display_title: Default
+    display_title: Master
     position: 0
     display_options:
       access:
-        type: none
-        options: {  }
+        type: perm
+        options:
+          perm: 'access content'
       cache:
         type: tag
         options: {  }
@@ -36,7 +43,7 @@ display:
           query_comment: ''
           query_tags: {  }
       exposed_form:
-        type: basic
+        type: vefl_basic
         options:
           submit_button: Apply
           reset_button: true
@@ -45,16 +52,30 @@ display:
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          layout:
+            layout_id: layout_threecol_section
+            change: Change
+            widget_region:
+              title: first
+              field_office_region_target_id: second
+              sort_by: third
+              sort_order: first
+              items_per_page: second
+              offset: third
+              submit: first
+              reset: first
       pager:
-        type: mini
+        type: full
         options:
-          items_per_page: 50
+          items_per_page: 10
           offset: 0
           id: 0
           total_pages: null
           tags:
             previous: ‹‹
             next: ››
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -63,98 +84,29 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          quantity: 9
       style:
-        type: table
+        type: default
         options:
-          grouping: {  }
           row_class: ''
           default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
-          columns:
-            operations: operations
-            webform_submission_value: webform_submission_value
-            webform_submission_value_1: webform_submission_value_1
-            completed: completed
-            webform_submission_value_2: webform_submission_value_2
-            webform_submission_value_3: webform_submission_value_3
-            webform_submission_value_4: webform_submission_value_4
-            webform_submission_value_5: webform_submission_value_5
-            source_entity_label: source_entity_label
-          info:
-            operations:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_1:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            completed:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_2:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_3:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_4:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_5:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            source_entity_label:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: '-1'
-          empty_table: false
+          uses_fields: false
       row:
         type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
       fields:
-        operations:
-          id: operations
-          table: webform_submission
-          field: operations
+        title:
+          id: title
+          table: node_field_data
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Operations links'
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -174,8 +126,8 @@ display:
             target: ''
             nl2br: false
             max_length: 0
-            word_boundary: true
-            ellipsis: true
+            word_boundary: false
+            ellipsis: false
             more_link: false
             more_link_text: ''
             more_link_path: ''
@@ -183,11 +135,11 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: ''
+          element_type: h2
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -195,17 +147,31 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          destination: false
-          entity_type: webform_submission
-          plugin_id: entity_operations
-        completed:
-          id: completed
-          table: webform_submission
-          field: completed
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+        created:
+          id: created
+          table: node_field_data
+          field: created
           relationship: none
           group_type: group
           admin_label: ''
-          label: Submitted
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -234,11 +200,11 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: ''
+          element_type: em
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -262,17 +228,17 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: webform_submission
-          entity_field: completed
+          entity_type: node
+          entity_field: created
           plugin_id: field
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graphics_video_request_in_r5_project_title
-          field: webform_submission_value
+        field_employee_profile:
+          id: field_employee_profile
+          table: node__field_employee_profile
+          field: field_employee_profile
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Project Title'
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -305,7 +271,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -313,364 +279,126 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          plugin_id: webform_submission_field
-        webform_submission_value_1:
-          id: webform_submission_value_1
-          table: webform_submission_field_graphics_video_request_in_r5_project_type
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Project Type'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          plugin_id: webform_submission_field
-        webform_submission_value_2:
-          id: webform_submission_value_2
-          table: webform_submission_field_graphics_video_request_in_r5_status
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Status
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          plugin_id: webform_submission_field
-        webform_submission_value_3:
-          id: webform_submission_value_3
-          table: webform_submission_field_graphics_video_request_in_r5_status_notes
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Status Notes'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          plugin_id: webform_submission_field
-        webform_submission_value_4:
-          id: webform_submission_value_4
-          table: webform_submission_field_graphics_video_request_in_r5_priority_status
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Priority
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          plugin_id: webform_submission_field
-        webform_submission_value_5:
-          id: webform_submission_value_5
-          table: webform_submission_field_graphics_video_request_in_r5_requester_email
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Requester email'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: link
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          plugin_id: webform_submission_field
-        source_entity_label:
-          id: source_entity_label
-          table: webform_submission
-          field: source_entity_label
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Submitted to'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          link: 1
-          entity_type: webform_submission
-          plugin_id: webform_submission_submitted_to_label
+          click_sort_column: value
+          type: text_trimmed
+          settings:
+            trim_length: 600
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
       filters:
-        webform_id:
-          id: webform_id
-          table: webform_submission
-          field: webform_id
+        type:
+          id: type
+          table: node_field_data
+          field: type
           value:
-            graphics_video_request_in_r5: graphics_video_request_in_r5
-          entity_type: webform_submission
-          entity_field: webform_id
+            employee_profile: employee_profile
+          entity_type: node
+          entity_field: type
           plugin_id: bundle
           expose:
             operator_limit_selection: false
             operator_list: {  }
           group: 1
-        webform_submission_value_2:
-          id: webform_submission_value_2
-          table: webform_submission_field_graphics_video_request_in_r5_project_type
-          field: webform_submission_value
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        title:
+          id: title
+          table: node_field_data
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
-          operator: in
-          value: {  }
+          operator: word
+          value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: webform_submission_value_2_op
-            label: 'Project Type'
+            operator_id: title_op
+            label: Name
             description: ''
             use_operator: false
-            operator: webform_submission_value_2_op
+            operator: title_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: webform_submission_value_2
+            identifier: title
             required: false
             remember: false
-            multiple: true
+            multiple: false
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
               webform: '0'
-              book_editor: '0'
-              system_editor: '0'
+              administrator: '0'
+            placeholder: ''
+            autocomplete_filter: 1
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_field: title
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: title
+          plugin_id: views_autocomplete_filters_string
+        field_office_region_target_id:
+          id: field_office_region_target_id
+          table: node__field_office_region
+          field: field_office_region_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_office_region_target_id_op
+            label: Office/Region
+            description: ''
+            use_operator: false
+            operator: field_office_region_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_office_region_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
               administrator: '0'
             reduce: false
           is_grouped: false
@@ -685,115 +413,46 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: webform_submission_select_filter
-        webform_submission_value_1:
-          id: webform_submission_value_1
-          table: webform_submission_field_graphics_video_request_in_r5_status
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: in
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: webform_submission_value_1_op
-            label: Status
-            description: ''
-            use_operator: false
-            operator: webform_submission_value_1_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: webform_submission_value_1
-            required: false
-            remember: false
-            multiple: true
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              book_editor: '0'
-              system_editor: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: webform_submission_select_filter
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graphics_video_request_in_r5_priority_status
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: in
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: webform_submission_value_op
-            label: Priority
-            description: ''
-            use_operator: false
-            operator: webform_submission_value_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: webform_submission_value
-            required: false
-            remember: false
-            multiple: true
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              book_editor: '0'
-              system_editor: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: webform_submission_select_filter
+          reduce_duplicates: false
+          type: textfield
+          limit: true
+          vid: program_offices_and_regions
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
       sorts:
-        completed:
-          id: completed
-          table: webform_submission
-          field: completed
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          order: DESC
+          entity_type: node
+          entity_field: created
+          plugin_id: date
           relationship: none
           group_type: group
           admin_label: ''
-          order: DESC
           exposed: false
           expose:
             label: ''
-          granularity: day
-          entity_type: webform_submission
-          entity_field: completed
-          plugin_id: date
-      title: 'Region 5 Graphics & Video Requests'
+          granularity: second
+      title: 'Employee Profiles'
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'Your search did not return any results. Please reset your filters and try again.'
+            format: simple_text
+          plugin_id: text
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
@@ -809,23 +468,10 @@ display:
         - url
         - url.query_args
         - user
-      tags: {  }
-  embed_1:
-    display_plugin: embed
-    id: embed_1
-    display_title: Embed
-    position: 2
-    display_options:
-      display_extenders: {  }
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - url.query_args
-        - user
-      tags: {  }
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_employee_profile'
   page_1:
     display_plugin: page
     id: page_1
@@ -833,7 +479,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: graphics-video-request
+      path: employee-profiles
     cache_metadata:
       max-age: -1
       contexts:
@@ -842,4 +488,7 @@ display:
         - url
         - url.query_args
         - user
-      tags: {  }
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_employee_profile'
