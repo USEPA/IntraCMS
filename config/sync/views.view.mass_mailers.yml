@@ -1,1411 +1,1309 @@
-uuid: 1a0677b8-9ddb-421e-a654-4f94982ce8fb
-langcode: en
-status: true
-dependencies:
-  config:
-    - field.storage.node.field_message
-    - field.storage.node.field_message_date
-    - field.storage.node.field_message_from
-    - node.type.mass_mailer
-    - taxonomy.vocabulary.mass_mailer_categories
-    - taxonomy.vocabulary.mass_mailer_special_text
-    - taxonomy.vocabulary.tags
-  content:
-    - 'taxonomy_term:mass_mailer_special_text:0069848b-870f-4c60-b782-4bdc8fa60e92'
-  module:
-    - datetime
-    - node
-    - taxonomy
-    - text
-    - user
-    - vefl
-    - views_autocomplete_filters
-id: mass_mailers
-label: 'Mass Mailers'
-module: views
-description: ''
-tag: ''
-base_table: node_field_data
-base_field: nid
-display:
-  default:
-    display_plugin: default
-    id: default
-    display_title: Master
-    position: 0
-    display_options:
-      access:
-        type: perm
-        options:
-          perm: 'access content'
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          disable_sql_rewrite: false
-          distinct: false
-          replica: false
-          query_comment: ''
-          query_tags: {  }
-      exposed_form:
-        type: vefl_basic
-        options:
-          submit_button: Apply
-          reset_button: true
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-          layout:
-            layout_id: layout_fourcol_section
-            change: Change
-            widget_region:
-              title: fourth
-              field_message_from_target_id: second
-              combine: first
-              field_special_message_text_target_id: third
-              sort_by: first
-              sort_order: second
-              items_per_page: third
-              offset: first
-              submit: fourth
-              reset: fourth
-      pager:
-        type: full
-        options:
-          items_per_page: 10
-          offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: ‹‹
-            next: ››
-            first: '« First'
-            last: 'Last »'
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          quantity: 9
-      style:
-        type: default
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-      row:
-        type: fields
-        options:
-          default_field_elements: true
-          inline: {  }
-          separator: ''
-          hide_empty: false
-      fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: false
-            ellipsis: false
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: h2
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
-        field_message_date:
-          id: field_message_date
-          table: node__field_message_date
-          field: field_message_date
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: em
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: datetime_default
-          settings:
-            timezone_override: ''
-            format_type: month_day_year
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_message_from:
-          id: field_message_from
-          table: node__field_message_from
-          field: field_message_from
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: true
-            text: '<strong>Message From:</strong> {{ field_message_from }}'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_message:
-          id: field_message
-          table: node__field_message
-          field: field_message
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: text_summary_or_trimmed
-          settings:
-            trim_length: 600
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-      filters:
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          value:
-            mass_mailer: mass_mailer
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          expose:
-            operator_limit_selection: false
-            operator_list: {  }
-          group: 1
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: title_op
-            label: 'Title of Mass Mailer'
-            description: ''
-            use_operator: false
-            operator: title_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: title
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              system_editor: '0'
-              administrator: '0'
-            placeholder: ''
-            autocomplete_filter: 1
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_field: title
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: views_autocomplete_filters_string
-        field_message_from_target_id:
-          id: field_message_from_target_id
-          table: node__field_message_from
-          field: field_message_from_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_message_from_target_id_op
-            label: 'Mailer is From'
-            description: ''
-            use_operator: false
-            operator: field_message_from_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_message_from_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              system_editor: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: mass_mailer_categories
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        status:
-          value: '1'
-          table: node_field_data
-          field: status
-          plugin_id: boolean
-          entity_type: node
-          entity_field: status
-          id: status
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-          group: 1
-        combine:
-          id: combine
-          table: views
-          field: combine
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: combine_op
-            label: 'Search all text'
-            description: ''
-            use_operator: false
-            operator: combine_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: combine
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              system_editor: '0'
-              administrator: '0'
-            placeholder: ''
-            autocomplete_filter: 0
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          fields:
-            title: title
-            field_message_date: field_message_date
-            field_message_from: field_message_from
-            field_message: field_message
-          plugin_id: views_autocomplete_filters_combine
-      sorts:
-        field_message_date_value:
-          id: field_message_date_value
-          table: node__field_message_date
-          field: field_message_date_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
-          granularity: second
-          plugin_id: datetime
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          order: DESC
-          entity_type: node
-          entity_field: created
-          plugin_id: date
-          relationship: none
-          group_type: group
-          admin_label: ''
-          exposed: false
-          expose:
-            label: ''
-          granularity: second
-      title: 'Mass Mailers'
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: false
-          content:
-            value: "<h1>Mass Mailers</h1>\r\n<p class=\"usa-intro\">Mass Mailers are agency-level communication. You can find or browse Mass Mailers several ways. To search by keyword, use the <em>Search</em> box. You may also use the <em>Title</em> or <em>Message From</em> filters to filter the list of Mass Mailers.</p>"
-            format: full_html
-          plugin_id: text
-      footer: {  }
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: 'Your search did not return any results. Please reset your filters and try again.'
-            format: simple_text
-          plugin_id: text
-      relationships: {  }
-      arguments: {  }
-      display_extenders: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - url.query_args
-        - user
-        - 'user.node_grants:view'
-        - user.permissions
-      tags:
-        - 'config:field.storage.node.field_message'
-        - 'config:field.storage.node.field_message_date'
-        - 'config:field.storage.node.field_message_from'
-  page_1:
-    display_plugin: page
-    id: page_1
-    display_title: Page
-    position: 1
-    display_options:
-      display_extenders: {  }
-      path: mass-mailers
-      fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: false
-            ellipsis: false
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: h2
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
-        field_message_date:
-          id: field_message_date
-          table: node__field_message_date
-          field: field_message_date
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: em
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: datetime_default
-          settings:
-            timezone_override: ''
-            format_type: month_day_year
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_message_from:
-          id: field_message_from
-          table: node__field_message_from
-          field: field_message_from
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: true
-            text: '<strong>Message From:</strong> {{ field_message_from }}'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_message:
-          id: field_message
-          table: node__field_message
-          field: field_message
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: mass-mailer-body
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: text_summary_or_trimmed
-          settings:
-            trim_length: 600
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-      defaults:
-        fields: false
-        filters: false
-        filter_groups: false
-        header: false
-      filters:
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          value:
-            mass_mailer: mass_mailer
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          expose:
-            operator_limit_selection: false
-            operator_list: {  }
-          group: 1
-        combine:
-          id: combine
-          table: views
-          field: combine
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: combine_op
-            label: 'Search all text'
-            description: ''
-            use_operator: false
-            operator: combine_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: combine
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              system_editor: '0'
-              administrator: '0'
-            placeholder: ''
-            autocomplete_filter: 0
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          fields:
-            title: title
-            field_message_date: field_message_date
-            field_message_from: field_message_from
-            field_message: field_message
-          plugin_id: views_autocomplete_filters_combine
-        field_message_from_target_id:
-          id: field_message_from_target_id
-          table: node__field_message_from
-          field: field_message_from_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_message_from_target_id_op
-            label: 'Mailer is from'
-            description: ''
-            use_operator: false
-            operator: field_message_from_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_message_from_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              system_editor: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: mass_mailer_categories
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        field_special_message_text_target_id:
-          id: field_special_message_text_target_id
-          table: node__field_special_message_text
-          field: field_special_message_text_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_special_message_text_target_id_op
-            label: 'Mailer was sent to'
-            description: ''
-            use_operator: false
-            operator: field_special_message_text_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_special_message_text_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              system_editor: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: mass_mailer_special_text
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: title_op
-            label: 'Title of Mass Mailer'
-            description: ''
-            use_operator: false
-            operator: title_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: title
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              system_editor: '0'
-              administrator: '0'
-            placeholder: ''
-            autocomplete_filter: 1
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_field: title
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: views_autocomplete_filters_string
-        status:
-          value: '1'
-          table: node_field_data
-          field: status
-          plugin_id: boolean
-          entity_type: node
-          entity_field: status
-          id: status
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-          group: 1
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: false
-          content:
-            value: "<h1>Mass Mailers</h1>\r\n<p class=\"usa-intro\">Mass Mailers are agency-level communication. You can find or browse Mass Mailers several ways. To search by keyword, use the <em>Search all text</em> box. You may also use the <em>Title of Mass Mailer</em> or <em>Message is from</em> or <em>Message was sent to</em>filters to filter the list of Mass Mailers.</p>"
-            format: full_html
-          plugin_id: text
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - url.query_args
-        - user
-        - 'user.node_grants:view'
-        - user.permissions
-      tags:
-        - 'config:field.storage.node.field_message'
-        - 'config:field.storage.node.field_message_date'
-        - 'config:field.storage.node.field_message_from'
-  page_2:
-    display_plugin: page
-    id: page_2
-    display_title: 'HQ Page'
-    position: 1
-    display_options:
-      display_extenders: {  }
-      path: mass-mailers/hq
-      display_description: ''
-      filters:
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          value:
-            mass_mailer: mass_mailer
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          expose:
-            operator_limit_selection: false
-            operator_list: {  }
-          group: 1
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: word
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: title_op
-            label: Title
-            description: ''
-            use_operator: false
-            operator: title_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: title
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              administrator: '0'
-            placeholder: ''
-            autocomplete_filter: 1
-            autocomplete_min_chars: '0'
-            autocomplete_items: '10'
-            autocomplete_field: title
-            autocomplete_raw_suggestion: 1
-            autocomplete_raw_dropdown: 1
-            autocomplete_dependent: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: views_autocomplete_filters_string
-        field_message_from_target_id:
-          id: field_message_from_target_id
-          table: node__field_message_from
-          field: field_message_from_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_message_from_target_id_op
-            label: 'Message From'
-            description: ''
-            use_operator: false
-            operator: field_message_from_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_message_from_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: mass_mailer_categories
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        field_keywords_target_id:
-          id: field_keywords_target_id
-          table: node__field_keywords
-          field: field_keywords_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_keywords_target_id_op
-            label: Keywords
-            description: ''
-            use_operator: false
-            operator: field_keywords_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_keywords_target_id
-            required: false
-            remember: false
-            multiple: true
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: textfield
-          limit: true
-          vid: tags
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        status:
-          value: '1'
-          table: node_field_data
-          field: status
-          plugin_id: boolean
-          entity_type: node
-          entity_field: status
-          id: status
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-          group: 1
-        field_special_message_text_target_id:
-          id: field_special_message_text_target_id
-          table: node__field_special_message_text
-          field: field_special_message_text_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            98: 98
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: mass_mailer_special_text
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-      defaults:
-        filters: false
-        filter_groups: false
-        title: false
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      title: 'Mass Mailers Sent to HQ Employees'
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - url.query_args
-        - user
-        - 'user.node_grants:view'
-        - user.permissions
-      tags:
-        - 'config:field.storage.node.field_message'
-        - 'config:field.storage.node.field_message_date'
-        - 'config:field.storage.node.field_message_from'
+uuid: 1a0677b8-9ddb-421e-a654-4f94982ce8fb 
+langcode: en 
+status: true 
+dependencies: 
+  config: 
+    - field.storage.node.field_message 
+    - field.storage.node.field_message_date 
+    - field.storage.node.field_message_from 
+    - node.type.mass_mailer 
+    - taxonomy.vocabulary.mass_mailer_categories 
+    - taxonomy.vocabulary.mass_mailer_special_text 
+    - taxonomy.vocabulary.tags 
+  content: 
+    - 'taxonomy_term:mass_mailer_special_text:0069848b-870f-4c60-b782-4bdc8fa60e92' 
+  module: 
+    - datetime 
+    - node 
+    - taxonomy 
+    - text 
+    - user 
+    - vefl 
+    - views_autocomplete_filters 
+id: mass_mailers 
+label: 'Mass Mailers' 
+module: views 
+description: '' 
+tag: '' 
+base_table: node_field_data 
+base_field: nid 
+display: 
+  default: 
+    display_plugin: default 
+    id: default 
+    display_title: Master 
+    position: 0 
+    display_options: 
+      access: 
+        type: perm 
+        options: 
+          perm: 'access content' 
+      cache: 
+        type: tag 
+        options: {  } 
+      query: 
+        type: views_query 
+        options: 
+          disable_sql_rewrite: false 
+          distinct: false 
+          replica: false 
+          query_comment: '' 
+          query_tags: {  } 
+      exposed_form: 
+        type: vefl_basic 
+        options: 
+          submit_button: Apply 
+          reset_button: true 
+          reset_button_label: Reset 
+          exposed_sorts_label: 'Sort by' 
+          expose_sort_order: true 
+          sort_asc_label: Asc 
+          sort_desc_label: Desc 
+          layout: 
+            layout_id: layout_onecol 
+            change: Change 
+            widget_region: 
+              combine: content 
+              field_message_from_target_id: content 
+              sort_by: content 
+              sort_order: content 
+              items_per_page: content 
+              offset: content 
+              submit: content 
+              reset: content 
+      pager: 
+        type: full 
+        options: 
+          items_per_page: 10 
+          offset: 0 
+          id: 0 
+          total_pages: null 
+          tags: 
+            previous: ‹‹ 
+            next: ›› 
+            first: '« First' 
+            last: 'Last »' 
+          expose: 
+            items_per_page: false 
+            items_per_page_label: 'Items per page' 
+            items_per_page_options: '5, 10, 25, 50' 
+            items_per_page_options_all: false 
+            items_per_page_options_all_label: '- All -' 
+            offset: false 
+            offset_label: Offset 
+          quantity: 9 
+      style: 
+        type: default 
+        options: 
+          grouping: {  } 
+          row_class: '' 
+          default_row_class: true 
+      row: 
+        type: fields 
+        options: 
+          default_field_elements: true 
+          inline: {  } 
+          separator: '' 
+          hide_empty: false 
+      fields: 
+        title: 
+          id: title 
+          table: node_field_data 
+          field: title 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          label: '' 
+          exclude: false 
+          alter: 
+            alter_text: false 
+            text: '' 
+            make_link: false 
+            path: '' 
+            absolute: false 
+            external: false 
+            replace_spaces: false 
+            path_case: none 
+            trim_whitespace: false 
+            alt: '' 
+            rel: '' 
+            link_class: '' 
+            prefix: '' 
+            suffix: '' 
+            target: '' 
+            nl2br: false 
+            max_length: 0 
+            word_boundary: false 
+            ellipsis: false 
+            more_link: false 
+            more_link_text: '' 
+            more_link_path: '' 
+            strip_tags: false 
+            trim: false 
+            preserve_tags: '' 
+            html: false 
+          element_type: h2 
+          element_class: '' 
+          element_label_type: '' 
+          element_label_class: '' 
+          element_label_colon: false 
+          element_wrapper_type: '' 
+          element_wrapper_class: '' 
+          element_default_classes: true 
+          empty: '' 
+          hide_empty: false 
+          empty_zero: false 
+          hide_alter_empty: true 
+          click_sort_column: value 
+          type: string 
+          settings: 
+            link_to_entity: true 
+          group_column: value 
+          group_columns: {  } 
+          group_rows: true 
+          delta_limit: 0 
+          delta_offset: 0 
+          delta_reversed: false 
+          delta_first_last: false 
+          multi_type: separator 
+          separator: ', ' 
+          field_api_classes: false 
+          entity_type: node 
+          entity_field: title 
+          plugin_id: field 
+        field_message_date: 
+          id: field_message_date 
+          table: node__field_message_date 
+          field: field_message_date 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          label: '' 
+          exclude: false 
+          alter: 
+            alter_text: false 
+            text: '' 
+            make_link: false 
+            path: '' 
+            absolute: false 
+            external: false 
+            replace_spaces: false 
+            path_case: none 
+            trim_whitespace: false 
+            alt: '' 
+            rel: '' 
+            link_class: '' 
+            prefix: '' 
+            suffix: '' 
+            target: '' 
+            nl2br: false 
+            max_length: 0 
+            word_boundary: true 
+            ellipsis: true 
+            more_link: false 
+            more_link_text: '' 
+            more_link_path: '' 
+            strip_tags: false 
+            trim: false 
+            preserve_tags: '' 
+            html: false 
+          element_type: em 
+          element_class: '' 
+          element_label_type: '' 
+          element_label_class: '' 
+          element_label_colon: false 
+          element_wrapper_type: '' 
+          element_wrapper_class: '' 
+          element_default_classes: true 
+          empty: '' 
+          hide_empty: false 
+          empty_zero: false 
+          hide_alter_empty: true 
+          click_sort_column: value 
+          type: datetime_default 
+          settings: 
+            timezone_override: '' 
+            format_type: month_day_year 
+          group_column: value 
+          group_columns: {  } 
+          group_rows: true 
+          delta_limit: 0 
+          delta_offset: 0 
+          delta_reversed: false 
+          delta_first_last: false 
+          multi_type: separator 
+          separator: ', ' 
+          field_api_classes: false 
+          plugin_id: field 
+        field_message_from: 
+          id: field_message_from 
+          table: node__field_message_from 
+          field: field_message_from 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          label: '' 
+          exclude: false 
+          alter: 
+            alter_text: true 
+            text: '<strong>Message From:</strong> {{ field_message_from }}' 
+            make_link: false 
+            path: '' 
+            absolute: false 
+            external: false 
+            replace_spaces: false 
+            path_case: none 
+            trim_whitespace: false 
+            alt: '' 
+            rel: '' 
+            link_class: '' 
+            prefix: '' 
+            suffix: '' 
+            target: '' 
+            nl2br: false 
+            max_length: 0 
+            word_boundary: true 
+            ellipsis: true 
+            more_link: false 
+            more_link_text: '' 
+            more_link_path: '' 
+            strip_tags: false 
+            trim: false 
+            preserve_tags: '' 
+            html: false 
+          element_type: '' 
+          element_class: '' 
+          element_label_type: '' 
+          element_label_class: '' 
+          element_label_colon: false 
+          element_wrapper_type: '' 
+          element_wrapper_class: '' 
+          element_default_classes: true 
+          empty: '' 
+          hide_empty: false 
+          empty_zero: false 
+          hide_alter_empty: true 
+          click_sort_column: target_id 
+          type: entity_reference_label 
+          settings: 
+            link: false 
+          group_column: target_id 
+          group_columns: {  } 
+          group_rows: true 
+          delta_limit: 0 
+          delta_offset: 0 
+          delta_reversed: false 
+          delta_first_last: false 
+          multi_type: separator 
+          separator: ', ' 
+          field_api_classes: false 
+          plugin_id: field 
+        field_message: 
+          id: field_message 
+          table: node__field_message 
+          field: field_message 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          label: '' 
+          exclude: false 
+          alter: 
+            alter_text: false 
+            text: '' 
+            make_link: false 
+            path: '' 
+            absolute: false 
+            external: false 
+            replace_spaces: false 
+            path_case: none 
+            trim_whitespace: false 
+            alt: '' 
+            rel: '' 
+            link_class: '' 
+            prefix: '' 
+            suffix: '' 
+            target: '' 
+            nl2br: false 
+            max_length: 0 
+            word_boundary: true 
+            ellipsis: true 
+            more_link: false 
+            more_link_text: '' 
+            more_link_path: '' 
+            strip_tags: false 
+            trim: false 
+            preserve_tags: '' 
+            html: false 
+          element_type: '' 
+          element_class: '' 
+          element_label_type: '' 
+          element_label_class: '' 
+          element_label_colon: false 
+          element_wrapper_type: '' 
+          element_wrapper_class: '' 
+          element_default_classes: true 
+          empty: '' 
+          hide_empty: false 
+          empty_zero: false 
+          hide_alter_empty: true 
+          click_sort_column: value 
+          type: text_summary_or_trimmed 
+          settings: 
+            trim_length: 600 
+          group_column: value 
+          group_columns: {  } 
+          group_rows: true 
+          delta_limit: 0 
+          delta_offset: 0 
+          delta_reversed: false 
+          delta_first_last: false 
+          multi_type: separator 
+          separator: ', ' 
+          field_api_classes: false 
+          plugin_id: field 
+      filters: 
+        type: 
+          id: type 
+          table: node_field_data 
+          field: type 
+          value: 
+            mass_mailer: mass_mailer 
+          entity_type: node 
+          entity_field: type 
+          plugin_id: bundle 
+          expose: 
+            operator_limit_selection: false 
+            operator_list: {  } 
+          group: 1 
+        title: 
+          id: title 
+          table: node_field_data 
+          field: title 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          operator: contains 
+          value: '' 
+          group: 1 
+          exposed: true 
+          expose: 
+            operator_id: title_op 
+            label: 'Title of Mass Mailer' 
+            description: '' 
+            use_operator: false 
+            operator: title_op 
+            operator_limit_selection: false 
+            operator_list: {  } 
+            identifier: title 
+            required: false 
+            remember: false 
+            multiple: false 
+            remember_roles: 
+              authenticated: authenticated 
+              anonymous: '0' 
+              webform: '0' 
+              system_editor: '0' 
+              administrator: '0' 
+            placeholder: '' 
+            autocomplete_filter: 1 
+            autocomplete_min_chars: '0' 
+            autocomplete_items: '10' 
+            autocomplete_field: title 
+            autocomplete_raw_suggestion: 1 
+            autocomplete_raw_dropdown: 1 
+            autocomplete_dependent: 0 
+          is_grouped: false 
+          group_info: 
+            label: '' 
+            description: '' 
+            identifier: '' 
+            optional: true 
+            widget: select 
+            multiple: false 
+            remember: false 
+            default_group: All 
+            default_group_multiple: {  } 
+            group_items: {  } 
+          entity_type: node 
+          entity_field: title 
+          plugin_id: views_autocomplete_filters_string 
+        field_message_from_target_id: 
+          id: field_message_from_target_id 
+          table: node__field_message_from 
+          field: field_message_from_target_id 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          operator: or 
+          value: {  } 
+          group: 1 
+          exposed: true 
+          expose: 
+            operator_id: field_message_from_target_id_op 
+            label: 'Mailer is From' 
+            description: '' 
+            use_operator: false 
+            operator: field_message_from_target_id_op 
+            operator_limit_selection: false 
+            operator_list: {  } 
+            identifier: field_message_from_target_id 
+            required: false 
+            remember: false 
+            multiple: false 
+            remember_roles: 
+              authenticated: authenticated 
+              anonymous: '0' 
+              webform: '0' 
+              system_editor: '0' 
+              administrator: '0' 
+            reduce: false 
+          is_grouped: false 
+          group_info: 
+            label: '' 
+            description: '' 
+            identifier: '' 
+            optional: true 
+            widget: select 
+            multiple: false 
+            remember: false 
+            default_group: All 
+            default_group_multiple: {  } 
+            group_items: {  } 
+          reduce_duplicates: false 
+          type: select 
+          limit: true 
+          vid: mass_mailer_categories 
+          hierarchy: false 
+          error_message: true 
+          plugin_id: taxonomy_index_tid 
+        status: 
+          value: '1' 
+          table: node_field_data 
+          field: status 
+          plugin_id: boolean 
+          entity_type: node 
+          entity_field: status 
+          id: status 
+          expose: 
+            operator: '' 
+            operator_limit_selection: false 
+            operator_list: {  } 
+          group: 1 
+        combine: 
+          id: combine 
+          table: views 
+          field: combine 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          operator: contains 
+          value: '' 
+          group: 1 
+          exposed: true 
+          expose: 
+            operator_id: combine_op 
+            label: 'Search all text' 
+            description: '' 
+            use_operator: false 
+            operator: combine_op 
+            operator_limit_selection: false 
+            operator_list: {  } 
+            identifier: combine 
+            required: false 
+            remember: false 
+            multiple: false 
+            remember_roles: 
+              authenticated: authenticated 
+              anonymous: '0' 
+              webform: '0' 
+              system_editor: '0' 
+              administrator: '0' 
+            placeholder: '' 
+            autocomplete_filter: 0 
+            autocomplete_min_chars: '0' 
+            autocomplete_items: '10' 
+            autocomplete_raw_suggestion: 1 
+            autocomplete_raw_dropdown: 1 
+            autocomplete_dependent: 0 
+          is_grouped: false 
+          group_info: 
+            label: '' 
+            description: '' 
+            identifier: '' 
+            optional: true 
+            widget: select 
+            multiple: false 
+            remember: false 
+            default_group: All 
+            default_group_multiple: {  } 
+            group_items: {  } 
+          fields: 
+            title: title 
+            field_message_date: field_message_date 
+            field_message_from: field_message_from 
+            field_message: field_message 
+          plugin_id: views_autocomplete_filters_combine 
+      sorts: 
+        field_message_date_value: 
+          id: field_message_date_value 
+          table: node__field_message_date 
+          field: field_message_date_value 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          order: DESC 
+          exposed: false 
+          expose: 
+            label: '' 
+          granularity: second 
+          plugin_id: datetime 
+        created: 
+          id: created 
+          table: node_field_data 
+          field: created 
+          order: DESC 
+          entity_type: node 
+          entity_field: created 
+          plugin_id: date 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          exposed: false 
+          expose: 
+            label: '' 
+          granularity: second 
+      title: 'Mass Mailers' 
+      header: 
+        area: 
+          id: area 
+          table: views 
+          field: area 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          empty: false 
+          tokenize: false 
+          content: 
+            value: "<h1>Mass Mailers</h1>\r\n<p class=\"usa-intro\">Mass Mailers are agency-level communication. You can find or browse Mass Mailers several ways. To search by keyword, use the <em>Search</em> box. You may also use the <em>Title</em> or <em>Message From</em> filters to filter the list of Mass Mailers.</p>" 
+            format: full_html 
+          plugin_id: text 
+      footer: {  } 
+      empty: 
+        area: 
+          id: area 
+          table: views 
+          field: area 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          empty: true 
+          tokenize: false 
+          content: 
+            value: 'Your search did not return any results. Please reset your filters and try again.' 
+            format: simple_text 
+          plugin_id: text 
+      relationships: {  } 
+      arguments: {  } 
+      display_extenders: {  } 
+      filter_groups: 
+        operator: AND 
+        groups: 
+          1: AND 
+    cache_metadata: 
+      max-age: -1 
+      contexts: 
+        - 'languages:language_content' 
+        - 'languages:language_interface' 
+        - url 
+        - url.query_args 
+        - user 
+        - 'user.node_grants:view' 
+        - user.permissions 
+      tags: 
+        - 'config:field.storage.node.field_message' 
+        - 'config:field.storage.node.field_message_date' 
+        - 'config:field.storage.node.field_message_from' 
+  page_1: 
+    display_plugin: page 
+    id: page_1 
+    display_title: Page 
+    position: 1 
+    display_options: 
+      display_extenders: {  } 
+      path: mass-mailers 
+      fields: 
+        title: 
+          id: title 
+          table: node_field_data 
+          field: title 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          label: '' 
+          exclude: false 
+          alter: 
+            alter_text: false 
+            text: '' 
+            make_link: false 
+            path: '' 
+            absolute: false 
+            external: false 
+            replace_spaces: false 
+            path_case: none 
+            trim_whitespace: false 
+            alt: '' 
+            rel: '' 
+            link_class: '' 
+            prefix: '' 
+            suffix: '' 
+            target: '' 
+            nl2br: false 
+            max_length: 0 
+            word_boundary: false 
+            ellipsis: false 
+            more_link: false 
+            more_link_text: '' 
+            more_link_path: '' 
+            strip_tags: false 
+            trim: false 
+            preserve_tags: '' 
+            html: false 
+          element_type: h2 
+          element_class: '' 
+          element_label_type: '' 
+          element_label_class: '' 
+          element_label_colon: false 
+          element_wrapper_type: '' 
+          element_wrapper_class: '' 
+          element_default_classes: true 
+          empty: '' 
+          hide_empty: false 
+          empty_zero: false 
+          hide_alter_empty: true 
+          click_sort_column: value 
+          type: string 
+          settings: 
+            link_to_entity: true 
+          group_column: value 
+          group_columns: {  } 
+          group_rows: true 
+          delta_limit: 0 
+          delta_offset: 0 
+          delta_reversed: false 
+          delta_first_last: false 
+          multi_type: separator 
+          separator: ', ' 
+          field_api_classes: false 
+          entity_type: node 
+          entity_field: title 
+          plugin_id: field 
+        field_message_date: 
+          id: field_message_date 
+          table: node__field_message_date 
+          field: field_message_date 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          label: '' 
+          exclude: false 
+          alter: 
+            alter_text: false 
+            text: '' 
+            make_link: false 
+            path: '' 
+            absolute: false 
+            external: false 
+            replace_spaces: false 
+            path_case: none 
+            trim_whitespace: false 
+            alt: '' 
+            rel: '' 
+            link_class: '' 
+            prefix: '' 
+            suffix: '' 
+            target: '' 
+            nl2br: false 
+            max_length: 0 
+            word_boundary: true 
+            ellipsis: true 
+            more_link: false 
+            more_link_text: '' 
+            more_link_path: '' 
+            strip_tags: false 
+            trim: false 
+            preserve_tags: '' 
+            html: false 
+          element_type: em 
+          element_class: '' 
+          element_label_type: '' 
+          element_label_class: '' 
+          element_label_colon: false 
+          element_wrapper_type: '' 
+          element_wrapper_class: '' 
+          element_default_classes: true 
+          empty: '' 
+          hide_empty: false 
+          empty_zero: false 
+          hide_alter_empty: true 
+          click_sort_column: value 
+          type: datetime_default 
+          settings: 
+            timezone_override: '' 
+            format_type: month_day_year 
+          group_column: value 
+          group_columns: {  } 
+          group_rows: true 
+          delta_limit: 0 
+          delta_offset: 0 
+          delta_reversed: false 
+          delta_first_last: false 
+          multi_type: separator 
+          separator: ', ' 
+          field_api_classes: false 
+          plugin_id: field 
+        field_message_from: 
+          id: field_message_from 
+          table: node__field_message_from 
+          field: field_message_from 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          label: '' 
+          exclude: false 
+          alter: 
+            alter_text: true 
+            text: '<strong>Message From:</strong> {{ field_message_from }}' 
+            make_link: false 
+            path: '' 
+            absolute: false 
+            external: false 
+            replace_spaces: false 
+            path_case: none 
+            trim_whitespace: false 
+            alt: '' 
+            rel: '' 
+            link_class: '' 
+            prefix: '' 
+            suffix: '' 
+            target: '' 
+            nl2br: false 
+            max_length: 0 
+            word_boundary: true 
+            ellipsis: true 
+            more_link: false 
+            more_link_text: '' 
+            more_link_path: '' 
+            strip_tags: false 
+            trim: false 
+            preserve_tags: '' 
+            html: false 
+          element_type: '' 
+          element_class: '' 
+          element_label_type: '' 
+          element_label_class: '' 
+          element_label_colon: false 
+          element_wrapper_type: '' 
+          element_wrapper_class: '' 
+          element_default_classes: true 
+          empty: '' 
+          hide_empty: false 
+          empty_zero: false 
+          hide_alter_empty: true 
+          click_sort_column: target_id 
+          type: entity_reference_label 
+          settings: 
+            link: false 
+          group_column: target_id 
+          group_columns: {  } 
+          group_rows: true 
+          delta_limit: 0 
+          delta_offset: 0 
+          delta_reversed: false 
+          delta_first_last: false 
+          multi_type: separator 
+          separator: ', ' 
+          field_api_classes: false 
+          plugin_id: field 
+        field_message: 
+          id: field_message 
+          table: node__field_message 
+          field: field_message 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          label: '' 
+          exclude: false 
+          alter: 
+            alter_text: false 
+            text: '' 
+            make_link: false 
+            path: '' 
+            absolute: false 
+            external: false 
+            replace_spaces: false 
+            path_case: none 
+            trim_whitespace: false 
+            alt: '' 
+            rel: '' 
+            link_class: '' 
+            prefix: '' 
+            suffix: '' 
+            target: '' 
+            nl2br: false 
+            max_length: 0 
+            word_boundary: true 
+            ellipsis: true 
+            more_link: false 
+            more_link_text: '' 
+            more_link_path: '' 
+            strip_tags: false 
+            trim: false 
+            preserve_tags: '' 
+            html: false 
+          element_type: '' 
+          element_class: '' 
+          element_label_type: '' 
+          element_label_class: '' 
+          element_label_colon: false 
+          element_wrapper_type: '' 
+          element_wrapper_class: mass-mailer-body 
+          element_default_classes: true 
+          empty: '' 
+          hide_empty: false 
+          empty_zero: false 
+          hide_alter_empty: true 
+          click_sort_column: value 
+          type: text_summary_or_trimmed 
+          settings: 
+            trim_length: 600 
+          group_column: value 
+          group_columns: {  } 
+          group_rows: true 
+          delta_limit: 0 
+          delta_offset: 0 
+          delta_reversed: false 
+          delta_first_last: false 
+          multi_type: separator 
+          separator: ', ' 
+          field_api_classes: false 
+          plugin_id: field 
+      defaults: 
+        fields: false 
+        filters: false 
+        filter_groups: false 
+        header: false 
+      filters: 
+        type: 
+          id: type 
+          table: node_field_data 
+          field: type 
+          value: 
+            mass_mailer: mass_mailer 
+          entity_type: node 
+          entity_field: type 
+          plugin_id: bundle 
+          expose: 
+            operator_limit_selection: false 
+            operator_list: {  } 
+          group: 1 
+        combine: 
+          id: combine 
+          table: views 
+          field: combine 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          operator: contains 
+          value: '' 
+          group: 1 
+          exposed: true 
+          expose: 
+            operator_id: combine_op 
+            label: 'Search all text' 
+            description: '' 
+            use_operator: false 
+            operator: combine_op 
+            operator_limit_selection: false 
+            operator_list: {  } 
+            identifier: combine 
+            required: false 
+            remember: false 
+            multiple: false 
+            remember_roles: 
+              authenticated: authenticated 
+              anonymous: '0' 
+              webform: '0' 
+              system_editor: '0' 
+              administrator: '0' 
+            placeholder: '' 
+            autocomplete_filter: 0 
+            autocomplete_min_chars: '0' 
+            autocomplete_items: '10' 
+            autocomplete_raw_suggestion: 1 
+            autocomplete_raw_dropdown: 1 
+            autocomplete_dependent: 0 
+          is_grouped: false 
+          group_info: 
+            label: '' 
+            description: '' 
+            identifier: '' 
+            optional: true 
+            widget: select 
+            multiple: false 
+            remember: false 
+            default_group: All 
+            default_group_multiple: {  } 
+            group_items: {  } 
+          fields: 
+            title: title 
+            field_message_date: field_message_date 
+            field_message_from: field_message_from 
+            field_message: field_message 
+          plugin_id: views_autocomplete_filters_combine 
+        field_message_from_target_id: 
+          id: field_message_from_target_id 
+          table: node__field_message_from 
+          field: field_message_from_target_id 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          operator: or 
+          value: {  } 
+          group: 1 
+          exposed: true 
+          expose: 
+            operator_id: field_message_from_target_id_op 
+            label: 'Mailer is from' 
+            description: '' 
+            use_operator: false 
+            operator: field_message_from_target_id_op 
+            operator_limit_selection: false 
+            operator_list: {  } 
+            identifier: field_message_from_target_id 
+            required: false 
+            remember: false 
+            multiple: false 
+            remember_roles: 
+              authenticated: authenticated 
+              anonymous: '0' 
+              webform: '0' 
+              system_editor: '0' 
+              administrator: '0' 
+            reduce: false 
+          is_grouped: false 
+          group_info: 
+            label: '' 
+            description: '' 
+            identifier: '' 
+            optional: true 
+            widget: select 
+            multiple: false 
+            remember: false 
+            default_group: All 
+            default_group_multiple: {  } 
+            group_items: {  } 
+          reduce_duplicates: false 
+          type: select 
+          limit: true 
+          vid: mass_mailer_categories 
+          hierarchy: false 
+          error_message: true 
+          plugin_id: taxonomy_index_tid 
+        status: 
+          value: '1' 
+          table: node_field_data 
+          field: status 
+          plugin_id: boolean 
+          entity_type: node 
+          entity_field: status 
+          id: status 
+          expose: 
+            operator: '' 
+            operator_limit_selection: false 
+            operator_list: {  } 
+          group: 1 
+      filter_groups: 
+        operator: AND 
+        groups: 
+          1: AND 
+      header: 
+        area: 
+          id: area 
+          table: views 
+          field: area 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          empty: false 
+          tokenize: false 
+          content: 
+            value: "<h1>Mass Mailers</h1>\r\n<p class=\"usa-intro\">Mass Mailers are agency-level communication. You can find or browse Mass Mailers several ways. To search by keyword, use the <em>Search all text</em> box. You may also use the <em>Title of Mass Mailer</em> or <em>Message is from</em> or <em>Message was sent to</em>filters to filter the list of Mass Mailers.</p>" 
+            format: full_html 
+          plugin_id: text 
+    cache_metadata: 
+      max-age: -1 
+      contexts: 
+        - 'languages:language_content' 
+        - 'languages:language_interface' 
+        - url 
+        - url.query_args 
+        - user 
+        - 'user.node_grants:view' 
+        - user.permissions 
+      tags: 
+        - 'config:field.storage.node.field_message' 
+        - 'config:field.storage.node.field_message_date' 
+        - 'config:field.storage.node.field_message_from' 
+  page_2: 
+    display_plugin: page 
+    id: page_2 
+    display_title: 'HQ Page' 
+    position: 1 
+    display_options: 
+      display_extenders: {  } 
+      path: mass-mailers/hq 
+      display_description: '' 
+      filters: 
+        type: 
+          id: type 
+          table: node_field_data 
+          field: type 
+          value: 
+            mass_mailer: mass_mailer 
+          entity_type: node 
+          entity_field: type 
+          plugin_id: bundle 
+          expose: 
+            operator_limit_selection: false 
+            operator_list: {  } 
+          group: 1 
+        title: 
+          id: title 
+          table: node_field_data 
+          field: title 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          operator: word 
+          value: '' 
+          group: 1 
+          exposed: true 
+          expose: 
+            operator_id: title_op 
+            label: Title 
+            description: '' 
+            use_operator: false 
+            operator: title_op 
+            operator_limit_selection: false 
+            operator_list: {  } 
+            identifier: title 
+            required: false 
+            remember: false 
+            multiple: false 
+            remember_roles: 
+              authenticated: authenticated 
+              anonymous: '0' 
+              webform: '0' 
+              administrator: '0' 
+            placeholder: '' 
+            autocomplete_filter: 1 
+            autocomplete_min_chars: '0' 
+            autocomplete_items: '10' 
+            autocomplete_field: title 
+            autocomplete_raw_suggestion: 1 
+            autocomplete_raw_dropdown: 1 
+            autocomplete_dependent: 0 
+          is_grouped: false 
+          group_info: 
+            label: '' 
+            description: '' 
+            identifier: '' 
+            optional: true 
+            widget: select 
+            multiple: false 
+            remember: false 
+            default_group: All 
+            default_group_multiple: {  } 
+            group_items: {  } 
+          entity_type: node 
+          entity_field: title 
+          plugin_id: views_autocomplete_filters_string 
+        field_message_from_target_id: 
+          id: field_message_from_target_id 
+          table: node__field_message_from 
+          field: field_message_from_target_id 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          operator: or 
+          value: {  } 
+          group: 1 
+          exposed: true 
+          expose: 
+            operator_id: field_message_from_target_id_op 
+            label: 'Message From' 
+            description: '' 
+            use_operator: false 
+            operator: field_message_from_target_id_op 
+            operator_limit_selection: false 
+            operator_list: {  } 
+            identifier: field_message_from_target_id 
+            required: false 
+            remember: false 
+            multiple: false 
+            remember_roles: 
+              authenticated: authenticated 
+              anonymous: '0' 
+              webform: '0' 
+              administrator: '0' 
+            reduce: false 
+          is_grouped: false 
+          group_info: 
+            label: '' 
+            description: '' 
+            identifier: '' 
+            optional: true 
+            widget: select 
+            multiple: false 
+            remember: false 
+            default_group: All 
+            default_group_multiple: {  } 
+            group_items: {  } 
+          reduce_duplicates: false 
+          type: select 
+          limit: true 
+          vid: mass_mailer_categories 
+          hierarchy: false 
+          error_message: true 
+          plugin_id: taxonomy_index_tid 
+        field_keywords_target_id: 
+          id: field_keywords_target_id 
+          table: node__field_keywords 
+          field: field_keywords_target_id 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          operator: or 
+          value: {  } 
+          group: 1 
+          exposed: true 
+          expose: 
+            operator_id: field_keywords_target_id_op 
+            label: Keywords 
+            description: '' 
+            use_operator: false 
+            operator: field_keywords_target_id_op 
+            operator_limit_selection: false 
+            operator_list: {  } 
+            identifier: field_keywords_target_id 
+            required: false 
+            remember: false 
+            multiple: true 
+            remember_roles: 
+              authenticated: authenticated 
+              anonymous: '0' 
+              webform: '0' 
+              administrator: '0' 
+            reduce: false 
+          is_grouped: false 
+          group_info: 
+            label: '' 
+            description: '' 
+            identifier: '' 
+            optional: true 
+            widget: select 
+            multiple: false 
+            remember: false 
+            default_group: All 
+            default_group_multiple: {  } 
+            group_items: {  } 
+          reduce_duplicates: false 
+          type: textfield 
+          limit: true 
+          vid: tags 
+          hierarchy: false 
+          error_message: true 
+          plugin_id: taxonomy_index_tid 
+        status: 
+          value: '1' 
+          table: node_field_data 
+          field: status 
+          plugin_id: boolean 
+          entity_type: node 
+          entity_field: status 
+          id: status 
+          expose: 
+            operator: '' 
+            operator_limit_selection: false 
+            operator_list: {  } 
+          group: 1 
+        field_special_message_text_target_id: 
+          id: field_special_message_text_target_id 
+          table: node__field_special_message_text 
+          field: field_special_message_text_target_id 
+          relationship: none 
+          group_type: group 
+          admin_label: '' 
+          operator: or 
+          value: 
+            98: 98 
+          group: 1 
+          exposed: false 
+          expose: 
+            operator_id: '' 
+            label: '' 
+            description: '' 
+            use_operator: false 
+            operator: '' 
+            operator_limit_selection: false 
+            operator_list: {  } 
+            identifier: '' 
+            required: false 
+            remember: false 
+            multiple: false 
+            remember_roles: 
+              authenticated: authenticated 
+            reduce: false 
+          is_grouped: false 
+          group_info: 
+            label: '' 
+            description: '' 
+            identifier: '' 
+            optional: true 
+            widget: select 
+            multiple: false 
+            remember: false 
+            default_group: All 
+            default_group_multiple: {  } 
+            group_items: {  } 
+          reduce_duplicates: false 
+          type: select 
+          limit: true 
+          vid: mass_mailer_special_text 
+          hierarchy: false 
+          error_message: true 
+          plugin_id: taxonomy_index_tid 
+      defaults: 
+        filters: false 
+        filter_groups: false 
+        title: false 
+      filter_groups: 
+        operator: AND 
+        groups: 
+          1: AND 
+      title: 'Mass Mailers Sent to HQ Employees' 
+    cache_metadata: 
+      max-age: -1 
+      contexts: 
+        - 'languages:language_content' 
+        - 'languages:language_interface' 
+        - url 
+        - url.query_args 
+        - user 
+        - 'user.node_grants:view' 
+        - user.permissions 
+      tags: 
+        - 'config:field.storage.node.field_message' 
+        - 'config:field.storage.node.field_message_date' 
+        - 'config:field.storage.node.field_message_from' 
+ 
