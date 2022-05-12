@@ -275,7 +275,7 @@ function epa_intranet_preprocess_page(&$variables) {
     $node_content_type = '';
     $node_web_area = '';
     $node_content_type = '';
-    if(isset($node->type->entity->label())) {
+    if(null !== $node->type->entity->label()) {
       $node_content_type = $node->type->entity->label();
     }
     $group_labels = get_group_labels_by_node_id($node->id());
