@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.form_media
     - field.field.node.form.body
     - field.field.node.form.field_epa_form_number
     - field.field.node.form.field_form_additional_resources
@@ -26,9 +25,9 @@ dependencies:
     - conditional_fields
     - content_moderation
     - datetime
-    - entity_browser
     - field_group
     - link
+    - media_library
     - path
     - text
 third_party_settings:
@@ -120,17 +119,10 @@ content:
     type: options_buttons
     region: content
   field_form_upload:
-    type: entity_browser_entity_reference
+    type: media_library_widget
     weight: 13
     settings:
-      entity_browser: form_media
-      field_widget_display: label
-      field_widget_edit: true
-      field_widget_remove: true
-      open: true
-      selection_mode: selection_append
-      field_widget_replace: false
-      field_widget_display_settings: {  }
+      media_types: {  }
     third_party_settings:
       conditional_fields:
         ca4399ee-4dd7-4cb1-87e3-95bd37bb3a2f:
