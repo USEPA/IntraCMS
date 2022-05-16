@@ -16,7 +16,9 @@ dependencies:
     - field.field.taxonomy_term.libraries.field_public_website
     - field.field.taxonomy_term.libraries.field_reference_desk
     - field.field.taxonomy_term.libraries.hours_staffed_for_the_public
+    - field.field.taxonomy_term.libraries.hours_virtual_support
     - field.field.taxonomy_term.libraries.intranet_website
+    - field.field.taxonomy_term.libraries.open_for_virtual_support
     - field.field.taxonomy_term.libraries.open_to_staff
     - taxonomy.vocabulary.libraries
   module:
@@ -34,7 +36,7 @@ third_party_settings:
         - field_ill_contact
         - field_ill_email
       parent_name: ''
-      weight: 7
+      weight: 5
       format_type: details
       region: content
       format_settings:
@@ -52,7 +54,7 @@ third_party_settings:
         - field_library_contact
         - field_federal_manager
       parent_name: ''
-      weight: 4
+      weight: 2
       format_type: details
       region: content
       format_settings:
@@ -69,7 +71,7 @@ mode: default
 content:
   delivery_street_address:
     type: address_default
-    weight: 6
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -84,7 +86,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_hours_staffed_for_staff:
-    weight: 9
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: office_hours_default
@@ -124,7 +126,7 @@ content:
     type: options_select
     region: content
   field_mailing_address:
-    weight: 5
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: address_default
@@ -138,7 +140,7 @@ content:
     type: string_textfield
     region: content
   field_open_to_the_public:
-    weight: 10
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -165,6 +167,12 @@ content:
     region: content
   hours_staffed_for_the_public:
     type: office_hours_default
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  hours_virtual_support:
+    type: office_hours_default
     weight: 11
     region: content
     settings: {  }
@@ -185,9 +193,15 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  open_for_virtual_support:
+    type: options_select
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   open_to_staff:
     type: options_select
-    weight: 8
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
