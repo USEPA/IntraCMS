@@ -1,0 +1,21 @@
+uuid: f4c66e5c-a62a-44b0-92bc-389a7c974d3f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.open_for_virtual_support
+    - taxonomy.vocabulary.libraries
+  module:
+    - options
+id: taxonomy_term.libraries.open_for_virtual_support
+field_name: open_for_virtual_support
+entity_type: taxonomy_term
+bundle: libraries
+label: 'Open for Virtual Support'
+description: 'Select how the library is available for virtual support, if at all. If you have set hours for virtual support, use the field below to identify those days/hours.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
