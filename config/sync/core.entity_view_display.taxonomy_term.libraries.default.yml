@@ -16,7 +16,9 @@ dependencies:
     - field.field.taxonomy_term.libraries.field_public_website
     - field.field.taxonomy_term.libraries.field_reference_desk
     - field.field.taxonomy_term.libraries.hours_staffed_for_the_public
+    - field.field.taxonomy_term.libraries.hours_virtual_support
     - field.field.taxonomy_term.libraries.intranet_website
+    - field.field.taxonomy_term.libraries.open_for_virtual_support
     - field.field.taxonomy_term.libraries.open_to_staff
     - taxonomy.vocabulary.libraries
   module:
@@ -37,6 +39,8 @@ third_party_settings:
         - field_hours_staffed_for_staff
         - field_open_to_the_public
         - hours_staffed_for_the_public
+        - open_for_virtual_support
+        - hours_virtual_support
       parent_name: ''
       weight: 4
       format_type: details
@@ -101,7 +105,7 @@ content:
     type: entity_reference_entity_view
     region: content
   field_hours_staffed_for_staff:
-    weight: 5
+    weight: 4
     label: above
     settings:
       show_closed: open
@@ -175,7 +179,7 @@ content:
     type: string
     region: content
   field_open_to_the_public:
-    weight: 6
+    weight: 5
     label: inline
     settings: {  }
     third_party_settings: {  }
@@ -204,7 +208,7 @@ content:
     region: content
   hours_staffed_for_the_public:
     type: office_hours
-    weight: 7
+    weight: 6
     region: content
     label: above
     settings:
@@ -229,6 +233,33 @@ content:
         enabled: false
       timezone_field: ''
     third_party_settings: {  }
+  hours_virtual_support:
+    type: office_hours
+    weight: 8
+    region: content
+    label: above
+    settings:
+      day_format: long
+      time_format: G
+      compress: false
+      grouped: false
+      show_closed: all
+      closed_format: Closed
+      separator:
+        days: '<br />'
+        grouped_days: ' - '
+        day_hours: ': '
+        hours_hours: '-'
+        more_hours: ', '
+      current_status:
+        position: ''
+        open_text: 'Currently open!'
+        closed_text: 'Currently closed'
+      schema:
+        enabled: false
+      timezone_field: ''
+      office_hours_first_day: ''
+    third_party_settings: {  }
   intranet_website:
     type: link
     weight: 2
@@ -240,6 +271,13 @@ content:
       url_plain: false
       rel: '0'
       target: '0'
+    third_party_settings: {  }
+  open_for_virtual_support:
+    type: list_default
+    weight: 7
+    region: content
+    label: above
+    settings: {  }
     third_party_settings: {  }
   open_to_staff:
     type: list_default
