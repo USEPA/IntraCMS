@@ -272,36 +272,35 @@ function epa_intranet_preprocess_page(&$variables) {
     }
 
     //add content type and group label info to site head
-    $node_content_type = '';
-    $node_web_area = '';
-    $node_content_type = '';
-    if(null !== $node->type->entity->label()) {
+    if (!is_string($node)) {
+      $node_content_type = '';
+      $node_web_area = '';
       $node_content_type = $node->type->entity->label();
+      $group_labels = get_group_labels_by_node_id($node->id());
+
+      if ($group_labels != null) {
+        $node_web_area = $group_labels;
+      }
+
+      $node_web_area_tag = [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'name' => 'WebArea',
+          'content' => $node_web_area,
+        ],
+      ];
+
+      $node_content_type_tag = [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'name' => 'ContentType',
+          'content' => $node_content_type,
+        ],
+      ];
+
+      $variables['#attached']['html_head'][] = [$node_web_area_tag, 'WebArea'];
+      $variables['#attached']['html_head'][] = [$node_content_type_tag, 'ContentType'];
     }
-    $group_labels = get_group_labels_by_node_id($node->id());
-
-    if ($group_labels != null) {
-      $node_web_area = $group_labels;
-    }
-
-    $node_web_area_tag = [
-      '#tag' => 'meta',
-      '#attributes' => [
-        'name' => 'WebArea',
-        'content' => $node_web_area,
-      ],
-    ];
-
-    $node_content_type_tag = [
-      '#tag' => 'meta',
-      '#attributes' => [
-        'name' => 'ContentType',
-        'content' => $node_content_type,
-      ],
-    ];
-
-    $variables['#attached']['html_head'][] = [$node_web_area_tag, 'WebArea'];
-    $variables['#attached']['html_head'][] = [$node_content_type_tag, 'ContentType'];
   }
 }
 
