@@ -1,10 +1,12 @@
---- GroupMenuConfigOverrides.php	2022-04-22 14:00:58.788624700 -0500
-+++ GroupMenuConfigOverrides_new.php	2022-05-23 11:04:01.706846900 -0500
-@@ -210,7 +210,8 @@
+--- a/src/GroupMenuConfigOverrides.php	2022-05-23 11:59:54.195176400 -0500
++++ b/src/GroupMenuConfigOverrides.php	2022-05-23 12:04:23.134841800 -0500
+@@ -209,8 +209,9 @@
+     // Check access and add menus to config.
      $this->userGroupMenuIds[$this->currentUser->id()][$group_types_cid] = [];
      foreach ($group_contents as $group_content) {
-       /** @var \Drupal\group\Entity\GroupContentInterface $group_content */
+-      /** @var \Drupal\group\Entity\GroupContentInterface $group_content */
 -      if ($group_content && $group_content->getGroup()->hasPermission("update $plugin_id entity", $this->currentUser) && $entity = $group_content->getEntity()) {
++      /** @var \Drupal\group\Entity\GroupContentInterface $group_content */    
 +      $group = $group_content->getGroup();
 +      if (($group !== NULL) && $group->hasPermission("update $plugin_id entity", $this->currentUser) && $group_content->getEntity()) {
          $this->userGroupMenuIds[$this->currentUser->id()][$group_types_cid][] = $entity->id();
