@@ -8,7 +8,7 @@
 -      if ($group_content && $group_content->getGroup()->hasPermission("update $plugin_id entity", $this->currentUser) && $entity = $group_content->getEntity()) {
 +      /** @var \Drupal\group\Entity\GroupContentInterface $group_content */    
 +      $group = $group_content->getGroup();
-+      if (($group !== NULL) && $group->hasPermission("update $plugin_id entity", $this->currentUser) && $group_content->getEntity()) {
++      if (($entity->id() !== NULL) && ($group !== NULL) && $group->hasPermission("update $plugin_id entity", $this->currentUser) && $group_content->getEntity()) {
          $this->userGroupMenuIds[$this->currentUser->id()][$group_types_cid][] = $entity->id();
        }
      }
