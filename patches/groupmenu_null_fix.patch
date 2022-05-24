@@ -1,17 +1,18 @@
---- a/src/GroupMenuConfigOverrides.php	2022-05-23 15:14:23.115107300 -0500
-+++ b/src/GroupMenuConfigOverrides.php	2022-05-24 09:59:56.925314100 -0500
-@@ -211,8 +211,13 @@
+--- src/GroupMenuConfigOverrides.php	2022-05-24 11:12:30.282628100 -0500
++++ src/GroupMenuConfigOverrides.php	2022-05-24 11:27:04.365352600 -0500
+@@ -210,8 +210,14 @@
+     $this->userGroupMenuIds[$this->currentUser->id()][$group_types_cid] = [];
      foreach ($group_contents as $group_content) {
-       /** @var \Drupal\group\Entity\GroupContentInterface $group_content */    
-       $group = $group_content->getGroup();
--      if (($entity->id() !== NULL) && ($group !== NULL) && $group->hasPermission("update $plugin_id entity", $this->currentUser) && $group_content->getEntity()) {
+       /** @var \Drupal\group\Entity\GroupContentInterface $group_content */
+-      if ($group_content && $group_content->getGroup()->hasPermission("update $plugin_id entity", $this->currentUser) && $entity = $group_content->getEntity()) {
 -        $this->userGroupMenuIds[$this->currentUser->id()][$group_types_cid][] = $entity->id();
++      $group = $group_content->getGroup();
 +      if (($group !== NULL) && $group->hasPermission("update $plugin_id entity", $this->currentUser) && $group_content->getEntity()) {
 +        try {
 +          $this->userGroupMenuIds[$this->currentUser->id()][$group_types_cid][] = $entity->id();
 +        }
-+        catch (Exception $e) {
-+          // An uncaught null error was likely thrown. Potentially add logging here.
++        catch { 
++          // Probably a null value. Add logging. 
 +        }
        }
      }
