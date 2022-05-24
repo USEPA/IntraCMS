@@ -11,7 +11,7 @@
 +        try {
 +          $this->userGroupMenuIds[$this->currentUser->id()][$group_types_cid][] = $entity->id();
 +        }
-+        catch { 
++        catch (Exception $e) { 
 +          // Probably a null value. Add logging. 
 +        }
        }
