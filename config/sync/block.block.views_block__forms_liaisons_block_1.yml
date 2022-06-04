@@ -1,0 +1,29 @@
+uuid: 46fe212f-a56d-463b-8b58-56add58f5fce
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.forms_liaisons
+  module:
+    - system
+    - views
+  theme:
+    - epa_intranet
+id: views_block__forms_liaisons_block_1
+theme: epa_intranet
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:forms_liaisons-block_1'
+settings:
+  id: 'views_block:forms_liaisons-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: /forms/forms-liaisons
+    negate: false
