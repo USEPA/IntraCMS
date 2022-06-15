@@ -1,0 +1,40 @@
+uuid: 8310253e-7ccf-43bc-8c4c-9f66f0ebeacb
+langcode: en
+status: true
+dependencies:
+  module:
+    - webform_workflows_element
+id: simple_approval
+label: 'Simple Approval'
+type: webform_workflows_element
+type_settings:
+  states:
+    approved:
+      label: Approved
+      weight: 1
+    disapproved:
+      label: Disapproved
+      weight: 2
+    under_review:
+      label: 'Under Review'
+      weight: 0
+  transitions:
+    disapproved_to_under_review:
+      label: 'Disapproved to Under Review'
+      from:
+        - disapproved
+      to: under_review
+      weight: 2
+    review_to_approved:
+      label: 'Review to Approved'
+      from:
+        - under_review
+      to: approved
+      weight: 0
+    review_to_disapproved:
+      label: 'Review to Disapproved'
+      from:
+        - under_review
+      to: disapproved
+      weight: 1
+  initial_state: under_review
