@@ -1,0 +1,47 @@
+uuid: 72f9ac45-54fd-41af-a828-d482f9a85157
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.page_feedback
+  module:
+    - ctools
+    - node
+    - webform
+  theme:
+    - epa_intranet
+id: webform
+theme: epa_intranet
+region: content
+weight: 0
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Page Feedback'
+  provider: webform
+  label_display: '0'
+  webform_id: page_feedback
+  default_data: ''
+  redirect: false
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      employee_profile: employee_profile
+      quiz: quiz
+      staff_member: staff_member
+      webform: webform
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      employee_profile: employee_profile
+      quiz: quiz
+      staff_member: staff_member
+      webform: webform
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
