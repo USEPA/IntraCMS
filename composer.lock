@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a0c44877c2e97f8b714c3b3ecd10d78",
+    "content-hash": "629f9cd9a361f84303714966a50ec82a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1968,6 +1968,74 @@
             }
         },
         {
+            "name": "drupal/bg_image_formatter",
+            "version": "1.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/bg_image_formatter.git",
+                "reference": "8.x-1.15"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/bg_image_formatter-8.x-1.15.zip",
+                "reference": "8.x-1.15",
+                "shasum": "fae1e0880d7a4f0052223246d3a6ba6102926239"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "require-dev": {
+                "drupol/drupal-conventions": "^1"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.15",
+                    "datestamp": "1635517518",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "grumphp": {
+                    "config-default-path": "vendor/drupol/drupal-conventions/config/drupal8/grumphp.yml"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "scripts": {
+                "grumphp": [
+                    "./vendor/bin/grumphp run"
+                ]
+            },
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Pol Dellaiera (@drupol)",
+                    "homepage": "https://www.drupal.org/u/pol",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Pol",
+                    "homepage": "https://www.drupal.org/user/47194"
+                },
+                {
+                    "name": "bburg",
+                    "homepage": "https://www.drupal.org/user/1867900"
+                },
+                {
+                    "name": "garethhallnz",
+                    "homepage": "https://www.drupal.org/user/772766"
+                }
+            ],
+            "description": "This module provides an image formatter that allows you to set an image in background of a container.",
+            "homepage": "https://drupal.org/project/bg_image_formatter",
+            "support": {
+                "source": "https://git.drupalcode.org/project/bg_image_formatter"
+            }
+        },
+        {
             "name": "drupal/blazy",
             "version": "2.13.0",
             "source": {
@@ -2908,6 +2976,54 @@
             "support": {
                 "source": "https://git.drupal.org/project/conflict.git",
                 "issues": "https://www.drupal.org/project/issues/conflict"
+            }
+        },
+        {
+            "name": "drupal/consumers",
+            "version": "1.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/consumers.git",
+                "reference": "8.x-1.12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/consumers-8.x-1.12.zip",
+                "reference": "8.x-1.12",
+                "shasum": "c81a7533d3892288becd780f598afbac4665014e"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.12",
+                    "datestamp": "1646690558",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "e0ipso",
+                    "homepage": "https://www.drupal.org/user/550110"
+                },
+                {
+                    "name": "eojthebrave",
+                    "homepage": "https://www.drupal.org/user/79230"
+                }
+            ],
+            "description": "Declare all the consumers of your API",
+            "homepage": "https://www.drupal.org/project/consumers",
+            "support": {
+                "source": "https://git.drupalcode.org/project/consumers"
             }
         },
         {
@@ -4190,6 +4306,62 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/entity",
                 "issues": "https://www.drupal.org/project/issues/entity"
+            }
+        },
+        {
+            "name": "drupal/entity_block",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/entity_block.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_block-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "49249d264881eaea29cdbe07264bcd1281508dec"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1643836667",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jaesin",
+                    "homepage": "https://www.drupal.org/user/841054"
+                },
+                {
+                    "name": "floretan",
+                    "homepage": "https://www.drupal.org/user/66163"
+                },
+                {
+                    "name": "rrrob",
+                    "homepage": "https://www.drupal.org/user/273533"
+                },
+                {
+                    "name": "shadcn",
+                    "homepage": "https://www.drupal.org/user/571032"
+                }
+            ],
+            "description": "Let site administrators place content entities as blocks.",
+            "homepage": "https://www.drupal.org/project/entity_block",
+            "support": {
+                "source": "https://git.drupalcode.org/project/entity_block"
             }
         },
         {
@@ -8542,6 +8714,77 @@
             }
         },
         {
+            "name": "drupal/paragraphs_entity_embed",
+            "version": "2.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/paragraphs_entity_embed.git",
+                "reference": "8.x-2.0-alpha2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/paragraphs_entity_embed-8.x-2.0-alpha2.zip",
+                "reference": "8.x-2.0-alpha2",
+                "shasum": "a95c18fb9579879cc9b1722508b8ed276df858a7"
+            },
+            "require": {
+                "drupal/core": "^8.9 || ^9",
+                "drupal/embed": "*",
+                "drupal/entity_embed": "*",
+                "drupal/paragraphs": "*"
+            },
+            "require-dev": {
+                "drupal/embed": "^1.4",
+                "drupal/entity_embed": "^1.1",
+                "drupal/paragraphs": "^1.12"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.0-alpha2",
+                    "datestamp": "1601818840",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Nikolay Ignatov",
+                    "homepage": "https://www.drupal.org/user/2301376",
+                    "email": "nikolai.ignatov@gmail.com",
+                    "role": "Creator and Maintainer"
+                },
+                {
+                    "name": "Dobrin Dobrev",
+                    "homepage": "https://www.drupal.org/user/1443204",
+                    "email": "ddobrev81@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Milka Petkova",
+                    "homepage": "https://www.drupal.org/user/2803987",
+                    "email": "milka.petkova.88@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "skek",
+                    "homepage": "https://www.drupal.org/user/417078"
+                }
+            ],
+            "description": "Allows for paragraph entities to be embedded as items into the CKE editor.",
+            "homepage": "https://www.drupal.org/project/paragraphs_entity_embed",
+            "support": {
+                "source": "https://git.drupalcode.org/project/paragraphs_entity_embed",
+                "issues": "https://www.drupal.org/project/issues/paragraphs_entity_embed"
+            }
+        },
+        {
             "name": "drupal/path_file",
             "version": "1.1.0",
             "source": {
@@ -9029,6 +9272,53 @@
                 "source": "https://git.drupalcode.org/project/search_api",
                 "issues": "https://www.drupal.org/project/issues/search_api",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
+            }
+        },
+        {
+            "name": "drupal/simple_gmap",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/simple_gmap.git",
+                "reference": "3.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/simple_gmap-3.0.1.zip",
+                "reference": "3.0.1",
+                "shasum": "16c3d3a2f3470312e8e82d5d95cb70ba7cb54ff1"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "require-dev": {
+                "drupal/address": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.1",
+                    "datestamp": "1622931515",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "martin107",
+                    "homepage": "https://www.drupal.org/user/2659379"
+                }
+            ],
+            "description": "Provides a Google Maps link/map formatter for simple Text fields.",
+            "homepage": "https://www.drupal.org/project/simple_gmap",
+            "support": {
+                "source": "https://git.drupalcode.org/project/simple_gmap"
             }
         },
         {
@@ -20177,7 +20467,8 @@
         "drupal/webform_workflows_element": 15,
         "drupal/layout_builder_st": 15,
         "drupal/layout_library": 10,
-        "drupal/openapi_rest": 5
+        "drupal/openapi_rest": 5,
+        "drupal/paragraphs_entity_embed": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,
