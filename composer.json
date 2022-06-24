@@ -125,7 +125,8 @@
         "drupal/disable_html5_validation": "^1.1",
         "drupal/asset_injector": "^2.10",
         "drupal/webform_workflows_element": "^1.0@alpha",
-        "drupal/layout_builder_st": "^1.0@alpha"
+        "drupal/layout_builder_st": "^1.0@alpha",
+        "drupal/layout_library": "^1.0@beta"
     },
     "require-dev": {
         "drush/drush": "^10.0"
@@ -408,8 +409,7 @@
         ],
         "post-install-cmd": [
             "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
-            "rm -f docroot/web.config",
-            "rm -f docroot/core/install.php"
+            "rm -f docroot/web.config"
         ],
         "post-update-cmd": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
         "post-create-project-cmd": "rm -r -f .travis.yml behat.yml .travis-ci",
