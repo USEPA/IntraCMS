@@ -112,7 +112,6 @@ content:
       office_hours_first_day: ''
       day_format: short
       time_format: g
-      compress: true
       grouped: true
       closed_format: Closed
       separator:
@@ -125,6 +124,7 @@ content:
         position: ''
         open_text: 'Currently open!'
         closed_text: 'Currently closed'
+      compress: false
       schema:
         enabled: false
       timezone_field: ''
@@ -216,7 +216,6 @@ content:
       office_hours_first_day: ''
       day_format: short
       time_format: g
-      compress: true
       grouped: true
       closed_format: Closed
       separator:
@@ -229,6 +228,7 @@ content:
         position: ''
         open_text: 'Currently open!'
         closed_text: 'Currently closed'
+      compress: false
       schema:
         enabled: false
       timezone_field: ''
@@ -239,11 +239,11 @@ content:
     region: content
     label: above
     settings:
-      day_format: long
-      time_format: G
-      compress: false
-      grouped: false
-      show_closed: all
+      show_closed: open
+      office_hours_first_day: ''
+      day_format: short
+      time_format: g
+      grouped: true
       closed_format: Closed
       separator:
         days: '<br />'
@@ -255,10 +255,10 @@ content:
         position: ''
         open_text: 'Currently open!'
         closed_text: 'Currently closed'
+      compress: false
       schema:
         enabled: false
       timezone_field: ''
-      office_hours_first_day: ''
     third_party_settings: {  }
   intranet_website:
     type: link
