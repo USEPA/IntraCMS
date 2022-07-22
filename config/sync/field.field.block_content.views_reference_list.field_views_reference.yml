@@ -13,7 +13,7 @@ field_name: field_views_reference
 entity_type: block_content
 bundle: views_reference_list
 label: 'Views Reference'
-description: 'Select the type of content you want to include in your dynamic list.'
+description: 'Select the type of content to include in your dynamic list. Select a <a href="/cms-training/dynamic-lists">display</a> from the list below that determines how the content will be formatted.'
 required: true
 translatable: false
 default_value: {  }
@@ -21,10 +21,13 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       views_reference_list: views_reference_list
+    negate: 0
     target_bundles_drag_drop:
+      contact:
+        weight: 23
+        enabled: false
       dynamic_list:
         weight: 24
         enabled: false
@@ -83,6 +86,9 @@ settings:
         weight: 45
         enabled: false
       views_reference_list:
-        enabled: true
         weight: 46
+        enabled: true
+      webform:
+        weight: 44
+        enabled: false
 field_type: entity_reference_revisions
