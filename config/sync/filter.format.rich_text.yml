@@ -61,7 +61,7 @@ filters:
     status: true
     weight: -50
     settings:
-      allowed_html: '<em> <strong> <ins data-date> <code> <ol start type class=""> <li class=""> <dl> <dt> <dd> <s> <sup> <sub> <img src width height typeof alt data-align data-caption> <caption> <tbody> <thead> <tfoot> <th style colspan rowspan scope width> <td style colspan rowspan width> <tr scope> <hr> <br> <pre> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter data-cke-display-name data-placeholder class=""> <figure role class=""> <div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button id data-* class=""> <source media !src type> <iframe longdesc name scrolling src title align height frameborder width> <button aria-expanded aria-controls class=""> <svg role aria-* class=""> <use xlink*> <a href hreflang data-entity-type data-entity-uuid name id data-entity-substitution class=" usa-button"> <drupal-inline-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <drupal-media data-caption data-align data-entity-type data-entity-uuid data-view-mode alt title> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button data-langcode> <h2 id class="usa-* highlight"> <h3 id class="usa-* highlight"> <h4 id class="usa-* highlight"> <h5 id class="usa-* highlight"> <h6 id class="usa-* highlight"> <blockquote cite class=" pull-quote u-align-left u-align-right"> <cite class=" pull-quote__cite"> <table width height style class="usa-* datatable"> <ul type class=" list list--pipeline"> <span lang dir class="usa-* usa-tag warning"> <p class="usa-intro usa-*">'
+      allowed_html: '<em> <strong> <ins data-date> <code> <ol start type class=""> <li class=""> <dl> <dt> <dd> <s> <sup> <sub> <img src width height typeof alt data-align data-caption> <caption> <tbody> <thead> <tfoot> <th style colspan rowspan scope width> <td style colspan rowspan width> <tr scope> <hr> <br> <pre> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter data-cke-display-name data-placeholder class=""> <figure role class=""> <div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button id data-* class=""> <source media !src type> <iframe longdesc name scrolling src title align height frameborder width> <button aria-expanded aria-controls class=""> <svg role aria-* class=""> <use xlink*> <a href hreflang data-entity-type data-entity-uuid name id data-entity-substitution class=" usa-button"> <drupal-inline-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <drupal-media data-caption data-align data-entity-type data-entity-uuid data-view-mode alt title> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button data-langcode> <h2 id class="usa-* highlight"> <h3 id class="usa-* highlight"> <h4 id class="usa-* highlight"> <h5 id class="usa-* highlight"> <h6 id class="usa-* highlight"> <blockquote cite class=" pull-quote u-align-left u-align-right"> <cite class=" pull-quote__cite"> <table width height style class="usa-* datatable"> <ul type class=" list list--pipeline"> <span lang dir class="usa-* usa-tag warning"> <p class="usa-intro usa-* text-align-*">'
       filter_html_help: true
       filter_html_nofollow: false
   filter_autop:
@@ -103,16 +103,16 @@ filters:
     weight: -47
     settings:
       default_view_mode: full_width
+      allowed_media_types:
+        audio_file: audio_file
+        image: image
+        remote_video: remote_video
       allowed_view_modes:
         full_width: full_width
         half_width: half_width
         original: original
         small: small
         thumbnail: thumbnail
-      allowed_media_types:
-        audio_file: audio_file
-        image: image
-        remote_video: remote_video
   blazy_filter:
     id: blazy_filter
     provider: blazy
@@ -123,10 +123,7 @@ filters:
         img: img
         iframe: iframe
       media_switch: ''
-      box_style: ''
-      hybrid_style: ''
       use_data_uri: '0'
-      box_caption: ''
   media_inline_embed:
     id: media_inline_embed
     provider: media_inline_embed
@@ -134,10 +131,10 @@ filters:
     weight: -46
     settings:
       default_view_mode: link
-      allowed_view_modes:
-        link: link
       allowed_media_types:
         document: document
+      allowed_view_modes:
+        link: link
   filter_table_attributes:
     id: filter_table_attributes
     provider: uswds_ckeditor_integration
