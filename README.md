@@ -13,7 +13,7 @@ Required Software & Setup
 3. `ddev config --project-type=drupal9 --docroot=docroot --create-docroot` 
 4. `ddev start`
 5. If necesary, fix any port conflicts. See Fix port conflicts by configuring your project to use different ports: https://ddev.readthedocs.io/en/latest/users/basics/troubleshooting/#method-2-fix-port-conflicts-by-configuring-your-project-to-use-different-ports
-6. 6. `ddev composer site-install` Until the project installation profile transitions to minimal from standard, there will always be errors related to the shortcut menu. The install script removes existing shortcuts, sets the site UUID, enables config_split, and runs a `drush-cim`. The post install script removes web.config and install.php.
+6. `ddev composer site-install` Until the project installation profile transitions to minimal from standard, there will always be errors related to the shortcut menu. The install script removes existing shortcuts, sets the site UUID, enables config_split, and runs a `drush-cim`. The post install script removes web.config and install.php.
 7. Update the config.yaml file located in the .ddev directory:
     1. Make sure the docroot is set correctly: `docroot: docroot`
     2. Update to the appropriate php version - currently 7.3: `php_version: "7.3"`
