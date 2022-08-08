@@ -11,15 +11,13 @@ dependencies:
     - field.field.node.event.field_event_location_logistics
     - field.field.node.event.field_event_recording
     - field.field.node.event.field_event_tags
-    - field.field.node.event.field_meta_tags
-    - field.field.node.event.field_show_on_agency_calendar
+    - field.field.node.event.field_show_on_ord_calendar
     - node.type.event
   module:
     - layout_builder
     - layout_builder_restrictions
     - layout_library
     - link
-    - metatag
     - options
     - smart_date
     - text
@@ -35,31 +33,6 @@ third_party_settings:
           label: ''
           column_widths: 67-33
         components:
-          a123568d-c573-411b-bbe6-866be42f59e3:
-            uuid: a123568d-c573-411b-bbe6-866be42f59e3
-            region: first
-            configuration:
-              id: 'field_block:node:event:field_event_date'
-              label: 'Event Date'
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: above
-                type: smartdate_recurring
-                settings:
-                  timezone_override: ''
-                  format: default
-                  force_chronological: false
-                  add_classes: false
-                  past_display: 2
-                  upcoming_display: 2
-                  show_next: false
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: 1
           9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84:
             uuid: 9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84
             region: first
@@ -129,7 +102,7 @@ third_party_settings:
                   date_format: 'D, M j Y, g:ia T'
                   event_title: '[node:title]'
                   location: '[node:field_event_location]'
-                  description: "[node:field_event_description]\r\n\r\n[node:field_event_link]"
+                  description: "[node:field_event_description][node:field_event_link]"
                   past_events: false
                 third_party_settings: {  }
               context_mapping:
@@ -138,50 +111,49 @@ third_party_settings:
             additional:
               layout_builder_styles_style: ''
             weight: 0
-          a1c59067-8f3d-491c-8384-a49f2703466a:
-            uuid: a1c59067-8f3d-491c-8384-a49f2703466a
-            region: second
+          a123568d-c573-411b-bbe6-866be42f59e3:
+            uuid: a123568d-c573-411b-bbe6-866be42f59e3
+            region: first
             configuration:
-              id: 'field_block:node:event:field_event_recording'
-              label: Recording
+              id: 'field_block:node:event:field_event_date'
+              label: 'Event Date'
               provider: layout_builder
               label_display: '0'
               formatter:
                 label: above
-                type: link
+                type: smartdate_recurring
                 settings:
-                  trim_length: 80
-                  url_only: false
-                  url_plain: false
-                  rel: '0'
-                  target: '0'
+                  timezone_override: ''
+                  format: default
+                  force_chronological: false
+                  add_classes: false
+                  past_display: 2
+                  upcoming_display: 2
+                  show_next: false
                 third_party_settings: {  }
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
             additional: {  }
-            weight: 3
-          ab71cf51-34ad-482f-a8a9-7301b4850270:
-            uuid: ab71cf51-34ad-482f-a8a9-7301b4850270
+            weight: 1
+          e7c88fb6-2ee5-40bf-a698-b1316d9211a6:
+            uuid: e7c88fb6-2ee5-40bf-a698-b1316d9211a6
             region: second
             configuration:
-              id: 'field_block:node:event:field_event_link'
-              label: 'Event Link'
-              provider: layout_builder
               label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:event:field_event_link'
               formatter:
                 label: above
-                type: link
                 settings:
                   trim_length: 80
                   url_only: false
                   url_plain: false
-                  rel: '0'
-                  target: '0'
+                  rel: ''
+                  target: ''
                 third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
+                type: link
             additional: {  }
             weight: 1
         third_party_settings: {  }
@@ -224,6 +196,18 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_event_link:
+    weight: 116
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
   field_event_location:
     weight: 107
     label: above
@@ -259,14 +243,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_meta_tags:
-    weight: 116
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: metatag_empty_formatter
-    region: content
-  field_show_on_agency_calendar:
+  field_show_on_ord_calendar:
     weight: 114
     label: above
     settings:
@@ -283,5 +260,7 @@ content:
     region: content
 hidden:
   content_moderation_control: true
-  field_event_link: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
   search_api_excerpt: true
