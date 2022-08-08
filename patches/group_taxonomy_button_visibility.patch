@@ -1,0 +1,13 @@
+diff --git a/src/Controller/GroupTaxonomyController.php b/src/Controller/GroupTaxonomyController.php
+index 278d5d7542a2676aa8a34f76d5e4eaaf908cb9cc..8331aa4f105a344769105d99d908acea2f6e1045 100644
+--- a/src/Controller/GroupTaxonomyController.php
++++ b/src/Controller/GroupTaxonomyController.php
+@@ -60,7 +60,7 @@ class GroupTaxonomyController extends GroupContentController {
+    */
+   public function access(AccountInterface $account, GroupInterface $group) {
+     return AccessResult::allowedIf(
+-      $account->hasPermission('access group_taxonomy overview') &&
++      $group->hasPermission('access group_taxonomy overview', $account) &&
+       $this->isTaxonomyContentEnablerInstalled($group)
+     );
+   }
