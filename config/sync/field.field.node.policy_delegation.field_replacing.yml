@@ -1,18 +1,18 @@
-uuid: 86ff42db-b269-4e27-be17-af436d6776bc
+uuid: c9976f18-3a01-4adb-b857-4e8564fc4ee2
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_rescissions
-    - node.type.policy
-id: node.policy.field_rescissions
-field_name: field_rescissions
+    - field.storage.node.field_replacing
+    - node.type.policy_delegation
+id: node.policy_delegation.field_replacing
+field_name: field_replacing
 entity_type: node
-bundle: policy
+bundle: policy_delegation
 label: Replacing
-description: 'Select the rescinded Policy that this Policy is replacing.'
+description: 'Select the rescinded Delegation that this Delegation is replacing.'
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:

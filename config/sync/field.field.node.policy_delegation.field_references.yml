@@ -1,21 +1,21 @@
-uuid: 210d7dc3-77ab-4c3c-90d8-7e9ace93c42d
+uuid: a8b50114-bea6-4f3d-b252-7ae18c9d56e9
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_references
-    - node.type.policy
+    - node.type.policy_delegation
     - paragraphs.paragraphs_type.governing_authorities
   module:
     - entity_reference_revisions
-id: node.policy.field_references
+id: node.policy_delegation.field_references
 field_name: field_references
 entity_type: node
-bundle: policy
+bundle: policy_delegation
 label: References
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -32,34 +32,34 @@ settings:
         weight: 24
         enabled: false
       governing_authorities:
-        weight: 17
+        weight: 25
         enabled: true
       heading_title_and_text:
-        weight: 18
+        weight: 26
         enabled: false
       hero_carousel:
         weight: 27
         enabled: false
       list_of_link:
-        weight: 19
+        weight: 28
         enabled: false
       policy_roles:
         weight: 29
         enabled: false
       question_and_answer:
-        weight: 20
+        weight: 30
         enabled: false
       rich_text:
-        weight: 21
+        weight: 31
         enabled: false
       slide:
-        weight: 22
+        weight: 32
         enabled: false
       slide_show:
-        weight: 23
+        weight: 33
         enabled: false
       title_and_text:
-        weight: 24
+        weight: 34
         enabled: false
       uswds_card:
         weight: 35
@@ -68,22 +68,22 @@ settings:
         weight: 36
         enabled: false
       uswds_column:
-        weight: 27
+        weight: 37
         enabled: false
       uswds_graphic_list:
-        weight: 28
+        weight: 38
         enabled: false
       uswds_grid:
-        weight: 29
+        weight: 39
         enabled: false
       uswds_hero:
-        weight: 30
+        weight: 40
         enabled: false
       uswds_media_block:
-        weight: 31
+        weight: 41
         enabled: false
       uswds_text:
-        weight: 32
+        weight: 42
         enabled: false
       views_reference_list:
         weight: 43

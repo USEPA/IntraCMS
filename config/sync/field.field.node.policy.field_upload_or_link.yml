@@ -1,0 +1,21 @@
+uuid: 4d5c112f-aae6-47b6-9cbc-c5128aaea3e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_upload_or_link
+    - node.type.policy
+  module:
+    - options
+id: node.policy.field_upload_or_link
+field_name: field_upload_or_link
+entity_type: node
+bundle: policy
+label: 'Upload or Link to Policy'
+description: 'Will you be uploading or linking to the official policy?'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

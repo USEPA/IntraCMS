@@ -5,9 +5,23 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.policy.field_effective_date
+    - field.field.node.policy.field_link_to_policy
+    - field.field.node.policy.field_next_review_date
+    - field.field.node.policy.field_policy_background
+    - field.field.node.policy.field_policy_coordinator_lco
     - field.field.node.policy.field_policy_statement
+    - field.field.node.policy.field_policy_type
+    - field.field.node.policy.field_policy_upload
     - field.field.node.policy.field_prior_identifier
+    - field.field.node.policy.field_references
+    - field.field.node.policy.field_related_policy
+    - field.field.node.policy.field_related_resources
+    - field.field.node.policy.field_rescind_this_policy
+    - field.field.node.policy.field_rescission_date
+    - field.field.node.policy.field_rescissions
+    - field.field.node.policy.field_supplemental_documents
     - field.field.node.policy.field_topic_area_of_authority
+    - field.field.node.policy.field_upload_or_link
     - node.type.policy
   module:
     - user
@@ -17,27 +31,32 @@ bundle: policy
 mode: teaser
 content:
   links:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
 hidden:
   content_moderation_control: true
   field_definitions: true
   field_delegation: true
   field_effective_date: true
+  field_link_to_policy: true
   field_next_review_date: true
   field_policy_background: true
   field_policy_coordinator_lco: true
   field_policy_statement: true
+  field_policy_type: true
+  field_policy_upload: true
   field_prior_identifier: true
   field_references: true
+  field_related_policy: true
   field_related_procedures: true
+  field_related_resources: true
   field_rescind_this_policy: true
   field_rescission_date: true
   field_rescissions: true
   field_roles_and_responsibilities: true
-  field_signed_memo: true
   field_supplemental_documents: true
   field_topic_area_of_authority: true
+  field_upload_or_link: true
   search_api_excerpt: true

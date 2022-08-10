@@ -1,11 +1,15 @@
-uuid: 6bc0166e-9c7d-4027-b351-f79989932998
+uuid: 226a82e0-abc8-4df4-9fc2-84b2b41d46d9
 langcode: en
 status: true
 dependencies:
   module:
+    - field_permissions
     - node
-id: node.field_delegation
-field_name: field_delegation
+third_party_settings:
+  field_permissions:
+    permission_type: public
+id: node.field_related_policy
+field_name: field_related_policy
 entity_type: node
 type: entity_reference
 settings:

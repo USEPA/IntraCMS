@@ -1,17 +1,17 @@
-uuid: 545a5693-f5b7-4152-b6c3-eda9321feefd
+uuid: 2592a1f6-7625-4093-9ee8-4c277b9cac8d
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_signed_memo
+    - field.storage.node.field_policy_upload
     - media.type.document
     - node.type.policy
-id: node.policy.field_signed_memo
-field_name: field_signed_memo
+id: node.policy.field_policy_upload
+field_name: field_policy_upload
 entity_type: node
 bundle: policy
-label: 'Signed Memo'
-description: 'Upload a signed copy of the document that approved the policy issuance; generally a memorandum format. This is the document that gives some historical reference that the policy was actually issued and approved. '
+label: 'Policy Upload'
+description: 'Upload the official policy.'
 required: false
 translatable: false
 default_value: {  }
@@ -23,6 +23,7 @@ settings:
       document: document
     sort:
       field: _none
+      direction: ASC
     auto_create: true
     auto_create_bundle: ''
 field_type: entity_reference

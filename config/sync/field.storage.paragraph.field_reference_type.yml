@@ -3,8 +3,12 @@ langcode: en
 status: true
 dependencies:
   module:
+    - field_permissions
     - options
     - paragraphs
+third_party_settings:
+  field_permissions:
+    permission_type: public
 id: paragraph.field_reference_type
 field_name: field_reference_type
 entity_type: paragraph
@@ -12,29 +16,11 @@ type: list_string
 settings:
   allowed_values:
     -
-      value: epa-delegation
-      label: 'EPA Delegation of Authority'
-    -
-      value: epa-form
-      label: 'EPA Form'
-    -
-      value: epa-manual
-      label: 'EPA Manual or Handbook'
-    -
-      value: epa-memo
-      label: 'EPA Memorandum or Advisory'
-    -
-      value: epa-order
-      label: 'EPA Order'
-    -
       value: executive-order
       label: 'Executive Order'
     -
       value: omb-circular
       label: 'OMB Circular'
-    -
-      value: ord-other-procedures
-      label: 'ORD Procedures'
     -
       value: regulation
       label: Regulation
