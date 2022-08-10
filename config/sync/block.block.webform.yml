@@ -5,7 +5,6 @@ dependencies:
   config:
     - webform.webform.page_feedback
   module:
-    - ctools
     - node
     - webform
   theme:
@@ -19,29 +18,23 @@ plugin: webform_block
 settings:
   id: webform_block
   label: 'Page Feedback'
-  provider: webform
   label_display: '0'
+  provider: webform
   webform_id: page_feedback
   default_data: ''
   redirect: false
 visibility:
-  node_type:
-    id: node_type
-    bundles:
-      employee_profile: employee_profile
-      quiz: quiz
-      staff_member: staff_member
-      webform: webform
-    negate: true
-    context_mapping:
-      node: '@node.node_route_context:node'
   'entity_bundle:node':
     id: 'entity_bundle:node'
-    bundles:
-      employee_profile: employee_profile
-      quiz: quiz
-      staff_member: staff_member
-      webform: webform
     negate: true
     context_mapping:
       node: '@node.node_route_context:node'
+    bundles:
+      article: article
+      book: book
+      event: event
+      landing_page: landing_page
+      mass_mailer: mass_mailer
+      page: page
+      photos_of_the_week: photos_of_the_week
+      quiz: quiz
