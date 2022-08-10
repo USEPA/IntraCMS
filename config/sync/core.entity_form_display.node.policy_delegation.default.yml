@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.policy_delegation.field_signed_memo
     - field.field.node.policy_delegation.field_to_whom_delegated
     - field.field.node.policy_delegation.field_topic_area_of_authority
+    - field.field.node.policy_delegation.field_transmittal_notice
     - node.type.policy_delegation
     - workflows.workflow.editorial
   module:
@@ -242,6 +243,16 @@ content:
       save_lineage: false
       hierarchy_depth: 0
       required_depth: 0
+    third_party_settings: {  }
+  field_transmittal_notice:
+    type: entity_reference_autocomplete
+    weight: 26
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default

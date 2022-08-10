@@ -1,20 +1,21 @@
-uuid: ebe2ff22-3717-4455-926e-6cf164e8bff1
+uuid: 57ec5f0e-cbf3-4366-8934-12361d012cf3
 langcode: en
 status: true
 dependencies:
   module:
     - field_permissions
-    - media
     - node
 third_party_settings:
   field_permissions:
     permission_type: public
-id: node.field_signed_memo
-field_name: field_signed_memo
+id: node.field_most_recent_version
+field_name: field_most_recent_version
 entity_type: node
-type: entity_reference
+type: string
 settings:
-  target_type: media
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1

@@ -1,0 +1,21 @@
+uuid: 0e9cb48a-a3bd-4a1b-b389-b280d37e687e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_transmittal_relates_to
+    - node.type.transmittal_notce
+  module:
+    - options
+id: node.transmittal_notce.field_transmittal_relates_to
+field_name: field_transmittal_relates_to
+entity_type: node
+bundle: transmittal_notce
+label: 'Relates To'
+description: 'Select the type of policy this transmittal notice relates to.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

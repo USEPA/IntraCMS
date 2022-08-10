@@ -1,0 +1,29 @@
+uuid: 4f8426eb-4cdf-4fa4-b0b7-a10aa66ff7f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_transmittal_notice
+    - node.type.policy_delegation
+    - node.type.transmittal_notce
+id: node.policy_delegation.field_transmittal_notice
+field_name: field_transmittal_notice
+entity_type: node
+bundle: policy_delegation
+label: 'Transmittal Notice'
+description: 'Type the classification number of the transmittal notice and select it from the list of available options.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      transmittal_notce: transmittal_notce
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

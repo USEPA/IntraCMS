@@ -1,0 +1,208 @@
+uuid: 6092f95c-7efe-44fa-9114-8e9fb6c7617e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.transmittal_notce.field_approval_date
+    - field.field.node.transmittal_notce.field_associated_delegation
+    - field.field.node.transmittal_notce.field_associated_policy
+    - field.field.node.transmittal_notce.field_explanation
+    - field.field.node.transmittal_notce.field_link_to_transmittal_file
+    - field.field.node.transmittal_notce.field_most_recent_version
+    - field.field.node.transmittal_notce.field_original_approval
+    - field.field.node.transmittal_notce.field_purpose
+    - field.field.node.transmittal_notce.field_signed_memo
+    - field.field.node.transmittal_notce.field_transmittal_relates_to
+    - node.type.transmittal_notce
+    - workflows.workflow.editorial
+  module:
+    - content_moderation
+    - datetime
+    - field_group
+    - link
+    - media_library
+    - path
+    - text
+third_party_settings:
+  field_group:
+    group_archival_history:
+      children:
+        - field_original_approval
+        - field_most_recent_version
+      label: 'Archival History'
+      region: content
+      parent_name: ''
+      weight: 7
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+        required_fields: true
+id: node.transmittal_notce.default
+targetEntityType: node
+bundle: transmittal_notce
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 15
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_approval_date:
+    type: datetime_default
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_associated_delegation:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        30744327-b5b8-4ebc-8549-a185e96191e8:
+          entity_type: node
+          bundle: transmittal_notce
+          dependee: field_transmittal_relates_to
+          settings:
+            state: visible
+            condition: value
+            grouping: XOR
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: delegation
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_associated_policy:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        faa0e200-f62e-487a-a445-4d533206203f:
+          entity_type: node
+          bundle: transmittal_notce
+          dependee: field_transmittal_relates_to
+          settings:
+            state: visible
+            condition: value
+            grouping: OR
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: manual_order
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_explanation:
+    type: text_textarea
+    weight: 6
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_link_to_transmittal_file:
+    type: link_default
+    weight: 10
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_most_recent_version:
+    type: string_textfield
+    weight: 9
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_original_approval:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_purpose:
+    type: text_textarea
+    weight: 5
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_signed_memo:
+    type: media_library_widget
+    weight: 11
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_transmittal_relates_to:
+    type: options_buttons
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 16
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  promote: true
+  status: true
+  sticky: true

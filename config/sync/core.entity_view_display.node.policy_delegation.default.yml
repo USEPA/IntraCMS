@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.policy_delegation.field_signed_memo
     - field.field.node.policy_delegation.field_to_whom_delegated
     - field.field.node.policy_delegation.field_topic_area_of_authority
+    - field.field.node.policy_delegation.field_transmittal_notice
     - node.type.policy_delegation
   module:
     - datetime
@@ -166,6 +167,14 @@ content:
       link: false
     third_party_settings: {  }
     weight: 9
+    region: content
+  field_transmittal_notice:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 22
     region: content
   links:
     settings: {  }

@@ -1,21 +1,21 @@
-uuid: ebe2ff22-3717-4455-926e-6cf164e8bff1
+uuid: e03aa7fd-ddd0-4f79-a21b-8d51afc5adfd
 langcode: en
 status: true
 dependencies:
   module:
+    - datetime
     - field_permissions
-    - media
     - node
 third_party_settings:
   field_permissions:
     permission_type: public
-id: node.field_signed_memo
-field_name: field_signed_memo
+id: node.field_approval_date
+field_name: field_approval_date
 entity_type: node
-type: entity_reference
+type: datetime
 settings:
-  target_type: media
-module: core
+  datetime_type: datetime
+module: datetime
 locked: false
 cardinality: 1
 translatable: true

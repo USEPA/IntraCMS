@@ -1,6 +1,6 @@
 uuid: 30782e83-7135-475e-b3d0-ce0223159625
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - field.storage.node.field_effective_date
@@ -29,26 +29,78 @@ base_table: node_field_data
 base_field: nid
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Master
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: perm
+      title: 'Active Delegations'
+      fields:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: Title
+          exclude: false
+          alter:
+            alter_text: false
+            make_link: false
+            absolute: false
+            word_boundary: false
+            ellipsis: false
+            strip_tags: false
+            trim: false
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      pager:
+        type: mini
         options:
-          perm: 'access content'
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          disable_sql_rewrite: false
-          distinct: false
-          replica: false
-          query_comment: ''
-          query_tags: {  }
+          offset: 0
+          items_per_page: 10
+          total_pages: null
+          id: 0
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
       exposed_form:
         type: vefl_basic
         options:
@@ -71,125 +123,30 @@ display:
               offset: first
               submit: first
               reset: first
-      pager:
-        type: mini
+      access:
+        type: perm
         options:
-          items_per_page: 10
-          offset: 0
-          id: 0
-          total_pages: null
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
-      style:
-        type: table
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
-          columns:
-            field_topic_area_of_authority: field_topic_area_of_authority
-            field_effective_date: field_effective_date
-            title: title
-          info:
-            field_topic_area_of_authority:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_effective_date:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            title:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: '-1'
-          empty_table: false
-      row:
-        type: fields
-      fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          entity_type: node
-          entity_field: title
-          alter:
-            alter_text: false
-            make_link: false
-            absolute: false
-            trim: false
-            word_boundary: false
-            ellipsis: false
-            strip_tags: false
-            html: false
-          hide_empty: false
-          empty_zero: false
-          settings:
-            link_to_entity: true
-          plugin_id: field
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Title
-          exclude: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      empty: {  }
+      sorts: {  }
+      arguments: {  }
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
@@ -197,6 +154,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             policy_delegation: policy_delegation
@@ -216,8 +176,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
             argument: null
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -230,9 +190,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         title:
           id: title
           table: node_field_data
@@ -240,6 +197,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: string
           operator: contains
           value: ''
           group: 1
@@ -250,6 +210,8 @@ display:
             description: ''
             use_operator: false
             operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: title
             required: false
             remember: false
@@ -260,8 +222,6 @@ display:
               webform: '0'
               administrator: '0'
             placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -274,9 +234,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: string
         tid:
           id: tid
           table: taxonomy_index
@@ -284,6 +241,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -319,12 +277,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: policy_topics
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: taxonomy_index_tid
         field_rescind_this_delegation_value:
           id: field_rescind_this_delegation_value
           table: node__field_rescind_this_delegation
@@ -332,6 +289,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: boolean
           operator: '='
           value: '0'
           group: 1
@@ -362,9 +320,58 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: boolean
-      sorts: {  }
-      title: 'Active Delegations'
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          columns:
+            field_topic_area_of_authority: field_topic_area_of_authority
+            field_effective_date: field_effective_date
+            title: title
+          default: '-1'
+          info:
+            field_topic_area_of_authority:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_effective_date:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            title:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
+      row:
+        type: fields
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+      relationships: {  }
       header:
         area:
           id: area
@@ -372,14 +379,7 @@ display:
           field: area
           plugin_id: text
       footer: {  }
-      empty: {  }
-      relationships: {  }
-      arguments: {  }
       display_extenders: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
     cache_metadata:
       max-age: -1
       contexts:
@@ -392,31 +392,11 @@ display:
         - user.permissions
       tags: {  }
   active_delegations_page:
-    display_plugin: page
     id: active_delegations_page
     display_title: 'Active Delegations'
+    display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
-      path: policy/active-delegations
-      display_description: ''
-      sorts:
-        field_topic_area_of_authority_target_id:
-          id: field_topic_area_of_authority_target_id
-          table: node__field_topic_area_of_authority
-          field: field_topic_area_of_authority_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: standard
-      defaults:
-        sorts: false
-        fields: false
-        header: false
       fields:
         field_topic_area_of_authority:
           id: field_topic_area_of_authority
@@ -425,6 +405,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Topic Area of Authority'
           exclude: false
           alter:
@@ -480,7 +461,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_effective_date:
           id: field_effective_date
           table: node__field_effective_date
@@ -488,6 +468,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Effective Date'
           exclude: false
           alter:
@@ -544,32 +525,27 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title:
           id: title
           table: node_field_data
           field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
           entity_type: node
           entity_field: title
+          plugin_id: field
+          label: Title
+          exclude: false
           alter:
             alter_text: false
             make_link: false
             absolute: false
-            trim: false
             word_boundary: false
             ellipsis: false
             strip_tags: false
+            trim: false
             html: false
-          hide_empty: false
-          empty_zero: false
-          settings:
-            link_to_entity: true
-          plugin_id: field
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Title
-          exclude: false
           element_type: ''
           element_class: ''
           element_label_type: ''
@@ -579,9 +555,13 @@ display:
           element_wrapper_class: ''
           element_default_classes: true
           empty: ''
+          hide_empty: false
+          empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
           type: string
+          settings:
+            link_to_entity: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -592,6 +572,25 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      sorts:
+        field_topic_area_of_authority_target_id:
+          id: field_topic_area_of_authority_target_id
+          table: node__field_topic_area_of_authority
+          field: field_topic_area_of_authority_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: field_topic_area_of_authority_target_id
+          exposed: false
+      defaults:
+        fields: false
+        sorts: false
+        header: false
+      display_description: ''
       header:
         area:
           id: area
@@ -600,12 +599,14 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: text
           empty: false
-          tokenize: false
           content:
             value: "<h1>Delegations</h1>\r\n<p>You've reached ORD's Delegations page! The default display below lists the delegations alphabetically by topic. You can sort them in ascending or descending order chronologically by effective date or alphabetically by title by clicking on the header links. You can also search or filter by title by typing a keyword in the \"Title\" search box or by topic by choosing an option in the drop-down menu. Rescinded delegations are listed on the <a href=\"/policy/rescinded-delegations\">Rescinded Delegations</a> page.</p>"
             format: full_html
-          plugin_id: text
+          tokenize: false
+      display_extenders: {  }
+      path: policy/active-delegations
     cache_metadata:
       max-age: -1
       contexts:
@@ -620,22 +621,12 @@ display:
         - 'config:field.storage.node.field_effective_date'
         - 'config:field.storage.node.field_topic_area_of_authority'
   delegations_review_date_export:
-    display_plugin: data_export
     id: delegations_review_date_export
     display_title: 'Delegations Review Export'
+    display_plugin: data_export
     position: 4
     display_options:
-      display_extenders: {  }
-      path: policy/active-delegations-review-date.csv
-      display_description: ''
-      sorts: {  }
-      defaults:
-        sorts: false
-        fields: false
-        title: false
-        filters: false
-        filter_groups: false
-        header: false
+      title: 'Delegations Review Date'
       fields:
         field_next_review_date:
           id: field_next_review_date
@@ -644,6 +635,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Next Review Date'
           exclude: false
           alter:
@@ -700,7 +692,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_topic_area_of_authority:
           id: field_topic_area_of_authority
           table: node__field_topic_area_of_authority
@@ -708,6 +699,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Topic Area of Authority'
           exclude: false
           alter:
@@ -763,32 +755,27 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title:
           id: title
           table: node_field_data
           field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
           entity_type: node
           entity_field: title
+          plugin_id: field
+          label: Title
+          exclude: false
           alter:
             alter_text: false
             make_link: false
             absolute: false
-            trim: false
             word_boundary: false
             ellipsis: false
             strip_tags: false
+            trim: false
             html: false
-          hide_empty: false
-          empty_zero: false
-          settings:
-            link_to_entity: true
-          plugin_id: field
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Title
-          exclude: false
           element_type: ''
           element_class: ''
           element_label_type: ''
@@ -798,9 +785,13 @@ display:
           element_wrapper_class: ''
           element_default_classes: true
           empty: ''
+          hide_empty: false
+          empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
           type: string
+          settings:
+            link_to_entity: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -811,21 +802,21 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-      title: 'Delegations Review Date'
+      sorts: {  }
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
@@ -833,6 +824,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             policy_delegation: policy_delegation
@@ -852,8 +846,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
             argument: null
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -866,9 +860,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         field_rescind_this_delegation_value:
           id: field_rescind_this_delegation_value
           table: node__field_rescind_this_delegation
@@ -876,6 +867,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: boolean
           operator: '='
           value: '0'
           group: 1
@@ -906,31 +898,10 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: boolean
       filter_groups:
         operator: AND
         groups:
           1: AND
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: false
-          content:
-            value: "<h1>Active Delegations by Review Date</h1>\r\n<p>The table below lists all active delegations by review date.</p>\r\n<p><a href=\"\" class=\"usa-button\">Export CSV</a></p>"
-            format: full_html
-          plugin_id: text
-      filename: ''
-      automatic_download: false
-      store_in_public_file_directory: null
-      redirect_to_display: none
-      custom_redirect_path: false
-      include_query_params: false
       style:
         type: data_export
         options:
@@ -945,6 +916,36 @@ display:
             encoding: utf8
             utf8_bom: '0'
             use_serializer_encode_only: false
+      defaults:
+        title: false
+        fields: false
+        sorts: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: "<h1>Active Delegations by Review Date</h1>\r\n<p>The table below lists all active delegations by review date.</p>\r\n<p><a href=\"\" class=\"usa-button\">Export CSV</a></p>"
+            format: full_html
+          tokenize: false
+      display_extenders: {  }
+      path: policy/active-delegations-review-date.csv
+      filename: ''
+      automatic_download: false
+      store_in_public_file_directory: null
+      custom_redirect_path: false
+      redirect_to_display: none
+      include_query_params: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -957,34 +958,12 @@ display:
         - 'config:field.storage.node.field_next_review_date'
         - 'config:field.storage.node.field_topic_area_of_authority'
   delegations_review_date_page:
-    display_plugin: page
     id: delegations_review_date_page
     display_title: 'Delegations Review Date'
+    display_plugin: page
     position: 3
     display_options:
-      display_extenders: {  }
-      path: policy/active-delegations-review-date
-      display_description: ''
-      sorts:
-        field_topic_area_of_authority_target_id:
-          id: field_topic_area_of_authority_target_id
-          table: node__field_topic_area_of_authority
-          field: field_topic_area_of_authority_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: standard
-      defaults:
-        sorts: false
-        fields: false
-        title: false
-        filters: false
-        filter_groups: false
-        header: false
+      title: 'Delegations Review Date'
       fields:
         field_next_review_date:
           id: field_next_review_date
@@ -993,6 +972,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Next Review Date'
           exclude: false
           alter:
@@ -1049,7 +1029,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_topic_area_of_authority:
           id: field_topic_area_of_authority
           table: node__field_topic_area_of_authority
@@ -1057,6 +1036,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Topic Area of Authority'
           exclude: false
           alter:
@@ -1112,32 +1092,27 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title:
           id: title
           table: node_field_data
           field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
           entity_type: node
           entity_field: title
+          plugin_id: field
+          label: Title
+          exclude: false
           alter:
             alter_text: false
             make_link: false
             absolute: false
-            trim: false
             word_boundary: false
             ellipsis: false
             strip_tags: false
+            trim: false
             html: false
-          hide_empty: false
-          empty_zero: false
-          settings:
-            link_to_entity: true
-          plugin_id: field
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Title
-          exclude: false
           element_type: ''
           element_class: ''
           element_label_type: ''
@@ -1147,9 +1122,13 @@ display:
           element_wrapper_class: ''
           element_default_classes: true
           empty: ''
+          hide_empty: false
+          empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
           type: string
+          settings:
+            link_to_entity: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1160,21 +1139,34 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-      title: 'Delegations Review Date'
+      sorts:
+        field_topic_area_of_authority_target_id:
+          id: field_topic_area_of_authority_target_id
+          table: node__field_topic_area_of_authority
+          field: field_topic_area_of_authority_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: field_topic_area_of_authority_target_id
+          exposed: false
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
@@ -1182,6 +1174,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             policy_delegation: policy_delegation
@@ -1201,8 +1196,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
             argument: null
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -1215,9 +1210,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         title:
           id: title
           table: node_field_data
@@ -1225,6 +1217,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: string
           operator: contains
           value: ''
           group: 1
@@ -1235,6 +1230,8 @@ display:
             description: ''
             use_operator: false
             operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: title
             required: false
             remember: false
@@ -1245,8 +1242,6 @@ display:
               webform: '0'
               administrator: '0'
             placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -1259,9 +1254,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: string
         tid:
           id: tid
           table: taxonomy_index
@@ -1269,6 +1261,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -1304,12 +1297,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: policy_topics
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: taxonomy_index_tid
         field_rescind_this_delegation_value:
           id: field_rescind_this_delegation_value
           table: node__field_rescind_this_delegation
@@ -1317,6 +1309,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: boolean
           operator: '='
           value: '0'
           group: 1
@@ -1347,7 +1340,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: boolean
         field_next_review_date_value:
           id: field_next_review_date_value
           table: node__field_next_review_date
@@ -1355,6 +1347,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: datetime
           operator: '='
           value:
             min: ''
@@ -1380,9 +1373,9 @@ display:
               anonymous: '0'
               webform: '0'
               administrator: '0'
-            placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -1395,11 +1388,18 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: datetime
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        title: false
+        fields: false
+        sorts: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
       header:
         area:
           id: area
@@ -1408,12 +1408,14 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: text
           empty: false
-          tokenize: false
           content:
             value: "<h1>Active Delegations by Review Date</h1>\r\n<p>The table below lists all active delegations by review date.</p>\r\n<p><a href=\"/policy/active-delegations-review-date.csv\" class=\"usa-button\">Export CSV</a></p>"
             format: full_html
-          plugin_id: text
+          tokenize: false
+      display_extenders: {  }
+      path: policy/active-delegations-review-date
     cache_metadata:
       max-age: -1
       contexts:
@@ -1427,36 +1429,75 @@ display:
       tags:
         - 'config:field.storage.node.field_next_review_date'
         - 'config:field.storage.node.field_topic_area_of_authority'
-  rescinded_delegations_page:
-    display_plugin: page
-    id: rescinded_delegations_page
-    display_title: 'Rescinded Delegations'
+  entity_reference_1:
+    id: entity_reference_1
+    display_title: 'Active Delegations Entity Reference'
+    display_plugin: entity_reference
     position: 2
     display_options:
-      display_extenders: {  }
-      display_description: ''
       title: 'Rescinded Delegations'
-      defaults:
-        title: false
-        filters: false
-        filter_groups: false
-        fields: false
-        header: false
-      path: policy/rescinded-delegations
+      fields:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: Title
+          exclude: false
+          alter:
+            alter_text: false
+            make_link: false
+            absolute: false
+            word_boundary: false
+            ellipsis: false
+            strip_tags: false
+            trim: false
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
@@ -1464,6 +1505,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             policy_delegation: policy_delegation
@@ -1483,95 +1527,7 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
             argument: null
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: title_op
-            label: Title
-            description: ''
-            use_operator: false
-            operator: title_op
-            identifier: title
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              administrator: '0'
-            placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: string
-        tid:
-          id: tid
-          table: taxonomy_index
-          field: tid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: tid_op
-            label: 'Topic Area of Authority'
-            description: ''
-            use_operator: false
-            operator: tid_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: tid
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1585,13 +1541,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: policy_topics
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
         field_rescind_this_delegation_value:
           id: field_rescind_this_delegation_value
           table: node__field_rescind_this_delegation
@@ -1599,8 +1548,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: boolean
           operator: '='
-          value: '1'
+          value: '0'
           group: 1
           exposed: false
           expose:
@@ -1629,37 +1579,76 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: boolean
       filter_groups:
         operator: AND
         groups:
           1: AND
+      style:
+        type: entity_reference
+        options:
+          search_fields:
+            title: title
+            field_rescission_date: '0'
+            field_topic_area_of_authority: '0'
+      defaults:
+        title: false
+        fields: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: "<h1>Rescinded Delegations</h1>\r\n<p>The delegations listed below have been rescinded. View all active delegations on the <a href=\"/policy/active-delegations\">Active Delegations</a> page.</p>"
+            format: full_html
+          tokenize: false
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  rescinded_delegations_page:
+    id: rescinded_delegations_page
+    display_title: 'Rescinded Delegations'
+    display_plugin: page
+    position: 2
+    display_options:
+      title: 'Rescinded Delegations'
       fields:
         title:
           id: title
           table: node_field_data
           field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
           entity_type: node
           entity_field: title
+          plugin_id: field
+          label: Title
+          exclude: false
           alter:
             alter_text: false
             make_link: false
             absolute: false
-            trim: false
             word_boundary: false
             ellipsis: false
             strip_tags: false
+            trim: false
             html: false
-          hide_empty: false
-          empty_zero: false
-          settings:
-            link_to_entity: true
-          plugin_id: field
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Title
-          exclude: false
           element_type: ''
           element_class: ''
           element_label_type: ''
@@ -1669,9 +1658,13 @@ display:
           element_wrapper_class: ''
           element_default_classes: true
           empty: ''
+          hide_empty: false
+          empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
           type: string
+          settings:
+            link_to_entity: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1689,6 +1682,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Rescission Date'
           exclude: false
           alter:
@@ -1745,7 +1739,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_topic_area_of_authority:
           id: field_topic_area_of_authority
           table: node__field_topic_area_of_authority
@@ -1753,6 +1746,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Topic Area of Authority'
           exclude: false
           alter:
@@ -1808,7 +1802,204 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            policy_delegation: policy_delegation
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            argument: null
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: string
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: title_op
+            label: Title
+            description: ''
+            use_operator: false
+            operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: title
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: tid_op
+            label: 'Topic Area of Authority'
+            description: ''
+            use_operator: false
+            operator: tid_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: tid
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: policy_topics
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+        field_rescind_this_delegation_value:
+          id: field_rescind_this_delegation_value
+          table: node__field_rescind_this_delegation
+          field: field_rescind_this_delegation_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: boolean
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        fields: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
       header:
         area:
           id: area
@@ -1817,12 +2008,14 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: text
           empty: false
-          tokenize: false
           content:
             value: "<h1>Rescinded Delegations</h1>\r\n<p>The delegations listed below have been rescinded. View all active delegations on the <a href=\"/policy/active-delegations\">Active Delegations</a> page.</p>"
             format: full_html
-          plugin_id: text
+          tokenize: false
+      display_extenders: {  }
+      path: policy/rescinded-delegations
     cache_metadata:
       max-age: -1
       contexts:

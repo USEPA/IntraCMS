@@ -1,0 +1,41 @@
+uuid: 62e910d5-7fff-43d2-b872-cf12de11258c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.transmittal_notce.field_approval_date
+    - field.field.node.transmittal_notce.field_associated_delegation
+    - field.field.node.transmittal_notce.field_associated_policy
+    - field.field.node.transmittal_notce.field_explanation
+    - field.field.node.transmittal_notce.field_link_to_transmittal_file
+    - field.field.node.transmittal_notce.field_most_recent_version
+    - field.field.node.transmittal_notce.field_original_approval
+    - field.field.node.transmittal_notce.field_purpose
+    - field.field.node.transmittal_notce.field_signed_memo
+    - field.field.node.transmittal_notce.field_transmittal_relates_to
+    - node.type.transmittal_notce
+  module:
+    - user
+id: node.transmittal_notce.teaser
+targetEntityType: node
+bundle: transmittal_notce
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  content_moderation_control: true
+  field_approval_date: true
+  field_associated_delegation: true
+  field_associated_policy: true
+  field_explanation: true
+  field_link_to_transmittal_file: true
+  field_most_recent_version: true
+  field_original_approval: true
+  field_purpose: true
+  field_signed_memo: true
+  field_transmittal_relates_to: true
