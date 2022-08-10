@@ -16,29 +16,29 @@ bundle: communications
 mode: default
 content:
   field_group_contact:
-    weight: 4
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
     type: email_default
+    weight: 4
     region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
   field_group_contact_info:
+    type: text_textarea
     weight: 3
+    region: content
     settings:
       rows: 3
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_group_description:
+    type: string_textarea
     weight: 2
+    region: content
     settings:
       rows: 2
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
-    region: content
   label:
     type: string_textfield
     weight: 0
@@ -52,6 +52,13 @@ content:
     weight: 1
     region: content
     settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 120
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
 hidden:
   uid: true
