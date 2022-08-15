@@ -1,0 +1,31 @@
+uuid: c604c13b-8790-45ff-b46d-3982ad6d8308
+langcode: en
+status: true
+dependencies:
+  module:
+    - field_permissions
+    - node
+    - options
+third_party_settings:
+  field_permissions:
+    permission_type: public
+id: node.field_transmittal_relates_to
+field_name: field_transmittal_relates_to
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: manual_order
+      label: 'Manual or Order'
+    -
+      value: delegation
+      label: Delegation
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

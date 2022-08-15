@@ -1,0 +1,25 @@
+uuid: 4349f7d8-960d-49a6-bb0e-a340be12a7b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_associated_policy
+    - node.type.transmittal_notce
+id: node.transmittal_notce.field_associated_policy
+field_name: field_associated_policy
+entity_type: node
+bundle: transmittal_notce
+label: 'Associated Policy (Manual or Order)'
+description: 'Type the title of the Policy and select it from the list of available options.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: policy
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

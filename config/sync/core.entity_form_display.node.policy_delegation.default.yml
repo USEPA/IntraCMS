@@ -3,29 +3,35 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.policy_delegation.body
-    - field.field.node.policy_delegation.field_additional_policy_role
-    - field.field.node.policy_delegation.field_agency_delegation_link
-    - field.field.node.policy_delegation.field_delegated_to
-    - field.field.node.policy_delegation.field_delegation_re_delegation_t
+    - field.field.node.policy_delegation.field_autho
     - field.field.node.policy_delegation.field_effective_date
+    - field.field.node.policy_delegation.field_limitation
+    - field.field.node.policy_delegation.field_link_to_delegation_file
     - field.field.node.policy_delegation.field_next_review_date
-    - field.field.node.policy_delegation.field_policy_role
+    - field.field.node.policy_delegation.field_other_delegation
+    - field.field.node.policy_delegation.field_prior_identifier
+    - field.field.node.policy_delegation.field_redelegation
+    - field.field.node.policy_delegation.field_redelegation_authority
+    - field.field.node.policy_delegation.field_references
+    - field.field.node.policy_delegation.field_replacing
     - field.field.node.policy_delegation.field_rescind_this_delegation
     - field.field.node.policy_delegation.field_rescission_date
     - field.field.node.policy_delegation.field_signed_memo
+    - field.field.node.policy_delegation.field_to_whom_delegated
     - field.field.node.policy_delegation.field_topic_area_of_authority
+    - field.field.node.policy_delegation.field_transmittal_notice
     - node.type.policy_delegation
     - workflows.workflow.editorial
   module:
+    - conditional_fields
     - content_moderation
+    - cshs
     - datetime
     - field_group
-    - lightning_scheduler
     - link
     - media_library
+    - paragraphs
     - path
-    - tablefield
     - text
 third_party_settings:
   field_group:
@@ -33,146 +39,236 @@ third_party_settings:
       children:
         - field_rescind_this_delegation
         - field_rescission_date
-      parent_name: ''
-      weight: 10
-      format_type: details
-      region: content
-      format_settings:
-        description: ''
-        id: ''
-        classes: ''
-        required_fields: false
-        open: false
       label: 'Delegation Status (Use Only to Rescind this Delegation)'
+      region: content
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        classes: ''
+        id: ''
+        open: false
+        description: ''
+        required_fields: false
+    group_references:
+      children:
+        - field_references
+      label: References
+      region: content
+      parent_name: ''
+      weight: 14
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
 id: node.policy_delegation.default
 targetEntityType: node
 bundle: policy_delegation
 mode: default
 content:
-  body:
-    type: text_textarea_with_summary
-    weight: 15
+  created:
+    type: datetime_timestamp
+    weight: 20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_autho:
+    type: text_textarea
+    weight: 7
+    region: content
     settings:
       rows: 5
       placeholder: ''
-      summary_rows: 3
-      show_summary: false
     third_party_settings: {  }
-    region: content
-  created:
-    type: datetime_timestamp
-    weight: 1
+  field_effective_date:
+    type: datetime_default
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_additional_policy_role:
-    weight: 18
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
+  field_limitation:
+    type: text_textarea
+    weight: 10
     region: content
-  field_agency_delegation_link:
-    weight: 12
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_link_to_delegation_file:
+    type: link_default
+    weight: 6
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
-  field_delegated_to:
-    weight: 11
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_delegation_re_delegation_t:
-    weight: 16
-    settings:
-      input_type: textfield
-    third_party_settings: {  }
-    type: tablefield
-    region: content
-  field_effective_date:
-    weight: 9
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_next_review_date:
-    weight: 19
-    settings: {  }
-    third_party_settings: {  }
     type: datetime_default
-    region: content
-  field_policy_role:
     weight: 17
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+  field_other_delegation:
+    type: string_textfield
+    weight: 9
     region: content
-  field_rescind_this_delegation:
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        802c7ad3-fc30-4e7d-a25b-0e0b8f4801de:
+          entity_type: node
+          bundle: policy_delegation
+          dependee: field_to_whom_delegated
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                target_id: '21'
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_prior_identifier:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_redelegation:
+    type: options_buttons
     weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_redelegation_authority:
+    type: text_textarea
+    weight: 12
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        84491729-17fd-4972-adfa-5ffb234958f2:
+          entity_type: node
+          bundle: policy_delegation
+          dependee: field_redelegation
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: may
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_references:
+    type: paragraphs
+    weight: 15
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: governing_authorities
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_replacing:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_rescind_this_delegation:
+    type: boolean_checkbox
+    weight: 11
+    region: content
     settings:
       display_label: true
     third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
   field_rescission_date:
+    type: datetime_default
     weight: 12
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_signed_memo:
     type: media_library_widget
     weight: 13
+    region: content
     settings:
       media_types: {  }
-      field_widget_replace: false
+    third_party_settings: {  }
+  field_to_whom_delegated:
+    type: options_select
+    weight: 8
     region: content
+    settings: {  }
     third_party_settings: {  }
   field_topic_area_of_authority:
-    weight: 14
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
+    type: cshs
+    weight: 4
     region: content
+    settings:
+      force_deepest: false
+      parent: '0'
+      level_labels: ''
+      save_lineage: false
+      hierarchy_depth: 0
+      required_depth: 0
+    third_party_settings: {  }
+  field_transmittal_notice:
+    type: entity_reference_autocomplete
+    weight: 26
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 6
-    settings: {  }
+    weight: 22
     region: content
+    settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 4
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 2
-    region: content
-    third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 7
-    region: content
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 3
-    region: content
-    third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 8
+    weight: 0
     region: content
     settings:
       size: 60
@@ -180,17 +276,20 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 0
+    weight: 21
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
-    region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 5
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  promote: true
+  status: true
+  sticky: true

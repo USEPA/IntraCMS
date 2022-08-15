@@ -5,15 +5,14 @@ dependencies:
   config:
     - field.storage.node.field_policy_coordinator_lco
     - node.type.policy
-    - taxonomy.vocabulary.program_offices_and_regions
-    - taxonomy.vocabulary.research_program_area
+    - taxonomy.vocabulary.organization
 id: node.policy.field_policy_coordinator_lco
 field_name: field_policy_coordinator_lco
 entity_type: node
 bundle: policy
-label: 'Policy Coordinator C/O'
-description: 'Select the Center(s)/Office(s) or National Program(s) that "own" the subject-matter expertise or that is best assigned to be the coordinator or contact for the policy.'
-required: false
+label: 'Policy Coordinator'
+description: 'Select the AAShip or Region that coordinates this policy. Where appropriate, select the sub-organization.'
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -21,11 +20,10 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      program_offices_and_regions: program_offices_and_regions
-      research_program_area: research_program_area
+      organization: organization
     sort:
       field: name
       direction: asc
     auto_create: false
-    auto_create_bundle: program_offices_and_regions
+    auto_create_bundle: organization
 field_type: entity_reference

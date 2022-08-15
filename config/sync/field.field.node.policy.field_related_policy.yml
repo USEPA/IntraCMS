@@ -1,0 +1,28 @@
+uuid: 9a51e668-f847-405f-b721-df5f1de0ed9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_policy
+    - node.type.policy
+id: node.policy.field_related_policy
+field_name: field_related_policy
+entity_type: node
+bundle: policy
+label: 'Related Policy'
+description: 'Identify the policy or policies this policy relates to.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      policy: policy
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,116 @@
+uuid: 49bd1cf8-40fa-418f-8164-8c37e9d41b88
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.transmittal_notce.field_approval_date
+    - field.field.node.transmittal_notce.field_associated_delegation
+    - field.field.node.transmittal_notce.field_associated_policy
+    - field.field.node.transmittal_notce.field_explanation
+    - field.field.node.transmittal_notce.field_link_to_transmittal_file
+    - field.field.node.transmittal_notce.field_most_recent_version
+    - field.field.node.transmittal_notce.field_original_approval
+    - field.field.node.transmittal_notce.field_purpose
+    - field.field.node.transmittal_notce.field_signed_memo
+    - field.field.node.transmittal_notce.field_transmittal_relates_to
+    - node.type.transmittal_notce
+  module:
+    - datetime
+    - link
+    - options
+    - text
+    - user
+id: node.transmittal_notce.default
+targetEntityType: node
+bundle: transmittal_notce
+mode: default
+content:
+  field_approval_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_associated_delegation:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_associated_policy:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_explanation:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_link_to_transmittal_file:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_most_recent_version:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_original_approval:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_purpose:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_signed_memo:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  field_transmittal_relates_to:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  content_moderation_control: true

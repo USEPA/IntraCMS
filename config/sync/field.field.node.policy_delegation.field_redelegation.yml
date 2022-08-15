@@ -1,0 +1,21 @@
+uuid: e76a0461-dcd4-49c3-8f59-95253c4954be
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_redelegation
+    - node.type.policy_delegation
+  module:
+    - options
+id: node.policy_delegation.field_redelegation
+field_name: field_redelegation
+entity_type: node
+bundle: policy_delegation
+label: Redelegation
+description: 'Can this authority be redelegated?'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

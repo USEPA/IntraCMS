@@ -1,0 +1,29 @@
+uuid: 30826173-9149-4dc9-9362-d098a95e649c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_to_whom_delegated
+    - node.type.policy_delegation
+    - taxonomy.vocabulary.delegation_authorities
+id: node.policy_delegation.field_to_whom_delegated
+field_name: field_to_whom_delegated
+entity_type: node
+bundle: policy_delegation
+label: 'To Whom Delegated'
+description: 'Select to whom the authority is delegated. If not represented, select Other.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      delegation_authorities: delegation_authorities
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

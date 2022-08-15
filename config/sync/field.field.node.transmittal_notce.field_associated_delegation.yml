@@ -1,0 +1,25 @@
+uuid: 23c278da-f88f-4c5d-b928-3c9741cb1f44
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_associated_delegation
+    - node.type.transmittal_notce
+id: node.transmittal_notce.field_associated_delegation
+field_name: field_associated_delegation
+entity_type: node
+bundle: transmittal_notce
+label: 'Associated Delegation'
+description: 'Type the title of the Delegation and select it from the list of available options.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: policy_delegation
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

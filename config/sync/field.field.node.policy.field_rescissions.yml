@@ -9,8 +9,8 @@ id: node.policy.field_rescissions
 field_name: field_rescissions
 entity_type: node
 bundle: policy
-label: Rescissions
-description: ''
+label: Replacing
+description: 'Select the rescinded Policy that this Policy is replacing.'
 required: false
 translatable: false
 default_value: {  }
@@ -19,7 +19,7 @@ settings:
   handler: views
   handler_settings:
     view:
-      view_name: policy
-      display_name: rescinded_policy_entity_reference
+      view_name: forms
+      display_name: entity_reference_1
       arguments: {  }
 field_type: entity_reference

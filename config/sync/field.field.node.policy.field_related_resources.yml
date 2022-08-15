@@ -1,0 +1,23 @@
+uuid: 901aa3e0-8ded-4ccf-9aa4-eec7a53acbdd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_resources
+    - node.type.policy
+  module:
+    - link
+id: node.policy.field_related_resources
+field_name: field_related_resources
+entity_type: node
+bundle: policy
+label: 'Related Resources'
+description: 'Enter the title and link to the related resource'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 2
+  link_type: 17
+field_type: link
