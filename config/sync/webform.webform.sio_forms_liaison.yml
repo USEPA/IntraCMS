@@ -10,9 +10,9 @@ third_party_settings:
     chart_type: PieChart
     components:
       - organization
+weight: 0
 open: null
 close: null
-weight: 0
 uid: 133
 template: false
 archive: false
@@ -84,9 +84,9 @@ settings:
   page_theme_name: ''
   form_title: both
   form_submit_once: false
-  form_exception_message: ''
   form_open_message: ''
   form_close_message: ''
+  form_exception_message: ''
   form_previous_submissions: true
   form_confidential: false
   form_confidential_message: ''
@@ -96,16 +96,16 @@ settings:
   form_prepopulate_source_entity: false
   form_prepopulate_source_entity_required: false
   form_prepopulate_source_entity_type: ''
-  form_reset: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
   form_disable_autocomplete: false
   form_novalidate: false
   form_disable_inline_errors: false
   form_required: false
-  form_unsaved: false
-  form_disable_back: false
-  form_submit_back: false
   form_autofocus: false
   form_details_toggle: false
+  form_reset: false
   form_access_denied: default
   form_access_denied_title: ''
   form_access_denied_message: ''
@@ -117,7 +117,12 @@ settings:
   share_title: true
   share_page_body_attributes: {  }
   submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
   submission_log: true
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
   submission_views: {  }
   submission_views_replace: {  }
   submission_user_columns: {  }
@@ -126,11 +131,6 @@ settings:
   submission_access_denied_title: ''
   submission_access_denied_message: ''
   submission_access_denied_attributes: {  }
-  submission_exception_message: ''
-  submission_locked_message: ''
-  submission_excluded_elements: {  }
-  submission_exclude_empty: false
-  submission_exclude_empty_checkbox: false
   previous_submission_message: ''
   previous_submissions_message: ''
   autofill: false
@@ -141,13 +141,13 @@ settings:
   wizard_progress_percentage: false
   wizard_progress_link: false
   wizard_progress_states: false
-  wizard_auto_forward: true
-  wizard_auto_forward_hide_next_button: false
-  wizard_keyboard: true
   wizard_start_label: ''
   wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
   wizard_track: ''
   wizard_prev_button_label: ''
   wizard_next_button_label: ''
@@ -170,9 +170,9 @@ settings:
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
   confirmation_type: page
+  confirmation_url: ''
   confirmation_title: ''
   confirmation_message: ''
-  confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -265,9 +265,9 @@ access:
 handlers:
   options_checkbox_limit:
     id: options_limit
+    handler_id: options_checkbox_limit
     label: 'Options/Checkbox limit'
     notes: ''
-    handler_id: options_checkbox_limit
     status: true
     conditions: {  }
     weight: -48
@@ -296,15 +296,15 @@ handlers:
       option_message_display: label
       option_multiple_message: '[@remaining remaining]'
       option_single_message: '[@remaining remaining]'
-      option_unlimited_message: '[Unlimited]'
       option_none_message: '[@remaining remaining]'
+      option_unlimited_message: '[Unlimited]'
       option_error_message: '@name: @label is unavailable.'
       tableselect_header: ''
   primary_and_sio_email:
     id: email
+    handler_id: primary_and_sio_email
     label: 'Primary and SIO Email'
     notes: ''
-    handler_id: primary_and_sio_email
     status: true
     conditions: {  }
     weight: 0
@@ -314,13 +314,17 @@ handlers:
         - updated
       to_mail: '[webform_submission:values:primary_forms_liaison_email:raw]'
       to_options: {  }
-      cc_mail: '[webform_submission:values:sio_email:raw]'
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: '[webform_submission:values:sio_email:raw]'
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: "<p>Submitted on {{ webform_token('[webform_submission:created]', webform_submission, [], options) }}</p>\r\n<p>Submitted by: {{ webform_token('[webform_submission:user]', webform_submission, [], options) }}</p>\r\n<p>On behalf of {{  webform_token('[webform_submission:values:organization]', webform_submission, [], options) }} I designate the following Forms Liaisons to represent our organization: </p>\r\n<p> {{  webform_token('[webform_submission:values:primary_forms_liaison_name]', webform_submission, [], options) }} at {{  webform_token('[webform_submission:values:primary_forms_liaison_email]', webform_submission, [], options) }} </p>\r\n<p> {{  webform_token('[webform_submission:values:secondary_forms_liaison_name]', webform_submission, [], options) }} at {{  webform_token('[webform_submission:values:secondary_forms_liaison_email]', webform_submission, [], options) }} </p>\r\n{{  webform_token('[webform_submission:values:additional_forms_liaison_emails]', webform_submission, [], options) }}\r\n<p> Our Forms Liaison designees are copied on this email and are available to attend the Forms Liaison Orientation sessions when scheduled or listen to their recordings when available. </p>\r\n\r\n<p> Sincerely, </p>\r\n{{  webform_token('[webform_submission:values:designator_name]', webform_submission, [], options) }}\r\n<p> {{  webform_token('[webform_submission:values:designator_email]', webform_submission, [], options) }} </p>"
       excluded_elements: {  }
@@ -331,18 +335,14 @@ handlers:
       html: true
       attachments: false
       twig: true
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   primary_and_sio_email_1:
     id: email
+    handler_id: primary_and_sio_email_1
     label: 'Secondary and SIO Email'
     notes: ''
-    handler_id: primary_and_sio_email_1
     status: true
     conditions: {  }
     weight: 2
@@ -352,13 +352,17 @@ handlers:
         - updated
       to_mail: '[webform_submission:values:secondary_forms_liaison_email:raw]'
       to_options: {  }
-      cc_mail: '[webform_submission:values:sio_email:raw]'
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: '[webform_submission:values:sio_email:raw]'
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: "<p>Submitted on {{ webform_token('[webform_submission:created]', webform_submission, [], options) }}</p>\r\n<p>Submitted by: {{ webform_token('[webform_submission:user]', webform_submission, [], options) }}</p>\r\n<p>On behalf of {{  webform_token('[webform_submission:values:organization]', webform_submission, [], options) }} I designate the following Forms Liaisons to represent our organization: </p>\r\n<p> {{  webform_token('[webform_submission:values:primary_forms_liaison_name]', webform_submission, [], options) }} at {{  webform_token('[webform_submission:values:primary_forms_liaison_email]', webform_submission, [], options) }} </p>\r\n<p> {{  webform_token('[webform_submission:values:secondary_forms_liaison_name]', webform_submission, [], options) }} at {{  webform_token('[webform_submission:values:secondary_forms_liaison_email]', webform_submission, [], options) }} </p>\r\n{{  webform_token('[webform_submission:values:additional_forms_liaison_emails]', webform_submission, [], options) }}\r\n<p> Our Forms Liaison designees are copied on this email and are available to attend the Forms Liaison Orientation sessions when scheduled or listen to their recordings when available. </p>\r\n\r\n<p> Sincerely, </p>\r\n{{  webform_token('[webform_submission:values:designator_name]', webform_submission, [], options) }}\r\n<p> {{  webform_token('[webform_submission:values:designator_email]', webform_submission, [], options) }} </p>"
       excluded_elements: {  }
@@ -369,18 +373,14 @@ handlers:
       html: true
       attachments: false
       twig: true
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   primary_and_sio_email_2:
     id: email
+    handler_id: primary_and_sio_email_2
     label: 'Additional and SIO Email'
     notes: ''
-    handler_id: primary_and_sio_email_2
     status: true
     conditions: {  }
     weight: 3
@@ -390,13 +390,17 @@ handlers:
         - updated
       to_mail: '[webform_submission:values:additional_forms_liaison_emails:raw]'
       to_options: {  }
-      cc_mail: '[webform_submission:values:sio_email:raw]'
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: '[webform_submission:values:sio_email:raw]'
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: "<p>Submitted on {{ webform_token('[webform_submission:created]', webform_submission, [], options) }}</p>\r\n<p>Submitted by: {{ webform_token('[webform_submission:user]', webform_submission, [], options) }}</p>\r\n<p>On behalf of {{  webform_token('[webform_submission:values:organization]', webform_submission, [], options) }} I designate the following Forms Liaisons to represent our organization: </p>\r\n<p> {{  webform_token('[webform_submission:values:primary_forms_liaison_name]', webform_submission, [], options) }} at {{  webform_token('[webform_submission:values:primary_forms_liaison_email]', webform_submission, [], options) }} </p>\r\n<p> {{  webform_token('[webform_submission:values:secondary_forms_liaison_name]', webform_submission, [], options) }} at {{  webform_token('[webform_submission:values:secondary_forms_liaison_email]', webform_submission, [], options) }} </p>\r\n{{  webform_token('[webform_submission:values:additional_forms_liaison_emails]', webform_submission, [], options) }}\r\n<p> Our Forms Liaison designees are copied on this email and are available to attend the Forms Liaison Orientation sessions when scheduled or listen to their recordings when available. </p>\r\n\r\n<p> Sincerely, </p>\r\n{{  webform_token('[webform_submission:values:designator_name]', webform_submission, [], options) }}\r\n<p> {{  webform_token('[webform_submission:values:designator_email]', webform_submission, [], options) }} </p>"
       excluded_elements: {  }
@@ -407,18 +411,14 @@ handlers:
       html: true
       attachments: false
       twig: true
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   designator_and_sio_email:
     id: email
+    handler_id: designator_and_sio_email
     label: 'Designator and SIO Email'
     notes: ''
-    handler_id: designator_and_sio_email
     status: true
     conditions: {  }
     weight: 4
@@ -428,13 +428,17 @@ handlers:
         - updated
       to_mail: '[webform_submission:values:designator_email:raw]'
       to_options: {  }
-      cc_mail: '[webform_submission:values:sio_email:raw]'
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: '[webform_submission:values:sio_email:raw]'
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: "<p>Submitted on {{ webform_token('[webform_submission:created]', webform_submission, [], options) }}</p>\r\n<p>Submitted by: {{ webform_token('[webform_submission:user]', webform_submission, [], options) }}</p>\r\n<p>On behalf of {{  webform_token('[webform_submission:values:organization]', webform_submission, [], options) }} I designate the following Forms Liaisons to represent our organization: </p>\r\n<p> {{  webform_token('[webform_submission:values:primary_forms_liaison_name]', webform_submission, [], options) }} at {{  webform_token('[webform_submission:values:primary_forms_liaison_email]', webform_submission, [], options) }} </p>\r\n<p> {{  webform_token('[webform_submission:values:secondary_forms_liaison_name]', webform_submission, [], options) }} at {{  webform_token('[webform_submission:values:secondary_forms_liaison_email]', webform_submission, [], options) }} </p>\r\n{{  webform_token('[webform_submission:values:additional_forms_liaison_emails]', webform_submission, [], options) }}\r\n<p> Our Forms Liaison designees are copied on this email and are available to attend the Forms Liaison Orientation sessions when scheduled or listen to their recordings when available. </p>\r\n\r\n<p> Sincerely, </p>\r\n{{  webform_token('[webform_submission:values:designator_name]', webform_submission, [], options) }}\r\n<p> {{  webform_token('[webform_submission:values:designator_email]', webform_submission, [], options) }} </p>"
       excluded_elements: {  }
@@ -445,11 +449,7 @@ handlers:
       html: true
       attachments: false
       twig: true
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
 variants: {  }

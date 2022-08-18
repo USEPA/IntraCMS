@@ -29,17 +29,17 @@ third_party_settings:
     group_recording:
       children:
         - field_event_recording
+      label: Recording
+      region: content
       parent_name: ''
       weight: 16
       format_type: details
-      region: content
       format_settings:
-        id: ''
         classes: ''
-        description: ''
+        id: ''
         open: false
+        description: ''
         required_fields: false
-      label: Recording
 id: node.event.default
 targetEntityType: node
 bundle: event
@@ -52,8 +52,14 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_event_date:
+    type: smartdate_timezone
     weight: 1
+    region: content
     settings:
+      modal: false
+      default_tz: user
+      custom_tz: America/New_York
+      allowed_timezones: {  }
       default_duration: 60
       default_duration_increments: |-
         30
@@ -62,47 +68,41 @@ content:
         120|2 hours
         custom
       show_extra: true
-      default_tz: user
-      custom_tz: America/New_York
       hide_date: false
-      allowed_timezones: {  }
-      modal: false
     third_party_settings:
       smart_date_recur:
         modal: true
         allowed_recur_freq_values:
+          MINUTELY: '0'
+          HOURLY: '0'
           DAILY: DAILY
           WEEKLY: WEEKLY
           MONTHLY: MONTHLY
           YEARLY: YEARLY
-          MINUTELY: '0'
-          HOURLY: '0'
-    type: smartdate_timezone
-    region: content
   field_event_description:
+    type: text_textarea_with_summary
     weight: 7
+    region: content
     settings:
       rows: 5
-      placeholder: ''
       summary_rows: 1
+      placeholder: ''
       show_summary: false
     third_party_settings: {  }
-    type: text_textarea_with_summary
-    region: content
   field_event_host:
+    type: entity_reference_tree
     weight: 2
+    region: content
     settings:
       theme: default
       dots: 0
-      label: 'Select the Event Host'
-      match_operator: CONTAINS
-      match_limit: 10
       size: 60
       placeholder: ''
+      match_operator: CONTAINS
+      match_limit: 10
       dialog_title: ''
+      label: 'Select the Event Host'
     third_party_settings: {  }
-    type: entity_reference_tree
-    region: content
   field_event_link:
     type: link_default
     weight: 4
@@ -113,6 +113,8 @@ content:
     third_party_settings:
       conditional_fields:
         ae9afd15-a22d-4983-b80f-30a1c22ec121:
+          entity_type: node
+          bundle: event
           dependee: field_event_location_logistics
           settings:
             state: visible
@@ -127,16 +129,18 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-          entity_type: node
-          bundle: event
   field_event_location:
+    type: string_textfield
     weight: 5
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings:
       conditional_fields:
         d8c267ce-104d-4c96-9abc-f7b496c7b58e:
+          entity_type: node
+          bundle: event
           dependee: field_event_location_logistics
           settings:
             state: visible
@@ -151,53 +155,49 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-          entity_type: node
-          bundle: event
-    type: string_textfield
-    region: content
   field_event_location_logistics:
+    type: options_buttons
     weight: 3
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   field_event_recording:
+    type: link_default
     weight: 15
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
   field_event_tags:
+    type: entity_reference_autocomplete
     weight: 8
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_meta_tags:
+    type: metatag_firehose
     weight: 13
+    region: content
     settings:
       sidebar: true
     third_party_settings: {  }
-    type: metatag_firehose
-    region: content
   field_show_on_agency_calendar:
+    type: boolean_checkbox
     weight: 6
+    region: content
     settings:
       display_label: true
     third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
   moderation_state:
     type: moderation_state_default
     weight: 10
-    settings: {  }
     region: content
+    settings: {  }
     third_party_settings: {  }
   path:
     type: path
@@ -207,10 +207,10 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 9
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -223,12 +223,12 @@ content:
   uid:
     type: entity_reference_autocomplete
     weight: 14
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
-    region: content
     third_party_settings: {  }
   url_redirects:
     weight: 12

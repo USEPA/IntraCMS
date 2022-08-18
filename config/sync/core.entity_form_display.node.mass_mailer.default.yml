@@ -31,57 +31,61 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_include_special_message:
+    type: boolean_checkbox
     weight: 2
+    region: content
     settings:
       display_label: true
     third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
   field_keywords:
+    type: entity_reference_autocomplete
     weight: 6
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_message:
+    type: text_textarea_with_summary
     weight: 5
+    region: content
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
-    type: text_textarea_with_summary
-    region: content
   field_message_date:
-    weight: 4
-    settings: {  }
-    third_party_settings: {  }
     type: datetime_default
+    weight: 4
     region: content
-  field_message_from:
-    weight: 1
     settings: {  }
     third_party_settings: {  }
+  field_message_from:
     type: options_select
+    weight: 1
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_meta_tags:
+    type: metatag_firehose
     weight: 9
+    region: content
     settings:
       sidebar: true
     third_party_settings: {  }
-    type: metatag_firehose
-    region: content
   field_special_message_text:
+    type: options_select
     weight: 3
+    region: content
     settings: {  }
     third_party_settings:
       conditional_fields:
         de923fb0-aeee-4347-87c2-6cc9f894885b:
+          entity_type: node
+          bundle: mass_mailer
           dependee: field_include_special_message
           settings:
             state: visible
@@ -95,10 +99,6 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-          entity_type: node
-          bundle: mass_mailer
-    type: options_select
-    region: content
   moderation_state:
     type: moderation_state_default
     weight: 7

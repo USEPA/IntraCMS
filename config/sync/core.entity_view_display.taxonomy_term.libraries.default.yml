@@ -41,31 +41,31 @@ third_party_settings:
         - hours_staffed_for_the_public
         - open_for_virtual_support
         - hours_virtual_support
+      label: Location
       parent_name: ''
+      region: content
       weight: 4
       format_type: details
-      region: content
       format_settings:
-        description: ''
-        open: true
-        id: ''
         classes: ''
-      label: Location
+        id: ''
+        open: true
+        description: ''
     group_ill_information:
       children:
         - field_oclc_symbol
         - field_ill_contact
         - field_ill_email
+      label: 'ILL Information'
       parent_name: ''
+      region: content
       weight: 5
       format_type: details
-      region: content
       format_settings:
-        description: 'If there is not a specific ILL point of contact, please use the Reference Desk and/or Librarian contact for information on ILL.'
-        open: true
-        id: ''
         classes: ''
-      label: 'ILL Information'
+        id: ''
+        open: true
+        description: 'If there is not a specific ILL point of contact, please use the Reference Desk and/or Librarian contact for information on ILL.'
     group_reference_desk_and_library:
       children:
         - intranet_website
@@ -73,16 +73,16 @@ third_party_settings:
         - field_reference_desk
         - field_library_contact
         - field_federal_manager
+      label: 'Reference Desk and Library Contact'
       parent_name: ''
+      region: content
       weight: 3
       format_type: details
-      region: content
       format_settings:
-        description: ''
-        open: true
-        id: ''
         classes: ''
-      label: 'Reference Desk and Library Contact'
+        id: ''
+        open: true
+        description: ''
 id: taxonomy_term.libraries.default
 targetEntityType: taxonomy_term
 bundle: libraries
@@ -90,29 +90,29 @@ mode: default
 content:
   delivery_street_address:
     type: address_default
-    weight: 2
-    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 2
+    region: content
   field_federal_manager:
-    weight: 6
+    type: entity_reference_entity_view
     label: above
     settings:
       view_mode: poc_simple
       link: false
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    weight: 6
     region: content
   field_hours_staffed_for_staff:
-    weight: 4
+    type: office_hours
     label: above
     settings:
-      show_closed: open
-      office_hours_first_day: ''
       day_format: short
       time_format: g
+      compress: false
       grouped: true
+      show_closed: open
       closed_format: Closed
       separator:
         days: '<br />'
@@ -124,69 +124,69 @@ content:
         position: ''
         open_text: 'Currently open!'
         closed_text: 'Currently closed'
-      compress: false
+      timezone_field: ''
+      office_hours_first_day: ''
       schema:
         enabled: false
-      timezone_field: ''
     third_party_settings: {  }
-    type: office_hours
+    weight: 4
     region: content
   field_ill_contact:
-    weight: 8
+    type: entity_reference_entity_view
     label: above
     settings:
       view_mode: poc_simple
       link: false
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    weight: 8
     region: content
   field_ill_email:
-    weight: 9
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 9
     region: content
   field_library_contact:
-    weight: 5
+    type: entity_reference_entity_view
     label: above
     settings:
       view_mode: poc_simple
       link: false
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    weight: 5
     region: content
   field_library_type:
-    weight: 0
+    type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 0
     region: content
   field_mailing_address:
-    weight: 1
+    type: address_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: address_default
+    weight: 1
     region: content
   field_oclc_symbol:
-    weight: 7
+    type: string
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 7
     region: content
   field_open_to_the_public:
-    weight: 5
+    type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 5
     region: content
   field_public_website:
-    weight: 3
+    type: link
     label: inline
     settings:
       trim_length: null
@@ -195,55 +195,53 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    type: link
+    weight: 3
     region: content
   field_reference_desk:
     type: entity_reference_revisions_entity_view
-    weight: 4
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    weight: 4
     region: content
   hours_staffed_for_the_public:
     type: office_hours
+    label: above
+    settings:
+      day_format: short
+      time_format: g
+      compress: false
+      grouped: true
+      show_closed: open
+      closed_format: Closed
+      separator:
+        days: '<br />'
+        grouped_days: ' - '
+        day_hours: ': '
+        hours_hours: '-'
+        more_hours: ', '
+      current_status:
+        position: ''
+        open_text: 'Currently open!'
+        closed_text: 'Currently closed'
+      timezone_field: ''
+      office_hours_first_day: ''
+      schema:
+        enabled: false
+    third_party_settings: {  }
     weight: 6
     region: content
-    label: above
-    settings:
-      show_closed: open
-      office_hours_first_day: ''
-      day_format: short
-      time_format: g
-      grouped: true
-      closed_format: Closed
-      separator:
-        days: '<br />'
-        grouped_days: ' - '
-        day_hours: ': '
-        hours_hours: '-'
-        more_hours: ', '
-      current_status:
-        position: ''
-        open_text: 'Currently open!'
-        closed_text: 'Currently closed'
-      compress: false
-      schema:
-        enabled: false
-      timezone_field: ''
-    third_party_settings: {  }
   hours_virtual_support:
     type: office_hours
-    weight: 8
-    region: content
     label: above
     settings:
-      show_closed: open
-      office_hours_first_day: ''
       day_format: short
       time_format: g
+      compress: false
       grouped: true
+      show_closed: open
       closed_format: Closed
       separator:
         days: '<br />'
@@ -255,15 +253,15 @@ content:
         position: ''
         open_text: 'Currently open!'
         closed_text: 'Currently closed'
-      compress: false
+      timezone_field: ''
+      office_hours_first_day: ''
       schema:
         enabled: false
-      timezone_field: ''
     third_party_settings: {  }
+    weight: 8
+    region: content
   intranet_website:
     type: link
-    weight: 2
-    region: content
     label: inline
     settings:
       trim_length: null
@@ -272,19 +270,21 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
+    weight: 2
+    region: content
   open_for_virtual_support:
     type: list_default
-    weight: 7
-    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 7
+    region: content
   open_to_staff:
     type: list_default
-    weight: 3
-    region: content
     label: inline
     settings: {  }
     third_party_settings: {  }
+    weight: 3
+    region: content
 hidden:
   description: true

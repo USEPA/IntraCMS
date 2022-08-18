@@ -16,7 +16,7 @@ bundle: media_block
 mode: default
 content:
   field_link:
-    weight: 4
+    type: link
     label: hidden
     settings:
       trim_length: 80
@@ -25,31 +25,31 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    weight: 4
     region: content
   field_usa_media_block_heading:
-    weight: 2
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 2
     region: content
   field_usa_media_block_img:
     type: entity_reference_entity_view
-    weight: 0
     label: hidden
     settings:
       view_mode: media_block
       link: false
     third_party_settings: {  }
+    weight: 0
     region: content
   field_usa_media_block_text:
-    weight: 3
+    type: basic_string
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 3
     region: content
 hidden:
   search_api_excerpt: true

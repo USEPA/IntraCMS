@@ -19,22 +19,25 @@ plugin: 'views_exposed_filter_block:event_calendar-calendar_page'
 settings:
   id: 'views_exposed_filter_block:event_calendar-calendar_page'
   label: ''
-  provider: views
   label_display: '0'
+  provider: views
   views_label: ''
 visibility:
   and_or:
     id: and_or
-    all: or
     negate: false
     context_mapping: {  }
+    all: or
   request_path:
     id: request_path
-    pages: /calendar
     negate: false
     context_mapping: {  }
+    pages: /calendar
   'entity_bundle:node':
     id: 'entity_bundle:node'
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
     bundles:
       article: article
       blog_post: blog_post
@@ -51,6 +54,3 @@ visibility:
       quiz: quiz
       staff_member: staff_member
       webform: webform
-    negate: true
-    context_mapping:
-      node: '@node.node_route_context:node'

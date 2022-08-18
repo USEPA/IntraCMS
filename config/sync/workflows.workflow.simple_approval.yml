@@ -8,6 +8,7 @@ id: simple_approval
 label: 'Simple Approval'
 type: webform_workflows_element
 type_settings:
+  initial_state: under_review
   states:
     approved:
       label: Approved
@@ -37,4 +38,3 @@ type_settings:
         - under_review
       to: disapproved
       weight: 1
-  initial_state: under_review

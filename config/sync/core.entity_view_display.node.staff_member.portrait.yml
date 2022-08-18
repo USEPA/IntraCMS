@@ -28,14 +28,14 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
   layout_library:
     enable: false
   layout_builder_restrictions:
     entity_view_mode_restriction:
-      allowed_blocks: {  }
       allowed_layouts: {  }
+      allowed_blocks: {  }
 id: node.staff_member.portrait
 targetEntityType: node
 bundle: staff_member
@@ -43,8 +43,6 @@ mode: portrait
 content:
   field_official_portrait_link:
     type: link
-    weight: 4
-    region: content
     label: hidden
     settings:
       trim_length: null
@@ -53,38 +51,40 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
+    weight: 4
+    region: content
   field_organization:
-    weight: 3
+    type: cshs_full_hierarchy
     label: hidden
     settings:
       separator: ' » '
       linked: false
       reverse: false
     third_party_settings: {  }
-    type: cshs_full_hierarchy
+    weight: 3
     region: content
   field_staff_photo:
     type: entity_reference_entity_view
-    weight: 1
     label: hidden
     settings:
       view_mode: staff_member_card
       link: false
     third_party_settings: {  }
+    weight: 1
     region: content
   field_staff_position:
-    weight: 2
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 2
     region: content
   links:
-    weight: 0
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   content_moderation_control: true
   feeds_item: true

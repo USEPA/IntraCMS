@@ -26,120 +26,12 @@ base_table: node_field_data
 base_field: nid
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Default
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: perm
-        options:
-          perm: 'access content'
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          disable_sql_rewrite: false
-          distinct: false
-          replica: false
-          query_comment: ''
-          query_tags: {  }
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: true
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      pager:
-        type: full
-        options:
-          items_per_page: 25
-          offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: ‹‹
-            next: ››
-            first: '« First'
-            last: 'Last »'
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          quantity: 9
-      style:
-        type: table
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
-          columns:
-            title: title
-            field_epa_form_number: field_epa_form_number
-            field_form_title: field_form_title
-            field_form_effective_date: field_form_effective_date
-            field_form_upload: field_form_upload
-            field_link_to_form: field_form_upload
-          info:
-            title:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_epa_form_number:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_form_title:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_form_effective_date:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_form_upload:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_link_to_form:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: '-1'
-          empty_table: false
-      row:
-        type: fields
+      title: 'Internal Forms Inventory'
       fields:
         title:
           id: title
@@ -148,6 +40,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: ''
           exclude: true
           alter:
@@ -203,9 +98,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_epa_form_number:
           id: field_epa_form_number
           table: node__field_epa_form_number
@@ -213,6 +105,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'EPA Form Number'
           exclude: false
           alter:
@@ -268,7 +161,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_form_title:
           id: field_form_title
           table: node__field_form_title
@@ -276,6 +168,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Form Title'
           exclude: false
           alter:
@@ -331,7 +224,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         body:
           id: body
           table: node__body
@@ -339,6 +231,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Summary
           exclude: false
           alter:
@@ -394,7 +287,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_form_additional_resources:
           id: field_form_additional_resources
           table: node__field_form_additional_resources
@@ -402,6 +294,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Additional Resources'
           exclude: false
           alter:
@@ -461,34 +354,102 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
+      pager:
+        type: full
+        options:
+          offset: 0
+          items_per_page: 25
+          total_pages: null
+          id: 0
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 9
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: true
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: '<p>No results found. Consider resetting your filters and searching again.</p>'
+            format: rich_text
+          tokenize: false
+      sorts:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: title
+          exposed: false
+      arguments: {  }
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            form: form
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            form: form
+          group: 1
           expose:
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         combine:
           id: combine
           table: views
@@ -496,6 +457,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_combine
           operator: contains
           value: ''
           group: 1
@@ -543,7 +505,6 @@ display:
             field_epa_form_number: field_epa_form_number
             field_form_title: field_form_title
             body: body
-          plugin_id: views_autocomplete_filters_combine
         field_form_category_target_id:
           id: field_form_category_target_id
           table: node__field_form_category
@@ -551,6 +512,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -588,18 +550,17 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: forms_categories
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
           parent: 0
           level_labels: ''
-          force_deepest: false
-          save_lineage: false
           hierarchy_depth: 0
           required_depth: 0
-          plugin_id: taxonomy_index_tid
         field_rescind_this_form_value:
           id: field_rescind_this_form_value
           table: node__field_rescind_this_form
@@ -607,6 +568,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: boolean
           operator: '='
           value: '0'
           group: 1
@@ -637,7 +599,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: boolean
         field_form_type_value:
           id: field_form_type_value
           table: node__field_form_type
@@ -645,6 +606,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: list_field
           operator: or
           value:
             internal: internal
@@ -678,23 +640,82 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          plugin_id: list_field
-      sorts:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          order: ASC
-          entity_type: node
-          entity_field: title
-          plugin_id: standard
-          relationship: none
-          group_type: group
-          admin_label: ''
-          exposed: false
-          expose:
-            label: ''
-      title: 'Internal Forms Inventory'
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          columns:
+            title: title
+            field_epa_form_number: field_epa_form_number
+            field_form_title: field_form_title
+            field_form_effective_date: field_form_effective_date
+            field_form_upload: field_form_upload
+            field_link_to_form: field_form_upload
+          default: '-1'
+          info:
+            title:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_epa_form_number:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_form_title:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_form_effective_date:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_form_upload:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_link_to_form:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
+      row:
+        type: fields
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+      relationships: {  }
       header:
         area_text_custom:
           id: area_text_custom
@@ -703,32 +724,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
-          tokenize: false
-          content: "<h1>Official Agency External Forms</h1>\r\n<p class=\"usa-intro\">The forms listed below are the authoritative source for all agency forms. This list contains only active agency forms. Refer to the <a href=\"/forms/inventory-rescinded/\">Rescinded Forms</a> page to view forms that have been formally rescinded.</p>"
           plugin_id: text_custom
-      footer: {  }
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
           empty: true
+          content: "<h1>Official Agency External Forms</h1>\r\n<p class=\"usa-intro\">The forms listed below are the authoritative source for all agency forms. This list contains only active agency forms. Refer to the <a href=\"/forms/inventory-rescinded/\">Rescinded Forms</a> page to view forms that have been formally rescinded.</p>"
           tokenize: false
-          content:
-            value: '<p>No results found. Consider resetting your filters and searching again.</p>'
-            format: rich_text
-          plugin_id: text
-      relationships: {  }
-      arguments: {  }
+      footer: {  }
       display_extenders: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
     cache_metadata:
       max-age: -1
       contexts:
@@ -745,36 +746,34 @@ display:
         - 'config:field.storage.node.field_form_additional_resources'
         - 'config:field.storage.node.field_form_title'
   entity_reference_1:
-    display_plugin: entity_reference
     id: entity_reference_1
     display_title: 'Entity Reference - Rescinded Forms'
+    display_plugin: entity_reference
     position: 2
     display_options:
-      display_extenders: {  }
-      display_description: ''
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            form: form
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            form: form
           expose:
             operator_limit_selection: false
             operator_list: {  }
@@ -785,6 +784,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: boolean
           operator: '='
           value: '1'
           group: 1
@@ -818,10 +818,6 @@ display:
               1: {  }
               2: {  }
               3: {  }
-          plugin_id: boolean
-      defaults:
-        filters: false
-        filter_groups: false
       filter_groups:
         operator: AND
         groups:
@@ -838,6 +834,11 @@ display:
           inline: {  }
           separator: '-'
           hide_empty: false
+      defaults:
+        filters: false
+        filter_groups: false
+      display_description: ''
+      display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -851,13 +852,13 @@ display:
         - 'config:field.storage.node.field_form_additional_resources'
         - 'config:field.storage.node.field_form_title'
   page_1:
-    display_plugin: page
     id: page_1
     display_title: 'Active Internal Forms'
+    display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
-      path: forms/inventory
+      defaults:
+        header: false
       display_description: ''
       header:
         area_text_custom:
@@ -867,12 +868,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
-          tokenize: false
-          content: "<h1>Internal Official Agency Forms</h1>\r\n<p class=\"usa-intro\">The forms listed below are the authoritative source for all internal agency forms. This list contains only active agency internal forms.  Refer to the <a href=\"/forms/internal-forms-inventory-rescinded\">Internal Rescinded Forms</a> page to view forms that have been formally rescinded. The <a href=\"/forms/external-forms-inventory\">External Forms</a> page hosts agency external forms.</p>"
           plugin_id: text_custom
-      defaults:
-        header: false
+          empty: true
+          content: "<h1>Internal Official Agency Forms</h1>\r\n<p class=\"usa-intro\">The forms listed below are the authoritative source for all internal agency forms. This list contains only active agency internal forms.  Refer to the <a href=\"/forms/internal-forms-inventory-rescinded\">Internal Rescinded Forms</a> page to view forms that have been formally rescinded. The <a href=\"/forms/external-forms-inventory\">External Forms</a> page hosts agency external forms.</p>"
+          tokenize: false
+      display_extenders: {  }
+      path: forms/inventory
     cache_metadata:
       max-age: -1
       contexts:
@@ -889,58 +890,39 @@ display:
         - 'config:field.storage.node.field_form_additional_resources'
         - 'config:field.storage.node.field_form_title'
   page_2:
-    display_plugin: page
     id: page_2
     display_title: 'Rescinded Internal Forms'
+    display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
-      path: forms/internal-forms-inventory-rescinded
-      display_description: ''
-      header:
-        area_text_custom:
-          id: area_text_custom
-          table: views
-          field: area_text_custom
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content: "<h1>Rescinded Official Agency Internal Forms</h1>\r\n<p class=\"usa-intro\">The forms listed below are the authoritative source for all agency forms. This list contains only <strong>rescinded</strong> internal agency forms. Refer to the <a href=\"/forms/inventory\">Active Internal Forms</a> page to view forms that have not been rescinded.</p>"
-          plugin_id: text_custom
-      defaults:
-        header: false
-        filters: false
-        filter_groups: false
-        title: false
+      title: 'Rescinded Internal Forms Inventory'
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            form: form
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            form: form
+          group: 1
           expose:
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         combine:
           id: combine
           table: views
@@ -948,6 +930,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_combine
           operator: contains
           value: ''
           group: 1
@@ -994,7 +977,6 @@ display:
             title: title
             field_epa_form_number: field_epa_form_number
             field_form_title: field_form_title
-          plugin_id: views_autocomplete_filters_combine
         field_form_category_target_id:
           id: field_form_category_target_id
           table: node__field_form_category
@@ -1002,6 +984,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -1039,18 +1022,17 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: forms_categories
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
           parent: 0
           level_labels: ''
-          force_deepest: false
-          save_lineage: false
           hierarchy_depth: 0
           required_depth: 0
-          plugin_id: taxonomy_index_tid
         field_rescind_this_form_value:
           id: field_rescind_this_form_value
           table: node__field_rescind_this_form
@@ -1058,6 +1040,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: boolean
           operator: '='
           value: '1'
           group: 1
@@ -1088,7 +1071,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: boolean
         field_form_type_value:
           id: field_form_type_value
           table: node__field_form_type
@@ -1096,6 +1078,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: list_field
           operator: or
           value:
             internal: internal
@@ -1129,12 +1112,30 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          plugin_id: list_field
       filter_groups:
         operator: AND
         groups:
           1: AND
-      title: 'Rescinded Internal Forms Inventory'
+      defaults:
+        title: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: "<h1>Rescinded Official Agency Internal Forms</h1>\r\n<p class=\"usa-intro\">The forms listed below are the authoritative source for all agency forms. This list contains only <strong>rescinded</strong> internal agency forms. Refer to the <a href=\"/forms/inventory\">Active Internal Forms</a> page to view forms that have not been rescinded.</p>"
+          tokenize: false
+      display_extenders: {  }
+      path: forms/internal-forms-inventory-rescinded
     cache_metadata:
       max-age: -1
       contexts:
@@ -1151,47 +1152,39 @@ display:
         - 'config:field.storage.node.field_form_additional_resources'
         - 'config:field.storage.node.field_form_title'
   page_3:
-    display_plugin: page
     id: page_3
     display_title: 'Active External Forms'
+    display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
-      path: forms/external-forms-inventory
-      display_description: ''
       title: 'External Forms Inventory'
-      defaults:
-        title: false
-        filters: false
-        filter_groups: false
-        header: false
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            form: form
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            form: form
+          group: 1
           expose:
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         combine:
           id: combine
           table: views
@@ -1199,6 +1192,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_combine
           operator: contains
           value: ''
           group: 1
@@ -1246,7 +1240,6 @@ display:
             field_epa_form_number: field_epa_form_number
             field_form_title: field_form_title
             body: body
-          plugin_id: views_autocomplete_filters_combine
         field_form_category_target_id:
           id: field_form_category_target_id
           table: node__field_form_category
@@ -1254,6 +1247,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -1291,18 +1285,17 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: forms_categories
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
           parent: 0
           level_labels: ''
-          force_deepest: false
-          save_lineage: false
           hierarchy_depth: 0
           required_depth: 0
-          plugin_id: taxonomy_index_tid
         field_rescind_this_form_value:
           id: field_rescind_this_form_value
           table: node__field_rescind_this_form
@@ -1310,6 +1303,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: boolean
           operator: '='
           value: '0'
           group: 1
@@ -1340,7 +1334,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: boolean
         field_form_type_value:
           id: field_form_type_value
           table: node__field_form_type
@@ -1348,6 +1341,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: list_field
           operator: or
           value:
             external: external
@@ -1381,11 +1375,16 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          plugin_id: list_field
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        title: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
       header:
         area_text_custom:
           id: area_text_custom
@@ -1394,10 +1393,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
-          tokenize: false
-          content: "<h1>External Official Agency Forms</h1>\r\n<p class=\"usa-intro\">The forms listed below are the authoritative source for all external agency forms. This list contains only active agency external forms.  Refer to the <a href=\"/forms/external-forms-inventory-rescinded\">External Rescinded Forms</a> page to view forms that have been formally rescinded.  The <a href=\"/forms/inventory\">Internal Forms</a> page hosts agency external forms.</p>"
           plugin_id: text_custom
+          empty: true
+          content: "<h1>External Official Agency Forms</h1>\r\n<p class=\"usa-intro\">The forms listed below are the authoritative source for all external agency forms. This list contains only active agency external forms.  Refer to the <a href=\"/forms/external-forms-inventory-rescinded\">External Rescinded Forms</a> page to view forms that have been formally rescinded.  The <a href=\"/forms/inventory\">Internal Forms</a> page hosts agency external forms.</p>"
+          tokenize: false
+      display_extenders: {  }
+      path: forms/external-forms-inventory
     cache_metadata:
       max-age: -1
       contexts:
@@ -1414,58 +1415,39 @@ display:
         - 'config:field.storage.node.field_form_additional_resources'
         - 'config:field.storage.node.field_form_title'
   page_4:
-    display_plugin: page
     id: page_4
     display_title: 'Rescinded External Forms'
+    display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
-      path: forms/external-forms-inventory-rescinded
-      display_description: ''
-      header:
-        area_text_custom:
-          id: area_text_custom
-          table: views
-          field: area_text_custom
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content: "<h1>Rescinded Official Agency External Forms</h1>\r\n<p class=\"usa-intro\">The forms listed below are the authoritative source for all agency forms. This list contains only <strong>rescinded</strong> agency forms. Refer to the <a href=\"/forms/external-forms-inventory\">Active External Forms</a> page to view external forms that have not been rescinded.</p>"
-          plugin_id: text_custom
-      defaults:
-        header: false
-        filters: false
-        filter_groups: false
-        title: false
+      title: 'Rescinded External Forms Inventory'
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
           field: type
-          value:
-            form: form
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          value:
+            form: form
+          group: 1
           expose:
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         combine:
           id: combine
           table: views
@@ -1473,6 +1455,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: views_autocomplete_filters_combine
           operator: contains
           value: ''
           group: 1
@@ -1519,7 +1502,6 @@ display:
             title: title
             field_epa_form_number: field_epa_form_number
             field_form_title: field_form_title
-          plugin_id: views_autocomplete_filters_combine
         field_form_category_target_id:
           id: field_form_category_target_id
           table: node__field_form_category
@@ -1527,6 +1509,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -1564,18 +1547,17 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: forms_categories
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
           parent: 0
           level_labels: ''
-          force_deepest: false
-          save_lineage: false
           hierarchy_depth: 0
           required_depth: 0
-          plugin_id: taxonomy_index_tid
         field_rescind_this_form_value:
           id: field_rescind_this_form_value
           table: node__field_rescind_this_form
@@ -1583,6 +1565,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: boolean
           operator: '='
           value: '1'
           group: 1
@@ -1613,7 +1596,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: boolean
         field_form_type_value:
           id: field_form_type_value
           table: node__field_form_type
@@ -1621,6 +1603,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: list_field
           operator: or
           value:
             external: external
@@ -1654,12 +1637,30 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          plugin_id: list_field
       filter_groups:
         operator: AND
         groups:
           1: AND
-      title: 'Rescinded External Forms Inventory'
+      defaults:
+        title: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: "<h1>Rescinded Official Agency External Forms</h1>\r\n<p class=\"usa-intro\">The forms listed below are the authoritative source for all agency forms. This list contains only <strong>rescinded</strong> agency forms. Refer to the <a href=\"/forms/external-forms-inventory\">Active External Forms</a> page to view external forms that have not been rescinded.</p>"
+          tokenize: false
+      display_extenders: {  }
+      path: forms/external-forms-inventory-rescinded
     cache_metadata:
       max-age: -1
       contexts:

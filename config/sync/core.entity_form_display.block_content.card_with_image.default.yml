@@ -18,26 +18,26 @@ content:
   field_card_image:
     type: entity_browser_entity_reference
     weight: 1
+    region: content
     settings:
       entity_browser: media_browser
       field_widget_display: rendered_entity
+      field_widget_edit: false
       field_widget_remove: true
       field_widget_replace: true
       open: true
-      selection_mode: selection_append
       field_widget_display_settings:
         view_mode: thumbnail
-      field_widget_edit: false
-    region: content
+      selection_mode: selection_append
     third_party_settings: {  }
   field_card_text:
+    type: text_textarea
     weight: 2
+    region: content
     settings:
       rows: 3
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   info:
     type: string_textfield
     weight: 0

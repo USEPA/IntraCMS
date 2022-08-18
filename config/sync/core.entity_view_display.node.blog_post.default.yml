@@ -21,37 +21,37 @@ bundle: blog_post
 mode: default
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 1
     region: content
   field_blog_post_author:
     type: entity_reference_entity_view
-    weight: 0
-    region: content
     label: hidden
     settings:
       view_mode: author
       link: false
     third_party_settings: {  }
+    weight: 0
+    region: content
   field_comment:
     type: comment_default
-    weight: 3
-    region: content
     label: above
     settings:
       view_mode: default
       pager_id: 0
     third_party_settings: {  }
+    weight: 3
+    region: content
   field_keywords:
-    weight: 2
+    type: entity_reference_label
     label: inline
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 2
     region: content
 hidden:
   content_moderation_control: true

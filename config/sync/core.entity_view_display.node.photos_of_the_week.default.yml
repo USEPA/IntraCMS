@@ -16,23 +16,22 @@ bundle: photos_of_the_week
 mode: default
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 101
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 101
     region: content
   field_week_photos:
     type: slick_entityreference_vanilla
-    weight: 102
     label: visually_hidden
     settings:
       optionset: default
-      skin: classic
       view_mode: slideshow
       cache: 0
+      skin: classic
+      style: ''
       current_view_mode: default
-      override: false
       overridables:
         arrows: '0'
         autoplay: '0'
@@ -42,16 +41,17 @@ content:
         mouseWheel: '0'
         randomize: '0'
         variableWidth: '0'
+      override: false
       skin_arrows: ''
       skin_dots: ''
-      style: ''
     third_party_settings: {  }
+    weight: 102
     region: content
   links:
-    weight: 100
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   content_moderation_control: true
   search_api_excerpt: true

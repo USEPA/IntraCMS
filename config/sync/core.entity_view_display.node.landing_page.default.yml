@@ -19,8 +19,8 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: true
     enabled: true
+    allow_custom: true
     sections:
       -
         layout_id: layout_onecol
@@ -32,6 +32,54 @@ third_party_settings:
     enable: true
   layout_builder_restrictions:
     entity_view_mode_restriction:
+      allowed_layouts:
+        - layout_onecol
+        - layout_twocol_section
+        - layout_threecol_section
+      blacklisted_blocks:
+        'Chaos Tools':
+          - 'entity_view:node'
+          - 'entity_view:user'
+        'Custom block types':
+          - banner
+          - card_with_image
+          - dynamic_list
+          - google_map
+          - text
+        'Inline blocks':
+          - 'inline_block:banner'
+          - 'inline_block:card_with_image'
+          - 'inline_block:dynamic_list'
+          - 'inline_block:google_map'
+          - 'inline_block:text'
+        'SimpleSAMLphp Authentication':
+          - simplesamlphp_auth_block
+      whitelisted_blocks:
+        'Content fields': {  }
+        'Custom blocks': {  }
+        'Entity Block':
+          - 'entity_block:node'
+          - 'entity_block:media'
+        'Entity Browser': {  }
+        'Fixed custom':
+          - 'fixed_block_content:desktop_library_search'
+          - 'fixed_block_content:twitter_feed_epamichaelregan'
+          - 'fixed_block_content:twitter_feed_epa_great_lakes'
+        Forms: {  }
+        Group: {  }
+        'Group Menu Block': {  }
+        Help: {  }
+        'Lists (Views)':
+          - 'views_block:articles-blogs_by_group'
+          - 'views_block:articles-group_articles_block'
+        Menus: {  }
+        'Moderation Dashboard': {  }
+        System: {  }
+        Views: {  }
+        Webform: {  }
+        'Webform access': {  }
+        core: {  }
+        'jQuery Countdown Timer': {  }
       allowed_blocks:
         'Chaos Tools': {  }
         'Content fields': {  }
@@ -71,54 +119,6 @@ third_party_settings:
         Webform: {  }
         'Webform access': {  }
         core: {  }
-      allowed_layouts:
-        - layout_onecol
-        - layout_twocol_section
-        - layout_threecol_section
-      whitelisted_blocks:
-        'Content fields': {  }
-        'Custom blocks': {  }
-        'Entity Block':
-          - 'entity_block:node'
-          - 'entity_block:media'
-        'Entity Browser': {  }
-        'Fixed custom':
-          - 'fixed_block_content:desktop_library_search'
-          - 'fixed_block_content:twitter_feed_epamichaelregan'
-          - 'fixed_block_content:twitter_feed_epa_great_lakes'
-        Forms: {  }
-        Group: {  }
-        'Group Menu Block': {  }
-        Help: {  }
-        'Lists (Views)':
-          - 'views_block:articles-blogs_by_group'
-          - 'views_block:articles-group_articles_block'
-        Menus: {  }
-        'Moderation Dashboard': {  }
-        System: {  }
-        Views: {  }
-        Webform: {  }
-        'Webform access': {  }
-        core: {  }
-        'jQuery Countdown Timer': {  }
-      blacklisted_blocks:
-        'Chaos Tools':
-          - 'entity_view:node'
-          - 'entity_view:user'
-        'Custom block types':
-          - banner
-          - card_with_image
-          - dynamic_list
-          - google_map
-          - text
-        'Inline blocks':
-          - 'inline_block:banner'
-          - 'inline_block:card_with_image'
-          - 'inline_block:dynamic_list'
-          - 'inline_block:google_map'
-          - 'inline_block:text'
-        'SimpleSAMLphp Authentication':
-          - simplesamlphp_auth_block
     allowed_block_categories:
       - 'Chaos Tools'
       - 'Content fields'
@@ -149,31 +149,31 @@ mode: default
 content:
   field_hero:
     type: entity_reference_revisions_entity_view
-    weight: 102
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    weight: 102
     region: content
   field_landing_description:
-    weight: 101
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 101
     region: content
   field_meta_tags:
-    weight: 103
+    type: metatag_empty_formatter
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: metatag_empty_formatter
+    weight: 103
     region: content
   links:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
 hidden:
   content_moderation_control: true

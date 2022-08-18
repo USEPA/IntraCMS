@@ -13,8 +13,8 @@ dependencies:
     - options
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
   layout_library:
     enable: false
 id: block_content.covid_status.default
@@ -23,25 +23,25 @@ bundle: covid_status
 mode: default
 content:
   field_community_name:
-    weight: 0
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 0
     region: content
   field_covid_level:
-    weight: 1
+    type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 1
     region: content
   field_mask_status:
-    weight: 2
+    type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 2
     region: content
 hidden: {  }

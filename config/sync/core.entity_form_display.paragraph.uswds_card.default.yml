@@ -23,32 +23,34 @@ third_party_settings:
         - field_uswds_card_heading
         - field_body
         - field_uswds_button
+      label: 'Card Details'
+      region: content
       parent_name: ''
       weight: 0
       format_type: details
-      region: content
       format_settings:
-        description: ''
-        open: true
-        required_fields: true
-        id: ''
         classes: ''
-      label: 'Card Details'
+        id: ''
+        open: true
+        description: ''
+        required_fields: true
 id: paragraph.uswds_card.default
 targetEntityType: paragraph
 bundle: uswds_card
 mode: default
 content:
   field_body:
+    type: string_textarea
     weight: 4
+    region: content
     settings:
       rows: 3
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
-    region: content
   field_card_type:
+    type: paragraph_view_mode
     weight: 1
+    region: content
     settings:
       view_modes:
         card_extended_media: card_extended_media
@@ -60,31 +62,29 @@ content:
         default: '0'
       default_view_mode: standard_card
     third_party_settings: {  }
-    type: paragraph_view_mode
-    region: content
   field_uswds_button:
+    type: link_default
     weight: 5
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
   field_uswds_card_heading:
+    type: string_textfield
     weight: 3
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_uswds_card_media:
     type: media_library_widget
     weight: 2
+    region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   created: true
   status: true

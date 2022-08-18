@@ -20,22 +20,25 @@ plugin: 'fixed_block_content:create_event'
 settings:
   id: 'fixed_block_content:create_event'
   label: 'Create Event'
-  provider: fixed_block_content
   label_display: '0'
+  provider: fixed_block_content
   view_mode: ''
 visibility:
   and_or:
     id: and_or
-    all: or
     negate: false
     context_mapping: {  }
+    all: or
   request_path:
     id: request_path
-    pages: /calendar
     negate: false
     context_mapping: {  }
+    pages: /calendar
   node_type:
     id: node_type
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
     bundles:
       article: article
       blog_post: blog_post
@@ -52,11 +55,11 @@ visibility:
       quiz: quiz
       staff_member: staff_member
       webform: webform
-    negate: true
-    context_mapping:
-      node: '@node.node_route_context:node'
   'entity_bundle:node':
     id: 'entity_bundle:node'
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
     bundles:
       article: article
       blog_post: blog_post
@@ -73,6 +76,3 @@ visibility:
       quiz: quiz
       staff_member: staff_member
       webform: webform
-    negate: true
-    context_mapping:
-      node: '@node.node_route_context:node'

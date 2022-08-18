@@ -16,15 +16,18 @@ plugin: groupmenus
 settings:
   id: groupmenus
   label: 'Group menus'
-  provider: groupmenu_block
   label_display: '0'
-  max_depth: '3'
+  provider: groupmenu_block
   context_mapping:
     group: '@group.group_route_context:group'
     node: '@node.node_route_context:node'
+  max_depth: '3'
 visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
     bundles:
       employee_profile: employee_profile
       event: event
@@ -32,6 +35,3 @@ visibility:
       mass_mailer: mass_mailer
       photos_of_the_week: photos_of_the_week
       staff_member: staff_member
-    negate: true
-    context_mapping:
-      node: '@node.node_route_context:node'

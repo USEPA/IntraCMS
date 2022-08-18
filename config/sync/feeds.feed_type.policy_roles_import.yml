@@ -6,8 +6,8 @@ dependencies:
     - taxonomy.vocabulary.policy_role
   module:
     - taxonomy
-id: policy_roles_import
 label: 'Policy Roles Import'
+id: policy_roles_import
 description: 'Import from Policy Roles Vocabulary'
 help: 'Export the Policy Roles from D7, and then upload here to import the definitions.'
 import_period: -1
@@ -22,24 +22,25 @@ parser_configuration:
   line_limit: 100
 processor: 'entity:taxonomy_term'
 processor_configuration:
-  update_existing: 1
-  update_non_existent: _delete
-  expire: -1
-  skip_hash_check: false
   values:
     vid: policy_role
-  owner_id: 0
-  authorize: false
-  owner_feed_author: false
   langcode: en
+  insert_new: 1
+  update_existing: 1
+  update_non_existent: _delete
+  skip_hash_check: false
+  authorize: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
 custom_sources:
   name:
-    label: Name
     value: Name
+    label: Name
     machine_name: name
   description:
-    label: Description
     value: Description
+    label: Description
     machine_name: description
 mappings:
   -
