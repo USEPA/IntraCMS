@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.policy_delegation.field_autho
     - field.field.node.policy_delegation.field_effective_date
+    - field.field.node.policy_delegation.field_keywords
     - field.field.node.policy_delegation.field_limitation
     - field.field.node.policy_delegation.field_link_to_delegation_file
     - field.field.node.policy_delegation.field_next_review_date
@@ -89,6 +90,16 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_keywords:
+    weight: 27
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_limitation:
     type: text_textarea
     weight: 10

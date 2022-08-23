@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.transmittal_notce.field_associated_delegation
     - field.field.node.transmittal_notce.field_associated_policy
     - field.field.node.transmittal_notce.field_explanation
+    - field.field.node.transmittal_notce.field_keywords
     - field.field.node.transmittal_notce.field_link_to_transmittal_file
     - field.field.node.transmittal_notce.field_most_recent_version
     - field.field.node.transmittal_notce.field_original_approval
@@ -122,6 +123,16 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_keywords:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_link_to_transmittal_file:
     type: link_default
     weight: 10

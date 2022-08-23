@@ -1,0 +1,29 @@
+uuid: 8ea95b20-f326-4e65-a23e-d9aa2d079f20
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_keywords
+    - node.type.policy_delegation
+    - taxonomy.vocabulary.tags
+id: node.policy_delegation.field_keywords
+field_name: field_keywords
+entity_type: node
+bundle: policy_delegation
+label: Keywords
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags: tags
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference
