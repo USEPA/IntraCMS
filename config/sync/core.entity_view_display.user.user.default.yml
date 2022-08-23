@@ -13,8 +13,8 @@ dependencies:
     - views
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: true
+    allow_custom: false
     sections:
       -
         layout_id: layout_twocol_section
@@ -29,29 +29,29 @@ third_party_settings:
             configuration:
               id: 'views_block:group_my_groups-block_1'
               label: ''
-              provider: views
               label_display: visible
+              provider: views
+              context_mapping: {  }
               views_label: ''
               items_per_page: none
-              context_mapping: {  }
-            additional: {  }
             weight: 0
+            additional: {  }
         third_party_settings: {  }
   layout_library:
     enable: false
   layout_builder_restrictions:
     entity_view_mode_restriction:
-      allowed_blocks: {  }
       allowed_layouts: {  }
+      allowed_blocks: {  }
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
   member_for:
-    weight: 5
     settings: {  }
     third_party_settings: {  }
+    weight: 5
     region: content
 hidden:
   name: true

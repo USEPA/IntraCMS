@@ -16,8 +16,8 @@ dependencies:
     - layout_builder
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 _core:
   default_config_hash: 4tgcXj_iKv9Fw3xmONUfCHKqO7OeOa11qVesruN4k4k
 id: media.document.inline_embedded
@@ -26,11 +26,11 @@ bundle: document
 mode: inline_embedded
 content:
   field_document:
-    weight: 0
+    type: file_url_plain
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: file_url_plain
+    weight: 0
     region: content
 hidden:
   created: true

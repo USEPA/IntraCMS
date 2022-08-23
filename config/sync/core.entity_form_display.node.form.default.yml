@@ -36,17 +36,17 @@ third_party_settings:
       children:
         - field_rescind_this_form
         - field_rescission_date
+      label: 'Form Status (Use Only to Rescind this Form)'
+      region: content
       parent_name: ''
       weight: 2
       format_type: details
-      region: content
       format_settings:
-        id: ''
         classes: ''
-        description: ''
+        id: ''
         open: false
+        description: ''
         required_fields: true
-      label: 'Form Status (Use Only to Rescind this Form)'
 id: node.form.default
 targetEntityType: node
 bundle: form
@@ -55,13 +55,13 @@ content:
   body:
     type: text_textarea_with_summary
     weight: 6
+    region: content
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
-    region: content
   created:
     type: datetime_timestamp
     weight: 16
@@ -69,63 +69,66 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_epa_form_number:
+    type: string_textfield
     weight: 0
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_form_additional_resources:
+    type: link_default
     weight: 7
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
   field_form_category:
-    weight: 4
-    settings: {  }
-    third_party_settings: {  }
     type: options_select
+    weight: 4
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_form_effective_date:
-    weight: 8
-    settings: {  }
-    third_party_settings: {  }
     type: datetime_default
+    weight: 8
     region: content
-  field_form_poc:
-    weight: 10
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: email_default
-    region: content
-  field_form_title:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_form_type:
-    weight: 3
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
+  field_form_poc:
+    type: email_default
+    weight: 10
     region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+  field_form_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_form_type:
+    type: options_buttons
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_form_upload:
     type: media_library_widget
     weight: 13
+    region: content
     settings:
       media_types: {  }
     third_party_settings:
       conditional_fields:
         ca4399ee-4dd7-4cb1-87e3-95bd37bb3a2f:
+          entity_type: node
+          bundle: form
           dependee: field_upload_or_link
           settings:
             state: visible
@@ -140,17 +143,18 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-          entity_type: node
-          bundle: form
-    region: content
   field_link_to_form:
+    type: link_default
     weight: 12
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings:
       conditional_fields:
         67579359-b50a-4c9c-8e47-6a96868f5705:
+          entity_type: node
+          bundle: form
           dependee: field_upload_or_link
           settings:
             state: visible
@@ -165,46 +169,42 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-          entity_type: node
-          bundle: form
-    type: link_default
-    region: content
   field_owning_aaship_region:
+    type: options_select
     weight: 9
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_replacing:
+    type: options_select
     weight: 5
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_rescind_this_form:
+    type: boolean_checkbox
     weight: 8
+    region: content
     settings:
       display_label: true
     third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
   field_rescission_date:
-    weight: 9
-    settings: {  }
-    third_party_settings: {  }
     type: datetime_default
+    weight: 9
     region: content
-  field_upload_or_link:
-    weight: 11
     settings: {  }
     third_party_settings: {  }
+  field_upload_or_link:
     type: options_buttons
+    weight: 11
     region: content
+    settings: {  }
+    third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
     weight: 19
-    settings: {  }
     region: content
+    settings: {  }
     third_party_settings: {  }
   path:
     type: path
@@ -214,20 +214,20 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 18
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
     weight: 17
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
-    region: content
     third_party_settings: {  }
   url_redirects:
     weight: 15

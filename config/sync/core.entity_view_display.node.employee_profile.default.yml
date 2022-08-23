@@ -18,8 +18,8 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: true
+    allow_custom: false
     sections:
       -
         layout_id: layout_twocol_section
@@ -32,63 +32,63 @@ third_party_settings:
             uuid: ce1355a2-9232-4c08-9944-16f31256e61f
             region: second
             configuration:
+              id: 'field_block:node:employee_profile:field_employee_profile'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:node:employee_profile:field_employee_profile'
               formatter:
+                type: text_default
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-                type: text_default
-            additional: {  }
             weight: 0
+            additional: {  }
           5f329317-2b01-4d24-b30f-75981a59b296:
             uuid: 5f329317-2b01-4d24-b30f-75981a59b296
             region: first
             configuration:
               id: 'field_block:node:employee_profile:field_employee_photo'
               label: 'Employee Photo'
-              provider: layout_builder
               label_display: '0'
-              formatter:
-                label: hidden
-                type: entity_reference_entity_view
-                settings:
-                  view_mode: thumbnail
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: thumbnail
+                third_party_settings: {  }
             weight: 0
+            additional: {  }
           ff7c8845-ab65-4cb6-b606-213037db9393:
             uuid: ff7c8845-ab65-4cb6-b606-213037db9393
             region: second
             configuration:
               id: 'fixed_block_content:nominate_an_employee'
               label: 'Nominate an Employee'
-              provider: fixed_block_content
               label_display: '0'
+              provider: fixed_block_content
               view_mode: ''
               context_mapping: {  }
-            additional: {  }
             weight: 1
+            additional: {  }
           b9d48cba-21b2-413b-8c60-0f71c1be7374:
             uuid: b9d48cba-21b2-413b-8c60-0f71c1be7374
             region: first
             configuration:
+              id: 'field_block:node:employee_profile:field_meta_tags'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:node:employee_profile:field_meta_tags'
               formatter:
+                type: metatag_empty_formatter
                 label: above
                 settings: {  }
                 third_party_settings: {  }
-                type: metatag_empty_formatter
-            additional: {  }
             weight: 1
+            additional: {  }
         third_party_settings: {  }
   layout_library:
     enable: false
@@ -99,26 +99,26 @@ mode: default
 content:
   field_employee_photo:
     type: entity_reference_entity_view
-    weight: 0
     label: hidden
     settings:
       view_mode: original
       link: false
     third_party_settings: {  }
+    weight: 0
     region: content
   field_employee_profile:
-    weight: 1
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 1
     region: content
   field_meta_tags:
-    weight: 2
+    type: metatag_empty_formatter
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: metatag_empty_formatter
+    weight: 2
     region: first
 hidden:
   content_moderation_control: true

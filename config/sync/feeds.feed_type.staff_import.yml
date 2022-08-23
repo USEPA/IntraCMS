@@ -12,8 +12,8 @@ dependencies:
     - node.type.staff_member
   module:
     - node
-id: staff_import
 label: 'Staff Import'
+id: staff_import
 description: 'Import from CSV to staff member nodes'
 help: ''
 import_period: -1
@@ -28,44 +28,45 @@ parser_configuration:
   line_limit: 100
 processor: 'entity:node'
 processor_configuration:
-  update_existing: 0
-  update_non_existent: _keep
-  expire: -1
-  owner_feed_author: false
-  owner_id: 125
-  authorize: true
-  skip_hash_check: false
   values:
     type: staff_member
   langcode: en
+  insert_new: 1
+  update_existing: 0
+  update_non_existent: _keep
+  skip_hash_check: false
+  authorize: true
+  expire: -1
+  owner_feed_author: false
+  owner_id: 125
 custom_sources:
   first:
-    label: first
     value: first
+    label: first
     machine_name: first
   last:
-    label: last
     value: last
+    label: last
     machine_name: last
   phone:
-    label: phone
     value: phone
+    label: phone
     machine_name: phone
   email:
-    label: email
     value: email
+    label: email
     machine_name: email
   org_id:
-    label: org_id
     value: org_id
+    label: org_id
     machine_name: org_id
   title:
-    label: title
     value: title
+    label: title
     machine_name: title
   location:
-    label: location
     value: location
+    label: location
     machine_name: location
 mappings:
   -
@@ -86,10 +87,10 @@ mappings:
     target: field_email
     map:
       value: email
-    unique:
-      value: '1'
     settings:
       defuse: false
+    unique:
+      value: '1'
   -
     target: field_organization
     map:

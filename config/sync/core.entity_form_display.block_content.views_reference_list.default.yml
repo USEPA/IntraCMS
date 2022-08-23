@@ -15,16 +15,17 @@ bundle: views_reference_list
 mode: default
 content:
   field_list_footer:
+    type: text_textarea
     weight: 3
+    region: content
     settings:
       rows: 3
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_views_reference:
     type: entity_reference_paragraphs
     weight: 2
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -33,7 +34,6 @@ content:
       form_display_mode: default
       default_paragraph_type: views_reference_list
     third_party_settings: {  }
-    region: content
   info:
     type: string_textfield
     weight: 0

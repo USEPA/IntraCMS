@@ -27,39 +27,39 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
   layout_library:
     enable: false
   layout_builder_restrictions:
     entity_view_mode_restriction:
-      allowed_blocks: {  }
       allowed_layouts: {  }
+      allowed_blocks: {  }
 id: node.staff_member.poc
 targetEntityType: node
 bundle: staff_member
 mode: poc
 content:
   field_email:
-    weight: 1
+    type: email_mailto
     label: inline
     settings: {  }
     third_party_settings: {  }
-    type: email_mailto
+    weight: 1
     region: content
   field_phone:
-    weight: 2
+    type: telephone_link
     label: inline
     settings:
       title: ''
     third_party_settings: {  }
-    type: telephone_link
+    weight: 2
     region: content
   links:
-    weight: 0
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   content_moderation_control: true
   feeds_item: true

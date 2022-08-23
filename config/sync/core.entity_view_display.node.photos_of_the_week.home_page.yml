@@ -13,34 +13,35 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: node.photos_of_the_week.home_page
 targetEntityType: node
 bundle: photos_of_the_week
 mode: home_page
 content:
   body:
-    label: hidden
     type: text_trimmed
-    weight: 101
+    label: hidden
     settings:
       trim_length: 400
     third_party_settings: {  }
+    weight: 101
     region: content
   field_week_photos:
     type: entity_reference_entity_view
-    weight: 102
     label: visually_hidden
     settings:
       view_mode: media_block
       link: false
     third_party_settings: {  }
+    weight: 102
     region: content
   links:
-    weight: 100
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
+  content_moderation_control: true
   search_api_excerpt: true

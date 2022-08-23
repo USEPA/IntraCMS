@@ -117,10 +117,10 @@ filters:
     status: false
     weight: -36
     settings:
+      media_switch: ''
       filter_tags:
         img: img
         iframe: iframe
-      media_switch: ''
       use_data_uri: '0'
   media_inline_embed:
     id: media_inline_embed
@@ -129,10 +129,10 @@ filters:
     weight: -46
     settings:
       default_view_mode: link
-      allowed_view_modes:
-        link: link
       allowed_media_types:
         document: document
+      allowed_view_modes:
+        link: link
   epa_filter_links:
     id: epa_filter_links
     provider: epa_wysiwyg
@@ -157,3 +157,11 @@ filters:
     status: false
     weight: -33
     settings: {  }
+  slick_filter:
+    id: slick_filter
+    provider: slick
+    status: false
+    weight: 4
+    settings:
+      optionset: default
+      media_switch: ''

@@ -18,13 +18,13 @@ plugin: group_operations
 settings:
   id: group_operations
   label: 'Create Web Area Content'
-  provider: group
   label_display: visible
+  provider: group
   context_mapping:
     group: '@group.group_route_context:group'
 visibility:
   request_path:
     id: request_path
-    pages: '/web-area/*'
     negate: false
     context_mapping: {  }
+    pages: '/web-area/*'

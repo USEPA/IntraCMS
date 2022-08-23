@@ -20,25 +20,25 @@ plugin: 'fixed_block_content:desktop_library_search_sidebar'
 settings:
   id: 'fixed_block_content:desktop_library_search_sidebar'
   label: 'Desktop Library Search Sidebar'
-  provider: fixed_block_content
   label_display: '0'
+  provider: fixed_block_content
   view_mode: ''
 visibility:
   request_path:
     id: request_path
-    pages: "/library-services/*\r\n/library-region-9/*"
     negate: false
+    pages: "/library-services/*\r\n/library-region-9/*"
   node_type:
     id: node_type
-    bundles:
-      landing_page: landing_page
     negate: true
     context_mapping:
       node: '@node.node_route_context:node'
+    bundles:
+      landing_page: landing_page
   'entity_bundle:node':
     id: 'entity_bundle:node'
-    bundles:
-      landing_page: landing_page
     negate: true
     context_mapping:
       node: '@node.node_route_context:node'
+    bundles:
+      landing_page: landing_page

@@ -22,30 +22,30 @@ bundle: article
 mode: teaser
 content:
   body:
-    label: hidden
     type: text_summary_or_trimmed
-    weight: 1
+    label: hidden
     settings:
       trim_length: 160
     third_party_settings: {  }
+    weight: 1
     region: content
   field_article_image:
     type: media_thumbnail
-    weight: 0
-    region: content
     label: hidden
     settings:
-      image_style: dynamic_list_teaser
       image_link: content
+      image_style: dynamic_list_teaser
     third_party_settings: {  }
+    weight: 0
+    region: content
   field_keywords:
     type: entity_reference_label
-    weight: 2
-    region: content
     label: hidden
     settings:
       link: false
     third_party_settings: {  }
+    weight: 2
+    region: content
 hidden:
   content_moderation_control: true
   field_agency_news: true

@@ -17,19 +17,21 @@ bundle: uswds_grid
 mode: default
 content:
   field_uswds_grid_column_stretch:
+    type: options_select
     weight: 1
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_uswds_grid_column_width:
+    type: options_select
     weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_uswds_paragraphs:
+    type: entity_reference_paragraphs
     weight: 2
+    region: content
     settings:
       title: Column
       title_plural: Columns
@@ -38,8 +40,6 @@ content:
       form_display_mode: default
       default_paragraph_type: uswds_column
     third_party_settings: {  }
-    type: entity_reference_paragraphs
-    region: content
 hidden:
   created: true
   status: true

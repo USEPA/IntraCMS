@@ -22,8 +22,8 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
   layout_library:
     enable: false
 id: node.event.list
@@ -32,17 +32,17 @@ bundle: event
 mode: list
 content:
   field_event_date:
-    weight: 0
+    type: smartdate_recurring
     label: hidden
     settings:
       timezone_override: ''
+      format_type: medium
       format: compact
+      force_chronological: false
       past_display: 0
       upcoming_display: 4
-      force_chronological: false
-      format_type: medium
     third_party_settings: {  }
-    type: smartdate_recurring
+    weight: 0
     region: content
 hidden:
   content_moderation_control: true

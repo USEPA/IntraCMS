@@ -21,23 +21,23 @@ bundle: title_and_text
 mode: default
 content:
   field_box_style:
-    weight: 3
+    type: list_key
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: list_key
+    weight: 3
     region: content
   field_image:
-    weight: 1
+    type: responsive_image
     label: hidden
     settings:
       responsive_image_style: responsive_box_image
       image_link: ''
     third_party_settings: {  }
-    type: responsive_image
+    weight: 1
     region: content
   field_link:
-    weight: 4
+    type: link_separate
     label: hidden
     settings:
       trim_length: 80
@@ -46,22 +46,22 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link_separate
+    weight: 4
     region: content
   field_paragraph_text:
-    weight: 2
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 2
     region: content
   field_paragraph_title:
-    weight: 0
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 0
     region: content
 hidden:
   search_api_excerpt: true

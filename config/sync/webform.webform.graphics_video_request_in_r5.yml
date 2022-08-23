@@ -10,9 +10,9 @@ third_party_settings:
     components:
       - status
       - project_type
+weight: 0
 open: null
 close: null
-weight: 0
 uid: 3129
 template: false
 archive: false
@@ -393,9 +393,9 @@ settings:
   page_theme_name: ''
   form_title: both
   form_submit_once: false
-  form_exception_message: ''
   form_open_message: ''
   form_close_message: ''
+  form_exception_message: ''
   form_previous_submissions: true
   form_confidential: false
   form_confidential_message: ''
@@ -405,16 +405,16 @@ settings:
   form_prepopulate_source_entity: false
   form_prepopulate_source_entity_required: false
   form_prepopulate_source_entity_type: ''
-  form_reset: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
   form_disable_autocomplete: false
   form_novalidate: false
   form_disable_inline_errors: false
   form_required: false
-  form_unsaved: false
-  form_disable_back: false
-  form_submit_back: false
   form_autofocus: false
   form_details_toggle: false
+  form_reset: false
   form_access_denied: default
   form_access_denied_title: ''
   form_access_denied_message: ''
@@ -426,7 +426,12 @@ settings:
   share_title: true
   share_page_body_attributes: {  }
   submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
   submission_log: true
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
   submission_views: {  }
   submission_views_replace: {  }
   submission_user_columns:
@@ -439,11 +444,6 @@ settings:
   submission_access_denied_title: ''
   submission_access_denied_message: ''
   submission_access_denied_attributes: {  }
-  submission_exception_message: ''
-  submission_locked_message: ''
-  submission_excluded_elements: {  }
-  submission_exclude_empty: false
-  submission_exclude_empty_checkbox: false
   previous_submission_message: ''
   previous_submissions_message: ''
   autofill: false
@@ -454,13 +454,13 @@ settings:
   wizard_progress_percentage: false
   wizard_progress_link: false
   wizard_progress_states: false
-  wizard_auto_forward: true
-  wizard_auto_forward_hide_next_button: false
-  wizard_keyboard: true
   wizard_start_label: ''
   wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
   wizard_track: ''
   wizard_prev_button_label: ''
   wizard_next_button_label: ''
@@ -483,9 +483,9 @@ settings:
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
   confirmation_type: page
+  confirmation_url: ''
   confirmation_title: 'Thanks for your request!'
   confirmation_message: "<p>Thank you for your request, please download and return these consent forms when your video/photo shoot is approved.</p>\r\n<a href=\"https://work.epa.gov/sites/default/files/2021-09/EPA_Multimedia_Consent_Form-2021-508.pdf\">Consent form&nbsp;</a><br />\r\n<br />\r\n<a href=\"https://work.epa.gov/sites/default/files/2021-09/EPA_Location_Agreement-508.pdf\">Consent form to shoot on private property</a><br />\r\n<br />\r\n<a href=\"https://work.epa.gov/sites/default/files/2021-09/EPA_Content_License_Agreement-2021-508.pdf\">Consent form to use other folks or agency images, graphics, or b-roll for EPA projects</a><br />\r\n<br />\r\nNEW employee?! Please <a href=\"https://work.epa.gov/region-5/new-faces-submissions\">submit this form to be added to New Faces</a>."
-  confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -590,9 +590,9 @@ access:
 handlers:
   email:
     id: email
+    handler_id: email
     label: Email
     notes: ''
-    handler_id: email
     status: true
     conditions: {  }
     weight: -48
@@ -601,13 +601,17 @@ handlers:
         - completed
       to_mail: wall.toby@epa.gov
       to_options: {  }
-      cc_mail: lippert.allison@epa.gov
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: lippert.allison@epa.gov
+      cc_options: {  }
       from_mail: '[webform_submission:values:requester_email:raw]'
       from_options: {  }
       from_name: '[webform_submission:values:project_title:raw]'
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: 'R5 Graphics & Video Webform Request'
       body: _default
       excluded_elements: {  }
@@ -618,18 +622,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   internal_email:
     id: email
+    handler_id: internal_email
     label: 'Internal email'
     notes: ''
-    handler_id: internal_email
     status: true
     conditions:
       enabled:
@@ -641,13 +641,17 @@ handlers:
         - completed
       to_mail: lamberty.deborah@epa.gov
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: '[webform_submission:values:requester_email:raw]'
       from_options: {  }
       from_name: '[webform_submission:values:project_title:raw]'
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: 'R5 Graphics & Video Webform Request'
       body: _default
       excluded_elements: {  }
@@ -658,18 +662,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   external_email:
     id: email
+    handler_id: external_email
     label: 'External email'
     notes: ''
-    handler_id: external_email
     status: true
     conditions:
       enabled:
@@ -681,13 +681,17 @@ handlers:
         - completed
       to_mail: ostermeier.jennifer@epa.gov
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: '[webform_submission:values:requester_email:raw]'
       from_options: {  }
       from_name: '[webform_submission:values:project_title:raw]'
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: 'R5 Graphics and Video Webform Request'
       body: _default
       excluded_elements: {  }
@@ -698,18 +702,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   set_initial_status:
     id: action
+    handler_id: set_initial_status
     label: 'Set initial status'
     notes: ''
-    handler_id: set_initial_status
     status: true
     conditions: {  }
     weight: -49
@@ -725,9 +725,9 @@ handlers:
       debug: false
   email_to_requestor:
     id: email
+    handler_id: email_to_requestor
     label: 'Email to Requestor'
     notes: ''
-    handler_id: email_to_requestor
     status: true
     conditions: {  }
     weight: -50
@@ -736,13 +736,17 @@ handlers:
         - completed
       to_mail: '[webform_submission:values:requester_email:raw]'
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements:
@@ -758,18 +762,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_to_requester_status_change:
     id: email
+    handler_id: email_to_requester_status_change
     label: 'Email to requester status change'
     notes: ''
-    handler_id: email_to_requester_status_change
     status: true
     conditions:
       enabled:
@@ -781,13 +781,17 @@ handlers:
         - completed
       to_mail: '[webform_submission:values:requester_email:raw]'
       to_options: {  }
-      cc_mail: 'lippert.allison@epa.gov, wall.toby@epa.gov'
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: 'lippert.allison@epa.gov, wall.toby@epa.gov'
+      cc_options: {  }
       from_mail: '[webform_submission:values:project_title:raw]'
       from_options: {  }
       from_name: 'R5 Graphics & Video Request Form'
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: 'Graphics & Video request status changes '
       body: _default
       excluded_elements:
@@ -816,18 +820,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_to_new_faces:
     id: email
+    handler_id: email_to_new_faces
     label: 'Email to new faces'
     notes: ''
-    handler_id: email_to_new_faces
     status: true
     conditions:
       enabled:
@@ -839,13 +839,17 @@ handlers:
         - completed
       to_mail: '[webform_submission:values:requester_email:raw]'
       to_options: {  }
-      cc_mail: lamberty.deborah@epa.gov
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: lamberty.deborah@epa.gov
+      cc_options: {  }
       from_mail: lamberty.deborah@epa.gov
       from_options: {  }
       from_name: 'Deborah Lamberty'
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: 'Join New Faces!'
       body: "<span style=\"font-size:11pt\"><span style=\"font-family:Calibri,sans-serif\">Thanks for joining the EPA family!&nbsp; Now that you have your portrait scheduled, please save this email for when your portrait is done. Submit a bio to New Faces along with your new portrait image. You can submit a bio with no portrait, or if you would like to include a selfie, or a picture of yourself&nbsp;that you love that is fine too. (I.e. picture with pet, on a kayak, out hiking, in your service uniform, etc.)<br />\r\n<br />\r\nSubmitting your New Faces profile to be posted on the <a href=\"https://work.epa.gov/region-5\" style=\"color:#0563c1; text-decoration:underline\" target=\"_blank\" title=\"https://work.epa.gov/region-5\">EPA Region 5 Intranet</a>&nbsp;is a great way to let your new colleagues get to know you.<br />\r\n<br />\r\nCheck out current and previous <a href=\"https://work.epa.gov/region-5/new-faces\" style=\"color:#0563c1; text-decoration:underline\" target=\"_blank\" title=\"https://work.epa.gov/region-5/new-faces\">New Faces</a>.<br />\r\n<br />\r\n<a href=\"https://work.epa.gov/region-5/new-faces-submissions\" style=\"color:#0563c1; text-decoration:underline\" target=\"_blank\" title=\"https://work.epa.gov/region-5/new-faces-submissions\">Submit your bio to New Faces!</a></span></span><br />\r\n<br />\r\n<span style=\"font-size:11pt\"><span style=\"font-family:Calibri,sans-serif\">And once again, Welcome to EPA!<br />\r\n<br />\r\n<br />\r\nKind regards,&nbsp;&nbsp;</span></span><br />\r\n<br />\r\n<br />\r\n<span style=\"font-size:11pt\"><span style=\"font-family:Calibri,sans-serif\">Deborah Lamberty<br />\r\nSenior Web Content Coorindator<br />\r\nMultimedia Communications Office | External Communications Office<br />\r\nU.S. EPA Region 5, Office of the Regional Administrator<br />\r\n312-886-6681 | <a href=\"mailto:lamberty.deborah@epa.gov\" style=\"color:#0563c1; text-decoration:underline\">lamberty.deborah@epa.gov</a></span></span><br />\r\n<br />\r\n<br />\r\n&nbsp;"
       excluded_elements:
@@ -887,11 +891,7 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
 variants: {  }

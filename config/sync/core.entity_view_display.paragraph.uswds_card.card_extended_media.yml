@@ -16,22 +16,22 @@ dependencies:
     - paragraph_view_mode
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: paragraph.uswds_card.card_extended_media
 targetEntityType: paragraph
 bundle: uswds_card
 mode: card_extended_media
 content:
   field_card_type:
-    weight: 0
+    type: paragraph_view_mode
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: paragraph_view_mode
+    weight: 0
     region: content
   field_uswds_button:
-    weight: 4
+    type: link
     label: above
     settings:
       trim_length: 80
@@ -40,16 +40,16 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    weight: 4
     region: content
   field_uswds_card_media:
     type: entity_reference_entity_view
-    weight: 2
     label: above
     settings:
       view_mode: uswds_card
       link: false
     third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   field_body: true

@@ -22,78 +22,78 @@ third_party_settings:
     group_footer_link:
       children:
         - field_link
+      label: 'Footer Link'
+      region: content
       parent_name: ''
       weight: 5
       format_type: details
-      region: content
       format_settings:
-        description: ''
-        id: ''
         classes: ''
+        id: ''
         open: false
+        description: ''
         required_fields: false
-      label: 'Footer Link'
     group_header_image:
       children:
         - field_image
+      label: 'Header Image'
+      region: content
       parent_name: ''
       weight: 2
       format_type: details
-      region: content
       format_settings:
-        description: ''
-        id: ''
         classes: ''
+        id: ''
         open: false
+        description: ''
         required_fields: false
-      label: 'Header Image'
 id: paragraph.title_and_text.default
 targetEntityType: paragraph
 bundle: title_and_text
 mode: default
 content:
   field_box_style:
+    type: options_select
     weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_image:
     type: image_image
     weight: 3
-    settings:
-      preview_image_style: thumbnail
-      progress_indicator: throbber
     region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
     third_party_settings:
       lightning_media:
         file_links: true
         remove_button: true
       conditional_fields: {  }
   field_link:
+    type: link_default
     weight: 5
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
   field_paragraph_text:
+    type: text_textarea
     weight: 4
+    region: content
     settings:
       rows: 3
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_paragraph_title:
+    type: string_textfield
     weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
 hidden:
   created: true
   status: true

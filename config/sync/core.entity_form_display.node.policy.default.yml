@@ -5,6 +5,7 @@ dependencies:
   config:
     - entity_browser.browser.media_browser
     - field.field.node.policy.field_effective_date
+    - field.field.node.policy.field_keywords
     - field.field.node.policy.field_link_to_policy
     - field.field.node.policy.field_next_review_date
     - field.field.node.policy.field_policy_background
@@ -99,6 +100,16 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_keywords:
+    weight: 23
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_link_to_policy:
     type: link_default
     weight: 12
@@ -318,7 +329,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 23
+    weight: 24
     region: content
     settings:
       display_label: true

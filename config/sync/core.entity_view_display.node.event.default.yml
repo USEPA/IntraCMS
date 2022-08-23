@@ -11,21 +11,23 @@ dependencies:
     - field.field.node.event.field_event_location_logistics
     - field.field.node.event.field_event_recording
     - field.field.node.event.field_event_tags
-    - field.field.node.event.field_show_on_ord_calendar
+    - field.field.node.event.field_meta_tags
+    - field.field.node.event.field_show_on_agency_calendar
     - node.type.event
   module:
     - layout_builder
     - layout_builder_restrictions
     - layout_library
     - link
+    - metatag
     - options
     - smart_date
     - text
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: true
+    allow_custom: false
     sections:
       -
         layout_id: layout_twocol_section
@@ -33,95 +35,20 @@ third_party_settings:
           label: ''
           column_widths: 67-33
         components:
-          9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84:
-            uuid: 9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84
-            region: first
-            configuration:
-              id: 'field_block:node:event:field_event_description'
-              label: 'Event Description'
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: above
-                type: text_default
-                settings: {  }
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-            additional: {  }
-            weight: 2
-          2649052a-3c2d-4d5e-bab2-6f4cab35bea9:
-            uuid: 2649052a-3c2d-4d5e-bab2-6f4cab35bea9
-            region: second
-            configuration:
-              id: 'field_block:node:event:field_event_location'
-              label: Location
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: above
-                type: string
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-            additional: {  }
-            weight: 0
-          2b4606be-e20c-4f11-bc61-7632d51e74b1:
-            uuid: 2b4606be-e20c-4f11-bc61-7632d51e74b1
-            region: second
-            configuration:
-              id: 'field_block:node:event:field_event_host'
-              label: 'Event Host'
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: above
-                type: entity_reference_label
-                settings:
-                  link: false
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-            additional: {  }
-            weight: 2
-          d85c9582-7126-4288-a154-3981c572676f:
-            uuid: d85c9582-7126-4288-a154-3981c572676f
-            region: first
-            configuration:
-              id: 'field_block:node:event:field_event_date'
-              label: 'Event Date'
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: above
-                type: addtocal_view
-                settings:
-                  timezone_override: ''
-                  date_format: 'D, M j Y, g:ia T'
-                  event_title: '[node:title]'
-                  location: '[node:field_event_location]'
-                  description: "[node:field_event_description][node:field_event_link]"
-                  past_events: false
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional:
-              layout_builder_styles_style: ''
-            weight: 0
           a123568d-c573-411b-bbe6-866be42f59e3:
             uuid: a123568d-c573-411b-bbe6-866be42f59e3
             region: first
             configuration:
               id: 'field_block:node:event:field_event_date'
               label: 'Event Date'
-              provider: layout_builder
               label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
               formatter:
-                label: above
                 type: smartdate_recurring
+                label: above
                 settings:
                   timezone_override: ''
                   format: default
@@ -131,40 +58,141 @@ third_party_settings:
                   upcoming_display: 2
                   show_next: false
                 third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84:
+            uuid: 9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_event_description'
+              label: 'Event Description'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          2649052a-3c2d-4d5e-bab2-6f4cab35bea9:
+            uuid: 2649052a-3c2d-4d5e-bab2-6f4cab35bea9
+            region: second
+            configuration:
+              id: 'field_block:node:event:field_event_location'
+              label: Location
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: above
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          2b4606be-e20c-4f11-bc61-7632d51e74b1:
+            uuid: 2b4606be-e20c-4f11-bc61-7632d51e74b1
+            region: second
+            configuration:
+              id: 'field_block:node:event:field_event_host'
+              label: 'Event Host'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: false
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          d85c9582-7126-4288-a154-3981c572676f:
+            uuid: d85c9582-7126-4288-a154-3981c572676f
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_event_date'
+              label: 'Event Date'
+              label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
-            weight: 1
-          e7c88fb6-2ee5-40bf-a698-b1316d9211a6:
-            uuid: e7c88fb6-2ee5-40bf-a698-b1316d9211a6
+              formatter:
+                type: addtocal_view
+                label: above
+                settings:
+                  timezone_override: ''
+                  date_format: 'D, M j Y, g:ia T'
+                  event_title: '[node:title]'
+                  location: '[node:field_event_location]'
+                  description: "[node:field_event_description]\r\n\r\n[node:field_event_link]"
+                  past_events: false
+                third_party_settings: {  }
+            weight: 0
+            additional:
+              layout_builder_styles_style: ''
+          a1c59067-8f3d-491c-8384-a49f2703466a:
+            uuid: a1c59067-8f3d-491c-8384-a49f2703466a
             region: second
             configuration:
+              id: 'field_block:node:event:field_event_recording'
+              label: Recording
               label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:node:event:field_event_link'
+                view_mode: view_mode
               formatter:
+                type: link
                 label: above
                 settings:
                   trim_length: 80
                   url_only: false
                   url_plain: false
-                  rel: ''
-                  target: ''
+                  rel: '0'
+                  target: '0'
                 third_party_settings: {  }
-                type: link
+            weight: 3
             additional: {  }
+          ab71cf51-34ad-482f-a8a9-7301b4850270:
+            uuid: ab71cf51-34ad-482f-a8a9-7301b4850270
+            region: second
+            configuration:
+              id: 'field_block:node:event:field_event_link'
+              label: 'Event Link'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: link
+                label: above
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: '0'
+                third_party_settings: {  }
             weight: 1
+            additional: {  }
         third_party_settings: {  }
   layout_library:
     enable: false
   layout_builder_restrictions:
     entity_view_mode_restriction:
-      allowed_blocks: {  }
       allowed_layouts: {  }
-      whitelisted_blocks: {  }
       blacklisted_blocks: {  }
+      whitelisted_blocks: {  }
+      allowed_blocks: {  }
     allowed_block_categories: {  }
 id: node.event.default
 targetEntityType: node
@@ -172,59 +200,47 @@ bundle: event
 mode: default
 content:
   field_event_date:
-    weight: 113
+    type: smartdate_default
     label: above
     settings:
-      format: default
-      format_type: medium
       timezone_override: ''
+      format_type: medium
+      format: default
     third_party_settings: {  }
-    type: smartdate_default
+    weight: 113
     region: content
   field_event_description:
-    weight: 106
+    type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 106
     region: content
   field_event_host:
-    weight: 104
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_event_link:
-    weight: 116
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
+    weight: 104
     region: content
   field_event_location:
-    weight: 107
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 107
     region: content
   field_event_location_logistics:
-    weight: 115
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 115
     region: content
   field_event_recording:
-    weight: 109
+    type: link
     label: above
     settings:
       trim_length: 80
@@ -233,34 +249,39 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    weight: 109
     region: content
   field_event_tags:
-    weight: 108
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 108
     region: content
-  field_show_on_ord_calendar:
-    weight: 114
+  field_meta_tags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 116
+    region: content
+  field_show_on_agency_calendar:
+    type: boolean
     label: above
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    type: boolean
+    weight: 114
     region: content
   links:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
 hidden:
   content_moderation_control: true
-  entity_print_view_epub: true
-  entity_print_view_pdf: true
-  entity_print_view_word_docx: true
+  field_event_link: true
   search_api_excerpt: true

@@ -31,30 +31,30 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
   layout_library:
     enable: false
   layout_builder_restrictions:
     allowed_block_categories: {  }
     entity_view_mode_restriction:
-      whitelisted_blocks: {  }
-      blacklisted_blocks: {  }
       allowed_layouts: {  }
+      blacklisted_blocks: {  }
+      whitelisted_blocks: {  }
 id: node.form.default
 targetEntityType: node
 bundle: form
 mode: default
 content:
   body:
-    label: above
     type: text_default
-    weight: 7
+    label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 7
     region: content
   field_form_additional_resources:
-    weight: 8
+    type: link
     label: above
     settings:
       trim_length: null
@@ -63,50 +63,50 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    type: link
+    weight: 8
     region: content
   field_form_category:
-    weight: 6
+    type: entity_reference_label
     label: inline
     settings:
       link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 6
     region: content
   field_form_effective_date:
-    weight: 2
+    type: datetime_default
     label: inline
     settings:
       timezone_override: ''
       format_type: month_day_year
     third_party_settings: {  }
-    type: datetime_default
+    weight: 2
     region: content
   field_form_poc:
-    weight: 10
+    type: basic_string
     label: inline
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 10
     region: content
   field_form_type:
-    weight: 5
+    type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 5
     region: content
   field_form_upload:
     type: entity_reference_entity_view
-    weight: 4
     label: inline
     settings:
       view_mode: link
       link: false
     third_party_settings: {  }
+    weight: 4
     region: content
   field_link_to_form:
-    weight: 3
+    type: link
     label: inline
     settings:
       trim_length: null
@@ -115,38 +115,38 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    type: link
+    weight: 3
     region: content
   field_owning_aaship_region:
-    weight: 9
+    type: entity_reference_label
     label: inline
     settings:
       link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 9
     region: content
   field_replacing:
-    weight: 11
+    type: entity_reference_label
     label: inline
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 11
     region: content
   field_rescission_date:
-    weight: 1
+    type: datetime_default
     label: inline
     settings:
       timezone_override: ''
       format_type: month_day_year
     third_party_settings: {  }
-    type: datetime_default
+    weight: 1
     region: content
   links:
-    weight: 0
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   content_moderation_control: true
   field_epa_form_number: true

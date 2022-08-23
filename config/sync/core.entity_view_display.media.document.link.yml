@@ -17,8 +17,8 @@ dependencies:
     - media_inline_embed
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
   media_inline_embed:
     embed_inline: true
 _core:
@@ -29,12 +29,12 @@ bundle: document
 mode: link
 content:
   field_document:
-    weight: 0
+    type: epa_media_file_link_formatter
     label: hidden
     settings:
       show_extension: true
     third_party_settings: {  }
-    type: epa_media_file_link_formatter
+    weight: 0
     region: content
 hidden:
   created: true
