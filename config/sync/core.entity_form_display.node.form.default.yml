@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.form.field_form_title
     - field.field.node.form.field_form_type
     - field.field.node.form.field_form_upload
+    - field.field.node.form.field_keywords
     - field.field.node.form.field_link_to_form
     - field.field.node.form.field_meta_tags
     - field.field.node.form.field_owning_aaship_region
@@ -143,6 +144,16 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
+  field_keywords:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_link_to_form:
     type: link_default
     weight: 12
