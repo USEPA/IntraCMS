@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.policy.field_effective_date
+    - field.field.node.policy.field_keywords
     - field.field.node.policy.field_link_to_policy
     - field.field.node.policy.field_next_review_date
     - field.field.node.policy.field_policy_background
@@ -45,8 +46,7 @@ third_party_settings:
       allowed_blocks: {  }
   field_group:
     group_signed_memo:
-      children:
-        - field_signed_memo
+      children: {  }
       label: 'Signed Memo'
       parent_name: ''
       region: content
@@ -60,8 +60,7 @@ third_party_settings:
         required_fields: false
         formatter: closed
     group_related:
-      children:
-        - field_related_procedures
+      children: {  }
       label: 'Related Procedures'
       parent_name: ''
       region: content
@@ -75,8 +74,7 @@ third_party_settings:
         required_fields: false
         formatter: closed
     group_delegation:
-      children:
-        - field_delegation
+      children: {  }
       label: Delegation
       parent_name: ''
       region: content
@@ -105,8 +103,7 @@ third_party_settings:
         required_fields: false
         formatter: closed
     group_roles_and_responsibilities:
-      children:
-        - field_roles_and_responsibilities
+      children: {  }
       label: 'Roles and Responsibilities'
       parent_name: ''
       region: content
@@ -118,8 +115,7 @@ third_party_settings:
         open: false
         description: ''
     group_definitions:
-      children:
-        - field_definitions
+      children: {  }
       label: Definitions
       parent_name: ''
       region: content
@@ -186,6 +182,14 @@ content:
       format_type: day_month_year
     third_party_settings: {  }
     weight: 4
+    region: content
+  field_keywords:
+    weight: 24
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   field_link_to_policy:
     type: link
@@ -335,10 +339,10 @@ content:
     weight: 19
     region: content
   links:
-    settings: {  }
-    third_party_settings: {  }
     weight: 0
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   content_moderation_control: true
   search_api_excerpt: true
