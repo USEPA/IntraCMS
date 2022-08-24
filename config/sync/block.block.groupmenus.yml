@@ -16,12 +16,12 @@ plugin: groupmenus
 settings:
   id: groupmenus
   label: 'Group menus'
-  label_display: '0'
   provider: groupmenu_block
+  label_display: '0'
+  max_depth: '3'
   context_mapping:
     group: '@group.group_route_context:group'
     node: '@node.node_route_context:node'
-  max_depth: '3'
 visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'

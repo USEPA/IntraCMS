@@ -8,7 +8,7 @@ dependencies:
 id: policy_delegation
 label: 'Policy Delegation'
 type: 'canonical_entities:node'
-pattern: '/policy/delegations/[node:title]'
+pattern: '/[node:group:title]/delegations/[node:title]'
 selection_criteria:
   c4069f64-e7b6-4d41-b4a0-d389e7ebcb31:
     id: node_type
@@ -18,14 +18,14 @@ selection_criteria:
       node: node
     bundles:
       policy_delegation: policy_delegation
-  50b1aee6-bc61-4806-a9c3-453ef14f7fc9:
+  2333c792-71c8-4c80-8899-7ce91394c2de:
     id: 'entity_bundle:node'
     bundles:
       policy_delegation: policy_delegation
     negate: false
     context_mapping:
       node: node
-    uuid: 50b1aee6-bc61-4806-a9c3-453ef14f7fc9
+    uuid: 2333c792-71c8-4c80-8899-7ce91394c2de
 selection_logic: and
 weight: -5
 relationships: {  }

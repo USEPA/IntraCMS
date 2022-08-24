@@ -1,22 +1,22 @@
-uuid: 46fe212f-a56d-463b-8b58-56add58f5fce
+uuid: aabf16dd-d3f8-42f2-9c36-d39b626fa81e
 langcode: en
 status: true
 dependencies:
   config:
-    - views.view.forms_liaisons
+    - views.view.transmitta
   module:
     - system
     - views
   theme:
     - epa_intranet
-id: views_block__forms_liaisons_block_1
+id: views_block__transmitta_transmittals_block
 theme: epa_intranet
 region: content
-weight: -5
+weight: 1
 provider: null
-plugin: 'views_block:forms_liaisons-block_1'
+plugin: 'views_block:transmitta-transmittals_block'
 settings:
-  id: 'views_block:forms_liaisons-block_1'
+  id: 'views_block:transmitta-transmittals_block'
   label: ''
   provider: views
   label_display: '0'
@@ -25,5 +25,5 @@ settings:
 visibility:
   request_path:
     id: request_path
+    pages: /agency-policy/transmittals
     negate: false
-    pages: /forms/forms-liaisons
