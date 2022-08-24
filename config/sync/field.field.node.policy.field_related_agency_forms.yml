@@ -1,0 +1,29 @@
+uuid: f085a4b1-8d84-4f2d-bce6-56d2c9c63160
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_agency_forms
+    - node.type.form
+    - node.type.policy
+id: node.policy.field_related_agency_forms
+field_name: field_related_agency_forms
+entity_type: node
+bundle: policy
+label: 'Related Agency Forms'
+description: 'Begin typing the name and/or form number of the agency form(s) associated with this Policy. Use the <strong>Add another item</strong> button to relate additional forms.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      form: form
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
