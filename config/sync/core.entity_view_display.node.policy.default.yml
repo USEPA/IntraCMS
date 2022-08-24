@@ -8,7 +8,7 @@ dependencies:
     - field.field.node.policy.field_link_to_policy
     - field.field.node.policy.field_next_review_date
     - field.field.node.policy.field_policy_background
-    - field.field.node.policy.field_policy_coordinator_lco
+    - field.field.node.policy.field_policy_coordinator
     - field.field.node.policy.field_policy_statement
     - field.field.node.policy.field_policy_type
     - field.field.node.policy.field_policy_upload
@@ -47,20 +47,6 @@ third_party_settings:
       allowed_layouts: {  }
       allowed_blocks: {  }
   field_group:
-    group_signed_memo:
-      children: {  }
-      label: 'Signed Memo'
-      parent_name: ''
-      region: content
-      weight: 15
-      format_type: details
-      format_settings:
-        classes: ''
-        id: ''
-        open: true
-        description: ''
-        required_fields: false
-        formatter: closed
     group_related:
       children:
         - field_related_agency_forms
@@ -77,102 +63,62 @@ third_party_settings:
         id: ''
         classes: ''
         show_empty_fields: false
-    group_delegation:
-      children: {  }
-      label: Delegation
-      parent_name: ''
-      region: content
-      weight: 21
-      format_type: details
-      format_settings:
-        classes: ''
-        id: ''
-        open: false
-        description: ''
-        required_fields: false
-        formatter: open
     group_policy_coordinator_co:
       children:
-        - field_policy_coordinator_lco
+        - field_policy_coordinator
       label: 'Policy Coordinator C/O'
-      parent_name: ''
-      region: content
-      weight: 22
-      format_type: details
-      format_settings:
-        classes: ''
-        id: ''
-        open: false
-        description: ''
-        required_fields: false
-        formatter: closed
-    group_roles_and_responsibilities:
-      children: {  }
-      label: 'Roles and Responsibilities'
-      parent_name: ''
-      region: content
-      weight: 18
-      format_type: details
-      format_settings:
-        classes: ''
-        id: ''
-        open: false
-        description: ''
-    group_definitions:
-      children: {  }
-      label: Definitions
       parent_name: ''
       region: content
       weight: 19
       format_type: details
       format_settings:
-        classes: ''
-        id: ''
-        open: false
         description: ''
+        open: true
+        id: ''
+        classes: ''
+        show_empty_fields: false
     group_governing_authorities:
       children:
         - field_references
       label: 'Governing Authorities'
       parent_name: ''
       region: content
-      weight: 20
+      weight: 17
       format_type: details
       format_settings:
-        classes: ''
-        id: ''
-        open: false
         description: ''
+        open: true
+        id: ''
+        classes: ''
+        show_empty_fields: false
     group_rescissions:
       children:
         - field_rescissions
       label: Rescissions
       parent_name: ''
       region: content
-      weight: 17
+      weight: 14
       format_type: details
       format_settings:
-        classes: ''
-        id: ''
-        open: false
         description: ''
-        required_fields: false
-        formatter: closed
+        open: true
+        id: ''
+        classes: ''
+        show_empty_fields: false
     group_supplemental_documents:
       children:
         - field_supplemental_documents
       label: 'Supplemental Documents'
       parent_name: ''
       region: content
-      weight: 16
+      weight: 13
       format_type: details
       format_settings:
-        classes: ''
-        id: ''
-        open: false
         description: ''
-        required_fields: false
-        formatter: closed
+        open: true
+        id: ''
+        classes: ''
+        show_empty_fields: false
 id: node.policy.default
 targetEntityType: node
 bundle: policy
@@ -185,10 +131,10 @@ content:
       timezone_override: ''
       format_type: day_month_year
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_keywords:
-    weight: 24
+    weight: 21
     label: inline
     settings:
       link: true
@@ -214,7 +160,7 @@ content:
       timezone_override: ''
       format_type: day_month_year
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: content
   field_policy_background:
     type: text_default
@@ -223,15 +169,15 @@ content:
     third_party_settings: {  }
     weight: 11
     region: content
-  field_policy_coordinator_lco:
-    type: cshs_full_hierarchy
+  field_policy_coordinator:
+    weight: 21
     label: hidden
     settings:
       separator: ' » '
       linked: false
       reverse: false
     third_party_settings: {  }
-    weight: 17
+    type: cshs_full_hierarchy
     region: content
   field_policy_statement:
     type: text_default
@@ -332,7 +278,7 @@ content:
     type: entity_reference_entity_view
     label: hidden
     settings:
-      view_mode: inline_embedded
+      view_mode: link
       link: false
     third_party_settings: {  }
     weight: 13
@@ -343,7 +289,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 7
+    weight: 5
     region: content
   links:
     weight: 0
