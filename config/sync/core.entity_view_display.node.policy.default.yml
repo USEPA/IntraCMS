@@ -8,12 +8,13 @@ dependencies:
     - field.field.node.policy.field_link_to_policy
     - field.field.node.policy.field_next_review_date
     - field.field.node.policy.field_policy_background
-    - field.field.node.policy.field_policy_coordinator_lco
+    - field.field.node.policy.field_policy_coordinator
     - field.field.node.policy.field_policy_statement
     - field.field.node.policy.field_policy_type
     - field.field.node.policy.field_policy_upload
     - field.field.node.policy.field_prior_identifier
     - field.field.node.policy.field_references
+    - field.field.node.policy.field_related_agency_forms
     - field.field.node.policy.field_related_policy
     - field.field.node.policy.field_related_resources
     - field.field.node.policy.field_rescind_this_policy
@@ -24,6 +25,7 @@ dependencies:
     - field.field.node.policy.field_upload_or_link
     - node.type.policy
   module:
+    - cshs
     - datetime
     - entity_reference_revisions
     - field_group
@@ -45,130 +47,78 @@ third_party_settings:
       allowed_layouts: {  }
       allowed_blocks: {  }
   field_group:
-    group_signed_memo:
-      children: {  }
-      label: 'Signed Memo'
-      parent_name: ''
-      region: content
-      weight: 9
-      format_type: details
-      format_settings:
-        classes: ''
-        id: ''
-        open: true
-        description: ''
-        required_fields: false
-        formatter: closed
     group_related:
-      children: {  }
-      label: 'Related Procedures'
+      children:
+        - field_related_agency_forms
+        - field_related_policy
+        - field_related_resources
+      label: 'Related Policies, Forms, and Resources'
       parent_name: ''
       region: content
-      weight: 10
+      weight: 12
       format_type: details
       format_settings:
-        classes: ''
-        id: ''
+        description: ''
         open: true
-        description: ''
-        required_fields: false
-        formatter: closed
-    group_delegation:
-      children: {  }
-      label: Delegation
-      parent_name: ''
-      region: content
-      weight: 16
-      format_type: details
-      format_settings:
-        classes: ''
         id: ''
-        open: false
-        description: ''
-        required_fields: false
-        formatter: open
+        classes: ''
+        show_empty_fields: false
     group_policy_coordinator_co:
       children:
-        - field_policy_coordinator_lco
+        - field_policy_coordinator
       label: 'Policy Coordinator C/O'
       parent_name: ''
       region: content
-      weight: 17
+      weight: 19
       format_type: details
       format_settings:
-        classes: ''
-        id: ''
-        open: false
         description: ''
-        required_fields: false
-        formatter: closed
-    group_roles_and_responsibilities:
-      children: {  }
-      label: 'Roles and Responsibilities'
-      parent_name: ''
-      region: content
-      weight: 13
-      format_type: details
-      format_settings:
-        classes: ''
+        open: true
         id: ''
-        open: false
-        description: ''
-    group_definitions:
-      children: {  }
-      label: Definitions
-      parent_name: ''
-      region: content
-      weight: 14
-      format_type: details
-      format_settings:
         classes: ''
-        id: ''
-        open: false
-        description: ''
+        show_empty_fields: false
     group_governing_authorities:
       children:
         - field_references
       label: 'Governing Authorities'
       parent_name: ''
       region: content
-      weight: 15
+      weight: 17
       format_type: details
       format_settings:
-        classes: ''
-        id: ''
-        open: false
         description: ''
+        open: true
+        id: ''
+        classes: ''
+        show_empty_fields: false
     group_rescissions:
       children:
         - field_rescissions
       label: Rescissions
       parent_name: ''
       region: content
-      weight: 12
+      weight: 14
       format_type: details
       format_settings:
-        classes: ''
-        id: ''
-        open: false
         description: ''
-        required_fields: false
-        formatter: closed
+        open: true
+        id: ''
+        classes: ''
+        show_empty_fields: false
     group_supplemental_documents:
       children:
         - field_supplemental_documents
       label: 'Supplemental Documents'
       parent_name: ''
       region: content
-      weight: 11
+      weight: 13
       format_type: details
       format_settings:
-        classes: ''
-        id: ''
-        open: false
         description: ''
-        required_fields: false
-        formatter: closed
+        open: true
+        id: ''
+        classes: ''
+        show_empty_fields: false
 id: node.policy.default
 targetEntityType: node
 bundle: policy
@@ -181,10 +131,10 @@ content:
       timezone_override: ''
       format_type: day_month_year
     third_party_settings: {  }
-    weight: 4
+    weight: 6
     region: content
   field_keywords:
-    weight: 24
+    weight: 21
     label: inline
     settings:
       link: true
@@ -193,15 +143,15 @@ content:
     region: content
   field_link_to_policy:
     type: link
-    label: above
+    label: inline
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
-    weight: 21
+    weight: 8
     region: content
   field_next_review_date:
     type: datetime_default
@@ -210,36 +160,38 @@ content:
       timezone_override: ''
       format_type: day_month_year
     third_party_settings: {  }
-    weight: 5
+    weight: 7
     region: content
   field_policy_background:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 8
+    weight: 11
     region: content
-  field_policy_coordinator_lco:
-    type: entity_reference_label
+  field_policy_coordinator:
+    weight: 21
     label: hidden
     settings:
-      link: false
+      separator: ' » '
+      linked: false
+      reverse: false
     third_party_settings: {  }
-    weight: 17
+    type: cshs_full_hierarchy
     region: content
   field_policy_statement:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 7
+    weight: 10
     region: content
   field_policy_type:
     type: list_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 18
+    weight: 4
     region: content
   field_policy_upload:
     type: entity_reference_entity_view
@@ -248,7 +200,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 20
+    weight: 9
     region: content
   field_prior_identifier:
     type: string
@@ -265,7 +217,15 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 10
+    weight: 26
+    region: content
+  field_related_agency_forms:
+    weight: 14
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   field_related_policy:
     type: entity_reference_label
@@ -273,19 +233,19 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 22
+    weight: 15
     region: content
   field_related_resources:
     type: link
     label: above
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
-    weight: 23
+    weight: 16
     region: content
   field_rescind_this_policy:
     type: boolean
@@ -318,25 +278,18 @@ content:
     type: entity_reference_entity_view
     label: hidden
     settings:
-      view_mode: inline_embedded
+      view_mode: link
       link: false
     third_party_settings: {  }
     weight: 13
     region: content
   field_topic_area_of_authority:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: false
     third_party_settings: {  }
-    weight: 6
-    region: content
-  field_upload_or_link:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 19
+    weight: 5
     region: content
   links:
     weight: 0
@@ -345,4 +298,5 @@ content:
     third_party_settings: {  }
 hidden:
   content_moderation_control: true
+  field_upload_or_link: true
   search_api_excerpt: true

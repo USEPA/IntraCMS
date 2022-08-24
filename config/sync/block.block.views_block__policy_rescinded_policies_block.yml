@@ -1,22 +1,22 @@
-uuid: 46fe212f-a56d-463b-8b58-56add58f5fce
+uuid: 3a5a2ea0-898d-4190-b60c-4ed850079cef
 langcode: en
 status: true
 dependencies:
   config:
-    - views.view.forms_liaisons
+    - views.view.policy
   module:
     - system
     - views
   theme:
     - epa_intranet
-id: views_block__forms_liaisons_block_1
+id: views_block__policy_rescinded_policies_block
 theme: epa_intranet
 region: content
-weight: -5
+weight: 0
 provider: null
-plugin: 'views_block:forms_liaisons-block_1'
+plugin: 'views_block:policy-rescinded_policies_block'
 settings:
-  id: 'views_block:forms_liaisons-block_1'
+  id: 'views_block:policy-rescinded_policies_block'
   label: ''
   provider: views
   label_display: '0'
@@ -25,5 +25,5 @@ settings:
 visibility:
   request_path:
     id: request_path
+    pages: /agency-policy/rescinded-policy
     negate: false
-    pages: /forms/forms-liaisons

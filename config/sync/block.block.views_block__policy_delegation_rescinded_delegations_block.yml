@@ -1,0 +1,29 @@
+uuid: 50f27e74-e6bf-40c3-b7c5-0f4de00202c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.policy_delegation
+  module:
+    - system
+    - views
+  theme:
+    - epa_intranet
+id: views_block__policy_delegation_rescinded_delegations_block
+theme: epa_intranet
+region: content
+weight: -1
+provider: null
+plugin: 'views_block:policy_delegation-rescinded_delegations_block'
+settings:
+  id: 'views_block:policy_delegation-rescinded_delegations_block'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: /agency-policy/rescinded-delegations
+    negate: false

@@ -3,11 +3,12 @@ langcode: en
 status: true
 dependencies:
   module:
+    - ctools
     - node
 id: policy
 label: Policy
 type: 'canonical_entities:node'
-pattern: '/policy/[node:title]'
+pattern: '/[node:group:title]/policies/[node:title]'
 selection_criteria:
   28f7b1ab-3286-4d48-bed6-0a34710a9992:
     id: node_type
@@ -17,6 +18,14 @@ selection_criteria:
       node: node
     bundles:
       policy: policy
+  90f322d6-f1fc-4205-9e78-5c324b4d9fa9:
+    id: 'entity_bundle:node'
+    bundles:
+      policy: policy
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 90f322d6-f1fc-4205-9e78-5c324b4d9fa9
 selection_logic: and
 weight: -5
 relationships: {  }

@@ -1,18 +1,18 @@
-uuid: 500347bc-93e6-4ae9-befb-0a338aa65ce4
+uuid: 264f9deb-dcc5-4eda-8a55-fef438ccdb7a
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_policy_coordinator_lco
+    - field.storage.node.field_policy_coordinator
     - node.type.policy
     - taxonomy.vocabulary.organization
-id: node.policy.field_policy_coordinator_lco
-field_name: field_policy_coordinator_lco
+id: node.policy.field_policy_coordinator
+field_name: field_policy_coordinator
 entity_type: node
 bundle: policy
 label: 'Policy Coordinator'
-description: 'Select the AAShip or Region that coordinates this policy. Where appropriate, select the sub-organization.'
-required: true
+description: ''
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -25,5 +25,5 @@ settings:
       field: name
       direction: asc
     auto_create: false
-    auto_create_bundle: organization
+    auto_create_bundle: ''
 field_type: entity_reference

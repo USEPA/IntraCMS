@@ -5,9 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_effective_date
     - field.storage.node.field_next_review_date
-    - field.storage.node.field_policy_coordinator_lco
     - field.storage.node.field_policy_statement
-    - field.storage.node.field_prior_identifier
     - field.storage.node.field_rescission_date
     - field.storage.node.field_topic_area_of_authority
     - node.type.policy
@@ -21,7 +19,6 @@ dependencies:
     - taxonomy
     - text
     - user
-    - vefl
     - views_autocomplete_filters
     - views_data_export
 id: policy
@@ -106,27 +103,15 @@ display:
             offset: false
             offset_label: Offset
       exposed_form:
-        type: vefl_basic
+        type: basic
         options:
           submit_button: Apply
           reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
+          expose_sort_order: false
           sort_asc_label: Asc
           sort_desc_label: Desc
-          layout:
-            layout_id: layout_twocol_section
-            change: Change
-            widget_region:
-              tid: first
-              title: second
-              sort_by: first
-              sort_order: first
-              items_per_page: first
-              offset: first
-              submit: first
-              reset: first
       access:
         type: perm
         options:
@@ -142,12 +127,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: text
           empty: true
-          content:
-            value: 'There are no items that match your filter criteria.'
-            format: simple_text
           tokenize: false
+          content:
+            value: "<hr />\r\n<div class=\"usa-alert usa-alert--error\" role=\"alert\">\r\n  <div class=\"usa-alert__body\">\r\n    <h2 class=\"usa-alert__heading\">No Results</h2>\r\n    <p class=\"usa-alert__text\">\r\nThere are no items that match your filter criteria.\r\n    </p>\r\n  </div>\r\n</div>\r\n\r\n"
+            format: rich_text
+          plugin_id: text
       sorts: {  }
       arguments: {  }
       filters:
@@ -245,6 +230,115 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: title_op
+            label: Title
+            description: ''
+            use_operator: false
+            operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: title
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              book_editor: '0'
+              system_editor: '0'
+              administrator: '0'
+            placeholder: ''
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_field: title
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: title
+          plugin_id: views_autocomplete_filters_string
+        field_topic_area_of_authority_target_id:
+          id: field_topic_area_of_authority_target_id
+          table: node__field_topic_area_of_authority
+          field: field_topic_area_of_authority_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_topic_area_of_authority_target_id_op
+            label: Topic
+            description: ''
+            use_operator: false
+            operator: field_topic_area_of_authority_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_topic_area_of_authority_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              book_editor: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: policy_topics
+          hierarchy: false
+          error_message: true
+          parent: 0
+          level_labels: ''
+          force_deepest: false
+          save_lineage: false
+          hierarchy_depth: 0
+          required_depth: 0
+          plugin_id: taxonomy_index_tid
       style:
         type: table
         options:
@@ -296,15 +390,287 @@ display:
       header: {  }
       footer: {  }
       display_extenders: {  }
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
+  active_policies_block:
+    display_plugin: block
+    id: active_policies_block
+    display_title: 'Active Policies Block'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      fields:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: Title
+          exclude: false
+          alter:
+            alter_text: false
+            make_link: false
+            absolute: false
+            word_boundary: false
+            ellipsis: false
+            strip_tags: false
+            trim: false
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_effective_date:
+          id: field_effective_date
+          table: node__field_effective_date
+          field: field_effective_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Effective Date'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_default
+          settings:
+            timezone_override: ''
+            format_type: day_month_year
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_policy_statement:
+          id: field_policy_statement
+          table: node__field_policy_statement
+          field: field_policy_statement
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Policy Statement'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_trimmed
+          settings:
+            trim_length: 400
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_topic_area_of_authority:
+          id: field_topic_area_of_authority
+          table: node__field_topic_area_of_authority
+          field: field_topic_area_of_authority
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Topic
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+      sorts: {  }
+      defaults:
+        fields: false
+        sorts: false
+        filters: true
+        filter_groups: true
+        header: false
+      display_description: ''
+      header: {  }
+      block_description: 'Active Policies Block'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_effective_date'
+        - 'config:field.storage.node.field_policy_statement'
+        - 'config:field.storage.node.field_topic_area_of_authority'
   active_policies_page:
     id: active_policies_page
     display_title: 'Active Policies'
@@ -557,28 +923,18 @@ display:
         filter_groups: true
         header: false
       display_description: ''
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: text
-          empty: true
-          content:
-            value: "<h1>Active Policies</h1>\r\n<p>You've reached ORD's Active Policies page! The default display below lists the policies alphabetically by topic. You can sort the table by clicking on any of the column headers. You can search by Title by typing a keyword in the <em>Title</em> search box. Filter the list by topic by selecting a topic from the <em>Topic</em> drop down list. If you wish to review any rescinded policies, you may do so on the <a href=\"/policy/rescinded-policies\">Rescinded Policies</a> page.</p>"
-            format: full_html
-          tokenize: false
+      header: {  }
       display_extenders: {  }
       path: policy/active-policies
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -713,69 +1069,6 @@ display:
           admin_label: ''
           plugin_id: field
           label: 'Topic Area of Authority'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_policy_coordinator_lco:
-          id: field_policy_coordinator_lco
-          table: node__field_policy_coordinator_lco
-          field: field_policy_coordinator_lco
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Policy Coordinator'
           exclude: false
           alter:
             alter_text: false
@@ -1100,14 +1393,15 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: text
           empty: true
-          content:
-            value: "<h1>Active Policies by Review Date</h1>\r\n<p>The table below lists all active policies by review date.</p>\r\n<p>\r\n<a href=\"/policy/active-policies-review-date/export.csv\" class=\"usa-button\">Export CSV</a>\r\n</p>"
-            format: full_html
           tokenize: false
+          content:
+            value: "<h1>Active Policies by Review Date</h1>\r\n<p>The table below lists all active policies by review date.</p>"
+            format: full_html
+          plugin_id: text
       display_extenders: {  }
-      path: policy/active-policies-review-date
+      path: agency-policy/policies/active-policies-review-date
+      enabled: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -1120,7 +1414,6 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_next_review_date'
-        - 'config:field.storage.node.field_policy_coordinator_lco'
         - 'config:field.storage.node.field_topic_area_of_authority'
   entity_reference_1:
     id: entity_reference_1
@@ -1209,6 +1502,8 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -1394,69 +1689,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_policy_coordinator_lco:
-          id: field_policy_coordinator_lco
-          table: node__field_policy_coordinator_lco
-          field: field_policy_coordinator_lco
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Policy Coordinator'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
       sorts:
         field_next_review_date_value:
           id: field_next_review_date_value
@@ -1615,6 +1847,7 @@ display:
       custom_redirect_path: false
       redirect_to_display: none
       include_query_params: false
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -1625,25 +1858,24 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_next_review_date'
-        - 'config:field.storage.node.field_policy_coordinator_lco'
         - 'config:field.storage.node.field_topic_area_of_authority'
-  qa_policies_page:
-    id: qa_policies_page
-    display_title: 'QA Policies'
-    display_plugin: page
-    position: 1
+  rescinded_policies_block:
+    display_plugin: block
+    id: rescinded_policies_block
+    display_title: 'Rescinded Policies Block'
+    position: 3
     display_options:
-      title: 'QA Policies'
+      display_extenders: {  }
+      title: 'Rescinded Policies'
       fields:
-        field_prior_identifier:
-          id: field_prior_identifier
-          table: node__field_prior_identifier
-          field: field_prior_identifier
+        field_topic_area_of_authority:
+          id: field_topic_area_of_authority
+          table: node__field_topic_area_of_authority
+          field: field_topic_area_of_authority
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: field
-          label: Identifier
+          label: Topic
           exclude: false
           alter:
             alter_text: false
@@ -1684,11 +1916,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: string
+          click_sort_column: target_id
+          type: entity_reference_label
           settings:
-            link_to_entity: false
-          group_column: value
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1698,15 +1930,16 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_effective_date:
-          id: field_effective_date
-          table: node__field_effective_date
-          field: field_effective_date
+          plugin_id: field
+        field_rescission_date:
+          id: field_rescission_date
+          table: node__field_rescission_date
+          field: field_rescission_date
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: 'Effective Date'
+          label: 'Rescission Date'
           exclude: false
           alter:
             alter_text: false
@@ -1762,46 +1995,115 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-      pager:
-        type: none
-        options:
-          offset: 0
-      exposed_form:
-        type: vefl_basic
-        options:
-          submit_button: Apply
-          reset_button: true
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-          layout:
-            layout_id: layout_twocol
-            change: Change
-            widget_region:
-              field_prior_identifier_value: first
-              title: second
-              sort_by: top
-              sort_order: top
-              items_per_page: top
-              offset: top
-              submit: first
-              reset: first
-      sorts:
-        field_prior_identifier_value:
-          id: field_prior_identifier_value
-          table: node__field_prior_identifier
-          field: field_prior_identifier_value
+        title:
+          id: title
+          table: node_field_data
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: standard
-          order: ASC
-          expose:
-            label: ''
-            field_identifier: field_prior_identifier_value
-          exposed: false
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: Title
+          exclude: false
+          alter:
+            alter_text: false
+            make_link: false
+            absolute: false
+            word_boundary: false
+            ellipsis: false
+            strip_tags: false
+            trim: false
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_policy_statement:
+          id: field_policy_statement
+          table: node__field_policy_statement
+          field: field_policy_statement
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Policy Statement'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       filters:
         status:
           id: status
@@ -1868,15 +2170,13 @@ display:
           admin_label: ''
           plugin_id: taxonomy_index_tid
           operator: or
-          value:
-            97: 97
-            98: 98
+          value: {  }
           group: 1
-          exposed: false
+          exposed: true
           expose:
             operator_id: tid_op
-            label: 'Has taxonomy term'
-            description: null
+            label: Topic
+            description: ''
             use_operator: false
             operator: tid_op
             operator_limit_selection: false
@@ -1887,6 +2187,9 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1915,7 +2218,7 @@ display:
           admin_label: ''
           plugin_id: boolean
           operator: '='
-          value: '0'
+          value: '1'
           group: 1
           exposed: false
           expose:
@@ -1932,48 +2235,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        field_prior_identifier_value:
-          id: field_prior_identifier_value
-          table: node__field_prior_identifier
-          field: field_prior_identifier_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: string
-          operator: '='
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_prior_identifier_value_op
-            label: Identifier
-            description: ''
-            use_operator: false
-            operator: field_prior_identifier_value_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_prior_identifier_value
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              webform: '0'
-              administrator: '0'
-            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -2036,30 +2297,13 @@ display:
           1: AND
       defaults:
         title: false
-        pager: false
-        exposed_form: false
         fields: false
-        sorts: false
         filters: false
         filter_groups: false
         header: false
       display_description: ''
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: text
-          empty: true
-          content:
-            value: "<h1>QA Related Policies and Procedures</h1>\r\n<p>Listed below are ORD's Quality Assurance related policies and procedures. The list is pulled from <a href=\"/policy\">ORD's main Policy site</a> and pre-filtered to show only policies in the <em>Quality Assurance</em> and <em>Scientific Programs</em> topics. If you wish to view all ORD Policy, please visit <a href=\"/policy\">ORD's main Policy site</a>.</p>"
-            format: full_html
-          tokenize: false
-      display_extenders: {  }
-      path: quality-assurance/qa-related-policies-and-procedures
+      header: {  }
+      block_description: 'Rescinded Policies Block'
     cache_metadata:
       max-age: -1
       contexts:
@@ -2071,15 +2315,16 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_effective_date'
-        - 'config:field.storage.node.field_prior_identifier'
+        - 'config:field.storage.node.field_policy_statement'
+        - 'config:field.storage.node.field_rescission_date'
+        - 'config:field.storage.node.field_topic_area_of_authority'
   rescinded_policies_page:
     id: rescinded_policies_page
-    display_title: 'Resinded Policies'
+    display_title: 'Rescinded Policies'
     display_plugin: page
     position: 3
     display_options:
-      title: 'Resinded Policies'
+      title: 'Rescinded Policies'
       fields:
         field_topic_area_of_authority:
           id: field_topic_area_of_authority
@@ -2515,22 +2760,10 @@ display:
         filter_groups: false
         header: false
       display_description: ''
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: text
-          empty: true
-          content:
-            value: "<h2>Rescinded Policies</h1>\r\n<p>You've reached ORD's Rescinded Policies page! The default display below lists the rescinded policies alphabetically by topic. You can sort the table by clicking on any of the column headers. You can search by title by typing a keyword in the <em>Title</em> search box. Filter the list by topic by selecting a topic from the <em>Topic</em> drop down list. If you wish to review any active policies, you may do so on the <a href=\"/policy/active-policies\">Active Policies</a> page.</p>"
-            format: full_html
-          tokenize: false
+      header: {  }
       display_extenders: {  }
       path: policy/rescinded-policies
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
