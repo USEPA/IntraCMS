@@ -10,6 +10,7 @@ dependencies:
     - field.storage.node.field_form_title
     - node.type.form
     - taxonomy.vocabulary.forms_categories
+    - taxonomy.vocabulary.program_offices_and_regions
     - taxonomy.vocabulary.tags
   module:
     - link
@@ -964,6 +965,107 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        field_form_type_value:
+          id: field_form_type_value
+          table: node__field_form_type
+          field: field_form_type_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_form_type_value_op
+            label: 'Form Type'
+            description: ''
+            use_operator: false
+            operator: field_form_type_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_form_type_value
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              book_editor: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          plugin_id: list_field
+        field_form_category_target_id:
+          id: field_form_category_target_id
+          table: node__field_form_category
+          field: field_form_category_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_form_category_target_id_op
+            label: Category
+            description: ''
+            use_operator: false
+            operator: field_form_category_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_form_category_target_id
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              book_editor: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: textfield
+          limit: true
+          vid: forms_categories
+          hierarchy: false
+          error_message: true
+          parent: 0
+          level_labels: ''
+          force_deepest: false
+          save_lineage: false
+          hierarchy_depth: 0
+          required_depth: 0
+          plugin_id: taxonomy_index_tid
         field_keywords_target_id:
           id: field_keywords_target_id
           table: node__field_keywords
@@ -1011,6 +1113,62 @@ display:
           type: textfield
           limit: true
           vid: tags
+          hierarchy: false
+          error_message: true
+          parent: 0
+          level_labels: ''
+          force_deepest: false
+          save_lineage: false
+          hierarchy_depth: 0
+          required_depth: 0
+          plugin_id: taxonomy_index_tid
+        field_owning_aaship_region_target_id:
+          id: field_owning_aaship_region_target_id
+          table: node__field_owning_aaship_region
+          field: field_owning_aaship_region_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_owning_aaship_region_target_id_op
+            label: 'Owning AAShip / Region'
+            description: ''
+            use_operator: false
+            operator: field_owning_aaship_region_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_owning_aaship_region_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              book_editor: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: program_offices_and_regions
           hierarchy: false
           error_message: true
           parent: 0
