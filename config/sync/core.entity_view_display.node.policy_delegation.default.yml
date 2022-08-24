@@ -25,10 +25,43 @@ dependencies:
   module:
     - datetime
     - entity_reference_revisions
+    - field_group
     - link
     - options
     - text
     - user
+third_party_settings:
+  field_group:
+    group_references:
+      children:
+        - field_references
+      parent_name: ''
+      weight: 15
+      format_type: details
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: ''
+        description: ''
+        open: true
+        required_fields: false
+      label: References
+    group_signed_memo:
+      children:
+        - field_signed_memo
+      parent_name: ''
+      weight: 16
+      format_type: details
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: ''
+        description: ''
+        open: true
+        required_fields: false
+      label: 'Signed Memo'
 id: node.policy_delegation.default
 targetEntityType: node
 bundle: policy_delegation
@@ -39,7 +72,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 14
+    weight: 9
     region: content
   field_effective_date:
     type: datetime_default
@@ -51,7 +84,7 @@ content:
     weight: 3
     region: content
   field_keywords:
-    weight: 23
+    weight: 19
     label: inline
     settings:
       link: true
@@ -63,19 +96,19 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 17
+    weight: 12
     region: content
   field_link_to_delegation_file:
     type: link
-    label: above
+    label: inline
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
-    weight: 13
+    weight: 5
     region: content
   field_next_review_date:
     type: datetime_default
@@ -84,54 +117,54 @@ content:
       timezone_override: ''
       format_type: day_month_year
     third_party_settings: {  }
-    weight: 4
+    weight: 18
     region: content
   field_other_delegation:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 16
+    weight: 11
     region: content
   field_prior_identifier:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 21
+    weight: 4
     region: content
   field_redelegation:
     type: list_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 18
+    weight: 13
     region: content
   field_redelegation_authority:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 19
+    weight: 14
     region: content
   field_references:
     type: entity_reference_revisions_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 20
+    weight: 16
     region: content
   field_replacing:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
-    weight: 12
+    weight: 8
     region: content
   field_rescind_this_delegation:
     type: boolean
@@ -154,36 +187,36 @@ content:
     region: content
   field_signed_memo:
     type: entity_reference_entity_view
-    label: above
+    label: hidden
     settings:
-      view_mode: inline_embedded
+      view_mode: link
       link: false
     third_party_settings: {  }
-    weight: 8
+    weight: 17
     region: content
   field_to_whom_delegated:
     type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 15
-    region: content
-  field_topic_area_of_authority:
-    type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: false
     third_party_settings: {  }
-    weight: 9
+    weight: 10
+    region: content
+  field_topic_area_of_authority:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 7
     region: content
   field_transmittal_notice:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
-    weight: 22
+    weight: 6
     region: content
   links:
     weight: 0

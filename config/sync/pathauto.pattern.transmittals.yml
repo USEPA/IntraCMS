@@ -1,0 +1,23 @@
+uuid: fb11624f-7c02-4cd0-9305-68d143c5c927
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - node
+id: transmittals
+label: Transmittals
+type: 'canonical_entities:node'
+pattern: '/policy/transmittals/[node:title]'
+selection_criteria:
+  b1d831d4-3aa9-4024-ad33-12eb2bce2b86:
+    id: 'entity_bundle:node'
+    bundles:
+      transmittal_notce: transmittal_notce
+    negate: false
+    context_mapping:
+      node: node
+    uuid: b1d831d4-3aa9-4024-ad33-12eb2bce2b86
+selection_logic: and
+weight: -5
+relationships: {  }
