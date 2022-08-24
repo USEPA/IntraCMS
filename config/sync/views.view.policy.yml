@@ -127,12 +127,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: text
           empty: true
-          content:
-            value: 'There are no items that match your filter criteria.'
-            format: simple_text
           tokenize: false
+          content:
+            value: "<hr />\r\n<div class=\"usa-alert usa-alert--error\" role=\"alert\">\r\n  <div class=\"usa-alert__body\">\r\n    <h2 class=\"usa-alert__heading\">No Results</h2>\r\n    <p class=\"usa-alert__text\">\r\nThere are no items that match your filter criteria.\r\n    </p>\r\n  </div>\r\n</div>\r\n\r\n"
+            format: rich_text
+          plugin_id: text
       sorts: {  }
       arguments: {  }
       filters:
@@ -926,6 +926,7 @@ display:
       header: {  }
       display_extenders: {  }
       path: policy/active-policies
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -1392,14 +1393,15 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: text
           empty: true
-          content:
-            value: "<h1>Active Policies by Review Date</h1>\r\n<p>The table below lists all active policies by review date.</p>\r\n<p>\r\n<a href=\"/policy/active-policies-review-date/export.csv\" class=\"usa-button\">Export CSV</a>\r\n</p>"
-            format: full_html
           tokenize: false
+          content:
+            value: "<h1>Active Policies by Review Date</h1>\r\n<p>The table below lists all active policies by review date.</p>"
+            format: full_html
+          plugin_id: text
       display_extenders: {  }
-      path: policy/active-policies-review-date
+      path: agency-policy/policies/active-policies-review-date
+      enabled: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -1845,6 +1847,7 @@ display:
       custom_redirect_path: false
       redirect_to_display: none
       include_query_params: false
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -2760,6 +2763,7 @@ display:
       header: {  }
       display_extenders: {  }
       path: policy/rescinded-policies
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:

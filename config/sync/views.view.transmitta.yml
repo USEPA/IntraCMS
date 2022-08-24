@@ -113,7 +113,20 @@ display:
       cache:
         type: tag
         options: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: "<hr />\r\n<div class=\"usa-alert usa-alert--error\" role=\"alert\">\r\n  <div class=\"usa-alert__body\">\r\n    <h2 class=\"usa-alert__heading\">No Results</h2>\r\n    <p class=\"usa-alert__text\">\r\nThere are no items that match your filter criteria.\r\n    </p>\r\n  </div>\r\n</div>\r\n\r\n"
+            format: rich_text
+          plugin_id: text
       sorts: {  }
       arguments: {  }
       filters:
@@ -344,6 +357,7 @@ display:
           plugin_id: text
       footer: {  }
       display_extenders: {  }
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -1123,8 +1137,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Associated Delegation'
-          exclude: true
+          label: 'Associated Policy/Delegation'
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -1156,7 +1170,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1186,7 +1200,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Associated Policy/Delegation'
+          label: ''
           exclude: false
           alter:
             alter_text: true
@@ -1219,7 +1233,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1326,7 +1340,8 @@ display:
         header: false
       display_description: ''
       header: {  }
-      path: policy/transmittals
+      path: agency-policy/transmittal-notices
+      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
