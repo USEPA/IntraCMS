@@ -1292,8 +1292,6 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Content relation'
-          entity_type: node
-          plugin_id: group_content_to_entity_reverse
           required: true
           group_content_plugins:
             'group_node:article': 'group_node:article'
@@ -1309,8 +1307,11 @@ display:
             'group_node:policy_delegation': 'group_node:policy_delegation'
             'group_node:quiz': 'group_node:quiz'
             'group_node:staff_member': 'group_node:staff_member'
+            'group_node:transmittal_notce': 'group_node:transmittal_notce'
             'group_node:webform': 'group_node:webform'
             'group_node:event': '0'
+          entity_type: node
+          plugin_id: group_content_to_entity_reverse
         revision_uid:
           id: revision_uid
           table: node_revision
@@ -1876,10 +1877,10 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: display_link
-          label: 'Export content'
           empty: false
           display_id: data_export_1
+          label: 'Export content'
+          plugin_id: display_link
       display_extenders: {  }
       path: group/%group/content
       menu:

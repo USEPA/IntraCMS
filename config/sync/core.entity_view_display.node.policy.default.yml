@@ -25,6 +25,7 @@ dependencies:
     - field.field.node.policy.field_upload_or_link
     - node.type.policy
   module:
+    - cshs
     - datetime
     - entity_reference_revisions
     - field_group
@@ -51,7 +52,7 @@ third_party_settings:
       label: 'Signed Memo'
       parent_name: ''
       region: content
-      weight: 9
+      weight: 12
       format_type: details
       format_settings:
         classes: ''
@@ -65,7 +66,7 @@ third_party_settings:
       label: 'Related Procedures'
       parent_name: ''
       region: content
-      weight: 10
+      weight: 13
       format_type: details
       format_settings:
         classes: ''
@@ -79,7 +80,7 @@ third_party_settings:
       label: Delegation
       parent_name: ''
       region: content
-      weight: 16
+      weight: 19
       format_type: details
       format_settings:
         classes: ''
@@ -94,7 +95,7 @@ third_party_settings:
       label: 'Policy Coordinator C/O'
       parent_name: ''
       region: content
-      weight: 17
+      weight: 20
       format_type: details
       format_settings:
         classes: ''
@@ -108,7 +109,7 @@ third_party_settings:
       label: 'Roles and Responsibilities'
       parent_name: ''
       region: content
-      weight: 13
+      weight: 16
       format_type: details
       format_settings:
         classes: ''
@@ -120,7 +121,7 @@ third_party_settings:
       label: Definitions
       parent_name: ''
       region: content
-      weight: 14
+      weight: 17
       format_type: details
       format_settings:
         classes: ''
@@ -133,7 +134,7 @@ third_party_settings:
       label: 'Governing Authorities'
       parent_name: ''
       region: content
-      weight: 15
+      weight: 18
       format_type: details
       format_settings:
         classes: ''
@@ -146,7 +147,7 @@ third_party_settings:
       label: Rescissions
       parent_name: ''
       region: content
-      weight: 12
+      weight: 15
       format_type: details
       format_settings:
         classes: ''
@@ -161,7 +162,7 @@ third_party_settings:
       label: 'Supplemental Documents'
       parent_name: ''
       region: content
-      weight: 11
+      weight: 14
       format_type: details
       format_settings:
         classes: ''
@@ -182,10 +183,10 @@ content:
       timezone_override: ''
       format_type: day_month_year
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
   field_keywords:
-    weight: 25
+    weight: 24
     label: inline
     settings:
       link: true
@@ -194,15 +195,15 @@ content:
     region: content
   field_link_to_policy:
     type: link
-    label: above
+    label: inline
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
-    weight: 21
+    weight: 8
     region: content
   field_next_review_date:
     type: datetime_default
@@ -211,20 +212,22 @@ content:
       timezone_override: ''
       format_type: day_month_year
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_policy_background:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 8
+    weight: 11
     region: content
   field_policy_coordinator_lco:
-    type: entity_reference_label
+    type: cshs_full_hierarchy
     label: hidden
     settings:
-      link: false
+      separator: ' » '
+      linked: false
+      reverse: false
     third_party_settings: {  }
     weight: 17
     region: content
@@ -233,14 +236,14 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 7
+    weight: 10
     region: content
   field_policy_type:
     type: list_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 18
+    weight: 4
     region: content
   field_policy_upload:
     type: entity_reference_entity_view
@@ -249,7 +252,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 20
+    weight: 9
     region: content
   field_prior_identifier:
     type: string
@@ -269,7 +272,7 @@ content:
     weight: 10
     region: content
   field_related_agency_forms:
-    weight: 23
+    weight: 22
     label: above
     settings:
       link: true
@@ -282,19 +285,19 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 22
+    weight: 21
     region: content
   field_related_resources:
     type: link
     label: above
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
-    weight: 24
+    weight: 23
     region: content
   field_rescind_this_policy:
     type: boolean
@@ -334,18 +337,11 @@ content:
     region: content
   field_topic_area_of_authority:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: false
     third_party_settings: {  }
-    weight: 6
-    region: content
-  field_upload_or_link:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 19
+    weight: 7
     region: content
   links:
     weight: 0
@@ -354,4 +350,5 @@ content:
     third_party_settings: {  }
 hidden:
   content_moderation_control: true
+  field_upload_or_link: true
   search_api_excerpt: true
