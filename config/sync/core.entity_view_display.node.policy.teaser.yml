@@ -26,17 +26,26 @@ dependencies:
     - field.field.node.policy.field_upload_or_link
     - node.type.policy
   module:
+    - text
     - user
 id: node.policy.teaser
 targetEntityType: node
 bundle: policy
 mode: teaser
 content:
+  field_policy_statement:
+    type: text_trimmed
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
   links:
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    weight: 100
-    region: content
 hidden:
   content_moderation_control: true
   field_definitions: true
@@ -47,7 +56,6 @@ hidden:
   field_next_review_date: true
   field_policy_background: true
   field_policy_coordinator_lco: true
-  field_policy_statement: true
   field_policy_type: true
   field_policy_upload: true
   field_prior_identifier: true

@@ -52,7 +52,7 @@ third_party_settings:
       label: 'Signed Memo'
       parent_name: ''
       region: content
-      weight: 12
+      weight: 15
       format_type: details
       format_settings:
         classes: ''
@@ -62,25 +62,27 @@ third_party_settings:
         required_fields: false
         formatter: closed
     group_related:
-      children: {  }
-      label: 'Related Procedures'
+      children:
+        - field_related_agency_forms
+        - field_related_policy
+        - field_related_resources
+      label: 'Related Policies, Forms, and Resources'
       parent_name: ''
       region: content
-      weight: 13
+      weight: 12
       format_type: details
       format_settings:
-        classes: ''
-        id: ''
-        open: true
         description: ''
-        required_fields: false
-        formatter: closed
+        open: true
+        id: ''
+        classes: ''
+        show_empty_fields: false
     group_delegation:
       children: {  }
       label: Delegation
       parent_name: ''
       region: content
-      weight: 19
+      weight: 21
       format_type: details
       format_settings:
         classes: ''
@@ -95,7 +97,7 @@ third_party_settings:
       label: 'Policy Coordinator C/O'
       parent_name: ''
       region: content
-      weight: 20
+      weight: 22
       format_type: details
       format_settings:
         classes: ''
@@ -109,7 +111,7 @@ third_party_settings:
       label: 'Roles and Responsibilities'
       parent_name: ''
       region: content
-      weight: 16
+      weight: 18
       format_type: details
       format_settings:
         classes: ''
@@ -121,7 +123,7 @@ third_party_settings:
       label: Definitions
       parent_name: ''
       region: content
-      weight: 17
+      weight: 19
       format_type: details
       format_settings:
         classes: ''
@@ -134,7 +136,7 @@ third_party_settings:
       label: 'Governing Authorities'
       parent_name: ''
       region: content
-      weight: 18
+      weight: 20
       format_type: details
       format_settings:
         classes: ''
@@ -147,7 +149,7 @@ third_party_settings:
       label: Rescissions
       parent_name: ''
       region: content
-      weight: 15
+      weight: 17
       format_type: details
       format_settings:
         classes: ''
@@ -162,7 +164,7 @@ third_party_settings:
       label: 'Supplemental Documents'
       parent_name: ''
       region: content
-      weight: 14
+      weight: 16
       format_type: details
       format_settings:
         classes: ''
@@ -269,10 +271,10 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 10
+    weight: 26
     region: content
   field_related_agency_forms:
-    weight: 22
+    weight: 14
     label: above
     settings:
       link: true
@@ -285,7 +287,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 21
+    weight: 15
     region: content
   field_related_resources:
     type: link
@@ -297,7 +299,7 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 23
+    weight: 16
     region: content
   field_rescind_this_policy:
     type: boolean
