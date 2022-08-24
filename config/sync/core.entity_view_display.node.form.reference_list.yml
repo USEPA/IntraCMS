@@ -1,0 +1,66 @@
+uuid: ff1c573f-0db3-44e2-9607-188d59df9806
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.reference_list
+    - field.field.node.form.body
+    - field.field.node.form.field_epa_form_number
+    - field.field.node.form.field_form_additional_resources
+    - field.field.node.form.field_form_category
+    - field.field.node.form.field_form_effective_date
+    - field.field.node.form.field_form_poc
+    - field.field.node.form.field_form_title
+    - field.field.node.form.field_form_type
+    - field.field.node.form.field_form_upload
+    - field.field.node.form.field_keywords
+    - field.field.node.form.field_link_to_form
+    - field.field.node.form.field_meta_tags
+    - field.field.node.form.field_owning_aaship_region
+    - field.field.node.form.field_replacing
+    - field.field.node.form.field_rescind_this_form
+    - field.field.node.form.field_rescission_date
+    - field.field.node.form.field_upload_or_link
+    - node.type.form
+  module:
+    - layout_builder
+    - layout_builder_restrictions
+    - layout_library
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+  layout_library:
+    enable: false
+  layout_builder_restrictions:
+    allowed_block_categories: {  }
+    entity_view_mode_restriction:
+      allowed_layouts: {  }
+      blacklisted_blocks: {  }
+      whitelisted_blocks: {  }
+id: node.form.reference_list
+targetEntityType: node
+bundle: form
+mode: reference_list
+content: {  }
+hidden:
+  body: true
+  content_moderation_control: true
+  field_epa_form_number: true
+  field_form_additional_resources: true
+  field_form_category: true
+  field_form_effective_date: true
+  field_form_poc: true
+  field_form_title: true
+  field_form_type: true
+  field_form_upload: true
+  field_keywords: true
+  field_link_to_form: true
+  field_meta_tags: true
+  field_owning_aaship_region: true
+  field_replacing: true
+  field_rescind_this_form: true
+  field_rescission_date: true
+  field_upload_or_link: true
+  links: true
