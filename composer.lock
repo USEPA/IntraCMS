@@ -3855,16 +3855,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "9.3.21",
+            "version": "9.3.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "609d1b2840d265a4a599cdd473b767d3a7bf786e"
+                "reference": "c7699be0689913e9f71edafe985dd36996111496"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/609d1b2840d265a4a599cdd473b767d3a7bf786e",
-                "reference": "609d1b2840d265a4a599cdd473b767d3a7bf786e",
+                "url": "https://api.github.com/repos/drupal/core/zipball/c7699be0689913e9f71edafe985dd36996111496",
+                "reference": "c7699be0689913e9f71edafe985dd36996111496",
                 "shasum": ""
             },
             "require": {
@@ -3872,7 +3872,7 @@
                 "composer/semver": "^3.0",
                 "doctrine/annotations": "^1.12",
                 "doctrine/reflection": "^1.1",
-                "egulias/email-validator": "^2.0",
+                "egulias/email-validator": "^2.1.22|^3.0",
                 "ext-date": "*",
                 "ext-dom": "*",
                 "ext-filter": "*",
@@ -3886,7 +3886,7 @@
                 "ext-spl": "*",
                 "ext-tokenizer": "*",
                 "ext-xml": "*",
-                "guzzlehttp/guzzle": "^6.5.2",
+                "guzzlehttp/guzzle": "^6.5.8",
                 "laminas/laminas-diactoros": "^2.1",
                 "laminas/laminas-feed": "^2.12",
                 "masterminds/html5": "^2.1",
@@ -3900,8 +3900,9 @@
                 "symfony/event-dispatcher": "^4.4",
                 "symfony/http-foundation": "^4.4.7",
                 "symfony/http-kernel": "^4.4",
-                "symfony/mime": "^5.3.0",
+                "symfony/mime": "^5.4",
                 "symfony/polyfill-iconv": "^1.0",
+                "symfony/polyfill-php80": "^1.16",
                 "symfony/process": "^4.4",
                 "symfony/psr-http-message-bridge": "^2.0",
                 "symfony/routing": "^4.4",
@@ -3928,6 +3929,7 @@
                 "drupal/book": "self.version",
                 "drupal/breakpoint": "self.version",
                 "drupal/ckeditor": "self.version",
+                "drupal/ckeditor5": "self.version",
                 "drupal/claro": "self.version",
                 "drupal/classy": "self.version",
                 "drupal/color": "self.version",
@@ -4062,19 +4064,17 @@
                     "3020876: Custom block contextual links": "https://www.drupal.org/files/issues/2020-02-22/contextual_links_layout_builder_0.patch",
                     "2719797: New option for Views page displays to use the admin theme": "https://www.drupal.org/files/issues/2019-06-10/core-88x--views--admin-path-2719797-77.patch",
                     "2950729: Undefined offset 1 in the MenuParentFormSelector.php": "https://www.drupal.org/files/issues/2019-09-17/2950729-14.patch",
-                    "2949017: There is no way to delete or update file entities of other users incl. user/1": "https://www.drupal.org/files/issues/2020-01-13/2949017-62.patch",
-                    "3035113: JSON API": "https://www.drupal.org/files/issues/2019-10-21/LatestRevisionCheck-13092187-24.patch",
-                    "2985882: Error: Call to a member function getLabel() after enabling layout_builder": "https://www.drupal.org/files/issues/2020-01-20/2985882-53.patch",
-                    "923934: Block visibility has wrong logic": "https://www.drupal.org/files/issues/2021-09-16/923934-50-d92.patch",
-                    "3008924: Callers of LayoutEntityHelperTrait::getEntitySections() do not account for the view mode": "https://www.drupal.org/files/issues/2020-08-27/3008924-rerolled-17.patch",
-                    "502340: hide book outline functionality on non-book-enabled node types": "https://www.drupal.org/files/issues/2021-01-18/502430-90.patch",
-                    "2918537: Cannot save unpublished versions of published content for users without manage book privileges.": "https://www.drupal.org/files/issues/2020-10-18/2918537-63.patch",
+                    "2949017: There is no way to delete or update file entities of other users incl. user/1": "https://www.drupal.org/files/issues/2022-03-24/allow-user-with-delete-any-files-to-delete-in-bulk.patch",
+                    "3035113: JSON API": "https://www.drupal.org/files/issues/2021-12-28/3035113-33.patch",
+                    "2985882: Error: Call to a member function getLabel() after enabling layout_builder": "https://www.drupal.org/files/issues/2020-04-08/2985882-field-85.patch",
+                    "923934: Block visibility has wrong logic": "https://www.drupal.org/files/issues/2021-10-01/923934-58.patch",
                     "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch"
                 }
             },
             "autoload": {
                 "files": [
-                    "includes/bootstrap.inc"
+                    "includes/bootstrap.inc",
+                    "includes/guzzle_php81_shim.php"
                 ],
                 "psr-4": {
                     "Drupal\\Core\\": "lib/Drupal/Core",
@@ -4115,7 +4115,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2022-02-15T20:26:35+00:00"
+            "time": "2022-07-28T19:28:17+00:00"
         },
         {
             "name": "drupal/crop",
