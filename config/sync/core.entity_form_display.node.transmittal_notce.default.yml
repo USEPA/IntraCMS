@@ -33,7 +33,7 @@ third_party_settings:
       label: 'Archival History'
       region: content
       parent_name: ''
-      weight: 7
+      weight: 8
       format_type: details
       format_settings:
         classes: ''
@@ -49,19 +49,19 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 15
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
   field_approval_date:
-    type: datetime_default
     weight: 1
-    region: content
     settings: {  }
     third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_associated_delegation:
     type: entity_reference_autocomplete
-    weight: 3
+    weight: 4
     region: content
     settings:
       match_operator: CONTAINS
@@ -89,7 +89,7 @@ content:
             selector: ''
   field_associated_policy:
     type: entity_reference_autocomplete
-    weight: 4
+    weight: 5
     region: content
     settings:
       match_operator: CONTAINS
@@ -117,14 +117,14 @@ content:
             selector: ''
   field_explanation:
     type: text_textarea
-    weight: 6
+    weight: 7
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
   field_keywords:
-    weight: 26
+    weight: 15
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -135,7 +135,7 @@ content:
     region: content
   field_link_to_transmittal_file:
     type: link_default
-    weight: 10
+    weight: 2
     region: content
     settings:
       placeholder_url: ''
@@ -159,7 +159,7 @@ content:
     third_party_settings: {  }
   field_purpose:
     type: text_textarea
-    weight: 5
+    weight: 6
     region: content
     settings:
       rows: 5
@@ -167,26 +167,26 @@ content:
     third_party_settings: {  }
   field_signed_memo:
     type: media_library_widget
-    weight: 11
+    weight: 9
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_transmittal_relates_to:
     type: options_buttons
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 12
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 13
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -200,7 +200,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 16
+    weight: 14
     region: content
     settings:
       match_operator: CONTAINS
@@ -209,7 +209,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 14
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
