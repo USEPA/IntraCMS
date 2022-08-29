@@ -69,20 +69,6 @@ third_party_settings:
       label: 'Policy Coordinator C/O'
       parent_name: ''
       region: content
-      weight: 19
-      format_type: details
-      format_settings:
-        description: ''
-        open: true
-        id: ''
-        classes: ''
-        show_empty_fields: false
-    group_governing_authorities:
-      children:
-        - field_references
-      label: 'Governing Authorities'
-      parent_name: ''
-      region: content
       weight: 17
       format_type: details
       format_settings:
@@ -119,6 +105,21 @@ third_party_settings:
         id: ''
         classes: ''
         show_empty_fields: false
+    group_references:
+      children:
+        - field_references
+      parent_name: ''
+      weight: 15
+      format_type: details
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: ''
+        description: ''
+        open: true
+        required_fields: false
+      label: References
 id: node.policy.default
 targetEntityType: node
 bundle: policy
@@ -134,7 +135,7 @@ content:
     weight: 6
     region: content
   field_keywords:
-    weight: 21
+    weight: 18
     label: inline
     settings:
       link: true
@@ -217,7 +218,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 26
+    weight: 16
     region: content
   field_related_agency_forms:
     weight: 14

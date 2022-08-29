@@ -243,14 +243,13 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
           exposed: true
           expose:
             operator_id: tid_op
-            label: 'Topic Area of Authority'
+            label: Topic
             description: ''
             use_operator: false
             operator: tid_op
@@ -264,6 +263,8 @@ display:
               authenticated: authenticated
               anonymous: '0'
               webform: '0'
+              book_editor: '0'
+              system_editor: '0'
               administrator: '0'
             reduce: false
           is_grouped: false
@@ -279,11 +280,18 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          vid: policy_topics
           type: select
-          hierarchy: false
           limit: true
+          vid: policy_topics
+          hierarchy: false
           error_message: true
+          parent: 0
+          level_labels: ''
+          force_deepest: false
+          save_lineage: false
+          hierarchy_depth: 0
+          required_depth: 0
+          plugin_id: taxonomy_index_tid
         field_rescind_this_delegation_value:
           id: field_rescind_this_delegation_value
           table: node__field_rescind_this_delegation
@@ -472,19 +480,34 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: title
-          plugin_id: field
-          label: Title
+          label: 'Delegation Title'
           exclude: false
           alter:
             alter_text: false
+            text: ''
             make_link: false
+            path: ''
             absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
             word_boundary: false
             ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
             strip_tags: false
             trim: false
+            preserve_tags: ''
             html: false
           element_type: ''
           element_class: ''
@@ -512,6 +535,9 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+          entity_type: node
+          entity_field: title
+          plugin_id: field
         field_transmittal_notice:
           id: field_transmittal_notice
           table: node__field_transmittal_notice
@@ -1905,25 +1931,40 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: title
-          plugin_id: field
           label: Title
           exclude: false
           alter:
             alter_text: false
+            text: ''
             make_link: false
+            path: ''
             absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
             word_boundary: false
             ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
             strip_tags: false
             trim: false
+            preserve_tags: ''
             html: false
           element_type: ''
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -1945,6 +1986,9 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+          entity_type: node
+          entity_field: title
+          plugin_id: field
       filters:
         status:
           id: status
@@ -2372,14 +2416,13 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
           exposed: true
           expose:
             operator_id: tid_op
-            label: 'Topic Area of Authority'
+            label: 'Topic Area'
             description: ''
             use_operator: false
             operator: tid_op
@@ -2393,6 +2436,8 @@ display:
               authenticated: authenticated
               anonymous: '0'
               webform: '0'
+              book_editor: '0'
+              system_editor: '0'
               administrator: '0'
             reduce: false
           is_grouped: false
@@ -2408,11 +2453,18 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          vid: policy_topics
           type: select
-          hierarchy: false
           limit: true
+          vid: policy_topics
+          hierarchy: false
           error_message: true
+          parent: 0
+          level_labels: ''
+          force_deepest: false
+          save_lineage: false
+          hierarchy_depth: 0
+          required_depth: 0
+          plugin_id: taxonomy_index_tid
         field_rescind_this_delegation_value:
           id: field_rescind_this_delegation_value
           table: node__field_rescind_this_delegation
