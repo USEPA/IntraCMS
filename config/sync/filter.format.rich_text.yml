@@ -18,6 +18,7 @@ dependencies:
     - media
     - media_inline_embed
     - paragraphs_entity_embed
+    - slick
     - uswds_ckeditor_integration
 _core:
   default_config_hash: LQ7Z_f1qIeAP7aiyHGBwlgjdsAHzwISN1_6-Dvv_fVY
@@ -61,7 +62,7 @@ filters:
     status: true
     weight: -50
     settings:
-      allowed_html: '<em> <strong> <ins data-date> <code> <ol start type class=""> <li class=""> <dl> <dt> <dd> <s> <sup> <sub> <img src width height typeof alt data-align data-caption> <caption> <tbody> <thead> <tfoot> <th style colspan rowspan scope width> <td style colspan rowspan width> <tr scope> <hr> <br> <pre> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter data-cke-display-name data-placeholder class=""> <figure role class=""> <div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button id data-* class=""> <source media !src type> <iframe longdesc name scrolling src title align height frameborder width> <button aria-expanded aria-controls class=""> <svg role aria-* class=""> <use xlink*> <a href hreflang data-entity-type data-entity-uuid name id data-entity-substitution class=" usa-button"> <drupal-inline-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <drupal-media data-caption data-align data-entity-type data-entity-uuid data-view-mode alt title> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button data-langcode> <h2 id class="usa-* highlight"> <h3 id class="usa-* highlight"> <h4 id class="usa-* highlight"> <h5 id class="usa-* highlight"> <h6 id class="usa-* highlight"> <blockquote cite class=" pull-quote u-align-left u-align-right"> <cite class=" pull-quote__cite"> <table width height style class="usa-* datatable"> <ul type class=" list list--pipeline"> <span lang dir class="usa-* usa-tag warning"> <p class="usa-intro usa-*">'
+      allowed_html: '<em> <strong> <ins data-date> <code> <ol start type class=""> <li class=""> <dl> <dt> <dd> <s> <sup> <sub> <img src width height typeof alt data-align data-caption> <caption> <tbody> <thead> <tfoot> <th style colspan rowspan scope width> <td style colspan rowspan width> <tr scope> <hr> <br> <pre> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter data-cke-display-name data-placeholder class=""> <figure role class=""> <div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button id data-* class=""> <source media !src type> <iframe longdesc name scrolling src title align height frameborder width> <button aria-expanded aria-controls class=""> <svg role aria-* class=""> <use href xlink*> <a href hreflang data-entity-type data-entity-uuid name id data-entity-substitution class=" usa-button"> <drupal-inline-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <drupal-media data-caption data-align data-entity-type data-entity-uuid data-view-mode alt title> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button data-langcode> <h2 id class="usa-* highlight"> <h3 id class="usa-* highlight"> <h4 id class="usa-* highlight"> <h5 id class="usa-* highlight"> <h6 id class="usa-* highlight"> <blockquote cite class=" pull-quote u-align-left u-align-right"> <cite class=" pull-quote__cite"> <table width height style class="usa-* datatable"> <ul type class=" list list--pipeline"> <span lang dir class="usa-* usa-tag warning"> <p class="usa-intro usa-*">'
       filter_html_help: true
       filter_html_nofollow: false
   filter_autop:
@@ -103,29 +104,29 @@ filters:
     weight: -47
     settings:
       default_view_mode: full_width
+      allowed_media_types:
+        audio_file: audio_file
+        image: image
+        remote_video: remote_video
       allowed_view_modes:
         full_width: full_width
         half_width: half_width
         original: original
         small: small
         thumbnail: thumbnail
-      allowed_media_types:
-        audio_file: audio_file
-        image: image
-        remote_video: remote_video
   blazy_filter:
     id: blazy_filter
     provider: blazy
     status: false
     weight: -35
     settings:
+      filter_tags:
+        img: img
+        iframe: iframe
       media_switch: ''
       hybrid_style: ''
       box_style: ''
       box_caption: ''
-      filter_tags:
-        img: img
-        iframe: iframe
       use_data_uri: '0'
   media_inline_embed:
     id: media_inline_embed
@@ -169,4 +170,28 @@ filters:
     weight: 4
     settings:
       optionset: default
+      skin: ''
+      background: false
+      layout: ''
+      optionset_thumbnail: ''
+      skin_thumbnail: ''
+      thumbnail_position: ''
+      thumbnail_caption: ''
+      preload: false
+      image_style: ''
+      loading: ''
+      thumbnail_style: ''
+      responsive_image_style: ''
+      thumbnail_effect: ''
       media_switch: ''
+      ratio: ''
+      override: false
+      overridables:
+        arrows: '0'
+        autoplay: '0'
+        dots: '0'
+        draggable: '0'
+        infinite: '0'
+        mouseWheel: '0'
+        randomize: '0'
+        variableWidth: '0'
