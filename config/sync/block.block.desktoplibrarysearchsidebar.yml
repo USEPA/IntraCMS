@@ -5,7 +5,6 @@ dependencies:
   config:
     - fixed_block_content.fixed_block_content.desktop_library_search_sidebar
   module:
-    - ctools
     - fixed_block_content
     - node
     - system
@@ -20,23 +19,23 @@ plugin: 'fixed_block_content:desktop_library_search_sidebar'
 settings:
   id: 'fixed_block_content:desktop_library_search_sidebar'
   label: 'Desktop Library Search Sidebar'
-  provider: fixed_block_content
   label_display: '0'
+  provider: fixed_block_content
   view_mode: ''
 visibility:
   request_path:
     id: request_path
     negate: false
-    pages: "/library-services/*\r\n/library-region-9/*"
-  node_type:
-    id: node_type
+    pages: "/library-services/*\r\n/library-region-9/*\r\n/library-hq-chemical/*"
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
     negate: true
     context_mapping:
       node: '@node.node_route_context:node'
     bundles:
       landing_page: landing_page
-  'entity_bundle:node':
-    id: 'entity_bundle:node'
+  node_type:
+    id: node_type
     negate: true
     context_mapping:
       node: '@node.node_route_context:node'
