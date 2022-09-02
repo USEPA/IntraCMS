@@ -62,11 +62,11 @@ third_party_settings:
       weight: 14
       format_type: details
       format_settings:
-        description: ''
-        id: ''
         classes: ''
         show_empty_fields: false
-        open: false
+        id: ''
+        open: true
+        description: ''
         required_fields: false
     group_related_policies:
       children:
@@ -78,11 +78,11 @@ third_party_settings:
       weight: 12
       format_type: fieldset
       format_settings:
-        description: 'Related existing agency policies and forms to this policy.'
-        required_fields: true
-        id: ''
         classes: ''
         show_empty_fields: false
+        id: ''
+        description: 'Related existing agency policies and forms to this policy.'
+        required_fields: true
 id: node.policy.default
 targetEntityType: node
 bundle: policy
@@ -101,15 +101,15 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_keywords:
+    type: entity_reference_autocomplete
     weight: 18
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_link_to_policy:
     type: link_default
     weight: 11
@@ -151,17 +151,17 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_policy_coordinator:
+    type: cshs
     weight: 17
+    region: content
     settings:
+      force_deepest: false
       parent: '0'
+      level_labels: ''
       hierarchy_depth: '0'
       required_depth: '0'
-      level_labels: ''
-      force_deepest: false
       save_lineage: false
     third_party_settings: {  }
-    type: cshs
-    region: content
   field_policy_statement:
     type: text_textarea
     weight: 8
@@ -229,15 +229,15 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
   field_related_agency_forms:
+    type: entity_reference_autocomplete
     weight: 13
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_related_policy:
     type: entity_reference_autocomplete
     weight: 12

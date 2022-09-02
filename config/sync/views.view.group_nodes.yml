@@ -1293,6 +1293,8 @@ display:
           relationship: none
           group_type: group
           admin_label: 'Content relation'
+          entity_type: node
+          plugin_id: group_content_to_entity_reverse
           required: true
           group_content_plugins:
             'group_node:article': 'group_node:article'
@@ -1307,12 +1309,10 @@ display:
             'group_node:policy': 'group_node:policy'
             'group_node:policy_delegation': 'group_node:policy_delegation'
             'group_node:quiz': 'group_node:quiz'
-            'group_node:staff_member': 'group_node:staff_member'
             'group_node:transmittal_notce': 'group_node:transmittal_notce'
             'group_node:webform': 'group_node:webform'
             'group_node:event': '0'
-          entity_type: node
-          plugin_id: group_content_to_entity_reverse
+            'group_node:staff_member': '0'
         revision_uid:
           id: revision_uid
           table: node_revision
@@ -1878,10 +1878,10 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: display_link
+          label: 'Export content'
           empty: false
           display_id: data_export_1
-          label: 'Export content'
-          plugin_id: display_link
       display_extenders: {  }
       path: group/%group/content
       menu:
@@ -2603,33 +2603,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      defaults:
-        footer: false
-        title: false
-        access: false
-        fields: false
-        filters: false
-        filter_groups: false
-      footer: {  }
-      display_extenders: {  }
-      path: group/%group/content/bulk
-      menu:
-        type: tab
-        title: 'Content (Bulk)'
-        description: ''
-        expanded: false
-        parent: ''
-        weight: 25
-        context: '0'
-        menu_name: main
-      use_admin_theme: true
       title: 'Content (Bulk)'
-      access:
-        type: role
-        options:
-          role:
-            system_editor: system_editor
-            administrator: administrator
       fields:
         node_bulk_form:
           id: node_bulk_form
@@ -2638,6 +2612,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: node_bulk_form
           label: 'Bulk operation'
           exclude: false
           alter:
@@ -2689,8 +2665,6 @@ display:
             - pathauto_update_alias_node
             - publish_latest
             - unpublish_current
-          entity_type: node
-          plugin_id: node_bulk_form
         nid:
           id: nid
           table: node_field_data
@@ -3464,6 +3438,12 @@ display:
             view_group_content: '0'
             edit_group_content: '0'
             delete_group_content: '0'
+      access:
+        type: role
+        options:
+          role:
+            system_editor: system_editor
+            administrator: administrator
       filters:
         title:
           id: title
@@ -3706,6 +3686,26 @@ display:
         operator: AND
         groups:
           1: AND
+      defaults:
+        access: false
+        title: false
+        fields: false
+        filters: false
+        filter_groups: false
+        footer: false
+      footer: {  }
+      display_extenders: {  }
+      path: group/%group/content/bulk
+      menu:
+        type: tab
+        title: 'Content (Bulk)'
+        description: ''
+        weight: 25
+        expanded: false
+        menu_name: main
+        parent: ''
+        context: '0'
+      use_admin_theme: true
     cache_metadata:
       max-age: 0
       contexts:

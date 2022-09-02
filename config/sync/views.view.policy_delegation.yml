@@ -127,12 +127,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: text
           empty: true
-          tokenize: false
           content:
             value: "<hr />\r\n<div class=\"usa-alert usa-alert--error\" role=\"alert\">\r\n  <div class=\"usa-alert__body\">\r\n    <h2 class=\"usa-alert__heading\">No Results</h2>\r\n    <p class=\"usa-alert__text\">\r\nThere are no items that match your filter criteria.\r\n    </p>\r\n  </div>\r\n</div>\r\n\r\n"
             format: rich_text
-          plugin_id: text
+          tokenize: false
       sorts: {  }
       arguments: {  }
       filters:
@@ -243,6 +243,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -280,18 +281,17 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: policy_topics
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
           parent: 0
           level_labels: ''
-          force_deepest: false
-          save_lineage: false
           hierarchy_depth: 0
           required_depth: 0
-          plugin_id: taxonomy_index_tid
         field_rescind_this_delegation_value:
           id: field_rescind_this_delegation_value
           table: node__field_rescind_this_delegation
@@ -382,6 +382,7 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
+      use_ajax: true
       header:
         area:
           id: area
@@ -390,7 +391,6 @@ display:
           plugin_id: text
       footer: {  }
       display_extenders: {  }
-      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -403,12 +403,11 @@ display:
         - user.permissions
       tags: {  }
   active_delegations_block:
-    display_plugin: block
     id: active_delegations_block
     display_title: 'Active Delegations Block'
+    display_plugin: block
     position: 1
     display_options:
-      display_extenders: {  }
       fields:
         field_prior_identifier:
           id: field_prior_identifier
@@ -417,6 +416,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Identifier
           exclude: false
           alter:
@@ -472,7 +472,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title:
           id: title
           table: node_field_data
@@ -480,6 +479,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: 'Delegation Title'
           exclude: false
           alter:
@@ -535,9 +537,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_transmittal_notice:
           id: field_transmittal_notice
           table: node__field_transmittal_notice
@@ -545,6 +544,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Transmittal Notice'
           exclude: false
           alter:
@@ -600,7 +600,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_effective_date:
           id: field_effective_date
           table: node__field_effective_date
@@ -672,6 +671,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Topic
           exclude: false
           alter:
@@ -727,7 +727,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
       sorts:
         field_topic_area_of_authority_target_id:
           id: field_topic_area_of_authority_target_id
@@ -748,6 +747,7 @@ display:
         header: false
       display_description: ''
       header: {  }
+      display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -777,6 +777,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Identifier
           exclude: false
           alter:
@@ -832,7 +833,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         title:
           id: title
           table: node_field_data
@@ -887,6 +887,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Transmittal Notice'
           exclude: false
           alter:
@@ -942,7 +943,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_effective_date:
           id: field_effective_date
           table: node__field_effective_date
@@ -1931,7 +1931,10 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Title
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -1986,9 +1989,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
       filters:
         status:
           id: status
@@ -2126,12 +2126,11 @@ display:
         - user.permissions
       tags: {  }
   rescinded_delegations_block:
-    display_plugin: block
     id: rescinded_delegations_block
     display_title: 'Rescinded Delegations Block'
+    display_plugin: block
     position: 2
     display_options:
-      display_extenders: {  }
       title: 'Rescinded Delegations'
       fields:
         title:
@@ -2252,6 +2251,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: Topic
           exclude: false
           alter:
@@ -2307,7 +2307,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
       filters:
         status:
           id: status
@@ -2416,6 +2415,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -2453,18 +2453,17 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: policy_topics
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
           parent: 0
           level_labels: ''
-          force_deepest: false
-          save_lineage: false
           hierarchy_depth: 0
           required_depth: 0
-          plugin_id: taxonomy_index_tid
         field_rescind_this_delegation_value:
           id: field_rescind_this_delegation_value
           table: node__field_rescind_this_delegation
@@ -2528,6 +2527,7 @@ display:
             value: "<h1>Rescinded Delegations</h1>\r\n<p>The delegations listed below have been rescinded. View all active delegations on the <a href=\"/policy/active-delegations\">Active Delegations</a> page.</p>"
             format: full_html
           tokenize: false
+      display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:

@@ -121,12 +121,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: text
           empty: true
-          tokenize: false
           content:
             value: "<hr />\r\n<div class=\"usa-alert usa-alert--error\" role=\"alert\">\r\n  <div class=\"usa-alert__body\">\r\n    <h2 class=\"usa-alert__heading\">No Results</h2>\r\n    <p class=\"usa-alert__text\">\r\nThere are no items that match your filter criteria.\r\n    </p>\r\n  </div>\r\n</div>\r\n\r\n"
             format: rich_text
-          plugin_id: text
+          tokenize: false
       sorts: {  }
       arguments: {  }
       filters:
@@ -150,6 +150,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             transmittal_notce: transmittal_notce
@@ -169,8 +172,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
             argument: null
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -183,9 +186,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         title:
           id: title
           table: node_field_data
@@ -193,6 +193,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: string
           operator: contains
           value: ''
           group: 1
@@ -236,9 +239,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: string
         tid:
           id: tid
           table: taxonomy_index
@@ -297,16 +297,12 @@ display:
           grouping: {  }
           row_class: ''
           default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
           columns:
             title: title
             field_associated_delegation: field_associated_delegation
             field_associated_policy: field_associated_delegation
             field_approval_date: field_approval_date
+          default: '-1'
           info:
             title:
               sortable: true
@@ -336,8 +332,12 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-          default: '-1'
+          override: true
+          sticky: false
+          summary: ''
           empty_table: false
+          caption: ''
+          description: ''
       row:
         type: fields
       query:
@@ -349,6 +349,7 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
+      use_ajax: true
       header:
         area:
           id: area
@@ -357,7 +358,6 @@ display:
           plugin_id: text
       footer: {  }
       display_extenders: {  }
-      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -384,6 +384,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -428,7 +431,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -439,9 +442,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
       filters:
         status:
           id: status
@@ -463,6 +463,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             transmittal_notce: transmittal_notce
@@ -482,8 +485,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
             argument: null
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -496,9 +499,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         field_transmittal_relates_to_value:
           id: field_transmittal_relates_to_value
           table: node__field_transmittal_relates_to
@@ -506,6 +506,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: list_field
           operator: or
           value:
             delegation: delegation
@@ -539,7 +540,6 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          plugin_id: list_field
       filter_groups:
         operator: AND
         groups:
@@ -569,12 +569,11 @@ display:
         - user.permissions
       tags: {  }
   transmittals_block:
-    display_plugin: block
     id: transmittals_block
     display_title: 'Transmittals Block'
+    display_plugin: block
     position: 1
     display_options:
-      display_extenders: {  }
       fields:
         title:
           id: title
@@ -583,6 +582,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: 'Classification Number'
           exclude: false
           alter:
@@ -638,9 +640,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
         field_approval_date:
           id: field_approval_date
           table: node__field_approval_date
@@ -648,6 +647,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Approval Date'
           exclude: false
           alter:
@@ -704,7 +704,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_associated_delegation:
           id: field_associated_delegation
           table: node__field_associated_delegation
@@ -712,6 +711,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Associated Policy/Delegation'
           exclude: false
           alter:
@@ -767,7 +767,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_associated_policy:
           id: field_associated_policy
           table: node__field_associated_policy
@@ -775,6 +774,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -830,7 +830,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
       sorts:
         field_topic_area_of_authority_target_id:
           id: field_topic_area_of_authority_target_id
@@ -845,15 +844,6 @@ display:
             label: ''
             field_identifier: field_topic_area_of_authority_target_id
           exposed: false
-      defaults:
-        fields: false
-        sorts: false
-        header: false
-        filters: false
-        filter_groups: false
-      display_description: ''
-      header: {  }
-      block_description: 'Transmittals - All'
       filters:
         status:
           id: status
@@ -875,6 +865,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             transmittal_notce: transmittal_notce
@@ -894,8 +887,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
             argument: null
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -908,9 +901,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         title:
           id: title
           table: node_field_data
@@ -918,6 +908,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: string
           operator: contains
           value: ''
           group: 1
@@ -961,9 +954,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: string
         field_transmittal_relates_to_value:
           id: field_transmittal_relates_to_value
           table: node__field_transmittal_relates_to
@@ -971,6 +961,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: list_field
           operator: or
           value: {  }
           group: 1
@@ -1008,11 +999,20 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          plugin_id: list_field
       filter_groups:
         operator: AND
         groups:
           1: AND
+      defaults:
+        fields: false
+        sorts: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header: {  }
+      display_extenders: {  }
+      block_description: 'Transmittals - All'
     cache_metadata:
       max-age: -1
       contexts:
@@ -1027,12 +1027,12 @@ display:
         - 'config:field.storage.node.field_associated_delegation'
         - 'config:field.storage.node.field_associated_policy'
   transmittals_page:
-    display_plugin: page
     id: transmittals_page
     display_title: 'Transmittals Page'
+    display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
+      enabled: false
       fields:
         title:
           id: title
@@ -1088,6 +1088,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: 'Associated Policy/Delegation'
           exclude: false
           alter:
@@ -1143,7 +1144,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
         field_associated_policy:
           id: field_associated_policy
           table: node__field_associated_policy
@@ -1151,6 +1151,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -1206,7 +1207,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
       sorts:
         field_topic_area_of_authority_target_id:
           id: field_topic_area_of_authority_target_id
@@ -1227,8 +1227,8 @@ display:
         header: false
       display_description: ''
       header: {  }
+      display_extenders: {  }
       path: agency-policy/transmittal-notices
-      enabled: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -1257,6 +1257,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -1301,7 +1304,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1312,9 +1315,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
       filters:
         status:
           id: status
@@ -1336,6 +1336,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             transmittal_notce: transmittal_notce
@@ -1355,8 +1358,8 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
             argument: null
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -1369,9 +1372,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         field_transmittal_relates_to_value:
           id: field_transmittal_relates_to_value
           table: node__field_transmittal_relates_to
@@ -1379,6 +1379,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: list_field
           operator: or
           value:
             manual_order: manual_order
@@ -1412,7 +1413,6 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          plugin_id: list_field
       filter_groups:
         operator: AND
         groups:
