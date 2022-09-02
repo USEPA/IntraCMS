@@ -1,0 +1,28 @@
+uuid: 509ca317-7285-444e-84ab-92c1c33198ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.library_hq_chem_contractor
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - epa_intranet
+id: libraryhqchemcontractor
+theme: epa_intranet
+region: content
+weight: -3
+provider: null
+plugin: 'fixed_block_content:library_hq_chem_contractor'
+settings:
+  id: 'fixed_block_content:library_hq_chem_contractor'
+  label: 'Library HQ-Chem Contractor'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/library-hq-chemical*'
