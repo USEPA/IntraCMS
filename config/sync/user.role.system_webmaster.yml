@@ -1,0 +1,40 @@
+uuid: 7cf0c729-9027-4969-b103-863c0ed8c132
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.full_html
+    - node.type.form
+    - workflows.workflow.editorial
+  module:
+    - content_moderation
+    - epa_web_areas
+    - file
+    - filter
+    - group
+    - lightning_core
+    - media
+    - node
+third_party_settings:
+  lightning_core:
+    description: ''
+id: system_webmaster
+label: 'System Webmaster'
+weight: -5
+is_admin: null
+permissions:
+  - 'access files overview'
+  - 'access group overview'
+  - 'create form content'
+  - 'create web_area group'
+  - 'delete any media'
+  - 'reassign group content'
+  - 'set group homepage'
+  - 'update any media'
+  - 'use editorial transition archive'
+  - 'use editorial transition archived_published'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition publish'
+  - 'use editorial transition review'
+  - 'use text format full_html'
+  - 'view all media revisions'
