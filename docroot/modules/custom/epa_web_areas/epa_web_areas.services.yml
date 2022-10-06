@@ -1,0 +1,18 @@
+services:
+  epa_web_areas.alias_batch:
+    class: Drupal\epa_web_areas\Utility\AliasBatch
+  epa_web_areas.web_areas_helper:
+    class: Drupal\epa_web_areas\Utility\WebAreasHelper
+    arguments: ['@entity_type.manager']
+  epa_web_areas.route_subscriber:
+    class: Drupal\epa_web_areas\Routing\RouteSubscriber
+    arguments: ['@module_handler']
+    tags:
+      - { name: event_subscriber }
+  group_permission.checker.epa_web_areas:
+    public: false
+    class: 'Drupal\epa_web_areas\Access\GroupPermissionChecker'
+    decorates: group_permission.checker.outsider_in
+    arguments:
+      - '@group_permission.checker.epa_web_areas.inner'
+      - '@group_permission.chain_calculator'

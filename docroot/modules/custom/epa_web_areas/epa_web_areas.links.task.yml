@@ -1,0 +1,29 @@
+epa_web_areas.latest_revision_group_content:
+  title: 'Latest Revisions'
+  route_name: entity.group.canonical
+  parent_id: group.view
+
+epa_web_areas.published_group_content:
+  title: 'Published Content'
+  route_name: page_manager.page_view_group_published_content_group_published_content-layout_builder-0
+  parent_id: group.view
+  weight: 1
+
+epa_web_areas.group_details:
+  title: 'Details'
+  route_name: page_manager.page_view_group_details_group_details-layout_builder-0
+  base_route: entity.group.canonical
+  weight: 1
+
+epa_web_areas.my_web_areas:
+  title: 'My Web Areas'
+  route_name: page_manager.page_view_dashboard_overview_dashboard_overview-block_display-0
+  base_route: system.admin_content
+  weight: 2000
+
+epa_web_areas.node_group_dashboard:
+  route_name: page_manager.page_view_group_view_group_view-layout_builder-0
+  title: 'Group Dashboard'
+  base_route: entity.node.canonical
+  class: '\Drupal\epa_web_areas\Plugin\Menu\NodeGroupTab'
+  weight: 9
