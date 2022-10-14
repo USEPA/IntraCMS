@@ -2,8 +2,32 @@ uuid: dddd5d05-e61b-4ebf-ab24-1cc472ec707a
 langcode: en
 status: true
 dependencies:
+  config:
+    - filter.format.full_html
+    - taxonomy.vocabulary.event_host
+    - taxonomy.vocabulary.organization
+    - taxonomy.vocabulary.program_offices_and_regions
+    - workflows.workflow.editorial
+    - workflows.workflow.event_editorial
   module:
+    - block
+    - content_moderation
+    - dropzonejs
+    - field_permissions
+    - file
+    - filter
+    - group
     - lightning_core
+    - media
+    - moderated_content_bulk_publish
+    - node
+    - override_node_options
+    - paragraphs
+    - path
+    - redirect
+    - system
+    - taxonomy
+    - webform
 third_party_settings:
   lightning_core:
     description: ''
@@ -14,13 +38,27 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access content overview'
+  - 'access files overview'
   - 'access group overview'
+  - 'access site in maintenance mode'
+  - 'administer blocks'
+  - 'administer menu'
+  - 'administer redirect settings'
+  - 'administer redirects'
+  - 'administer taxonomy'
+  - 'administer url aliases'
+  - 'administer users'
   - 'administer webform element access'
   - 'create field_group_contact_info'
   - 'create field_meta_tags'
   - 'create field_show_on_official_portraits'
+  - 'create terms in event_host'
+  - 'create terms in organization'
+  - 'create terms in program_offices_and_regions'
+  - 'create url aliases'
   - 'create web_area group'
   - 'delete all revisions'
+  - 'delete any media'
   - 'delete any webform'
   - 'delete any webform submission'
   - 'dropzone upload files'
@@ -42,6 +80,7 @@ permissions:
   - 'override all published option'
   - 'override all revision option'
   - 'revert all revisions'
+  - 'update any media'
   - 'use editorial transition archive'
   - 'use editorial transition archived_published'
   - 'use editorial transition create_new_draft'
@@ -50,6 +89,8 @@ permissions:
   - 'use event_editorial transition create_new_draft'
   - 'use event_editorial transition publish'
   - 'use event_editorial transition restore_from_unpublished'
+  - 'use text format full_html'
+  - 'view all media revisions'
   - 'view any unpublished content'
   - 'view any webform submission'
   - 'view field_group_contact_info'
