@@ -10,6 +10,7 @@ dependencies:
     - field.storage.node.field_topic_area_of_authority
     - field.storage.node.field_transmittal_notice
     - node.type.policy_delegation
+    - taxonomy.vocabulary.agency_delegations_manual_chapte
     - taxonomy.vocabulary.policy_topics
   module:
     - csv_serialization
@@ -282,7 +283,7 @@ display:
             group_items: {  }
           reduce_duplicates: false
           vid: policy_topics
-          type: select
+          type: cshs
           hierarchy: false
           limit: true
           error_message: true
@@ -330,6 +331,62 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        field_chapter_target_id:
+          id: field_chapter_target_id
+          table: node__field_chapter
+          field: field_chapter_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: null
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_chapter_target_id_op
+            label: Chapter
+            description: ''
+            use_operator: false
+            operator: field_chapter_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_chapter_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              book_editor: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: agency_delegations_manual_chapte
+          type: cshs
+          hierarchy: false
+          limit: true
+          error_message: true
+          save_lineage: false
+          force_deepest: false
+          parent: 0
+          level_labels: ''
+          hierarchy_depth: 0
+          required_depth: 0
       filter_groups:
         operator: AND
         groups:
