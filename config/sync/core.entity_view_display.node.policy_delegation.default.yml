@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.policy_delegation.field_autho
+    - field.field.node.policy_delegation.field_chapter
     - field.field.node.policy_delegation.field_effective_date
     - field.field.node.policy_delegation.field_keywords
     - field.field.node.policy_delegation.field_limitation
@@ -35,33 +36,33 @@ third_party_settings:
     group_references:
       children:
         - field_references
+      label: References
       parent_name: ''
+      region: content
       weight: 15
       format_type: details
-      region: content
       format_settings:
+        classes: ''
         show_empty_fields: false
         id: ''
-        classes: ''
-        description: ''
         open: true
+        description: ''
         required_fields: false
-      label: References
     group_signed_memo:
       children:
         - field_signed_memo
+      label: 'Signed Memo'
       parent_name: ''
+      region: content
       weight: 16
       format_type: details
-      region: content
       format_settings:
+        classes: ''
         show_empty_fields: false
         id: ''
-        classes: ''
-        description: ''
         open: true
+        description: ''
         required_fields: false
-      label: 'Signed Memo'
 id: node.policy_delegation.default
 targetEntityType: node
 bundle: policy_delegation
@@ -74,6 +75,14 @@ content:
     third_party_settings: {  }
     weight: 9
     region: content
+  field_chapter:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 20
+    region: content
   field_effective_date:
     type: datetime_default
     label: inline
@@ -84,12 +93,12 @@ content:
     weight: 3
     region: content
   field_keywords:
-    weight: 19
+    type: entity_reference_label
     label: inline
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 19
     region: content
   field_limitation:
     type: text_default
@@ -219,10 +228,10 @@ content:
     weight: 6
     region: content
   links:
-    weight: 0
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   content_moderation_control: true
   search_api_excerpt: true

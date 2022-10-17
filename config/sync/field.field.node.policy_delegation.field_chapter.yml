@@ -1,0 +1,29 @@
+uuid: 8875e2c6-a330-4607-b1c4-296a7d18a68a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_chapter
+    - node.type.policy_delegation
+    - taxonomy.vocabulary.agency_delegations_manual_chapte
+id: node.policy_delegation.field_chapter
+field_name: field_chapter
+entity_type: node
+bundle: policy_delegation
+label: Chapter
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      agency_delegations_manual_chapte: agency_delegations_manual_chapte
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
