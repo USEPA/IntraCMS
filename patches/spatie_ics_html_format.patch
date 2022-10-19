@@ -7,7 +7,7 @@ index fc1713a..01366fd 100644
 
          if ($link->description) {
 -            $url[] = 'DESCRIPTION:'.$this->escapeString($link->description);
-+            $url[] = 'X-ALT-DESC;FMTTYPE=text/html:'.$this->escapeString($link->description);
++            $url[] = 'X-ALT-DESC;FMTTYPE=text/html:'.str_replace("\\n","",$this->escapeString($link->description));
          }
          if ($link->address) {
              $url[] = 'LOCATION:'.$this->escapeString($link->address);
