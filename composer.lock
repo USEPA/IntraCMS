@@ -2159,7 +2159,7 @@
             },
             "require": {
                 "drupal/core": "^8 || ^9",
-                "spatie/calendar-links": "^1.4"
+                "spatie/calendar-links": "^1.7"
             },
             "suggest": {
                 "drupal/token": "Enables addtocal token ui and field tokens."
@@ -17427,30 +17427,32 @@
         },
         {
             "name": "spatie/calendar-links",
-            "version": "1.4.3",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/calendar-links.git",
-                "reference": "f2ebf9b376e0f473a36ec20e7ce12b8e6805e5ec"
+                "reference": "654fc0174e6279539b9bf0abdc3339e34c5286d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/calendar-links/zipball/f2ebf9b376e0f473a36ec20e7ce12b8e6805e5ec",
-                "reference": "f2ebf9b376e0f473a36ec20e7ce12b8e6805e5ec",
+                "url": "https://api.github.com/repos/spatie/calendar-links/zipball/654fc0174e6279539b9bf0abdc3339e34c5286d7",
+                "reference": "654fc0174e6279539b9bf0abdc3339e34c5286d7",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.0"
+                "php": "^7.3 || ^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^8.5 || ^9.0",
-                "spatie/phpunit-snapshot-assertions": "^3.0|^4.0",
-                "vimeo/psalm": "^4.1"
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "phpunit/phpunit": "^9.5",
+                "spatie/phpunit-snapshot-assertions": "^4.0",
+                "vimeo/psalm": "^4.20"
             },
             "type": "library",
             "extra": {
                 "patches_applied": {
-                    "Fix ICS HTML formatting": "patches/spatie_ics_html_format_and_timezone.patch"
+                    "Fix ICS HTML formatting": "patches/rerolled_spatie_timezone_format2.patch",
+                    "PHP compatibility": "patches/spatie_php.patch"
                 }
             },
             "autoload": {
@@ -17482,7 +17484,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-03-05T09:07:44+00:00"
+            "time": "2022-08-20T12:59:17+00:00"
         },
         {
             "name": "stack/builder",
