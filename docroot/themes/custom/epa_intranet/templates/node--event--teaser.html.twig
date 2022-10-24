@@ -95,7 +95,7 @@
       {% else %}
         {{ content.field_event_date }}
       {% endif %}
-      <div>{{ content.field_event_date }}</div>
+      <div>Date: {{ content.field_event_date.value|date('d/m/Y') }}</div>
     </div>
     <div class="usa-collection__description">
       {{ content.field_event_description|field_value }}
