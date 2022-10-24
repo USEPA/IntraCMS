@@ -75,9 +75,9 @@
 <p>
 <li {{ attributes.addClass('usa-collection__item') }}>
   <div class="usa-collection__calendar-date">
-    <time datetime="{{ $event_start_date|date('m/d/Y') }}">
-      <span class="usa-collection__calendar-date-month">{{ $event_start_date|date('M') }}</span>
-      <span class="usa-collection__calendar-date-day">{{ $event_start_date|date('d') }}</span>
+    <time datetime="{{ content.field_event_date.value|date('m/d/Y') }}">
+      <span class="usa-collection__calendar-date-month">{{ content.field_event_date.value|date('M') }}</span>
+      <span class="usa-collection__calendar-date-day">{{ content.field_event_date.value|date('d') }}</span>
     </time>
   </div>
   <div class="usa-collection__body">
@@ -98,7 +98,7 @@
       <div>Date: {{ content.field_event_date.value|date('m/d/Y ') }}</div>
     </div>
     <div class="usa-collection__description">
-      {{ $event_start_date }}
+      {{ content.field_event_description|field_value }}
       <span>...</span>
     </div>
     <ul class="usa-collection__meta">
