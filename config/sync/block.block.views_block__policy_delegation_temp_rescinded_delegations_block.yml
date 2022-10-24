@@ -1,0 +1,29 @@
+uuid: b3321b41-3ebd-4a9b-ac95-d988142ff83a
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.policy_delegation
+  module:
+    - system
+    - views
+  theme:
+    - epa_intranet
+id: views_block__policy_delegation_temp_rescinded_delegations_block
+theme: epa_intranet
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:policy_delegation-temp_rescinded_delegations_block'
+settings:
+  id: 'views_block:policy_delegation-temp_rescinded_delegations_block'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /agency-policy/delegations/temporary/rescinded
