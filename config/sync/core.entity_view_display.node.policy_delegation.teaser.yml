@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.policy_delegation.field_admin_update_date
     - field.field.node.policy_delegation.field_autho
     - field.field.node.policy_delegation.field_chapter
     - field.field.node.policy_delegation.field_effective_date
+    - field.field.node.policy_delegation.field_expiration_date
     - field.field.node.policy_delegation.field_keywords
     - field.field.node.policy_delegation.field_limitation
     - field.field.node.policy_delegation.field_link_to_delegation_file
@@ -19,7 +21,9 @@ dependencies:
     - field.field.node.policy_delegation.field_replacing
     - field.field.node.policy_delegation.field_rescind_this_delegation
     - field.field.node.policy_delegation.field_rescission_date
+    - field.field.node.policy_delegation.field_rescission_notes
     - field.field.node.policy_delegation.field_signed_memo
+    - field.field.node.policy_delegation.field_temp_delegation
     - field.field.node.policy_delegation.field_to_whom_delegated
     - field.field.node.policy_delegation.field_topic_area_of_authority
     - field.field.node.policy_delegation.field_transmittal_notice
@@ -38,9 +42,11 @@ content:
     region: content
 hidden:
   content_moderation_control: true
+  field_admin_update_date: true
   field_autho: true
   field_chapter: true
   field_effective_date: true
+  field_expiration_date: true
   field_keywords: true
   field_limitation: true
   field_link_to_delegation_file: true
@@ -53,7 +59,9 @@ hidden:
   field_replacing: true
   field_rescind_this_delegation: true
   field_rescission_date: true
+  field_rescission_notes: true
   field_signed_memo: true
+  field_temp_delegation: true
   field_to_whom_delegated: true
   field_topic_area_of_authority: true
   field_transmittal_notice: true

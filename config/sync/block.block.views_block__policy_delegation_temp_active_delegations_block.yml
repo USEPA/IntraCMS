@@ -1,0 +1,29 @@
+uuid: cf0836c8-4322-4bf3-9c04-b12b0bd3aeb7
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.policy_delegation
+  module:
+    - system
+    - views
+  theme:
+    - epa_intranet
+id: views_block__policy_delegation_temp_active_delegations_block
+theme: epa_intranet
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:policy_delegation-temp_active_delegations_block'
+settings:
+  id: 'views_block:policy_delegation-temp_active_delegations_block'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /agency-policy/delegations/temporary

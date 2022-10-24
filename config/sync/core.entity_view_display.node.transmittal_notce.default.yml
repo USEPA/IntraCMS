@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.transmittal_notce.field_admin_update_date
     - field.field.node.transmittal_notce.field_approval_date
     - field.field.node.transmittal_notce.field_associated_delegation
     - field.field.node.transmittal_notce.field_associated_policy
@@ -25,6 +26,15 @@ targetEntityType: node
 bundle: transmittal_notce
 mode: default
 content:
+  field_admin_update_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: month_day_year
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_approval_date:
     type: datetime_default
     label: inline
@@ -40,7 +50,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 3
+    weight: 4
     region: content
   field_associated_policy:
     type: entity_reference_label
@@ -48,14 +58,14 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
   field_explanation:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: content
   field_keywords:
     type: entity_reference_label
@@ -63,7 +73,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 10
+    weight: 11
     region: content
   field_link_to_transmittal_file:
     type: link
@@ -75,7 +85,7 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 2
+    weight: 3
     region: content
   field_most_recent_version:
     type: string
@@ -83,7 +93,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 8
+    weight: 9
     region: content
   field_original_approval:
     type: string
@@ -91,14 +101,14 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 7
+    weight: 8
     region: content
   field_purpose:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_signed_memo:
     type: entity_reference_label
@@ -106,7 +116,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 9
+    weight: 10
     region: content
   links:
     settings: {  }
