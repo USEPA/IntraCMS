@@ -112,13 +112,14 @@
     <div class="usa-alert usa-alert-normalizer usa-alert--error">
     <div class="usa-alert__body">
     <p class="usa-alert__heading">This Delegation has been Rescinded</p>
-    <p class="usa-alert__text">{{ content.field_rescission_date }}
+    <p class="usa-alert__text">{{ content.field_rescission_date }}</p>
+	<p class="usa-alert__text">{{ content.field_rescission_notes }}</p>
     </div>
     </div>
     {% endif %}
 
 	<div{{ content_attributes.addClass('node__content') }}>
-    {{ content|without('field_rescind_this_delegation','field_rescission_date') }}
+    {{ content|without('field_rescind_this_delegation','field_rescission_date', 'field_rescission_notes') }}
 	</div>
 	
 	</article>
