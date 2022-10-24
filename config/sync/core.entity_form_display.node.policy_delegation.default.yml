@@ -3,9 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.policy_delegation.field_admin_update_date
     - field.field.node.policy_delegation.field_autho
     - field.field.node.policy_delegation.field_chapter
     - field.field.node.policy_delegation.field_effective_date
+    - field.field.node.policy_delegation.field_expiration_date
     - field.field.node.policy_delegation.field_keywords
     - field.field.node.policy_delegation.field_limitation
     - field.field.node.policy_delegation.field_link_to_delegation_file
@@ -18,7 +20,9 @@ dependencies:
     - field.field.node.policy_delegation.field_replacing
     - field.field.node.policy_delegation.field_rescind_this_delegation
     - field.field.node.policy_delegation.field_rescission_date
+    - field.field.node.policy_delegation.field_rescission_notes
     - field.field.node.policy_delegation.field_signed_memo
+    - field.field.node.policy_delegation.field_temp_delegation
     - field.field.node.policy_delegation.field_to_whom_delegated
     - field.field.node.policy_delegation.field_topic_area_of_authority
     - field.field.node.policy_delegation.field_transmittal_notice
@@ -41,10 +45,11 @@ third_party_settings:
       children:
         - field_rescind_this_delegation
         - field_rescission_date
+        - field_rescission_notes
       label: 'Delegation Status (Use Only to Rescind this Delegation)'
       region: content
       parent_name: ''
-      weight: 5
+      weight: 8
       format_type: details
       format_settings:
         classes: ''
@@ -58,7 +63,7 @@ third_party_settings:
       label: References
       region: content
       parent_name: ''
-      weight: 16
+      weight: 19
       format_type: fieldset
       format_settings:
         classes: ''
@@ -73,13 +78,19 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 21
+    weight: 24
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_admin_update_date:
+    type: datetime_default
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   field_autho:
     type: text_textarea
-    weight: 9
+    weight: 12
     region: content
     settings:
       rows: 5
@@ -87,7 +98,7 @@ content:
     third_party_settings: {  }
   field_chapter:
     type: entity_reference_autocomplete
-    weight: 1
+    weight: 3
     region: content
     settings:
       match_operator: CONTAINS
@@ -97,13 +108,36 @@ content:
     third_party_settings: {  }
   field_effective_date:
     type: datetime_default
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_expiration_date:
+    type: datetime_default
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        3c8c75b8-3566-44b7-9540-3b87d547f418:
+          entity_type: node
+          bundle: policy_delegation
+          dependee: field_temp_delegation
+          settings:
+            state: visible
+            condition: checked
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: false
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_keywords:
     type: entity_reference_autocomplete
-    weight: 20
+    weight: 23
     region: content
     settings:
       match_operator: CONTAINS
@@ -113,7 +147,7 @@ content:
     third_party_settings: {  }
   field_limitation:
     type: text_textarea
-    weight: 12
+    weight: 15
     region: content
     settings:
       rows: 5
@@ -121,7 +155,7 @@ content:
     third_party_settings: {  }
   field_link_to_delegation_file:
     type: link_default
-    weight: 8
+    weight: 11
     region: content
     settings:
       placeholder_url: ''
@@ -129,13 +163,13 @@ content:
     third_party_settings: {  }
   field_next_review_date:
     type: datetime_default
-    weight: 17
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
   field_other_delegation:
     type: string_textfield
-    weight: 11
+    weight: 14
     region: content
     settings:
       size: 60
@@ -161,21 +195,38 @@ content:
             selector: ''
   field_prior_identifier:
     type: string_textfield
-    weight: 2
+    weight: 4
     region: content
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        ee869ec6-9712-4f93-a750-99a16435808e:
+          entity_type: node
+          bundle: policy_delegation
+          dependee: field_temp_delegation
+          settings:
+            state: visible
+            condition: '!checked'
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: false
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_redelegation:
     type: options_buttons
-    weight: 13
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
   field_redelegation_authority:
     type: text_textarea
-    weight: 14
+    weight: 17
     region: content
     settings:
       rows: 5
@@ -201,7 +252,7 @@ content:
             selector: ''
   field_references:
     type: paragraphs
-    weight: 20
+    weight: 27
     region: content
     settings:
       title: Reference
@@ -220,7 +271,7 @@ content:
     third_party_settings: {  }
   field_replacing:
     type: entity_reference_autocomplete
-    weight: 6
+    weight: 9
     region: content
     settings:
       match_operator: CONTAINS
@@ -241,22 +292,37 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_rescission_notes:
+    type: string_textarea
+    weight: 13
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_signed_memo:
     type: media_library_widget
-    weight: 15
+    weight: 18
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
+  field_temp_delegation:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_to_whom_delegated:
     type: options_select
-    weight: 10
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
   field_topic_area_of_authority:
     type: cshs
-    weight: 3
+    weight: 7
     region: content
     settings:
       force_deepest: false
@@ -268,7 +334,7 @@ content:
     third_party_settings: {  }
   field_transmittal_notice:
     type: entity_reference_autocomplete
-    weight: 7
+    weight: 10
     region: content
     settings:
       match_operator: CONTAINS
@@ -278,13 +344,13 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 23
+    weight: 26
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 19
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -298,7 +364,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 22
+    weight: 25
     region: content
     settings:
       match_operator: CONTAINS
@@ -307,7 +373,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 18
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }

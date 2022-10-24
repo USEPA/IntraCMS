@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.policy.field_admin_update_date
     - field.field.node.policy.field_effective_date
     - field.field.node.policy.field_keywords
     - field.field.node.policy.field_link_to_policy
@@ -20,6 +21,7 @@ dependencies:
     - field.field.node.policy.field_related_resources
     - field.field.node.policy.field_rescind_this_policy
     - field.field.node.policy.field_rescission_date
+    - field.field.node.policy.field_rescission_notes
     - field.field.node.policy.field_rescissions
     - field.field.node.policy.field_supplemental_documents
     - field.field.node.policy.field_topic_area_of_authority
@@ -35,19 +37,20 @@ mode: teaser
 content:
   field_policy_statement:
     type: text_trimmed
-    weight: 1
-    region: content
     label: hidden
     settings:
       trim_length: 600
     third_party_settings: {  }
-  links:
-    weight: 0
+    weight: 1
     region: content
+  links:
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   content_moderation_control: true
+  field_admin_update_date: true
   field_definitions: true
   field_delegation: true
   field_effective_date: true
@@ -66,6 +69,7 @@ hidden:
   field_related_resources: true
   field_rescind_this_policy: true
   field_rescission_date: true
+  field_rescission_notes: true
   field_rescissions: true
   field_roles_and_responsibilities: true
   field_supplemental_documents: true
