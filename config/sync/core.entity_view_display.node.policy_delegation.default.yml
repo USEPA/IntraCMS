@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.policy_delegation.field_expiration_date
     - field.field.node.policy_delegation.field_keywords
     - field.field.node.policy_delegation.field_limitation
+    - field.field.node.policy_delegation.field_limitations
     - field.field.node.policy_delegation.field_link_to_delegation_file
     - field.field.node.policy_delegation.field_next_review_date
     - field.field.node.policy_delegation.field_other_delegation
@@ -44,7 +45,7 @@ third_party_settings:
       label: References
       parent_name: ''
       region: content
-      weight: 18
+      weight: 19
       format_type: details
       format_settings:
         classes: ''
@@ -59,7 +60,7 @@ third_party_settings:
       label: 'Signed Memo'
       parent_name: ''
       region: content
-      weight: 19
+      weight: 20
       format_type: details
       format_settings:
         classes: ''
@@ -121,11 +122,18 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 21
+    weight: 22
     region: content
   field_limitation:
     type: text_default
-    label: above
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  field_limitations:
+    type: list_default
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 15
@@ -149,7 +157,7 @@ content:
       timezone_override: ''
       format_type: month_day_year
     third_party_settings: {  }
-    weight: 20
+    weight: 21
     region: content
   field_other_delegation:
     type: string
@@ -172,14 +180,14 @@ content:
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 16
+    weight: 17
     region: content
   field_redelegation_authority:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 17
+    weight: 18
     region: content
   field_references:
     type: entity_reference_revisions_entity_view
@@ -222,7 +230,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 22
+    weight: 23
     region: content
   field_signed_memo:
     type: entity_reference_entity_view
