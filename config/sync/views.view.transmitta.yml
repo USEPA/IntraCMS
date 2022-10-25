@@ -14,6 +14,7 @@ dependencies:
     - options
     - taxonomy
     - user
+    - vefl
     - views_autocomplete_filters
 id: transmitta
 label: 'Transmittal Notices'
@@ -97,7 +98,7 @@ display:
             offset: false
             offset_label: Offset
       exposed_form:
-        type: basic
+        type: vefl_basic
         options:
           submit_button: Apply
           reset_button: true
@@ -106,6 +107,18 @@ display:
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          layout:
+            layout_id: vefl_onecol
+            change: Change
+            widget_region:
+              title: middle
+              field_transmittal_relates_to_value: middle
+              sort_by: middle
+              sort_order: middle
+              items_per_page: middle
+              offset: middle
+              submit: middle
+              reset: middle
       access:
         type: perm
         options:

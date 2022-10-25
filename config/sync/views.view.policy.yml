@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_effective_date
-    - field.storage.node.field_next_review_date
     - field.storage.node.field_policy_statement
     - field.storage.node.field_prior_identifier
     - field.storage.node.field_rescission_date
@@ -12,16 +11,13 @@ dependencies:
     - node.type.policy
     - taxonomy.vocabulary.policy_topics
   module:
-    - csv_serialization
     - datetime
     - node
-    - rest
-    - serialization
     - taxonomy
     - text
     - user
+    - vefl
     - views_autocomplete_filters
-    - views_data_export
 id: policy
 label: Policy
 module: views
@@ -229,7 +225,7 @@ display:
             offset: false
             offset_label: Offset
       exposed_form:
-        type: basic
+        type: vefl_basic
         options:
           submit_button: Apply
           reset_button: true
@@ -238,6 +234,18 @@ display:
           expose_sort_order: false
           sort_asc_label: Asc
           sort_desc_label: Desc
+          layout:
+            layout_id: vefl_onecol
+            change: Change
+            widget_region:
+              combine: middle
+              field_topic_area_of_authority_target_id: middle
+              sort_by: middle
+              sort_order: middle
+              items_per_page: middle
+              offset: middle
+              submit: middle
+              reset: middle
       access:
         type: perm
         options:

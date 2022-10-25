@@ -3,8 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_autho
     - field.storage.node.field_chapter
     - field.storage.node.field_effective_date
+    - field.storage.node.field_expiration_date
     - field.storage.node.field_prior_identifier
     - field.storage.node.field_rescission_date
     - field.storage.node.field_topic_area_of_authority
@@ -16,7 +18,9 @@ dependencies:
     - datetime
     - node
     - taxonomy
+    - text
     - user
+    - vefl
     - views_autocomplete_filters
 id: policy_delegation
 label: 'Policy Delegation'
@@ -144,6 +148,68 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        field_autho:
+          id: field_autho
+          table: node__field_autho
+          field: field_autho
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Authority
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       pager:
         type: mini
         options:
@@ -163,7 +229,7 @@ display:
             offset: false
             offset_label: Offset
       exposed_form:
-        type: basic
+        type: vefl_basic
         options:
           submit_button: Apply
           reset_button: true
@@ -172,6 +238,19 @@ display:
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          layout:
+            layout_id: vefl_onecol
+            change: Change
+            widget_region:
+              combine: middle
+              field_chapter_target_id: middle
+              tid: middle
+              sort_by: middle
+              sort_order: middle
+              items_per_page: middle
+              offset: middle
+              submit: middle
+              reset: middle
       access:
         type: perm
         options:
@@ -343,6 +422,7 @@ display:
           fields:
             field_prior_identifier: field_prior_identifier
             title: title
+            field_autho: field_autho
         field_chapter_target_id:
           id: field_chapter_target_id
           table: node__field_chapter
@@ -389,7 +469,7 @@ display:
             group_items: {  }
           reduce_duplicates: false
           vid: agency_delegations_manual_chapte
-          type: textfield
+          type: select
           hierarchy: false
           limit: true
           error_message: true
@@ -553,6 +633,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.node.field_autho'
         - 'config:field.storage.node.field_prior_identifier'
   active_delegations_block:
     id: active_delegations_block
@@ -942,6 +1023,68 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        field_autho:
+          id: field_autho
+          table: node__field_autho
+          field: field_autho
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Authority
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       sorts:
         field_chapter_target_id:
           id: field_chapter_target_id
@@ -987,6 +1130,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.node.field_autho'
         - 'config:field.storage.node.field_chapter'
         - 'config:field.storage.node.field_effective_date'
         - 'config:field.storage.node.field_prior_identifier'
@@ -1634,7 +1778,7 @@ display:
           admin_label: ''
           plugin_id: field
           label: Identifier
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -1762,7 +1906,7 @@ display:
           admin_label: ''
           plugin_id: field
           label: 'Transmittal Notice'
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -1824,7 +1968,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: 'Effective Date'
+          label: 'Approval Date'
           exclude: false
           alter:
             alter_text: false
@@ -1997,6 +2141,132 @@ display:
           settings:
             link: false
           group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_autho:
+          id: field_autho
+          table: node__field_autho
+          field: field_autho
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Authority
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_expiration_date:
+          id: field_expiration_date
+          table: node__field_expiration_date
+          field: field_expiration_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Expiration Date'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_default
+          settings:
+            timezone_override: ''
+            format_type: month_day_year
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -2169,6 +2439,7 @@ display:
           fields:
             field_prior_identifier: field_prior_identifier
             title: title
+            field_autho: field_autho
         field_chapter_target_id:
           id: field_chapter_target_id
           table: node__field_chapter
@@ -2215,7 +2486,7 @@ display:
             group_items: {  }
           reduce_duplicates: false
           vid: agency_delegations_manual_chapte
-          type: textfield
+          type: select
           hierarchy: false
           limit: true
           error_message: true
@@ -2344,8 +2615,10 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.node.field_autho'
         - 'config:field.storage.node.field_chapter'
         - 'config:field.storage.node.field_effective_date'
+        - 'config:field.storage.node.field_expiration_date'
         - 'config:field.storage.node.field_prior_identifier'
         - 'config:field.storage.node.field_topic_area_of_authority'
         - 'config:field.storage.node.field_transmittal_notice'
@@ -2366,7 +2639,7 @@ display:
           admin_label: ''
           plugin_id: field
           label: Identifier
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -2738,6 +3011,68 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        field_autho:
+          id: field_autho
+          table: node__field_autho
+          field: field_autho
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Authority
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       sorts:
         field_effective_date_value:
           id: field_effective_date_value
@@ -2901,6 +3236,7 @@ display:
           fields:
             field_prior_identifier: field_prior_identifier
             title: title
+            field_autho: field_autho
         field_chapter_target_id:
           id: field_chapter_target_id
           table: node__field_chapter
@@ -2947,7 +3283,7 @@ display:
             group_items: {  }
           reduce_duplicates: false
           vid: agency_delegations_manual_chapte
-          type: textfield
+          type: select
           hierarchy: false
           limit: true
           error_message: true
@@ -3076,6 +3412,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.node.field_autho'
         - 'config:field.storage.node.field_chapter'
         - 'config:field.storage.node.field_effective_date'
         - 'config:field.storage.node.field_prior_identifier'
