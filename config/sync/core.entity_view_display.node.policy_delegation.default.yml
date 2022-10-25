@@ -28,6 +28,7 @@ dependencies:
     - field.field.node.policy_delegation.field_transmittal_notice
     - node.type.policy_delegation
   module:
+    - cshs
     - datetime
     - entity_reference_revisions
     - field_group
@@ -233,10 +234,12 @@ content:
     weight: 17
     region: content
   field_to_whom_delegated:
-    type: entity_reference_label
+    type: cshs_full_hierarchy
     label: inline
     settings:
-      link: false
+      separator: ' » '
+      linked: false
+      reverse: false
     third_party_settings: {  }
     weight: 13
     region: content
