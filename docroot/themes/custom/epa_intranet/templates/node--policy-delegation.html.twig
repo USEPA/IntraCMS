@@ -116,10 +116,25 @@
 	<p class="usa-alert__text">{{ content.field_rescission_notes }}</p>
     </div>
     </div>
-    {% endif %}
-
+	
+	{% else %}
+	
 	<div{{ content_attributes.addClass('node__content') }}>
-    {{ content|without('field_rescind_this_delegation','field_rescission_date', 'field_rescission_notes') }}
+
+
+
+ {{ content|without('field_rescind_this_delegation','field_rescission_date', 'field_rescission_notes', 'field_governing_authorities', 'field_keywords', 'field_signed_memo') }}
+
+
+{% if field.governing_authorities is not empty %}
+	{{ content.field_governing_authorities }}
+	{% else %}
+	<p><strong>References:</strong> None</p>
+	{% endif %}
+	{{ content.field_signed_memo }}
+	{{ content.field_keywords }}
 	</div>
+
+	{% endif %}
 	
 	</article>

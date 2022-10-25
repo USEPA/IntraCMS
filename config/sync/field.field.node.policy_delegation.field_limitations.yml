@@ -1,0 +1,21 @@
+uuid: 026101fe-46cf-4708-815e-bcb4d7a22506
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_limitations
+    - node.type.policy_delegation
+  module:
+    - options
+id: node.policy_delegation.field_limitations
+field_name: field_limitations
+entity_type: node
+bundle: policy_delegation
+label: Limitations
+description: 'If there are any limitations to this delegation, select "Limitations exist" and then enter the limitations in the field below.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
