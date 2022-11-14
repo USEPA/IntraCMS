@@ -4,12 +4,12 @@
     "description": "Project template for Drupal 8 sites built with the Lightning distribution.",
     "license": "GPL-2.0-or-later",
     "require": {
-        "drupal/core": "9.3.20",
+        "drupal/core": "9.4.8",
         "drupal/lightning_core": "5.9.0",
         "drupal/lightning_media": "4.2.0",
         "drupal/lightning_scheduler": "1.3",
         "cweagans/composer-patches": "^1.6.0",
-        "drupal-composer/drupal-scaffold": "^2.3.0",
+        "drupal/core-composer-scaffold": "9.4.8",
         "drupal/group": "1.4",
         "drupal/groupmenu": "^1.0",
         "drupal/entity_reference_tree": "^2.0",
@@ -142,7 +142,9 @@
         "drupal/addtocal_augment": "^1.0",
         "drupal/visitors": "^2.14",
         "drupal/group_action": "^1.0",
-        "drupal/entity_usage": "^2.0@beta"
+        "drupal/entity_usage": "^2.0@beta",
+        "drupal/core-recommended": "9.4.8",
+        "drupal/core-project-message": "9.4.8"
     },
     "require-dev": {
     },
@@ -239,8 +241,6 @@
                 "2949017: There is no way to delete or update file entities of other users incl. user/1": "https://www.drupal.org/files/issues/2022-03-24/allow-user-with-delete-any-files-to-delete-in-bulk.patch",
                 "3035113: JSON API": "https://www.drupal.org/files/issues/2021-12-28/3035113-33.patch",
                 "2985882: Error: Call to a member function getLabel() after enabling layout_builder": "https://www.drupal.org/files/issues/2022-05-30/2985882-field-142.patch",
-                "923934: Block visibility has wrong logic": "https://www.drupal.org/files/issues/2021-10-01/923934-58.patch",
-                "3008924: Callers of LayoutEntityHelperTrait::getEntitySections() do not account for the view mode": "https://www.drupal.org/files/issues/2021-12-09/3008924-rerolled-24.patch",
                 "502340: hide book outline functionality on non-book-enabled node types": "https://www.drupal.org/files/issues/2021-01-18/502430-90.patch",
                 "2918537: Cannot save unpublished versions of published content for users without manage book privileges.": "https://www.drupal.org/files/issues/2020-10-18/2918537-63.patch",
                 "3051453: Call to a member function setSyncing() on null when installing a module.": "https://www.drupal.org/files/issues/2020-08-18/protect_against_invalid_ids_in_import_delete-3051453-10.patch",
