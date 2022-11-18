@@ -13,6 +13,7 @@ dependencies:
   module:
     - datetime
     - node
+    - options
     - taxonomy
     - text
     - user
@@ -239,6 +240,7 @@ display:
             change: Change
             widget_region:
               combine: middle
+              field_policy_type_value: middle
               field_topic_area_of_authority_target_id: middle
               sort_by: middle
               sort_order: middle
@@ -418,6 +420,51 @@ display:
             field_prior_identifier: field_prior_identifier
             title: title
             field_policy_statement: field_policy_statement
+        field_policy_type_value:
+          id: field_policy_type_value
+          table: node__field_policy_type
+          field: field_policy_type_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: list_field
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_policy_type_value_op
+            label: 'Directive Type'
+            description: ''
+            use_operator: false
+            operator: field_policy_type_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_policy_type_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              book_editor: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
         field_topic_area_of_authority_target_id:
           id: field_topic_area_of_authority_target_id
           table: node__field_topic_area_of_authority
@@ -850,7 +897,21 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-      sorts: {  }
+      sorts:
+        field_effective_date_value:
+          id: field_effective_date_value
+          table: node__field_effective_date
+          field: field_effective_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: datetime
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: second
       defaults:
         fields: false
         sorts: false
