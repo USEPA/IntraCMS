@@ -18,10 +18,10 @@ dependencies:
     - field.field.node.policy.field_related_agency_forms
     - field.field.node.policy.field_related_policy
     - field.field.node.policy.field_related_resources
+    - field.field.node.policy.field_replacing
     - field.field.node.policy.field_rescind_this_policy
     - field.field.node.policy.field_rescission_date
     - field.field.node.policy.field_rescission_notes
-    - field.field.node.policy.field_rescissions
     - field.field.node.policy.field_supplemental_documents
     - field.field.node.policy.field_topic_area_of_authority
     - field.field.node.policy.field_upload_or_link
@@ -259,6 +259,14 @@ content:
     third_party_settings: {  }
     weight: 17
     region: content
+  field_replacing:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 22
+    region: content
   field_rescind_this_policy:
     type: boolean
     label: above
@@ -284,14 +292,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 3
-    region: content
-  field_rescissions:
-    type: entity_reference_label
-    label: inline
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 16
     region: content
   field_supplemental_documents:
     type: entity_reference_entity_view

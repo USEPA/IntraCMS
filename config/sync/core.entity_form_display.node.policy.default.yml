@@ -18,10 +18,10 @@ dependencies:
     - field.field.node.policy.field_related_agency_forms
     - field.field.node.policy.field_related_policy
     - field.field.node.policy.field_related_resources
+    - field.field.node.policy.field_replacing
     - field.field.node.policy.field_rescind_this_policy
     - field.field.node.policy.field_rescission_date
     - field.field.node.policy.field_rescission_notes
-    - field.field.node.policy.field_rescissions
     - field.field.node.policy.field_supplemental_documents
     - field.field.node.policy.field_topic_area_of_authority
     - field.field.node.policy.field_upload_or_link
@@ -45,13 +45,14 @@ third_party_settings:
         - field_rescind_this_policy
         - field_rescission_date
         - field_rescission_notes
-      label: 'Policy Status (Use Only to Rescind this Policy)'
+      label: 'Directive Status (Use Only to Rescind this Directive)'
       region: content
       parent_name: ''
       weight: 2
       format_type: details
       format_settings:
         classes: ''
+        show_empty_fields: false
         id: ''
         open: false
         description: ''
@@ -62,7 +63,7 @@ third_party_settings:
       label: Authority
       region: content
       parent_name: ''
-      weight: 16
+      weight: 15
       format_type: details
       format_settings:
         classes: ''
@@ -78,7 +79,7 @@ third_party_settings:
       label: 'Related Policies and Forms'
       region: content
       parent_name: ''
-      weight: 14
+      weight: 13
       format_type: fieldset
       format_settings:
         classes: ''
@@ -93,7 +94,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 23
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -111,7 +112,7 @@ content:
     third_party_settings: {  }
   field_keywords:
     type: entity_reference_autocomplete
-    weight: 20
+    weight: 19
     region: content
     settings:
       match_operator: CONTAINS
@@ -121,7 +122,7 @@ content:
     third_party_settings: {  }
   field_link_to_policy:
     type: link_default
-    weight: 13
+    weight: 12
     region: content
     settings:
       placeholder_url: ''
@@ -147,7 +148,7 @@ content:
             selector: ''
   field_next_review_date:
     type: datetime_default
-    weight: 18
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -161,7 +162,7 @@ content:
     third_party_settings: {  }
   field_policy_coordinator:
     type: cshs
-    weight: 19
+    weight: 18
     region: content
     settings:
       force_deepest: false
@@ -187,7 +188,7 @@ content:
     third_party_settings: {  }
   field_policy_upload:
     type: media_library_widget
-    weight: 12
+    weight: 11
     region: content
     settings:
       media_types: {  }
@@ -259,11 +260,21 @@ content:
     third_party_settings: {  }
   field_related_resources:
     type: link_default
-    weight: 15
+    weight: 14
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_replacing:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_rescind_this_policy:
     type: boolean_checkbox
@@ -303,15 +314,9 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_rescissions:
-    type: options_select
-    weight: 3
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_supplemental_documents:
     type: media_library_widget
-    weight: 17
+    weight: 16
     region: content
     settings:
       media_types: {  }
@@ -336,19 +341,19 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 25
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 21
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 26
+    weight: 25
     region: content
     settings:
       display_label: true
@@ -363,7 +368,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 24
+    weight: 23
     region: content
     settings:
       match_operator: CONTAINS
@@ -372,7 +377,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 22
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
