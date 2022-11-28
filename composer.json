@@ -4,12 +4,12 @@
     "description": "Project template for Drupal 8 sites built with the Lightning distribution.",
     "license": "GPL-2.0-or-later",
     "require": {
-        "drupal/core": "9.4.8",
+        "drupal/core-recommended": "~9.4.7",
         "drupal/lightning_core": "5.9.0",
         "drupal/lightning_media": "4.2.0",
         "drupal/lightning_scheduler": "1.3",
         "cweagans/composer-patches": "^1.6.0",
-        "drupal/core-composer-scaffold": "9.4.8",
+        "drupal/core-composer-scaffold": "~9.4.7",
         "drupal/group": "1.4",
         "drupal/groupmenu": "^1.0",
         "drupal/entity_reference_tree": "^2.0",
@@ -143,7 +143,6 @@
         "drupal/visitors": "^2.14",
         "drupal/group_action": "^1.0",
         "drupal/entity_usage": "^2.0@beta",
-        "drupal/core-recommended": "9.4.8",
         "drupal/core-project-message": "9.4.8"
     },
     "require-dev": {
@@ -159,7 +158,12 @@
             "wikimedia/composer-merge-plugin": true
         }
     },
-    "extra": {
+    "extra": {    
+        "drupal-scaffold": {
+        "locations": {
+            "web-root": "docroot"
+        }
+    }, 
         "patches": {
             "drupal/linkit": {
                 "Fix issue with wrong ui-autocomplete class being assigned to autocompletes": "patches/linkit_class_override.patch",
@@ -440,11 +444,6 @@
             "drush en config_split -y",
             "drush cim -y --ansi"
         ],
-        "post-install-cmd": [
-            "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
-            "rm -f docroot/web.config"
-        ],
-        "post-update-cmd": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
         "post-create-project-cmd": "rm -r -f .travis.yml behat.yml .travis-ci",
         "nuke": "rm -r -f docroot/modules/contrib docroot/profiles/contrib/lightning vendor composer.lock",
         "quick-start": [
