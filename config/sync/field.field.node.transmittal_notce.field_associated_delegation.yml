@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_associated_delegation
+    - node.type.policy_delegation
     - node.type.transmittal_notce
 id: node.transmittal_notce.field_associated_delegation
 field_name: field_associated_delegation
@@ -16,10 +17,13 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: views
+  handler: 'default:node'
   handler_settings:
-    view:
-      view_name: policy_delegation
-      display_name: entity_reference_1
-      arguments: {  }
+    target_bundles:
+      policy_delegation: policy_delegation
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
 field_type: entity_reference
