@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_topic_area_of_authority
     - node.type.policy_delegation
-    - taxonomy.vocabulary.policy_topics
+    - taxonomy.vocabulary.delegation_topics
 id: node.policy_delegation.field_topic_area_of_authority
 field_name: field_topic_area_of_authority
 entity_type: node
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      policy_topics: policy_topics
+      delegation_topics: delegation_topics
     sort:
       field: name
       direction: asc

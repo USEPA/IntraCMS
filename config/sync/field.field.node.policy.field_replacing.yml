@@ -1,16 +1,16 @@
-uuid: c9976f18-3a01-4adb-b857-4e8564fc4ee2
+uuid: c24a7954-0b7b-4cca-88d4-ab5782b70e11
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_replacing
-    - node.type.policy_delegation
-id: node.policy_delegation.field_replacing
+    - node.type.policy
+id: node.policy.field_replacing
 field_name: field_replacing
 entity_type: node
-bundle: policy_delegation
+bundle: policy
 label: Replacing
-description: 'Select the rescinded Delegation that this Delegation is replacing.'
+description: 'Select the rescinded directive that this directive is replacing.'
 required: false
 translatable: true
 default_value: {  }
@@ -19,7 +19,7 @@ settings:
   handler: views
   handler_settings:
     view:
-      view_name: forms
-      display_name: entity_reference_1
+      view_name: policy
+      display_name: rescinded_policy_entity_reference
       arguments: {  }
 field_type: entity_reference
