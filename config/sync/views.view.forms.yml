@@ -403,12 +403,12 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: text
           empty: true
-          tokenize: false
           content:
             value: "<hr />\r\n<div class=\"usa-alert usa-alert--error\" role=\"alert\">\r\n  <div class=\"usa-alert__body\">\r\n    <h2 class=\"usa-alert__heading\">No Results</h2>\r\n    <p class=\"usa-alert__text\">\r\nThere are no items that match your filter criteria.\r\n    </p>\r\n  </div>\r\n</div>\r\n\r\n"
             format: rich_text
-          plugin_id: text
+          tokenize: false
       sorts:
         title:
           id: title
@@ -678,10 +678,10 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
+      use_ajax: true
       header: {  }
       footer: {  }
       display_extenders: {  }
-      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -804,25 +804,12 @@ display:
         - 'config:field.storage.node.field_form_additional_resources'
         - 'config:field.storage.node.field_form_title'
   forms_dynamic_list_block:
-    display_plugin: block
     id: forms_dynamic_list_block
     display_title: List
+    display_plugin: block
     position: 7
     display_options:
-      display_extenders: {  }
-      display_description: ''
       title: ''
-      defaults:
-        title: false
-        fields: false
-        style: false
-        row: false
-        filters: false
-        filter_groups: false
-        empty: false
-        pager: false
-        link_display: false
-        link_url: false
       fields:
         title:
           id: title
@@ -831,6 +818,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -886,20 +876,25 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: title
-          plugin_id: field
-      style:
-        type: default
+      pager:
+        type: mini
         options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-      row:
-        type: 'entity:node'
-        options:
-          relationship: none
-          view_mode: reference_list
+          offset: 0
+          items_per_page: 6
+          total_pages: null
+          id: 0
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+      empty: {  }
       filters:
         status:
           id: status
@@ -972,6 +967,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: list_field
           operator: or
           value: {  }
           group: 1
@@ -1009,7 +1005,6 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          plugin_id: list_field
         field_form_category_target_id:
           id: field_form_category_target_id
           table: node__field_form_category
@@ -1017,6 +1012,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -1054,18 +1050,17 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: textfield
-          limit: true
           vid: forms_categories
+          type: textfield
           hierarchy: false
+          limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
           parent: 0
           level_labels: ''
-          force_deepest: false
-          save_lineage: false
           hierarchy_depth: 0
           required_depth: 0
-          plugin_id: taxonomy_index_tid
         field_keywords_target_id:
           id: field_keywords_target_id
           table: node__field_keywords
@@ -1073,6 +1068,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -1110,18 +1106,17 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: textfield
-          limit: true
           vid: tags
+          type: textfield
           hierarchy: false
+          limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
           parent: 0
           level_labels: ''
-          force_deepest: false
-          save_lineage: false
           hierarchy_depth: 0
           required_depth: 0
-          plugin_id: taxonomy_index_tid
         field_owning_aaship_region_target_id:
           id: field_owning_aaship_region_target_id
           table: node__field_owning_aaship_region
@@ -1129,6 +1124,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -1166,43 +1162,47 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: program_offices_and_regions
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
           parent: 0
           level_labels: ''
-          force_deepest: false
-          save_lineage: false
           hierarchy_depth: 0
           required_depth: 0
-          plugin_id: taxonomy_index_tid
       filter_groups:
         operator: AND
         groups:
           1: AND
-      empty: {  }
-      pager:
-        type: mini
+      style:
+        type: default
         options:
-          items_per_page: 6
-          offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: ‹‹
-            next: ››
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: reference_list
+      defaults:
+        empty: false
+        title: false
+        pager: false
+        link_display: false
+        link_url: false
+        style: false
+        row: false
+        fields: false
+        filters: false
+        filter_groups: false
+      display_description: ''
       link_display: custom_url
       link_url: /forms/inventory
+      display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
