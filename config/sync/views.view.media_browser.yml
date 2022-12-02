@@ -4,12 +4,10 @@ status: true
 dependencies:
   config:
     - image.style.media_block_image
-    - media.type.document
     - media.type.image
     - taxonomy.vocabulary.media_tags
   module:
     - entity_browser
-    - epa_wysiwyg
     - image
     - media
     - taxonomy
@@ -88,6 +86,8 @@ display:
           settings:
             image_link: ''
             image_style: media_block_image
+            image_loading:
+              attribute: lazy
           group_column: ''
           group_columns: {  }
           group_rows: true
