@@ -74,14 +74,12 @@
 #}
 <p>
 <li {{ attributes.addClass('usa-collection__item') }}>
-
   <div class="usa-collection__calendar-date">
-    <time datetime="{{ content.field_event_date.value|date('U')|date('m/d/Y h:i A') }}">
-      <span class="usa-collection__calendar-date-month">{{ content.field_event_date.value|date('U')|date('M') }}</span>
-      <span class="usa-collection__calendar-date-day">{{ content.field_event_date.value|date('U')|date('d') }}</span>
+    <time datetime="{{ rawDateTime }}">
+      <span class="usa-collection__calendar-date-month">{{ displayMonth }}</span>
+      <span class="usa-collection__calendar-date-day">{{ displayDay }}</span>
     </time>
   </div>
-
   <div class="usa-collection__body">
     {{ title_prefix }}
     {% if label and not page %}
@@ -97,7 +95,6 @@
       {% else %}
         {{ content.field_event_date }}
       {% endif %}
-      <div>{{ content.field_event_date|field_value }}</div>
     </div>
     <div class="usa-collection__description">
       {{ content.field_event_description|field_value }}
