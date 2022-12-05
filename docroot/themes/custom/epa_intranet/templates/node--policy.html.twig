@@ -116,10 +116,10 @@
 	<p class="usa-alert__text">{{ content.field_rescission_notes }}</p>
     </div>
     </div>
-    {% endif %}
-
+    
+	{% else %}
 	<div{{ content_attributes.addClass('node__content') }}>
     {{ content|without('field_rescind_this_policy','field_rescission_date', 'field_rescission_notes') }}
 	</div>
-	
+	{% endif %}
 	</article>
