@@ -1,0 +1,42 @@
+stages:
+  
+  - test
+  - build
+  - Non-Production Deployment  
+  - Production Deployment
+
+Build IntranetCMS Image:
+  stage: build
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "k8s"'
+  tags:
+    - intranetcms-dev-runner
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/docker/Dockerfile --destination $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA
+
+Development:
+  stage: Non-Production Deployment
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "k8s"'
+  tags:
+    - intranetcms-dev-runner
+  image: dtzar/helm-kubectl
+  script:
+    - apk add gettext
+    - kubectl config set-cluster cms-shared-dev00 --server="$KUBE_URL"
+    - kubectl config set-cluster cms-shared-dev00 --certificate-authority=$KUBE_CA_PEM_FILE --embed-certs=true
+    - kubectl config set-credentials gitlab --token="$KUBE_TOKEN"
+    - kubectl config set-context default --cluster=cms-shared-dev00 --user=gitlab --namespace="$KUBE_NAMESPACE"
+    - kubectl config use-context default
+    - envsubst < k8s/intracms.yml | kubectl apply -f -    
+  environment:
+    name: dev
+    url: 
+    kubernetes:
+      namespace: cms-45-dev
+

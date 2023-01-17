@@ -36,8 +36,8 @@ spec:
           claimName: intranetcms-efs-pvc
       containers:
       - name: intranetcms
-        #image: registry.epa.gov/intranet-cms/intranet-cms-infra/:$CI_COMMIT_SHORT_SHA
-        image: registry.epa.gov/intranet-cms/intranet-cms-infra/intranetcms-build:1.8
+        image: registry.epa.gov/intranet-cms/intracms/intranetcms-build:$CI_COMMIT_SHORT_SHA
+        #image: registry.epa.gov/intranet-cms/intranet-cms-infra/intranetcms-build:1.8
         imagePullPolicy: Always
         ports:
         - containerPort: 9000
