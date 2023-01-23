@@ -1,0 +1,94 @@
+uuid: ec21f668-ba86-4bc7-9360-b46ee45e8b3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_roles_and_responsibilities
+    - node.type.interagency_policy_issuance_ipi_
+    - paragraphs.paragraphs_type.policy_roles
+  module:
+    - entity_reference_revisions
+id: node.interagency_policy_issuance_ipi_.field_roles_and_responsibilities
+field_name: field_roles_and_responsibilities
+entity_type: node
+bundle: interagency_policy_issuance_ipi_
+label: Role
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      policy_roles: policy_roles
+    negate: 0
+    target_bundles_drag_drop:
+      contact:
+        weight: 23
+        enabled: false
+      dynamic_list:
+        weight: 24
+        enabled: false
+      governing_authorities:
+        weight: 25
+        enabled: false
+      heading_title_and_text:
+        weight: 26
+        enabled: false
+      hero_carousel:
+        weight: 27
+        enabled: false
+      list_of_link:
+        weight: 28
+        enabled: false
+      policy_roles:
+        weight: 29
+        enabled: true
+      question_and_answer:
+        weight: 30
+        enabled: false
+      rich_text:
+        weight: 31
+        enabled: false
+      slide:
+        weight: 32
+        enabled: false
+      slide_show:
+        weight: 33
+        enabled: false
+      title_and_text:
+        weight: 34
+        enabled: false
+      uswds_card:
+        weight: 35
+        enabled: false
+      uswds_card_set:
+        weight: 36
+        enabled: false
+      uswds_column:
+        weight: 37
+        enabled: false
+      uswds_graphic_list:
+        weight: 38
+        enabled: false
+      uswds_grid:
+        weight: 39
+        enabled: false
+      uswds_hero:
+        weight: 40
+        enabled: false
+      uswds_media_block:
+        weight: 41
+        enabled: false
+      uswds_text:
+        weight: 42
+        enabled: false
+      views_reference_list:
+        weight: 43
+        enabled: false
+      webform:
+        weight: 44
+        enabled: false
+field_type: entity_reference_revisions

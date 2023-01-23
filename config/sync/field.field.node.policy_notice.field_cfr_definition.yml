@@ -1,0 +1,23 @@
+uuid: 1f07976c-f779-4cff-8620-efee9dff815b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cfr_definition
+    - node.type.policy_notice
+  module:
+    - link
+id: node.policy_notice.field_cfr_definition
+field_name: field_cfr_definition
+entity_type: node
+bundle: policy_notice
+label: 'CFR Term Definition'
+description: 'Enter the term as mentioned in the CFR. Enter the link directly to the term definition in the CFR in the URL field.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 2
+  link_type: 17
+field_type: link

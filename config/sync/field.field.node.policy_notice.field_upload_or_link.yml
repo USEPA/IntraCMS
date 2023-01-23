@@ -1,0 +1,21 @@
+uuid: 03b6470b-19cd-4d77-9348-daad8e28017e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_upload_or_link
+    - node.type.policy_notice
+  module:
+    - options
+id: node.policy_notice.field_upload_or_link
+field_name: field_upload_or_link
+entity_type: node
+bundle: policy_notice
+label: 'Upload or Link to Policy Notices'
+description: 'Will you be uploading or linking to the official Policy Notice?'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

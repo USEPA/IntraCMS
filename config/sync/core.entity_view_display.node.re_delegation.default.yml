@@ -1,0 +1,245 @@
+uuid: 4e3df3f2-5f5d-46d0-9929-5fe007c62beb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.re_delegation.field_agency_delegation
+    - field.field.node.re_delegation.field_conditions_restrictions
+    - field.field.node.re_delegation.field_further_redelegation
+    - field.field.node.re_delegation.field_further_redelegation_files
+    - field.field.node.re_delegation.field_limitation
+    - field.field.node.re_delegation.field_link_to_further_redelegati
+    - field.field.node.re_delegation.field_policy_aaship_region
+    - field.field.node.re_delegation.field_policy_identifier
+    - field.field.node.re_delegation.field_policy_link
+    - field.field.node.re_delegation.field_policy_upload
+    - field.field.node.re_delegation.field_re_redelegation_authority
+    - field.field.node.re_delegation.field_redelegation_authority
+    - field.field.node.re_delegation.field_references
+    - field.field.node.re_delegation.field_related_resources
+    - field.field.node.re_delegation.field_replacing
+    - field.field.node.re_delegation.field_rescind_redelegation
+    - field.field.node.re_delegation.field_rescission_date
+    - field.field.node.re_delegation.field_signed_memo
+    - field.field.node.re_delegation.field_to_whom_delegated
+    - field.field.node.re_delegation.field_topic
+    - field.field.node.re_delegation.field_transmittal_notice
+    - field.field.node.re_delegation.field_upload_further_delegation
+    - field.field.node.re_delegation.field_upload_or_link
+    - node.type.re_delegation
+  module:
+    - datetime
+    - entity_reference_revisions
+    - link
+    - options
+    - tablefield
+    - text
+    - user
+id: node.re_delegation.default
+targetEntityType: node
+bundle: re_delegation
+mode: default
+content:
+  field_agency_delegation:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_conditions_restrictions:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 121
+    region: content
+  field_further_redelegation:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 116
+    region: content
+  field_further_redelegation_files:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 118
+    region: content
+  field_limitation:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 122
+    region: content
+  field_link_to_further_redelegati:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 119
+    region: content
+  field_policy_aaship_region:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_policy_identifier:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_policy_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 115
+    region: content
+  field_policy_upload:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 114
+    region: content
+  field_re_redelegation_authority:
+    type: tablefield
+    label: above
+    settings:
+      row_header: true
+      column_header: false
+    third_party_settings: {  }
+    weight: 117
+    region: content
+  field_redelegation_authority:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  field_references:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  field_related_resources:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 124
+    region: content
+  field_replacing:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_rescind_redelegation:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_rescission_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_signed_memo:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 123
+    region: content
+  field_to_whom_delegated:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 112
+    region: content
+  field_topic:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_transmittal_notice:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_upload_further_delegation:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 120
+    region: content
+  field_upload_or_link:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 113
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  content_moderation_control: true

@@ -1,0 +1,29 @@
+uuid: 8dd97ae5-73cf-454b-b383-b88ab6748926
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_policy_upload
+    - media.type.document
+    - node.type.policy_notice
+id: node.policy_notice.field_policy_upload
+field_name: field_policy_upload
+entity_type: node
+bundle: policy_notice
+label: 'Policy Notice'
+description: 'Upload the official Policy Notice. This file upload should be the authoritative source for this Policy Notice and it should not be available elsewhere'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      document: document
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,25 @@
+uuid: 613565e8-3683-44f0-b513-baa735bfa811
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_policy
+    - node.type.policy_notice
+id: node.policy_notice.field_related_policy
+field_name: field_related_policy
+entity_type: node
+bundle: policy_notice
+label: 'Related Agency Policy'
+description: 'Begin typing the title of the agency policy and select the appropriate one from the autocomplete options'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: policy
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

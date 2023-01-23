@@ -1,0 +1,21 @@
+uuid: 821d7272-b22a-4657-a587-1d5d90642115
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_policy_exceptions
+    - node.type.policy_notice
+  module:
+    - text
+id: node.policy_notice.field_policy_exceptions
+field_name: field_policy_exceptions
+entity_type: node
+bundle: policy_notice
+label: Exceptions
+description: 'List any exceptions to this Policy Notice.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,25 @@
+uuid: e4acfa31-a046-41d4-98ac-d48b2004ff0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_policy
+    - node.type.grants_policy_issuances_gpis_
+id: node.grants_policy_issuances_gpis_.field_related_policy
+field_name: field_related_policy
+entity_type: node
+bundle: grants_policy_issuances_gpis_
+label: 'Related Agency Policy'
+description: 'Begin typing the title of the agency policy and select the appropriate one from the autocomplete options. '
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: policy
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

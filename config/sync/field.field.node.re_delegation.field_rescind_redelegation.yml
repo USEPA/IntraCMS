@@ -1,0 +1,23 @@
+uuid: 717999de-fc09-4032-94e3-6d21884362e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rescind_redelegation
+    - node.type.re_delegation
+id: node.re_delegation.field_rescind_redelegation
+field_name: field_rescind_redelegation
+entity_type: node
+bundle: re_delegation
+label: 'Rescind this Redelegation '
+description: 'Check this box if you are rescinding this Redelegation. '
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

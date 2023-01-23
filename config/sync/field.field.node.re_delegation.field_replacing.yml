@@ -1,0 +1,25 @@
+uuid: 7f94735f-cf0c-48ee-b14d-3415fcf90a3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_replacing
+    - node.type.re_delegation
+id: node.re_delegation.field_replacing
+field_name: field_replacing
+entity_type: node
+bundle: re_delegation
+label: Replacing
+description: 'Select the rescinded Redelegation that this Redelegation is replacing.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: redelegations
+      display_name: entity_reference_2
+      arguments: {  }
+field_type: entity_reference

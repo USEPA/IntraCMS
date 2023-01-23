@@ -1,0 +1,197 @@
+uuid: c8dc0aac-ee51-4de1-a9c5-4c3f6ce6c818
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.policy_notice.field_cfr_definition
+    - field.field.node.policy_notice.field_effective_date
+    - field.field.node.policy_notice.field_policy_background
+    - field.field.node.policy_notice.field_policy_definitions
+    - field.field.node.policy_notice.field_policy_exceptions
+    - field.field.node.policy_notice.field_policy_identifier
+    - field.field.node.policy_notice.field_policy_link
+    - field.field.node.policy_notice.field_policy_purpose
+    - field.field.node.policy_notice.field_policy_relate_notice
+    - field.field.node.policy_notice.field_policy_upload
+    - field.field.node.policy_notice.field_related_agency_forms
+    - field.field.node.policy_notice.field_related_gpi_s_
+    - field.field.node.policy_notice.field_related_ipi_s_
+    - field.field.node.policy_notice.field_related_policy
+    - field.field.node.policy_notice.field_related_resources
+    - field.field.node.policy_notice.field_roles_and_responsibilities
+    - field.field.node.policy_notice.field_topic
+    - field.field.node.policy_notice.field_upload_or_link
+    - node.type.policy_notice
+  module:
+    - datetime
+    - entity_reference_revisions
+    - link
+    - options
+    - text
+    - user
+id: node.policy_notice.default
+targetEntityType: node
+bundle: policy_notice
+mode: default
+content:
+  field_cfr_definition:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_effective_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_policy_background:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_policy_definitions:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_policy_exceptions:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_policy_identifier:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 121
+    region: content
+  field_policy_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 114
+    region: content
+  field_policy_purpose:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_policy_relate_notice:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 116
+    region: content
+  field_policy_upload:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 113
+    region: content
+  field_related_agency_forms:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 119
+    region: content
+  field_related_gpi_s_:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 117
+    region: content
+  field_related_ipi_s_:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 118
+    region: content
+  field_related_policy:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 115
+    region: content
+  field_related_resources:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 120
+    region: content
+  field_roles_and_responsibilities:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  field_topic:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_upload_or_link:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 112
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  content_moderation_control: true
