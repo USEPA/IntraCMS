@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.policy.field_rescind_this_policy
     - field.field.node.policy.field_rescission_date
     - field.field.node.policy.field_rescission_notes
+    - field.field.node.policy.field_rescissions
     - field.field.node.policy.field_supplemental_documents
     - field.field.node.policy.field_topic_area_of_authority
     - field.field.node.policy.field_upload_or_link
@@ -76,7 +77,8 @@ third_party_settings:
       children:
         - field_related_policy
         - field_related_agency_forms
-      label: 'Related Policies and Forms'
+        - field_related_resources
+      label: 'Related Directives, Forms, and Resources'
       region: content
       parent_name: ''
       weight: 13
@@ -85,7 +87,7 @@ third_party_settings:
         classes: ''
         show_empty_fields: false
         id: ''
-        description: 'Related existing agency policies and forms to this policy.'
+        description: 'Related existing agency directives, forms, and other resources to this directive.'
         required_fields: true
 id: node.policy.default
 targetEntityType: node
