@@ -1,0 +1,43 @@
+uuid: b5111c95-e8e6-4f2e-9f39-a4e7957487c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_re_redelegation_authority
+    - node.type.re_delegation
+  module:
+    - tablefield
+id: node.re_delegation.field_re_redelegation_authority
+field_name: field_re_redelegation_authority
+entity_type: node
+bundle: re_delegation
+label: 'Redelegation / Redelegation Authority'
+description: "Identify the lowest official within the delegatee's \r\norganization to whom the authority may be redelegated.  Redelegated authority should be specific e.g. Division Director of XYZ program, unless flexibility in executing the authority is required e.g. Division Director level or equivalent.  \r\n"
+required: true
+translatable: false
+default_value:
+  -
+    rebuild:
+      cols: '2'
+      rows: '2'
+    value:
+      0:
+        - Item
+        - 'To request information from other federal agencies'
+      caption: ''
+      1:
+        - ''
+        - ''
+    format: null
+    caption: ''
+default_value_callback: ''
+settings:
+  export: false
+  restrict_rebuild: true
+  restrict_import: true
+  lock_values: true
+  cell_processing: 0
+  empty_rules:
+    ignore_table_structure: false
+    ignore_table_header: false
+field_type: tablefield

@@ -1,0 +1,29 @@
+uuid: de4b4acb-6bb8-4836-b596-84d1d95ee94b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_policy_upload
+    - media.type.document
+    - node.type.interagency_policy_issuance_ipi_
+id: node.interagency_policy_issuance_ipi_.field_policy_upload
+field_name: field_policy_upload
+entity_type: node
+bundle: interagency_policy_issuance_ipi_
+label: IPI
+description: 'Upload the official IPI. This file upload should be the authoritative source for this IPI and it should not be available elsewhere.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      document: document
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

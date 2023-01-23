@@ -1,0 +1,25 @@
+uuid: 02537e84-94ca-4d73-956e-b9460e7ca973
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_policy_notice
+    - node.type.grants_policy_issuances_gpis_
+id: node.grants_policy_issuances_gpis_.field_related_policy_notice
+field_name: field_related_policy_notice
+entity_type: node
+bundle: grants_policy_issuances_gpis_
+label: 'Related Policy Notice(s)'
+description: 'Begin typing the title of the Policy Notice and select the appropriate one from the autocomplete options.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: policy_notices
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

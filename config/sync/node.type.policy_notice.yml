@@ -1,0 +1,21 @@
+uuid: 1e4b5c5f-8de9-47ad-a423-186c5f0fa42f
+langcode: en
+status: true
+dependencies:
+  module:
+    - lightning_workflow
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  lightning_workflow:
+    workflow: editorial
+name: 'Policy Notice'
+type: policy_notice
+description: 'Policy Notices address a very specific issue that could change in the foreseeable future.  Ideally, notices are replaced by Guidance, GPI, or an EPA Order once developed and internally vetted.'
+help: 'Enter the title of the Policy Notice'
+new_revision: true
+preview_mode: 1
+display_submitted: true

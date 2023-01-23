@@ -1,0 +1,25 @@
+uuid: 3618d9a8-b581-4dd9-8031-ca31439fcb3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_ipi_s_
+    - node.type.grants_policy_issuances_gpis_
+id: node.grants_policy_issuances_gpis_.field_related_ipi_s_
+field_name: field_related_ipi_s_
+entity_type: node
+bundle: grants_policy_issuances_gpis_
+label: 'Related IPI(s)'
+description: 'Begin typing the title of the IPI and select the appropriate one from the autocomplete options.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: ipis
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

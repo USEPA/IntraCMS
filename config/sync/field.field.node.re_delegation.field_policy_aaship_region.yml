@@ -1,0 +1,29 @@
+uuid: 00d01813-2f4f-4fcc-99bc-2f13f738af75
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_policy_aaship_region
+    - node.type.re_delegation
+    - taxonomy.vocabulary.program_offices_and_regions
+id: node.re_delegation.field_policy_aaship_region
+field_name: field_policy_aaship_region
+entity_type: node
+bundle: re_delegation
+label: AAship/Region
+description: 'Select the AAship or Region this Redelegation applies to.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      program_offices_and_regions: program_offices_and_regions
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

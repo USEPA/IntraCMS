@@ -1,0 +1,25 @@
+uuid: 2222238e-e4f1-4621-8e07-e47949bbcf2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_policy_relate_notice
+    - node.type.policy_notice
+id: node.policy_notice.field_policy_relate_notice
+field_name: field_policy_relate_notice
+entity_type: node
+bundle: policy_notice
+label: 'Related Policy Notice'
+description: 'Begin typing the title of the Policy Notice and select the appropriate one from the autocomplete options.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: policy_notices
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

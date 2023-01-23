@@ -1,0 +1,23 @@
+uuid: 63c61914-e89b-4ff6-9ddc-94aac233cdd8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cfr_definition
+    - node.type.interagency_policy_issuance_ipi_
+  module:
+    - link
+id: node.interagency_policy_issuance_ipi_.field_cfr_definition
+field_name: field_cfr_definition
+entity_type: node
+bundle: interagency_policy_issuance_ipi_
+label: 'CFR Definition'
+description: 'Enter the term as mentioned in the CFR. Enter the link directly to the term definition in the CFR in the URL field. '
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 2
+  link_type: 17
+field_type: link

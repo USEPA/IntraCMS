@@ -1,0 +1,29 @@
+uuid: be4e7fdc-f9cc-476b-924b-9ec18c37e83f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_topic
+    - node.type.grants_policy_issuances_gpis_
+    - taxonomy.vocabulary.policy_topics
+id: node.grants_policy_issuances_gpis_.field_topic
+field_name: field_topic
+entity_type: node
+bundle: grants_policy_issuances_gpis_
+label: Topic
+description: 'Select the topic(s) this GPI is associated with.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      policy_topics: policy_topics
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

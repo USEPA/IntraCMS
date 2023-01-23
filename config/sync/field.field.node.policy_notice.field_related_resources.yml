@@ -1,0 +1,23 @@
+uuid: f65f25a1-f08a-4926-b2c1-77a7f027933b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_resources
+    - node.type.policy_notice
+  module:
+    - link
+id: node.policy_notice.field_related_resources
+field_name: field_related_resources
+entity_type: node
+bundle: policy_notice
+label: 'Related Resource'
+description: 'Enter the title and link to the related resource.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 2
+  link_type: 17
+field_type: link

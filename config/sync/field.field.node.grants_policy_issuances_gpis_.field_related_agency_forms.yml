@@ -1,0 +1,25 @@
+uuid: 83851f25-84eb-4a2d-9909-766a15e947e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_agency_forms
+    - node.type.grants_policy_issuances_gpis_
+id: node.grants_policy_issuances_gpis_.field_related_agency_forms
+field_name: field_related_agency_forms
+entity_type: node
+bundle: grants_policy_issuances_gpis_
+label: 'Related Agency Form(s)'
+description: 'Begin typing the title of the agency form and select the appropriate one from the autocomplete options.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: related_forms
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

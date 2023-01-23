@@ -1,0 +1,25 @@
+uuid: f7d1fabb-0977-4cd2-a16f-4e5bebac45f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_agency_delegation
+    - node.type.re_delegation
+id: node.re_delegation.field_agency_delegation
+field_name: field_agency_delegation
+entity_type: node
+bundle: re_delegation
+label: 'Agency Delegation'
+description: 'Select the Agency Delegation that had delegated this authority.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: policy_delegation
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

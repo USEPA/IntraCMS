@@ -1,0 +1,29 @@
+uuid: f368daaf-9f1b-4a95-b11e-f45d00d82ff0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_policy_definitions
+    - node.type.policy_notice
+    - taxonomy.vocabulary.policy_definitions
+id: node.policy_notice.field_policy_definitions
+field_name: field_policy_definitions
+entity_type: node
+bundle: policy_notice
+label: Definitions
+description: 'Enter the term(s) that require a definition, such as acronyms or words, that may not be commonly understood and enter the respective definition. As you fill this out and an auto-fill term pops up, you SHOULD select it so that it pulls in definitions that are already defined. This ensures consistency across all policies. Review the current <a href="https://work.epa.gov/agency-policy/definitions">list of definitions</a>.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      policy_definitions: policy_definitions
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

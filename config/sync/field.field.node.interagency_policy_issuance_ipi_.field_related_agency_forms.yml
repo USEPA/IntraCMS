@@ -1,0 +1,25 @@
+uuid: 839a6c27-1950-40d0-8287-b483c6207236
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_agency_forms
+    - node.type.interagency_policy_issuance_ipi_
+id: node.interagency_policy_issuance_ipi_.field_related_agency_forms
+field_name: field_related_agency_forms
+entity_type: node
+bundle: interagency_policy_issuance_ipi_
+label: 'Related Agency Form(s)'
+description: 'Begin typing the title of the agency form and select the appropriate one from the autocomplete options.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: related_forms
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

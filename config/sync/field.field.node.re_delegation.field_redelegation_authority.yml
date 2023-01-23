@@ -1,0 +1,21 @@
+uuid: df7eaa3a-1df6-442e-960e-f12bde7a2ee4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_redelegation_authority
+    - node.type.re_delegation
+  module:
+    - text
+id: node.re_delegation.field_redelegation_authority
+field_name: field_redelegation_authority
+entity_type: node
+bundle: re_delegation
+label: Authority
+description: 'Describe the specific authority being delegated.  Specify what actual activities and authorities can occur under this Redelegation and govern the impact of this directive. Itemizing specific actions, authorities or activities are encouraged within this section to clarify complex activities.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
