@@ -1,9 +1,18 @@
 stages:
   
-  - test
   - build
   - Non-Production Deployment  
-  - Production Deployment
+
+variables:
+  KUBE_CONTEXT: intranet-cms/intranet-cms-infra:intranetcms-dev-k8s-agent
+
+.kube-context:
+  before_script:
+  - if [ -n "$KUBE_CONTEXT" ]; then kubectl config use-context "$KUBE_CONTEXT"; fi
+
+#.terraform:
+#  before_script:
+#    - export TF_VAR_k8s_agent_token="$K8S_AGENT_TOKEN"
 
 Build IntranetCMS Image:
   stage: build
@@ -23,16 +32,12 @@ Development:
   stage: Non-Production Deployment
   rules:
     - if: '$CI_COMMIT_BRANCH == "k8s"'
+  extends: [.kube-context]
   tags:
     - intranetcms-dev-runner
   image: dtzar/helm-kubectl
   script:
     - apk add gettext
-    - kubectl config set-cluster cms-shared-dev00 --server="$KUBE_URL"
-    - kubectl config set-cluster cms-shared-dev00 --certificate-authority=$KUBE_CA_PEM_FILE --embed-certs=true
-    - kubectl config set-credentials gitlab --token="$KUBE_TOKEN"
-    - kubectl config set-context default --cluster=cms-shared-dev00 --user=gitlab --namespace="$KUBE_NAMESPACE"
-    - kubectl config use-context default
     - envsubst < k8s/intracms.yml | kubectl apply -f -    
   environment:
     name: dev
