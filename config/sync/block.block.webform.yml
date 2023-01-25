@@ -5,7 +5,7 @@ dependencies:
   config:
     - webform.webform.page_feedback
   module:
-    - ctools
+    - block_in_page_not_found
     - node
     - webform
   theme:
@@ -47,3 +47,7 @@ visibility:
       quiz: quiz
       staff_member: staff_member
       webform: webform
+  page_not_found_request:
+    id: page_not_found_request
+    negate: true
+    page_not_found: true
