@@ -4,7 +4,7 @@ stages:
   - Non-Production Deployment  
 
 variables:
-  KUBE_CONTEXT: intranet-cms/intranetcms-gitlab-agent:intranetcms-dev-k8s-agent
+  KUBE_CONTEXT: intranet-cms/intranet-cms-infra:intranetcms-dev-k8s-agent
 .kube-context:
   before_script:
   - if [ -n "$KUBE_CONTEXT" ]; then kubectl config use-context "$KUBE_CONTEXT"; fi
