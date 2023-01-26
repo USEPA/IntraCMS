@@ -38,7 +38,8 @@ Development:
   image: dtzar/helm-kubectl
   script:
     - apk add gettext
-    - envsubst < k8s/intranetcms.yml | kubectl apply -f -    
+    #- envsubst < k8s/intranetcms.yml | kubectl apply -f -
+    - kubectl apply -f k8s/intranetcms.yml -n cms-45-dev    
   environment:
     name: dev
     url: 
