@@ -19,6 +19,7 @@ Build IntranetCMS Image:
     - if: '$CI_COMMIT_BRANCH == "k8s"'
   tags:
     - intranetcms-dev-runner
+  when: manual
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
@@ -37,7 +38,7 @@ Development:
   image: dtzar/helm-kubectl
   script:
     - apk add gettext
-    - envsubst < k8s/intracms.yml | kubectl apply -f -    
+    - envsubst < k8s/intranetcms.yml | kubectl apply -f -    
   environment:
     name: dev
     url: 
