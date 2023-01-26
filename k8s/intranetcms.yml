@@ -37,7 +37,6 @@ spec:
       containers:
       - name: intranetcms
         image: registry.epa.gov/intranet-cms/intracms/intranetcms-build:$CI_COMMIT_SHORT_SHA
-        #image: registry.epa.gov/intranet-cms/intranet-cms-infra/intranetcms-build:1.8
         imagePullPolicy: Always
         ports:
         - containerPort: 9000
@@ -75,10 +74,10 @@ metadata:
     app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
 spec:
   ports:
-  - port: 80
+  - port: 443
     protocol: TCP
-    targetPort: 80
-    name: http
+    targetPort: 443
+    name: https
   selector:
     app: intranetcms
 
@@ -107,4 +106,4 @@ spec:
             service:
               name: intranetcms
               port: 
-                number: 80
+                number: 443
