@@ -19,7 +19,7 @@ Build IntranetCMS Image:
     - if: '$CI_COMMIT_BRANCH == "k8s"'
   tags:
     - intranetcms-dev-runner
-  when: manual
+  #when: manual
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
