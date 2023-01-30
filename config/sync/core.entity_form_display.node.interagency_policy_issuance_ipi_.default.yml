@@ -23,14 +23,36 @@ dependencies:
     - field.field.node.interagency_policy_issuance_ipi_.field_topic
     - field.field.node.interagency_policy_issuance_ipi_.field_upload_or_link
     - node.type.interagency_policy_issuance_ipi_
-    - workflows.workflow.editorial
   module:
+    - conditional_fields
     - content_moderation
     - datetime
+    - field_group
     - link
+    - media_library
     - paragraphs
     - path
     - text
+third_party_settings:
+  field_group:
+    group_related_directives_forms_a:
+      children:
+        - field_related_policy
+        - field_related_gpi_s_
+        - field_related_ipi_s_
+        - field_related_policy_notice
+        - field_related_agency_forms
+      label: 'Related Directives, Forms, and Resources'
+      region: content
+      parent_name: ''
+      weight: 14
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
 id: node.interagency_policy_issuance_ipi_.default
 targetEntityType: node
 bundle: interagency_policy_issuance_ipi_
@@ -52,7 +74,7 @@ content:
     third_party_settings: {  }
   field_cfr_definition:
     type: link_default
-    weight: 14
+    weight: 13
     region: content
     settings:
       placeholder_url: ''
@@ -74,7 +96,7 @@ content:
     third_party_settings: {  }
   field_policy_definitions:
     type: entity_reference_autocomplete
-    weight: 13
+    weight: 12
     region: content
     settings:
       match_operator: CONTAINS
@@ -100,7 +122,7 @@ content:
     third_party_settings: {  }
   field_policy_link:
     type: link_default
-    weight: 12
+    weight: 11
     region: content
     settings:
       placeholder_url: ''
@@ -133,14 +155,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_policy_upload:
-    type: entity_reference_autocomplete
-    weight: 11
+    type: media_library_widget
+    weight: 10
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings:
       conditional_fields:
         868f450a-ab21-4a9b-9eb4-86a69edc270d:
@@ -237,18 +256,14 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
   field_topic:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 2
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_upload_or_link:
     type: options_buttons
-    weight: 10
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
