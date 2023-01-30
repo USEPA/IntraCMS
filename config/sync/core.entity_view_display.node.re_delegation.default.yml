@@ -42,39 +42,32 @@ mode: default
 content:
   field_agency_delegation:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
-    weight: 107
-    region: content
-  field_conditions_restrictions:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 121
+    weight: 6
     region: content
   field_further_redelegation:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 116
+    weight: 14
     region: content
   field_further_redelegation_files:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 118
+    weight: 16
     region: content
   field_limitation:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 122
+    weight: 19
     region: content
   field_link_to_further_redelegati:
     type: link
@@ -86,27 +79,27 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 119
+    weight: 17
     region: content
   field_policy_aaship_region:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
-    weight: 102
+    weight: 2
     region: content
   field_policy_identifier:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 101
+    weight: 1
     region: content
   field_policy_link:
     type: link
-    label: above
+    label: inline
     settings:
       trim_length: 80
       url_only: false
@@ -114,15 +107,15 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 115
+    weight: 13
     region: content
   field_policy_upload:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
-    weight: 114
+    weight: 12
     region: content
   field_re_redelegation_authority:
     type: tablefield
@@ -131,14 +124,14 @@ content:
       row_header: true
       column_header: false
     third_party_settings: {  }
-    weight: 117
+    weight: 15
     region: content
   field_redelegation_authority:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 110
+    weight: 22
     region: content
   field_references:
     type: entity_reference_revisions_entity_view
@@ -147,7 +140,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 111
+    weight: 10
     region: content
   field_related_resources:
     type: link
@@ -159,7 +152,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 124
+    weight: 21
     region: content
   field_replacing:
     type: entity_reference_label
@@ -167,7 +160,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 108
+    weight: 7
     region: content
   field_rescind_redelegation:
     type: boolean
@@ -177,7 +170,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 105
+    weight: 4
     region: content
   field_rescission_date:
     type: datetime_default
@@ -186,7 +179,7 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 106
+    weight: 5
     region: content
   field_signed_memo:
     type: entity_reference_label
@@ -194,7 +187,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 123
+    weight: 20
     region: content
   field_to_whom_delegated:
     type: entity_reference_label
@@ -202,15 +195,15 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 112
+    weight: 11
     region: content
   field_topic:
     type: entity_reference_label
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
-    weight: 109
+    weight: 8
     region: content
   field_transmittal_notice:
     type: string
@@ -218,7 +211,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 104
+    weight: 3
     region: content
   field_upload_further_delegation:
     type: entity_reference_entity_view
@@ -227,19 +220,14 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 120
-    region: content
-  field_upload_or_link:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 113
+    weight: 18
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
   content_moderation_control: true
+  field_conditions_restrictions: true
+  field_upload_or_link: true
