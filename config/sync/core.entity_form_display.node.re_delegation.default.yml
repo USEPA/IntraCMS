@@ -27,7 +27,6 @@ dependencies:
     - field.field.node.re_delegation.field_upload_further_delegation
     - field.field.node.re_delegation.field_upload_or_link
     - node.type.re_delegation
-    - workflows.workflow.editorial
   module:
     - conditional_fields
     - content_moderation
@@ -49,11 +48,27 @@ third_party_settings:
       region: content
       parent_name: ''
       weight: 5
-      format_type: fieldset
+      format_type: details
       format_settings:
         classes: ''
         show_empty_fields: false
         id: ''
+        open: false
+        description: ''
+        required_fields: true
+    group_authority:
+      children:
+        - field_references
+      label: 'Authority Citation(s)'
+      region: content
+      parent_name: ''
+      weight: 22
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
         description: ''
         required_fields: true
 id: node.re_delegation.default
@@ -79,25 +94,25 @@ content:
     third_party_settings: {  }
   field_conditions_restrictions:
     type: options_buttons
-    weight: 19
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
   field_further_redelegation:
     type: options_buttons
-    weight: 14
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   field_further_redelegation_files:
     type: options_buttons
-    weight: 16
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
   field_limitation:
     type: text_textarea
-    weight: 20
+    weight: 18
     region: content
     settings:
       rows: 5
@@ -123,7 +138,7 @@ content:
             selector: ''
   field_link_to_further_redelegati:
     type: link_default
-    weight: 18
+    weight: 16
     region: content
     settings:
       placeholder_url: ''
@@ -167,7 +182,7 @@ content:
     third_party_settings: {  }
   field_policy_link:
     type: link_default
-    weight: 13
+    weight: 11
     region: content
     settings:
       placeholder_url: ''
@@ -192,14 +207,11 @@ content:
             effect_options: {  }
             selector: ''
   field_policy_upload:
-    type: entity_reference_autocomplete
-    weight: 12
+    type: media_library_widget
+    weight: 10
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings:
       conditional_fields:
         61a755b1-7d88-4649-8aa5-e2146c1cce5e:
@@ -221,14 +233,14 @@ content:
             selector: ''
   field_re_redelegation_authority:
     type: tablefield
-    weight: 15
+    weight: 13
     region: content
     settings:
       input_type: textfield
     third_party_settings: {  }
   field_redelegation_authority:
     type: text_textarea
-    weight: 8
+    weight: 21
     region: content
     settings:
       rows: 5
@@ -236,7 +248,7 @@ content:
     third_party_settings: {  }
   field_references:
     type: inline_entity_form_simple
-    weight: 9
+    weight: 32
     region: content
     settings:
       form_mode: default
@@ -249,7 +261,7 @@ content:
     third_party_settings: {  }
   field_related_resources:
     type: link_default
-    weight: 22
+    weight: 20
     region: content
     settings:
       placeholder_url: ''
@@ -296,18 +308,15 @@ content:
             effect_options: {  }
             selector: ''
   field_signed_memo:
-    type: entity_reference_autocomplete
-    weight: 21
+    type: media_library_widget
+    weight: 19
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
   field_to_whom_delegated:
     type: entity_reference_autocomplete
-    weight: 10
+    weight: 8
     region: content
     settings:
       match_operator: CONTAINS
@@ -316,14 +325,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_topic:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 7
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_transmittal_notice:
     type: string_textfield
@@ -335,7 +340,7 @@ content:
     third_party_settings: {  }
   field_upload_further_delegation:
     type: media_library_widget
-    weight: 17
+    weight: 15
     region: content
     settings:
       media_types: {  }
@@ -360,7 +365,7 @@ content:
             selector: ''
   field_upload_or_link:
     type: options_buttons
-    weight: 11
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }

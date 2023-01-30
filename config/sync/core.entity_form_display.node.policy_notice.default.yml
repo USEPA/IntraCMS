@@ -22,14 +22,37 @@ dependencies:
     - field.field.node.policy_notice.field_topic
     - field.field.node.policy_notice.field_upload_or_link
     - node.type.policy_notice
-    - workflows.workflow.editorial
   module:
+    - conditional_fields
     - content_moderation
     - datetime
+    - field_group
     - link
+    - media_library
     - paragraphs
     - path
     - text
+third_party_settings:
+  field_group:
+    group_related_directives_forms_a:
+      children:
+        - field_related_policy
+        - field_policy_relate_notice
+        - field_related_gpi_s_
+        - field_related_ipi_s_
+        - field_related_agency_forms
+        - field_related_resources
+      label: 'Related Directives, Forms, and Resources'
+      region: content
+      parent_name: ''
+      weight: 13
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
 id: node.policy_notice.default
 targetEntityType: node
 bundle: policy_notice
@@ -37,7 +60,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 20
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -125,7 +148,7 @@ content:
     third_party_settings: {  }
   field_policy_relate_notice:
     type: entity_reference_autocomplete
-    weight: 14
+    weight: 15
     region: content
     settings:
       match_operator: CONTAINS
@@ -134,14 +157,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_policy_upload:
-    type: entity_reference_autocomplete
+    type: media_library_widget
     weight: 11
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings:
       conditional_fields:
         1bfae8ff-e248-4e57-86a9-dad834334967:
@@ -163,7 +183,7 @@ content:
             selector: ''
   field_related_agency_forms:
     type: entity_reference_autocomplete
-    weight: 17
+    weight: 18
     region: content
     settings:
       match_operator: CONTAINS
@@ -173,7 +193,7 @@ content:
     third_party_settings: {  }
   field_related_gpi_s_:
     type: entity_reference_autocomplete
-    weight: 15
+    weight: 16
     region: content
     settings:
       match_operator: CONTAINS
@@ -183,7 +203,7 @@ content:
     third_party_settings: {  }
   field_related_ipi_s_:
     type: entity_reference_autocomplete
-    weight: 16
+    weight: 17
     region: content
     settings:
       match_operator: CONTAINS
@@ -193,7 +213,7 @@ content:
     third_party_settings: {  }
   field_related_policy:
     type: entity_reference_autocomplete
-    weight: 13
+    weight: 14
     region: content
     settings:
       match_operator: CONTAINS
@@ -203,7 +223,7 @@ content:
     third_party_settings: {  }
   field_related_resources:
     type: link_default
-    weight: 18
+    weight: 19
     region: content
     settings:
       placeholder_url: ''
@@ -222,14 +242,10 @@ content:
       default_paragraph_type: ''
     third_party_settings: {  }
   field_topic:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 2
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_upload_or_link:
     type: options_buttons
@@ -239,33 +255,33 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 25
+    weight: 26
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 23
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 21
+    weight: 22
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 26
+    weight: 27
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 22
+    weight: 23
     region: content
     settings:
       display_label: true
@@ -280,7 +296,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 19
+    weight: 20
     region: content
     settings:
       match_operator: CONTAINS
@@ -289,7 +305,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 24
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
