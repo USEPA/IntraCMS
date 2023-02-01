@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.re_delegation.field_agency_delegation
     - field.field.node.re_delegation.field_conditions_restrictions
+    - field.field.node.re_delegation.field_effective_date
     - field.field.node.re_delegation.field_further_redelegation
     - field.field.node.re_delegation.field_further_redelegation_files
     - field.field.node.re_delegation.field_limitation
@@ -22,7 +23,7 @@ dependencies:
     - field.field.node.re_delegation.field_rescission_date
     - field.field.node.re_delegation.field_signed_memo
     - field.field.node.re_delegation.field_to_whom_delegated
-    - field.field.node.re_delegation.field_topic
+    - field.field.node.re_delegation.field_topic_area_of_authority
     - field.field.node.re_delegation.field_transmittal_notice
     - field.field.node.re_delegation.field_upload_further_delegation
     - field.field.node.re_delegation.field_upload_or_link
@@ -30,6 +31,7 @@ dependencies:
   module:
     - conditional_fields
     - content_moderation
+    - cshs
     - datetime
     - field_group
     - inline_entity_form
@@ -55,14 +57,14 @@ third_party_settings:
         id: ''
         open: false
         description: ''
-        required_fields: true
+        required_fields: false
     group_authority:
       children:
         - field_references
       label: 'Authority Citation(s)'
       region: content
       parent_name: ''
-      weight: 22
+      weight: 23
       format_type: details
       format_settings:
         classes: ''
@@ -78,7 +80,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 24
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -94,25 +96,31 @@ content:
     third_party_settings: {  }
   field_conditions_restrictions:
     type: options_buttons
-    weight: 17
+    weight: 16
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_effective_date:
+    type: datetime_default
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
   field_further_redelegation:
     type: options_buttons
-    weight: 12
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   field_further_redelegation_files:
     type: options_buttons
-    weight: 14
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
   field_limitation:
     type: text_textarea
-    weight: 18
+    weight: 17
     region: content
     settings:
       rows: 5
@@ -138,7 +146,7 @@ content:
             selector: ''
   field_link_to_further_redelegati:
     type: link_default
-    weight: 16
+    weight: 15
     region: content
     settings:
       placeholder_url: ''
@@ -182,7 +190,7 @@ content:
     third_party_settings: {  }
   field_policy_link:
     type: link_default
-    weight: 11
+    weight: 10
     region: content
     settings:
       placeholder_url: ''
@@ -190,6 +198,23 @@ content:
     third_party_settings:
       conditional_fields:
         1b23382b-6ecc-4c2f-9fbe-9d8af92f06a9:
+          entity_type: node
+          bundle: re_delegation
+          dependee: field_upload_or_link
+          settings:
+            state: required
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: link
+            effect: show
+            effect_options: {  }
+            selector: ''
+        02e0a731-0b1e-4149-a84d-b4c56f5ec09d:
           entity_type: node
           bundle: re_delegation
           dependee: field_upload_or_link
@@ -208,13 +233,30 @@ content:
             selector: ''
   field_policy_upload:
     type: media_library_widget
-    weight: 10
+    weight: 9
     region: content
     settings:
       media_types: {  }
     third_party_settings:
       conditional_fields:
         61a755b1-7d88-4649-8aa5-e2146c1cce5e:
+          entity_type: node
+          bundle: re_delegation
+          dependee: field_upload_or_link
+          settings:
+            state: required
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: upload
+            effect: show
+            effect_options: {  }
+            selector: ''
+        b8a137c3-63a0-4e25-84cf-448e0e3c1343:
           entity_type: node
           bundle: re_delegation
           dependee: field_upload_or_link
@@ -233,14 +275,14 @@ content:
             selector: ''
   field_re_redelegation_authority:
     type: tablefield
-    weight: 13
+    weight: 12
     region: content
     settings:
       input_type: textfield
     third_party_settings: {  }
   field_redelegation_authority:
     type: text_textarea
-    weight: 21
+    weight: 22
     region: content
     settings:
       rows: 5
@@ -261,7 +303,7 @@ content:
     third_party_settings: {  }
   field_related_resources:
     type: link_default
-    weight: 20
+    weight: 19
     region: content
     settings:
       placeholder_url: ''
@@ -296,39 +338,47 @@ content:
           bundle: re_delegation
           dependee: field_rescind_redelegation
           settings:
-            state: visible
+            state: required
             condition: checked
             grouping: AND
             values_set: 1
             value: ''
             values: {  }
             value_form:
-              value: true
+              value: 1
             effect: show
             effect_options: {  }
             selector: ''
   field_signed_memo:
     type: media_library_widget
-    weight: 19
+    weight: 18
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_to_whom_delegated:
-    type: entity_reference_autocomplete
-    weight: 8
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_topic:
-    type: options_select
+    type: cshs
     weight: 7
     region: content
-    settings: {  }
+    settings:
+      force_deepest: false
+      parent: '0'
+      level_labels: ''
+      hierarchy_depth: '0'
+      required_depth: '0'
+      save_lineage: 0
+    third_party_settings: {  }
+  field_topic_area_of_authority:
+    type: cshs
+    weight: 20
+    region: content
+    settings:
+      force_deepest: false
+      parent: '0'
+      level_labels: ''
+      save_lineage: false
+      hierarchy_depth: 0
+      required_depth: 0
     third_party_settings: {  }
   field_transmittal_notice:
     type: string_textfield
@@ -340,7 +390,7 @@ content:
     third_party_settings: {  }
   field_upload_further_delegation:
     type: media_library_widget
-    weight: 15
+    weight: 14
     region: content
     settings:
       media_types: {  }
@@ -365,39 +415,39 @@ content:
             selector: ''
   field_upload_or_link:
     type: options_buttons
-    weight: 9
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 29
+    weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 27
+    weight: 28
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 25
+    weight: 26
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 30
+    weight: 31
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 26
+    weight: 27
     region: content
     settings:
       display_label: true
@@ -412,7 +462,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 23
+    weight: 24
     region: content
     settings:
       match_operator: CONTAINS
@@ -421,7 +471,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 28
+    weight: 29
     region: content
     settings: {  }
     third_party_settings: {  }

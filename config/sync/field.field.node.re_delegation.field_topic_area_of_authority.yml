@@ -1,17 +1,17 @@
-uuid: 1d7b1fc1-3e80-4ae0-b73a-bf545725da76
+uuid: ee40f728-c07f-475d-a2c7-5300107e605f
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_to_whom_delegated
+    - field.storage.node.field_topic_area_of_authority
     - node.type.re_delegation
-    - taxonomy.vocabulary.delegation_authorities
-id: node.re_delegation.field_to_whom_delegated
-field_name: field_to_whom_delegated
+    - taxonomy.vocabulary.policy_topics
+id: node.re_delegation.field_topic_area_of_authority
+field_name: field_topic_area_of_authority
 entity_type: node
 bundle: re_delegation
-label: 'To Whom Delegated'
-description: "Select to whom the authority is delegated. \r\n"
+label: Topic
+description: 'Select the topic this Redelegation is associated with.'
 required: false
 translatable: true
 default_value: {  }
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      delegation_authorities: delegation_authorities
+      policy_topics: policy_topics
     sort:
       field: name
       direction: asc
