@@ -20,11 +20,9 @@ RUN ln -s /srv/drupal-root/vendor/simplesamlphp/simplesamlphp/www /srv/drupal-ro
 
 RUN rm -rf /app/*
 
-CMD ["php-fpm"]
-#COPY ./docker/scripts/entrypoint.sh . 
-#RUN chmod +x ./entrypoint.sh
-#ENTRYPOINT ["sh", "./entrypoint.sh"]
+#CMD ["php-fpm"]
 
-EXPOSE 9000
-#EXPOSE 80
+ENTRYPOINT ["/etc/entrypoint.sh"]
+
+EXPOSE 80 443 9000
 
