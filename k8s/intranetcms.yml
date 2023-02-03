@@ -51,8 +51,9 @@ spec:
           #tcpSocket:
           #  port: 9000
           httpGet:
-            path: /index.php
+            path: /
             port: 443
+            scheme: HTTPS
           initialDelaySeconds: 15
           periodSeconds: 15
           timeoutSeconds: 20
