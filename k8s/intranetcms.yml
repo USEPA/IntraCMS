@@ -48,15 +48,16 @@ spec:
         - name: WEB_HTTPS_ONLY
           value: "false"        
         livenessProbe:
-          #tcpSocket:
+          tcpSocket:
           #  port: 9000
-          httpGet:
-            path: /
             port: 80
-            scheme: HTTP
+          #httpGet:
+          #  path: /
+          #  port: 80
+          #  scheme: HTTP
           initialDelaySeconds: 15
           periodSeconds: 15
-          timeoutSeconds: 20
+          #timeoutSeconds: 20
           failureThreshold: 2
         readinessProbe:
           tcpSocket:
