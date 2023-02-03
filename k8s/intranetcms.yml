@@ -48,10 +48,15 @@ spec:
         - name: WEB_HTTPS_ONLY
           value: "false"        
         livenessProbe:
-          tcpSocket:
-            port: 9000
+          #tcpSocket:
+          #  port: 9000
+          httpGet:
+            path: /index.php
+            port: 443
           initialDelaySeconds: 15
           periodSeconds: 15
+          timeoutSeconds: 20
+          failureThreshold: 2
         readinessProbe:
           tcpSocket:
             port: 9000
