@@ -1,0 +1,22 @@
+uuid: be1ac3f6-f056-4386-b80d-b377b19d6f50
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: redelegations
+label: Redelegations
+type: 'canonical_entities:node'
+pattern: '/[node:group:title]/redelegations/[node:title]'
+selection_criteria:
+  eb01d53c-1e56-4be6-b6d2-7b73624b13e2:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: eb01d53c-1e56-4be6-b6d2-7b73624b13e2
+    context_mapping:
+      node: node
+    bundles:
+      re_delegation: re_delegation
+selection_logic: and
+weight: -5
+relationships: {  }
