@@ -46,6 +46,20 @@ third_party_settings:
       label: 'Signed Memo'
       parent_name: ''
       region: content
+      weight: 20
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+    group_related_resource_s_:
+      children:
+        - field_related_resources
+      label: 'Related Resources'
+      parent_name: ''
+      region: content
       weight: 21
       format_type: details
       format_settings:
@@ -55,18 +69,20 @@ third_party_settings:
         open: false
         description: ''
         required_fields: false
-    group_related_resource_s_:
-      children: {  }
-      label: 'Related Resources'
+    group_references:
+      children:
+        - field_redelegation_authority
+        - field_references
+      label: References
       parent_name: ''
-      region: hidden
-      weight: 20
+      region: content
+      weight: 10
       format_type: details
       format_settings:
         classes: ''
         show_empty_fields: false
         id: ''
-        open: false
+        open: true
         description: ''
         required_fields: false
 id: node.re_delegation.default
@@ -96,33 +112,33 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 15
+    weight: 14
     region: content
   field_further_redelegation_files:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 17
+    weight: 16
     region: content
   field_limitation:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 20
+    weight: 19
     region: content
   field_link_to_further_redelegati:
     type: link
     label: above
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
-    weight: 18
+    weight: 17
     region: content
   field_policy_aaship_region:
     type: entity_reference_label
@@ -150,7 +166,7 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 14
+    weight: 13
     region: content
   field_policy_upload:
     type: entity_reference_entity_view
@@ -159,7 +175,7 @@ content:
       view_mode: link
       link: false
     third_party_settings: {  }
-    weight: 13
+    weight: 12
     region: content
   field_re_redelegation_authority:
     type: tablefield
@@ -168,14 +184,14 @@ content:
       row_header: true
       column_header: false
     third_party_settings: {  }
-    weight: 16
+    weight: 15
     region: content
   field_redelegation_authority:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 10
+    weight: 11
     region: content
   field_references:
     type: entity_reference_revisions_entity_view
@@ -184,19 +200,19 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 11
+    weight: 12
     region: content
   field_related_resources:
     type: link
     label: above
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
-    weight: 23
+    weight: 22
     region: content
   field_replacing:
     type: entity_reference_label
@@ -242,7 +258,7 @@ content:
       linked: 0
       reverse: 0
     third_party_settings: {  }
-    weight: 12
+    weight: 11
     region: content
   field_topic_area_of_authority:
     type: entity_reference_label
@@ -267,7 +283,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 19
+    weight: 18
     region: content
   links:
     settings: {  }
