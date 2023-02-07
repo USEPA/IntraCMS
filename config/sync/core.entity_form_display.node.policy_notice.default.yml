@@ -25,6 +25,7 @@ dependencies:
   module:
     - conditional_fields
     - content_moderation
+    - cshs
     - datetime
     - field_group
     - link
@@ -42,7 +43,7 @@ third_party_settings:
         - field_related_ipi_s_
         - field_related_agency_forms
         - field_related_resources
-      label: 'Related Directives, Forms, and Resources'
+      label: 'Related Fields'
       region: content
       parent_name: ''
       weight: 13
@@ -52,7 +53,7 @@ third_party_settings:
         show_empty_fields: false
         id: ''
         description: ''
-        required_fields: true
+        required_fields: false
 id: node.policy_notice.default
 targetEntityType: node
 bundle: policy_notice
@@ -138,6 +139,23 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
+        9b8e0758-4842-4aaa-8759-af1494edfa7a:
+          entity_type: node
+          bundle: policy_notice
+          dependee: field_upload_or_link
+          settings:
+            state: required
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: link
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_policy_purpose:
     type: text_textarea
     weight: 4
@@ -170,6 +188,23 @@ content:
           dependee: field_upload_or_link
           settings:
             state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: upload
+            effect: show
+            effect_options: {  }
+            selector: ''
+        982d4c9d-475f-4f2e-9c81-de8e2661471b:
+          entity_type: node
+          bundle: policy_notice
+          dependee: field_upload_or_link
+          settings:
+            state: required
             condition: value
             grouping: AND
             values_set: 1
@@ -242,10 +277,16 @@ content:
       default_paragraph_type: ''
     third_party_settings: {  }
   field_topic:
-    type: options_select
+    type: cshs
     weight: 2
     region: content
-    settings: {  }
+    settings:
+      force_deepest: false
+      parent: '0'
+      level_labels: ''
+      save_lineage: false
+      hierarchy_depth: 0
+      required_depth: 0
     third_party_settings: {  }
   field_upload_or_link:
     type: options_buttons

@@ -26,6 +26,7 @@ dependencies:
   module:
     - conditional_fields
     - content_moderation
+    - cshs
     - datetime
     - field_group
     - link
@@ -42,7 +43,8 @@ third_party_settings:
         - field_related_ipi_s_
         - field_related_policy_notice
         - field_related_agency_forms
-      label: 'Related Directives, Forms, and Resources'
+        - field_related_resources
+      label: 'Related Fields'
       region: content
       parent_name: ''
       weight: 14
@@ -146,6 +148,23 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
+        6c8df073-6cd4-4c0b-855d-c6a951d978df:
+          entity_type: node
+          bundle: interagency_policy_issuance_ipi_
+          dependee: field_upload_or_link
+          settings:
+            state: required
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: link
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_policy_purpose:
     type: text_textarea
     weight: 4
@@ -168,6 +187,23 @@ content:
           dependee: field_upload_or_link
           settings:
             state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: upload
+            effect: show
+            effect_options: {  }
+            selector: ''
+        a38949b6-8127-4304-a054-fec0e9a347b6:
+          entity_type: node
+          bundle: interagency_policy_issuance_ipi_
+          dependee: field_upload_or_link
+          settings:
+            state: required
             condition: value
             grouping: AND
             values_set: 1
@@ -231,7 +267,7 @@ content:
     third_party_settings: {  }
   field_related_resources:
     type: link_default
-    weight: 26
+    weight: 20
     region: content
     settings:
       placeholder_url: ''
@@ -256,10 +292,16 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
   field_topic:
-    type: options_select
+    type: cshs
     weight: 2
     region: content
-    settings: {  }
+    settings:
+      force_deepest: false
+      parent: '0'
+      level_labels: ''
+      save_lineage: false
+      hierarchy_depth: 0
+      required_depth: 0
     third_party_settings: {  }
   field_upload_or_link:
     type: options_buttons
