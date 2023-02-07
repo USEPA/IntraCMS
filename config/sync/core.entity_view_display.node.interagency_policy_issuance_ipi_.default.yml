@@ -26,9 +26,32 @@ dependencies:
   module:
     - datetime
     - entity_reference_revisions
+    - field_group
     - link
     - text
     - user
+third_party_settings:
+  field_group:
+    group_re:
+      children:
+        - field_related_policy
+        - field_related_gpi_s_
+        - field_related_ipi_s_
+        - field_related_policy_notice
+        - field_related_agency_forms
+        - field_related_resources
+      label: 'Related Fields'
+      parent_name: ''
+      region: content
+      weight: 12
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+        required_fields: false
 id: node.interagency_policy_issuance_ipi_.default
 targetEntityType: node
 bundle: interagency_policy_issuance_ipi_
@@ -39,35 +62,35 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 3
+    weight: 5
     region: content
   field_cfr_definition:
     type: link
-    label: above
+    label: inline
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
-    weight: 6
+    weight: 11
     region: content
   field_effective_date:
     type: datetime_default
     label: inline
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: month_day_year
     third_party_settings: {  }
-    weight: 13
+    weight: 3
     region: content
   field_policy_background:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 8
+    weight: 6
     region: content
   field_policy_definitions:
     type: entity_reference_label
@@ -75,14 +98,14 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 14
+    weight: 19
     region: content
   field_policy_guidance:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 4
+    weight: 7
     region: content
   field_policy_identifier:
     type: string
@@ -90,17 +113,17 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 15
+    weight: 1
     region: content
   field_policy_link:
     type: link
     label: inline
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
     weight: 10
     region: content
@@ -109,13 +132,14 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 4
     region: content
   field_policy_upload:
-    type: entity_reference_label
+    type: entity_reference_entity_view
     label: inline
     settings:
-      link: true
+      view_mode: link
+      link: false
     third_party_settings: {  }
     weight: 9
     region: content
@@ -125,7 +149,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 18
+    weight: 17
     region: content
   field_related_gpi_s_:
     type: entity_reference_label
@@ -133,7 +157,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 12
+    weight: 14
     region: content
   field_related_ipi_s_:
     type: entity_reference_label
@@ -141,7 +165,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 7
+    weight: 15
     region: content
   field_related_policy:
     type: entity_reference_label
@@ -149,7 +173,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 11
+    weight: 13
     region: content
   field_related_policy_notice:
     type: entity_reference_label
@@ -157,19 +181,19 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 17
+    weight: 16
     region: content
   field_related_resources:
     type: link
     label: above
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
-    weight: 16
+    weight: 18
     region: content
   field_roles_and_responsibilities:
     type: entity_reference_revisions_entity_view
@@ -178,7 +202,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 5
+    weight: 8
     region: content
   field_topic:
     type: entity_reference_label
@@ -186,7 +210,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   links:
     settings: {  }
