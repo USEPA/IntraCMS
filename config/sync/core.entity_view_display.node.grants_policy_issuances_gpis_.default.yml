@@ -19,9 +19,6 @@ dependencies:
     - field.field.node.grants_policy_issuances_gpis_.field_related_policy
     - field.field.node.grants_policy_issuances_gpis_.field_related_policy_notice
     - field.field.node.grants_policy_issuances_gpis_.field_related_resources
-    - field.field.node.grants_policy_issuances_gpis_.field_rescind_this_gpi
-    - field.field.node.grants_policy_issuances_gpis_.field_rescission_date
-    - field.field.node.grants_policy_issuances_gpis_.field_rescission_notes
     - field.field.node.grants_policy_issuances_gpis_.field_roles_and_responsibilities
     - field.field.node.grants_policy_issuances_gpis_.field_topic
     - field.field.node.grants_policy_issuances_gpis_.field_upload_or_link
@@ -196,32 +193,6 @@ content:
       target: '0'
     third_party_settings: {  }
     weight: 15
-    region: content
-  field_rescind_this_gpi:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 14
-    region: content
-  field_rescission_date:
-    type: datetime_default
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
-    weight: 15
-    region: content
-  field_rescission_notes:
-    type: basic_string
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 16
     region: content
   field_roles_and_responsibilities:
     type: entity_reference_revisions_entity_view
