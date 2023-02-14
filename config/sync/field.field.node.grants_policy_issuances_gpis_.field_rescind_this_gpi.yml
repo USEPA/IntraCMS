@@ -1,0 +1,23 @@
+uuid: dc4bed80-9482-4346-96d4-819eb312c281
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rescind_this_gpi
+    - node.type.grants_policy_issuances_gpis_
+id: node.grants_policy_issuances_gpis_.field_rescind_this_gpi
+field_name: field_rescind_this_gpi
+entity_type: node
+bundle: grants_policy_issuances_gpis_
+label: 'Rescind this GPI'
+description: 'Check this box if you are rescinding this GPI'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Rescinded
+  off_label: Active
+field_type: boolean
