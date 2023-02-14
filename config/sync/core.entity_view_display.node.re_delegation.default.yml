@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.re_delegation.field_replacing
     - field.field.node.re_delegation.field_rescind_redelegation
     - field.field.node.re_delegation.field_rescission_date
+    - field.field.node.re_delegation.field_rescission_notes
     - field.field.node.re_delegation.field_signed_memo
     - field.field.node.re_delegation.field_to_whom_delegated
     - field.field.node.re_delegation.field_topic_area_of_authority
@@ -72,7 +73,7 @@ third_party_settings:
     group_references:
       children:
         - field_references
-      label: References
+      label: 'Authority Citations'
       parent_name: ''
       region: content
       weight: 11
@@ -83,7 +84,6 @@ third_party_settings:
         id: ''
         open: true
         description: ''
-        required_fields: false
 id: node.re_delegation.default
 targetEntityType: node
 bundle: re_delegation
@@ -239,6 +239,13 @@ content:
       format_type: month_day_year
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_rescission_notes:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 23
     region: content
   field_signed_memo:
     type: entity_reference_entity_view

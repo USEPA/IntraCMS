@@ -95,11 +95,11 @@
     {% if 'Rescinded' in content.field_rescind_redelegation[0] %}
 		<div class="usa-alert usa-alert-normalizer usa-alert--error">
 		<div class="usa-alert__body">
-		<p class="usa-alert__heading">This Delegation has been Rescinded</p>
+		<p class="usa-alert__heading">This Re-delegation has been Rescinded</p>
 		<p class="usa-alert__text">{{ content.field_rescission_date }}</p>
 		<p class="usa-alert__text">{{ content.field_rescission_notes }}</p>
 		<hr>
-		<p class="usa-alert__text"><strong>Delegation's Original Effective/Approval Date:</strong> {{ content.field_effective_date.0 }}</p>
+		<p class="usa-alert__text"><strong>Re-delegation's Original Effective/Approval Date:</strong> {{ content.field_effective_date.0 }}</p>
 		</div>
 		</div>
 	{% else %}
