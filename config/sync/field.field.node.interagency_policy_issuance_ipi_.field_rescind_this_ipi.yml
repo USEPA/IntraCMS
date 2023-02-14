@@ -1,0 +1,23 @@
+uuid: 3e618f0c-0547-46e4-b233-ee359c329bdd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rescind_this_ipi
+    - node.type.interagency_policy_issuance_ipi_
+id: node.interagency_policy_issuance_ipi_.field_rescind_this_ipi
+field_name: field_rescind_this_ipi
+entity_type: node
+bundle: interagency_policy_issuance_ipi_
+label: 'Rescind this IPI'
+description: 'Check this box if you are rescinding this IPI. '
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Rescinded
+  off_label: Active
+field_type: boolean
