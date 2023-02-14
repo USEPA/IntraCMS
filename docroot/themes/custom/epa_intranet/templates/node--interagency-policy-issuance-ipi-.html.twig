@@ -95,17 +95,6 @@
 	{% endif %}
 	{{ title_suffix }}
 
-    {% if 'Rescinded' in content.field_rescind_this_ipi[0] %}
-		<div class="usa-alert usa-alert-normalizer usa-alert--error">
-		<div class="usa-alert__body">
-		<p class="usa-alert__heading">This IPI has been Rescinded</p>
-		<p class="usa-alert__text">{{ content.field_rescission_date }}</p>
-		<p class="usa-alert__text">{{ content.field_rescission_notes }}</p>
-		<hr>
-		<p class="usa-alert__text"><strong>IPI's Original Effective/Approval Date:</strong> {{ content.field_effective_date.0 }}</p>
-		</div>
-		</div>
-	{% else %}
 		{% if display_submitted %}
 			<div class="node__meta">
 				{{ author_picture }}
@@ -119,8 +108,7 @@
 			</div>
 		{% endif %}		
         <div{{ content_attributes.addClass('node__content') }}>
-            {{ content|without('field_rescind_this_ipi','field_rescission_date','field_rescission_notes') }}
+            {{ content }}
         </div>
-	{% endif %}
 
 	</article>

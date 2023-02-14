@@ -19,9 +19,6 @@ dependencies:
     - field.field.node.grants_policy_issuances_gpis_.field_related_policy
     - field.field.node.grants_policy_issuances_gpis_.field_related_policy_notice
     - field.field.node.grants_policy_issuances_gpis_.field_related_resources
-    - field.field.node.grants_policy_issuances_gpis_.field_rescind_this_gpi
-    - field.field.node.grants_policy_issuances_gpis_.field_rescission_date
-    - field.field.node.grants_policy_issuances_gpis_.field_rescission_notes
     - field.field.node.grants_policy_issuances_gpis_.field_roles_and_responsibilities
     - field.field.node.grants_policy_issuances_gpis_.field_topic
     - field.field.node.grants_policy_issuances_gpis_.field_upload_or_link
@@ -58,23 +55,6 @@ third_party_settings:
         id: ''
         description: ''
         required_fields: true
-    group_rescission:
-      children:
-        - field_rescind_this_gpi
-        - field_rescission_date
-        - field_rescission_notes
-      label: 'GPI STATUS (USE ONLY TO RESCIND THIS GPI)'
-      region: content
-      parent_name: ''
-      weight: 2
-      format_type: details
-      format_settings:
-        classes: ''
-        show_empty_fields: false
-        id: ''
-        open: false
-        description: ''
-        required_fields: false
 id: node.grants_policy_issuances_gpis_.default
 targetEntityType: node
 bundle: grants_policy_issuances_gpis_
@@ -292,27 +272,6 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
-    third_party_settings: {  }
-  field_rescind_this_gpi:
-    type: boolean_checkbox
-    weight: 24
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  field_rescission_date:
-    type: datetime_default
-    weight: 25
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_rescission_notes:
-    type: string_textarea
-    weight: 26
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
     third_party_settings: {  }
   field_roles_and_responsibilities:
     type: entity_reference_paragraphs

@@ -19,9 +19,6 @@ dependencies:
     - field.field.node.interagency_policy_issuance_ipi_.field_related_policy
     - field.field.node.interagency_policy_issuance_ipi_.field_related_policy_notice
     - field.field.node.interagency_policy_issuance_ipi_.field_related_resources
-    - field.field.node.interagency_policy_issuance_ipi_.field_rescind_this_ipi
-    - field.field.node.interagency_policy_issuance_ipi_.field_rescission_date
-    - field.field.node.interagency_policy_issuance_ipi_.field_rescission_notes
     - field.field.node.interagency_policy_issuance_ipi_.field_roles_and_responsibilities
     - field.field.node.interagency_policy_issuance_ipi_.field_topic
     - field.field.node.interagency_policy_issuance_ipi_.field_upload_or_link
@@ -197,32 +194,6 @@ content:
       target: '0'
     third_party_settings: {  }
     weight: 18
-    region: content
-  field_rescind_this_ipi:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 20
-    region: content
-  field_rescission_date:
-    type: datetime_default
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
-    weight: 21
-    region: content
-  field_rescission_notes:
-    type: basic_string
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 22
     region: content
   field_roles_and_responsibilities:
     type: entity_reference_revisions_entity_view
