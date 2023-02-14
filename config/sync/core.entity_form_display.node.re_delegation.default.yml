@@ -34,9 +34,9 @@ dependencies:
     - cshs
     - datetime
     - field_group
-    - inline_entity_form
     - link
     - media_library
+    - paragraphs
     - path
     - tablefield
     - text
@@ -61,18 +61,18 @@ third_party_settings:
     group_authority:
       children:
         - field_references
-      label: 'Authority Citation(s)'
+      label: Authority
       region: content
       parent_name: ''
-      weight: 23
+      weight: 10
       format_type: details
       format_settings:
         classes: ''
         show_empty_fields: false
         id: ''
-        open: false
+        open: true
         description: ''
-        required_fields: true
+        required_fields: false
 id: node.re_delegation.default
 targetEntityType: node
 bundle: re_delegation
@@ -96,31 +96,31 @@ content:
     third_party_settings: {  }
   field_conditions_restrictions:
     type: options_buttons
-    weight: 16
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
   field_effective_date:
     type: datetime_default
-    weight: 21
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   field_further_redelegation:
     type: options_buttons
-    weight: 11
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
   field_further_redelegation_files:
     type: options_buttons
-    weight: 13
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
   field_limitation:
     type: text_textarea
-    weight: 17
+    weight: 21
     region: content
     settings:
       rows: 5
@@ -146,7 +146,7 @@ content:
             selector: ''
   field_link_to_further_redelegati:
     type: link_default
-    weight: 15
+    weight: 18
     region: content
     settings:
       placeholder_url: ''
@@ -190,7 +190,7 @@ content:
     third_party_settings: {  }
   field_policy_link:
     type: link_default
-    weight: 10
+    weight: 14
     region: content
     settings:
       placeholder_url: ''
@@ -233,7 +233,7 @@ content:
             selector: ''
   field_policy_upload:
     type: media_library_widget
-    weight: 9
+    weight: 13
     region: content
     settings:
       media_types: {  }
@@ -275,35 +275,59 @@ content:
             selector: ''
   field_re_redelegation_authority:
     type: tablefield
-    weight: 12
+    weight: 16
     region: content
     settings:
       input_type: textfield
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        8f38e8ba-954b-470e-8a7b-4d514690d1fd:
+          entity_type: node
+          bundle: re_delegation
+          dependee: field_further_redelegation
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: 'May be redelegated.'
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_redelegation_authority:
     type: text_textarea
-    weight: 22
+    weight: 9
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
   field_references:
-    type: inline_entity_form_simple
+    type: paragraphs
     weight: 32
     region: content
     settings:
-      form_mode: default
-      override_labels: false
-      label_singular: ''
-      label_plural: ''
-      collapsible: false
-      collapsed: false
-      revision: false
+      title: 'Authority Citation'
+      title_plural: 'Authority Citations'
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: governing_authorities
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
     third_party_settings: {  }
   field_related_resources:
     type: link_default
-    weight: 19
+    weight: 23
     region: content
     settings:
       placeholder_url: ''
@@ -351,14 +375,14 @@ content:
             selector: ''
   field_signed_memo:
     type: media_library_widget
-    weight: 18
+    weight: 22
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_to_whom_delegated:
     type: cshs
-    weight: 7
+    weight: 11
     region: content
     settings:
       force_deepest: false
@@ -370,7 +394,7 @@ content:
     third_party_settings: {  }
   field_topic_area_of_authority:
     type: cshs
-    weight: 20
+    weight: 7
     region: content
     settings:
       force_deepest: false
@@ -390,7 +414,7 @@ content:
     third_party_settings: {  }
   field_upload_further_delegation:
     type: media_library_widget
-    weight: 14
+    weight: 19
     region: content
     settings:
       media_types: {  }
@@ -415,7 +439,7 @@ content:
             selector: ''
   field_upload_or_link:
     type: options_buttons
-    weight: 8
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }

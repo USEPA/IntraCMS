@@ -95,20 +95,32 @@
 	{% endif %}
 	{{ title_suffix }}
 
-	{% if display_submitted %}
-		<footer class="node__meta">
-			{{ author_picture }}
-			<div{{author_attributes.addClass('node__submitted')}}>
-				{% trans %}Submitted by
-				{{ author_name }}
-				on
-				{{ date }}{% endtrans %}
-				{{ metadata }}
+    {% if 'Rescinded' in content.field_rescind_redelegation[0] %}
+		<div class="usa-alert usa-alert-normalizer usa-alert--error">
+		<div class="usa-alert__body">
+		<p class="usa-alert__heading">This Delegation has been Rescinded</p>
+		<p class="usa-alert__text">{{ content.field_rescission_date }}</p>
+		<p class="usa-alert__text">{{ content.field_rescission_notes }}</p>
+		<hr>
+		<p class="usa-alert__text"><strong>Delegation's Original Effective/Approval Date:</strong> {{ content.field_effective_date.0 }}</p>
+		</div>
+		</div>
+	{% else %}
+		{% if display_submitted %}
+			<div class="node__meta">
+				{{ author_picture }}
+				<div{{author_attributes.addClass('node__submitted')}}>
+					{% trans %}Submitted by
+					{{ author_name }}
+					on
+					{{ date }}{% endtrans %}
+					{{ metadata }}
+				</div>
 			</div>
-		</footer>
+		{% endif %}		
+        <div{{ content_attributes.addClass('node__content') }}>
+            {{ content|without('field_rescind_redelegation','field_rescission_date','field_rescission_notes') }}
+        </div>
 	{% endif %}
 
-	<div{{ content_attributes.addClass('node__content') }}>
-    {{ content }}
-	</div>
 	</article>
