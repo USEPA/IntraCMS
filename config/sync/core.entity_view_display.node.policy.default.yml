@@ -22,6 +22,8 @@ dependencies:
     - field.field.node.policy.field_rescind_this_policy
     - field.field.node.policy.field_rescission_date
     - field.field.node.policy.field_rescission_notes
+    - field.field.node.policy.field_rescissions
+    - field.field.node.policy.field_rmds_chapter
     - field.field.node.policy.field_supplemental_documents
     - field.field.node.policy.field_topic_area_of_authority
     - field.field.node.policy.field_upload_or_link
@@ -57,7 +59,7 @@ third_party_settings:
       label: 'Related Directives, Forms, and Resources'
       parent_name: ''
       region: content
-      weight: 14
+      weight: 15
       format_type: details
       format_settings:
         classes: ''
@@ -71,7 +73,7 @@ third_party_settings:
       label: 'Policy Coordinator C/O'
       parent_name: ''
       region: content
-      weight: 18
+      weight: 19
       format_type: details
       format_settings:
         classes: ''
@@ -84,7 +86,7 @@ third_party_settings:
       label: Rescissions
       parent_name: ''
       region: content
-      weight: 16
+      weight: 17
       format_type: details
       format_settings:
         classes: ''
@@ -98,7 +100,7 @@ third_party_settings:
       label: 'Supplemental Documents'
       parent_name: ''
       region: content
-      weight: 15
+      weight: 16
       format_type: details
       format_settings:
         classes: ''
@@ -112,7 +114,7 @@ third_party_settings:
       label: References
       parent_name: ''
       region: content
-      weight: 17
+      weight: 18
       format_type: details
       format_settings:
         classes: ''
@@ -133,7 +135,7 @@ content:
       timezone_override: ''
       format_type: month_day_year
     third_party_settings: {  }
-    weight: 8
+    weight: 9
     region: content
   field_effective_date:
     type: datetime_default
@@ -142,7 +144,7 @@ content:
       timezone_override: ''
       format_type: month_day_year
     third_party_settings: {  }
-    weight: 7
+    weight: 8
     region: content
   field_keywords:
     type: entity_reference_label
@@ -150,7 +152,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 19
+    weight: 20
     region: content
   field_link_to_policy:
     type: link
@@ -162,7 +164,7 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 10
+    weight: 11
     region: content
   field_next_review_date:
     type: datetime_default
@@ -171,14 +173,14 @@ content:
       timezone_override: ''
       format_type: month_day_year
     third_party_settings: {  }
-    weight: 9
+    weight: 10
     region: content
   field_policy_background:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 13
+    weight: 14
     region: content
   field_policy_coordinator:
     type: cshs_full_hierarchy
@@ -195,7 +197,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 12
+    weight: 13
     region: content
   field_policy_type:
     type: list_default
@@ -211,7 +213,7 @@ content:
       view_mode: link
       link: false
     third_party_settings: {  }
-    weight: 11
+    weight: 12
     region: content
   field_prior_identifier:
     type: string
@@ -264,7 +266,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 22
+    weight: 21
     region: content
   field_rescind_this_policy:
     type: boolean
@@ -292,6 +294,14 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
+  field_rmds_chapter:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
   field_supplemental_documents:
     type: entity_reference_entity_view
     label: hidden
@@ -307,7 +317,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: content
   links:
     settings: {  }
