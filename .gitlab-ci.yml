@@ -9,17 +9,12 @@ variables:
   before_script:
   - if [ -n "$KUBE_CONTEXT" ]; then kubectl config use-context "$KUBE_CONTEXT"; fi
 
-#.terraform:
-#  before_script:
-#    - export TF_VAR_k8s_agent_token="$K8S_AGENT_TOKEN"
-
 Build IntranetCMS Image:
   stage: build
   rules:
-    - if: '$CI_COMMIT_BRANCH == "k8s"'
+    - if: '$CI_COMMIT_BRANCH == "development"'
   tags:
     - intranetcms-dev-runner
-  #when: manual
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
@@ -31,7 +26,7 @@ Build IntranetCMS Image:
 Development:
   stage: Non-Production Deployment
   rules:
-    - if: '$CI_COMMIT_BRANCH == "k8s"'
+    - if: '$CI_COMMIT_BRANCH == "development"'
   extends: [.kube-context]
   tags:
     - intranetcms-dev-runner
@@ -39,7 +34,6 @@ Development:
   script:
     - apk add gettext
     - envsubst < k8s/intranetcms.yml | kubectl apply -f - -n cms-45-dev
-    #- kubectl apply -f k8s/intranetcms.yml -n cms-45-dev    
   environment:
     name: dev
     url: 
