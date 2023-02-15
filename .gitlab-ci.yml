@@ -1,0 +1,43 @@
+stages:
+  
+  - build
+  - Non-Production Deployment  
+
+variables:
+  KUBE_CONTEXT: intranet-cms/intranet-cms-infra:intranetcms-dev-k8s-agent
+.kube-context:
+  before_script:
+  - if [ -n "$KUBE_CONTEXT" ]; then kubectl config use-context "$KUBE_CONTEXT"; fi
+
+Build IntranetCMS Image:
+  stage: build
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "development"'
+  tags:
+    - intranetcms-dev-runner
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/docker/Dockerfile --destination $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA
+
+Development:
+  stage: Non-Production Deployment
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "development"'
+  extends: [.kube-context]
+  tags:
+    - intranetcms-dev-runner
+  image: dtzar/helm-kubectl
+  script:
+    - apk add gettext
+    - envsubst < k8s/intranetcms.yml | kubectl apply -f - -n cms-45-dev
+  environment:
+    name: dev
+    url: 
+    kubernetes:
+      namespace: cms-45-dev
+
+
