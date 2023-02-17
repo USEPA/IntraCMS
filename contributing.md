@@ -33,7 +33,8 @@ Use a BASH command line (e.g. GIT BASH) for a Windows environment.
     1. Make sure the docroot is set correctly: `docroot: docroot`
     2. Update to the appropriate php version - currently 7.4: `php_version: "7.4"`
     3. Set the correct composer version - currently 1: `composer_version: "1"`
-5. `ddev composer site-install` Until the project installation profile transitions to minimal from standard, there will always be errors related to the shortcut menu. The install script removes existing shortcuts, sets the site UUID, enables config_split, and runs a `drush-cim`. The post install script removes web.config and install.php.
+5. Install drush. DDEV no longer includes drush by default. run `ddev composer require drush/drush`
+6. `ddev composer site-install` Until the project installation profile transitions to minimal from standard, there will always be errors related to the shortcut menu. The install script removes existing shortcuts, sets the site UUID, enables config_split, and runs a `drush-cim`. The post install script removes web.config and install.php.
 6. Update the config.yaml file located in the .ddev directory:
 7. `ddev launch`
 
