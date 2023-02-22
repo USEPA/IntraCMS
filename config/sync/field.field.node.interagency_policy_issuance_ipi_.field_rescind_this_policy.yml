@@ -1,0 +1,23 @@
+uuid: fd8a99a2-64ff-4feb-849c-8591e23318b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rescind_this_policy
+    - node.type.interagency_policy_issuance_ipi_
+id: node.interagency_policy_issuance_ipi_.field_rescind_this_policy
+field_name: field_rescind_this_policy
+entity_type: node
+bundle: interagency_policy_issuance_ipi_
+label: 'Rescind this IPI'
+description: 'Check this box ONLY if you are rescinding a released IPI, NOT when entering in a new one.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Rescinded
+  off_label: Active
+field_type: boolean
