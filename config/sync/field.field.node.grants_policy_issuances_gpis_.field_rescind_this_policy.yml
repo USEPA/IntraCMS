@@ -1,0 +1,23 @@
+uuid: c4f6e479-44a8-43e1-83a4-2dcddd4ef8f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rescind_this_policy
+    - node.type.grants_policy_issuances_gpis_
+id: node.grants_policy_issuances_gpis_.field_rescind_this_policy
+field_name: field_rescind_this_policy
+entity_type: node
+bundle: grants_policy_issuances_gpis_
+label: 'Rescind this GPI'
+description: 'Check this box ONLY if you are rescinding a released GPI, NOT when entering in a new one.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Rescinded
+  off_label: Active
+field_type: boolean
