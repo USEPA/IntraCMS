@@ -47,7 +47,7 @@ third_party_settings:
       label: 'Related Fields'
       parent_name: ''
       region: content
-      weight: 13
+      weight: 14
       format_type: details
       format_settings:
         classes: ''
@@ -62,7 +62,7 @@ third_party_settings:
       label: 'Roles & Responsiblities'
       parent_name: ''
       region: content
-      weight: 8
+      weight: 10
       format_type: details
       format_settings:
         classes: ''
@@ -71,6 +71,21 @@ third_party_settings:
         open: false
         description: ''
         required_fields: false
+    group_definitions:
+      children:
+        - field_policy_definitions
+        - field_cfr_definition
+      label: Definitions
+      parent_name: ''
+      region: content
+      weight: 11
+      format_type: accordion_item
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
 id: node.interagency_policy_issuance_ipi_.default
 targetEntityType: node
 bundle: interagency_policy_issuance_ipi_
@@ -81,7 +96,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 5
+    weight: 7
     region: content
   field_cfr_definition:
     type: link
@@ -93,7 +108,7 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 12
+    weight: 13
     region: content
   field_effective_date:
     type: datetime_default
@@ -109,7 +124,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 6
+    weight: 8
     region: content
   field_policy_definitions:
     type: entity_reference_entity_view
@@ -118,14 +133,14 @@ content:
       view_mode: default
       link: true
     third_party_settings: {  }
-    weight: 14
+    weight: 12
     region: content
   field_policy_guidance:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 7
+    weight: 9
     region: content
   field_policy_identifier:
     type: string
@@ -145,14 +160,14 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 11
+    weight: 5
     region: content
   field_policy_purpose:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 4
+    weight: 6
     region: content
   field_policy_upload:
     type: entity_reference_entity_view
@@ -161,7 +176,7 @@ content:
       view_mode: link
       link: false
     third_party_settings: {  }
-    weight: 10
+    weight: 4
     region: content
   field_related_agency_forms:
     type: entity_reference_label
@@ -169,7 +184,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 18
+    weight: 23
     region: content
   field_related_gpi_s_:
     type: entity_reference_label
@@ -177,7 +192,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 14
+    weight: 20
     region: content
   field_related_ipi_s_:
     type: entity_reference_label
@@ -185,7 +200,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 15
+    weight: 21
     region: content
   field_related_policy:
     type: entity_reference_label
@@ -193,7 +208,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 13
+    weight: 19
     region: content
   field_related_policy_notice:
     type: entity_reference_label
@@ -201,7 +216,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 16
+    weight: 22
     region: content
   field_related_resources:
     type: link
@@ -213,7 +228,7 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 19
+    weight: 24
     region: content
   field_rescind_this_policy:
     type: boolean
