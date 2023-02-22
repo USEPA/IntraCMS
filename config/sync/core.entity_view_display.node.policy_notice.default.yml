@@ -18,6 +18,9 @@ dependencies:
     - field.field.node.policy_notice.field_related_ipi_s_
     - field.field.node.policy_notice.field_related_policy
     - field.field.node.policy_notice.field_related_resources
+    - field.field.node.policy_notice.field_rescind_this_policy
+    - field.field.node.policy_notice.field_rescission_date
+    - field.field.node.policy_notice.field_rescission_notes
     - field.field.node.policy_notice.field_roles_and_responsibilities
     - field.field.node.policy_notice.field_topic
     - field.field.node.policy_notice.field_upload_or_link
@@ -217,6 +220,32 @@ content:
       target: '0'
     third_party_settings: {  }
     weight: 18
+    region: content
+  field_rescind_this_policy:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 19
+    region: content
+  field_rescission_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: month_day_year
+    third_party_settings: {  }
+    weight: 20
+    region: content
+  field_rescission_notes:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 21
     region: content
   field_roles_and_responsibilities:
     type: entity_reference_revisions_entity_view
