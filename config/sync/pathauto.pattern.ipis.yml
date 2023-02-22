@@ -1,0 +1,22 @@
+uuid: 1e6e61e8-b0c8-446a-a959-71ff6141ee93
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: ipis
+label: IPIs
+type: 'canonical_entities:node'
+pattern: '[node:group:title]/ipis/[node:title]'
+selection_criteria:
+  938c6547-a0b0-41e6-96a5-9a7cc63841ec:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 938c6547-a0b0-41e6-96a5-9a7cc63841ec
+    context_mapping:
+      node: node
+    bundles:
+      interagency_policy_issuance_ipi_: interagency_policy_issuance_ipi_
+selection_logic: and
+weight: -5
+relationships: {  }

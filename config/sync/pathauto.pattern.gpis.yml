@@ -1,0 +1,22 @@
+uuid: b3fe8186-e8e1-48e8-b945-6706bec79011
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: gpis
+label: GPIs
+type: 'canonical_entities:node'
+pattern: '[node:group:title]/gpis/[node:title]'
+selection_criteria:
+  95262142-fe70-49f0-be4b-6ab15fc734eb:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 95262142-fe70-49f0-be4b-6ab15fc734eb
+    context_mapping:
+      node: node
+    bundles:
+      grants_policy_issuances_gpis_: grants_policy_issuances_gpis_
+selection_logic: and
+weight: -5
+relationships: {  }
