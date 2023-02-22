@@ -116,7 +116,7 @@
 			</div>
 		{% endif %}	
         <div{{ content_attributes.addClass('node__content') }}>
-            {{ content|without('field_rescind_redelegation','field_rescission_date','field_rescission_notes', 'field_signed_memo') }}
+            {{ content|without('field_rescind_redelegation','field_rescission_date','field_rescission_notes','field_signed_memo','field_further_redelegation_files') }}
         </div>
 	{% endif %}
 	
