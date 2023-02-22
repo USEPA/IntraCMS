@@ -19,10 +19,14 @@ dependencies:
     - field.field.node.grants_policy_issuances_gpis_.field_related_policy
     - field.field.node.grants_policy_issuances_gpis_.field_related_policy_notice
     - field.field.node.grants_policy_issuances_gpis_.field_related_resources
+    - field.field.node.grants_policy_issuances_gpis_.field_rescind_this_policy
+    - field.field.node.grants_policy_issuances_gpis_.field_rescission_date
+    - field.field.node.grants_policy_issuances_gpis_.field_rescission_notes
     - field.field.node.grants_policy_issuances_gpis_.field_roles_and_responsibilities
     - field.field.node.grants_policy_issuances_gpis_.field_topic
     - field.field.node.grants_policy_issuances_gpis_.field_upload_or_link
     - node.type.grants_policy_issuances_gpis_
+    - workflows.workflow.editorial
   module:
     - conditional_fields
     - content_moderation
@@ -44,7 +48,7 @@ third_party_settings:
         - field_related_policy_notice
         - field_related_agency_forms
         - field_related_resources
-      label: 'Related Fields'
+      label: 'Related Directives, Forms, & Resources'
       region: content
       parent_name: ''
       weight: 16
@@ -53,6 +57,38 @@ third_party_settings:
         classes: ''
         show_empty_fields: false
         id: ''
+        description: ''
+        required_fields: true
+    group_gpi_status_use_only_to_res:
+      children:
+        - field_rescind_this_policy
+        - field_rescission_date
+        - field_rescission_notes
+      label: 'GPI STATUS (USE ONLY TO RESCIND THIS GPI)'
+      region: content
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+    group_roles_responsibilities:
+      children:
+        - field_roles_and_responsibilities
+      label: 'Roles & Responsibilities'
+      region: content
+      parent_name: ''
+      weight: 9
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
         description: ''
         required_fields: true
 id: node.grants_policy_issuances_gpis_.default
@@ -68,7 +104,7 @@ content:
     third_party_settings: {  }
   field_applicability:
     type: text_textarea
-    weight: 7
+    weight: 6
     region: content
     settings:
       rows: 5
@@ -84,13 +120,13 @@ content:
     third_party_settings: {  }
   field_effective_date:
     type: datetime_default
-    weight: 5
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   field_policy_background:
     type: text_textarea
-    weight: 8
+    weight: 7
     region: content
     settings:
       rows: 5
@@ -98,7 +134,7 @@ content:
     third_party_settings: {  }
   field_policy_definitions:
     type: entity_reference_autocomplete
-    weight: 14
+    weight: 13
     region: content
     settings:
       match_operator: CONTAINS
@@ -108,7 +144,7 @@ content:
     third_party_settings: {  }
   field_policy_guidance:
     type: text_textarea
-    weight: 9
+    weight: 8
     region: content
     settings:
       rows: 5
@@ -124,7 +160,7 @@ content:
     third_party_settings: {  }
   field_policy_link:
     type: link_default
-    weight: 13
+    weight: 12
     region: content
     settings:
       placeholder_url: ''
@@ -167,7 +203,7 @@ content:
             selector: ''
   field_policy_upload:
     type: media_library_widget
-    weight: 12
+    weight: 11
     region: content
     settings:
       media_types: {  }
@@ -209,7 +245,7 @@ content:
             selector: ''
   field_purpose:
     type: text_textarea
-    weight: 6
+    weight: 5
     region: content
     settings:
       rows: 5
@@ -237,7 +273,7 @@ content:
     third_party_settings: {  }
   field_related_ipi_s_:
     type: entity_reference_autocomplete
-    weight: 19
+    weight: 18
     region: content
     settings:
       match_operator: CONTAINS
@@ -273,6 +309,27 @@ content:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
+  field_rescind_this_policy:
+    type: boolean_checkbox
+    weight: 22
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_rescission_date:
+    type: datetime_default
+    weight: 23
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_rescission_notes:
+    type: string_textarea
+    weight: 24
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_roles_and_responsibilities:
     type: entity_reference_paragraphs
     weight: 10
@@ -287,7 +344,7 @@ content:
     third_party_settings: {  }
   field_topic:
     type: cshs
-    weight: 4
+    weight: 3
     region: content
     settings:
       force_deepest: false
@@ -299,39 +356,25 @@ content:
     third_party_settings: {  }
   field_upload_or_link:
     type: options_buttons
-    weight: 11
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 23
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 21
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    weight: 19
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 24
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    weight: 20
+    weight: 22
     region: content
     settings:
       display_label: true
@@ -355,8 +398,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 22
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  promote: true
+  sticky: true
