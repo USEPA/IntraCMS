@@ -1,6 +1,6 @@
 uuid: 5e866353-b54b-40ce-8d37-7485b36e63f2
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - taxonomy.vocabulary.policy_definitions
@@ -348,10 +348,10 @@ display:
         filter_groups: false
       display_description: ''
       display_extenders: {  }
-      path: policy/definitions/export
+      path: agency-directives/definitions/export
       filename: policy-definitions.csv
       automatic_download: false
-      store_in_public_file_directory: null
+      store_in_public_file_directory: false
       custom_redirect_path: false
       redirect_to_display: none
       include_query_params: false
@@ -536,7 +536,7 @@ display:
     display_options:
       display_description: ''
       display_extenders: {  }
-      path: policy/definitions
+      path: agency-directives/definitions
     cache_metadata:
       max-age: -1
       contexts:
