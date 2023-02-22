@@ -1,0 +1,22 @@
+uuid: 0212164a-56d8-4f0c-8dfc-fc544c28691c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: policy_notices
+label: 'Policy Notices'
+type: 'canonical_entities:node'
+pattern: '[node:group:title]/policy-notices/[node:title]'
+selection_criteria:
+  309688c6-f339-45d5-be27-0b0695f2f3fd:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 309688c6-f339-45d5-be27-0b0695f2f3fd
+    context_mapping:
+      node: node
+    bundles:
+      policy_notice: policy_notice
+selection_logic: and
+weight: -5
+relationships: {  }
