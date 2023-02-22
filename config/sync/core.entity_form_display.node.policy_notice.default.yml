@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.policy_notice.field_topic
     - field.field.node.policy_notice.field_upload_or_link
     - node.type.policy_notice
+    - workflows.workflow.editorial
   module:
     - conditional_fields
     - content_moderation
@@ -43,7 +44,7 @@ third_party_settings:
         - field_related_ipi_s_
         - field_related_agency_forms
         - field_related_resources
-      label: 'Related Fields'
+      label: 'Related Directives, Forms, & Resources'
       region: content
       parent_name: ''
       weight: 13
@@ -61,7 +62,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 21
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -296,33 +297,19 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 26
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 24
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    weight: 22
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 27
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    weight: 23
+    weight: 19
     region: content
     settings:
       display_label: true
@@ -337,7 +324,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 20
+    weight: 14
     region: content
     settings:
       match_operator: CONTAINS
@@ -346,8 +333,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 25
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  promote: true
+  sticky: true
