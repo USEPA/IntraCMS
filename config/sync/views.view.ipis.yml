@@ -8,7 +8,7 @@ dependencies:
     - field.storage.node.field_policy_purpose
     - field.storage.node.field_topic
     - node.type.interagency_policy_issuance_ipi_
-    - taxonomy.vocabulary.agency_delegations_manual_chapte
+    - taxonomy.vocabulary.policy_topics
   module:
     - datetime
     - node
@@ -690,8 +690,8 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          vid: agency_delegations_manual_chapte
-          type: select
+          vid: policy_topics
+          type: cshs
           hierarchy: false
           limit: true
           error_message: true
@@ -897,8 +897,8 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          vid: agency_delegations_manual_chapte
-          type: select
+          vid: policy_topics
+          type: cshs
           hierarchy: false
           limit: true
           error_message: true
