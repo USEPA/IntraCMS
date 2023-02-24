@@ -65,7 +65,7 @@ third_party_settings:
     group_authority:
       children:
         - field_references
-      label: Authority
+      label: References
       region: content
       parent_name: ''
       weight: 10
@@ -136,13 +136,13 @@ content:
     third_party_settings: {  }
   field_further_redelegation:
     type: options_buttons
-    weight: 17
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
   field_further_redelegation_files:
     type: options_buttons
-    weight: 19
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -174,7 +174,7 @@ content:
             selector: ''
   field_link_to_further_redelegati:
     type: link_default
-    weight: 13
+    weight: 19
     region: content
     settings:
       placeholder_url: ''
@@ -188,7 +188,7 @@ content:
           settings:
             state: visible
             condition: value
-            grouping: AND
+            grouping: XOR
             values_set: 1
             value: ''
             values: {  }
@@ -218,7 +218,7 @@ content:
     third_party_settings: {  }
   field_policy_link:
     type: link_default
-    weight: 16
+    weight: 14
     region: content
     settings:
       placeholder_url: ''
@@ -261,7 +261,7 @@ content:
             selector: ''
   field_policy_upload:
     type: media_library_widget
-    weight: 15
+    weight: 13
     region: content
     settings:
       media_types: {  }
@@ -303,7 +303,7 @@ content:
             selector: ''
   field_re_redelegation_authority:
     type: tablefield
-    weight: 18
+    weight: 16
     region: content
     settings:
       input_type: textfield
@@ -339,15 +339,15 @@ content:
     weight: 17
     region: content
     settings:
-      title: 'Authority Citation'
-      title_plural: 'Authority Citations'
-      edit_mode: open
+      title: Reference
+      title_plural: References
+      edit_mode: closed
       closed_mode: summary
       autocollapse: none
       closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: governing_authorities
+      default_paragraph_type: _none
       features:
         add_above: '0'
         collapse_edit_all: collapse_edit_all
@@ -450,7 +450,7 @@ content:
     third_party_settings: {  }
   field_upload_further_delegation:
     type: media_library_widget
-    weight: 14
+    weight: 18
     region: content
     settings:
       media_types: {  }
@@ -463,7 +463,7 @@ content:
           settings:
             state: visible
             condition: value
-            grouping: AND
+            grouping: XOR
             values_set: 1
             value: ''
             values: {  }
