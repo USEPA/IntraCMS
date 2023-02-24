@@ -16,6 +16,7 @@ dependencies:
     - taxonomy
     - text
     - user
+    - vefl
     - views_autocomplete_filters
 id: gpis
 label: GPIs
@@ -351,7 +352,7 @@ display:
             offset: false
             offset_label: Offset
       exposed_form:
-        type: basic
+        type: vefl_basic
         options:
           submit_button: Apply
           reset_button: false
@@ -360,6 +361,18 @@ display:
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          layout:
+            layout_id: layout_threecol_section
+            change: Change
+            widget_region:
+              combine: first
+              field_topic_target_id: second
+              sort_by: first
+              sort_order: first
+              items_per_page: first
+              offset: first
+              submit: third
+              reset: third
       access:
         type: perm
         options:
@@ -381,7 +394,14 @@ display:
             value: "<hr />\r\n<div class=\"usa-alert usa-alert--error\" role=\"alert\">\r\n  <div class=\"usa-alert__body\">\r\n    <h2 class=\"usa-alert__heading\">No Results</h2>\r\n    <p class=\"usa-alert__text\">\r\nThere are no items that match your filter criteria.\r\n    </p>\r\n  </div>\r\n</div>"
             format: rich_text
           tokenize: false
-      sorts: {  }
+      sorts:
+        field_policy_identifier_value:
+          id: field_policy_identifier_value
+          table: node__field_policy_identifier
+          field: field_policy_identifier_value
+          plugin_id: standard
+          expose:
+            field_identifier: field_policy_identifier_value
       arguments: {  }
       filters:
         status:
@@ -772,6 +792,20 @@ display:
     position: 3
     display_options:
       title: 'Active GPIs Block'
+      sorts:
+        field_policy_identifier_value:
+          id: field_policy_identifier_value
+          table: node__field_policy_identifier
+          field: field_policy_identifier_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
       filters:
         status:
           id: status
@@ -983,6 +1017,7 @@ display:
           1: AND
       defaults:
         title: false
+        sorts: false
         filters: false
         filter_groups: false
       display_description: ''
