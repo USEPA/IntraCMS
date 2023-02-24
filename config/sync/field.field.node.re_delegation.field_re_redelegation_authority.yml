@@ -12,7 +12,7 @@ field_name: field_re_redelegation_authority
 entity_type: node
 bundle: re_delegation
 label: 'Redelegation / Redelegation Authority'
-description: "Identify the lowest official within the delegatee's \r\norganization to whom the authority may be redelegated.  Redelegated authority should be specific e.g. Division Director of XYZ program, unless flexibility in executing the authority is required e.g. Division Director level or equivalent.  \r\n"
+description: "Identify the lowest official within the delegatee's organization to whom the authority may be redelegated.  Redelegated authority should be specific e.g. Division Director of XYZ program, unless flexibility in executing the authority is required e.g. Division Director level or equivalent.  \r\n"
 required: true
 translatable: false
 default_value:
@@ -23,7 +23,7 @@ default_value:
     value:
       0:
         - Item
-        - 'To request information from other federal agencies'
+        - 'Update Header Text Here'
       caption: ''
       1:
         - ''
@@ -35,9 +35,9 @@ settings:
   export: false
   restrict_rebuild: true
   restrict_import: true
-  lock_values: true
+  lock_values: false
   cell_processing: 0
   empty_rules:
     ignore_table_structure: false
-    ignore_table_header: false
+    ignore_table_header: true
 field_type: tablefield

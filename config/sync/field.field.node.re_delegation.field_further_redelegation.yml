@@ -1,21 +1,94 @@
-uuid: 33db32d8-ebed-4711-b4ba-5df470fa29b2
+uuid: 35424341-302d-4ae0-9167-3012ae4219fd
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_further_redelegation
+    - field.storage.node.field_references
     - node.type.re_delegation
+    - paragraphs.paragraphs_type.governing_authorities
   module:
-    - options
-id: node.re_delegation.field_further_redelegation
-field_name: field_further_redelegation
+    - entity_reference_revisions
+id: node.re_delegation.field_references
+field_name: field_references
 entity_type: node
 bundle: re_delegation
-label: 'Further Redelegation'
-description: 'Can this authority be redelegated'
+label: 'Authority Citations'
+description: "Provide a citation to the relevant statute, regulation, or Executive Order that describes the specific authority being delegated.\r\n\r\nAny statutory or regulatory citations refer to the most recent versions of those statutes and regulations; these citations should be updated when changes occur to the statute or regulation.\r\n"
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: list_string
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      governing_authorities: governing_authorities
+    negate: 0
+    target_bundles_drag_drop:
+      contact:
+        weight: 23
+        enabled: false
+      dynamic_list:
+        weight: 24
+        enabled: false
+      governing_authorities:
+        weight: 25
+        enabled: true
+      heading_title_and_text:
+        weight: 26
+        enabled: false
+      hero_carousel:
+        weight: 27
+        enabled: false
+      list_of_link:
+        weight: 28
+        enabled: false
+      policy_roles:
+        weight: 29
+        enabled: false
+      question_and_answer:
+        weight: 30
+        enabled: false
+      rich_text:
+        weight: 31
+        enabled: false
+      slide:
+        weight: 32
+        enabled: false
+      slide_show:
+        weight: 33
+        enabled: false
+      title_and_text:
+        weight: 34
+        enabled: false
+      uswds_card:
+        weight: 35
+        enabled: false
+      uswds_card_set:
+        weight: 36
+        enabled: false
+      uswds_column:
+        weight: 37
+        enabled: false
+      uswds_graphic_list:
+        weight: 38
+        enabled: false
+      uswds_grid:
+        weight: 39
+        enabled: false
+      uswds_hero:
+        weight: 40
+        enabled: false
+      uswds_media_block:
+        weight: 41
+        enabled: false
+      uswds_text:
+        weight: 42
+        enabled: false
+      views_reference_list:
+        weight: 43
+        enabled: false
+      webform:
+        weight: 44
+        enabled: false
+field_type: entity_reference_revisions
