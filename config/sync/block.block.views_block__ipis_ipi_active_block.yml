@@ -1,0 +1,36 @@
+EXTERNAL SENDER: Do not click any links or open any attachments unless you trust the sender and know the content is safe.
+ 
+uuid: 55685458-74f2-4033-a0e2-d2ec177745a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.ipis
+  module:
+    - block_in_page_not_found
+    - system
+    - views
+  theme:
+    - epa_intranet
+id: views_block__ipis_ipi_active_block
+theme: epa_intranet
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:ipis-ipi_active_block'
+settings:
+  id: 'views_block:ipis-ipi_active_block'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
+  request_path:
+    id: request_path
+    negate: false
+    pages: /agency-directives/ipis
