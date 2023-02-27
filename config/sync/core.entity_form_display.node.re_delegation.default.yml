@@ -93,6 +93,25 @@ third_party_settings:
         open: true
         description: 'Lookup the related Agency Delegation. If the lookup field returns no results, use the Agency Delegation Link field to link directly to the Delegation.'
         required_fields: true
+    group_further_redelegations:
+      children:
+        - field_further_redelegation
+        - field_re_redelegation_authority
+        - field_further_redelegation_files
+        - field_upload_further_delegation
+        - field_link_to_further_redelegati
+      label: 'Further Redelegation Details'
+      region: content
+      parent_name: ''
+      weight: 17
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+        required_fields: true
 id: node.re_delegation.default
 targetEntityType: node
 bundle: re_delegation
@@ -100,7 +119,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 25
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -124,7 +143,7 @@ content:
     third_party_settings: {  }
   field_conditions_restrictions:
     type: options_buttons
-    weight: 20
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -136,19 +155,38 @@ content:
     third_party_settings: {  }
   field_further_redelegation:
     type: options_buttons
-    weight: 15
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_further_redelegation_files:
-    type: options_buttons
     weight: 17
     region: content
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields: {  }
+  field_further_redelegation_files:
+    type: options_buttons
+    weight: 19
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        1a4535ed-22db-4ba2-8268-a450a4356b20:
+          entity_type: node
+          bundle: re_delegation
+          dependee: field_further_redelegation
+          settings:
+            state: visible
+            condition: value
+            grouping: XOR
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: 'May be redelegated.'
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_limitation:
     type: text_textarea
-    weight: 21
+    weight: 16
     region: content
     settings:
       rows: 5
@@ -174,7 +212,7 @@ content:
             selector: ''
   field_link_to_further_redelegati:
     type: link_default
-    weight: 19
+    weight: 21
     region: content
     settings:
       placeholder_url: ''
@@ -303,7 +341,7 @@ content:
             selector: ''
   field_re_redelegation_authority:
     type: tablefield
-    weight: 16
+    weight: 18
     region: content
     settings:
       input_type: textfield
@@ -355,7 +393,7 @@ content:
     third_party_settings: {  }
   field_related_resources:
     type: link_default
-    weight: 23
+    weight: 19
     region: content
     settings:
       placeholder_url: ''
@@ -411,7 +449,7 @@ content:
     third_party_settings: {  }
   field_signed_memo:
     type: media_library_widget
-    weight: 22
+    weight: 18
     region: content
     settings:
       media_types: {  }
@@ -450,7 +488,7 @@ content:
     third_party_settings: {  }
   field_upload_further_delegation:
     type: media_library_widget
-    weight: 18
+    weight: 20
     region: content
     settings:
       media_types: {  }
@@ -481,19 +519,19 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 28
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 26
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 29
+    weight: 25
     region: content
     settings:
       display_label: true
@@ -508,7 +546,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 24
+    weight: 20
     region: content
     settings:
       match_operator: CONTAINS
@@ -517,7 +555,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 27
+    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }
