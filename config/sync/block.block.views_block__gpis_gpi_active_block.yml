@@ -1,0 +1,34 @@
+uuid: 65262874-518b-4b94-8514-f4cc06880643
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.gpis
+  module:
+    - block_in_page_not_found
+    - system
+    - views
+  theme:
+    - epa_intranet
+id: views_block__gpis_gpi_active_block
+theme: epa_intranet
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:gpis-gpi_active_block'
+settings:
+  id: 'views_block:gpis-gpi_active_block'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /agency-directives/gpis
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
