@@ -3,12 +3,11 @@ langcode: en
 status: true
 dependencies:
   module:
-    - ctools
     - node
 id: policy
-label: Policy
+label: Directives
 type: 'canonical_entities:node'
-pattern: '/[node:group:title]/policy/[node:title]'
+pattern: '/[node:group:title]/directives/[node:title]'
 selection_criteria:
   28f7b1ab-3286-4d48-bed6-0a34710a9992:
     id: node_type
@@ -18,10 +17,10 @@ selection_criteria:
       node: node
     bundles:
       policy: policy
-  e8650909-96dd-4c22-ad10-c245e4e88762:
+  5f847a8f-e1d5-4c44-88f5-344373aaaf8b:
     id: 'entity_bundle:node'
     negate: false
-    uuid: e8650909-96dd-4c22-ad10-c245e4e88762
+    uuid: 5f847a8f-e1d5-4c44-88f5-344373aaaf8b
     context_mapping:
       node: node
     bundles:
