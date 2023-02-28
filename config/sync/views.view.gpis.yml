@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_effective_date
-    - field.storage.node.field_policy_identifier
+    - field.storage.nodeviews.view.gpi.yml.field_policy_identifier
     - field.storage.node.field_purpose
     - field.storage.node.field_topic
     - node.type.grants_policy_issuances_gpis_
@@ -355,7 +355,7 @@ display:
         type: vefl_basic
         options:
           submit_button: Apply
-          reset_button: false
+          reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
