@@ -48,7 +48,7 @@ third_party_settings:
         - field_related_policy_notice
         - field_related_agency_forms
         - field_related_resources
-      label: 'Related Fields'
+      label: 'Related Directives, Forms, & Resources'
       region: content
       parent_name: ''
       weight: 16
@@ -58,7 +58,7 @@ third_party_settings:
         show_empty_fields: false
         id: ''
         description: ''
-        required_fields: true
+        required_fields: false
     group_redelegation_status_use_on:
       children:
         - field_rescind_this_policy
@@ -331,23 +331,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_roles_and_responsibilities:
-    type: paragraphs
+    type: entity_reference_paragraphs
     weight: 10
     region: content
     settings:
       title: Role
       title_plural: Roles
       edit_mode: open
-      closed_mode: summary
-      autocollapse: none
-      closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: policy_roles
-      features:
-        add_above: '0'
-        collapse_edit_all: '0'
-        duplicate: '0'
+      default_paragraph_type: _none
     third_party_settings: {  }
   field_topic:
     type: cshs

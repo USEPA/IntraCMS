@@ -44,7 +44,7 @@ third_party_settings:
         - field_related_policy_notice
         - field_related_agency_forms
         - field_related_resources
-      label: 'Related Fields'
+      label: 'Related Directives, Forms, & Resources'
       parent_name: ''
       region: content
       weight: 14
@@ -53,7 +53,7 @@ third_party_settings:
         classes: ''
         show_empty_fields: false
         id: ''
-        open: true
+        open: false
         description: ''
         required_fields: false
     group_roles_responsiblities:
@@ -79,13 +79,15 @@ third_party_settings:
       parent_name: ''
       region: content
       weight: 11
-      format_type: accordion_item
+      format_type: details
       format_settings:
         classes: ''
         show_empty_fields: false
         id: ''
-        formatter: closed
+        open: false
         description: ''
+        required_fields: false
+        formatter: closed
 id: node.interagency_policy_issuance_ipi_.default
 targetEntityType: node
 bundle: interagency_policy_issuance_ipi_
@@ -127,10 +129,9 @@ content:
     weight: 8
     region: content
   field_policy_definitions:
-    type: entity_reference_entity_view
-    label: above
+    type: entity_reference_label
+    label: hidden
     settings:
-      view_mode: default
       link: true
     third_party_settings: {  }
     weight: 12
@@ -245,7 +246,7 @@ content:
     label: above
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: month_day_year
     third_party_settings: {  }
     weight: 16
     region: content
