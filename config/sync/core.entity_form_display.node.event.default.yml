@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.event.field_meta_tags
     - field.field.node.event.field_show_on_agency_calendar
     - node.type.event
+    - workflows.workflow.event_editorial
   module:
     - content_moderation
     - entity_reference_tree
@@ -59,7 +60,14 @@ content:
       modal: false
       default_tz: user
       custom_tz: America/New_York
-      allowed_timezones: {  }
+      allowed_timezones:
+        - America/Los_Angeles
+        - America/New_York
+        - America/Chicago
+        - America/Puerto_Rico
+        - America/Anchorage
+        - America/Denver
+        - Pacific/Honolulu
       default_duration: 60
       default_duration_increments: |-
         30
@@ -69,6 +77,7 @@ content:
         custom
       show_extra: true
       hide_date: false
+      add_abbreviations: ''
     third_party_settings:
       smart_date_recur:
         modal: true
@@ -185,6 +194,7 @@ content:
     region: content
     settings:
       sidebar: true
+      use_details: true
     third_party_settings: {  }
   field_show_on_agency_calendar:
     type: boolean_checkbox
