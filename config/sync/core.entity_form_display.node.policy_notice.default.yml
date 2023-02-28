@@ -42,9 +42,9 @@ third_party_settings:
     group_related_directives_forms_a:
       children:
         - field_related_policy
-        - field_policy_relate_notice
         - field_related_gpi_s_
         - field_related_ipi_s_
+        - field_policy_relate_notice
         - field_related_agency_forms
         - field_related_resources
       label: 'Related Directives, Forms, & Resources'
@@ -202,7 +202,7 @@ content:
     third_party_settings: {  }
   field_policy_relate_notice:
     type: entity_reference_autocomplete
-    weight: 16
+    weight: 17
     region: content
     settings:
       match_operator: CONTAINS
@@ -254,7 +254,7 @@ content:
             selector: ''
   field_related_agency_forms:
     type: entity_reference_autocomplete
-    weight: 19
+    weight: 18
     region: content
     settings:
       match_operator: CONTAINS
@@ -264,7 +264,7 @@ content:
     third_party_settings: {  }
   field_related_gpi_s_:
     type: entity_reference_autocomplete
-    weight: 17
+    weight: 15
     region: content
     settings:
       match_operator: CONTAINS
@@ -274,7 +274,7 @@ content:
     third_party_settings: {  }
   field_related_ipi_s_:
     type: entity_reference_autocomplete
-    weight: 18
+    weight: 16
     region: content
     settings:
       match_operator: CONTAINS
@@ -294,7 +294,7 @@ content:
     third_party_settings: {  }
   field_related_resources:
     type: link_default
-    weight: 20
+    weight: 19
     region: content
     settings:
       placeholder_url: ''
