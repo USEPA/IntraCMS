@@ -1,4 +1,4 @@
-uuid: 33db32d8-ebed-4711-b4ba-5df470fa29b2
+uuid: 5d54bedf-416b-49e7-a64f-6de9c2ff8b2d
 langcode: en
 status: true
 dependencies:
@@ -11,11 +11,13 @@ id: node.re_delegation.field_further_redelegation
 field_name: field_further_redelegation
 entity_type: node
 bundle: re_delegation
-label: 'Further Redelegation'
-description: 'Can this authority be redelegated'
-required: false
-translatable: false
-default_value: {  }
+label: 'Further Delegation'
+description: 'Can this authority be redelegated?'
+required: true
+translatable: true
+default_value:
+  -
+    value: 'May not be redelegated.'
 default_value_callback: ''
 settings: {  }
 field_type: list_string

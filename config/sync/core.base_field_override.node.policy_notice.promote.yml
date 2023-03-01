@@ -1,0 +1,22 @@
+uuid: 21f3ac65-58b3-49c3-a4f5-2d9461e4c8bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.policy_notice
+id: node.policy_notice.promote
+field_name: promote
+entity_type: node
+bundle: policy_notice
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

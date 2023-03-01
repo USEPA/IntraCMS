@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.re_delegation.field_agency_delegation
+    - field.field.node.re_delegation.field_agency_delegation_link
     - field.field.node.re_delegation.field_conditions_restrictions
     - field.field.node.re_delegation.field_effective_date
     - field.field.node.re_delegation.field_further_redelegation
@@ -29,6 +30,7 @@ dependencies:
     - field.field.node.re_delegation.field_upload_further_delegation
     - field.field.node.re_delegation.field_upload_or_link
     - node.type.re_delegation
+    - workflows.workflow.editorial
   module:
     - conditional_fields
     - content_moderation
@@ -63,10 +65,10 @@ third_party_settings:
     group_authority:
       children:
         - field_references
-      label: Authority
+      label: References
       region: content
       parent_name: ''
-      weight: 11
+      weight: 10
       format_type: details
       format_settings:
         classes: ''
@@ -75,6 +77,41 @@ third_party_settings:
         open: true
         description: ''
         required_fields: false
+    group_agency_delegation:
+      children:
+        - field_agency_delegation
+        - field_agency_delegation_link
+      label: 'Agency Delegation'
+      region: content
+      parent_name: ''
+      weight: 6
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: 'Lookup the related Agency Delegation. If the lookup field returns no results, use the Agency Delegation Link field to link directly to the Delegation.'
+        required_fields: true
+    group_further_redelegations:
+      children:
+        - field_further_redelegation
+        - field_re_redelegation_authority
+        - field_further_redelegation_files
+        - field_upload_further_delegation
+        - field_link_to_further_redelegati
+      label: 'Further Redelegation Details'
+      region: content
+      parent_name: ''
+      weight: 17
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+        required_fields: true
 id: node.re_delegation.default
 targetEntityType: node
 bundle: re_delegation
@@ -82,13 +119,13 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 26
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
   field_agency_delegation:
     type: entity_reference_autocomplete
-    weight: 3
+    weight: 9
     region: content
     settings:
       match_operator: CONTAINS
@@ -96,33 +133,60 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_agency_delegation_link:
+    type: link_default
+    weight: 10
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
   field_conditions_restrictions:
     type: options_buttons
-    weight: 21
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
   field_effective_date:
     type: datetime_default
-    weight: 9
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   field_further_redelegation:
     type: options_buttons
-    weight: 16
+    weight: 17
     region: content
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields: {  }
   field_further_redelegation_files:
     type: options_buttons
-    weight: 18
+    weight: 19
     region: content
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        1a4535ed-22db-4ba2-8268-a450a4356b20:
+          entity_type: node
+          bundle: re_delegation
+          dependee: field_further_redelegation
+          settings:
+            state: visible
+            condition: value
+            grouping: XOR
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: 'May be redelegated.'
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_limitation:
     type: text_textarea
-    weight: 22
+    weight: 16
     region: content
     settings:
       rows: 5
@@ -148,7 +212,7 @@ content:
             selector: ''
   field_link_to_further_redelegati:
     type: link_default
-    weight: 19
+    weight: 21
     region: content
     settings:
       placeholder_url: ''
@@ -162,7 +226,7 @@ content:
           settings:
             state: visible
             condition: value
-            grouping: AND
+            grouping: XOR
             values_set: 1
             value: ''
             values: {  }
@@ -174,7 +238,7 @@ content:
             selector: ''
   field_policy_aaship_region:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 3
     region: content
     settings:
       match_operator: CONTAINS
@@ -192,7 +256,7 @@ content:
     third_party_settings: {  }
   field_policy_link:
     type: link_default
-    weight: 15
+    weight: 14
     region: content
     settings:
       placeholder_url: ''
@@ -235,7 +299,7 @@ content:
             selector: ''
   field_policy_upload:
     type: media_library_widget
-    weight: 14
+    weight: 13
     region: content
     settings:
       media_types: {  }
@@ -277,7 +341,7 @@ content:
             selector: ''
   field_re_redelegation_authority:
     type: tablefield
-    weight: 17
+    weight: 18
     region: content
     settings:
       input_type: textfield
@@ -302,7 +366,7 @@ content:
             selector: ''
   field_redelegation_authority:
     type: text_textarea
-    weight: 10
+    weight: 9
     region: content
     settings:
       rows: 5
@@ -313,15 +377,15 @@ content:
     weight: 17
     region: content
     settings:
-      title: 'Authority Citation'
-      title_plural: 'Authority Citations'
-      edit_mode: open
+      title: Reference
+      title_plural: References
+      edit_mode: closed
       closed_mode: summary
       autocollapse: none
       closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: governing_authorities
+      default_paragraph_type: _none
       features:
         add_above: '0'
         collapse_edit_all: collapse_edit_all
@@ -329,7 +393,7 @@ content:
     third_party_settings: {  }
   field_related_resources:
     type: link_default
-    weight: 24
+    weight: 19
     region: content
     settings:
       placeholder_url: ''
@@ -337,7 +401,7 @@ content:
     third_party_settings: {  }
   field_replacing:
     type: entity_reference_autocomplete
-    weight: 7
+    weight: 8
     region: content
     settings:
       match_operator: CONTAINS
@@ -385,14 +449,14 @@ content:
     third_party_settings: {  }
   field_signed_memo:
     type: media_library_widget
-    weight: 23
+    weight: 18
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_to_whom_delegated:
     type: cshs
-    weight: 12
+    weight: 11
     region: content
     settings:
       force_deepest: false
@@ -404,7 +468,7 @@ content:
     third_party_settings: {  }
   field_topic_area_of_authority:
     type: cshs
-    weight: 8
+    weight: 2
     region: content
     settings:
       force_deepest: false
@@ -416,7 +480,7 @@ content:
     third_party_settings: {  }
   field_transmittal_notice:
     type: string_textfield
-    weight: 4
+    weight: 7
     region: content
     settings:
       size: 60
@@ -437,7 +501,7 @@ content:
           settings:
             state: visible
             condition: value
-            grouping: AND
+            grouping: XOR
             values_set: 1
             value: ''
             values: {  }
@@ -449,39 +513,25 @@ content:
             selector: ''
   field_upload_or_link:
     type: options_buttons
-    weight: 13
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 31
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 29
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    weight: 27
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 32
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    weight: 28
+    weight: 25
     region: content
     settings:
       display_label: true
@@ -496,7 +546,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 25
+    weight: 20
     region: content
     settings:
       match_operator: CONTAINS
@@ -505,8 +555,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 30
+    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  promote: true
+  sticky: true

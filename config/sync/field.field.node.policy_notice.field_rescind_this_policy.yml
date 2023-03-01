@@ -1,0 +1,23 @@
+uuid: ca9cfa8e-47de-4399-9ad7-635bc9425ca6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rescind_this_policy
+    - node.type.policy_notice
+id: node.policy_notice.field_rescind_this_policy
+field_name: field_rescind_this_policy
+entity_type: node
+bundle: policy_notice
+label: 'Rescind this Policy Notice'
+description: 'Check this box ONLY if you are rescinding a released Policy Notice, NOT when entering in a new one.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Rescinded
+  off_label: Active
+field_type: boolean
