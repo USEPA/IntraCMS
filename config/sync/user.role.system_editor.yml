@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - filter.format.full_html
+    - node.type.re_delegation
     - node.type.staff_member
     - taxonomy.vocabulary.event_host
     - taxonomy.vocabulary.organization
@@ -54,6 +55,7 @@ permissions:
   - 'create field_group_contact_info'
   - 'create field_meta_tags'
   - 'create field_show_on_official_portraits'
+  - 'create re_delegation content'
   - 'create terms in event_host'
   - 'create terms in organization'
   - 'create terms in program_offices_and_regions'
@@ -61,10 +63,14 @@ permissions:
   - 'create web_area group'
   - 'delete all revisions'
   - 'delete any media'
+  - 'delete any re_delegation content'
   - 'delete any staff_member content'
   - 'delete any webform'
   - 'delete any webform submission'
+  - 'delete own re_delegation content'
+  - 'delete re_delegation revisions'
   - 'dropzone upload files'
+  - 'edit any re_delegation content'
   - 'edit any webform'
   - 'edit any webform submission'
   - 'edit field_group_contact_info'
@@ -73,6 +79,7 @@ permissions:
   - 'edit own field_group_contact_info'
   - 'edit own field_meta_tags'
   - 'edit own field_show_on_official_portraits'
+  - 'edit own re_delegation content'
   - 'edit webform source'
   - 'enter all revision log entry'
   - 'moderated content bulk archive'
@@ -83,6 +90,7 @@ permissions:
   - 'override all published option'
   - 'override all revision option'
   - 'revert all revisions'
+  - 'revert re_delegation revisions'
   - 'update any media'
   - 'use editorial transition archive'
   - 'use editorial transition archived_published'
@@ -103,4 +111,5 @@ permissions:
   - 'view own field_group_contact_info'
   - 'view own field_meta_tags'
   - 'view own field_show_on_official_portraits'
+  - 'view re_delegation revisions'
   - 'view unpublished paragraphs'
