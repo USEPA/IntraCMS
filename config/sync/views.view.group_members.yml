@@ -211,7 +211,7 @@ display:
           type: entity_reference_label
           settings:
             link: false
-          group_column: target_id
+          group_column: entity_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -501,6 +501,63 @@ display:
             group_roles: '0'
             changed: '0'
             created: '0'
+        id:
+          id: id
+          table: file_usage
+          field: id
+          relationship: gc__user
+          group_type: group
+          admin_label: ''
+          plugin_id: numeric
+          label: 'Entity ID'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ','
+          format_plural: false
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
       pager:
         type: full
         options:
@@ -594,18 +651,23 @@ display:
       style:
         type: table
         options:
-          grouping: {  }
+          grouping:
+            -
+              field: id
+              rendered: true
+              rendered_strip: false
           row_class: ''
           default_row_class: true
           columns:
             name: name
+            status: status
             group_roles: group_roles
-            changed: changed
             created: created
             view_group_content: view_group_content
             edit_group_content: edit_group_content
             delete_group_content: delete_group_content
             dropbutton: dropbutton
+            id: id
           default: '-1'
           info:
             name:
@@ -615,14 +677,14 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            group_roles:
+            status:
+              sortable: false
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            changed:
-              sortable: true
-              default_sort_order: asc
+            group_roles:
               align: ''
               separator: ''
               empty_column: false
@@ -656,6 +718,13 @@ display:
               empty_column: false
               responsive: ''
             dropbutton:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            id:
               sortable: false
               default_sort_order: asc
               align: ''
