@@ -15,6 +15,7 @@ dependencies:
     - taxonomy
     - text
     - user
+    - vefl
     - views_autocomplete_filters
 id: policy_notices
 label: 'Policy Notices'
@@ -368,7 +369,7 @@ display:
             offset: false
             offset_label: Offset
       exposed_form:
-        type: basic
+        type: vefl_basic
         options:
           submit_button: Apply
           reset_button: true
@@ -377,6 +378,18 @@ display:
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          layout:
+            layout_id: layout_onecol
+            change: Change
+            widget_region:
+              combine: content
+              field_topic_target_id: content
+              sort_by: content
+              sort_order: content
+              items_per_page: content
+              offset: content
+              submit: content
+              reset: content
       access:
         type: perm
         options:
