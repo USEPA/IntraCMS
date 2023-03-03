@@ -257,7 +257,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: 'There are no news or announcements currently posted.'
+            value: 'There are no redelegations currently posted.'
             format: rich_text
           tokenize: false
       sorts:
@@ -663,6 +663,20 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'There are no news or announcements currently posted.'
+            format: rich_text
+          tokenize: false
       filters:
         status:
           id: status
@@ -733,6 +747,7 @@ display:
       row:
         type: fields
       defaults:
+        empty: false
         title: false
         pager: false
         style: false
@@ -986,7 +1001,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: 'There are no redelegations currently published.'
+            value: 'There are no news or announcements currently published.'
             format: rich_text
           tokenize: false
       filters:
@@ -1268,6 +1283,20 @@ display:
             offset: false
             offset_label: Offset
           quantity: 20
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'There are no redelegations currently posted.'
+            format: rich_text
+          tokenize: false
       sorts:
         created:
           id: created
@@ -1497,6 +1526,7 @@ display:
           separator: ''
           hide_empty: false
       defaults:
+        empty: false
         title: false
         pager: false
         style: false
