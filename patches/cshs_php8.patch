@@ -1,0 +1,22 @@
+diff --git a/src/CshsOptionsFromHelper.php b/src/CshsOptionsFromHelper.php
+index 0bf0e727..59a50072 100644
+--- a/src/CshsOptionsFromHelper.php
++++ b/src/CshsOptionsFromHelper.php
+@@ -62,7 +62,7 @@ public static function defaultSettings(): array {
+    * @return array
+    *   The array of settings.
+    */
+-  abstract public function getSettings(): array;
++  abstract public function getSettings();
+ 
+   /**
+    * Returns the value of a setting, or its default value if absent.
+@@ -81,7 +81,7 @@ public static function defaultSettings(): array {
+    * @return \Drupal\taxonomy\VocabularyInterface|null
+    *   The taxonomy vocabulary.
+    */
+-  abstract public function getVocabulary(): ?VocabularyInterface;
++  abstract public function getVocabulary();
+ 
+   /**
+    * Returns a short summary for the settings.
