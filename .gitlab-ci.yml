@@ -12,7 +12,7 @@ variables:
 Build IntranetCMS Image:
   stage: build
   rules:
-    - if: '$CI_COMMIT_BRANCH == "development"'
+    - if: '$CI_COMMIT_BRANCH == "dev-container"'
   tags:
     - intranetcms-dev-runner
   image:
@@ -26,7 +26,7 @@ Build IntranetCMS Image:
 Development:
   stage: Non-Production Deployment
   rules:
-    - if: '$CI_COMMIT_BRANCH == "development"'
+    - if: '$CI_COMMIT_BRANCH == "dev-container"'
   extends: [.kube-context]
   tags:
     - intranetcms-dev-runner
