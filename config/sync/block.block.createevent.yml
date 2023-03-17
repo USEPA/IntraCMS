@@ -5,7 +5,7 @@ dependencies:
   config:
     - fixed_block_content.fixed_block_content.create_event
   module:
-    - ctools
+    - block_in_page_not_found
     - fixed_block_content
     - node
     - system
@@ -24,38 +24,11 @@ settings:
   provider: fixed_block_content
   view_mode: ''
 visibility:
-  and_or:
-    id: and_or
-    negate: false
-    context_mapping: {  }
-    all: or
   request_path:
     id: request_path
     negate: false
     context_mapping: {  }
     pages: /calendar
-  node_type:
-    id: node_type
-    negate: true
-    context_mapping:
-      node: '@node.node_route_context:node'
-    bundles:
-      article: article
-      blog_post: blog_post
-      book: book
-      employee_profile: employee_profile
-      event: event
-      form: form
-      landing_page: landing_page
-      mass_mailer: mass_mailer
-      page: page
-      photos_of_the_week: photos_of_the_week
-      policy: policy
-      policy_delegation: policy_delegation
-      quiz: quiz
-      staff_member: staff_member
-      transmittal_notce: transmittal_notce
-      webform: webform
   'entity_bundle:node':
     id: 'entity_bundle:node'
     negate: true
@@ -78,3 +51,29 @@ visibility:
       staff_member: staff_member
       transmittal_notce: transmittal_notce
       webform: webform
+  node_type:
+    id: node_type
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      article: article
+      blog_post: blog_post
+      book: book
+      employee_profile: employee_profile
+      event: event
+      form: form
+      landing_page: landing_page
+      mass_mailer: mass_mailer
+      page: page
+      photos_of_the_week: photos_of_the_week
+      policy: policy
+      policy_delegation: policy_delegation
+      quiz: quiz
+      staff_member: staff_member
+      transmittal_notce: transmittal_notce
+      webform: webform
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
