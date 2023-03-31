@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * USWDS theme implementation to display a single page.
+ * USWDS theme implementation to display a single page..
  */
 #}
 
@@ -94,7 +94,8 @@
 
     <div class="grid-row grid-gap">
 
-      {% if page.sidebar_first %}
+      {# see https://www.drupal.org/project/drupal/issues/953034#comment-14192130 #}
+      {% if page.sidebar_first|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim %}
         <aside class="tablet:grid-col-3">
           {{ page.sidebar_first }}
         </aside>
@@ -104,7 +105,8 @@
         {{ page.content }}
       </div>
 
-      {% if page.sidebar_second %}
+      {# see https://www.drupal.org/project/drupal/issues/953034#comment-14192130 #}
+      {% if page.sidebar_second|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim %}
         <aside class="tablet:grid-col-3">
           {{ page.sidebar_second }}
         </aside>
