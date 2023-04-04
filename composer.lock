@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ffef4bfe16b33e911ff0db5696c20cc1",
+    "content-hash": "976655d6c467f7efeddc519d56a52cd1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -108,7 +108,7 @@
             "version": "3.6.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
+                "url": "git@github.com:jquery/jquery-dist.git",
                 "reference": "e786e3d9707ffd9b0dd330ca135b66344dcef85a"
             },
             "dist": {
@@ -4134,7 +4134,7 @@
                     "2949017: There is no way to delete or update file entities of other users incl. user/1": "https://www.drupal.org/files/issues/2022-03-24/allow-user-with-delete-any-files-to-delete-in-bulk.patch",
                     "3035113: JSON API": "https://www.drupal.org/files/issues/2021-12-28/3035113-33.patch",
                     "2985882: Error: Call to a member function getLabel() after enabling layout_builder": "https://www.drupal.org/files/issues/2022-05-30/2985882-field-142.patch",
-                    "923934: Block visibility has wrong logic": "https://www.drupal.org/files/issues/2022-07-06/reroll-for-9.4.1-923934-65.patch",
+                    "923934: Block visibility has wrong logic": "https://www.drupal.org/files/issues/2023-01-22/923934-80-9.4.x.patch",
                     "3008924: Callers of LayoutEntityHelperTrait::getEntitySections() do not account for the view mode": "https://www.drupal.org/files/issues/2022-07-11/3008924-33.patch",
                     "502340: hide book outline functionality on non-book-enabled node types": "https://www.drupal.org/files/issues/2021-01-18/502430-90.patch",
                     "2918537: Cannot save unpublished versions of published content for users without manage book privileges.": "https://www.drupal.org/files/issues/2020-10-18/2918537-63.patch",
@@ -4415,36 +4415,31 @@
         },
         {
             "name": "drupal/cshs",
-            "version": "1.7.0",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/cshs.git",
-                "reference": "8.x-1.7"
+                "reference": "8.x-3.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/cshs-8.x-1.7.zip",
-                "reference": "8.x-1.7",
-                "shasum": "3aa2438a7eff0a537ba504a041c4b973432472c5"
+                "url": "https://ftp.drupal.org/files/projects/cshs-8.x-3.6.zip",
+                "reference": "8.x-3.6",
+                "shasum": "d3989da7d546947644fa8ad99b490e04c8a7f252"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
-                "php": ">=7.1.0"
+                "php": ">=7.3.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.7",
-                    "datestamp": "1612535874",
+                    "version": "8.x-3.6",
+                    "datestamp": "1650996358",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "patches_applied": {
-                    "3166049: Integrate select into webform": "https://www.drupal.org/files/issues/2021-04-13/3166046-7.patch",
-                    "Fix webform UI selection of cshs type": "patches/cshs_webform_ui_fix.patch",
-                    "Fix webform UI selection of any type when preview is enabled": "patches/cshs_webform_ui_show_preview.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -13965,6 +13960,12 @@
                 "php": ">=5.3.0"
             },
             "type": "library",
+            "extra": {
+                "patches_applied": {
+                    "Fix whitelist check to be case insensitive": "https://github.com/h5p/h5p-editor-php-library/commit/bd871a3181f3e4a343351ae6a22d773a74d928b7.diff",
+                    "Fix PHP 8 deprecation issue": "https://github.com/h5p/h5p-editor-php-library/commit/2edfd9b9e72d20e3b61f17a6836da21edb370624.diff"
+                }
+            },
             "autoload": {
                 "files": [
                     "h5peditor.class.php",
