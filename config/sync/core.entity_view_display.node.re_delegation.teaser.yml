@@ -4,14 +4,16 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.re_delegation.field_admin_update_date
     - field.field.node.re_delegation.field_agency_delegation
     - field.field.node.re_delegation.field_agency_delegation_link
-    - field.field.node.re_delegation.field_conditions_restrictions
     - field.field.node.re_delegation.field_effective_date
     - field.field.node.re_delegation.field_further_redelegation
     - field.field.node.re_delegation.field_further_redelegation_files
     - field.field.node.re_delegation.field_limitation
+    - field.field.node.re_delegation.field_limitations
     - field.field.node.re_delegation.field_link_to_further_redelegati
+    - field.field.node.re_delegation.field_next_review_date
     - field.field.node.re_delegation.field_policy_aaship_region
     - field.field.node.re_delegation.field_policy_identifier
     - field.field.node.re_delegation.field_policy_link
@@ -45,14 +47,16 @@ content:
     region: content
 hidden:
   content_moderation_control: true
+  field_admin_update_date: true
   field_agency_delegation: true
   field_agency_delegation_link: true
-  field_conditions_restrictions: true
   field_effective_date: true
   field_further_redelegation: true
   field_further_redelegation_files: true
   field_limitation: true
+  field_limitations: true
   field_link_to_further_redelegati: true
+  field_next_review_date: true
   field_policy_aaship_region: true
   field_policy_identifier: true
   field_policy_link: true

@@ -1,0 +1,21 @@
+uuid: 70d8e369-0e85-457d-b1a3-35e7f24babf7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_next_review_date
+    - node.type.re_delegation
+  module:
+    - datetime
+id: node.re_delegation.field_next_review_date
+field_name: field_next_review_date
+entity_type: node
+bundle: re_delegation
+label: 'Next Review Date'
+description: 'Enter a date in which the redelegation should be reviewed again.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
