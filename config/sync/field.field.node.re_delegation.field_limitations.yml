@@ -1,0 +1,21 @@
+uuid: c0ea96a6-2dc7-474b-834f-c05b1e376b49
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_limitations
+    - node.type.re_delegation
+  module:
+    - options
+id: node.re_delegation.field_limitations
+field_name: field_limitations
+entity_type: node
+bundle: re_delegation
+label: Limitations
+description: 'If there are any limitations to this redelegation, select "This redelegation has the following limitations:" and then enter the limitations in the field below.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

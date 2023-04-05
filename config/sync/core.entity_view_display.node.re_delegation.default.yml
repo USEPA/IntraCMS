@@ -3,14 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.re_delegation.field_admin_update_date
     - field.field.node.re_delegation.field_agency_delegation
     - field.field.node.re_delegation.field_agency_delegation_link
-    - field.field.node.re_delegation.field_conditions_restrictions
     - field.field.node.re_delegation.field_effective_date
     - field.field.node.re_delegation.field_further_redelegation
     - field.field.node.re_delegation.field_further_redelegation_files
     - field.field.node.re_delegation.field_limitation
+    - field.field.node.re_delegation.field_limitations
     - field.field.node.re_delegation.field_link_to_further_redelegati
+    - field.field.node.re_delegation.field_next_review_date
     - field.field.node.re_delegation.field_policy_aaship_region
     - field.field.node.re_delegation.field_policy_identifier
     - field.field.node.re_delegation.field_policy_link
@@ -48,7 +50,7 @@ third_party_settings:
       label: 'Signed Memo'
       parent_name: ''
       region: content
-      weight: 22
+      weight: 23
       format_type: details
       format_settings:
         classes: ''
@@ -62,7 +64,7 @@ third_party_settings:
       label: 'Related Resources'
       parent_name: ''
       region: content
-      weight: 23
+      weight: 24
       format_type: details
       format_settings:
         classes: ''
@@ -77,7 +79,7 @@ third_party_settings:
       label: 'Authority Citations'
       parent_name: ''
       region: content
-      weight: 21
+      weight: 22
       format_type: details
       format_settings:
         classes: ''
@@ -90,13 +92,22 @@ targetEntityType: node
 bundle: re_delegation
 mode: default
 content:
+  field_admin_update_date:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: month_day_year
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_agency_delegation:
     type: entity_reference_label
     label: inline
     settings:
       link: true
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_agency_delegation_link:
     type: link
@@ -108,7 +119,7 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: content
   field_effective_date:
     type: datetime_default
@@ -124,21 +135,28 @@ content:
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 15
+    weight: 16
     region: content
   field_further_redelegation_files:
     type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 17
+    weight: 18
     region: content
   field_limitation:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 20
+    weight: 28
+    region: content
+  field_limitations:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 27
     region: content
   field_link_to_further_redelegati:
     type: link
@@ -150,7 +168,7 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 18
+    weight: 19
     region: content
   field_policy_aaship_region:
     type: entity_reference_label
@@ -158,7 +176,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
   field_policy_identifier:
     type: string
@@ -178,7 +196,7 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 8
+    weight: 9
     region: content
   field_policy_upload:
     type: entity_reference_entity_view
@@ -187,7 +205,7 @@ content:
       view_mode: link
       link: false
     third_party_settings: {  }
-    weight: 7
+    weight: 8
     region: content
   field_re_redelegation_authority:
     type: tablefield
@@ -196,14 +214,14 @@ content:
       row_header: true
       column_header: false
     third_party_settings: {  }
-    weight: 16
+    weight: 17
     region: content
   field_redelegation_authority:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 13
+    weight: 14
     region: content
   field_references:
     type: entity_reference_revisions_entity_view
@@ -232,7 +250,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 12
+    weight: 13
     region: content
   field_rescind_redelegation:
     type: boolean
@@ -242,7 +260,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 10
+    weight: 11
     region: content
   field_rescission_date:
     type: datetime_default
@@ -251,14 +269,14 @@ content:
       timezone_override: ''
       format_type: month_day_year
     third_party_settings: {  }
-    weight: 11
+    weight: 12
     region: content
   field_rescission_notes:
     type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 24
+    weight: 25
     region: content
   field_signed_memo:
     type: entity_reference_entity_view
@@ -267,7 +285,7 @@ content:
       view_mode: link
       link: false
     third_party_settings: {  }
-    weight: 22
+    weight: 26
     region: content
   field_to_whom_delegated:
     type: cshs_full_hierarchy
@@ -277,7 +295,7 @@ content:
       linked: 0
       reverse: 0
     third_party_settings: {  }
-    weight: 14
+    weight: 15
     region: content
   field_topic_area_of_authority:
     type: entity_reference_label
@@ -293,7 +311,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 9
+    weight: 10
     region: content
   field_upload_further_delegation:
     type: entity_reference_entity_view
@@ -302,7 +320,7 @@ content:
       view_mode: link
       link: false
     third_party_settings: {  }
-    weight: 19
+    weight: 20
     region: content
   links:
     settings: {  }
@@ -311,5 +329,5 @@ content:
     region: content
 hidden:
   content_moderation_control: true
-  field_conditions_restrictions: true
+  field_next_review_date: true
   field_upload_or_link: true
