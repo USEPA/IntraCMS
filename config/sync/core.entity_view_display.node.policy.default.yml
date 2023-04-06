@@ -1,106 +1,141 @@
-uuid: c8dc0aac-ee51-4de1-a9c5-4c3f6ce6c818
+uuid: 9ac93b3d-3479-4dd2-ae92-fba3f24697de
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.policy_notice.field_cfr_definition
-    - field.field.node.policy_notice.field_effective_date
-    - field.field.node.policy_notice.field_policy_background
-    - field.field.node.policy_notice.field_policy_definitions
-    - field.field.node.policy_notice.field_policy_exceptions
-    - field.field.node.policy_notice.field_policy_identifier
-    - field.field.node.policy_notice.field_policy_link
-    - field.field.node.policy_notice.field_policy_purpose
-    - field.field.node.policy_notice.field_policy_relate_notice
-    - field.field.node.policy_notice.field_policy_upload
-    - field.field.node.policy_notice.field_related_agency_forms
-    - field.field.node.policy_notice.field_related_gpi_s_
-    - field.field.node.policy_notice.field_related_ipi_s_
-    - field.field.node.policy_notice.field_related_policy
-    - field.field.node.policy_notice.field_related_resources
-    - field.field.node.policy_notice.field_rescind_this_policy
-    - field.field.node.policy_notice.field_rescission_date
-    - field.field.node.policy_notice.field_rescission_notes
-    - field.field.node.policy_notice.field_roles_and_responsibilities
-    - field.field.node.policy_notice.field_topic
-    - field.field.node.policy_notice.field_upload_or_link
-    - node.type.policy_notice
+    - field.field.node.policy.field_admin_update_date
+    - field.field.node.policy.field_effective_date
+    - field.field.node.policy.field_keywords
+    - field.field.node.policy.field_link_to_policy
+    - field.field.node.policy.field_next_review_date
+    - field.field.node.policy.field_policy_background
+    - field.field.node.policy.field_policy_coordinator
+    - field.field.node.policy.field_policy_statement
+    - field.field.node.policy.field_policy_type
+    - field.field.node.policy.field_policy_upload
+    - field.field.node.policy.field_prior_identifier
+    - field.field.node.policy.field_references
+    - field.field.node.policy.field_related_agency_forms
+    - field.field.node.policy.field_related_policy
+    - field.field.node.policy.field_related_resources
+    - field.field.node.policy.field_replacing
+    - field.field.node.policy.field_rescind_this_policy
+    - field.field.node.policy.field_rescission_date
+    - field.field.node.policy.field_rescission_notes
+    - field.field.node.policy.field_rescissions
+    - field.field.node.policy.field_rmds_chapter
+    - field.field.node.policy.field_supplemental_documents
+    - field.field.node.policy.field_topic_area_of_authority
+    - field.field.node.policy.field_upload_or_link
+    - node.type.policy
   module:
     - cshs
     - datetime
     - entity_reference_revisions
     - field_group
+    - layout_builder
+    - layout_builder_restrictions
+    - layout_library
     - link
+    - options
     - text
     - user
 third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+  layout_library:
+    enable: false
+  layout_builder_restrictions:
+    entity_view_mode_restriction:
+      allowed_layouts: {  }
+      allowed_blocks: {  }
   field_group:
-    group_re:
+    group_related:
       children:
-        - field_related_policy
-        - field_related_gpi_s_
-        - field_related_ipi_s_
-        - field_policy_relate_notice
         - field_related_agency_forms
+        - field_related_policy
         - field_related_resources
-      label: 'Related Directives, Forms, & Resources'
+      label: 'Related Directives, Forms, and Resources'
       parent_name: ''
       region: content
-      weight: 12
+      weight: 16
       format_type: details
       format_settings:
         classes: ''
         show_empty_fields: false
         id: ''
-        open: false
+        open: true
         description: ''
-    group_definitions:
+    group_policy_coordinator_co:
       children:
-        - field_policy_definitions
-        - field_cfr_definition
-      label: Definitions
+        - field_policy_coordinator
+      label: 'Policy Coordinator C/O'
       parent_name: ''
       region: content
-      weight: 11
+      weight: 19
       format_type: details
       format_settings:
         classes: ''
         show_empty_fields: false
         id: ''
-        open: false
+        open: true
+        description: ''
+    group_rescissions:
+      children: {  }
+      label: Rescissions
+      parent_name: ''
+      region: content
+      weight: 18
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+    group_supplemental_documents:
+      children:
+        - field_supplemental_documents
+      label: 'Supplemental Documents'
+      parent_name: ''
+      region: content
+      weight: 17
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+    group_references:
+      children:
+        - field_references
+      label: References
+      parent_name: ''
+      region: content
+      weight: 15
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
         description: ''
         required_fields: false
-    group_roles_responsiblities:
-      children:
-        - field_roles_and_responsibilities
-      label: 'Roles & Responsiblities'
-      parent_name: ''
-      region: content
-      weight: 9
-      format_type: details
-      format_settings:
-        classes: ''
-        show_empty_fields: false
-        id: ''
-        open: false
-        description: ''
-        required_fields: false
-id: node.policy_notice.default
+id: node.policy.default
 targetEntityType: node
-bundle: policy_notice
+bundle: policy
 mode: default
 content:
-  field_cfr_definition:
-    type: link
+  field_admin_update_date:
+    type: datetime_default
     label: inline
     settings:
-      trim_length: null
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
+      timezone_override: ''
+      format_type: month_day_year
     third_party_settings: {  }
-    weight: 14
+    weight: 9
     region: content
   field_effective_date:
     type: datetime_default
@@ -109,40 +144,17 @@ content:
       timezone_override: ''
       format_type: month_day_year
     third_party_settings: {  }
-    weight: 3
-    region: content
-  field_policy_background:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 7
-    region: content
-  field_policy_definitions:
-    type: entity_reference_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: true
-    third_party_settings: {  }
-    weight: 13
-    region: content
-  field_policy_exceptions:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
     weight: 8
     region: content
-  field_policy_identifier:
-    type: string
+  field_keywords:
+    type: entity_reference_label
     label: inline
     settings:
-      link_to_entity: false
+      link: true
     third_party_settings: {  }
-    weight: 1
+    weight: 20
     region: content
-  field_policy_link:
+  field_link_to_policy:
     type: link
     label: inline
     settings:
@@ -152,22 +164,47 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 5
+    weight: 11
     region: content
-  field_policy_purpose:
+  field_next_review_date:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: month_day_year
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_policy_background:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 6
+    weight: 14
     region: content
-  field_policy_relate_notice:
-    type: entity_reference_label
-    label: above
+  field_policy_coordinator:
+    type: cshs_full_hierarchy
+    label: hidden
     settings:
-      link: true
+      separator: ' » '
+      linked: false
+      reverse: false
     third_party_settings: {  }
-    weight: 16
+    weight: 21
+    region: content
+  field_policy_statement:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_policy_type:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_policy_upload:
     type: entity_reference_entity_view
@@ -176,7 +213,24 @@ content:
       view_mode: link
       link: false
     third_party_settings: {  }
+    weight: 12
+    region: content
+  field_prior_identifier:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 4
+    region: content
+  field_references:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 16
     region: content
   field_related_agency_forms:
     type: entity_reference_label
@@ -184,23 +238,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 17
-    region: content
-  field_related_gpi_s_:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
     weight: 14
-    region: content
-  field_related_ipi_s_:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 15
     region: content
   field_related_policy:
     type: entity_reference_label
@@ -208,7 +246,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 13
+    weight: 16
     region: content
   field_related_resources:
     type: link
@@ -220,7 +258,15 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 18
+    weight: 17
+    region: content
+  field_replacing:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 21
     region: content
   field_rescind_this_policy:
     type: boolean
@@ -230,7 +276,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 19
+    weight: 1
     region: content
   field_rescission_date:
     type: datetime_default
@@ -239,33 +285,39 @@ content:
       timezone_override: ''
       format_type: month_day_year
     third_party_settings: {  }
-    weight: 20
+    weight: 2
     region: content
   field_rescission_notes:
     type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 21
+    weight: 3
     region: content
-  field_roles_and_responsibilities:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 10
-    region: content
-  field_topic:
-    type: cshs_full_hierarchy
+  field_rmds_chapter:
+    type: entity_reference_label
     label: inline
     settings:
-      separator: ' » '
-      linked: false
-      reverse: false
+      link: false
     third_party_settings: {  }
-    weight: 2
+    weight: 6
+    region: content
+  field_supplemental_documents:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: link
+      link: false
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_topic_area_of_authority:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 7
     region: content
   links:
     settings: {  }
@@ -274,4 +326,6 @@ content:
     region: content
 hidden:
   content_moderation_control: true
+  field_rescissions: true
   field_upload_or_link: true
+  search_api_excerpt: true
