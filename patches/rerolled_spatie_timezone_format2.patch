@@ -5,7 +5,7 @@ index 5e0fd7d4..5d52408b 100644
 @@ -5,6 +5,10 @@ namespace Spatie\CalendarLinks\Generators;
  use Spatie\CalendarLinks\Generator;
  use Spatie\CalendarLinks\Link;
- 
+
 +use Sabre\VObject\Component;
 +use Sabre\VObject\TimeZoneUtil;
 +use Sabre\VObject\Component\VCalendar;
@@ -16,7 +16,7 @@ index 5e0fd7d4..5d52408b 100644
 @@ -22,67 +26,168 @@ class Ics implements Generator
          $this->options = $options;
      }
- 
+
 -    /** {@inheritDoc} */
 -    public function generate(Link $link): string
 -    {
@@ -62,7 +62,7 @@ index 5e0fd7d4..5d52408b 100644
 +    if (! $to) {
 +      $to = $from;
 +    }
- 
+
 -        if ($link->description) {
 -            $url[] = 'X-ALT-DESC;FMTTYPE=text/html:'.$this->escapeString($link->description);
 -        }
@@ -80,7 +80,7 @@ index 5e0fd7d4..5d52408b 100644
 +    $dst = null;
 +    foreach ($transitions as $i => $trans) {
 +      $component = null;
- 
+
 -        if (isset($this->options['URL'])) {
 -            $url[] = 'URL;VALUE=URI:'.$this->options['URL'];
 +      if ($i === 0) {
@@ -114,20 +114,20 @@ index 5e0fd7d4..5d52408b 100644
 +        if (! empty($trans['abbr'])) {
 +          $component->TZNAME = $trans['abbr'];
          }
- 
+
 -        $url[] = 'END:VEVENT';
 -        $url[] = 'END:VCALENDAR';
 +        $tzfrom = $offset;
 +        $vTimeZone->add($component);
 +      }
- 
+
 -        return $this->buildLink($url);
 +      // we covered the entire date range
 +      if ($std && $dst && min($t_std, $t_dst) < $from && max($t_std, $t_dst) > $to) {
 +        break;
 +      }
      }
- 
+
 -    protected function buildLink(array $propertiesAndComponents): string
 -    {
 -        return 'data:text/calendar;charset=utf8;base64,'.base64_encode(implode("\r\n", $propertiesAndComponents));
@@ -136,7 +136,7 @@ index 5e0fd7d4..5d52408b 100644
 +    if (array_key_exists($timeZone->getName(), $microsoftExchangeMap)) {
 +      $vTimeZone->add('X-MICROSOFT-CDO-TZID', $microsoftExchangeMap[$timeZone->getName()]);
      }
- 
+
 -    /** @see https://tools.ietf.org/html/rfc5545.html#section-3.3.11 */
 -    protected function escapeString(string $field): string
 -    {
@@ -165,7 +165,7 @@ index 5e0fd7d4..5d52408b 100644
 +      $vevent->add('DTEND', $link->to);
 +      $timeZones[$link->to->getTimezone()->getName()] = $link->to->getTimezone();
      }
- 
+
 -    /** @see https://tools.ietf.org/html/rfc5545#section-3.8.4.7 */
 -    protected function generateEventUid(Link $link): string
 -    {
@@ -178,6 +178,7 @@ index 5e0fd7d4..5d52408b 100644
 -        ));
 +    if ($link->description) {
 +      $description = str_replace("\n", "", $link->description);
++      $description = str_replace("#", "", $description);
 +      $vevent->add('X-ALT-DESC;FMTTYPE=text/html', $this->escapeString($description));
 +    }
 +
