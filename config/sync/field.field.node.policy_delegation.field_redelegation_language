@@ -1,0 +1,21 @@
+uuid: de2300d0-1cc1-499d-9f47-f419c7bf5cea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_redelegation_language
+    - node.type.policy_delegation
+id: node.policy_delegation.field_redelegation_language
+field_name: field_redelegation_language
+entity_type: node
+bundle: policy_delegation
+label: 'redelegation language'
+description: 'Modifying the language in this field will only modify the language for this specific delegation. To change the default language for future delegations, contact your Intranet Council Representative.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 'An official who redelegates an authority retains the right to exercise or withdraw the authority. Redelegated authority may be exercised by any official in the chain of command to the official to whom it has been specifically redelegated.'
+default_value_callback: ''
+settings: {  }
+field_type: string_long
