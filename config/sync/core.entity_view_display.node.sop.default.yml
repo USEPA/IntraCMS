@@ -1,0 +1,131 @@
+uuid: a07b390d-8cbc-476c-b573-bbd6080c99c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.sop.field_date_reviewed
+    - field.field.node.sop.field_description
+    - field.field.node.sop.field_discipline
+    - field.field.node.sop.field_division
+    - field.field.node.sop.field_lab
+    - field.field.node.sop.field_sop_alternate_number
+    - field.field.node.sop.field_sop_contact
+    - field.field.node.sop.field_sop_guid
+    - field.field.node.sop.field_sop_link
+    - field.field.node.sop.field_sop_number
+    - field.field.node.sop.field_sop_previous_number
+    - field.field.node.sop.field_sop_status
+    - field.field.node.sop.field_sub_discipline
+    - node.type.sop
+  module:
+    - datetime
+    - user
+id: node.sop.default
+targetEntityType: node
+bundle: sop
+mode: default
+content:
+  field_date_reviewed:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: long_12h
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_description:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_discipline:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_division:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_lab:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_sop_alternate_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_sop_contact:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_sop_link:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_sop_number:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_sop_previous_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_sop_status:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_sub_discipline:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  content_moderation_control: true
+  field_sop_guid: true
