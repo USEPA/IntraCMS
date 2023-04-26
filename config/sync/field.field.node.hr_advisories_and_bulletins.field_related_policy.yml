@@ -1,0 +1,25 @@
+uuid: ac0ce21a-6bd0-4df0-b155-47e8602b6872
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_policy
+    - node.type.hr_advisories_and_bulletins
+id: node.hr_advisories_and_bulletins.field_related_policy
+field_name: field_related_policy
+entity_type: node
+bundle: hr_advisories_and_bulletins
+label: 'Related Agency Directive(s)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: policy
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

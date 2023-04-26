@@ -1,0 +1,157 @@
+uuid: 4b5770f0-84fd-4521-8c02-31e4229f9bea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.hr_advisories_and_bulletins.field_approval_date
+    - field.field.node.hr_advisories_and_bulletins.field_approving_signature
+    - field.field.node.hr_advisories_and_bulletins.field_hr_policy_type
+    - field.field.node.hr_advisories_and_bulletins.field_keywords
+    - field.field.node.hr_advisories_and_bulletins.field_policy_background
+    - field.field.node.hr_advisories_and_bulletins.field_policy_identifier
+    - field.field.node.hr_advisories_and_bulletins.field_policy_link
+    - field.field.node.hr_advisories_and_bulletins.field_policy_purpose
+    - field.field.node.hr_advisories_and_bulletins.field_related_agency_forms
+    - field.field.node.hr_advisories_and_bulletins.field_related_policy
+    - field.field.node.hr_advisories_and_bulletins.field_related_resources
+    - field.field.node.hr_advisories_and_bulletins.field_topic_area_of_authority
+    - node.type.hr_advisories_and_bulletins
+  module:
+    - datetime
+    - field_group
+    - link
+    - options
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_re:
+      children:
+        - field_related_policy
+        - field_related_agency_forms
+        - field_related_resources
+      label: 'Related Directives, Forms, & Resources'
+      parent_name: ''
+      region: content
+      weight: 9
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+id: node.hr_advisories_and_bulletins.default
+targetEntityType: node
+bundle: hr_advisories_and_bulletins
+mode: default
+content:
+  field_approval_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_approving_signature:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_hr_policy_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_keywords:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_policy_background:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_policy_identifier:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_policy_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_policy_purpose:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_related_agency_forms:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_related_policy:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_related_resources:
+    type: link
+    label: above
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_topic_area_of_authority:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  content_moderation_control: true

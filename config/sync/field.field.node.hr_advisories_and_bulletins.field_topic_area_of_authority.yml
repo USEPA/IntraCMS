@@ -1,0 +1,25 @@
+uuid: 81097c4b-621d-4dfc-95bf-ff0519d4d475
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_topic_area_of_authority
+    - node.type.hr_advisories_and_bulletins
+id: node.hr_advisories_and_bulletins.field_topic_area_of_authority
+field_name: field_topic_area_of_authority
+entity_type: node
+bundle: hr_advisories_and_bulletins
+label: Topic
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: policy_topics
+      display_name: entity_reference_hr_topics
+      arguments: {  }
+field_type: entity_reference
