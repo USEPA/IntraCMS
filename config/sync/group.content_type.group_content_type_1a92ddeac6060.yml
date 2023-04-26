@@ -1,0 +1,20 @@
+uuid: 1af621fb-f583-4af0-9313-a2f07af59d9f
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.policy
+    - node.type.hr_advisories_and_bulletins
+  module:
+    - gnode
+    - node
+id: group_content_type_1a92ddeac6060
+label: 'Policy: Group node (HR Advisories and Bulletins)'
+description: 'Adds <em class="placeholder">HR Advisories and Bulletins</em> content to groups both publicly and privately.'
+group_type: policy
+content_plugin: 'group_node:hr_advisories_and_bulletins'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 0
