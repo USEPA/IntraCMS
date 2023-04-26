@@ -29,6 +29,7 @@
         "drupal/address": "~1.10",
         "drupal/chosen": "^3.0",
         "drupal/layout_builder_styles": "^1.0@beta",
+        "drupal/layout_builder_st": "1.0.0-alpha2",
         "drupal/devel": "^4.1.1",
         "drupal/path_file": "^1.1",
         "drupal/linkit": "^6.0",
@@ -149,7 +150,7 @@
         "drupal/single_content_sync": "^1.3.9"
     },
     "require-dev": {
-        
+
     },
     "config": {
         "process-timeout": 0,
@@ -162,18 +163,18 @@
             "wikimedia/composer-merge-plugin": true
         }
     },
-    "extra": {    
+    "extra": {
         "drupal-scaffold": {
         "locations": {
             "web-root": "docroot"
         }
-    }, 
+    },
         "patches": {
             "drupal/linkit": {
                 "Fix issue with wrong ui-autocomplete class being assigned to autocompletes": "patches/linkit_class_override.patch",
                 "Fix sizing inconsistencies and scrollbar smoothness": "patches/linkit_css_override.patch"
             },
-            "spatie/calendar-links": {               
+            "spatie/calendar-links": {
                 "Fix ICS HTML formatting": "patches/rerolled_spatie_timezone_format2.patch",
                 "PHP compatibility": "patches/spatie_php.patch"
             },
@@ -183,11 +184,12 @@
             "drupal/cshs": {
                 "3166049: Integrate select into webform": "https://www.drupal.org/files/issues/2021-04-13/3166046-7.patch",
                 "Fix webform UI selection of cshs type": "patches/cshs_webform_ui_fix.patch",
-                "Fix webform UI selection of any type when preview is enabled": "patches/cshs_webform_ui_show_preview.patch"
+                "Fix webform UI selection of any type when preview is enabled": "patches/cshs_webform_ui_show_preview.patch",
+                "Fix php 8.1 compatibility": "patches/cshs_php8.patch"
             },
             "drupal/diff": {
                 "2980335: Establish class attribute as array instead of string.": "https://www.drupal.org/files/issues/2018-06-18/2980335_2_define_classes_as_array.patch"
-            },          
+            },
             "drupal/fullcalendar_view": {
                 "3168071: Mouse-hover tool-tip option for version since 8.x.4.2": "https://www.drupal.org/files/issues/2021-03-18/3168071-13.patch"
             },
