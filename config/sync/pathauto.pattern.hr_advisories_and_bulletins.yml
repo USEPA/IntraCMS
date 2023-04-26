@@ -1,0 +1,22 @@
+uuid: 223fa825-a0b7-4b4a-a87e-19fecfe082a7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: hr_advisories_and_bulletins
+label: 'HR Advisories and Bulletins'
+type: 'canonical_entities:node'
+pattern: '[node:group:title]/advisory-guidance-bulletins/[node:title]'
+selection_criteria:
+  66648604-3af9-4a2e-afb0-8d9fc6f8b0e9:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 66648604-3af9-4a2e-afb0-8d9fc6f8b0e9
+    context_mapping:
+      node: node
+    bundles:
+      hr_advisories_and_bulletins: hr_advisories_and_bulletins
+selection_logic: and
+weight: -5
+relationships: {  }
