@@ -1,0 +1,29 @@
+uuid: 403033ef-f2c0-4e8d-aa9e-b533f75cfd32
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_chapter
+    - node.type.re_delegation
+    - taxonomy.vocabulary.agency_delegations_manual_chapte
+id: node.re_delegation.field_chapter
+field_name: field_chapter
+entity_type: node
+bundle: re_delegation
+label: Chapter
+description: 'Please select the associated chapter.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      agency_delegations_manual_chapte: agency_delegations_manual_chapte
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
