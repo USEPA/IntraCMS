@@ -1,0 +1,38 @@
+uuid: 40eaa99f-99b9-4917-8adc-fa4d7fd4fd9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.hr_advisories_and_bulletins
+  module:
+    - block_in_page_not_found
+    - system
+    - views
+  theme:
+    - epa_intranet
+id: views_block__hr_advisories_and_bulletins_block_hr_advisory
+theme: epa_intranet
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:hr_advisories_and_bulletins-block_hr_advisory'
+settings:
+  id: 'views_block:hr_advisories_and_bulletins-block_hr_advisory'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /agency-directives/advisory-guidance-bulletins
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
+  and_or:
+    id: and_or
+    negate: false
+    all: or
