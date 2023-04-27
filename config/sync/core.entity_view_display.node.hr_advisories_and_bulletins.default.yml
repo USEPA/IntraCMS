@@ -20,7 +20,6 @@ dependencies:
     - datetime
     - field_group
     - link
-    - options
     - text
     - user
 third_party_settings:
@@ -33,7 +32,7 @@ third_party_settings:
       label: 'Related Directives, Forms, & Resources'
       parent_name: ''
       region: content
-      weight: 9
+      weight: 8
       format_type: details
       format_settings:
         classes: ''
@@ -48,10 +47,10 @@ mode: default
 content:
   field_approval_date:
     type: datetime_default
-    label: above
+    label: inline
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: month_day_year
     third_party_settings: {  }
     weight: 4
     region: content
@@ -61,14 +60,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 8
-    region: content
-  field_hr_policy_type:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
+    weight: 7
     region: content
   field_keywords:
     type: entity_reference_label
@@ -76,7 +68,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 13
+    weight: 9
     region: content
   field_policy_background:
     type: text_default
@@ -87,7 +79,7 @@ content:
     region: content
   field_policy_identifier:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -95,15 +87,15 @@ content:
     region: content
   field_policy_link:
     type: link
-    label: above
+    label: inline
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
-    weight: 7
+    weight: 2
     region: content
   field_policy_purpose:
     type: text_default
@@ -142,9 +134,9 @@ content:
     region: content
   field_topic_area_of_authority:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 3
     region: content
@@ -155,3 +147,4 @@ content:
     region: content
 hidden:
   content_moderation_control: true
+  field_hr_policy_type: true
