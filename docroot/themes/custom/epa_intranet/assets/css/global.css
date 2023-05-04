@@ -269,7 +269,18 @@ p a[href]:not(.usa-button), article a[href]:not(.usa-button):not(.usa-graphic-li
   text-decoration: underline !important;
 }
 
+.taxonomy-term.vocabulary-libraries a {
+  color: #005ea2;
+}
+.taxonomy-term.vocabulary-libraries a:hover, p a[href]:not(.usa-button):hover, article a[href]:not(.usa-button):not(.usa-graphic-list__heading):hover {
+  color: #1a4480;
+}
+.taxonomy-term.vocabulary-libraries a:active, p a[href]:not(.usa-button):active, article a[href]:not(.usa-button):not(.usa-graphic-list__heading):active {
+  color: #162e51;
+}
+
 p a:hover, article a:hover {
+}
   color: #1a4480;
 }
 
@@ -1216,7 +1227,7 @@ div.box__title, .box--special > .box__title {
   top: 0;
 }
 
-/* IN-721 Libraries are also using the form-text class and it's overriding core styles. 
+/* IN-721 Libraries are also using the form-text class and it's overriding core styles.
    Resetting form-text for Webforms here. */
 .webform-submission-form .form-text {
   margin-top: .5rem;
