@@ -275,6 +275,16 @@ p a[href]:not(.usa-button), article a[href]:not(.usa-button):not(.usa-graphic-li
   text-decoration: underline !important;
 }
 
+.taxonomy-term.vocabulary-libraries a {
+  color: #005ea2
+}
+.taxonomy-term.vocabulary-libraries a:hover, p a[href]:not(.usa-button):hover, article a[href]:not(.usa-button):not(.usa-graphic-list__heading):hover {
+  color: #1a4480;
+}
+.taxonomy-term.vocabulary-libraries a:active, p a[href]:not(.usa-button):active, article a[href]:not(.usa-button):not(.usa-graphic-list__heading):active {
+  color: #162e51;
+}
+
 p a:hover, article a:hover {
   color: #1a4480;
 }
@@ -351,7 +361,7 @@ div {
   &.media-block-text-decoration a:hover, &.media-block-body-decoration a:hover {
     text-decoration: underline !important;
   }
-  
+
   &.media-block-text-decoration a:focus, &.media-block-body-decoration a:focus {
     text-decoration: underline !important;
   }
@@ -1280,7 +1290,7 @@ div.box__title, .box--special > .box__title {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   border-radius: 0 0 5px 5px;
 }
-/* IN-721 Libraries are also using the form-text class and it's overriding core styles. 
+/* IN-721 Libraries are also using the form-text class and it's overriding core styles.
    Resetting form-text for Webforms here. */
 .webform-submission-form .form-text {
   margin-top: .5rem;
@@ -1292,7 +1302,7 @@ div.box__title, .box--special > .box__title {
 .region-footer-menu .grid-row {
   display: flex;
   align-items: stretch; /* Default */
-  justify-content: space-between; 
+  justify-content: space-between;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -1329,7 +1339,7 @@ div.box__title, .box--special > .box__title {
   }
   .region-footer-menu .grid-row li {
     width: 100%;
-  }  
+  }
 }
 
 /* IN-851 Image alignment breaks when adding a caption */
@@ -1343,7 +1353,7 @@ article {
   &.align-left + figcaption {
     text-align: left;
   }
-}  
+}
 
 /* IN-844 Style updates for books */
 .page-node-type-book #block-epa-intranet-content div {
