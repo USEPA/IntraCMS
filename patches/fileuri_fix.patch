@@ -1,0 +1,26 @@
+diff --git a/core/modules/file/file.module b/core/modules/file/file.module
+index 04e8494..11426b8 100644
+--- a/core/modules/file/file.module
++++ b/core/modules/file/file.module
+@@ -1497,9 +1497,11 @@ function template_preprocess_file_link(&$variables) {
+   $file = $variables['file'];
+   $options = [];
+
+-  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator */
+-  $file_url_generator = \Drupal::service('file_url_generator');
+-  $url = $file_url_generator->generate($file->getFileUri());
++  /* When generating file fields the Link::fromTextAndUrl creates the following:
++  site base url + the actual file url. Returning to the previous setting fixes the issue
++   */
++  $url = $file->createFileUrl(FALSE);
++  $variables['#cache']['contexts'][] = 'url.site';
+
+   $mime_type = $file->getMimeType();
+   $options['attributes']['type'] = $mime_type;
+@@ -1527,7 +1529,7 @@ function template_preprocess_file_link(&$variables) {
+   $variables['attributes']->addClass($classes);
+   $variables['file_size'] = format_size($file->getSize() ?? 0);
+
+-  $variables['link'] = Link::fromTextAndUrl($link_text, $url->mergeOptions($options))->toRenderable();
++  $variables['link'] = Link::fromTextAndUrl($link_text, Url::fromUri($url, $options))->toRenderable();
+ }
