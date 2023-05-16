@@ -56,7 +56,7 @@
             <div class="grid-row flex-align-center">
                 {% for row in rows %}
                     <div class="tablet:grid-col-6 p-3">
-                        {{ row }}
+                       <div {{ row.attributes }}>{{ row.content }}</div>
                     </div>
                 {% endfor %}
             </div>
