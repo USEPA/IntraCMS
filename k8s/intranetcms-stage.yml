@@ -10,8 +10,8 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: intranetcms
-      #This needs to match label on ingress
+      app: intranetcms 
+       #This needs to match label on ingress
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -27,47 +27,47 @@ spec:
         app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
     spec:
       hostAliases:
-        - ip: "127.0.0.1"
-          hostnames:
-            - "backend"
+      - ip: "127.0.0.1"
+        hostnames:
+        - "backend"
       volumes:
-        - name: intranetcms-storage
-          persistentVolumeClaim:
-            claimName: intranetcms-efs-pvc
+      - name: intranetcms-storage
+        persistentVolumeClaim:
+          claimName: intranetcms-efs-pvc
       containers:
-        - name: intranetcms
-          image: registry.epa.gov/intranet-cms/intracms/intranetcms-build:$CI_COMMIT_SHORT_SHA
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 9000
-            - containerPort: 443
-          env:
-            - name: REDEPLOY_META
-              value: $CI_JOB_ID-$CI_COMMIT_SHA
-            - name: WEB_HTTPS
-              value: "false"
-            - name: WEB_HTTPS_ONLY
-              value: "false"
-          livenessProbe:
-            tcpSocket:
-              #port: 9000
-              port: 443
-            #httpGet:
-            #  path: /
-            #  port: 80
-            #  scheme: HTTP
-            initialDelaySeconds: 15
-            periodSeconds: 15
-            #timeoutSeconds: 20
-            failureThreshold: 2
-          readinessProbe:
-            tcpSocket:
-              port: 443
-            initialDelaySeconds: 30
-            periodSeconds: 10
-          volumeMounts:
-            - name: intranetcms-storage
-              mountPath: /public
+      - name: intranetcms
+        image: registry.epa.gov/intranet-cms/intracms/intranetcms-build:$CI_COMMIT_SHORT_SHA
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000
+        - containerPort: 443
+        env:
+        - name: REDEPLOY_META
+          value: $CI_JOB_ID-$CI_COMMIT_SHA
+        - name: WEB_HTTPS
+          value: "false"
+        - name: WEB_HTTPS_ONLY
+          value: "false"
+        livenessProbe:
+          tcpSocket:
+            #port: 9000
+            port: 443
+          #httpGet:
+          #  path: /
+          #  port: 80
+          #  scheme: HTTP
+          initialDelaySeconds: 15
+          periodSeconds: 15
+          #timeoutSeconds: 20
+          failureThreshold: 2
+        readinessProbe:
+          tcpSocket:
+            port: 443
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        volumeMounts:
+        - name: intranetcms-storage
+          mountPath: /public
       imagePullSecrets:
         - name: glcr-auth
 
@@ -82,10 +82,10 @@ metadata:
     app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
 spec:
   ports:
-    - port: 443
-      protocol: TCP
-      targetPort: 443
-      name: https
+  - port: 443
+    protocol: TCP
+    targetPort: 443
+    name: https
   selector:
     app: intranetcms
 
@@ -101,17 +101,17 @@ metadata:
     app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
 spec:
   tls:
-    - hosts:
-        - stage.intranetcms-stage.aws.epa.gov
-      secretName: tls-devsecops-shared-webapp
+  - hosts:
+    - stage.intranetcms-stage.aws.epa.gov
+    secretName: tls-devsecops-shared-webapp
   rules:
     - host: stage.intranetcms-stage.aws.epa.gov
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: intranetcms
-                port:
-                  number: 443
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: intranetcms
+              port:
+                number: 443
