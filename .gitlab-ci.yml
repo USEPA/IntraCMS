@@ -1,8 +1,8 @@
 stages:
 
   - build
-  - Non-Production Dev Deployment
   - Non-Production Stage Deployment
+  - Non-Production Dev Deployment
 
 Build IntranetCMS Image:
   stage: build
@@ -17,23 +17,6 @@ Build IntranetCMS Image:
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/docker/Dockerfile --destination $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA
-
-Development:
-  stage: Non-Production Dev Deployment
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "dev-container-1"'
-  tags:
-    - intranetcms-dev-runner
-  image: dtzar/helm-kubectl
-  script:
-    - kubectl config use-context intranet-cms/intranet-cms-infra:intranetcms-dev-k8s-agent
-    - apk add gettext
-    - envsubst < k8s/intranetcms.yml | kubectl apply -f - -n cms-45-dev
-  environment:
-    name: dev
-    url:
-    kubernetes:
-      namespace: cms-45-dev
 
 Stage:
   stage: Non-Production Stage Deployment
@@ -51,3 +34,20 @@ Stage:
     url:
     kubernetes:
       namespace: cms-45-stage
+
+Development:
+  stage: Non-Production Dev Deployment
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev-container-1"'
+  tags:
+    - intranetcms-dev-runner
+  image: dtzar/helm-kubectl
+  script:
+    - kubectl config use-context intranet-cms/intranet-cms-infra:intranetcms-dev-k8s-agent
+    - apk add gettext
+    - envsubst < k8s/intranetcms.yml | kubectl apply -f - -n cms-45-dev
+  environment:
+    name: dev
+    url:
+    kubernetes:
+      namespace: cms-45-dev
