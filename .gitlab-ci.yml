@@ -28,7 +28,7 @@ Stage:
   script:
     - kubectl config use-context intranet-cms/intracms-infra-stage:intranetcms-stage-k8s-agent
     - apk add gettext
-    #- envsubst < k8s/intranetcms-stage.yml | kubectl apply -f - -n cms-45-stage --validate=false
+    - envsubst < k8s/intranetcms-stage.yml | kubectl apply -f - -n cms-45-stage --validate=false
   environment:
     name: stage
     url:
