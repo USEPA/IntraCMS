@@ -20,7 +20,6 @@
         "drupal/admin_toolbar": "^3.1",
         "drupal/uswds": "^2.2",
         "drupal/fontawesome": "^2.19",
-        "wikimedia/composer-merge-plugin": "^1.4",
         "drupal/config_filter": "^1.8",
         "drupal/config_ignore": "^3.0",
         "drupal/config_split": "1.7",
@@ -159,15 +158,16 @@
             "oomphinc/composer-installers-extender": true,
             "cweagans/composer-patches": true,
             "drupal-composer/drupal-scaffold": true,
-            "wikimedia/composer-merge-plugin": true
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true
         }
     },
     "extra": {
         "drupal-scaffold": {
-        "locations": {
-            "web-root": "docroot"
-        }
-    },
+            "locations": {
+                "web-root": "docroot"
+            }
+        },
         "patches": {
             "drupal/linkit": {
                 "Fix issue with wrong ui-autocomplete class being assigned to autocompletes": "patches/linkit_class_override.patch",
@@ -245,9 +245,6 @@
             "drupal/anchor_link": {
                 "Remove overriding of CTRL+K command from ckeditor interfaces": "patches/anchor_link_shortcut_override.patch"
             },
-            "drupal/vefl": {
-                "3341550: TypeError: Illegal offset type in isset or empty": "https://www.drupal.org/files/issues/2023-02-14/3341550-2.patch"
-            },
             "drupal/core": {
                 "3020876: Custom block contextual links": "https://www.drupal.org/files/issues/2020-02-22/contextual_links_layout_builder_0.patch",
                 "2719797: New option for Views page displays to use the admin theme": "https://www.drupal.org/files/issues/2019-06-10/core-88x--views--admin-path-2719797-77.patch",
@@ -262,9 +259,7 @@
                 "3051453: Call to a member function setSyncing() on null when installing a module.": "https://www.drupal.org/files/issues/2020-08-18/protect_against_invalid_ids_in_import_delete-3051453-10.patch",
                 "2952261: Unsupported operand types in Drupal.": "https://www.drupal.org/files/issues/2019-10-22/unsupported-types-2952261-11.patch",
                 "2893747: Call to a member function getColumns() on boolean": "https://www.drupal.org/files/issues/2020-10-29/2893747-33.patch",
-                "3303889: Call to a member function uuid() on null": "https://www.drupal.org/files/issues/2022-08-22/core-3303889-media-library-widget-error-on-no-selection-20.patch",
-                "3044211: SectionStorage objects in tempstore are broken after upgrade.":  "https://www.drupal.org/files/issues/2023-03-10/3044211-25.patch",
-                "3270985: Wrong url generated for file fields.":  "patches/fileuri_fix.patch"
+                "3303889: Call to a member function uuid() on null": "https://www.drupal.org/files/issues/2022-08-22/core-3303889-media-library-widget-error-on-no-selection-20.patch"
             },
             "merge-plugin": {
                 "include": [
@@ -403,21 +398,21 @@
                 }
             }
         },
-      {
-        "type": "package",
-        "package": {
-          "name": "ckeditor-plugin/iframe",
-          "type": "drupal-library",
-          "version": "4.16.2",
-          "dist": {
-            "url": "https://download.ckeditor.com/iframe/releases/iframe_4.16.2.zip",
-            "type": "zip"
-          },
-          "require": {
-            "composer/installers": "^1.9.0"
-          }
-        }
-      },
+        {
+            "type": "package",
+            "package": {
+                "name": "ckeditor-plugin/iframe",
+                "type": "drupal-library",
+                "version": "4.16.2",
+                "dist": {
+                    "url": "https://download.ckeditor.com/iframe/releases/iframe_4.16.2.zip",
+                    "type": "zip"
+                },
+                "require": {
+                    "composer/installers": "^1.9.0"
+                }
+            }
+        },
         {
             "type": "package",
             "package": {
