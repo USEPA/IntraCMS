@@ -1,0 +1,23 @@
+uuid: e7fa7005-89b2-4c81-bb0c-7ec2254cc1c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_temp_delegation
+    - node.type.re_delegation
+id: node.re_delegation.field_temp_delegation
+field_name: field_temp_delegation
+entity_type: node
+bundle: re_delegation
+label: 'This is a Temporary / One-Time Redelegation'
+description: 'Check this field if this is a Temporary or One-Time Delegation.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Temporary
+  off_label: Permanent
+field_type: boolean
