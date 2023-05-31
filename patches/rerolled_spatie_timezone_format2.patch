@@ -26,7 +26,7 @@ index 5e0fd7d4..5d52408b 100644
 -            'PRODID:Spatie calendar-links', // @see https://datatracker.ietf.org/doc/html/rfc5545#section-3.7.3
 -            'BEGIN:VEVENT',
 -            'UID:'.($this->options['UID'] ?? $this->generateEventUid($link)),
--            'SUMMARY:'.$this->escapeString(addslashes($link->title)),
+-            'SUMMARY:'.$link->title,
 -        ];
 -
 -        $dateTimeFormat = $link->allDay ? $this->dateFormat : $this->dateTimeFormat;
@@ -150,7 +150,7 @@ index 5e0fd7d4..5d52408b 100644
 +    $vcalendar = new VCalendar();
 +    $vevent = $vcalendar->createComponent('VEVENT', [
 +      'UID' => $this->generateEventUid($link),
-+      'SUMMARY' => addslashes($link->title),
++      'SUMMARY' => $link->title,
 +    ]);
 +    $vcalendar->add($vevent);
 +
