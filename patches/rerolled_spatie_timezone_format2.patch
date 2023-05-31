@@ -150,7 +150,7 @@ index 5e0fd7d4..5d52408b 100644
 +    $vcalendar = new VCalendar();
 +    $vevent = $vcalendar->createComponent('VEVENT', [
 +      'UID' => $this->generateEventUid($link),
-+      'SUMMARY' => $link->title,
++      'SUMMARY' => addslashes($link->title),
 +    ]);
 +    $vcalendar->add($vevent);
 +
