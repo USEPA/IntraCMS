@@ -114,10 +114,50 @@
 					{{ metadata }}
 				</div>
 			</div>
-		{% endif %}	
+		{% endif %}
         <div{{ content_attributes.addClass('node__content') }}>
-            {{ content|without('field_rescind_redelegation','field_rescission_date','field_rescission_notes','field_signed_memo','field_further_redelegation_files') }}
+            {#  content|without('field_rescind_redelegation','field_rescission_date','field_rescission_notes','field_signed_memo','field_further_redelegation_files') #}
+          {{ field_policy_identifier }}
+          {{ field_effective_date }}
+          {{ field_admin_update_date }}
+          {{ field_policy_link }}
+          {{ field_policy_upload }}
+          {{ field_agency_delegation }}
+          {{ field_agency_delegation_link }}
+          {{ field_transmittal_notice }}
+          <ol>
+            <li>{{ field_redelegation_authority }}</li>
+            <li>{{ field_to_whom_delegated }}</li>
+            <li>
+              <ul>
+                <li>{{ field_limitation }}</li>
+                <li>{{ field_limitations }}</li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+                <li>{{ field_further_redelegation }}</li>
+                <li>{{ field_redelegation_language }}</li>
+                <li>{{ field_re_redelegation_authority }}</li>
+                <li>{{ field_further_redelegation_files }}{{ field_link_to_further_redelegati }}</li>
+              </ul>
+            </li>
+            <li><div class="field__label">Authority Citations</div>
+              {% if field_references %}
+                {{ field_references }}
+              {% else %}
+                <p>None.</p>
+              {% endif %}
+            </li>
+            <li><div class="field__label">Related Resources</div>
+              {{ field_related_resources }}
+            </li>
+            <li><div class="field__label">Signed Memo</div>
+              {{ field_signed_memo }}
+            </li>
+            <li>{{ field_topic_area_of_authority }}</li>
+          </ol>
         </div>
 	{% endif %}
-	
+
 </article>
