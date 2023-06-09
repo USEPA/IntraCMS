@@ -134,21 +134,21 @@
             {% endif %}
             {% if content.field_limitation or content.field_limitations %}
               <li>
-                <ul>
-                  <li>{{ content.field_limitation }}</li>
-                  <li>{{ content.field_limitations }}</li>
-                </ul>
+                {{ content.field_limitation }}
+                {{ content.field_limitations }}
               </li>
             {% endif %}
-            {% if content.field_further_redelegation or content.field_redelegation_language or content.field_re_redelegation_authority or content.field_further_redelegation_files or content.field_link_to_further_redelegati %}
-              <li>
-                <ul>
-                  <li>{{ content.field_further_redelegation }}</li>
-                  <li>{{ content.field_redelegation_language }}</li>
-                  <li>{{ content.field_re_redelegation_authority }}</li>
-                  <li>{{ content.field_further_redelegation_files }}{{ content.field_link_to_further_redelegati }}</li>
-                </ul>
-              </li>
+            {% if content.field_further_redelegation %}
+              {% if not 'May not be redelegated' in content.field_further_redelegation %}
+                <li>{{ content.field_further_redelegation }}</li>
+                <li>
+                  <ul>
+                    <li>{{ content.field_redelegation_language }}</li>
+                    <li>{{ content.field_re_redelegation_authority }}</li>
+                    <li>{{ content.field_link_to_further_redelegati }}</li>
+                  </ul>
+                </li>
+              {%  endif %}
             {% endif %}
             {% if content.field_references %}
               <li><div class="field__label">Authority Citations</div>
@@ -168,7 +168,7 @@
               <li><div class="field__label">Signed Memo</div>
                 {{ content.field_signed_memo }}
               </li>
-            {%  endif %} %}
+            {%  endif %}
             {% if content.field_topic_area_of_authority %}
               <li>{{ content.field_topic_area_of_authority }}</li>
             {% endif %}
