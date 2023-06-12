@@ -126,31 +126,30 @@
           {{ content.field_agency_delegation_link }}
           {{ content.field_transmittal_notice }}
           <ol>
-            {% if content.field_redelegation_authority %}
+            {% if content.field_redelegation_authority is not empty %}
               <li>{{ content.field_redelegation_authority }}</li>
             {% endif %}
-            {% if content.field_to_whom_delegated %}
+            {% if content.field_to_whom_delegated is not empty %}
               <li>{{ content.field_to_whom_delegated }}</li>
             {% endif %}
-            {% if content.field_limitation or content.field_limitations %}
+            {% if content.field_limitation is not empty %}
               <li>
                 {{ content.field_limitation }}
                 {{ content.field_limitations }}
               </li>
             {% endif %}
-            {% if content.field_further_redelegation %}
-              {% if not 'May not be redelegated' in content.field_further_redelegation %}
-                <li>{{ content.field_further_redelegation }}</li>
-                <li>
-                  <ul>
-                    <li>{{ content.field_redelegation_language }}</li>
-                    <li>{{ content.field_re_redelegation_authority }}</li>
-                    <li>{{ content.field_link_to_further_redelegati }}</li>
-                  </ul>
-                </li>
-              {%  endif %}
+            {% if content.field_further_redelegation is not 'May not be redelegated.' %}
+              <li>{{ content.field_further_redelegation }}
+                <ul>
+                  <li>{{ content.field_redelegation_language }}</li>
+                  <li>{{ content.field_re_redelegation_authority }}</li>
+                  <li>{{ content.field_link_to_further_redelegati }}</li>
+                </ul>
+              </li>
+            {% else %}
+              <li>content.field_further_redelegation</li>
             {% endif %}
-            {% if content.field_references %}
+            {% if content.field_references is not empty %}
               <li><div class="field__label">Authority Citations</div>
                 {% if content.field_references %}
                   {{ content.field_references }}
@@ -159,20 +158,16 @@
                 {% endif %}
               </li>
             {%  endif %}
-            {% if content.field_related_resources %}
-              <li><div class="field__label">Related Resources</div>
-                {{ content.field_related_resources }}
-              </li>
-            {% endif %}
-            {% if content.field_signed_memo %}
-              <li><div class="field__label">Signed Memo</div>
-                {{ content.field_signed_memo }}
-              </li>
-            {%  endif %}
-            {% if content.field_topic_area_of_authority %}
-              <li>{{ content.field_topic_area_of_authority }}</li>
-            {% endif %}
           </ol>
+            {% if content.field_related_resources is not empty %}
+              <div class="field__label">Related Resources</div>
+                {{ content.field_related_resources }}
+
+            {% endif %}
+            {% if content.field_signed_memo is not empty %}
+              <div class="field__label">Signed Memo</div>
+                {{ content.field_signed_memo }}
+            {%  endif %}
         </div>
 	{% endif %}
 
