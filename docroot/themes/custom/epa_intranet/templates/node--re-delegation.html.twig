@@ -126,19 +126,21 @@
           {{ content.field_agency_delegation_link }}
           {{ content.field_transmittal_notice }}
           <ol>
-            {% if content.field_redelegation_authority is not empty %}
+            {% if content.field_redelegation_authority|render|trim is not empty %}
               <li>{{ content.field_redelegation_authority }}</li>
             {% endif %}
-            {% if content.field_to_whom_delegated is not empty %}
+            {% if content.field_to_whom_delegated|render|trim is not empty %}
               <li>{{ content.field_to_whom_delegated }}</li>
             {% endif %}
-            {% if content.field_limitation is not empty %}
+            {% if content.field_limitation|render|trim is not empty %}
               <li>
                 {{ content.field_limitation }}
                 {{ content.field_limitations }}
               </li>
             {% endif %}
-            {% if content.field_further_redelegation is not 'May not be redelegated.' %}
+            {% if 'May not be redelegated.' in content.field_further_redelegation|render|render  %}
+              <li>{{ content.field_further_redelegation  }}</li>
+            {% else %}
               <li>{{ content.field_further_redelegation }}
                 <ul>
                   <li>{{ content.field_redelegation_language }}</li>
@@ -146,10 +148,8 @@
                   <li>{{ content.field_link_to_further_redelegati }}</li>
                 </ul>
               </li>
-            {% else %}
-              <li>content.field_further_redelegation</li>
             {% endif %}
-            {% if content.field_references is not empty %}
+            {% if content.field_references|render|trim is not empty %}
               <li><div class="field__label">Authority Citations</div>
                 {% if content.field_references %}
                   {{ content.field_references }}
@@ -159,12 +159,12 @@
               </li>
             {%  endif %}
           </ol>
-            {% if content.field_related_resources is not empty %}
+            {% if content.field_related_resources|render|trim is not empty %}
               <div class="field__label">Related Resources</div>
                 {{ content.field_related_resources }}
 
             {% endif %}
-            {% if content.field_signed_memo is not empty %}
+            {% if content.field_signed_memo|render|trim is not empty %}
               <div class="field__label">Signed Memo</div>
                 {{ content.field_signed_memo }}
             {%  endif %}
