@@ -134,8 +134,8 @@
             {% endif %}
             {% if content.field_limitation|render|trim is not empty %}
               <li>
-                {{ content.field_limitation }}
                 {{ content.field_limitations }}
+                {{ content.field_limitation }}
               </li>
             {% endif %}
             {% if 'May not be redelegated.' in content.field_further_redelegation|render|render  %}
@@ -149,25 +149,21 @@
                 </ul>
               </li>
             {% endif %}
+            <li><div class="field__label">Authority Citations</div>
             {% if content.field_references|render|trim is not empty %}
-              <li><div class="field__label">Authority Citations</div>
-                {% if content.field_references %}
-                  {{ content.field_references }}
-                {% else %}
-                  <p>None.</p>
-                {% endif %}
-              </li>
-            {%  endif %}
-          </ol>
-            {% if content.field_related_resources|render|trim is not empty %}
-              <div class="field__label">Related Resources</div>
-                {{ content.field_related_resources }}
-
+              {{ content.field_references }}
+            {% else %}
+              <p>None.</p>
             {% endif %}
-            {% if content.field_signed_memo|render|trim is not empty %}
-              <div class="field__label">Signed Memo</div>
-                {{ content.field_signed_memo }}
-            {%  endif %}
+            </li>
+          </ol>
+          {% if content.field_related_resources|render|trim is not empty %}
+              {{ content.field_related_resources }}
+          {% endif %}
+          {% if content.field_signed_memo|render|trim is not empty %}
+            <div class="field__label">Signed Memo</div>
+              {{ content.field_signed_memo }}
+          {% endif %}
         </div>
 	{% endif %}
 

@@ -49,8 +49,7 @@ dependencies:
 third_party_settings:
   field_group:
     group_signed_memo:
-      children:
-        - field_signed_memo
+      children: {  }
       label: 'Signed Memo'
       parent_name: ''
       region: content
@@ -63,12 +62,11 @@ third_party_settings:
         open: false
         description: ''
     group_related_resource_s_:
-      children:
-        - field_related_resources
+      children: {  }
       label: 'Related Resources'
       parent_name: ''
       region: content
-      weight: 28
+      weight: 29
       format_type: details
       format_settings:
         classes: ''
@@ -268,7 +266,7 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 22
+    weight: 30
     region: content
   field_replacing:
     type: entity_reference_label
@@ -302,7 +300,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 29
+    weight: 31
     region: content
   field_signed_memo:
     type: entity_reference_entity_view
@@ -311,7 +309,7 @@ content:
       view_mode: link
       link: false
     third_party_settings: {  }
-    weight: 26
+    weight: 28
     region: content
   field_to_whom_delegated:
     type: cshs_full_hierarchy
