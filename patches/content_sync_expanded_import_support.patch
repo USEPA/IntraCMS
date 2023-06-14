@@ -1,0 +1,113 @@
+diff --git a/src/ContentImporter.php b/src/ContentImporter.php
+index 655f0d2d..5b7c4da6 100644
+--- a/src/ContentImporter.php
++++ b/src/ContentImporter.php
+@@ -15,6 +15,7 @@
+ use Drupal\file\FileInterface;
+ use Drupal\layout_builder\Plugin\Block\InlineBlock;
+ use Drupal\user\Entity\User;
++use Drupal\menu_link_content\Entity\MenuLinkContent;
+ 
+ class ContentImporter implements ContentImporterInterface {
+ 
+@@ -107,6 +108,9 @@ public function doImport(array $content): EntityInterface {
+     // Check if there is an existing entity with the identical uuid.
+     $entity = $this->entityRepository->loadEntityByUuid($content['entity_type'], $content['uuid']);
+ 
++    // Create base for menu link if it exists later, for later processing
++    $menu_link = null;
++
+     // If not, create a new instance of the entity.
+     if (!$entity) {
+       $values = [
+@@ -135,9 +139,9 @@ public function doImport(array $content): EntityInterface {
+               'Original Author: @author',
+               [
+                 '@author' => (
+-                  $account_set
+-                    ? $content['base_fields']['author']
+-                    : $this->t('Unknown')
++                $account_set
++                  ? $content['base_fields']['author']
++                  : $this->t('Unknown')
+                 )
+               ]
+             );
+@@ -160,6 +164,9 @@ public function doImport(array $content): EntityInterface {
+             );
+           }
+         }
++        if (isset($content['base_fields']['menu_link_content'])) {
++          $menu_link = $content['base_fields']['menu_link_content'];
++        }
+         break;
+ 
+       case 'taxonomy_term':
+@@ -186,6 +193,14 @@ public function doImport(array $content): EntityInterface {
+     $this->importCustomValues($entity, $content['custom_fields']);
+     $this->createOrUpdate($entity);
+ 
++    if (isset($menu_link)) {
++      $menu_link['link'] = array('uri' => 'entity:node/'.$entity->getFields()['nid']->value);
++      $menu_link_object = MenuLinkContent::create($menu_link);
++      $menu_link_object->save();
++    }
++
++
++
+     // Sync translations of the entity.
+     if (isset($content['translations']) && $entity instanceof TranslatableInterface) {
+       foreach ($content['translations'] as $langcode => $translation_content) {
+@@ -268,6 +283,36 @@ public function setFieldValue(FieldableEntityInterface $entity, $field_name, $fi
+       case 'address':
+       case 'daterange':
+       case 'datetime':
++      case 'smartdate':
++        if (is_array($field_value)){
++          if (isset($field_value['dates'])){
++            foreach ($field_value['dates'] as $index => $value) {
++              if (isset($value['rrule'])) {
++                $field_value['dates'][$index]['rrule'] = $this->increaseRrule($field_value['dates'][$index]['rrule']);
++              }
++            }
++            $entity->set($field_name, $field_value['dates']);
++          }
++          if (isset($field_value['rrule'])){
++            // Save rrule
++            foreach ($field_value['rrule'] as $index => $value) {
++              $field_value['rrule'][$index]['custom_fields']['rid'][0]['value'] = $this->increaseRrule($field_value['rrule'][$index]['custom_fields']['rid'][0]['value']);
++              $this->doImport($field_value['rrule'][$index]);
++            }
++          }
++          if (isset($field_value['overrides'])) {
++            // Save overrides
++            foreach ($field_value['overrides'] as $index => $value) {
++              // TODO - INCREASE RRULE IS WRONG
++              $field_value['overrides'][$index]['custom_fields']['rrule'][0]['value'] = $this->increaseRrule($field_value['overrides'][$index]['custom_fields']['rrule'][0]['value']);
++              $this->doImport($field_value['overrides'][$index]);
++            }
++          }
++        } else {
++          // Save dates
++          $entity->set($field_name, $field_value);
++        }
++        break;
+       case 'email':
+       case 'geolocation':
+       case 'link':
+@@ -644,4 +689,15 @@ protected function isFullEntity(array $entity): bool {
+     return isset($entity['uuid']) && isset($entity['entity_type']) && isset($entity['base_fields']) && isset($entity['custom_fields']);
+   }
+ 
++  /**
++   * Updates RRULE IDs to avoid potential collisions
++   * @param $rrule
++   * @return float|int|void
++   */
++  protected function increaseRrule($rrule) {
++    if (isset($rrule) && is_numeric($rrule)) {
++      return $rrule * 1000;
++    }
++  }
++
+ }
