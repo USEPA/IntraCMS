@@ -143,9 +143,18 @@
             {% else %}
               <li>{{ content.field_further_redelegation }}
                 <ul>
-                  <li>{{ content.field_redelegation_language }}</li>
-                  <li>{{ content.field_re_redelegation_authority }}</li>
-                  <li>{{ content.field_link_to_further_redelegati }}</li>
+                  {% if content.field_redelegation_language|render|trim is not empty %}
+                    <li>{{ content.field_redelegation_language }}</li>
+                  {% endif %}
+                  {% if content.field_re_redelegation_authority|render|trim is not empty %}
+                    <li>{{ content.field_re_redelegation_authority }}</li>
+                  {% endif %}
+                  {% if content.field_link_to_further_redelegati|render|trim is not empty %}
+                    <li>{{ content.field_link_to_further_redelegati }}</li>
+                  {% endif %}
+                  {% if content.field_link_to_further_redelegati|render|trim is not empty %}
+                    <li>{{ content.field_upload_further_delegation }}</li>
+                  {% endif %}
                 </ul>
               </li>
             {% endif %}
@@ -162,7 +171,7 @@
           {% endif %}
           {% if content.field_signed_memo|render|trim is not empty %}
             <div class="field__label">Signed Memo</div>
-              {{ content.field_signed_memo }}
+            <div class="field__item">{{ content.field_signed_memo }}</div>
           {% endif %}
         </div>
 	{% endif %}
