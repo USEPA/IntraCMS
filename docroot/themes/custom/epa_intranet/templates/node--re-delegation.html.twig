@@ -152,7 +152,7 @@
                   {% if content.field_link_to_further_redelegati|render|trim is not empty %}
                     <li>{{ content.field_link_to_further_redelegati }}</li>
                   {% endif %}
-                  {% if content.field_link_to_further_redelegati|render|trim is not empty %}
+                  {% if content.field_upload_further_delegation|render|trim is not empty %}
                     <li>{{ content.field_upload_further_delegation }}</li>
                   {% endif %}
                 </ul>
@@ -170,7 +170,7 @@
               {{ content.field_related_resources }}
           {% endif %}
           {% if content.field_signed_memo|render|trim is not empty %}
-            <div class="field__label">Signed Memo</div>
+            <div class="field__label">Signed Memo:</div>
             <div class="field__item">{{ content.field_signed_memo }}</div>
           {% endif %}
         </div>
