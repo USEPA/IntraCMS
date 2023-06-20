@@ -3,23 +3,26 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.hr_advisories_and_bulletins.field_admin_update_date
     - field.field.node.hr_advisories_and_bulletins.field_approval_date
     - field.field.node.hr_advisories_and_bulletins.field_approving_signature
     - field.field.node.hr_advisories_and_bulletins.field_hr_policy_type
     - field.field.node.hr_advisories_and_bulletins.field_keywords
-    - field.field.node.hr_advisories_and_bulletins.field_policy_background
     - field.field.node.hr_advisories_and_bulletins.field_policy_identifier
     - field.field.node.hr_advisories_and_bulletins.field_policy_link
     - field.field.node.hr_advisories_and_bulletins.field_policy_purpose
+    - field.field.node.hr_advisories_and_bulletins.field_policy_upload
     - field.field.node.hr_advisories_and_bulletins.field_related_agency_forms
     - field.field.node.hr_advisories_and_bulletins.field_related_policy
     - field.field.node.hr_advisories_and_bulletins.field_related_resources
     - field.field.node.hr_advisories_and_bulletins.field_topic_area_of_authority
+    - field.field.node.hr_advisories_and_bulletins.field_upload_or_link
     - node.type.hr_advisories_and_bulletins
   module:
     - datetime
     - field_group
     - link
+    - options
     - text
     - user
 third_party_settings:
@@ -45,6 +48,15 @@ targetEntityType: node
 bundle: hr_advisories_and_bulletins
 mode: default
 content:
+  field_admin_update_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 13
+    region: content
   field_approval_date:
     type: datetime_default
     label: inline
@@ -69,13 +81,6 @@ content:
       link: true
     third_party_settings: {  }
     weight: 9
-    region: content
-  field_policy_background:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 5
     region: content
   field_policy_identifier:
     type: string
@@ -103,6 +108,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_policy_upload:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 16
     region: content
   field_related_agency_forms:
     type: entity_reference_label
@@ -139,6 +152,13 @@ content:
       link: false
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_upload_or_link:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 14
     region: content
   links:
     settings: {  }

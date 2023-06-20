@@ -4,18 +4,20 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.hr_advisories_and_bulletins.field_admin_update_date
     - field.field.node.hr_advisories_and_bulletins.field_approval_date
     - field.field.node.hr_advisories_and_bulletins.field_approving_signature
     - field.field.node.hr_advisories_and_bulletins.field_hr_policy_type
     - field.field.node.hr_advisories_and_bulletins.field_keywords
-    - field.field.node.hr_advisories_and_bulletins.field_policy_background
     - field.field.node.hr_advisories_and_bulletins.field_policy_identifier
     - field.field.node.hr_advisories_and_bulletins.field_policy_link
     - field.field.node.hr_advisories_and_bulletins.field_policy_purpose
+    - field.field.node.hr_advisories_and_bulletins.field_policy_upload
     - field.field.node.hr_advisories_and_bulletins.field_related_agency_forms
     - field.field.node.hr_advisories_and_bulletins.field_related_policy
     - field.field.node.hr_advisories_and_bulletins.field_related_resources
     - field.field.node.hr_advisories_and_bulletins.field_topic_area_of_authority
+    - field.field.node.hr_advisories_and_bulletins.field_upload_or_link
     - node.type.hr_advisories_and_bulletins
   module:
     - user
@@ -31,15 +33,17 @@ content:
     region: content
 hidden:
   content_moderation_control: true
+  field_admin_update_date: true
   field_approval_date: true
   field_approving_signature: true
   field_hr_policy_type: true
   field_keywords: true
-  field_policy_background: true
   field_policy_identifier: true
   field_policy_link: true
   field_policy_purpose: true
+  field_policy_upload: true
   field_related_agency_forms: true
   field_related_policy: true
   field_related_resources: true
   field_topic_area_of_authority: true
+  field_upload_or_link: true
