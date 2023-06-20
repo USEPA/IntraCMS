@@ -1,21 +1,21 @@
-uuid: 28025e77-cd6a-4b7f-ae98-2b78e26b2868
+uuid: 733ca2e3-725d-43d6-bc5d-f257d26c2be8
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_policy_background
+    - field.storage.node.field_admin_update_date
     - node.type.hr_advisories_and_bulletins
   module:
-    - text
-id: node.hr_advisories_and_bulletins.field_policy_background
-field_name: field_policy_background
+    - datetime
+id: node.hr_advisories_and_bulletins.field_admin_update_date
+field_name: field_admin_update_date
 entity_type: node
 bundle: hr_advisories_and_bulletins
-label: Background
+label: 'Administrative Update Date'
 description: ''
 required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: text_long
+field_type: datetime

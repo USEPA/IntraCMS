@@ -3,20 +3,21 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.hr_advisories_and_bulletins.field_admin_update_date
     - field.field.node.hr_advisories_and_bulletins.field_approval_date
     - field.field.node.hr_advisories_and_bulletins.field_approving_signature
     - field.field.node.hr_advisories_and_bulletins.field_hr_policy_type
     - field.field.node.hr_advisories_and_bulletins.field_keywords
-    - field.field.node.hr_advisories_and_bulletins.field_policy_background
     - field.field.node.hr_advisories_and_bulletins.field_policy_identifier
     - field.field.node.hr_advisories_and_bulletins.field_policy_link
     - field.field.node.hr_advisories_and_bulletins.field_policy_purpose
+    - field.field.node.hr_advisories_and_bulletins.field_policy_upload
     - field.field.node.hr_advisories_and_bulletins.field_related_agency_forms
     - field.field.node.hr_advisories_and_bulletins.field_related_policy
     - field.field.node.hr_advisories_and_bulletins.field_related_resources
     - field.field.node.hr_advisories_and_bulletins.field_topic_area_of_authority
+    - field.field.node.hr_advisories_and_bulletins.field_upload_or_link
     - node.type.hr_advisories_and_bulletins
-    - workflows.workflow.editorial
   module:
     - content_moderation
     - datetime
@@ -34,7 +35,7 @@ third_party_settings:
       label: 'Related Directives, Forms, & Resources'
       region: content
       parent_name: ''
-      weight: 9
+      weight: 10
       format_type: fieldset
       format_settings:
         classes: ''
@@ -49,19 +50,25 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 11
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_admin_update_date:
+    type: datetime_default
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
   field_approval_date:
     type: datetime_default
-    weight: 5
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   field_approving_signature:
     type: string_textfield
-    weight: 8
+    weight: 9
     region: content
     settings:
       size: 60
@@ -75,20 +82,12 @@ content:
     third_party_settings: {  }
   field_keywords:
     type: entity_reference_autocomplete
-    weight: 16
+    weight: 17
     region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_policy_background:
-    type: text_textarea
-    weight: 6
-    region: content
-    settings:
-      rows: 5
       placeholder: ''
     third_party_settings: {  }
   field_policy_identifier:
@@ -101,20 +100,66 @@ content:
     third_party_settings: {  }
   field_policy_link:
     type: link_default
-    weight: 3
+    weight: 7
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        b9f06e22-44a7-49ff-aa79-15398a32f2fe:
+          entity_type: node
+          bundle: hr_advisories_and_bulletins
+          dependee: field_upload_or_link
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: link
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_policy_purpose:
     type: text_textarea
-    weight: 7
+    weight: 5
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_policy_upload:
+    type: entity_reference_autocomplete
+    weight: 8
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        73c7e2a4-2836-4992-888a-1984a848d9c1:
+          entity_type: node
+          bundle: hr_advisories_and_bulletins
+          dependee: field_upload_or_link
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: upload
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_related_agency_forms:
     type: entity_reference_autocomplete
     weight: 20
@@ -145,25 +190,31 @@ content:
     third_party_settings: {  }
   field_topic_area_of_authority:
     type: options_select
-    weight: 4
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_upload_or_link:
+    type: options_select
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 14
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 12
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 15
+    weight: 16
     region: content
     settings:
       display_label: true
@@ -178,7 +229,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 10
+    weight: 11
     region: content
     settings:
       match_operator: CONTAINS
@@ -187,7 +238,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 13
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
