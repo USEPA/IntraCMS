@@ -1,7 +1,14 @@
 uuid: 06b43897-be18-4ba7-9313-470abaa532d1
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - webform_analysis
+third_party_settings:
+  webform_analysis:
+    chart_type: PieChart
+    components:
+      - did_you_find_what_you_were_looking_for
 weight: 0
 open: null
 close: null
@@ -18,9 +25,7 @@ elements: |-
   did_you_find_what_you_were_looking_for:
     '#type': radios
     '#title': 'Did you find what you were looking for?'
-    '#options':
-      'yes': 'yes'
-      'no': 'no'
+    '#options': yes_no
     '#required': true
   what_can_we_improve_about_this_page:
     '#type': textarea
@@ -71,6 +76,9 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
   share: false
   share_node: false
   share_theme_name: ''
@@ -168,34 +176,45 @@ access:
       - authenticated
     users: {  }
     permissions: {  }
+    group_roles: {  }
   view_any:
     roles: {  }
-    users: {  }
+    users:
+      - 8
+      - 55
+      - 13
     permissions: {  }
+    group_roles: {  }
   update_any:
     roles: {  }
     users: {  }
     permissions: {  }
+    group_roles: {  }
   delete_any:
     roles: {  }
     users: {  }
     permissions: {  }
+    group_roles: {  }
   purge_any:
     roles: {  }
     users: {  }
     permissions: {  }
+    group_roles: {  }
   view_own:
     roles: {  }
     users: {  }
     permissions: {  }
+    group_roles: {  }
   update_own:
     roles: {  }
     users: {  }
     permissions: {  }
+    group_roles: {  }
   delete_own:
     roles: {  }
     users: {  }
     permissions: {  }
+    group_roles: {  }
   administer:
     roles: {  }
     users: {  }
@@ -204,10 +223,13 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
+    group_roles: {  }
   configuration:
     roles: {  }
     users: {  }
     permissions: {  }
+  administer_submissions:
+    group_roles: {  }
 handlers:
   email:
     id: email
@@ -220,7 +242,7 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: dearie.jessica@epa.gov
+      to_mail: garnes.sylvette@epa.gov
       to_options: {  }
       bcc_mail: ''
       bcc_options: {  }
@@ -233,8 +255,8 @@ handlers:
       return_path: ''
       sender_mail: ''
       sender_name: ''
-      subject: _default
-      body: _default
+      subject: 'Page Feedback from [webform_submission:source-entity]'
+      body: "Submitted on [webform_submission:created]<br />\r\nSubmitted by: [webform_submission:user]<br />\r\nSubmitted values are:<br />\r\n[webform_submission:values]<br />\r\nURL:&nbsp;[current-page:url]"
       excluded_elements: {  }
       ignore_access: false
       exclude_empty: true
