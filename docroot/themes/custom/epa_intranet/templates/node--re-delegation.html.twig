@@ -132,7 +132,7 @@
             {% if content.field_to_whom_delegated|render|trim is not empty %}
               <li>{{ content.field_to_whom_delegated }}</li>
             {% endif %}
-            {% if content.field_limitation|render|trim is not empty %}
+            {% if 'This delegation has the following limitations' in content.field_limitations|render|render %}
               <li>
                 {{ content.field_limitations }}
                 {{ content.field_limitation }}
