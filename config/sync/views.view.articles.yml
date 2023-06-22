@@ -1135,6 +1135,695 @@ display:
       tags:
         - 'config:field.storage.node.field_effective_date'
         - 'config:field.storage.node.field_policy_identifier'
+  block_2:
+    id: block_2
+    display_title: 'Rescinded Redelegations by Group '
+    display_plugin: block
+    position: 2
+    display_options:
+      title: 'Rescinded Redelegations'
+      fields:
+        field_policy_identifier:
+          id: field_policy_identifier
+          table: node__field_policy_identifier
+          field: field_policy_identifier
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Identifier
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Title
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_effective_date:
+          id: field_effective_date
+          table: node__field_effective_date
+          field: field_effective_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Effective / Approval Date'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_default
+          settings:
+            timezone_override: ''
+            format_type: month_day_year
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      pager:
+        type: full
+        options:
+          offset: 0
+          items_per_page: 20
+          total_pages: null
+          id: 0
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 20
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'There are no redelegations that match your filter criteria.'
+            format: rich_text
+          tokenize: false
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: created
+          exposed: false
+          granularity: second
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            re_delegation: re_delegation
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            argument: null
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_topic_area_of_authority_target_id:
+          id: field_topic_area_of_authority_target_id
+          table: node__field_topic_area_of_authority
+          field: field_topic_area_of_authority_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_topic_area_of_authority_target_id_op
+            label: Topics
+            description: ''
+            use_operator: false
+            operator: field_topic_area_of_authority_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_topic_area_of_authority_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              book_editor: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: policy_topics
+          type: cshs
+          hierarchy: false
+          limit: true
+          error_message: true
+          save_lineage: false
+          force_deepest: false
+          parent: 0
+          level_labels: ''
+          hierarchy_depth: 0
+          required_depth: 0
+        field_chapter_target_id:
+          id: field_chapter_target_id
+          table: node__field_chapter
+          field: field_chapter_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: null
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_chapter_target_id_op
+            label: Chapter
+            description: ''
+            use_operator: false
+            operator: field_chapter_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_chapter_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              book_editor: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: agency_delegations_manual_chapte
+          type: cshs
+          hierarchy: false
+          limit: true
+          error_message: true
+          save_lineage: false
+          force_deepest: false
+          parent: 0
+          level_labels: ''
+          hierarchy_depth: 0
+          required_depth: 0
+        field_divisions_value:
+          id: field_divisions_value
+          table: node__field_divisions
+          field: field_divisions_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: list_field
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_divisions_value_op
+            label: 'Divisions (field_divisions)'
+            description: ''
+            use_operator: false
+            operator: field_divisions_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_divisions_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              book_editor: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+        field_rescind_redelegation_value:
+          id: field_rescind_redelegation_value
+          table: node__field_rescind_redelegation
+          field: field_rescind_redelegation_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: boolean
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
+          columns:
+            title: title
+            created: created
+          default: '-1'
+          info:
+            title:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            created:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      defaults:
+        empty: false
+        title: false
+        pager: false
+        style: false
+        row: false
+        relationships: false
+        fields: false
+        sorts: false
+        filters: false
+        filter_groups: false
+      relationships:
+        group_content:
+          id: group_content
+          table: node_field_data
+          field: group_content
+          relationship: none
+          group_type: group
+          admin_label: 'Content group content'
+          entity_type: node
+          plugin_id: group_content_to_entity_reverse
+          required: true
+          group_content_plugins:
+            'group_node:article': '0'
+            'group_node:blog_post': '0'
+            'group_node:book': '0'
+            'group_node:employee_profile': '0'
+            'group_node:event': '0'
+            'group_node:form': '0'
+            'group_node:grants_policy_issuances_gpis_': '0'
+            'group_node:interagency_policy_issuance_ipi_': '0'
+            'group_node:landing_page': '0'
+            'group_node:mass_mailer': '0'
+            'group_node:page': '0'
+            'group_node:photos_of_the_week': '0'
+            'group_node:policy': '0'
+            'group_node:policy_delegation': '0'
+            'group_node:policy_notice': '0'
+            'group_node:quiz': '0'
+            'group_node:re_delegation': '0'
+            'group_node:staff_member': '0'
+            'group_node:transmittal_notce': '0'
+            'group_node:webform': '0'
+        gid:
+          id: gid
+          table: group_content_field_data
+          field: gid
+          relationship: group_content
+          group_type: group
+          admin_label: Group
+          entity_type: group_content
+          entity_field: gid
+          plugin_id: standard
+          required: true
+        group_content_id:
+          id: group_content_id
+          table: groups_field_data
+          field: group_content_id
+          relationship: gid
+          group_type: group
+          admin_label: 'Group content'
+          entity_type: group
+          plugin_id: group_to_group_content
+          required: true
+          group_content_plugins:
+            'group_node:article': '0'
+            'group_node:blog_post': '0'
+            'group_node:book': '0'
+            'group_node:employee_profile': '0'
+            'group_node:event': '0'
+            'group_node:form': '0'
+            'group_node:grants_policy_issuances_gpis_': '0'
+            'group_node:interagency_policy_issuance_ipi_': '0'
+            'group_node:landing_page': '0'
+            'group_node:mass_mailer': '0'
+            'group_node:page': '0'
+            'group_node:photos_of_the_week': '0'
+            'group_node:policy': '0'
+            'group_node:policy_delegation': '0'
+            'group_node:policy_notice': '0'
+            'group_node:quiz': '0'
+            'group_node:re_delegation': '0'
+            'group_node:staff_member': '0'
+            'group_node:transmittal_notce': '0'
+            'group_node:webform': '0'
+            group_membership: '0'
+            'group_media:audio_file': '0'
+            'group_media:document': '0'
+            'group_media:image': '0'
+            'group_media:instagram': '0'
+            'group_media:other': '0'
+            'group_media:remote_video': '0'
+            'group_media:tweet': '0'
+            'group_media:video': '0'
+            'group_media:video_file': '0'
+            'group_menu:menu': '0'
+            group_taxonomy: '0'
+        gc__node:
+          id: gc__node
+          table: group_content__entity_id
+          field: gc__node
+          relationship: group_content_id
+          group_type: group
+          admin_label: 'Group content Content'
+          entity_type: group_content
+          plugin_id: group_content_to_entity
+          required: true
+          group_content_plugins:
+            'group_node:article': '0'
+            'group_node:blog_post': '0'
+            'group_node:book': '0'
+            'group_node:employee_profile': '0'
+            'group_node:event': '0'
+            'group_node:form': '0'
+            'group_node:grants_policy_issuances_gpis_': '0'
+            'group_node:interagency_policy_issuance_ipi_': '0'
+            'group_node:landing_page': '0'
+            'group_node:mass_mailer': '0'
+            'group_node:page': '0'
+            'group_node:photos_of_the_week': '0'
+            'group_node:policy': '0'
+            'group_node:policy_delegation': '0'
+            'group_node:policy_notice': '0'
+            'group_node:quiz': '0'
+            'group_node:re_delegation': '0'
+            'group_node:staff_member': '0'
+            'group_node:transmittal_notce': '0'
+            'group_node:webform': '0'
+      display_description: ''
+      exposed_block: false
+      display_extenders: {  }
+      block_description: 'Rescinded Redelegations'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_effective_date'
+        - 'config:field.storage.node.field_policy_identifier'
   blogs_by_group:
     id: blogs_by_group
     display_title: 'Blog posts by Group'
