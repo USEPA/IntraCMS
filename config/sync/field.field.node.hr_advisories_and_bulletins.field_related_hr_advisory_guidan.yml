@@ -1,0 +1,27 @@
+EXTERNAL SENDER: Do not click any links or open any attachments unless you trust the sender and know the content is safe.
+
+uuid: c1d569a7-0722-4269-8646-4166ab3ad4bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_hr_advisory_guidan
+    - node.type.hr_advisories_and_bulletins
+id: node.hr_advisories_and_bulletins.field_related_hr_advisory_guidan
+field_name: field_related_hr_advisory_guidan
+entity_type: node
+bundle: hr_advisories_and_bulletins
+label: 'Related HR Advisory Guidance/Bulletin'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: hr_advisories_and_bulletins
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference
