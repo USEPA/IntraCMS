@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.hr_advisories_and_bulletins.field_policy_upload
     - field.field.node.hr_advisories_and_bulletins.field_references
     - field.field.node.hr_advisories_and_bulletins.field_related_agency_forms
+    - field.field.node.hr_advisories_and_bulletins.field_related_hr_advisory_guidan
     - field.field.node.hr_advisories_and_bulletins.field_related_policy
     - field.field.node.hr_advisories_and_bulletins.field_related_resources
     - field.field.node.hr_advisories_and_bulletins.field_topic_area_of_authority
@@ -159,6 +160,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 11
+    region: content
+  field_related_hr_advisory_guidan:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 14
     region: content
   field_related_policy:
     type: entity_reference_label

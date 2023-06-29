@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.hr_advisories_and_bulletins.field_policy_upload
     - field.field.node.hr_advisories_and_bulletins.field_references
     - field.field.node.hr_advisories_and_bulletins.field_related_agency_forms
+    - field.field.node.hr_advisories_and_bulletins.field_related_hr_advisory_guidan
     - field.field.node.hr_advisories_and_bulletins.field_related_policy
     - field.field.node.hr_advisories_and_bulletins.field_related_resources
     - field.field.node.hr_advisories_and_bulletins.field_topic_area_of_authority
@@ -36,7 +37,8 @@ third_party_settings:
         - field_related_policy
         - field_related_agency_forms
         - field_related_resources
-      label: 'Related Directives, Forms, & Resources'
+        - field_related_hr_advisory_guidan
+      label: 'Related Directives, Forms, Resources & Guidance'
       region: content
       parent_name: ''
       weight: 11
@@ -69,13 +71,13 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 15
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
   field_admin_update_date:
     type: datetime_default
-    weight: 13
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -101,7 +103,7 @@ content:
     third_party_settings: {  }
   field_keywords:
     type: entity_reference_autocomplete
-    weight: 12
+    weight: 13
     region: content
     settings:
       match_operator: CONTAINS
@@ -201,6 +203,16 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_related_hr_advisory_guidan:
+    type: entity_reference_autocomplete
+    weight: 22
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_related_policy:
     type: entity_reference_autocomplete
     weight: 19
@@ -233,19 +245,19 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 18
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 16
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 19
+    weight: 20
     region: content
     settings:
       display_label: true
@@ -260,7 +272,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 14
+    weight: 15
     region: content
     settings:
       match_operator: CONTAINS
@@ -269,7 +281,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 17
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }

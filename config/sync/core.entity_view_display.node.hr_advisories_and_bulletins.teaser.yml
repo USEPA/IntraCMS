@@ -1,32 +1,39 @@
 EXTERNAL SENDER: Do not click any links or open any attachments unless you trust the sender and know the content is safe.
 
-uuid: 00025b2f-eb7b-46dc-8dbc-2cf8484de842
+uuid: a2b0fc0b-c44f-4134-9aba-ffa8e819aa92
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.hr_advisories_and_bulletins.field_admin_update_date
-    - field.field.node.hr_advisories_and_bulletins.field_approval_date
-    - field.field.node.hr_advisories_and_bulletins.field_approving_signature
-    - field.field.node.hr_advisories_and_bulletins.field_hr_policy_type
-    - field.field.node.hr_advisories_and_bulletins.field_keywords
-    - field.field.node.hr_advisories_and_bulletins.field_policy_identifier
-    - field.field.node.hr_advisories_and_bulletins.field_policy_link
-    - field.field.node.hr_advisories_and_bulletins.field_policy_purpose
-    - field.field.node.hr_advisories_and_bulletins.field_policy_upload
-    - field.field.node.hr_advisories_and_bulletins.field_references
-    - field.field.node.hr_advisories_and_bulletins.field_related_agency_forms
-    - field.field.node.hr_advisories_and_bulletins.field_related_policy
-    - field.field.node.hr_advisories_and_bulletins.field_related_resources
-    - field.field.node.hr_advisories_and_bulletins.field_topic_area_of_authority
-    - field.field.node.hr_advisories_and_bulletins.field_upload_or_link
-    - node.type.hr_advisories_and_bulletins
+    - field.field.node.grants_policy_issuances_gpis_.field_applicability
+    - field.field.node.grants_policy_issuances_gpis_.field_cfr_definition
+    - field.field.node.grants_policy_issuances_gpis_.field_effective_date
+    - field.field.node.grants_policy_issuances_gpis_.field_policy_background
+    - field.field.node.grants_policy_issuances_gpis_.field_policy_definitions
+    - field.field.node.grants_policy_issuances_gpis_.field_policy_guidance
+    - field.field.node.grants_policy_issuances_gpis_.field_policy_identifier
+    - field.field.node.grants_policy_issuances_gpis_.field_policy_link
+    - field.field.node.grants_policy_issuances_gpis_.field_policy_upload
+    - field.field.node.grants_policy_issuances_gpis_.field_purpose
+    - field.field.node.grants_policy_issuances_gpis_.field_related_agency_forms
+    - field.field.node.grants_policy_issuances_gpis_.field_related_gpi_s_
+    - field.field.node.grants_policy_issuances_gpis_.field_related_ipi_s_
+    - field.field.node.grants_policy_issuances_gpis_.field_related_policy
+    - field.field.node.grants_policy_issuances_gpis_.field_related_policy_notice
+    - field.field.node.grants_policy_issuances_gpis_.field_related_resources
+    - field.field.node.grants_policy_issuances_gpis_.field_rescind_this_policy
+    - field.field.node.grants_policy_issuances_gpis_.field_rescission_date
+    - field.field.node.grants_policy_issuances_gpis_.field_rescission_notes
+    - field.field.node.grants_policy_issuances_gpis_.field_roles_and_responsibilities
+    - field.field.node.grants_policy_issuances_gpis_.field_topic
+    - field.field.node.grants_policy_issuances_gpis_.field_upload_or_link
+    - node.type.grants_policy_issuances_gpis_
   module:
     - user
-id: node.hr_advisories_and_bulletins.teaser
+id: node.grants_policy_issuances_gpis_.teaser
 targetEntityType: node
-bundle: hr_advisories_and_bulletins
+bundle: grants_policy_issuances_gpis_
 mode: teaser
 content:
   links:
@@ -36,18 +43,25 @@ content:
     region: content
 hidden:
   content_moderation_control: true
-  field_admin_update_date: true
-  field_approval_date: true
-  field_approving_signature: true
-  field_hr_policy_type: true
-  field_keywords: true
+  field_applicability: true
+  field_cfr_definition: true
+  field_effective_date: true
+  field_policy_background: true
+  field_policy_definitions: true
+  field_policy_guidance: true
   field_policy_identifier: true
   field_policy_link: true
-  field_policy_purpose: true
   field_policy_upload: true
-  field_references: true
+  field_purpose: true
   field_related_agency_forms: true
+  field_related_gpi_s_: true
+  field_related_ipi_s_: true
   field_related_policy: true
+  field_related_policy_notice: true
   field_related_resources: true
-  field_topic_area_of_authority: true
+  field_rescind_this_policy: true
+  field_rescission_date: true
+  field_rescission_notes: true
+  field_roles_and_responsibilities: true
+  field_topic: true
   field_upload_or_link: true
