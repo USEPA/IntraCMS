@@ -1,67 +1,210 @@
-EXTERNAL SENDER: Do not click any links or open any attachments unless you trust the sender and know the content is safe.
-
-uuid: a2b0fc0b-c44f-4134-9aba-ffa8e819aa92
+uuid: 62407915-9c38-46a5-af2f-de28e13bf9d9
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.grants_policy_issuances_gpis_.field_applicability
-    - field.field.node.grants_policy_issuances_gpis_.field_cfr_definition
-    - field.field.node.grants_policy_issuances_gpis_.field_effective_date
-    - field.field.node.grants_policy_issuances_gpis_.field_policy_background
-    - field.field.node.grants_policy_issuances_gpis_.field_policy_definitions
-    - field.field.node.grants_policy_issuances_gpis_.field_policy_guidance
-    - field.field.node.grants_policy_issuances_gpis_.field_policy_identifier
-    - field.field.node.grants_policy_issuances_gpis_.field_policy_link
-    - field.field.node.grants_policy_issuances_gpis_.field_policy_upload
-    - field.field.node.grants_policy_issuances_gpis_.field_purpose
-    - field.field.node.grants_policy_issuances_gpis_.field_related_agency_forms
-    - field.field.node.grants_policy_issuances_gpis_.field_related_gpi_s_
-    - field.field.node.grants_policy_issuances_gpis_.field_related_ipi_s_
-    - field.field.node.grants_policy_issuances_gpis_.field_related_policy
-    - field.field.node.grants_policy_issuances_gpis_.field_related_policy_notice
-    - field.field.node.grants_policy_issuances_gpis_.field_related_resources
-    - field.field.node.grants_policy_issuances_gpis_.field_rescind_this_policy
-    - field.field.node.grants_policy_issuances_gpis_.field_rescission_date
-    - field.field.node.grants_policy_issuances_gpis_.field_rescission_notes
-    - field.field.node.grants_policy_issuances_gpis_.field_roles_and_responsibilities
-    - field.field.node.grants_policy_issuances_gpis_.field_topic
-    - field.field.node.grants_policy_issuances_gpis_.field_upload_or_link
-    - node.type.grants_policy_issuances_gpis_
+    - field.field.node.hr_advisories_and_bulletins.field_admin_update_date
+    - field.field.node.hr_advisories_and_bulletins.field_approval_date
+    - field.field.node.hr_advisories_and_bulletins.field_approving_signature
+    - field.field.node.hr_advisories_and_bulletins.field_hr_policy_type
+    - field.field.node.hr_advisories_and_bulletins.field_keywords
+    - field.field.node.hr_advisories_and_bulletins.field_policy_identifier
+    - field.field.node.hr_advisories_and_bulletins.field_policy_link
+    - field.field.node.hr_advisories_and_bulletins.field_policy_purpose
+    - field.field.node.hr_advisories_and_bulletins.field_policy_upload
+    - field.field.node.hr_advisories_and_bulletins.field_references
+    - field.field.node.hr_advisories_and_bulletins.field_related_agency_forms
+    - field.field.node.hr_advisories_and_bulletins.field_related_hr_advisory_guidan
+    - field.field.node.hr_advisories_and_bulletins.field_related_policy
+    - field.field.node.hr_advisories_and_bulletins.field_related_resources
+    - field.field.node.hr_advisories_and_bulletins.field_topic_area_of_authority
+    - field.field.node.hr_advisories_and_bulletins.field_upload_or_link
+    - node.type.hr_advisories_and_bulletins
   module:
+    - datetime
+    - entity_reference_revisions
+    - field_group
+    - layout_builder
+    - link
+    - options
+    - text
     - user
-id: node.grants_policy_issuances_gpis_.teaser
+third_party_settings:
+  field_group:
+    group_re:
+      children:
+        - field_related_policy
+        - field_related_agency_forms
+        - field_related_resources
+      label: 'Related Directives, Forms, & Resources'
+      parent_name: ''
+      region: content
+      weight: 10
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+    group_authority_citations:
+      children:
+        - field_references
+      label: 'Authority Citations'
+      parent_name: ''
+      region: content
+      weight: 9
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.hr_advisories_and_bulletins.teaser
 targetEntityType: node
-bundle: grants_policy_issuances_gpis_
+bundle: hr_advisories_and_bulletins
 mode: teaser
 content:
+  field_admin_update_date:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: month_day_year
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_approval_date:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: month_day_year
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_approving_signature:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_hr_policy_type:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_keywords:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_policy_identifier:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_policy_link:
+    type: link
+    label: inline
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_policy_purpose:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_policy_upload:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: link
+      link: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_references:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_related_agency_forms:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_related_hr_advisory_guidan:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_related_policy:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_related_resources:
+    type: link
+    label: above
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_topic_area_of_authority:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
   content_moderation_control: true
-  field_applicability: true
-  field_cfr_definition: true
-  field_effective_date: true
-  field_policy_background: true
-  field_policy_definitions: true
-  field_policy_guidance: true
-  field_policy_identifier: true
-  field_policy_link: true
-  field_policy_upload: true
-  field_purpose: true
-  field_related_agency_forms: true
-  field_related_gpi_s_: true
-  field_related_ipi_s_: true
-  field_related_policy: true
-  field_related_policy_notice: true
-  field_related_resources: true
-  field_rescind_this_policy: true
-  field_rescission_date: true
-  field_rescission_notes: true
-  field_roles_and_responsibilities: true
-  field_topic: true
   field_upload_or_link: true
