@@ -7,7 +7,7 @@ stages:
 Build IntranetCMS Image:
   stage: build
   rules:
-    - if: '$CI_COMMIT_BRANCH == "dev-container-1" || $CI_COMMIT_BRANCH == "stage-container-1"'
+    - if: '$CI_COMMIT_BRANCH == "dev-container" || $CI_COMMIT_BRANCH == "stage-container-1"'
   tags:
     - intranetcms-dev-runner
   image:
@@ -21,7 +21,7 @@ Build IntranetCMS Image:
 Development:
   stage: Non-Production Dev Deployment
   rules:
-    - if: '$CI_COMMIT_BRANCH == "dev-container-1"'
+    - if: '$CI_COMMIT_BRANCH == "dev-container"'
   tags:
     - intranetcms-dev-runner
   image: dtzar/helm-kubectl
