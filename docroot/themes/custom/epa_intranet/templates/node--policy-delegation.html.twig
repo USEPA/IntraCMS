@@ -143,6 +143,8 @@
           {{ content.field_limitations }}
           {{ content.field_limitation }}
         </li>
+      {% else %}
+        {{ content.field_limitations }}
       {% endif %}
       {% if 'May NOT be redelegated.' in content.field_redelegation|render|render  %}
         <li>{{ content.field_redelegation  }}</li>
@@ -158,7 +160,7 @@
           </ul>
         </li>
       {% endif %}
-      <li><div class="field__label">Authority Citations</div>
+      <li><div class="field__label">Additional References</div>
         {% if content.field_references|render|trim is not empty %}
           {{ content.field_references }}
         {% else %}
