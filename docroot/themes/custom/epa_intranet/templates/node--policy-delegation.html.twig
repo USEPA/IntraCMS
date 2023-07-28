@@ -144,7 +144,7 @@
           {{ content.field_limitation }}
         </li>
       {% else %}
-        {{ content.field_limitations }}
+        <li>{{ content.field_limitations }}</li>
       {% endif %}
       {% if 'May NOT be redelegated.' in content.field_redelegation|render|render  %}
         <li>{{ content.field_redelegation  }}</li>
