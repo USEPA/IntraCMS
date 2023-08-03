@@ -146,11 +146,11 @@ index 5e0fd7d4..5d52408b 100644
 +  public function generate(Link $link): string
 +  {
 +    $timeZones = [];
-+
++    $title = html_entity_decode($link->title, ENT_QUOTES);
 +    $vcalendar = new VCalendar();
 +    $vevent = $vcalendar->createComponent('VEVENT', [
 +      'UID' => $this->generateEventUid($link),
-+      'SUMMARY' => $link->title,
++      'SUMMARY' => $title,
 +    ]);
 +    $vcalendar->add($vevent);
 +

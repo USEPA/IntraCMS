@@ -20,7 +20,6 @@
         "drupal/admin_toolbar": "^3.1",
         "drupal/uswds": "^2.2",
         "drupal/fontawesome": "^2.19",
-        "wikimedia/composer-merge-plugin": "^1.4",
         "drupal/config_filter": "^1.8",
         "drupal/config_ignore": "^3.0",
         "drupal/config_split": "1.7",
@@ -59,7 +58,7 @@
         "harvesthq/chosen": "1.8.7",
         "drupal/views_taxonomy_term_name_into_id": "^1.0@alpha",
         "drupal/fixed_block_content": "^1.0",
-        "drupal/groupmedia": "^2.0@alpha",
+        "drupal/groupmedia": "^2.0@RC",
         "drupal/feeds": "3.0.0-beta1",
         "drupal/feeds_ex": "1.0.0-beta1",
         "drupal/google_analytics": "3.1",
@@ -154,21 +153,15 @@
     },
     "config": {
         "process-timeout": 0,
-        "allow-plugins": {
-            "composer/installers": true,
-            "simplesamlphp/composer-module-installer": true,
-            "oomphinc/composer-installers-extender": true,
-            "cweagans/composer-patches": true,
-            "drupal-composer/drupal-scaffold": true,
-            "wikimedia/composer-merge-plugin": true
-        }
+        "allow-plugins": true,
+        "sort-packages": true
     },
     "extra": {
         "drupal-scaffold": {
-        "locations": {
-            "web-root": "docroot"
-        }
-    },
+            "locations": {
+                "web-root": "docroot"
+            }
+        },
         "patches": {
             "drupal/linkit": {
                 "Fix issue with wrong ui-autocomplete class being assigned to autocompletes": "patches/linkit_class_override.patch",
@@ -233,7 +226,9 @@
                 "2934855: Make node links into USWDS buttons": "https://www.drupal.org/files/issues/2018-07-17/uswds-d8-node-links-2934855-2.patch"
             },
             "drupal/single_content_sync": {
-                "3325903: If author doesn't exist, then revision log message fails, the revision message duplicates rather than updating": "https://www.drupal.org/files/issues/2023-01-28/allow-author-not-to-exist-in-export-3325903-4.patch"
+                "3325903: If author doesn't exist, then revision log message fails, the revision message duplicates rather than updating": "https://www.drupal.org/files/issues/2023-01-28/allow-author-not-to-exist-in-export-3325903-4.patch",
+                "Expanding export support to cover Event smart dates and Menu Links": "patches/content_sync_expanded_export_support.patch",
+                "Expanding import support to cover Event smart dates and Menu Links": "patches/content_sync_expanded_import_support.patch"
             },
             "drupal/simplesamlphp_auth": {
                 "2983154: Redirect to original destination after logging in": "https://www.drupal.org/files/issues/2020-01-02/simplesamlphp_auth-return-to-destination-parameter-2983154-8-D8.patch"
@@ -264,7 +259,10 @@
                 "3051453: Call to a member function setSyncing() on null when installing a module.": "https://www.drupal.org/files/issues/2020-08-18/protect_against_invalid_ids_in_import_delete-3051453-10.patch",
                 "2952261: Unsupported operand types in Drupal.": "https://www.drupal.org/files/issues/2019-10-22/unsupported-types-2952261-11.patch",
                 "2893747: Call to a member function getColumns() on boolean": "https://www.drupal.org/files/issues/2020-10-29/2893747-33.patch",
-                "3303889: Call to a member function uuid() on null": "https://www.drupal.org/files/issues/2022-08-22/core-3303889-media-library-widget-error-on-no-selection-20.patch"
+                "3303889: Call to a member function uuid() on null": "https://www.drupal.org/files/issues/2022-08-22/core-3303889-media-library-widget-error-on-no-selection-20.patch",
+                "3044211: SectionStorage objects in tempstore are broken after upgrade.":  "https://www.drupal.org/files/issues/2023-03-10/3044211-25.patch",
+                "3270985: Wrong url generated for file fields.":  "patches/fileuri_fix.patch",
+                "3327118: Change in ContentStorageEntityBase in Drupal 9.4.9 leads to memory leak": "https://www.drupal.org/files/issues/2023-05-04/3327118-21.patch"
             },
             "merge-plugin": {
                 "include": [
@@ -403,21 +401,21 @@
                 }
             }
         },
-      {
-        "type": "package",
-        "package": {
-          "name": "ckeditor-plugin/iframe",
-          "type": "drupal-library",
-          "version": "4.16.2",
-          "dist": {
-            "url": "https://download.ckeditor.com/iframe/releases/iframe_4.16.2.zip",
-            "type": "zip"
-          },
-          "require": {
-            "composer/installers": "^1.9.0"
-          }
-        }
-      },
+        {
+            "type": "package",
+            "package": {
+                "name": "ckeditor-plugin/iframe",
+                "type": "drupal-library",
+                "version": "4.16.2",
+                "dist": {
+                    "url": "https://download.ckeditor.com/iframe/releases/iframe_4.16.2.zip",
+                    "type": "zip"
+                },
+                "require": {
+                    "composer/installers": "^1.9.0"
+                }
+            }
+        },
         {
             "type": "package",
             "package": {
