@@ -3,8 +3,10 @@ langcode: en
 status: true
 dependencies:
   module:
-    - ctools
+    - block_in_page_not_found
     - groupmenu_block
+    - node
+    - system
   theme:
     - epa_intranet
 id: groupmenus
@@ -35,3 +37,11 @@ visibility:
       mass_mailer: mass_mailer
       photos_of_the_week: photos_of_the_week
       staff_member: staff_member
+  request_path:
+    id: request_path
+    negate: true
+    pages: "*/web-areas/*\r\n/group/*/menus\r\n/group/*/revisions\r\n/group/*/taxonomy\r\n/group/*/member/*"
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false

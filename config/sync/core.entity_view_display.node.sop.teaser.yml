@@ -1,0 +1,47 @@
+uuid: e5f2ae9b-4034-4f4f-bcaf-7f64aa6c8326
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.sop.field_date_reviewed
+    - field.field.node.sop.field_description
+    - field.field.node.sop.field_discipline
+    - field.field.node.sop.field_division
+    - field.field.node.sop.field_lab
+    - field.field.node.sop.field_sop_alternate_number
+    - field.field.node.sop.field_sop_contact
+    - field.field.node.sop.field_sop_guid
+    - field.field.node.sop.field_sop_link
+    - field.field.node.sop.field_sop_number
+    - field.field.node.sop.field_sop_previous_number
+    - field.field.node.sop.field_sop_status
+    - field.field.node.sop.field_sub_discipline
+    - node.type.sop
+  module:
+    - user
+id: node.sop.teaser
+targetEntityType: node
+bundle: sop
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  content_moderation_control: true
+  field_date_reviewed: true
+  field_description: true
+  field_discipline: true
+  field_division: true
+  field_lab: true
+  field_sop_alternate_number: true
+  field_sop_contact: true
+  field_sop_guid: true
+  field_sop_link: true
+  field_sop_number: true
+  field_sop_previous_number: true
+  field_sop_status: true
+  field_sub_discipline: true

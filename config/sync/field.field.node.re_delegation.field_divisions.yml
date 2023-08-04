@@ -1,0 +1,21 @@
+uuid: 63ce1074-53c4-4a75-8b72-686072bcf64a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_divisions
+    - node.type.re_delegation
+  module:
+    - options
+id: node.re_delegation.field_divisions
+field_name: field_divisions
+entity_type: node
+bundle: re_delegation
+label: 'Regional Divisions'
+description: 'Select the regional division(s) this redelegation applies to. If this re-delegation applies to a Program Office, please ignore this field.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

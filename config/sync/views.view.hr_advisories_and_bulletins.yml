@@ -1,3 +1,5 @@
+EXTERNAL SENDER: Do not click any links or open any attachments unless you trust the sender and know the content is safe.
+
 uuid: 126143f4-f331-4fe5-bed9-7ce6a2f39227
 langcode: en
 status: true
@@ -7,10 +9,15 @@ dependencies:
     - field.storage.node.field_policy_background
     - field.storage.node.field_policy_identifier
     - field.storage.node.field_policy_purpose
+    - field.storage.node.field_references
     - node.type.hr_advisories_and_bulletins
+    - taxonomy.vocabulary.policy_topics
   module:
     - datetime
+    - entity_reference_revisions
     - node
+    - options
+    - taxonomy
     - text
     - user
     - vefl
@@ -347,6 +354,69 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        field_references:
+          id: field_references
+          table: node__field_references
+          field: field_references
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Authority Citations'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_revisions_entity_view
+          settings:
+            view_mode: default
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       pager:
         type: mini
         options:
@@ -376,16 +446,18 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
           layout:
-            layout_id: vefl_onecol
+            layout_id: layout_twocol_section
             change: Change
             widget_region:
-              combine: middle
-              sort_by: middle
-              sort_order: middle
-              items_per_page: middle
-              offset: middle
-              submit: middle
-              reset: middle
+              combine: first
+              field_topic_area_of_authority_target_id: first
+              field_hr_policy_type_value: second
+              sort_by: first
+              sort_order: first
+              items_per_page: first
+              offset: first
+              submit: first
+              reset: first
       access:
         type: perm
         options:
@@ -407,21 +479,7 @@ display:
             value: "<hr />\r\n<div class=\"usa-alert usa-alert--error\" role=\"alert\">\r\n  <div class=\"usa-alert__body\">\r\n    <h2 class=\"usa-alert__heading\">No Results</h2>\r\n    <p class=\"usa-alert__text\">\r\nThere are no items that match your filter criteria.\r\n    </p>\r\n  </div>\r\n</div>"
             format: rich_text
           tokenize: false
-      sorts:
-        field_approval_date_value:
-          id: field_approval_date_value
-          table: node__field_approval_date
-          field: field_approval_date_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: datetime
-          order: DESC
-          expose:
-            label: ''
-            field_identifier: ''
-          exposed: false
-          granularity: day
+      sorts: {  }
       arguments: {  }
       filters:
         status:
@@ -504,6 +562,107 @@ display:
             title: title
             field_policy_background: field_policy_background
             field_policy_purpose: field_policy_purpose
+        field_topic_area_of_authority_target_id:
+          id: field_topic_area_of_authority_target_id
+          table: node__field_topic_area_of_authority
+          field: field_topic_area_of_authority_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: null
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_topic_area_of_authority_target_id_op
+            label: Topic
+            description: ''
+            use_operator: false
+            operator: field_topic_area_of_authority_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_topic_area_of_authority_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              book_editor: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: policy_topics
+          type: cshs
+          hierarchy: false
+          limit: true
+          error_message: true
+          save_lineage: false
+          force_deepest: false
+          parent: 0
+          level_labels: ''
+          hierarchy_depth: 0
+          required_depth: 0
+        field_hr_policy_type_value:
+          id: field_hr_policy_type_value
+          table: node__field_hr_policy_type
+          field: field_hr_policy_type_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: list_field
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_hr_policy_type_value_op
+            label: Type
+            description: ''
+            use_operator: false
+            operator: field_hr_policy_type_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_hr_policy_type_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              book_editor: '0'
+              system_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
       style:
         type: table
         options:
@@ -569,6 +728,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -576,6 +736,7 @@ display:
         - 'config:field.storage.node.field_policy_background'
         - 'config:field.storage.node.field_policy_identifier'
         - 'config:field.storage.node.field_policy_purpose'
+        - 'config:field.storage.node.field_references'
   block_hr_advisory:
     id: block_hr_advisory
     display_title: Block
@@ -592,6 +753,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -599,3 +761,193 @@ display:
         - 'config:field.storage.node.field_policy_background'
         - 'config:field.storage.node.field_policy_identifier'
         - 'config:field.storage.node.field_policy_purpose'
+        - 'config:field.storage.node.field_references'
+  entity_reference_1:
+    id: entity_reference_1
+    display_title: 'Entity Reference'
+    display_plugin: entity_reference
+    position: 2
+    display_options:
+      fields:
+        field_policy_identifier:
+          id: field_policy_identifier
+          table: node__field_policy_identifier
+          field: field_policy_identifier
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: false
+            ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            hr_advisories_and_bulletins: hr_advisories_and_bulletins
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: entity_reference
+        options:
+          search_fields:
+            title: title
+            field_policy_identifier: '0'
+            field_approval_date: '0'
+            field_policy_background: '0'
+            field_policy_purpose: '0'
+            field_references: '0'
+      defaults:
+        fields: false
+        filters: false
+        filter_groups: false
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_policy_identifier'

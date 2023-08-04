@@ -7,6 +7,7 @@ dependencies:
   module:
     - block_in_page_not_found
     - node
+    - system
     - webform
   theme:
     - epa_intranet
@@ -51,3 +52,7 @@ visibility:
     id: page_not_found_request
     negate: true
     page_not_found: true
+  request_path:
+    id: request_path
+    negate: true
+    pages: "/form/contact\r\n/web-areas/*\r\n/group/*/menus\r\n/group/*/taxonomy\r\n/group/*/revisions\r\n/user/*"

@@ -1,0 +1,52 @@
+uuid: 35d934bf-0686-4410-8eb1-bba3eb427cfd
+langcode: en
+status: true
+dependencies:
+  module:
+    - field_permissions
+    - node
+    - options
+third_party_settings:
+  field_permissions:
+    permission_type: public
+id: node.field_divisions
+field_name: field_divisions
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: ORA
+      label: 'ORA - Office of the Regional Administrator'
+    -
+      value: ARD
+      label: 'ARD - Air and Radiation Division'
+    -
+      value: ECAD
+      label: 'ECAD - Enforcement and Compliance Assurance Division'
+    -
+      value: LCRD
+      label: 'LCRD - Land, Chemical and Redevelopment Division'
+    -
+      value: LSASD
+      label: 'LSASD - Laboratory Services and Applied Sciences Division'
+    -
+      value: MSD
+      label: 'MSD - Mission Support Division'
+    -
+      value: ORC
+      label: 'ORC - Office of Regional Counsel'
+    -
+      value: SEMD
+      label: 'SEMD - Superfund and Emergency Management Division'
+    -
+      value: WD
+      label: 'WD - Water Division'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,23 +1,30 @@
+EXTERNAL SENDER: Do not click any links or open any attachments unless you trust the sender and know the content is safe.
+
 uuid: 4b5770f0-84fd-4521-8c02-31e4229f9bea
 langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.hr_advisories_and_bulletins.field_admin_update_date
     - field.field.node.hr_advisories_and_bulletins.field_approval_date
     - field.field.node.hr_advisories_and_bulletins.field_approving_signature
     - field.field.node.hr_advisories_and_bulletins.field_hr_policy_type
     - field.field.node.hr_advisories_and_bulletins.field_keywords
-    - field.field.node.hr_advisories_and_bulletins.field_policy_background
     - field.field.node.hr_advisories_and_bulletins.field_policy_identifier
     - field.field.node.hr_advisories_and_bulletins.field_policy_link
     - field.field.node.hr_advisories_and_bulletins.field_policy_purpose
+    - field.field.node.hr_advisories_and_bulletins.field_policy_upload
+    - field.field.node.hr_advisories_and_bulletins.field_references
     - field.field.node.hr_advisories_and_bulletins.field_related_agency_forms
+    - field.field.node.hr_advisories_and_bulletins.field_related_hr_advisory_guidan
     - field.field.node.hr_advisories_and_bulletins.field_related_policy
     - field.field.node.hr_advisories_and_bulletins.field_related_resources
     - field.field.node.hr_advisories_and_bulletins.field_topic_area_of_authority
+    - field.field.node.hr_advisories_and_bulletins.field_upload_or_link
     - node.type.hr_advisories_and_bulletins
   module:
     - datetime
+    - entity_reference_revisions
     - field_group
     - link
     - options
@@ -33,6 +40,20 @@ third_party_settings:
       label: 'Related Directives, Forms, & Resources'
       parent_name: ''
       region: content
+      weight: 10
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+    group_authority_citations:
+      children:
+        - field_references
+      label: 'Authority Citations'
+      parent_name: ''
+      region: content
       weight: 9
       format_type: details
       format_settings:
@@ -46,12 +67,21 @@ targetEntityType: node
 bundle: hr_advisories_and_bulletins
 mode: default
 content:
-  field_approval_date:
+  field_admin_update_date:
     type: datetime_default
-    label: above
+    label: inline
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: month_day_year
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_approval_date:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: month_day_year
     third_party_settings: {  }
     weight: 4
     region: content
@@ -65,7 +95,7 @@ content:
     region: content
   field_hr_policy_type:
     type: list_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 2
@@ -76,18 +106,11 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 13
-    region: content
-  field_policy_background:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 5
+    weight: 11
     region: content
   field_policy_identifier:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -95,22 +118,40 @@ content:
     region: content
   field_policy_link:
     type: link
-    label: above
+    label: inline
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
-    weight: 7
+    weight: 6
     region: content
   field_policy_purpose:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 6
+    weight: 5
+    region: content
+  field_policy_upload:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: link
+      link: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_references:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 13
     region: content
   field_related_agency_forms:
     type: entity_reference_label
@@ -119,6 +160,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 11
+    region: content
+  field_related_hr_advisory_guidan:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 14
     region: content
   field_related_policy:
     type: entity_reference_label
@@ -142,9 +191,9 @@ content:
     region: content
   field_topic_area_of_authority:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 3
     region: content
@@ -155,3 +204,4 @@ content:
     region: content
 hidden:
   content_moderation_control: true
+  field_upload_or_link: true
