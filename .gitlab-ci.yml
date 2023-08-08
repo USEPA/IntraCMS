@@ -1,13 +1,14 @@
 stages:
 
   - build
-  - Non-Production Stage Deployment
+  - prisma scan
   - Non-Production Dev Deployment
+  - Non-Production Stage Deployment
 
 Build IntranetCMS Image:
   stage: build
   rules:
-    - if: '$CI_COMMIT_BRANCH == "dev-container-1" || $CI_COMMIT_BRANCH == "stage-container-1"'
+    - if: '$CI_COMMIT_BRANCH == "dev-container" || $CI_COMMIT_BRANCH == "stage-container-1"'
   tags:
     - intranetcms-dev-runner
   image:
@@ -18,27 +19,24 @@ Build IntranetCMS Image:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/docker/Dockerfile --destination $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA
 
-Stage:
-  stage: Non-Production Stage Deployment
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "stage-container-1"'
+Prisma Scan:
+  stage: prisma scan
   tags:
-    - intranetcms-stg-runner
-  image: dtzar/helm-kubectl
+    - twistcli
+  variables:
+    GIT_STRATEGY: clone
   script:
-    - kubectl config use-context intranet-cms/intracms-infra-stage:intranetcms-stage-k8s-agent
-    - apk add gettext
-    - envsubst < k8s/intranetcms-stage.yml | kubectl apply -f - -n cms-45-stage --validate=false
-  environment:
-    name: stage
-    url:
-    kubernetes:
-      namespace: cms-45-stage
+    - 'export PRISMA_CI_TOKEN=$(curl -kH "Content-Type: application/json" -d "{\"username\":\"$PRISMA_CI_USERNAME\", \"password\":\"$PRISMA_CI_PASSWORD\"}" https://prismacloud.epa.gov/api/v22.12/authenticate | jq -r .token)'
+    - 'curl --progress-bar -L -k --header "Authorization: Bearer $PRISMA_CI_TOKEN" https://prismacloud.epa.gov/api/v1/util/twistcli > twistcli; chmod a+x twistcli;'
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA
+    - ./twistcli images scan $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA --address=https://prismacloud.epa.gov --details --token=$PRISMA_CI_TOKEN
+
 
 Development:
   stage: Non-Production Dev Deployment
   rules:
-    - if: '$CI_COMMIT_BRANCH == "dev-container-1"'
+    - if: '$CI_COMMIT_BRANCH == "dev-container"'
   tags:
     - intranetcms-dev-runner
   image: dtzar/helm-kubectl
@@ -51,3 +49,20 @@ Development:
     url:
     kubernetes:
       namespace: cms-45-dev
+
+Stage:
+  stage: Non-Production Stage Deployment
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "stage-container-1"'
+  tags:
+    - intranetcms-stg-runner
+  image: dtzar/helm-kubectl
+  script:
+    - kubectl config use-context intranet-cms/intracms-infra-stage:intranetcms-stage-k8s-agent
+    - apk add gettext
+    - envsubst < k8s/intranetcms-stage.yml | kubectl apply -f - -n cms-45-stage
+  environment:
+    name: stage
+    url:
+    kubernetes:
+      namespace: cms-45-stage
