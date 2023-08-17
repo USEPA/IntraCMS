@@ -92,14 +92,14 @@
   {{ title_suffix }}
 
   {% if display_submitted %}
-    
+
       <div>
-        {% set createdDate = node.getCreatedTime|format_date('month_day_year') %}
+        {% set createdDate = node.created.value|date('M j, Y') %}
         {% trans %}
         <em>{{ createdDate }}</em>
         {% endtrans %}
       </div>
-   
+
   {% endif %}
 
   <div{{ content_attributes.addClass('node__content') }}>
