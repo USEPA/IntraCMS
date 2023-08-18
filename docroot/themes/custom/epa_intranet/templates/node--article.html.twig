@@ -72,13 +72,13 @@
 #}
 {%
   set classes = [
-    'node',
-    'node--type-' ~ node.bundle|clean_class,
-    node.isPromoted() ? 'node--promoted',
-    node.isSticky() ? 'node--sticky',
-    not node.isPublished() ? 'node--unpublished',
-    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-  ]
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+]
 %}
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
@@ -92,14 +92,14 @@
   {{ title_suffix }}
 
   {% if display_submitted %}
-    
-      <div>
-        {% set createdDate = node.getCreatedTime|format_date('month_day_year') %}
-        {% trans %}
+
+    <div>
+      {% set createdDate = node.created.value|date('M j, Y') %}
+      {% trans %}
         <em>{{ createdDate }}</em>
-        {% endtrans %}
-      </div>
-   
+      {% endtrans %}
+    </div>
+
   {% endif %}
 
   <div{{ content_attributes.addClass('node__content') }}>

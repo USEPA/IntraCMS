@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "043f8bdeb6f9d7ad2203093da67fb66a",
+    "content-hash": "2502ed83c66ac9384f56fdda84ef499c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4151,7 +4151,7 @@
                     "2893747: Call to a member function getColumns() on boolean": "https://www.drupal.org/files/issues/2020-10-29/2893747-33.patch",
                     "3303889: Call to a member function uuid() on null": "https://www.drupal.org/files/issues/2022-08-22/core-3303889-media-library-widget-error-on-no-selection-20.patch",
                     "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch",
-                    "3044211: SectionStorage objects in tempstore are broken after upgrade.":  "https://www.drupal.org/files/issues/2023-03-10/3044211-25.patch"
+                    "3044211: SectionStorage objects in tempstore are broken after upgrade.": "https://www.drupal.org/files/issues/2023-03-10/3044211-25.patch"
                 }
             },
             "autoload": {
@@ -6912,33 +6912,34 @@
         },
         {
             "name": "drupal/groupmedia",
-            "version": "2.0.0-alpha11",
+            "version": "2.0.0-rc1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/groupmedia.git",
-                "reference": "8.x-2.0-alpha11"
+                "reference": "8.x-2.0-rc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/groupmedia-8.x-2.0-alpha11.zip",
-                "reference": "8.x-2.0-alpha11",
-                "shasum": "0a9cdbeafb6d23d3c5ca063b1af5c9ad6c66e2b4"
+                "url": "https://ftp.drupal.org/files/projects/groupmedia-8.x-2.0-rc1.zip",
+                "reference": "8.x-2.0-rc1",
+                "shasum": "09eac443f97791ba61d1f041fad9dcdd4ba93881"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9",
-                "drupal/group": "^1.2"
+                "drupal/group": "^1.2 || 1.x-dev@dev"
             },
             "require-dev": {
-                "drupal/paragraphs": "*"
+                "drupal/paragraphs": "*",
+                "drupal/views_bulk_operations": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.0-alpha10",
-                    "datestamp": "1626957050",
+                    "version": "8.x-2.0-rc1",
+                    "datestamp": "1677765577",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
+                        "message": "RC releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -8333,21 +8334,20 @@
         },
         {
             "name": "drupal/lightning_media",
-            "version": "4.2.0",
+            "version": "4.6.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/lightning_media.git",
-                "reference": "8.x-4.2"
+                "reference": "8.x-4.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/lightning_media-8.x-4.2.zip",
-                "reference": "8.x-4.2",
-                "shasum": "133047fa19726688d8084637a21458f4a2ca2e63"
+                "url": "https://ftp.drupal.org/files/projects/lightning_media-8.x-4.6.zip",
+                "reference": "8.x-4.6",
+                "shasum": "779bcc254d2d661013c761bedb0003cb39825e42"
             },
             "require": {
                 "bower-asset/cropper": "^2.3",
-                "bower-asset/dropzone": "^5.1",
                 "bower-asset/slick-carousel": "^1.8",
                 "drupal/ckeditor": "*",
                 "drupal/core": "^8.8.8 || ^9.0.1",
@@ -8359,12 +8359,13 @@
                 "drupal/image_widget_crop": "^2.1",
                 "drupal/inline_entity_form": "^1.0-rc7",
                 "drupal/lightning_core": "5.*",
-                "drupal/media_entity_instagram": "^2.0",
-                "drupal/media_entity_twitter": "^2.1",
+                "drupal/media_entity_instagram": "^3",
+                "drupal/media_entity_twitter": "^2.5",
                 "drupal/slick_entityreference": "^2.0",
                 "drupal/video_embed_field": "^2.0",
                 "drupal/views_infinite_scroll": "^1.6",
-                "oomphinc/composer-installers-extender": "^2.0",
+                "npm-asset/dropzone": "^5.7.4",
+                "oomphinc/composer-installers-extender": "^1.1 || ^2",
                 "vardot/blazy": "^1.8"
             },
             "require-dev": {
@@ -8381,8 +8382,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-4.2",
-                    "datestamp": "1596811582",
+                    "version": "8.x-4.6",
+                    "datestamp": "1612802524",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8437,23 +8438,19 @@
             "notification-url": "https://packages.drupal.org/8/downloads",
             "scripts": {
                 "post-install-cmd": [
-                    "@push"
-                ],
-                "post-update-cmd": [
-                    "@push"
+                    "@putenv DIR=./docroot/modules/lightning_media",
+                    "mkdir -p $DIR",
+                    "ln -s -f $PWD/config $DIR",
+                    "ln -s -f $PWD/css $DIR",
+                    "ln -s -f $PWD/images $DIR",
+                    "ln -s -f $PWD/modules $DIR",
+                    "ln -s -f $PWD/src $DIR",
+                    "ln -s -f $PWD/tests $DIR",
+                    "find $PWD -name 'lightning_media.*' -depth 1 -exec ln -s -f {} $DIR ';'",
+                    "cp -f phpunit.xml ./docroot/core"
                 ],
                 "nuke": [
                     "rm -r -f docroot vendor"
-                ],
-                "pull": [
-                    "cp -R -f ./docroot/modules/contrib/lightning_media/* ."
-                ],
-                "push": [
-                    "rm -r -f ./docroot/modules/contrib/lightning_media",
-                    "mkdir -p ./docroot/modules/contrib/lightning_media",
-                    "@composer archive --file lightning_media",
-                    "tar -x -f lightning_media.tar -C ./docroot/modules/contrib/lightning_media",
-                    "rm lightning_media.tar"
                 ]
             },
             "license": [
@@ -8717,26 +8714,26 @@
         },
         {
             "name": "drupal/media_entity_instagram",
-            "version": "2.1.0",
+            "version": "3.0.7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/media_entity_instagram.git",
-                "reference": "8.x-2.1"
+                "reference": "3.0.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_entity_instagram-8.x-2.1.zip",
-                "reference": "8.x-2.1",
-                "shasum": "e046e9e4df297a6ef065b826e3d8196cf35c3430"
+                "url": "https://ftp.drupal.org/files/projects/media_entity_instagram-3.0.7.zip",
+                "reference": "3.0.7",
+                "shasum": "8a0921b52e28521fef089ba9c98fe4cfb20e249f"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9"
+                "drupal/core": "^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.1",
-                    "datestamp": "1591181707",
+                    "version": "3.0.7",
+                    "datestamp": "1647604819",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8749,20 +8746,20 @@
             ],
             "authors": [
                 {
-                    "name": "chr.fritsch",
-                    "homepage": "https://www.drupal.org/user/2103716"
-                },
-                {
-                    "name": "designesse",
-                    "homepage": "https://www.drupal.org/user/854012"
-                },
-                {
                     "name": "Drupal Media Team",
                     "homepage": "https://www.drupal.org/user/3260690"
                 },
                 {
                     "name": "Primsi",
                     "homepage": "https://www.drupal.org/user/282629"
+                },
+                {
+                    "name": "chr.fritsch",
+                    "homepage": "https://www.drupal.org/user/2103716"
+                },
+                {
+                    "name": "designesse",
+                    "homepage": "https://www.drupal.org/user/854012"
                 },
                 {
                     "name": "slashrsm",
@@ -8774,6 +8771,18 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/media_entity_instagram"
             }
+        },
+        {
+            "name": "npm-asset/dropzone",
+            "version": "5.9.3",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/dropzone/-/dropzone-5.9.3.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "drupal/media_entity_twitter",
@@ -9208,17 +9217,17 @@
         },
         {
             "name": "drupal/moderation_sidebar",
-            "version": "1.5.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/moderation_sidebar.git",
-                "reference": "8.x-1.5"
+                "reference": "8.x-1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/moderation_sidebar-8.x-1.5.zip",
-                "reference": "8.x-1.5",
-                "shasum": "d3391f5ca10a9d145d217ef2ce0b463d90a14510"
+                "url": "https://ftp.drupal.org/files/projects/moderation_sidebar-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "5e6b0b68d01cd93a31c326c9fd20524a0e12d36a"
             },
             "require": {
                 "drupal/core": "^8 || ^9"
@@ -9226,8 +9235,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.5",
-                    "datestamp": "1648129967",
+                    "version": "8.x-1.4",
+                    "datestamp": "1589812642",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -11756,6 +11765,50 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/uswds",
                 "issues": "https://www.drupal.org/project/issues/uswds?categories=All"
+            }
+        },
+        {
+            "name": "drupal/uswds_base",
+            "version": "3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/uswds_base.git",
+                "reference": "3.3.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/uswds_base-3.3.0.zip",
+                "reference": "3.3.0",
+                "shasum": "294b03826ccb6e0c022b35148dcb8127b672d3d8"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "drupal": {
+                    "version": "3.3.0",
+                    "datestamp": "1679447868",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "mferanda",
+                    "homepage": "https://www.drupal.org/user/3541484"
+                }
+            ],
+            "description": "Drupal USWDS Base Theme - The U.S. Web Design System provides design guidelines and code to help you quickly create trustworthy, accessible, and consistent digital government services.",
+            "homepage": "https://www.drupal.org/project/uswds_base",
+            "support": {
+                "source": "https://git.drupalcode.org/project/uswds_base"
             }
         },
         {
@@ -14786,18 +14839,6 @@
                 "php"
             ],
             "time": "2022-05-31T20:59:12+00:00"
-        },
-        {
-            "name": "npm-asset/dropzone",
-            "version": "5.9.3",
-            "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/dropzone/-/dropzone-5.9.3.tgz"
-            },
-            "type": "npm-asset",
-            "license": [
-                "MIT"
-            ]
         },
         {
             "name": "oomphinc/composer-installers-extender",
@@ -21355,32 +21396,32 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/layout_builder_styles": 10,
-        "drupal/auto_entitylabel": 10,
-        "drupal/uswds_paragraphs": 10,
-        "drupal/bamboo_twig": 15,
-        "drupal/webform_views": 15,
-        "drupal/webform_analysis": 10,
-        "drupal/views_taxonomy_term_name_into_id": 15,
-        "drupal/groupmedia": 15,
-        "drupal/h5p": 15,
-        "drupal/node_revision_delete": 5,
-        "drupal/node_export": 15,
-        "drupal/libraries": 10,
         "drupal/addtocal": 10,
+        "drupal/auto_entitylabel": 10,
+        "drupal/bamboo_twig": 15,
         "drupal/entity_clone": 10,
-        "drupal/uswds_ckeditor_integration": 10,
+        "drupal/entity_usage": 10,
         "drupal/group_outsider_in": 10,
-        "drupal/webform_workflows_element": 15,
+        "drupal/groupmedia": 5,
+        "drupal/h5p": 15,
+        "drupal/layout_builder_styles": 10,
         "drupal/layout_library": 10,
+        "drupal/libraries": 10,
+        "drupal/node_export": 15,
+        "drupal/node_revision_delete": 5,
         "drupal/openapi_rest": 5,
         "drupal/paragraphs_entity_embed": 15,
         "drupal/ultimate_cron": 15,
-        "drupal/entity_usage": 10
+        "drupal/uswds_ckeditor_integration": 10,
+        "drupal/uswds_paragraphs": 10,
+        "drupal/views_taxonomy_term_name_into_id": 15,
+        "drupal/webform_analysis": 10,
+        "drupal/webform_views": 15,
+        "drupal/webform_workflows_element": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.3.0"
 }
