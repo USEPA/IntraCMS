@@ -68,7 +68,6 @@ Stage:
     kubernetes:
       namespace: cms-45-stage
 
-Stage:
   stage: Non-Production Stage Post Deploy
   rules:
     - if: '$CI_COMMIT_BRANCH == "stage-container-1"'
