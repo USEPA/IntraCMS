@@ -4,6 +4,7 @@ stages:
   - prisma scan
   - Non-Production Dev Deployment
   - Non-Production Stage Deployment
+  - Non-Production Stage Post Deploy
 
 Build IntranetCMS Image:
   stage: build
@@ -61,6 +62,23 @@ Stage:
     - kubectl config use-context intranet-cms/intracms-infra-stage:intranetcms-stage-k8s-agent
     - apk add gettext
     - envsubst < k8s/intranetcms-stage.yml | kubectl apply -f - -n cms-45-stage
+  environment:
+    name: stage
+    url:
+    kubernetes:
+      namespace: cms-45-stage
+
+Stage:
+  stage: Non-Production Stage Post Deploy
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "stage-container-1"'
+  tags:
+    - intranetcms-stg-runner
+  image: dtzar/helm-kubectl
+  script:
+    - kubectl config use-context intranet-cms/intracms-infra-stage:intranetcms-stage-k8s-agent
+    - apk add gettext
+    - envsubst < k8s/drush.yml | kubectl create -f - -n cms-45-stage
   environment:
     name: stage
     url:
