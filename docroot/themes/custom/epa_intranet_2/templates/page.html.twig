@@ -1,0 +1,139 @@
+{#
+/**
+ * @file
+ * USWDS theme implementation to display a single page..
+ */
+#}
+
+    {% if page.header_top or government_banner %}
+      {{ government_banner }}
+    {% endif %}
+
+<div class="usa-overlay"></div>
+
+{% if page.header_top %}
+  <div class="grid-container">
+    {{ page.header_top }}
+  </div>
+{% endif %}
+
+<header class="{{ header_classes }}" role="banner">
+  {% if header_basic %}
+  <div class="usa-nav-container">
+    {% endif %}
+    <div class="usa-navbar">
+      {{ page.header }}
+      <button class="usa-menu-btn">{{ 'Menu'|t }}</button>
+    </div>
+
+    <nav class="usa-nav" role="navigation">
+      <button class="usa-nav__close">
+        <img src="{{ active_theme_path }}/assets/img/close.svg" alt="close"/>
+      </button>
+      {% if header_extended %}
+      <div class="usa-nav__inner">
+        {% endif %}
+
+        {% if page.primary_menu %}
+          {{ page.primary_menu }}
+        {% endif %}
+
+        {% if page.secondary_menu %}
+          <div class="usa-nav__secondary">
+            {{ page.secondary_menu }}
+            <form action="https://intrasearch.epa.gov/epasearch" class="usa-search usa-search--small"
+                  method="GET" data-drupal-form-fields="extended-mega-search-field-small">
+              <div role="search"><label class="usa-sr-only" for="extended-mega-search-field-small">Search
+                  small</label> <input name="typeofsearch" type="hidden" value="epa"> <input
+                        name="result_template" type="hidden" value="agcyintr_default.xsl">
+                <input name="areasidebar" type="hidden" value="epaatwork_sidebar"> <input class="usa-input"
+                                                                                          id="extended-mega-search-field-small"
+                                                                                          name="querytext"
+                                                                                          type="search">
+                <button class="usa-button" type="submit"><span class="usa-sr-only">Search</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        {% endif %}
+
+        {% if header_extended %}
+      </div>
+      {% endif %}
+    </nav>
+
+    {% if header_basic %}
+  </div>
+  {% endif %}
+
+</header>
+
+{% if hero_field %}
+  {{ hero_field|field_value }}
+{% endif %}
+
+<main class="usa-section" id="main-content">
+  <div class="{{ main_class }}">
+    <div class="grid-row grid-gap">
+      <div class="grid-col-12">
+        {{ page.breadcrumb }}
+        {{ page.highlighted }}
+
+        {% if page.help|render|trim %}
+          <div class="usa-alert usa-alert-normalizer usa-alert--info">
+            <div class="usa-alert__body">
+              <p class="usa-alert__text">
+                {{ page.help }}
+              </p>
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <div class="grid-row grid-gap">
+
+      {# see https://www.drupal.org/project/drupal/issues/953034#comment-14192130 #}
+      {% set sidebar_first_exists = page.sidebar_first|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
+      {% set sidebar_second_exists = page.sidebar_second|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
+      {% if sidebar_first_exists %}
+        <aside class="tablet:grid-col-3">
+          {{ page.sidebar_first }}
+        </aside>
+      {% endif %}
+
+      <div class="region-content {% if sidebar_first_exists and sidebar_second_exists %} tablet:grid-col-6 {% elseif sidebar_first_exists or sidebar_second_exists %} tablet:grid-col-9 {% else %} tablet:grid-col-12 {%endif%}">
+        {{ page.content }}
+      </div>
+
+      {# see https://www.drupal.org/project/drupal/issues/953034#comment-14192130 #}
+      {% set sidebar_second_exists = page.sidebar_second|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
+      {% if sidebar_second_exists %}
+        <aside class="tablet:grid-col-3">
+          {{ page.sidebar_second }}
+        </aside>
+      {% endif %}
+
+    </div>
+    
+  </div>
+
+</main>
+<footer class="{{ footer_classes }}" role="contentinfo">
+  <div class="grid-container usa-footer__return-to-top">
+    {% if node.getType is not empty and (node.getType == 'page' or node.getType == 'landing_page') %}
+      <span class="align-right">
+        Last updated: {{ node.changed.value|date('m-d-Y') }}
+      </span>
+    {% endif %}
+  </div>
+  {% if footer_slim %}
+    {% include '@epa_intranet/includes/slim-footer.html.twig' %}
+  {% elseif footer_medium %}
+    {% include '@epa_intranet/includes/medium-footer.html.twig' %}
+  {% else %}
+    {% include '@epa_intranet/includes/big-footer.html.twig' %}
+  {% endif %}
+</footer>
+
