@@ -6,3 +6,413 @@
  *
  * Place your custom PHP code in this file.
  */
+
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ * @param array $suggestions
+ * @param array $variables
+ */
+function epa_intranet_2_theme_suggestions_block_alter(array &$suggestions, array $variables)
+{
+  // Block suggestions for custom block bundles.
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
+
+
+function epa_intranet_2_preprocess_image(&$variables)
+{
+  if (isset($variables['style_name'])) {
+    if ($variables['style_name'] == 'media_block_image') {
+      $variables['attributes']['class'][] = 'usa-media-block__img';
+      $variables['attributes']['class'][] = 'rounded-circle';
+      $variables['attributes']['aria-hidden'] = 'true';
+    }
+    if ($variables['style_name'] == 'card') {
+      $variables['attributes']['class'][] = 'card-img-top';
+      $variables['attributes']['class'][] = 'w-100';
+      $variables['attributes']['aria-hidden'] = 'true';
+      unset($variables['attributes']['width']);
+      unset($variables['attributes']['height']);
+    }
+    if ($variables['style_name'] == 'uswds_card') {
+      $variables['attributes']['aria-hidden'] = 'true';
+    }
+    if ($variables['style_name'] == 'staff_member_card') {
+      $variables['attributes']['width'] = 'auto';
+      $variables['attributes']['height'] = 150;
+    }
+    if ($variables['style_name'] == 'dynamic_list_teaser') {
+      $variables['attributes']['class'][] = 'usa-collection__img';
+      $variables['attributes']['aria-hidden'] = 'true';
+      unset($variables['attributes']['width']);
+      unset($variables['attributes']['height']);
+    }
+  }
+}
+
+function epa_intranet_2_preprocess_field(&$variables, $hook)
+{
+  $elements = $variables['element'];
+  if ($elements['#field_name'] == 'field_caption') {
+    $variables['attributes']['class'][] = 'p-4 mx-5';
+  }
+  if ($elements['#view_mode'] == 'slideshow' && $elements['#field_name'] == 'image' || $elements['#field_name'] == 'field_slide_image') {
+    $variables['attributes']['class'][] = 'px-5 w-100 max-image-div';
+  }
+  $non_inline_staff_fields = ['field_staff_biography', 'field_staff_photo', 'field_image'];
+  if ($elements['#bundle'] == 'staff_member' && !in_array($elements['#field_name'], $non_inline_staff_fields)) {
+    $variables['attributes']['class'][] = 'w-100 d-inline-flex';
+  }
+  if ($elements['#bundle'] == 'staff_member' && $elements['#field_name'] == 'field_staff_photo') {
+    $variables['attributes']['class'][] = 'staff-photo';
+  }
+  if ($elements['#field_name'] === 'image' && $elements['#view_mode'] == 'staff_member_card') {
+    $variables['attributes']['class'][] = 'align-center';
+  }
+
+  if ($elements['#field_name'] === 'field_event_date') {
+    $variables['showEventDate'] = false;
+    $variables['showRecurring'] = false;
+    $variables['formatter'] = $variables['element']['#formatter'];
+    if (isset($variables['items'])) {
+      foreach ($variables['items'] as $index => $item) {
+        try {
+          $recurring = (boolean)$elements['#items'][$index]->get('rrule')->getValue();
+        } catch (Exception $e) {
+          // Unable to grab rrule
+          $recurring = false;
+        }
+
+        // Flag if there is at least one recurring or not recurring to show the appropriate sections
+        if (!$recurring) {
+          $variables['showEventDate'] = true;
+        }
+        if ($recurring) {
+          $variables['showRecurring'] = true;
+        }
+        $item['recurring'] = $recurring;
+        $variables['items'][$index] = $item;
+      }
+    }
+  }
+
+  // Multi-date events that appear in dynamic lists will not have their past dates appear
+  // Examine the date items and remove them if they are in the past
+  if ($elements['#field_name'] === 'field_event_date' && $elements['#bundle'] === 'event') {
+    if (($elements['#view_mode'] === 'reference_list' || $elements['#view_mode'] === 'list'
+        || $elements['#view_mode'] === 'teaser' || $elements['#view_mode'] === 'sidebar_teaser')
+      && count($variables['items']) > 1) {
+      // If it is a list, and ALL of the events are in the past, we still want to display one date
+      // so keep track of the index and flag if any events have been included
+      $final_element_index = count($variables['items']) - 1;
+      $all_past_dates_flag = true;
+
+      $current_date = time();
+      foreach ($elements['#items'] as $key => $item) {
+        $event_start_date = $item->getValue()['value'];
+        if ($event_start_date < $current_date) {
+          // If we are on the final element AND no other dates are in the future, do not unset the final item.
+          if ($key == $final_element_index && $all_past_dates_flag) {
+            continue;
+          } else {
+            unset($variables['items'][$key]);
+          }
+        } else {
+          $all_past_dates_flag = false;
+        }
+      }
+    }
+  }
+}
+
+// Determine final date value for recurring dates and make vals accessible via twig
+function epa_intranet_2_preprocess_node__event(&$variables)
+{
+  if (!isset($_SESSION["processed_recurring_dates"])) {
+    $_SESSION["processed_recurring_dates"] = [];
+  }
+  if ($variables['view_mode'] == 'reference_list' || $variables['view_mode'] == 'teaser'
+    || $variables['view_mode'] == 'sidebar_teaser') {
+    $variables['#cache']['max-age'] = 0;
+    $node = $variables["node"];
+    $isRepeating = false;
+    $isMultiple = false;
+    $event_start_date = null;
+    $event_end_date = null;
+    foreach ($variables["view"]->result as $current_result) {
+      if ($node->id() === $current_result->_entity->id()) {
+        $event_start_date = $current_result->node__field_event_date_field_event_date_value;
+        if ($current_result->_entity->get('field_event_date')->getValue()[0]['rrule'] == 1) {
+          $isRepeating = true;
+        }
+
+        if (!$isRepeating) {
+          if (count($variables["node"]->get('field_event_date')) > 1) {
+            $isMultiple = true;
+          }
+          for ($i = count($variables["node"]->get('field_event_date')) - 1; $i >= 0; $i--) {
+            $event_occurrence = $variables["node"]->get('field_event_date')->getValue()[$i];
+            if ($event_occurrence['value'] == $event_start_date) {
+              $event_end_date = $event_occurrence['end_value'];
+            }
+          }
+        }
+
+        if (!isset($_SESSION['processed_recurring_dates'][$current_result->_entity->id()])) {
+          $_SESSION['processed_recurring_dates'][$current_result->_entity->id()] = [];
+        }
+        if (!in_array($event_start_date, $_SESSION['processed_recurring_dates'][$current_result->_entity->id()])) {
+          $variables['rawDateTime'] = date("Y-M-d H:i:s", $event_start_date);
+          if (!$isRepeating && $isMultiple) {
+            $variables['rawStartDate'] = $event_start_date;
+            $variables['rawEndDate'] = $event_end_date;
+            // if overlaps between AM and PM, then display for both
+            if (date("a", $event_start_date) != date("a", $event_end_date)) {
+              $variables['displayTime'] = date("g:ia", $event_start_date) . " - " . date("g:ia", $event_end_date);
+            } else {
+              $variables['displayTime'] = date("g:i", $event_start_date) . " - " . date("g:ia", $event_end_date);
+            }
+          }
+          $variables['displayMonth'] = date("M", $event_start_date);
+          $variables['displayDay'] = date("d", $event_start_date);
+          $_SESSION['processed_recurring_dates'][$current_result->_entity->id()][] = $event_start_date;
+          break;
+        }
+      }
+    }
+  }
+}
+
+function epa_intranet_2_preprocess_media(&$variables)
+{
+  if ($variables['view_mode'] == 'slideshow') {
+    $variables['attributes']['class'][] = 'grid-row';
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function epa_intranet_2_preprocess_views_view(array &$variables)
+{
+  $view = $variables['view'];
+  $id = $view->storage->id();
+  // Move feed icon to the top of the result, instead of buttom.
+  if (isset($variables['feed_icons'])) {
+    $variables['header'] = array_merge($variables['header'], $variables['feed_icons']);
+    unset($variables['feed_icons']);
+  }
+  if ($id == 'events_list') {
+    if ($view->rowPlugin->options["view_mode"] == 'reference_list' || $view->rowPlugin->options["view_mode"] == 'teaser'
+      || $view->rowPlugin->options["view_mode"] == 'sidebar_teaser') {
+      unset($_SESSION["processed_recurring_dates"]);
+    }
+  }
+}
+
+function epa_intranet_2_preprocess_views_view_table(&$variables)
+{
+  $variables['attributes']['class'][] = 'auto-width';
+  $view = $variables['view'];
+  $current_user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+  if ($current_user->hasRole('authenticated')) {
+    if ($view->id() == 'organizations_with_staff' && $view->current_display != 'main_page') {
+      $results = $variables['result'];
+      if (count($results) > 0) {
+        $key = array_keys($results)[0];
+        $tid = $variables["result"][$key]->tid;
+        if (!empty($tid)) {
+          $variables['sort_view_link'] = '/staff/staff-order/' . $tid;
+        }
+      }
+    }
+  }
+}
+
+
+/**
+ * Overwrite login links to include the current destination
+ * @param $variables
+ */
+function epa_intranet_2_preprocess_menu(&$variables)
+{
+  $routes = [
+    'user.login',
+    'user.logout'
+  ];
+  $variables['#cache']['contexts'][] = 'url.query_args:destination';
+  $renderer = \Drupal::service('renderer');
+  $renderer->addCacheableDependency($variables, \Drupal::service('path.current')->getPath());
+  foreach ($variables['items'] as &$key) {
+    $url = $key['url'];
+    if ($url->isRouted() && in_array($url->getRouteName(), $routes)) {
+      $base = \Drupal::request()->getSchemeAndHttpHost();
+      // Get current path.
+      $current = \Drupal::service('path.current')->getPath();
+      if ($url->getRouteName() == 'user.login') {
+
+        $productionSplitConfig = \Drupal::config('config_split.config_split.production_config');
+        // Check if we are in Production
+        if (isset($productionSplitConfig) && $productionSplitConfig->get('status')) {
+          //@todo update /saml_login to use the path from route: simplesamlphp_auth.saml_login
+          $uriString = $base . '/saml_login?destination=' . $current;
+        } else {
+          $uriString = $base . '/user/login?destination=' . $current;
+        }
+      } else {
+        $uriString = $base . '/user/logout?destination=' . $current;
+      }
+      $newUrl = Url::fromUri($uriString);
+      $key['url'] = $newUrl;
+    }
+  }
+}
+
+function epa_intranet_2_preprocess_page(&$variables)
+{
+  //   Load correct Hero revision for page
+  if (isset($variables['node'])) {
+    $node = $variables['node'];
+    if (is_numeric($node)) {
+      $node_revision = \Drupal::routeMatch()->getParameter('node_revision');
+      if (isset($node_revision)) {
+        $node = \Drupal::entityTypeManager()->getStorage('node')->loadRevision($node_revision);
+      }
+    }
+    if (isset($node) && !is_string($node) && in_array('field_hero', array_keys($node->getFields()))) {
+      $variables['hero_field'] = $node->get('field_hero')->view();
+    }
+
+    //add content type and group label info to site head
+    if (!is_string($node)) {
+      $node_content_type = '';
+      $node_web_area = '';
+      $node_content_type = $node->type->entity->label();
+      $group_labels = get_group_labels_by_node_id($node->id());
+
+      if ($group_labels != null) {
+        $node_web_area = $group_labels;
+      }
+
+      $node_web_area_tag = [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'name' => 'WebArea',
+          'content' => $node_web_area,
+        ],
+      ];
+
+      $node_content_type_tag = [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'name' => 'ContentType',
+          'content' => $node_content_type,
+        ],
+      ];
+
+      $variables['#attached']['html_head'][] = [$node_web_area_tag, 'WebArea'];
+      $variables['#attached']['html_head'][] = [$node_content_type_tag, 'ContentType'];
+    }
+  }
+}
+
+function epa_intranet_2_preprocess_views_view__staff_order(&$variables)
+{
+  $view = $variables['view'];
+  if ($view->id() == 'staff_order' && count($view->args) > 0) {
+    $tid = $view->args[0];
+    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($tid);
+    if (isset($term) && !empty($term)) {
+      $name = $term->label();
+      $variables['title'] = $name;
+    }
+  }
+}
+
+
+function epa_intranet_2_preprocess_views_view_grouping(&$variables)
+{
+  $view = $variables['view'];
+  if ($view->id() === 'organizations_with_staff') {
+    $parent_terms = [];
+    $child_tid_row = '-1';
+    $grouped_rows = $variables['rows'];
+    $row_data = reset($grouped_rows);
+
+    if (isset($row_data['rows']) && count($row_data['rows']) > 0) {
+      $staff_rows = $row_data['rows'];
+      $staff_row_data = reset($staff_rows);
+      $child_tid_row = $staff_row_data->tid;
+      $parent_terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($child_tid_row);
+    }
+    $variables['title'] = generate_grouping_title($parent_terms, $child_tid_row);
+  }
+
+}
+
+/**
+ * @param array $parent_terms
+ * @param string $child_tid_row
+ * @return string
+ */
+function generate_grouping_title(array $parent_terms, string $child_tid_row): string
+{
+  $grouping_title = '';
+  foreach ($parent_terms as $term) {
+    if ($term->id() != $child_tid_row) {
+      if (!empty($grouping_title)) {
+        $dash = ' - ';
+      } else {
+        $dash = '';
+      }
+      $grouping_title = $term->getName() . $dash . $grouping_title;
+    }
+  }
+  return $grouping_title;
+}
+
+function epa_intranet_2_preprocess_fieldset(&$variables)
+{
+  $element = $variables['element'];
+  if (isset($element['#type']) && $element['#type'] == 'fieldset') {
+    $variables['parent_fieldset'] = TRUE;
+  }
+}
+
+function epa_intranet_2_preprocess_input__submit(&$variables)
+{
+  $element = $variables['element'];
+  if (is_add_or_remove_button($element)) {
+    $variables['attributes']['class'][] = 'usa-button--base';
+  }
+}
+
+
+function is_add_or_remove_button($element)
+{
+  // Add More/ Remove elements have multiple values in Submit
+  return isset($element['#submit']) && is_array($element['#submit'][0]);
+}
+
+function get_group_labels_by_node_id($node_id)
+{
+
+  $ids = \Drupal::entityQuery('group_content')
+    ->condition('entity_id', $node_id)
+    ->execute();
+  $group_lables = array();
+  $group_ids = array();
+  $relations = \Drupal\group\Entity\GroupContent::loadMultiple($ids);
+  foreach ($relations as $rel) {
+    if ($rel->getEntity()->getEntityTypeId() == 'node') {
+      $group_ids[] = $rel->getGroup()->id();
+      $group_lables[] = $rel->getGroup()->label();
+    }
+  }
+  return implode(", ", $group_lables);
+}

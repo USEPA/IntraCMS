@@ -1,0 +1,1397 @@
+* {
+  min-height: 0;
+  min-width: 0;
+}
+
+.mass-mailer-container{
+  margin-left:auto;
+  margin-right:auto;
+  max-width:64rem;
+  padding-left:1rem;
+  padding-right:1rem;
+  padding-top: 2rem;
+}
+@media all and (min-width: 64em){
+  .mass-mailer-container{
+    padding-left:2rem;
+    padding-right:2rem;
+  }
+}
+
+.mass-mailer__callout{
+  background-color:#162e51;
+  padding:2rem;
+}
+@media all and (min-width: 40em){
+  .mass-mailer__callout{
+    max-width:22rem;
+  }
+}
+
+.mass-mailer__heading{
+  margin-bottom:0;
+  margin-top:0;
+  clear:both;
+  font-family:Merriweather Web, Georgia, Cambria, Times New Roman, Times, serif;
+  font-size:1.95rem;
+  line-height:1.3;
+  font-weight:700;
+  color:white;
+  display: block;
+
+}
+
+
+div {
+  &[class*='exposed-filters-vr-exposed-filters-visible'] {
+    display: none;
+  }
+
+  &.more-link {
+    margin-bottom: 1rem;
+  }
+}
+
+.font-weight-bold {
+  font-weight: 700 !important;
+}
+
+.tag-color-scheme {
+  color: white !important;
+  background-color: #565c65 !important;
+}
+
+.usa-collection__item:last-child {
+  margin-bottom: 1rem;
+}
+
+.site-preview-heading {
+  font-family: Public Sans Web,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  font-size: .88rem;
+  line-height: 1.2;
+  margin-top: 2rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 400;
+  color: #757575;
+}
+
+h1 {
+  font-family: Merriweather Web, Georgia, Cambria, Times New Roman, Times, serif;
+  font-size: 2.44rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+h2:not([class$="__heading"]) {
+  font-family: Merriweather Web, Georgia, Cambria, Times New Roman, Times, serif;
+  font-size: 1.95rem !important;
+  line-height: 1.2;
+}
+
+h3:not([class$="__heading"]) {
+  font-family: Merriweather Web, Georgia, Cambria, Times New Roman, Times, serif;
+  font-size: 1.34rem !important;
+  line-height: 1.2;
+}
+
+h4 {
+  font-family: Merriweather Web, Georgia, Cambria, Times New Roman, Times, serif;
+  font-size: 0.98rem !important;
+  line-height: 1.2;
+}
+
+h5 {
+  font-family: Merriweather Web, Georgia, Cambria, Times New Roman, Times, serif;
+  font-size: 0.91rem !important;
+  line-height: 1.2;
+}
+
+h6 {
+  font-family: Source Sans Pro Web, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+  font-size: 0.87rem !important;
+  line-height: 1.1;
+  font-weight: normal;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.display-grid {
+  display: grid;
+}
+
+.addtocal-button {
+  &.addtocal-outline {
+    padding: 0.75rem 1.25rem;
+    background-color: transparent;
+    color: #005ea2;
+  }
+
+  &:hover, &:focus {
+    background-color: transparent;
+    box-shadow: inset 0 0 0 2px #1a4480;
+    color: #1a4480;
+  }
+
+  padding: 0.75rem 1.25rem;
+  background-color: transparent;
+  color: #005ea2;
+}
+
+h1 {
+  font-family: Merriweather Web,Georgia,Cambria,Times New Roman,Times,serif;
+  font-size: 2.44rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: Merriweather Web,Georgia,Cambria,Times New Roman,Times,serif;
+  color: #1b1b1b;
+  text-decoration: none;
+}
+
+h2.highlight, h3.highlight, h4.highlight, h5.highlight, h6.highlight {
+  background-color: rgb(225, 243, 248);
+  overflow: auto;
+  padding: 0.5rem 1rem;
+}
+
+span.warning {
+  color: #d54309;
+  font-weight: bold;
+}
+
+/* Pipeline list styling */
+
+.list--pipeline {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+
+  > li {
+    border-right: 1px solid #71767a;
+    display: block;
+    float: left;
+    margin-right: 0.75em;
+    padding-left: 0;
+    padding-right: 0.75em;
+
+    &:last-child {
+      border-right: 0;
+      margin-right: 0;
+      padding-right: 0;
+    }
+  }
+
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}
+
+/* Pull quote styling */
+
+blockquote {
+  font-family: Merriweather Web,Georgia,Cambria,Times New Roman, Times, serif;
+  font-size: 1.1rem;
+  font-weight: normal;
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+
+  p {
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+}
+
+.pull-quote {
+  background-color: #fff;
+  border-left: 0.5rem solid #00bde3;
+  clear: both;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem 0 1.25rem 1.25rem;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.u-align-right {
+  float: right;
+  margin-left: 2.5rem;
+}
+
+.u-align-left {
+  float: left;
+  margin-right: 2.5rem;
+}
+
+.pull-quote {
+  &.u-align-left, &.u-align-right {
+    margin-top: 0;
+    max-width: calc(50% - 2.5rem);
+  }
+}
+
+/* Provides spacing between the calendar toolbar and the filter */
+
+.fc-toolbar {
+  margin-top: 1em;
+}
+
+.fc-content a {
+  color: white;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.fc-day-number {
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    color: black;
+    text-decoration: none !important;
+  }
+}
+
+/* overriding links to apply uswds standards */
+
+ol.links-list a, ul.links-list a:not(.usa-button), ol.uswds-breadcrumbs a, ul.uswds-breadcrumbs a {
+  color: #005ea2 !important;
+}
+
+p a[href]:not(.usa-button), article a[href]:not(.usa-button):not(.usa-graphic-list__heading) {
+  color: #005ea2;
+  text-decoration: underline !important;
+}
+
+.taxonomy-term.vocabulary-libraries a {
+  color: #005ea2
+}
+.taxonomy-term.vocabulary-libraries a:hover, p a[href]:not(.usa-button):hover, article a[href]:not(.usa-button):not(.usa-graphic-list__heading):hover {
+  color: #1a4480;
+}
+.taxonomy-term.vocabulary-libraries a:active, p a[href]:not(.usa-button):active, article a[href]:not(.usa-button):not(.usa-graphic-list__heading):active {
+  color: #162e51;
+}
+
+p a:hover, article a:hover {
+  color: #1a4480;
+}
+
+p a:active, article a:active {
+  color: #162e51;
+}
+
+p a:focus, article a:focus {
+  outline: 0.25rem solid #2491ff;
+  outline-offset: 0;
+}
+
+p a:visited {
+  color: #562b97;
+}
+
+@media (min-width: 64em) {
+  .nav-text-decoration a {
+    color: white !important;
+    text-decoration: none !important;
+
+    &:hover {
+      color: white !important;
+      text-decoration: underline !important;
+    }
+  }
+}
+
+@media (max-width: 63.99em) {
+  .nav-sizing .nav-text-decoration {
+    width: 100%;
+  }
+
+  .nav-text-decoration:hover > a {
+    color: #005ea2 !important;
+    text-decoration: none;
+  }
+
+  .nav-sizing div.grid-row.grid-gap-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    > * {
+      padding-left: unset;
+      padding-right: unset;
+    }
+  }
+}
+
+h2 a[href] {
+  color: #005ea2 !important;
+  text-decoration: none !important;
+
+  &:hover {
+    color: #005ea2 !important;
+    text-decoration: underline !important;
+  }
+}
+
+.footer-text-decoration a {
+  text-decoration: none !important;
+
+  &:hover {
+    text-decoration: underline !important;
+  }
+}
+
+div {
+  &.media-block-text-decoration a, &.media-block-body-decoration a {
+    text-decoration: none !important;
+  }
+
+  &.media-block-text-decoration a:hover, &.media-block-body-decoration a:hover {
+    text-decoration: underline !important;
+  }
+
+  &.media-block-text-decoration a:focus, &.media-block-body-decoration a:focus {
+    text-decoration: underline !important;
+  }
+}
+
+.block-card > :last-child.epa-intranet-button, .list-card > :last-child.epa-intranet-button, .paragraph-card > :last-child.epa-intranet-button {
+  padding-bottom: 1rem;
+}
+
+/* Regarding as not an override of a usa style. Treating as 'if ext or mailto appears without usa-button' so leaving as-is*/
+a {
+  &.ext:not(.usa-button), &.mailto:not(.usa-button) {
+    color: #71767a;
+    text-decoration: none;
+  }
+
+  &.ext:not(.usa-button):hover, &.mailto:not(.usa-button):hover {
+    color: #005ea2;
+  }
+}
+
+svg {
+  &.ext, &.mailto {
+    width: 22px;
+    height: 16px;
+    padding-left: 0.2em;
+    vertical-align: baseline;
+  }
+}
+
+/* Regarding as not an override of a usa style. Treating as 'if svg appears in a usa-button' so leaving as-is*/
+
+.usa-button svg {
+  &.ext, &.mailto {
+    fill: white;
+  }
+
+  &.ext path, &.mailto path {
+    stroke: white;
+    stroke-width: 3;
+  }
+}
+
+div.media-block-body-decoration a.ext {
+  display: -webkit-box;
+
+  div.field--name-field-usa-media-block-heading {
+    display: contents;
+  }
+}
+
+ul.ul-cards div {
+  &.field__items {
+    display: -webkit-box;
+
+    div.field__item {
+      display: contents;
+    }
+  }
+
+  &.field__label {
+    display: none;
+  }
+}
+
+div.paragraph-card__media {
+  align-self: center;
+
+  div.field__item article {
+    height: 100%;
+  }
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.25rem;
+  }
+}
+
+.first-card-header .usa-card__media {
+  order: 0;
+}
+
+.webform-submission-form legend .fieldset-legend {
+  font-size: 1.06rem;
+}
+
+div {
+  &.block-card, &.list-card, &.paragraph-card {
+    overflow-wrap: break-word;
+  }
+
+  &.field--name-field-uswds-button .usa-legend {
+    font-size: unset;
+    font-weight: unset;
+  }
+}
+
+.ul-cards {
+  display: block;
+}
+
+@media(max-width: 39.99rem) {
+  ul.ul-cards div.field__items {
+    display: block;
+  }
+}
+
+.slick-arrow {
+  width: auto;
+
+  &::before {
+    color: white;
+    font-size: 3.25rem;
+    opacity: 85%;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 1px;
+  }
+}
+
+/* Extends edges to the sides of the screen */
+
+div.layout {
+  margin-left: -45%;
+  margin-right: -45%;
+  padding: 20px 45%;
+}
+
+.grid-container .usa-sidenav {
+  z-index: 1;
+  position: relative;
+}
+
+table {
+  a {
+    color: #005ea2;
+  }
+}
+
+.field-content {
+  a {
+    color: #005ea2;
+  }
+}
+
+/* When editing with background color present */
+
+div {
+  &.layout-builder__section div.layout {
+    opacity: 85%;
+  }
+
+  &.field--name-field-uswds-card {
+    .usa-sr-label, div.paragraph-type-title {
+      font-size: 1.5rem;
+    }
+
+    table {
+      td {
+        &:not([class]) {
+          padding: 1rem;
+          width: 100%;
+        }
+
+        .usa-accordion__button {
+          margin-top: 0.5rem;
+        }
+
+        .handle {
+          padding: 1.5rem;
+        }
+
+        &.delta-order {
+          padding-left: 10px;
+        }
+      }
+
+      fieldset {
+        &.media-library-widget {
+          margin-top: 1rem;
+        }
+
+        &:not(.media-library-widget) legend {
+          margin-bottom: -1.5rem;
+        }
+
+        > *:not(legend) {
+          padding-left: 1.2rem;
+        }
+      }
+
+      div.media-library-item {
+        display: table-caption;
+      }
+    }
+  }
+}
+
+/* Styling overwrites for USWDS Card block layout */
+
+table button.media-library-widget__toggle-weight {
+  display: none;
+}
+
+/* END USWDS Card modal styling overwrites */
+
+/* Applied styling to actions associated with comments */
+/* Additionally applying proper reply styling, hiding redundant labels, cleaning up margins */
+
+form.comment-form div.form-wrapper {
+  margin-top: 0 !important;
+  margin-bottom: 0.5rem;
+  max-width: fit-content;
+}
+
+section.comment-wrapper {
+  div.field__label {
+    display: none;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  ul.links {
+    margin-bottom: auto;
+    padding-left: 0ch;
+  }
+
+  div.indented {
+    margin-left: 2.5em;
+
+    /* LTR */
+  }
+}
+
+.comment-delete:after, .comment-edit:after {
+  content: "|";
+  padding: 0 10px;
+}
+
+div.field--name-field-keywords {
+  margin-bottom: 1.5rem;
+}
+
+section.comment-wrapper ul.links li {
+  display: contents;
+  font-family: Source Sans Pro Web, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+  font-size: 1.06471rem;
+  line-height: .7;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 0;
+  border-radius: .25rem;
+  cursor: pointer;
+  margin-right: .5rem;
+  margin-bottom: auto;
+  text-align: center;
+  width: 100%;
+
+  &.comment-forbidden {
+    display: none;
+  }
+}
+
+/* END overriding */
+
+.micro {
+  font-size: 13px;
+}
+
+.grid-container {
+  max-width: 76rem;
+}
+
+.select2-container {
+  z-index: 5000;
+}
+
+.node-staff-member .field-name-field-staff-photo, .view-staff-directory .staff-photo .image-style-staff-member-card, .staff-photo {
+  padding: 2px;
+  border: 2px solid #DDD;
+  background: #EEE;
+  overflow: hidden;
+  float: right;
+  margin-right: 10px;
+  width: 100px;
+  height: 150px;
+}
+
+.staff-profile {
+  float: none !important;
+  display: inline-grid !important;
+}
+
+/* when embedded on page, Classy automatically applies .d-inline-flex, overwritin its intended display */
+.staff-profile ~ div .d-inline-flex {
+  display: inline-grid !important;
+  max-width: 250px;
+}
+
+.layout--twocol-section .layout__region, .layout--onecol-section .layout__region, .layout--fourcol-section .layout__region {
+  padding: 5px;
+}
+
+.align-left {
+  margin-right: 10px;
+}
+
+.align-right {
+  margin-left: 10px;
+}
+.align-right .figcaption {
+  text-align: left;
+}
+
+.card ul {
+  margin-top: 0;
+}
+
+.card-body {
+  padding: .5rem;
+}
+
+/* .card-body p {
+    margin: 0;
+}
+*/
+
+.paragraph {
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+  &.paragraph--type--uswds-card {
+    margin-top: 0;
+  }
+}
+
+.field .field--name-name, .field--name-description, .field--name-field-policy-role, .field--name-field-policy-responsibility, .field--name-field-reference-type, .field--name-field-reference-name-and-url {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.field__label {
+  font-weight: bold;
+}
+
+.field--label-inline {
+  .field__label, .field__items {
+    float: left;
+
+    /* LTR */
+  }
+
+  .field__label, > .field__item, .field__items {
+    padding-right: 0.5em;
+  }
+}
+
+[dir="rtl"] .field--label-inline {
+  .field__label, .field__items {
+    padding-right: 0;
+    padding-left: 0.5em;
+  }
+}
+
+.field--label-inline .field__label::after {
+  content: ":";
+}
+
+.media--view-mode-media-block {
+  float: left;
+}
+
+.max-image-div img {
+  max-width: 500px;
+  margin: auto;
+}
+
+/* remove display block so that label is inline with form element */
+
+.usa-sr-label {
+  display: inline-block;
+  line-height: 1.12707;
+  margin-top: 1.5rem;
+  max-width: 30rem;
+}
+
+.media-library-content img, .media-library-item img {
+  padding: 0.25rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.auto-width {
+  width: auto;
+}
+
+.paragraph--type--slide-show {
+  margin-top: 4rem;
+}
+
+article {
+  &.media--view-mode-card .field--name-image {
+    width: 100% !important;
+  }
+
+  &.align-center {
+    display: table;
+    min-width: unset;
+  }
+
+  &.align-right {
+    display: table;
+    margin-left: 10px;
+  }
+
+  &.align-left {
+    display: table;
+    margin-right: 10px;
+  }
+}
+
+ul {
+  margin-bottom: 1em;
+  margin-top: 1em;
+  line-height: 1.52155;
+  padding-left: 3ch;
+}
+
+ol {
+  margin-bottom: 1em;
+  margin-top: 1em;
+  line-height: 1.52155;
+  padding-left: 3ch;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  margin-bottom: 0.25em;
+
+  /*max-width:68ex;*/
+}
+
+li {
+  margin-bottom: 0.25em;
+
+  /*max-width:68ex;*/
+}
+
+.caption > figcaption {
+  font-size: smaller;
+  font-style: italic;
+}
+
+/* increase max-width of forms */
+
+.full-width-form {
+  max-width: none;
+
+  .form-input, .form-select {
+    max-width: 20rem;
+  }
+}
+
+/* resets max-width of input field */
+
+/* override margin to provide proper spacing between elements*/
+
+fieldset {
+  .usa-checkbox__label, .usa-radio__label {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+.form-item-checkbox-single {
+  margin-top: 1.5rem;
+}
+
+/* correcting uswds syntax */
+.usa-checkbox__input:checked + .usa-checkbox__label::before,
+.usa-radio__input:checked + .usa-radio__label::before {
+  background-color: #005ea2;
+  box-shadow: 0 0 0 2px #005ea2;
+}
+
+
+/* remove white background on form elements in sidebar forms */
+.box--special .usa-checkbox, .box--special .usa-radio {
+  background-color: #edeff0;
+}
+
+/* provides spacing and image size equivalent to uswds standard*/
+
+div {
+  &[class~="usa-alert-normalizer"]:not(.usa-alert--slim) {
+    margin-top: 1.5rem;
+    background-position: 1rem 1rem;
+    background-size: 3.5rem;
+  }
+
+  &.slim-normalizer {
+    background-position: 1.4rem 0.70rem;
+    background-size: 2.5rem;
+  }
+}
+
+.webform-element-description {
+  font-size: 11pt;
+  font-style: italic;
+}
+
+.form-required::after {
+  content: '';
+  vertical-align: super;
+  display: inline-block;
+  background-image: url(/core/misc/icons/ee0000/required.svg);
+  background-repeat: no-repeat;
+  background-size: 6px 6px;
+  width: 6px;
+  height: 6px;
+  margin: 0 0.3em;
+}
+
+.ui-front.editor-link-dialog #drupal-modal {
+  overflow: visible;
+}
+
+.view-grouping-content {
+  caption {
+    caption-side: top;
+    color: #1b1b1b;
+    text-decoration: none;
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1.2;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  .sort-link {
+    font-size: 1rem;
+  }
+}
+
+.cover-object-fit {
+  object-fit: cover;
+}
+
+.staff-fixed-height-grid {
+  min-height: 280px;
+}
+
+.staff-fixed-height {
+  min-height: 180px;
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+}
+
+/* enforce embedded entity grid rows */
+.align-center.embedded-enity .grid-row {
+  display:block;
+}
+
+.webform-message {
+  max-width: 30rem;
+}
+
+.epa-header {
+  background: none repeat scroll 0 0 #0E6993;
+  color: #FFF;
+  min-height: 60px;
+}
+
+/* staff member author styling */
+
+.author-tag {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.author-tag__image-container {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin-right: 1.5rem;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: calc(100% + 5px);
+    height: calc(100% + 5px);
+    border-radius: 50%;
+    border: 2px solid #005ea2;
+  }
+}
+
+.author-tag__image {
+  overflow: hidden;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  position: relative;
+  border: 2px solid #fff;
+  top: 5px;
+  left: 5px;
+
+  img {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    min-width: 100%;
+  }
+
+  article {
+    position: static;
+  }
+}
+
+.comment-form__title {
+  margin-top: 4rem;
+}
+
+/* New button styling */
+
+ins {
+  text-decoration: none;
+}
+
+/* this class isn't actually part of uswds and does not need to be separated */
+
+.usa-tag--accent {
+  background-color: #97d4ea;
+  color: #1a4480;
+}
+
+.new::before {
+  background-color: #97d4ea;
+  color: #1a4480;
+  content: 'New';
+  display: inline-block;
+  margin-right: 0.25rem !important;
+}
+
+.li-tag, .new::before {
+  font-size: 0.93rem;
+  text-transform: uppercase;
+  border-radius: 2px;
+  padding: 1px 0.5rem;
+}
+
+/* box styling */
+
+.box {
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+
+  &.has-image-header {
+    max-width: 20rem;
+  }
+}
+
+@media (min-width: 40rem) {
+  .u-align-right {
+    float: right;
+    margin-left: 2.5rem;
+  }
+}
+
+@media (min-width: 40rem) {
+  .u-align-left {
+    float: left;
+    margin-right: 2.5rem;
+  }
+}
+
+@media (min-width: 40rem) {
+  .box {
+    &.u-align-left, &.u-align-right {
+      width: 33%;
+    }
+  }
+}
+
+div.box__title, .box--special > .box__title {
+  font-family: Merriweather Web,Georgia,Cambria,Times New Roman,Times,serif;
+  font-size: 0.98rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.box--highlight > .box__title, .box--multipurpose > .box__title, .box--news > .box__title, .box--related-info > .box__title, .box--highlight > .box__image, .box--multipurpose > .box__image, .box--news > .box__image, .box--related-info > .box__image, .box--highlight > .box__content, .box--multipurpose > .box__content, .box--news > .box__content, .box--related-info > .box__content, .box--highlight > .box__footer, .box--multipurpose > .box__footer, .box--news > .box__footer, .box--related-info > .box__footer {
+  border: 1px solid #565c65;
+}
+
+.box--highlight > .box__title, .box--multipurpose > .box__title, .box--news > .box__title, .box--related-info > .box__title, .box--highlight > .box__content, .box--multipurpose > .box__content, .box--news > .box__content, .box--related-info > .box__content, .box--highlight > .box__footer, .box--multipurpose > .box__footer, .box--news > .box__footer, .box--related-info > .box__footer {
+  padding: 1rem;
+}
+
+.box--highlight > .box__title, .box--multipurpose > .box__title, .box--news > .box__title, .box--related-info > .box__title, .box--highlight > .box__footer, .box--multipurpose > .box__footer, .box--news > .box__footer, .box--related-info > .box__footer {
+  background-color: #565c65;
+  color: #fff;
+}
+
+.box--highlight > .box__title, .box--multipurpose > .box__title, .box--news > .box__title, .box--related-info > .box__title {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.box--highlight > .box__image, .box--multipurpose > .box__image, .box--news > .box__image, .box--related-info > .box__image {
+  border-bottom: 0;
+  margin: 0;
+}
+
+.box--highlight > .box__image + .box__content, .box--multipurpose > .box__image + .box__content, .box--news > .box__image + .box__content, .box--related-info > .box__image + .box__content {
+  border-top: 0;
+}
+
+.box--multipurpose > .box__content, .box--news > .box__content, .box--related-info > .box__content {
+  border-bottom-width: 0.25rem;
+  margin: 0;
+}
+
+.box--highlight > .box__content > :last-child, .box--multipurpose > .box__content > :last-child, .box--news > .box__content > :last-child, .box--related-info > .box__content > :last-child {
+  margin-bottom: 0;
+}
+
+.box--highlight > .box__footer, .box--multipurpose > .box__footer, .box--news > .box__footer, .box--related-info > .box__footer {
+  padding-top: 0.75rem;
+  text-align: right;
+}
+
+.box--highlight > .box__footer > .box__footer-link, .box--multipurpose > .box__footer > .box__footer-link, .box--news > .box__footer > .box__footer-link, .box--related-info > .box__footer > .box__footer-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.box--highlight > .box__footer > .box__footer-link:visited, .box--multipurpose > .box__footer > .box__footer-link:visited, .box--news > .box__footer > .box__footer-link:visited, .box--related-info > .box__footer > .box__footer-link:visited, .box--highlight > .box__footer > .box__footer-link:hover, .box--multipurpose > .box__footer > .box__footer-link:hover, .box--n > .box__footer > .box__footer-link:hover, .box--news > .box__footer > .box__footer-link:hover, .box--related-info > .box__footer > .box__footer-link:hover, .box--highlight > .box__footer > .box__footer-link:focus, .box--multipurpose > .box__footer > .box__footer-link:focus, .box--news > .box__footer > .box__footer-link:focus, .box--related-info > .box__footer > .box__footer-link:focus, .box--highlight > .box__footer > .box__footer-link:active, .box--multipurpose > .box__footer > .box__footer-link:active, .box--news > .box__footer > .box__footer-link:active, .box--related-info > .box__footer > .box__footer-link:active {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.box--highlight > {
+  .box__title, .box__footer {
+    background-color: #ffbe2e;
+    border-color: #ffbe2e;
+    color: #1b1b1b;
+  }
+
+  .box__content {
+    border-color: #ffbe2e;
+  }
+
+  .box__footer > .box__footer-link {
+    color: #1b1b1b;
+
+    &:visited, &:hover, &:focus, &:active {
+      color: #1b1b1b;
+    }
+  }
+}
+
+.box--news > {
+  .box__title, .box__footer {
+    background-color: #1a4480;
+    border-color: #1a4480;
+    color: #fff;
+  }
+
+  .box__content {
+    border-color: #1a4480;
+  }
+}
+
+.box--related-info > {
+  .box__title, .box__footer {
+    background-color: #4d8055;
+    border-color: #4d8055;
+  }
+
+  .box__content {
+    border-color: #4d8055;
+  }
+}
+
+.box--special {
+  background: #edeff0;
+
+  > {
+    .box__title, .box__content, .box__footer {
+      margin: 0;
+      padding: 1rem;
+    }
+
+    * + {
+      .box__content, .box__footer {
+        margin-top: -0.25rem;
+        padding-top: 0;
+      }
+    }
+  }
+}
+
+/* Section styling */
+
+.section-blue-dark {
+  background-color: #1a4480;
+}
+
+.section-blue-light {
+  background-color: #4f97d1;
+}
+
+.section-blue-light-1 {
+  background-color: #aacdec;
+}
+
+.section-acqua-dark-1 {
+  background-color: #07648d;
+}
+
+.section-acqua-light {
+  background-color: #97d4ea;
+}
+
+.section-acqua-light-1 {
+  background-color: #e1f3f8;
+}
+
+.section-green-dark {
+  background-color: #4d8055;
+}
+
+.section-green-dark-1 {
+  background-color: #37493b;
+}
+
+.section-green-light {
+  background-color: #86b98e;
+}
+
+.section-green-light-1 {
+  background-color: #dbedbe;
+}
+
+.section-accent-warm-dark {
+  background-color: #c05600;
+}
+
+.section-accent-warm-darker {
+  background-color: #775540;
+}
+
+.section-accent-warm-lighter {
+  background-color: #f2e4d4;
+}
+
+.field--name-field-special-message-text {
+  background-color: #0a6fb4;
+  color: #FFF;
+  text-align: center;
+}
+
+.field--name-field-include-special-message, .field--name-field-banner > .field__label {
+  display: none;
+}
+
+.field--type-datetime {
+  font-weight: bold;
+  font-style: italic;
+  margin-top: .5rem;
+}
+
+.field--name-field-banner > .field__item > img {
+  max-height: 150px;
+}
+
+.field--name-field-keywords > .field__items > .field__item {
+  float: left;
+  margin: 0 0.5em 0 0;
+
+  &:after {
+    content: ", ";
+  }
+
+  &:last-child:after {
+    content: "";
+  }
+}
+
+.mass-mailer-body {
+  margin-bottom: 2rem;
+}
+
+.altwdg-trigger {
+  &.altwdg-TOP {
+    left: 45%;
+    top: 0;
+  }
+
+  position: fixed;
+  background: #205081;
+  padding: 5px;
+  border: 2px solid #FFF;
+  border-top: none;
+  font-weight: bold;
+  color: #FFF !important;
+  display: block;
+  white-space: nowrap;
+  text-decoration: none !important;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  border-radius: 0 0 5px 5px;
+}
+/* IN-721 Libraries are also using the form-text class and it's overriding core styles.
+   Resetting form-text for Webforms here. */
+.webform-submission-form .form-text {
+  margin-top: .5rem;
+  font-size: 1.06rem;
+  color: #1b1b1b;
+}
+
+/* IN-659 Footer text not displaying corectly. */
+.region-footer-menu .grid-row {
+  display: flex;
+  align-items: stretch; /* Default */
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.region-footer-menu .grid-row li {
+  list-style-type: none;
+  display: block;
+  flex: 0 1 auto;
+}
+.usa-footer__primary-container {
+  width: 100%;
+  max-width: 100%;
+}
+.usa-footer__primary-container.grid-row {
+  display: block;
+}
+.usa-footer__logo .grid-col-auto {
+  display: inline;
+}
+.usa-footer__logo .usa-footer__logo-heading {
+  display: inline;
+}
+
+@media (min-width: 30em) {
+  .region-footer-menu .mobile-lg\:grid-col-8 {
+      flex: 0 1 auto;
+      width: 100%;
+  }
+}
+
+@media (max-width: 571px) {
+  .region-footer-menu .grid-row {
+      flex-direction: column;
+  }
+  .region-footer-menu .grid-row li {
+    width: 100%;
+  }
+}
+
+/* IN-851 Image alignment breaks when adding a caption */
+article {
+  &.align-center + figcaption {
+    text-align: center;
+  }
+  &.align-right + figcaption {
+    text-align: left;
+  }
+  &.align-left + figcaption {
+    text-align: left;
+  }
+}
+
+/* IN-844 Style updates for books */
+.page-node-type-book #block-epa-intranet-content div {
+  display: flex;
+  flex-direction: column;
+}
+.page-node-type-book #block-epa-intranet-content div {
+  &.node__links {
+    order: 4;
+  }
+  &.node__links ul.links {
+    padding: 0;
+  }
+  &.node__links ul.links li {
+    float: left;
+    list-style: none;
+  }
+  &.book-printer {
+    display: none;
+  }
+}
+
+/* IN-1127 Search icon missing from search */
+.usa-search--small .usa-button {
+  background-image: url(/themes/custom/epa_intranet/assets/img/usa-icons-bg/search--white.svg);
+  background-repeat: no-repeat;
+  background-size: 1.5rem, 1.5rem;
+  background-position: center;
+}
+
+/* IN-1132 Export Content and Media in CSV format */
+.views-display-link-data_export_1 {
+  background: url("/themes/custom/epa_intranet/assets/img/csv-export.png");
+  color: transparent;
+  background-repeat: no-repeat;
+  padding: 7px;
+}
