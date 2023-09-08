@@ -12,7 +12,7 @@ stages:
 Build IntranetCMS Image:
   stage: build
   rules:
-    - if: '$CI_COMMIT_BRANCH == "dev-container" || $CI_COMMIT_BRANCH == "stage-container-1"'
+    - if: '$CI_COMMIT_BRANCH == "dev-container" || $CI_COMMIT_BRANCH == "stage-container-1" || $CI_COMMIT_BRANCH == "dev-container-10"'
   tags:
     - intranetcms-dev-runner
   image:
@@ -124,9 +124,9 @@ Post Deploy:
 
   stage: Non-Production Stage Post Deploy
   rules:
-    - if: '$CI_COMMIT_BRANCH == "stage-container-1"'
+    - if: '$CI_COMMIT_BRANCH == "dev-container-10"'
   tags:
-    - intranetcms-stg-runner
+    - intranetcms-dev-runner
   image: dtzar/helm-kubectl
   script:
     - kubectl config use-context intranet-cms/intracms-infra:intranetcms-dev-k8s-agent
