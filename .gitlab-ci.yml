@@ -113,7 +113,7 @@ Post Deploy:
     - intranetcms-dev-runner
   image: dtzar/helm-kubectl
   script:
-    - kubectl config use-context intranet-cms/intracms-infra:intranetcms-dev-k8s-agent
+    - kubectl config use-context intranet-cms/intranet-cms-infra:intranetcms-dev-k8s-agent
     - apk add gettext
     - envsubst < k8s/drush.yml | kubectl create -f - -n cms-45-dev
   environment:
@@ -129,7 +129,7 @@ Post Deploy:
     - intranetcms-dev-runner
   image: dtzar/helm-kubectl
   script:
-    - kubectl config use-context intranet-cms/intracms-infra:intranetcms-dev-k8s-agent
+    - kubectl config use-context intranet-cms/intranet-cms-infra:intranetcms-dev-k8s-agent
     - apk add gettext
     - envsubst < k8s/drush.yml | kubectl create -f - -n cms-45-next
   environment:
