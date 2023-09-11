@@ -1,0 +1,33 @@
+uuid: a42d8b2d-c661-4414-aa39-36d89be15e83
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+    - node
+  theme:
+    - epa_intranet_2
+id: pagetitle
+theme: epa_intranet_2
+region: content
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      landing_page: landing_page
+      mass_mailer: mass_mailer
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false

@@ -1,0 +1,33 @@
+uuid: a06a30fd-b57c-455e-8284-7eab69ab1da4
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.event_calendar
+  module:
+    - block_in_page_not_found
+    - system
+    - views
+  theme:
+    - epa_intranet_2
+id: exposedformevent_calendarcalendar_page
+theme: epa_intranet_2
+region: sidebar_second
+weight: -4
+provider: null
+plugin: 'views_exposed_filter_block:event_calendar-calendar_page'
+settings:
+  id: 'views_exposed_filter_block:event_calendar-calendar_page'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /calendar
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
