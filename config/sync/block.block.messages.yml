@@ -1,0 +1,25 @@
+uuid: 93cbbf22-188e-4785-a793-5f5e6e7b6770
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+    - system
+  theme:
+    - epa_intranet_2
+id: messages
+theme: epa_intranet_2
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status Messages'
+  label_display: '0'
+  provider: system
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
