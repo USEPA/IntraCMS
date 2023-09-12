@@ -1,28 +1,26 @@
-uuid: 3b817dca-fc03-40d2-b896-5411139656c4
+uuid: 96b021f3-e07c-476f-9a87-a28977ef5726
 langcode: en
 status: true
 dependencies:
-  config:
-    - system.menu.secondary-menu
   module:
     - block_in_page_not_found
     - system
   theme:
     - epa_intranet_2
-id: secondarymenu_2
+id: sitebranding2
 theme: epa_intranet_2
-region: secondary_menu
+region: header
 weight: 0
 provider: null
-plugin: 'system_menu_block:secondary-menu'
+plugin: system_branding_block
 settings:
-  id: 'system_menu_block:secondary-menu'
-  label: 'Secondary Menu'
+  id: system_branding_block
+  label: 'Site branding'
   label_display: '0'
   provider: system
-  level: 1
-  depth: 0
-  expand_all_items: false
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
 visibility:
   page_not_found_request:
     id: page_not_found_request
