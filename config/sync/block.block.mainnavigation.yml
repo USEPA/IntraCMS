@@ -1,0 +1,30 @@
+uuid: 28d54b17-21ca-4ca1-96f3-e7546e15951a
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - block_in_page_not_found
+    - system
+  theme:
+    - epa_intranet_2
+id: mainnavigation
+theme: epa_intranet_2
+region: primary_menu
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 3
+  expand_all_items: true
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false

@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Default theme implementation for addtocal_links.
+ *
+ * Available variables:
+ * - attributes: An associative array of element attributes.
+ * - button_text: The addtocal button text.
+ * - button_attributes: An associative array of button attributes.
+ * - menu_attributes: An associative array of menu attributes.
+ * - items: List of add to cal links.
+ *
+ * @see template_preprocess_addtocal_links()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{%
+    set classes = [
+    'usa-button',
+    'addtocal-button',
+    'addtocal-outline',
+    'usa-button--outline',
+]
+%}
+<div{{ attributes }}>
+    <button{{ button_attributes.addClass(classes) }}>{{ button_text }}</button>
+    <div{{ menu_attributes }}>
+        <ul class="addtocal-links">
+            {% for type, item in items %}
+                <li class="addtocal-link" data-addtocal-type="{{ type }}">
+                    <a href="{{ item.url }}" target="_blank" rel="noopener" aria-label="{{ item['aria-label'] }}">{{ item.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

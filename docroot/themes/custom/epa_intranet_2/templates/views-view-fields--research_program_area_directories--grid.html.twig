@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Default view template to display all the fields in a row.
+ *
+ * Available variables:
+ * - view: The view in use.
+ * - fields: A list of fields, each one contains:
+ *   - content: The output of the field.
+ *   - raw: The raw data for the field, if it exists. This is NOT output safe.
+ *   - class: The safe class ID to use.
+ *   - handler: The Views field handler controlling this field.
+ *   - inline: Whether or not the field should be inline.
+ *   - wrapper_element: An HTML element for a wrapper.
+ *   - wrapper_attributes: List of attributes for wrapper element.
+ *   - separator: An optional separator that may appear before a field.
+ *   - label: The field's label text.
+ *   - label_element: An HTML element for a label wrapper.
+ *   - label_attributes: List of attributes for label wrapper.
+ *   - label_suffix: Colon after the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ *   - has_label_colon: A boolean indicating whether to display a colon after
+ *     the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ * - row: The raw result from the query, with all data it fetched.
+ *
+ * @see template_preprocess_views_view_fields()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set alignRightClasses = [
+    'align-right',
+    'mx-3',
+] %}
+<div class="border text-center p-2 staff-fixed-height-grid align-items-start">
+    <div class="w-100">
+        {% if 'img' in  fields.field_staff_photo.content|render %}
+            {{ fields.field_staff_photo.content }}
+        {% else %}
+            <img class="align-center cover-object-fit" src="/sites/default/files/avatar-1577909_1280.png" alt="No Staff Member Picture"
+                 width="110"
+                 height="150"/>
+        {% endif %}
+        <div class="align-center">{{ fields.title.content }}</div>
+        <div class="align-center"> {{ fields.field_staff_position.content }} </div>
+    </div>
+</div>
+
