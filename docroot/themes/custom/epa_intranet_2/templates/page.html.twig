@@ -4,11 +4,10 @@
  * USWDS theme implementation to display a single page..
  */
 #}
-{% set main_class = 'grid-container' %}
 
-{% if page.header_top or government_banner %}
-  {{ government_banner }}
-{% endif %}
+    {% if page.header_top or government_banner %}
+      {{ government_banner }}
+    {% endif %}
 
 <div class="usa-overlay"></div>
 
@@ -74,7 +73,7 @@
 {% endif %}
 
 <main class="usa-section" id="main-content">
-  <div class="{{ main_class }}">
+  <div class="grid-container">
     <div class="grid-row grid-gap">
       <div class="grid-col-12">
         {{ page.breadcrumb }}
@@ -130,11 +129,11 @@
     {% endif %}
   </div>
   {% if footer_slim %}
-    {% include '@epa_intranet/includes/slim-footer.html.twig' %}
+    {% include '@epa_intranet_2/includes/slim-footer.html.twig' %}
   {% elseif footer_medium %}
-    {% include '@epa_intranet/includes/medium-footer.html.twig' %}
+    {% include '@epa_intranet_2/includes/medium-footer.html.twig' %}
   {% else %}
-    {% include '@epa_intranet/includes/big-footer.html.twig' %}
+    {% include '@epa_intranet_2/includes/big-footer.html.twig' %}
   {% endif %}
 </footer>
 
