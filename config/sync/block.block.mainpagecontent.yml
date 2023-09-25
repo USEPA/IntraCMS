@@ -1,0 +1,25 @@
+uuid: 8b98905e-6c04-4024-a883-e57d22e36f64
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+    - system
+  theme:
+    - epa_intranet_2
+id: mainpagecontent
+theme: epa_intranet_2
+region: content
+weight: -16
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false

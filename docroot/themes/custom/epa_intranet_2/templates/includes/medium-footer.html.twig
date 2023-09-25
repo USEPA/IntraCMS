@@ -1,0 +1,100 @@
+{% if page.footer_menu or page.footer %}
+  <div class="usa-footer__primary-section">
+    {% if page.footer_menu %}
+      <nav class="usa-footer__nav" aria-label="Footer navigation">
+        {{ page.footer_menu }}
+      </nav>
+    {% endif %}
+    {% if page.footer %}
+      <div class="grid-row grid-gap">
+        <div class="mobile-lg:grid-col-12">
+          {{ page.footer }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
+{% if footer_agency_logo or footer_agency_name or footer_social or footer_contact or page.footer_secondary %}
+  <div class="usa-footer__secondary-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        {% if footer_agency_logo or footer_agency_name %}
+          <div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
+            {% if footer_agency_logo %}
+              <div class="mobile-lg:grid-col-auto">
+                <img class="usa-footer__logo-img" src="{{ footer_agency_logo }}" alt="{{ footer_agency_name }} logo">
+              </div>
+            {% endif %}
+            {% if footer_agency_name %}
+              <div class="mobile-lg:grid-col-auto">
+                <p class="usa-footer__logo-heading">{{ footer_agency_name }}</p>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if footer_social %}
+          <div class="usa-footer__contact-links mobile-lg:grid-col-6">
+            {% if facebook or twitter or youtube or rss %}
+              <div class="usa-footer__social-links grid-row grid-gap-1">
+                {% if facebook %}
+                  <div class="grid-col-auto">
+                    <a class="usa-social-link usa-social-link--facebook" href="{{ facebook }}">
+                      <span>Facebook</span>
+                    </a>
+                  </div>
+                {% endif %}
+                {% if twitter %}
+                  <div class="grid-col-auto">
+                    <a class="usa-social-link usa-social-link--twitter" href="{{ twitter }}">
+                      <span>Twitter</span>
+                    </a>
+                  </div>
+                {% endif %}
+                {% if youtube %}
+                  <div class="grid-col-auto">
+                    <a class="usa-social-link usa-social-link--youtube" href="{{ youtube }}">
+                      <span>YouTube</span>
+                    </a>
+                  </div>
+                {% endif %}
+                {% if rss %}
+                  <div class="grid-col-auto">
+                    <a class="usa-social-link usa-social-link--rss" href="{{ rss }}">
+                      <span>RSS</span>
+                    </a>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+            {% if footer_contact %}
+              {% if contact_center %}
+                <h3 class="usa-footer__contact-heading">{{ contact_center }}</h3>
+              {% endif %}
+              <address class="usa-footer__address">
+                <div class="usa-footer__contact-info grid-row grid-gap">
+                  {% if phone %}
+                    <div class="grid-col-auto">
+                      <a href="tel:{{ phone }}">{{ phone }}</a>
+                    </div>
+                  {% endif %}
+                  {% if email %}
+                    <div class="grid-col-auto">
+                      <a href="mailto:{{ email }}">{{ email }}</a>
+                    </div>
+                  {% endif %}
+                </div>
+              </address>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+      {% if page.footer_secondary %}
+        <div class="grid-row grid-gap">
+          <div class="mobile-lg:grid-col-12">
+            {{ page.footer_secondary }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

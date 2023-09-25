@@ -1,0 +1,41 @@
+uuid: 6ed9a067-ace6-4274-8834-0eca74c43d6f
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.desktop_library_search_sidebar
+  module:
+    - block_in_page_not_found
+    - fixed_block_content
+    - node
+    - system
+  theme:
+    - epa_intranet_2
+id: desktoplibrarysearchsidebar_2
+theme: epa_intranet_2
+region: sidebar_first
+weight: -3
+provider: null
+plugin: 'fixed_block_content:desktop_library_search_sidebar'
+settings:
+  id: 'fixed_block_content:desktop_library_search_sidebar'
+  label: 'Desktop Library Search Sidebar'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/library-services/*\r\n/library-region-9/*\r\n/library-hq-chemical/*"
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      landing_page: landing_page
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
