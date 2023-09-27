@@ -4,11 +4,15 @@ stages:
   - prisma scan
   - Non-Production Dev Deployment
   - Non-Production Stage Deployment
-
+  - Non-Production Dev10 Deployment
+  - Non-Production Stage Post Deploy
+  - Non-Production Dev Post Deploy
+  - Non-Production Dev10 Post Deploy
+ 
 Build IntranetCMS Image:
   stage: build
   rules:
-    - if: '$CI_COMMIT_BRANCH == "dev-container" || $CI_COMMIT_BRANCH == "stage-container-1"'
+    - if: '$CI_COMMIT_BRANCH == "dev-container" || $CI_COMMIT_BRANCH == "stage-container-1" || $CI_COMMIT_BRANCH == "dev-container-10"'
   tags:
     - intranetcms-dev-runner
   image:
@@ -50,6 +54,22 @@ Development:
     kubernetes:
       namespace: cms-45-dev
 
+  stage: Non-Production Dev10 Deployment
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev-container-10"'
+  tags:
+    - intranetcms-dev-runner
+  image: dtzar/helm-kubectl
+  script:
+    - kubectl config use-context intranet-cms/intranet-cms-infra:intranetcms-dev-k8s-agent
+    - apk add gettext
+    - envsubst < k8s/intranetcms-dev10.yml | kubectl apply -f - -n cms-45-next
+  environment:
+    name: dev10
+    url:
+    kubernetes:
+      namespace: cms-45-next
+
 Stage:
   stage: Non-Production Stage Deployment
   rules:
@@ -66,3 +86,55 @@ Stage:
     url:
     kubernetes:
       namespace: cms-45-stage
+
+
+
+Post Deploy:
+  stage: Non-Production Stage Post Deploy
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "stage-container-1"'
+  tags:
+    - intranetcms-stg-runner
+  image: dtzar/helm-kubectl
+  script:
+    - kubectl config use-context intranet-cms/intracms-infra-stage:intranetcms-stage-k8s-agent
+    - apk add gettext
+    - envsubst < k8s/drush.yml | kubectl create -f - -n cms-45-stage
+  environment:
+    name: stage
+    url:
+    kubernetes:
+      namespace: cms-45-stage
+  
+  stage: Non-Production Dev Post Deploy
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev-container"'
+  tags:
+    - intranetcms-dev-runner
+  image: dtzar/helm-kubectl
+  script:
+    - kubectl config use-context intranet-cms/intranet-cms-infra:intranetcms-dev-k8s-agent
+    - apk add gettext
+    - envsubst < k8s/drush.yml | kubectl create -f - -n cms-45-dev
+  environment:
+    name: dev
+    url:
+    kubernetes:
+      namespace: cms-45-dev
+
+  stage: Non-Production Stage Post Deploy
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev-container-10"'
+  tags:
+    - intranetcms-dev-runner
+  image: dtzar/helm-kubectl
+  script:
+    - kubectl config use-context intranet-cms/intranet-cms-infra:intranetcms-dev-k8s-agent
+    - apk add gettext
+    - envsubst < k8s/drush.yml | kubectl create -f - -n cms-45-next
+  environment:
+    name: dev10
+    url:
+    kubernetes:
+      namespace: cms-45-next
+
