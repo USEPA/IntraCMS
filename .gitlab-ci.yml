@@ -54,6 +54,7 @@ Development:
     kubernetes:
       namespace: cms-45-dev
 
+Development10:
   stage: Non-Production Dev10 Deployment
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev-container-10"'
@@ -105,7 +106,8 @@ Post Deploy:
     url:
     kubernetes:
       namespace: cms-45-stage
-  
+
+Post Deploy Dev:  
   stage: Non-Production Dev Post Deploy
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev-container"'
@@ -122,6 +124,7 @@ Post Deploy:
     kubernetes:
       namespace: cms-45-dev
 
+Post Deploy Dev10:
   stage: Non-Production Stage Post Deploy
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev-container-10"'
@@ -137,4 +140,3 @@ Post Deploy:
     url:
     kubernetes:
       namespace: cms-45-next
-
