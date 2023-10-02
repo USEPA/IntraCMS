@@ -24,7 +24,7 @@ KEEP_DAILY_X_DAYS=90
 EMAIL_NOTIFICATION="potter.bryan@epa.gov,Marruffo.Json@epa.gov,Garnes.Sylvette@epa.gov,Dearie.Jessica@epa.gov,ryan.letulle@cgifederal.com,Cerda.Jeremy@epa.gov"
 ALERT_NOTIFICATION="potter.bryan@epa.gov,Marruffo.Json@epa.gov,Garnes.Sylvette@epa.gov,Dearie.Jessica@epa.gov,ryan.letulle@cgifederal.com,Cerda.Jeremy@epa.gov"
 
-DRUSHCMD="/usr/bin/drush @epa.prod"
+DRUSHCMD="/usr/bin/drush @intra"
 
 #Enter a list of sources that will be migrated SOURCELIST="qapp sop all_windows_shares_site_codes all_windows_shares"
 #Enter items that need to be run a second time SECONDSOURCELIST="qapp sop"
