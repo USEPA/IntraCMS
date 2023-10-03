@@ -1,0 +1,24 @@
+uuid: 6d50d355-aa18-4738-ac67-a5a365342f2f
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+  theme:
+    - claro
+id: pagetitle_2
+theme: claro
+region: header
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false

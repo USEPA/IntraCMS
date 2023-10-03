@@ -1,0 +1,25 @@
+uuid: e085e774-8fa2-4f87-a7df-aba7127299cf
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+    - user
+  theme:
+    - claro
+id: userlogin
+theme: claro
+region: content
+weight: -1
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: 'User login'
+  label_display: visible
+  provider: user
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
