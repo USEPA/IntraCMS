@@ -1,0 +1,25 @@
+uuid: 386d4a6e-dc62-42d4-81cc-2e5c72ca0a24
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+    - system
+  theme:
+    - claro
+id: mainpagecontent_2
+theme: claro
+region: content
+weight: -2
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
