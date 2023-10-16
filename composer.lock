@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c981d67961885ae606ed25fe1a107a3",
+    "content-hash": "b983b92830925675aadc3bf2ab3c4809",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2102,20 +2102,20 @@
         },
         {
             "name": "drupal/addtocal",
-            "version": "2.0.0-beta4",
+            "version": "3.0.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/addtocal.git",
-                "reference": "8.x-2.0-beta4"
+                "reference": "3.0.0-beta1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/addtocal-8.x-2.0-beta4.zip",
-                "reference": "8.x-2.0-beta4",
-                "shasum": "07e3a04418e3d702a30912ec2425b40c23ce740a"
+                "url": "https://ftp.drupal.org/files/projects/addtocal-3.0.0-beta1.zip",
+                "reference": "3.0.0-beta1",
+                "shasum": "35c69044e3e057070bb750cdb04042813e450ae0"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
+                "drupal/core": "^8 || ^9 || ^10",
                 "spatie/calendar-links": "^1.7"
             },
             "suggest": {
@@ -2124,8 +2124,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.0-beta4",
-                    "datestamp": "1648740638",
+                    "version": "3.0.0-beta1",
+                    "datestamp": "1687818186",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -2138,14 +2138,6 @@
             ],
             "authors": [
                 {
-                    "name": "Greg Boggs",
-                    "homepage": "https://www.drupal.org/user/153069"
-                },
-                {
-                    "name": "andrei.colesnic",
-                    "homepage": "https://www.drupal.org/user/3272384"
-                },
-                {
                     "name": "bdimaggio",
                     "homepage": "https://www.drupal.org/user/70688"
                 },
@@ -2154,12 +2146,24 @@
                     "homepage": "https://www.drupal.org/user/1682976"
                 },
                 {
+                    "name": "Greg Boggs",
+                    "homepage": "https://www.drupal.org/user/153069"
+                },
+                {
+                    "name": "kescoto-thinkshout",
+                    "homepage": "https://www.drupal.org/user/3664824"
+                },
+                {
                     "name": "levelos",
                     "homepage": "https://www.drupal.org/user/54135"
                 },
                 {
                     "name": "tauno",
                     "homepage": "https://www.drupal.org/user/105595"
+                },
+                {
+                    "name": "the.tai.pen@gmail.com",
+                    "homepage": "https://www.drupal.org/user/3272384"
                 },
                 {
                     "name": "wxactly",
@@ -2305,34 +2309,35 @@
         },
         {
             "name": "drupal/anchor_link",
-            "version": "1.9.0",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/anchor_link.git",
-                "reference": "8.x-1.9"
+                "reference": "8.x-2.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/anchor_link-8.x-1.9.zip",
-                "reference": "8.x-1.9",
-                "shasum": "48d343f29dc034bf2deb7de858498fb80d558ca8"
+                "url": "https://ftp.drupal.org/files/projects/anchor_link-8.x-2.6.zip",
+                "reference": "8.x-2.6",
+                "shasum": "deb452a7da610472a4ab3b5fbdf06904c041a225"
             },
             "require": {
                 "drupal/ckeditor": "*",
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10",
+                "drupal/fakeobjects": "~1.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.9",
-                    "datestamp": "1673535832",
+                    "version": "8.x-2.6",
+                    "datestamp": "1674976179",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
                 },
-                "patches_applied": {
-                    "Remove overriding of CTRL+K command from ckeditor interfaces": "patches/anchor_link_shortcut_override.patch"
+                "branch-alias": {
+                    "dev-8.x-2.x": "8.2.x-dev"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2340,6 +2345,11 @@
                 "GPL-2.0-or-later"
             ],
             "authors": [
+                {
+                    "name": "Vardot",
+                    "homepage": "https://www.drupal.org/vardot",
+                    "role": "Maintainer"
+                },
                 {
                     "name": "Mohammed J. Razem",
                     "homepage": "https://www.drupal.org/user/255384"
@@ -2349,10 +2359,11 @@
                     "homepage": "https://www.drupal.org/user/1414312"
                 }
             ],
-            "description": "This plugin module adds the better link dialog and anchor related features to CKEditor in Drupal 9",
+            "description": "This plugin module adds the better link dialog and anchor related features to CKEditor in Drupal.",
             "homepage": "https://www.drupal.org/project/anchor_link",
             "support": {
-                "source": "https://git.drupalcode.org/project/anchor_link"
+                "source": "http://cgit.drupalcode.org/anchor_link",
+                "issues": "https://www.drupal.org/project/issues/anchor_link"
             }
         },
         {
@@ -2406,29 +2417,32 @@
         },
         {
             "name": "drupal/auto_entitylabel",
-            "version": "3.0.0-beta4",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/auto_entitylabel.git",
-                "reference": "8.x-3.0-beta4"
+                "reference": "8.x-3.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/auto_entitylabel-8.x-3.0-beta4.zip",
-                "reference": "8.x-3.0-beta4",
-                "shasum": "916befd4ce95b5d73de48ac1b105cc33e9f7821f"
+                "url": "https://ftp.drupal.org/files/projects/auto_entitylabel-8.x-3.0.zip",
+                "reference": "8.x-3.0",
+                "shasum": "8dd54d4b677f2c7259a15afd7b71d0d1b6f6b4a6"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^9.3 || ^10"
+            },
+            "require-dev": {
+                "drupal/token": "^1.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.0-beta4",
-                    "datestamp": "1609349103",
+                    "version": "8.x-3.0",
+                    "datestamp": "1671545557",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -2523,28 +2537,26 @@
         },
         {
             "name": "drupal/back_to_top",
-            "version": "2.0.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/back_to_top.git",
-                "reference": "2.0.0"
+                "reference": "3.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/back_to_top-2.0.0.zip",
-                "reference": "2.0.0",
-                "shasum": "a95add76833f63e613842dc552f9b5fd6c8a3b7e"
+                "url": "https://ftp.drupal.org/files/projects/back_to_top-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "1f65dfba56243f8a551847fa1a45e0e0ee192e3d"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
-                "drupal/jquery_ui": "*",
-                "drupal/jquery_ui_effects": "*"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.0",
-                    "datestamp": "1629465392",
+                    "version": "3.0.0",
+                    "datestamp": "1674218226",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2578,43 +2590,40 @@
                 }
             ],
             "description": "Back To Top adds a button that hovers in the bottom of your screen and allow users to smoothly scroll up the page using jQuery.",
-            "homepage": "https://www.drupal.org/project/back_top_top",
+            "homepage": "https://www.drupal.org/project/back_to_top",
             "support": {
                 "source": "https://git.drupalcode.org/project/back_to_top",
-                "issues": "https://www.drupal.org/project/issues/back_top_top"
+                "issues": "https://www.drupal.org/project/issues/back_to_top"
             }
         },
         {
             "name": "drupal/bamboo_twig",
-            "version": "5.0.0-alpha1",
+            "version": "6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/bamboo_twig.git",
-                "reference": "8.x-5.0-alpha1"
+                "reference": "6.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bamboo_twig-8.x-5.0-alpha1.zip",
-                "reference": "8.x-5.0-alpha1",
-                "shasum": "7924e1f4c31a762e4fa190da773987f2128e8267"
+                "url": "https://ftp.drupal.org/files/projects/bamboo_twig-6.0.0.zip",
+                "reference": "6.0.0",
+                "shasum": "80a025f503832472abb028f36ae6c59984f1c879"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9"
+                "drupal/core": "^9.3 || ^10"
             },
             "require-dev": {
-                "drupal/coder": "^8.3.1",
-                "squizlabs/php_codesniffer": "^3.0.1",
-                "symfony/mime": "^4.3",
-                "twig/extensions": "^1.5.4"
+                "drupal/coder": "^8.3.1"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-5.0-alpha1",
-                    "datestamp": "1578674583",
+                    "version": "6.0.0",
+                    "datestamp": "1668780600",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -2645,52 +2654,40 @@
         },
         {
             "name": "drupal/bg_image_formatter",
-            "version": "1.15.0",
+            "version": "1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/bg_image_formatter.git",
-                "reference": "8.x-1.15"
+                "reference": "8.x-1.16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bg_image_formatter-8.x-1.15.zip",
-                "reference": "8.x-1.15",
-                "shasum": "fae1e0880d7a4f0052223246d3a6ba6102926239"
+                "url": "https://ftp.drupal.org/files/projects/bg_image_formatter-8.x-1.16.zip",
+                "reference": "8.x-1.16",
+                "shasum": "604619404e3f1ce03d272c2f5750535a35c5ab69"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
-            },
-            "require-dev": {
-                "drupol/drupal-conventions": "^1"
+                "drupal/core": "^9.3 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.15",
-                    "datestamp": "1635517518",
+                    "version": "8.x-1.16",
+                    "datestamp": "1668029882",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "grumphp": {
-                    "config-default-path": "vendor/drupol/drupal-conventions/config/drupal8/grumphp.yml"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
-            "scripts": {
-                "grumphp": [
-                    "./vendor/bin/grumphp run"
-                ]
-            },
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
-                    "name": "Pol Dellaiera (@drupol)",
-                    "homepage": "https://www.drupal.org/u/pol",
-                    "role": "Maintainer"
+                    "name": "bburg",
+                    "homepage": "https://www.drupal.org/user/1867900"
                 },
                 {
                     "name": "DuaelFr",
@@ -2709,8 +2706,8 @@
                     "homepage": "https://www.drupal.org/user/47194"
                 }
             ],
-            "description": "This module provides an image formatter that allows you to set an image in background of a container.",
-            "homepage": "https://drupal.org/project/bg_image_formatter",
+            "description": "Background Images Formatter provides an image formatter to display images in background with CSS.",
+            "homepage": "https://www.drupal.org/project/bg_image_formatter",
             "support": {
                 "source": "https://git.drupalcode.org/project/bg_image_formatter"
             }
@@ -2919,26 +2916,26 @@
         },
         {
             "name": "drupal/block_list_override",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/block_list_override.git",
-                "reference": "1.0.1"
+                "reference": "1.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/block_list_override-1.0.1.zip",
-                "reference": "1.0.1",
-                "shasum": "f1ae936cc5e4748d511ee0a7a6025337b135db56"
+                "url": "https://ftp.drupal.org/files/projects/block_list_override-1.0.2.zip",
+                "reference": "1.0.2",
+                "shasum": "0e5494748186eb30af0c765b2b3d14ab528de2eb"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9"
+                "drupal/core": "^9.4 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.1",
-                    "datestamp": "1594592703",
+                    "version": "1.0.2",
+                    "datestamp": "1691677830",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2950,6 +2947,10 @@
                 "GPL-2.0-or-later"
             ],
             "authors": [
+                {
+                    "name": "heddn",
+                    "homepage": "https://www.drupal.org/user/1463982"
+                },
                 {
                     "name": "KarenS",
                     "homepage": "https://www.drupal.org/user/45874"
@@ -2963,26 +2964,26 @@
         },
         {
             "name": "drupal/block_style_plugins",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/block_style_plugins.git",
-                "reference": "8.x-1.5"
+                "reference": "8.x-1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/block_style_plugins-8.x-1.5.zip",
-                "reference": "8.x-1.5",
-                "shasum": "39e01b8ad335ee61ea9a01445b1143438ad68c9a"
+                "url": "https://ftp.drupal.org/files/projects/block_style_plugins-8.x-1.6.zip",
+                "reference": "8.x-1.6",
+                "shasum": "f5fa323ae38d513843c49cff271b864fc065d79a"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8.8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.5",
-                    "datestamp": "1616622469",
+                    "version": "8.x-1.6",
+                    "datestamp": "1676397041",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3011,26 +3012,26 @@
         },
         {
             "name": "drupal/bulk_update_fields",
-            "version": "2.0.0-alpha4",
+            "version": "2.0.0-alpha7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/bulk_update_fields.git",
-                "reference": "8.x-2.0-alpha4"
+                "reference": "8.x-2.0-alpha7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bulk_update_fields-8.x-2.0-alpha4.zip",
-                "reference": "8.x-2.0-alpha4",
-                "shasum": "94cd1b2c94b6dcaba9e8d3766643b257ec18d126"
+                "url": "https://ftp.drupal.org/files/projects/bulk_update_fields-8.x-2.0-alpha7.zip",
+                "reference": "8.x-2.0-alpha7",
+                "shasum": "56dbbe1f6190a3e7ac1ed47d9a37d8e861e96c61"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.0-alpha4",
-                    "datestamp": "1598541763",
+                    "version": "8.x-2.0-alpha7",
+                    "datestamp": "1695293384",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -3354,28 +3355,28 @@
         },
         {
             "name": "drupal/ckeditor_iframe",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ckeditor_iframe.git",
-                "reference": "8.x-2.1"
+                "reference": "8.x-2.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ckeditor_iframe-8.x-2.1.zip",
-                "reference": "8.x-2.1",
-                "shasum": "a6e315348eb2cc26a6c845d956b1716810b0edff"
+                "url": "https://ftp.drupal.org/files/projects/ckeditor_iframe-8.x-2.2.zip",
+                "reference": "8.x-2.2",
+                "shasum": "7b97014233b3a2e59480acf997ccf7087cd55c77"
             },
             "require": {
                 "drupal/ckeditor": "*",
-                "drupal/core": "^8 || ^9",
+                "drupal/core": "^8 || ^9 || ^10",
                 "drupal/fakeobjects": "^1.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.1",
-                    "datestamp": "1592830028",
+                    "version": "8.x-2.2",
+                    "datestamp": "1693917802",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7724,59 +7725,6 @@
             "homepage": "https://www.drupal.org/project/jquery_ui_droppable",
             "support": {
                 "source": "https://git.drupalcode.org/project/jquery_ui_droppable"
-            }
-        },
-        {
-            "name": "drupal/jquery_ui_effects",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/jquery_ui_effects.git",
-                "reference": "8.x-1.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/jquery_ui_effects-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "61c5eba64745911982aee1df8720f56825d5b62c"
-            },
-            "require": {
-                "drupal/core": "^8 || ^9",
-                "drupal/jquery_ui": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1607379530",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "bnjmnm",
-                    "homepage": "https://www.drupal.org/user/2369194"
-                },
-                {
-                    "name": "lauriii",
-                    "homepage": "https://www.drupal.org/user/1078742"
-                },
-                {
-                    "name": "zrpnr",
-                    "homepage": "https://www.drupal.org/user/1448368"
-                }
-            ],
-            "description": "Provides jQuery UI Effects library.",
-            "homepage": "https://www.drupal.org/project/jquery_ui_effects",
-            "support": {
-                "source": "https://git.drupalcode.org/project/jquery_ui_effects"
             }
         },
         {
@@ -22063,8 +22011,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/addtocal": 10,
-        "drupal/auto_entitylabel": 10,
-        "drupal/bamboo_twig": 15,
+        "drupal/bulk_update_fields": 15,
         "drupal/entity_clone": 10,
         "drupal/entity_usage": 10,
         "drupal/group_outsider_in": 10,
