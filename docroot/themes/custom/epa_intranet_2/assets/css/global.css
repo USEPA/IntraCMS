@@ -373,8 +373,22 @@ svg.ext, svg.mailto {
   width: 22px;
   height: 16px;
   padding-left: 0.2em;
-  vertical-align: baseline;
+  /* Updated for USWDS_base */
+  vertical-align: middle;
+  /* Added for USWDS_base */
+  position: relative;
+  top: -3px;
 }
+/* Added for USWDS_base */
+.field .title { font-weight: bold; }
+.field--label-inline .title::after {
+  content: ":";
+}
+/* Added for USWDS_base */
+#block-tabs .usa-list a.usa-button { margin: .25rem }
+
+/* Added for USWDS_base */
+.usa-navbar .region-header .usa-menu-btn { display: none; }
 
 /* Regarding as not an override of a usa style. Treating as 'if svg appears in a usa-button' so leaving as-is*/
 .usa-button svg.ext, .usa-button svg.mailto {
@@ -1293,6 +1307,10 @@ div.box__title, .box--special > .box__title {
     -webkit-box-flex: 0;
         -ms-flex: 0 1 auto;
             flex: 0 1 auto;
+    width: 100%;
+  }
+  /* Added for USWDS_base */
+  .usa-footer__logo {
     width: 100%;
   }
 }
