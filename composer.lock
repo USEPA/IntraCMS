@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d87cbe9c91a8dcf9c1c08e5f2112fcde",
+    "content-hash": "3371a1c4626d9a9dd6330b3ba3485302",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2179,30 +2179,30 @@
         },
         {
             "name": "drupal/addtocal_augment",
-            "version": "1.0.0",
+            "version": "1.1.0-beta2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/addtocal_augment.git",
-                "reference": "1.0.0"
+                "reference": "1.1.0-beta2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/addtocal_augment-1.0.0.zip",
-                "reference": "1.0.0",
-                "shasum": "22bfe98ec9cdfe19f751b8c9c2dcf49b39c6eda2"
+                "url": "https://ftp.drupal.org/files/projects/addtocal_augment-1.1.0-beta2.zip",
+                "reference": "1.1.0-beta2",
+                "shasum": "e6d2fc563d0cb5bca12dd6e6737466fefd5277d8"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
+                "drupal/core": "^8 || ^9 || ^10",
                 "drupal/date_augmenter": "^1.0@alpha"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.0",
-                    "datestamp": "1638831008",
+                    "version": "1.1.0-beta2",
+                    "datestamp": "1690999853",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -2214,6 +2214,10 @@
                 {
                     "name": "mandclu",
                     "homepage": "https://www.drupal.org/user/52136"
+                },
+                {
+                    "name": "mark_fullmer",
+                    "homepage": "https://www.drupal.org/user/2612816"
                 }
             ],
             "description": "Provides a plugin to inject add to calendar links into date displays.",
@@ -4644,26 +4648,26 @@
         },
         {
             "name": "drupal/date_augmenter",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/date_augmenter.git",
-                "reference": "1.0.0"
+                "reference": "1.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/date_augmenter-1.0.0.zip",
-                "reference": "1.0.0",
-                "shasum": "df6a9972a4115d5bea517915dca8e8c70dd1872e"
+                "url": "https://ftp.drupal.org/files/projects/date_augmenter-1.1.0.zip",
+                "reference": "1.1.0",
+                "shasum": "c11b538c43ca6aa28782e2245d99fdca3c81c356"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.0",
-                    "datestamp": "1631027164",
+                    "version": "1.1.0",
+                    "datestamp": "1692173724",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -22141,6 +22145,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/addtocal": 10,
+        "drupal/addtocal_augment": 10,
         "drupal/auto_entitylabel": 10,
         "drupal/bamboo_twig": 15,
         "drupal/entity_clone": 10,
