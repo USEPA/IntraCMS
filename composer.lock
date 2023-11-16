@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11141a85c62eafa43fed32bd695896eb",
+    "content-hash": "d80b97971fd59715c965f61ebabea38f",
     "packages": [
         {
             "name": "arthurkushman/query-path",
@@ -6759,28 +6759,28 @@
         },
         {
             "name": "drupal/group",
-            "version": "1.6.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/group.git",
-                "reference": "8.x-1.6"
+                "reference": "8.x-1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/group-8.x-1.6.zip",
-                "reference": "8.x-1.6",
-                "shasum": "f9559b6e79db8420f9d13e9d4b2387b3a66fd03b"
+                "url": "https://ftp.drupal.org/files/projects/group-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "385a70f421dc3142c9c91876ac8b35ae3afa107e"
             },
             "require": {
-                "drupal/core": "^9.5 || ^10",
-                "drupal/entity": "^1.4",
-                "drupal/variationcache": "^1.3"
+                "drupal/core": "^8.9 || ^9",
+                "drupal/entity": "^1.2",
+                "drupal/variationcache": "^1.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.6",
-                    "datestamp": "1693382492",
+                    "version": "8.x-1.4",
+                    "datestamp": "1625063515",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6803,7 +6803,7 @@
                 }
             ],
             "description": "This module allows you to group users, content and other entities",
-            "homepage": "https://drupal.org/project/group",
+            "homepage": "http://drupal.org/project/group",
             "support": {
                 "source": "https://git.drupalcode.org/project/group",
                 "issues": "https://drupal.org/project/issues/group"
@@ -6811,27 +6811,27 @@
         },
         {
             "name": "drupal/group_action",
-            "version": "1.0.1",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/group_action.git",
-                "reference": "1.0.1"
+                "reference": "1.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/group_action-1.0.1.zip",
-                "reference": "1.0.1",
-                "shasum": "986f595846eddd54bb192cd19277ac88feca4cf3"
+                "url": "https://ftp.drupal.org/files/projects/group_action-1.1.1.zip",
+                "reference": "1.1.1",
+                "shasum": "aa90f80a3594a3f0be8f4cea4ff71593235dcd70"
             },
             "require": {
                 "drupal/core": "^9 || ^10",
-                "drupal/group": "^1.4"
+                "drupal/group": "^1 || ^2@beta || ^3@beta"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.1",
-                    "datestamp": "1663323673",
+                    "version": "1.1.1",
+                    "datestamp": "1680858202",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6931,9 +6931,6 @@
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
                     }
-                },
-                "patches_applied": {
-                    "3232198: Group members with the proper permissions can't access to the group taxonomy overview tab": "patches/group_taxonomy_button_visibility.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -6954,21 +6951,21 @@
         },
         {
             "name": "drupal/groupmedia",
-            "version": "2.2.0",
+            "version": "2.0.0-rc1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/groupmedia.git",
-                "reference": "8.x-2.2"
+                "reference": "8.x-2.0-rc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/groupmedia-8.x-2.2.zip",
-                "reference": "8.x-2.2",
-                "shasum": "b5effa65b97efba070f997f36dfa722bee421d38"
+                "url": "https://ftp.drupal.org/files/projects/groupmedia-8.x-2.0-rc1.zip",
+                "reference": "8.x-2.0-rc1",
+                "shasum": "09eac443f97791ba61d1f041fad9dcdd4ba93881"
             },
             "require": {
-                "drupal/core": "^9 || ^10",
-                "drupal/group": "^1.5"
+                "drupal/core": "^8.8 || ^9",
+                "drupal/group": "^1.2 || 1.x-dev@dev"
             },
             "require-dev": {
                 "drupal/paragraphs": "*",
@@ -6977,11 +6974,11 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.2",
-                    "datestamp": "1694467355",
+                    "version": "8.x-2.0-rc1",
+                    "datestamp": "1677765577",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -6996,9 +6993,8 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "Nikolay Lobachev",
-                    "homepage": "https://www.drupal.org/u/lobsterr",
-                    "role": "Maintainer"
+                    "name": "LOBsTerr",
+                    "homepage": "https://www.drupal.org/user/645020"
                 }
             ],
             "description": "This module allows you to integrate media entity into group functionality",
@@ -7038,11 +7034,6 @@
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
                     }
-                },
-                "patches_applied": {
-                    "3010909: Group menu association": "https://www.drupal.org/files/issues/2019-04-04/groupmenu-change_references_to_entity_id-3010909-9.patch",
-                    "Active Trail Patch: Add active trail ability to group menu block": "patches/fixing_group_menu_active_trail.patch.txt",
-                    "3206302: Node context error fix": "https://www.drupal.org/files/issues/2021-03-29/3206302-3.diff"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -12156,26 +12147,26 @@
         },
         {
             "name": "drupal/views_autocomplete_filters",
-            "version": "1.3.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_autocomplete_filters.git",
-                "reference": "8.x-1.3"
+                "reference": "8.x-1.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_autocomplete_filters-8.x-1.3.zip",
-                "reference": "8.x-1.3",
-                "shasum": "55762182e55c70f117d5edb8692049e0881ec4ce"
+                "url": "https://ftp.drupal.org/files/projects/views_autocomplete_filters-8.x-1.7.zip",
+                "reference": "8.x-1.7",
+                "shasum": "4061cac83e39279bbf5515b8ba8f8685b27b4023"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.3",
-                    "datestamp": "1587146330",
+                    "version": "8.x-1.7",
+                    "datestamp": "1697624365",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -22144,6 +22135,7 @@
         "drupal/feeds": 10,
         "drupal/feeds_ex": 10,
         "drupal/group_outsider_in": 20,
+        "drupal/groupmedia": 5,
         "drupal/h5p": 15,
         "drupal/inline_entity_form": 5,
         "drupal/layout_library": 10,
