@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "314e74293c0a11a5542efbcc5d8bac3f",
+    "content-hash": "cb0b2a3fbeb735fe7f22535a2a1134df",
     "packages": [
         {
             "name": "arthurkushman/query-path",
@@ -6861,14 +6861,20 @@
         },
         {
             "name": "drupal/group_outsider_in",
-            "version": "dev-1.x",
+            "version": "1.0.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/group_outsider_in.git",
-                "reference": "54e06c9b1230dfa05af834f4cd5c16bdd2685178"
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/group_outsider_in-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "f0b4546141f8f724139fb9beb46233d59e49aaf5"
             },
             "require": {
-                "drupal/core": "^8 || ^9 || ^10",
+                "drupal/core": "^8 || ^9",
                 "drupal/group": "*"
             },
             "require-dev": {
@@ -6876,15 +6882,12 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.0-beta1+2-dev",
-                    "datestamp": "1696490606",
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1612774634",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "message": "Beta releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -6951,21 +6954,21 @@
         },
         {
             "name": "drupal/groupmedia",
-            "version": "2.0.0-rc1",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/groupmedia.git",
-                "reference": "8.x-2.0-rc1"
+                "reference": "8.x-2.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/groupmedia-8.x-2.0-rc1.zip",
-                "reference": "8.x-2.0-rc1",
-                "shasum": "09eac443f97791ba61d1f041fad9dcdd4ba93881"
+                "url": "https://ftp.drupal.org/files/projects/groupmedia-8.x-2.2.zip",
+                "reference": "8.x-2.2",
+                "shasum": "b5effa65b97efba070f997f36dfa722bee421d38"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9",
-                "drupal/group": "^1.2 || 1.x-dev@dev"
+                "drupal/core": "^9 || ^10",
+                "drupal/group": "^1.5"
             },
             "require-dev": {
                 "drupal/paragraphs": "*",
@@ -6974,11 +6977,11 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.0-rc1",
-                    "datestamp": "1677765577",
+                    "version": "8.x-2.2",
+                    "datestamp": "1694467355",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -6993,8 +6996,9 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "LOBsTerr",
-                    "homepage": "https://www.drupal.org/user/645020"
+                    "name": "Nikolay Lobachev",
+                    "homepage": "https://www.drupal.org/u/lobsterr",
+                    "role": "Maintainer"
                 }
             ],
             "description": "This module allows you to integrate media entity into group functionality",
@@ -22134,7 +22138,7 @@
         "drupal/entity_usage": 10,
         "drupal/feeds": 10,
         "drupal/feeds_ex": 10,
-        "drupal/group_outsider_in": 20,
+        "drupal/group_outsider_in": 10,
         "drupal/groupmedia": 5,
         "drupal/h5p": 15,
         "drupal/inline_entity_form": 5,
