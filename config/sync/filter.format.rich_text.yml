@@ -16,7 +16,6 @@ dependencies:
     - epa_wysiwyg
     - linkit
     - media
-    - media_inline_embed
     - paragraphs_entity_embed
     - slick
     - uswds_ckeditor_integration
@@ -128,17 +127,6 @@ filters:
         img: img
         iframe: iframe
       use_data_uri: '0'
-  media_inline_embed:
-    id: media_inline_embed
-    provider: media_inline_embed
-    status: true
-    weight: -46
-    settings:
-      default_view_mode: link
-      allowed_media_types:
-        document: document
-      allowed_view_modes:
-        link: link
   filter_table_attributes:
     id: filter_table_attributes
     provider: uswds_ckeditor_integration
