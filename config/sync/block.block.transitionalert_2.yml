@@ -1,0 +1,35 @@
+uuid: cc0e1a60-1666-470a-86c4-13839e3e8ef8
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:text:454251c0-5c5a-4c9b-8547-1833648eb99b'
+  module:
+    - block_content
+    - block_in_page_not_found
+    - system
+  theme:
+    - epa_intranet_2
+id: transitionalert
+theme: epa_intranet_2
+region: breadcrumb
+weight: -22
+provider: null
+plugin: 'block_content:454251c0-5c5a-4c9b-8547-1833648eb99b'
+settings:
+  id: 'block_content:454251c0-5c5a-4c9b-8547-1833648eb99b'
+  label: 'Transition Alert'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /transition
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
