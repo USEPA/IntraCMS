@@ -28,4 +28,4 @@ jQuery("figure.caption article.align-center").parent().addClass('align-center');
 var cleanURL = jQuery('#form-href-source a').prop('href');
 jQuery('#form-href-link').attr('href', cleanURL);
 
-jQuery('#block-epa-intranet-content table').addClass('usa-table');
+jQuery('.field--name-body table').addClass('usa-table');
