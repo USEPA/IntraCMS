@@ -1,10 +1,10 @@
-uuid: 5aeec475-ccb4-4d53-a27a-d2f8f1a0452e
+uuid: 71e4ade1-54bd-42f0-b3f4-f795ca7dd052
 langcode: en
 status: true
 dependencies:
   module:
     - field_permissions
-    - node
+    - link
     - taxonomy
 third_party_settings:
   field_permissions:
@@ -12,10 +12,9 @@ third_party_settings:
 id: taxonomy_term.field_related_ord_policy
 field_name: field_related_ord_policy
 entity_type: taxonomy_term
-type: entity_reference
-settings:
-  target_type: node
-module: core
+type: link
+settings: {  }
+module: link
 locked: false
 cardinality: -1
 translatable: true

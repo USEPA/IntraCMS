@@ -19,6 +19,7 @@ dependencies:
     - node
     - user
     - vefl
+    - views_autocomplete_filters
 id: qa_track_sops
 label: 'QA Track SOPs'
 module: views
@@ -1167,7 +1168,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: "<h1>Standard Operating Procedures (SOPs</h1>\r\n<p>Standard Operating Procedures (SOPs) are written and maintained for routine analytical and/or procedural research activities. (Name of organization’s) current SOPs can be accessed from this webpage (i.e., those SOPs that are either active or under review). Inactive or archived SOPs are only available from a QA Manager. The following information is provided to assist with locating SOPs of interest:</p>\r\n\r\n<ul>\r\n<li><strong>SOP Number:</strong> Unique number assigned by ORD QA Track</li>\r\n<li><strong>Previous ID:</strong> Unique number assigned outside ORD QA Track</li>\r\n<li><strong>Title:</strong> Succinct description of the contents of the SOP</li>\r\n<li><strong>Date:</strong> Date of SOP approval or the date the SOP was last reviewed</li>\r\n<li><strong>Discipline:</strong> The field of science the SOP applies to</li>\r\n<li><strong>Contact:</strong> Typically, the SOP author</li>\r\n</ul>\r\n\r\n<p>You can find or browse SOPs several ways. To search simply use one of the search boxes. To activate a sort, click on the column header.</p>"
+            value: "<h1>Standard Operating Procedures</h1>\r\n<p>Standard Operating Procedures are written and maintained for routine analytical and/or procedural research activities. (Name of organization’s) current SOPs can be accessed from this webpage (i.e., those SOPs that are either active or under review). Inactive or archived SOPs are only available from a QA Manager. The following information is provided to assist with locating SOPs of interest:</p>\r\n\r\n<ul>\r\n<li><strong>SOP Number:</strong> Unique number assigned by ORD QA Track</li>\r\n<li><strong>Previous ID:</strong> Unique number assigned outside ORD QA Track</li>\r\n<li><strong>Title:</strong> Succinct description of the contents of the SOP</li>\r\n<li><strong>Date:</strong> Date of SOP approval or the date the SOP was last reviewed</li>\r\n<li><strong>Discipline:</strong> The field of science the SOP applies to</li>\r\n<li><strong>Contact:</strong> Typically, the SOP author</li>\r\n</ul>\r\n\r\n<p>You can find or browse SOPs several ways. To search simply use one of the search boxes. To activate a sort, click on the column header.</p>"
             format: full_html
           tokenize: false
       footer: {  }
@@ -1199,7 +1200,7 @@ display:
     display_options:
       exposed_block: false
       display_extenders: {  }
-      path: quality-assurance/sops
+      path: quality-assurance-ord/sops
     cache_metadata:
       max-age: -1
       contexts:

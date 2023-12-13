@@ -1,4 +1,4 @@
-uuid: 61d21904-ed0d-4c47-9a3b-2792dc8e1228
+uuid: 18b43b13-6470-49c1-8670-c33613431858
 langcode: en
 status: true
 dependencies:
@@ -6,12 +6,13 @@ dependencies:
     - field.storage.taxonomy_term.field_related_ord_policy
     - taxonomy.vocabulary.qa_glossary
   module:
+    - link
     - taxonomy
     - text
     - user
     - views_autocomplete_filters
 id: qa_glossary
-label: 'QA Glossary'
+label: 'ORD QA Glossary'
 module: views
 description: ''
 tag: ''
@@ -24,7 +25,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'QA Glossary'
+      title: 'ORD QA Glossary'
       fields:
         name:
           id: name
@@ -205,11 +206,15 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
+          click_sort_column: uri
+          type: link
           settings:
-            link: true
-          group_column: target_id
+            trim_length: null
+            url_only: false
+            url_plain: false
+            rel: '0'
+            target: '0'
+          group_column: ''
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -325,7 +330,7 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: 'Term Name'
+            label: Name
             description: ''
             use_operator: false
             operator: name_op
@@ -341,7 +346,7 @@ display:
               webform: '0'
               administrator: '0'
             placeholder: ''
-            autocomplete_filter: 0
+            autocomplete_filter: 1
             autocomplete_min_chars: '0'
             autocomplete_items: '10'
             autocomplete_field: name
@@ -403,14 +408,15 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.taxonomy_term.field_related_ord_policy'
-  page_qa_glossary:
-    id: page_qa_glossary
+  page_1:
+    id: page_1
     display_title: Page
     display_plugin: page
-    position: 1
+    position: 2
     display_options:
+      enabled: false
       display_extenders: {  }
-      path: quality-assurance/glossary-page
+      path: quality-assurance-ord/qa-glossary
     cache_metadata:
       max-age: -1
       contexts:

@@ -1,4 +1,4 @@
-uuid: 32acbe92-a5e2-4e97-8064-fe9da051f0af
+uuid: d4af9a71-2688-4ebc-afdf-744513873d1a
 langcode: en
 status: true
 dependencies:
@@ -6,6 +6,7 @@ dependencies:
     - field.field.taxonomy_term.qa_glossary.field_related_ord_policy
     - taxonomy.vocabulary.qa_glossary
   module:
+    - link
     - text
 id: taxonomy_term.qa_glossary.default
 targetEntityType: taxonomy_term
@@ -20,10 +21,14 @@ content:
     weight: 0
     region: content
   field_related_ord_policy:
-    type: entity_reference_label
-    label: above
+    type: link
+    label: inline
     settings:
-      link: true
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
     weight: 1
     region: content

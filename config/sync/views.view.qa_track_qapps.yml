@@ -8,7 +8,6 @@ dependencies:
     - field.storage.node.field_qa_activity_number
     - field.storage.node.field_qapp_approval_date
     - field.storage.node.field_qapp_pdf
-    - field.storage.node.field_qapp_project_lead
     - field.storage.node.field_qapp_project_lead_email
     - field.storage.node.field_qapp_project_type
     - field.storage.node.field_qapp_word
@@ -18,6 +17,7 @@ dependencies:
     - node
     - user
     - vefl
+    - views_autocomplete_filters
 id: qa_track_qapps
 label: 'QA Track QAPPs'
 module: views
@@ -297,8 +297,8 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: 'Project Lead Email'
-          exclude: true
+          label: 'Project Lead'
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -351,69 +351,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_qapp_project_lead:
-          id: field_qapp_project_lead
-          table: node__field_qapp_project_lead
-          field: field_qapp_project_lead
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Project Lead'
-          exclude: false
-          alter:
-            alter_text: true
-            text: '{{ field_qapp_project_lead }}'
-            make_link: true
-            path: 'mailto:{{ field_qapp_project_lead_email }}'
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
         field_qapp_pdf:
           id: field_qapp_pdf
           table: node__field_qapp_pdf
@@ -426,7 +363,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: PDF
+            text: '{{ field_qa_activity_number }} (pdf)'
             make_link: true
             path: '{{ field_qapp_pdf }}'
             absolute: false
@@ -489,7 +426,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: Word
+            text: '{{ field_qa_activity_number }} (docx)'
             make_link: true
             path: '{{ field_qapp_word }}'
             absolute: false
@@ -809,6 +746,12 @@ display:
               webform: '0'
               administrator: '0'
             placeholder: ''
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
           is_grouped: false
           group_info:
             label: ''
@@ -826,7 +769,6 @@ display:
             title: title
             field_qapp_approval_date: field_qapp_approval_date
             field_qapp_project_type: field_qapp_project_type
-            field_qapp_project_lead: field_qapp_project_lead
             field_qapp_project_lead_email: field_qapp_project_lead_email
             field_lab: field_lab
             field_division: field_division
@@ -1170,7 +1112,6 @@ display:
         - 'config:field.storage.node.field_qa_activity_number'
         - 'config:field.storage.node.field_qapp_approval_date'
         - 'config:field.storage.node.field_qapp_pdf'
-        - 'config:field.storage.node.field_qapp_project_lead'
         - 'config:field.storage.node.field_qapp_project_lead_email'
         - 'config:field.storage.node.field_qapp_project_type'
         - 'config:field.storage.node.field_qapp_word'
@@ -1196,7 +1137,6 @@ display:
         - 'config:field.storage.node.field_qa_activity_number'
         - 'config:field.storage.node.field_qapp_approval_date'
         - 'config:field.storage.node.field_qapp_pdf'
-        - 'config:field.storage.node.field_qapp_project_lead'
         - 'config:field.storage.node.field_qapp_project_lead_email'
         - 'config:field.storage.node.field_qapp_project_type'
         - 'config:field.storage.node.field_qapp_word'
@@ -1219,11 +1159,11 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: "<h1>Quality Assurance Project Plans (QAPPs)</h1>\r\n\r\n<p>A Quality Assurance Project Plan (QAPP) is a document describing in comprehensive detail the necessary quality assurance, quality control, and other technical activities that must be implemented to ensure that the results of the work performed will satisfy the stated performance criteria. Approved QAPPs for active research projects are being made available from this webpage to facilitate their use during ongoing research and to provide examples during planning of new research. Availability is determined by local QA staff in consultation with their managers and scientists. Inactive or archived QAPPs are only available from a QA Manager. The following information is provided to assist with locating QAPPs of interest:</p>\r\n\r\n<ul>\r\n<li><strong>QAPP Number:</strong> Unique number assigned by ORD QA Track</li>\r\n<li><strong>Title:</strong> Succinct description of the research</li>\r\n<li><strong>Date:</strong> Date QAPP was approved</li>\r\n<li><strong>Type of Research:</strong> Area of focus for the research (e.g., field work, modeling, existing date, etc.)</li>\r\n<li><strong>Project Lead:</strong> Typically the Principal Investigator for the research</li>\r\n</ul>\r\n\r\n<p>You can find or browse QAPPs several ways. To search simply use one of the search boxes. To activate a sort, click on the column header.</p>"
+            value: "<h1>Quality Assurance Project Plans</h1>\r\n\r\n<p>A Quality Assurance Project Plan is a document describing in comprehensive detail the necessary quality assurance, quality control, and other technical activities that must be implemented to ensure that the results of the work performed will satisfy the stated performance criteria. Approved QAPPs for active research projects are being made available from this webpage to facilitate their use during ongoing research and to provide examples during planning of new research. Availability is determined by local QA staff in consultation with their managers and scientists. Inactive or archived QAPPs are only available from a QA Manager. The following information is provided to assist with locating QAPPs of interest:</p>\r\n\r\n<ul>\r\n<li><strong>QAPP Number:</strong> Unique number assigned by ORD QA Track</li>\r\n<li><strong>Title:</strong> Succinct description of the research</li>\r\n<li><strong>Date:</strong> Date QAPP was approved</li>\r\n<li><strong>Type of Research:</strong> Area of focus for the research (e.g., field work, modeling, existing date, etc.)</li>\r\n<li><strong>Project Lead:</strong> Typically the Principal Investigator for the research</li>\r\n</ul>\r\n\r\n<p>You can find or browse QAPPs several ways. To search simply use one of the search boxes. To activate a sort, click on the column header.</p>"
             format: full_html
           tokenize: false
       display_extenders: {  }
-      path: quality-assurance/qapps
+      path: quality-assurance-ord/qapps
     cache_metadata:
       max-age: -1
       contexts:
@@ -1239,7 +1179,6 @@ display:
         - 'config:field.storage.node.field_qa_activity_number'
         - 'config:field.storage.node.field_qapp_approval_date'
         - 'config:field.storage.node.field_qapp_pdf'
-        - 'config:field.storage.node.field_qapp_project_lead'
         - 'config:field.storage.node.field_qapp_project_lead_email'
         - 'config:field.storage.node.field_qapp_project_type'
         - 'config:field.storage.node.field_qapp_word'
