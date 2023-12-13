@@ -1,0 +1,14 @@
+diff --git a/src/Plugin/WebformElement/WebformManagedFileBase.php b//src/Plugin/WebformElement/WebformManagedFileBase.php
+index 2ed48bb6..914c26d1 100644
+--- a/src/Plugin/WebformElement/WebformManagedFileBase.php
++++ b/src/Plugin/WebformElement/WebformManagedFileBase.php
+@@ -1336,7 +1336,8 @@ public static function accessFile(FileInterface $file, AccountInterface $account
+       return NULL;
+     }
+
+-    return $webform_submission->access('view', $account);
++    // OVERWRITING - ALWAYS RETURN TRUE, REGARLDESS OF SUBMISSION VIEW ACCESS
++    return TRUE;
+   }
+
+   /**

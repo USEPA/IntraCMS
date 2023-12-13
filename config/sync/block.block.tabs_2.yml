@@ -1,0 +1,26 @@
+uuid: b814a88c-fb06-469e-8d93-1b480039f55e
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+  theme:
+    - claro
+id: tabs_2
+theme: claro
+region: header
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false

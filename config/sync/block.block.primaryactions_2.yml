@@ -1,0 +1,24 @@
+uuid: 77e3e5f2-fe2d-4768-b55f-3e2f524752a8
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+  theme:
+    - claro
+id: primaryadminactions_2
+theme: claro
+region: content
+weight: -3
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false

@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  generateName: drush-
+  labels:
+    purpose: clear-drupal-cache
+spec:
+  volumes:
+  - name: intranetcms-storage
+    persistentVolumeClaim:
+      claimName: intranetcms-efs-pvc
+  containers:
+  - name: intranetcms
+    image: registry.epa.gov/intranet-cms/intracms/intranetcms-build:$CI_COMMIT_SHORT_SHA
+    resources:
+      requests:
+        memory: "1G"
+        cpu: ".5"
+      limits:
+        memory: "2G"
+        cpu: "1"
+    command: ["/bin/sh"]
+    args: ["-c", "php -d memory_limit=-1 /srv/drupal-root/vendor/drush/drush/drush --root=/srv/drupal-root/docroot --uri=https://dev.intranetcms-dev.aws.epa.gov updb --yes && php -d memory_limit=-1 /srv/drupal-root/vendor/drush/drush/drush --root=/srv/drupal-root/docroot --uri=https://dev.intranetcms-dev.aws.epa.gov cr && php -d memory_limit=-1 /srv/drupal-root/vendor/drush/drush/drush --root=/srv/drupal-root/docroot --uri=https://dev.intranetcms-dev.aws.epa.gov cim --yes"]
+    volumeMounts:
+    - name: intranetcms-storage
+      mountPath: /public
+  imagePullSecrets:
+    - name: glcr-auth
+  restartPolicy: OnFailure

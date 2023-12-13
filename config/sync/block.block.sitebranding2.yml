@@ -1,0 +1,28 @@
+uuid: 96b021f3-e07c-476f-9a87-a28977ef5726
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+    - system
+  theme:
+    - epa_intranet_2
+id: sitebranding2
+theme: epa_intranet_2
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false

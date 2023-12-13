@@ -1,0 +1,25 @@
+uuid: 6a658f2f-0c99-4685-889d-2e5c6602b09d
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+    - system
+  theme:
+    - epa_intranet_2
+id: breadcrumbs
+theme: epa_intranet_2
+region: breadcrumb
+weight: -3
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false

@@ -1,0 +1,47 @@
+uuid: fb176d10-ccd7-4fec-a305-53c2a9ad677a
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+    - groupmenu_block
+    - node
+    - system
+  theme:
+    - epa_intranet_2
+id: groupmenus_2
+theme: epa_intranet_2
+region: sidebar_first
+weight: -4
+provider: null
+plugin: groupmenus
+settings:
+  id: groupmenus
+  label: 'Group menus'
+  label_display: visible
+  provider: groupmenu_block
+  context_mapping:
+    group: '@group.group_route_context:group'
+    node: '@node.node_route_context:node'
+  max_depth: '3'
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "*/web-areas/*\r\n/group/*/menus\r\n/group/*/revisions\r\n/group/*/taxonomy\r\n/group/*/member/*"
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      employee_profile: employee_profile
+      event: event
+      landing_page: landing_page
+      mass_mailer: mass_mailer
+      photos_of_the_week: photos_of_the_week
+      staff_member: staff_member
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
