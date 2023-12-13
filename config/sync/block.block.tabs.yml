@@ -1,0 +1,26 @@
+uuid: 10d6b0d0-dc43-4b59-a41e-37178b31d3af
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+  theme:
+    - epa_intranet_2
+id: tabs
+theme: epa_intranet_2
+region: content
+weight: -19
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false

@@ -1,0 +1,33 @@
+uuid: 564e75d2-c5a2-4a7f-b19a-bd634780fbaf
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.library_rtp_contractor
+  module:
+    - block_in_page_not_found
+    - fixed_block_content
+    - system
+  theme:
+    - epa_intranet_2
+id: libraryrtpcontractor_2
+theme: epa_intranet_2
+region: content
+weight: -13
+provider: null
+plugin: 'fixed_block_content:library_rtp_contractor'
+settings:
+  id: 'fixed_block_content:library_rtp_contractor'
+  label: 'Library RTP Contractor'
+  label_display: visible
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/library-rtp*'
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false

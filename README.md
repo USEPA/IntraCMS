@@ -1,10 +1,11 @@
-# EPA Open Source Reference
+# EPA Open Source Reference:
 
 ## Brief Project Description
 
-This repository contains files for teams to resuse when creating a Drupal 9 intranet site based on the U.S. Web Design System.
 
-Also, this repository contains the link to [EPA's System Lifecycle Management Policy and Procedure](https://www.epa.gov/irmpoli8/policy-procedures-and-guidance-system-life-cycle-management-slcm) which lays out EPA's Open Source Software Policy and [EPA's Open Source Code Guidance](https://www.epa.gov/developers/open-source-software-and-epa-code-repository-requirements). 
+This repository contains files for teams to reuse when creating a Drupal 9 intranet site based on the U.S. Web Design System.
+
+Also, this repository contains the link to [EPA's System Lifecycle Management Policy and Procedure](https://www.epa.gov/irmpoli8/policy-procedures-and-guidance-system-life-cycle-management-slcm) which lays out EPA's Open Source Software Policy and [EPA's Open Source Code Guidance](https://www.epa.gov/developers/open-source-software-and-epa-code-repository-requirements).
 
 <img src="https://user-images.githubusercontent.com/2470152/192600667-deff1564-29fb-4134-86fa-01a66b4b7d43.png" data-canonical-src="https://user-images.githubusercontent.com/2470152/192600667-deff1564-29fb-4134-86fa-01a66b4b7d43.png" width="600" />
 
@@ -12,7 +13,7 @@ Also, this repository contains the link to [EPA's System Lifecycle Management Po
 
 For EPA Teams, we have guidance on how EPA puts our open source software policies into practice on GitHub. Read [EPA's GitHub Guidance.](https://www.epa.gov/webguide/github-guidance)
 
-[EPA's Open Source Project repo](https://github.com/USEPA/open-source-projects) is for EPA teams to reuse file for properly maintaining their open source project. All projects must include a readme.md, license.md, contributing.md file and the disclaimer below.   
+[EPA's Open Source Project repo](https://github.com/USEPA/open-source-projects) is for EPA teams to reuse file for properly maintaining their open source project. All projects must include a readme.md, license.md, contributing.md file and the disclaimer below.
 
 ### Credits
 
@@ -24,7 +25,7 @@ The United States Environmental Protection Agency (EPA) GitHub project code is p
 
 
 ## Basic Installation and Contributing
-==================
+===================
 
 **Detailed setup instructions in [INSTALLATION](INSTALLATION.md)**
 **Detailed setup instructions in [contributing](contributing.md)**

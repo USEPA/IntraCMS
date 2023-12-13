@@ -1,0 +1,25 @@
+uuid: be97da3a-2939-4d84-8c2b-e82544f30be8
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+    - help
+  theme:
+    - epa_intranet_2
+id: help
+theme: epa_intranet_2
+region: content
+weight: -18
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false

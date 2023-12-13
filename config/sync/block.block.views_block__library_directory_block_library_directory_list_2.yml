@@ -1,0 +1,34 @@
+uuid: a60eb779-40dd-4328-aed7-b6053df7bf8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.library_directory
+  module:
+    - block_in_page_not_found
+    - system
+    - views
+  theme:
+    - epa_intranet_2
+id: views_block__library_directory_block_library_directory_list_2
+theme: epa_intranet_2
+region: content
+weight: -10
+provider: null
+plugin: 'views_block:library_directory-block_library_directory_list'
+settings:
+  id: 'views_block:library_directory-block_library_directory_list'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /library-services/library-directory
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false

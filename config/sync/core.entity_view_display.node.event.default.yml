@@ -58,23 +58,6 @@ third_party_settings:
                   upcoming_display: 2
                   show_next: false
                 third_party_settings: {  }
-            weight: 1
-            additional: {  }
-          9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84:
-            uuid: 9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84
-            region: first
-            configuration:
-              id: 'field_block:node:event:field_event_description'
-              label: 'Event Description'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: text_default
-                label: above
-                settings: {  }
-                third_party_settings: {  }
             weight: 2
             additional: {  }
           2649052a-3c2d-4d5e-bab2-6f4cab35bea9:
@@ -126,7 +109,7 @@ third_party_settings:
                 view_mode: view_mode
               formatter:
                 type: addtocal_view
-                label: above
+                label: hidden
                 settings:
                   timezone_override: ''
                   date_format: 'D, M j Y, g:ia T'
@@ -135,7 +118,7 @@ third_party_settings:
                   description: '[node:field_event_description]  <a href=''[node:field_event_link:uri]''>[node:field_event_link:title]</a>'
                   past_events: false
                 third_party_settings: {  }
-            weight: 0
+            weight: 1
             additional:
               layout_builder_styles_style: ''
           a1c59067-8f3d-491c-8384-a49f2703466a:
@@ -183,6 +166,74 @@ third_party_settings:
                   target: '0'
                 third_party_settings: {  }
             weight: 1
+            additional: {  }
+          9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84:
+            uuid: 9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_event_description'
+              label: 'Event Description'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+          47040f10-f50e-4db7-8eef-3aa7797930c7:
+            uuid: 47040f10-f50e-4db7-8eef-3aa7797930c7
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_event_date'
+              label: 'Event Date'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: smartdate_default
+                label: above
+                settings:
+                  timezone_override: ''
+                  format: default
+                  force_chronological: false
+                  add_classes: false
+                  time_wrapper: true
+                  localize: false
+                  parts:
+                    start: start
+                    end: end
+                    duration: '0'
+                  duration:
+                    separator: ' | '
+                    unit: ''
+                    decimals: 2
+                    suffix: h
+                third_party_settings:
+                  date_augmenter:
+                    status:
+                      addtocal: 0
+                    weights:
+                      order:
+                        addtocal:
+                          weight: '0'
+                    augmenter_settings:
+                      settings__formatter__third_party_settings__date_augmenter__augmenter_settings__active_tab: ''
+                    settings:
+                      addtocal:
+                        label: 'Add to Calendar'
+                        event_title: ''
+                        location: ''
+                        description: ''
+                        max_desc: '60'
+                        past_events: 0
+                        target: ''
+            weight: 0
             additional: {  }
         third_party_settings: {  }
   layout_library:

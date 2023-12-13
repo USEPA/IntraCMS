@@ -1,0 +1,30 @@
+uuid: 3b817dca-fc03-40d2-b896-5411139656c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.secondary-menu
+  module:
+    - block_in_page_not_found
+    - system
+  theme:
+    - epa_intranet_2
+id: secondarymenu_2
+theme: epa_intranet_2
+region: secondary_menu
+weight: 0
+provider: null
+plugin: 'system_menu_block:secondary-menu'
+settings:
+  id: 'system_menu_block:secondary-menu'
+  label: 'Secondary Menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
