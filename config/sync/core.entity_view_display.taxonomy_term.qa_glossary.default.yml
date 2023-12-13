@@ -1,0 +1,30 @@
+uuid: 32acbe92-a5e2-4e97-8064-fe9da051f0af
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.qa_glossary.field_related_ord_policy
+    - taxonomy.vocabulary.qa_glossary
+  module:
+    - text
+id: taxonomy_term.qa_glossary.default
+targetEntityType: taxonomy_term
+bundle: qa_glossary
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_related_ord_policy:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

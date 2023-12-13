@@ -1,0 +1,22 @@
+uuid: f0a5fee1-f2f5-4664-879d-a30a41a67395
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: qa_glossary_terms
+label: 'QA Glossary Terms'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/quality-assurance/glossary/[term:name]'
+selection_criteria:
+  2f509faf-7730-437e-b38c-791f2aa4d49d:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: 2f509faf-7730-437e-b38c-791f2aa4d49d
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      qa_glossary: qa_glossary
+selection_logic: and
+weight: -5
+relationships: {  }

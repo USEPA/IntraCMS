@@ -1,0 +1,29 @@
+uuid: 83995dc8-ea42-4884-ac43-632b9ae8b151
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_related_ord_policy
+    - node.type.policy
+    - taxonomy.vocabulary.qa_glossary
+id: taxonomy_term.qa_glossary.field_related_ord_policy
+field_name: field_related_ord_policy
+entity_type: taxonomy_term
+bundle: qa_glossary
+label: 'Related ORD Policy'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      policy: policy
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

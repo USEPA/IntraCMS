@@ -1,0 +1,29 @@
+uuid: 1d1a46e9-709d-43c1-b7c4-ddefec8d97a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.qa_glossary
+  module:
+    - system
+    - views
+  theme:
+    - epa_intranet
+id: views_block__qa_glossary_block_1
+theme: epa_intranet
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:qa_glossary-block_1'
+settings:
+  id: 'views_block:qa_glossary-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /quality-assurance/glossary
