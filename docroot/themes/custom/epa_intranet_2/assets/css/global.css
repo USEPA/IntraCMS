@@ -260,11 +260,11 @@ blockquote p {
 }
 
 /* overriding links to apply uswds standards */
-ol.links-list a, ul.links-list a:not(.usa-button), ol.uswds-breadcrumbs a, ul.uswds-breadcrumbs a {
+ol.links-list a, ul.links-list a:not(.usa-button):not(.usa-pagination__button), ol.uswds-breadcrumbs a, ul.uswds-breadcrumbs a {
   color: #005ea2 !important;
 }
 
-p a[href]:not(.usa-button), article a[href]:not(.usa-button):not(.usa-graphic-list__heading) {
+p a[href]:not(.usa-button), article a[href]:not(.usa-button):not(.usa-graphic-list__heading):not(.usa-pagination__button) {
   color: #005ea2;
   text-decoration: underline !important;
 }
@@ -272,10 +272,10 @@ p a[href]:not(.usa-button), article a[href]:not(.usa-button):not(.usa-graphic-li
 .taxonomy-term.vocabulary-libraries a {
   color: #005ea2
 }
-.taxonomy-term.vocabulary-libraries a:hover, p a[href]:not(.usa-button):hover, article a[href]:not(.usa-button):not(.usa-graphic-list__heading):hover {
+.taxonomy-term.vocabulary-libraries a:hover, p a[href]:not(.usa-button):hover, article a[href]:not(.usa-button):not(.usa-graphic-list__heading):not(.usa-pagination__button):hover {
   color: #1a4480;
 }
-.taxonomy-term.vocabulary-libraries a:active, p a[href]:not(.usa-button):active, article a[href]:not(.usa-button):not(.usa-graphic-list__heading):active {
+.taxonomy-term.vocabulary-libraries a:active, p a[href]:not(.usa-button):not(.usa-pagination__button):active, article a[href]:not(.usa-button):not(.usa-graphic-list__heading):active {
   color: #162e51;
 }
 
