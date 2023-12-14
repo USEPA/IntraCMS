@@ -1,0 +1,31 @@
+id: all_windows_shares
+label: 'All Windows Shares Migration'
+migration_tags: null
+migration_group: all_windows_shares
+migration_dependencies:
+  required:
+    - all_windows_shares_site_codes
+    #parental dependency ensures that terms are tied to parents
+source:
+  track_changes: true
+  plugin: custom_sql_query
+  # specify the database with the key
+  key: migrate
+  sql_query: 'select SiteCode, UserFolder, OwnerADAccount, FSRMQuotaSizeGB, EmailAddress, UPPER(DFSPath) as DFSPath_CAPS
+              from AllWindowsShares
+              where SiteCode != '' '' and UserFolder != '' '''
+  keys:
+    - DFSPath_CAPS
+process:
+  name: UserFolder
+  description: owner_and_size
+  field_window_email: owner_email
+  field_window_owner: owner_name
+  field_window_quota_size: FSRMQuotaSizeGB
+  parent:
+    plugin: migration_lookup
+    migration: all_windows_shares_site_codes
+    source: SiteCode
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: all_windows_shares

@@ -1,0 +1,122 @@
+id: sop
+label: 'XML migration - SOP'
+migration_tags: null
+migration_group: migrate_content
+source:
+  plugin: url
+  # Specifies the http fetcher plugin.
+  data_fetcher_plugin: http
+  # Specifies the JSON parser plugin.
+  data_parser_plugin: xml
+  #  authentication:
+  #    plugin: basic
+  #    username: 'hamster'
+  #    password: 'GummyBear2389'
+  #  headers:
+  #    Accept: 'application/json; charset=utf-8'
+  #    Content-Type: 'application/json'
+  # One or more URLs from which to fetch the source data.
+  urls: https://qatrack.epa.gov/sop_tab/feed
+  # For JSON, item_selector is the xpath used to select
+  # our source items (tags in this case).
+  item_selector: /rss/channel/item
+  # For each source field, we specify a selector,
+  # the field name which will be used to access the field in the
+  # process configuration, and a label to document the meaning
+  # of the field in front-ends.
+  fields:
+    -
+      name: title
+      label: 'SOP Title'
+      selector: title
+    -
+      name: field_description
+      label: 'Description'
+      selector: description
+    -
+      name: field_sop_guid
+      label: 'GUID'
+      selector: guid
+    -
+      name: field_discipline
+      label: 'Discipline'
+      selector: discipline
+    -
+      name: field_sub_discipline
+      label: 'Sub-Discipline'
+      selector: subdiscipline
+    -
+      name: field_sop_number
+      label: 'SOP Number'
+      selector: sop_number
+    -
+      name: field_sop_status
+      label: 'SOP Status'
+      selector: sop_status
+    -
+      name: field_date_reviewed
+      label: 'Date Reviewed'
+      selector: date_reviewed
+    -
+      name: field_sop_contact
+      label: 'SOP Contact'
+      selector: sop_contact
+    -
+      name: field_lab
+      label: 'Center'
+      selector: lab
+    -
+      name: field_division
+      label: 'Division'
+      selector: division
+    -
+      name: field_sop_link
+      label: 'SOP Link'
+      selector: link
+    -
+      name: field_sop_alternate_number
+      label: 'SOP Alternate Number'
+      selector: alt_id
+    -
+      name: field_sop_previous_number
+      label: 'SOP Previous Number'
+      selector: previous_id
+
+  # Under ids, we specify which of the source fields retrieved
+  # above (product_id in this case) represent our unique
+  # identifier for the item, and the schema type for that field.
+  ids:
+    field_sop_guid:
+      type: string
+
+destination:
+  plugin: entity:node
+
+process:
+  # If you are using this file to build a custom migration consider removing
+  # the nid and vid fields to allow incremental migrations.
+  # In D7, nodes always have a tnid, but it's zero for untranslated nodes.
+  # We normalize it to equal the nid in that case.
+  # @see \Drupal\node\Plugin\migrate\source\d7\Node::prepareRow().
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "und"
+  title: title
+  created: created
+  changed: changed
+  type:
+    plugin: default_value
+    default_value: sop
+  field_description: field_description
+  field_discipline: field_discipline
+  field_sub_discipline: field_sub_discipline
+  field_sop_number: field_sop_number
+  field_sop_status: field_sop_status
+  field_date_reviewed: field_date_reviewed
+  field_sop_contact: field_sop_contact
+  field_lab: field_lab
+  field_division: field_division
+  field_sop_link: field_sop_link
+  field_sop_alternate_number: field_sop_alternate_number
+  field_sop_previous_number: field_sop_previous_number

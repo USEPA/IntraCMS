@@ -1,0 +1,113 @@
+id: qapp
+label: 'XML migration - QAPP'
+migration_tags: null
+migration_group: migrate_content
+source:
+  plugin: url
+  # Specifies the http fetcher plugin.
+  data_fetcher_plugin: http
+  # Specifies the JSON parser plugin.
+  data_parser_plugin: xml
+  #  authentication:
+  #    plugin: basic
+  #    username: 'hamster'
+  #    password: 'GummyBear2389'
+  #  headers:
+  #    Accept: 'application/json; charset=utf-8'
+  #    Content-Type: 'application/json'
+  # One or more URLs from which to fetch the source data.
+  urls: https://qatrack.epa.gov/projects/qapp/ord_feed/
+  # For JSON, item_selector is the xpath used to select
+  # our source items (tags in this case).
+  item_selector: /rss/channel/item
+  # For each source field, we specify a selector,
+  # the field name which will be used to access the field in the
+  # process configuration, and a label to document the meaning
+  # of the field in front-ends.
+  fields:
+    -
+      name: title
+      label: 'QAPP Title'
+      selector: title
+    -
+      name: field_body
+      label: 'Body'
+      selector: description
+    -
+      name: field_qapp_guid
+      label: 'GUID Linked PDF'
+      selector: guid
+    -
+      name: field_qa_activity_number
+      label: 'QA Activity Number'
+      selector: qa_activity_number
+    -
+      name: field_qapp_project_type
+      label: 'Project Type'
+      selector: project_type
+    -
+      name: field_qapp_approval_date
+      label: 'QAPP Approval Date'
+      selector: qapp_approval_date
+    -
+      name: field_qapp_project_lead
+      label: 'Project Lead'
+      selector: project_lead
+    -
+      name: field_qapp_project_lead_email
+      label: 'Project Lead Email'
+      selector: project_lead_email
+    -
+      name: field_qapp_pdf
+      label: 'PDF'
+      selector: qapp_latest_pdf
+    -
+      name: field_qapp_word
+      label: 'Word'
+      selector: qapp_latest_word
+    -
+      name: field_lab
+      label: 'Center'
+      selector: lab
+    -
+      name: field_division
+      label: 'Division'
+      selector: division
+
+  # Under ids, we specify which of the source fields retrieved
+  # above (product_id in this case) represent our unique
+  # identifier for the item, and the schema type for that field.
+  ids:
+    field_qapp_guid:
+      type: string
+
+destination:
+  plugin: entity:node
+
+process:
+  # If you are using this file to build a custom migration consider removing
+  # the nid and vid fields to allow incremental migrations.
+  # In D7, nodes always have a tnid, but it's zero for untranslated nodes.
+  # We normalize it to equal the nid in that case.
+  # @see \Drupal\node\Plugin\migrate\source\d7\Node::prepareRow().
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: "und"
+  title: title
+  created: created
+  changed: changed
+  type:
+    plugin: default_value
+    default_value: qapp
+  field_body: field_body
+  field_qa_activity_number: field_qa_activity_number
+  field_qapp_guid: field_qapp_guid
+  field_qapp_project_type: field_qapp_project_type
+  field_qapp_approval_date: field_qapp_approval_date
+  field_qapp_project_lead: field_qapp_project_lead
+  field_qapp_project_lead_email: field_qapp_project_lead_email
+  field_qapp_pdf: field_qapp_pdf
+  field_qapp_word: field_qapp_word
+  field_lab: field_lab
+  field_division: field_division
