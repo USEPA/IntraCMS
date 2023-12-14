@@ -5,13 +5,11 @@
  * Contains content_migrations.module.
  */
 
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\media\Entity\Media;
-use Drupal\migrate\Row;
 use Drupal\migrate\Plugin\MigrateSourceInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
-use Drupal\Core\File\FileSystemInterface;
-
-use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\migrate\Row;
 
 /**
  * Implements hook_help().
@@ -37,7 +35,38 @@ function content_migrations_migrate_prepare_row(Row $row, MigrateSourceInterface
     format_smart_date($row);
   } else if ($migration->id() === 'staff_member') {
     create_file_and_media($row);
+  } else if ($migration->id() === 'all_windows_shares') {
+    process_windows_shares_row($row);
+  } else if ($migration->id() === 'all_windows_shares_json') {
+    process_windows_shares_row($row);
   }
+
+}
+
+/**
+ * @param Row $row
+ * @throws \Drupal\Core\Entity\EntityStorageException
+ * https://webx.ord.epa.gov/sites/default/files/blog/2018/03/laraphelps.jpg
+ */
+function process_windows_shares_row(Row $row): void {
+
+  $owner = $row->getSourceProperty('OwnerADAccount');
+  $quota_size = $row->getSourceProperty('FSRMQuotaSizeGB');
+  $owner_and_size = 'N/A';
+  $owner_email = $row->getSourceProperty('EmailAddress');
+  if (!isset($quota_size)) {
+    $quota_size = 'N/A';
+  }
+  if (isset($owner) && $owner != 'N/A') {
+    $rawExplodedArray = explode('=', $owner, 3); // splits into 'CN', 'Last,First,OU', rest of the string
+    $rawExplodedString = $rawExplodedArray[1];
+    $rawNameArray = explode(',', $rawExplodedString); // splits into 'First', 'Last', rest of string
+    $owner = trim($rawNameArray[0]) . ', ' . trim($rawNameArray[1]);
+    $owner_and_size = $owner . ' (' . $owner_email . ') ' . ' - ' . $quota_size . 'gb';
+  }
+  $row->setSourceProperty('owner_name', $owner);
+  $row->setSourceProperty('owner_and_size', $owner_and_size);
+  $row->setSourceProperty('owner_email', $owner_email);
 }
 
 /**
@@ -50,10 +79,10 @@ function create_file_and_media(Row $row): void {
   if (isset($image_data) && isset($image_data[0]) && !empty($image_data[0])) {
     $uri_array = explode("/", $image_data[0]['uri']);
     $file_name = $uri_array[count($uri_array) - 1];
-    $file_location = str_replace("public://", "https://oneintranetpilot.epa.gov/sites/default/files/", $image_data[0]['uri']);
+    $file_location = str_replace("public://", "https://webx.ord.epa.gov/sites/default/files/", $image_data[0]['uri']);
     $file_data = file_get_contents($file_location);
     if ($file_data) {
-      $file = file_save_data($file_data, 'public://staff/' . $file_name, EXISTS_REPLACE);
+      $file = file_save_data($file_data, 'public://staff/' . $file_name, FILE_EXISTS_REPLACE);
       $media = Media::create([
           'bundle' => 'image',
           'uid' => \Drupal::currentUser()->id(),
@@ -89,4 +118,3 @@ function format_smart_date(Row $row): void {
   $smart_date_field['duration'] = $duration;
   $row->setSourceProperty('field_event_date', $smart_date_field);
 }
-
