@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f08dc3933128edd58941eeea5ac30770",
+    "content-hash": "1b95c8453a6c8d8fc249d7e4c7f579fd",
     "packages": [
         {
             "name": "arthurkushman/query-path",
@@ -2797,17 +2797,17 @@
         },
         {
             "name": "drupal/blazy",
-            "version": "2.21.0",
+            "version": "2.22.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/blazy.git",
-                "reference": "8.x-2.21"
+                "reference": "8.x-2.22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/blazy-8.x-2.21.zip",
-                "reference": "8.x-2.21",
-                "shasum": "60ac20ec9eff87ea688ff4c025f28d8fb07b237a"
+                "url": "https://ftp.drupal.org/files/projects/blazy-8.x-2.22.zip",
+                "reference": "8.x-2.22",
+                "shasum": "b1d481c41916c5b3944fda74b4d40501792a19e3"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9 || ^10"
@@ -2818,8 +2818,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.21",
-                    "datestamp": "1697526367",
+                    "version": "8.x-2.22",
+                    "datestamp": "1699420645",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8874,37 +8874,38 @@
         },
         {
             "name": "drupal/metatag",
-            "version": "1.19.0",
+            "version": "1.26.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/metatag.git",
-                "reference": "8.x-1.19"
+                "reference": "8.x-1.26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.19.zip",
-                "reference": "8.x-1.19",
-                "shasum": "d70f59c034e971885ed4969a11bb392f6ab447ee"
+                "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.26.zip",
+                "reference": "8.x-1.26",
+                "shasum": "afa4a37422748baa2f0c35b13961438668ef3be8"
             },
             "require": {
-                "drupal/core": "^9",
-                "drupal/token": "^1.0",
-                "php": ">=7.0"
+                "drupal/core": "^9.3 || ^10",
+                "drupal/token": "^1.0"
             },
             "require-dev": {
-                "drupal/devel": "^4.0",
+                "drupal/devel": "^4.0 || ^5.0",
+                "drupal/hal": "^9 || ^1 || ^2",
                 "drupal/metatag_dc": "*",
                 "drupal/metatag_open_graph": "*",
-                "drupal/page_manager": "4.x-dev",
-                "drupal/panelizer": "4.x-dev",
-                "drupal/redirect": "1.x-dev",
+                "drupal/page_manager": "^4.0",
+                "drupal/panelizer": "^4.0",
+                "drupal/redirect": "^1.0",
+                "drupal/webprofiler": "^9 || ^10",
                 "mpyw/phpunit-patch-serializable-comparison": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.19",
-                    "datestamp": "1641496014",
+                    "version": "8.x-1.26",
+                    "datestamp": "1687856123",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -10999,28 +11000,28 @@
         },
         {
             "name": "drupal/slick_paragraphs",
-            "version": "2.2.0",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/slick_paragraphs.git",
-                "reference": "8.x-2.2"
+                "reference": "8.x-2.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/slick_paragraphs-8.x-2.2.zip",
-                "reference": "8.x-2.2",
-                "shasum": "2c560f902334d80b0887549339e5962518fb0917"
+                "url": "https://ftp.drupal.org/files/projects/slick_paragraphs-8.x-2.4.zip",
+                "reference": "8.x-2.4",
+                "shasum": "2b39d0c76cac85b23b405d193618616198f6b5b7"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9 || ^10",
                 "drupal/paragraphs": "~1.0",
-                "drupal/slick": "~2.0"
+                "drupal/slick": "^2.10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.2",
-                    "datestamp": "1646227436",
+                    "version": "8.x-2.4",
+                    "datestamp": "1695462497",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -11029,7 +11030,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -11052,7 +11053,7 @@
                 "slideshow"
             ],
             "support": {
-                "source": "http://cgit.drupalcode.org/slick_paragraphs",
+                "source": "https://git.drupalcode.org/project/slick_paragraphs",
                 "issues": "https://drupal.org/project/issues/slick_paragraphs"
             }
         },
