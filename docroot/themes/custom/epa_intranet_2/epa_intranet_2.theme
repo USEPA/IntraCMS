@@ -392,6 +392,32 @@ function epa_intranet_2_preprocess_input__submit(&$variables)
   }
 }
 
+/**
+ * Implements hook_preprocess_input__textfield().
+ */
+function epa_intranet_2_preprocess_input__textfield(&$variables) {
+  $variables['attributes']['class'][] = 'usa-input';
+  $variables['attributes']['class'][] = 'form-input';
+}
+
+/**
+ * Implements hook_preprocess_form_element_label().
+ */
+function epa_intranet_2_preprocess_form_element_label(&$variables) {
+  $variables['attributes']['class'][] = 'usa-sr-label';
+  $element_number = 0;
+  foreach($variables['attributes']['class'] as $class){
+    if ($class === 'usa-label'){
+      array_splice($variables['attributes']['class'], $element_number, 1);
+      break;
+    }
+    $element_number++;
+  }
+  if (!empty($variables['required'])) {
+    $variables['attributes']['class'][] = 'usa-input--required';
+  }
+}
+
 
 function is_add_or_remove_button($element)
 {
