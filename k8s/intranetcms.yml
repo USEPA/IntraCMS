@@ -99,6 +99,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
     app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
+    nginx.ingress.kubernetes.io/proxy-body-size: 21m
 spec:
   tls:
   - hosts:
