@@ -1,43 +1,43 @@
-id: event_tags
-label: 'Event Tags Migration'
-source:
-  plugin: url
-  # Specifies the http fetcher plugin.
-  data_fetcher_plugin: http
-  # Specifies the JSON parser plugin.
-  data_parser_plugin: json
-  #  authentication:
-  #    plugin: basic
-  #    username: 'hamster'
-  #    password: 'GummyBear2389'
-  headers:
-    Accept: 'application/json; charset=utf-8'
-    Content-Type: 'application/json'
-  # One or more URLs from which to fetch the source data.
-  urls: https://webxdev.ord.epa.gov/dev2/api/content?/api/taxonomy_term?parameters[vid]=2
-  # For JSON, item_selector is the xpath used to select
-  # our source items (tags in this case).
-  item_selector: 0
-  fields:
-    -
-      selector: tid
-      name: tid
-      label: 'Term ID'
-    -
-      name: name
-      label: 'Name'
-      selector: name
-    -
-      name: parent
-      label: 'Parent'
-      selector: parent
-  ids:
-    tid:
-      type: integer
-process:
-  tid: tid
-  name: name
-  parent: parent
-destination:
-  plugin: entity:taxonomy_term
-  default_bundle: event_tags
+#id: event_tags
+#label: 'Event Tags Migration'
+#source:
+#  plugin: url
+#  # Specifies the http fetcher plugin.
+#  data_fetcher_plugin: http
+#  # Specifies the JSON parser plugin.
+#  data_parser_plugin: json
+#  #  authentication:
+#  #    plugin: basic
+#  #    username: 'hamster'
+#  #    password: 'GummyBear2389'
+#  headers:
+#    Accept: 'application/json; charset=utf-8'
+#    Content-Type: 'application/json'
+#  # One or more URLs from which to fetch the source data.
+#  urls: https://webxdev.ord.epa.gov/dev2/api/content?/api/taxonomy_term?parameters[vid]=2
+#  # For JSON, item_selector is the xpath used to select
+#  # our source items (tags in this case).
+#  item_selector: 0
+#  fields:
+#    -
+#      selector: tid
+#      name: tid
+#      label: 'Term ID'
+#    -
+#      name: name
+#      label: 'Name'
+#      selector: name
+#    -
+#      name: parent
+#      label: 'Parent'
+#      selector: parent
+#  ids:
+#    tid:
+#      type: integer
+#process:
+#  tid: tid
+#  name: name
+#  parent: parent
+#destination:
+#  plugin: entity:taxonomy_term
+#  default_bundle: event_tags
