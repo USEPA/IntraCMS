@@ -34,7 +34,7 @@ Prisma Scan:
     - ./twistcli images scan $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA --address=https://prismacloud.epa.gov --details --token=$PRISMA_CI_TOKEN
   after_script:
     # Cleanup the above space use on Runner.
-    - rm -rf $CI_PROJECT_DIRafter_script:
+    - rm -rf $CI_PROJECT_DIR
 
 
 Development:
