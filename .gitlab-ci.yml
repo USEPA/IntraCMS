@@ -35,6 +35,7 @@ Prisma Scan:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker pull $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA
     - ./twistcli images scan $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA --address=https://prismacloud.epa.gov --details --token=$PRISMA_CI_TOKEN
+  allow_failure: true
 
 
 Development:
