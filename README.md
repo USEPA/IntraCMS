@@ -5,7 +5,7 @@
 
 This repository contains files for teams to reuse when creating a Drupal 9 intranet site based on the U.S. Web Design System.
 
-Also, this repository contains the link to [EPA's System Lifecycle Management Policy and Procedure](https://www.epa.gov/irmpoli8/policy-procedures-and-guidance-system-life-cycle-management-slcm) which lays out EPA's Open Source Software Policy and [EPA's Open Source Code Guidance](https://www.epa.gov/developers/open-source-software-and-epa-code-repository-requirements).
+Also, this repository contains the link to: [EPA's System Lifecycle Management Policy and Procedure](https://www.epa.gov/irmpoli8/policy-procedures-and-guidance-system-life-cycle-management-slcm) which lays out EPA's Open Source Software Policy and [EPA's Open Source Code Guidance](https://www.epa.gov/developers/open-source-software-and-epa-code-repository-requirements).
 
 <img src="https://user-images.githubusercontent.com/2470152/192600667-deff1564-29fb-4134-86fa-01a66b4b7d43.png" data-canonical-src="https://user-images.githubusercontent.com/2470152/192600667-deff1564-29fb-4134-86fa-01a66b4b7d43.png" width="600" />
 
