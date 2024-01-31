@@ -17,10 +17,9 @@ RUN ln -s /public/server/maint/simplesamlphp/config /srv/drupal-root/vendor/simp
 RUN ln -s /public/server/maint/simplesamlphp/metadata /srv/drupal-root/vendor/simplesamlphp/simplesamlphp/metadata
 RUN ln -s /public/server/maint/simplesamlphp/cert /srv/drupal-root/vendor/simplesamlphp/simplesamlphp/cert
 RUN ln -s /srv/drupal-root/vendor/simplesamlphp/simplesamlphp/www /srv/drupal-root/docroot/simplesaml
+RUN ln -s /public/server/maint/drush-files/intra/ /srv/drupal-root/drush
 
 RUN rm -rf /app/*
-
-#CMD ["php-fpm"]
 
 ENTRYPOINT ["/etc/entrypoint.sh"]
 
