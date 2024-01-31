@@ -83,7 +83,7 @@ Stage:
     - intranetcms-stg-runner
   image: dtzar/helm-kubectl
   script:
-    - kubectl config use-context intranet-cms/cms-k8s-stg-resource:intranetcms-stage-k8s-agent
+    - kubectl config use-context intranet-cms/cms-k8s-stg-resources:intranetcms-stage-k8s-agent
     - apk add gettext
     - envsubst < k8s/intranetcms-stage.yml | kubectl apply -f - -n cms-45-stage
   environment:
@@ -102,7 +102,7 @@ Post Deploy:
     - intranetcms-stg-runner
   image: dtzar/helm-kubectl
   script:
-    - kubectl config use-context intranet-cms/cms-k8s-stg-resource:intranetcms-stage-k8s-agent
+    - kubectl config use-context intranet-cms/cms-k8s-stg-resources:intranetcms-stage-k8s-agent
     - apk add gettext
     - envsubst < k8s/drush.yml | kubectl create -f - -n cms-45-stage
   environment:

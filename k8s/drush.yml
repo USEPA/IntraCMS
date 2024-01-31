@@ -20,7 +20,7 @@ spec:
         memory: "2G"
         cpu: "1"
     command: ["/bin/sh"]
-    args: ["-c", "php -d memory_limit=-1 /srv/drupal-root/vendor/drush/drush/drush --root=/srv/drupal-root/docroot --uri=https://dev.intranetcms-dev.aws.epa.gov updb --yes && php -d memory_limit=-1 /srv/drupal-root/vendor/drush/drush/drush --root=/srv/drupal-root/docroot --uri=https://dev.intranetcms-dev.aws.epa.gov cr && php -d memory_limit=-1 /srv/drupal-root/vendor/drush/drush/drush --root=/srv/drupal-root/docroot --uri=https://dev.intranetcms-dev.aws.epa.gov cim --yes"]
+    args: ["-c", "php -d memory_limit=-1 /srv/drupal-root/vendor/drush/drush/drush @intra updb --yes && php -d memory_limit=-1 /srv/drupal-root/vendor/drush/drush/drush @intra cr && php -d memory_limit=-1 /srv/drupal-root/vendor/drush/drush/drush @intra cim --yes"]
     volumeMounts:
     - name: intranetcms-storage
       mountPath: /public
