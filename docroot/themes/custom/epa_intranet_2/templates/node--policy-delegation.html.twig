@@ -131,6 +131,9 @@
     {{ content.field_effective_date }}
     {{ content.field_admin_update_date }}
     {{ content.field_link_to_delegation_file }}
+    {% if content.field_preamble|render|trim is not empty %}
+      <div class="field__item">{{ content.field_preamble }}</div>
+    {% endif %}
     <ol>
       {% if content.field_autho|render|trim is not empty %}
         <li>{{ content.field_autho }}</li>
@@ -160,7 +163,7 @@
           </ul>
         </li>
       {% endif %}
-      <li><div class="field__label display-inline">Additional References:</div>
+      <li><div class="field__label display-inline">Additional References</div>
         {% if content.field_references|render|trim is not empty %}
           {{ content.field_references }}
         {% else %}
@@ -168,6 +171,9 @@
         {% endif %}
       </li>
     </ol>
+    {% if content.field_supercession_other|render|trim is not empty %}
+      <div class="field__item">{{ content.field_supercession_other }}</div>
+    {% endif %}
     {% if content.field_signed_memo|render|trim is not empty %}
       <div class="field__item">{{ content.field_signed_memo }}</div>
     {% endif %}
