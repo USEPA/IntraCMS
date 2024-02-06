@@ -14,7 +14,6 @@ dependencies:
     - field.field.node.policy_delegation.field_link_to_delegation_file
     - field.field.node.policy_delegation.field_next_review_date
     - field.field.node.policy_delegation.field_other_delegation
-    - field.field.node.policy_delegation.field_preamble
     - field.field.node.policy_delegation.field_prior_identifier
     - field.field.node.policy_delegation.field_redelegation
     - field.field.node.policy_delegation.field_redelegation_authority
@@ -24,7 +23,6 @@ dependencies:
     - field.field.node.policy_delegation.field_rescission_date
     - field.field.node.policy_delegation.field_rescission_notes
     - field.field.node.policy_delegation.field_signed_memo
-    - field.field.node.policy_delegation.field_supercession
     - field.field.node.policy_delegation.field_temp_delegation
     - field.field.node.policy_delegation.field_to_whom_delegated
     - field.field.node.policy_delegation.field_topic_area_of_authority
@@ -135,13 +133,6 @@ content:
     third_party_settings: {  }
     weight: 12
     region: content
-  field_preamble:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 23
-    region: content
   field_prior_identifier:
     type: string
     label: inline
@@ -214,13 +205,6 @@ content:
       link: false
     third_party_settings: {  }
     weight: 17
-    region: content
-  field_supercession_other:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 24
     region: content
   field_to_whom_delegated:
     type: cshs_full_hierarchy
