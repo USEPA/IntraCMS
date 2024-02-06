@@ -14,7 +14,6 @@ dependencies:
     - field.field.node.policy_delegation.field_link_to_delegation_file
     - field.field.node.policy_delegation.field_next_review_date
     - field.field.node.policy_delegation.field_other_delegation
-    - field.field.node.policy_delegation.field_preamble
     - field.field.node.policy_delegation.field_prior_identifier
     - field.field.node.policy_delegation.field_redelegation
     - field.field.node.policy_delegation.field_redelegation_authority
@@ -24,7 +23,6 @@ dependencies:
     - field.field.node.policy_delegation.field_rescission_date
     - field.field.node.policy_delegation.field_rescission_notes
     - field.field.node.policy_delegation.field_signed_memo
-    - field.field.node.policy_delegation.field_supercession
     - field.field.node.policy_delegation.field_temp_delegation
     - field.field.node.policy_delegation.field_to_whom_delegated
     - field.field.node.policy_delegation.field_topic_area_of_authority
@@ -251,16 +249,6 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-  field_preamble:
-    type: text_textarea
-    weight: 10
-    region: content
-    settings:
-    settings:
-      display_label: false
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
   field_prior_identifier:
     type: string_textfield
     weight: 4
@@ -372,15 +360,6 @@ content:
     region: content
     settings:
       media_types: {  }
-    third_party_settings: {  }
-  field_supercession:
-    type: text_textarea
-    weight: 21
-    region: content
-    settings:
-      display_label: false
-      rows: 5
-      placeholder: ''
     third_party_settings: {  }
   field_temp_delegation:
     type: boolean_checkbox
