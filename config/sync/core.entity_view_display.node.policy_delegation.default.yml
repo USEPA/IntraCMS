@@ -6,6 +6,8 @@ dependencies:
     - field.field.node.policy_delegation.field_admin_update_date
     - field.field.node.policy_delegation.field_autho
     - field.field.node.policy_delegation.field_chapter
+    - field.field.node.policy_delegation.field_delegation_preamble1
+    - field.field.node.policy_delegation.field_delegation_supercession1
     - field.field.node.policy_delegation.field_effective_date
     - field.field.node.policy_delegation.field_expiration_date
     - field.field.node.policy_delegation.field_keywords
@@ -63,6 +65,20 @@ content:
       link: false
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_delegation_preamble1:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 23
+    region: content
+  field_delegation_supercession1:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 24
     region: content
   field_effective_date:
     type: datetime_default
