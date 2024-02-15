@@ -21,8 +21,8 @@ DIRDATE="`date '+%Y%m%d'`"
 #How many days of error logs to keep
 KEEP_DAILY_X_DAYS=90
 
-EMAIL_NOTIFICATION="potter.bryan@epa.gov,Marruffo.Json@epa.gov,Garnes.Sylvette@epa.gov,Dearie.Jessica@epa.gov,ryan.letulle@cgifederal.com,Cerda.Jeremy@epa.gov"
-ALERT_NOTIFICATION="potter.bryan@epa.gov,Marruffo.Json@epa.gov,Garnes.Sylvette@epa.gov,Dearie.Jessica@epa.gov,ryan.letulle@cgifederal.com,Cerda.Jeremy@epa.gov"
+EMAIL_NOTIFICATION="potter.bryan@epa.gov,Marruffo.Json@epa.gov,Garnes.Sylvette@epa.gov,ryan.letulle@cgifederal.com,Cerda.Jeremy@epa.gov"
+ALERT_NOTIFICATION="potter.bryan@epa.gov,Marruffo.Json@epa.gov,Garnes.Sylvette@epa.gov,ryan.letulle@cgifederal.com,Cerda.Jeremy@epa.gov"
 
 DRUSHCMD="/usr/bin/drush @intra"
 
