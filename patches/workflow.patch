@@ -1,0 +1,10 @@
+--- core/modules/workflows/src/Plugin/WorkflowTypeBase.php	2024-02-22 13:14:55.397807900 -0600
++++ core/modules/workflows/src/Plugin/WorkflowTypeBase.php	2024-02-22 09:58:13.959808000 -0600
+@@ -152,6 +152,7 @@
+    */
+   public function getState($state_id) {
+     if (!isset($this->configuration['states'][$state_id])) {
++      drupal_flush_all_caches();
+       throw new \InvalidArgumentException("The state '$state_id' does not exist in workflow.");
+     }
+     return new State(
