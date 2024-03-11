@@ -8,7 +8,23 @@ stages:
   - Non-Production Stage Post Deploy
   - Non-Production Dev Post Deploy
   - Non-Production Dev10 Post Deploy
- 
+  - dast
+
+include:
+  - template: DAST.gitlab-ci.yml
+
+variables:
+  DAST_WEBSITE: "https://stage.intranetcms-stage.aws.epa.gov/"
+  DAST_AUTH_URL: "https://stage.intranetcms-stage.aws.epa.gov/user/login"
+  DAST_USERNAME_FIELD: "id:edit-name"
+  DAST_PASSWORD_FIELD: "id:edit-pass"
+  DAST_SUBMIT_FIELD: "id:edit-submit" #"css:.btn[type='Log in']"
+  DAST_USE_AJAX_SPIDER: "false"
+  DAST_TARGET_AVAILABILITY_TIMEOUT: "120"
+  DAST_FULL_SCAN_ENABLED: "true"
+  DAST_ZAP_CLI_OPTIONS: "-config spider.maxDepth=4"
+  DAST_SKIP_TARGET_CHECK: "true"
+
 Build IntranetCMS Image:
   stage: build
   rules:
