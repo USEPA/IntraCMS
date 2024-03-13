@@ -1,0 +1,39 @@
+uuid: c6fdeb1d-4a32-4979-b61d-896d4b1939b9
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+    - system
+id: fix_policy_hot_fix_2
+label: 'Fix Policy hot fix 2'
+code: |
+  .node-policy-delegation-edit-form .field--name-field-autho:before {
+      content: "1.";
+  }
+  .node-policy-delegation-edit-form .field--name-field-to-whom-delegated:before {
+      content: "2.";
+  } 
+  .node-policy-delegation-edit-form .field--name-field-limitations:before {
+      content: "3.";
+  } 
+  .node-policy-delegation-edit-form .field--name-field-redelegation:before {
+      content: "4.";
+  } 
+  .node-policy-delegation-edit-form .field--name-field-signed-memo:after {
+      content: "5.";
+  } 
+media: all
+preprocess: true
+conditions:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
+  current_theme:
+    id: current_theme
+    negate: false
+    theme:
+      claro: claro
+contexts: {  }
+conditions_require_all: true
