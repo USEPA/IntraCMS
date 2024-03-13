@@ -769,11 +769,16 @@ article.align-left {
   margin-right: 10px;
 }
 
-/* Align images inside the align-center class */
+/* IN-2344 Align images inside the align-center class */
 .align-center img {
   display: block;
   margin-right: auto;
   margin-left: auto;
+}
+
+/* IN-2357 Remove quotes from labels for Delegation content type */
+.node--type-policy-delegation .field--name-field-redelegation .title::after, .node--type-policy-delegation .field--name-field-limitations .title::after, .node--type-policy-delegation .field--name-to-whom-delegated .title::after {
+  content:"";
 }
 
 ul {
