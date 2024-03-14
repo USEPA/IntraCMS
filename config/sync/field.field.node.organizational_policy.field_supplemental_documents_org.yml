@@ -1,0 +1,29 @@
+uuid: 25e0e82e-2c0e-4786-916f-757fce2842da
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_supplemental_documents_org
+    - media.type.document
+    - node.type.organizational_policy
+id: node.organizational_policy.field_supplemental_documents_org
+field_name: field_supplemental_documents_org
+entity_type: node
+bundle: organizational_policy
+label: 'Supplemental Documents'
+description: 'DO NOT USE UNLESS NECESSARY. Procedures SHOULD NOT be uploaded into the policy as these can be linked via the Related Procedures section.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      document: document
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

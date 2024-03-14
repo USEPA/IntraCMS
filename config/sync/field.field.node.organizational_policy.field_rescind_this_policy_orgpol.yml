@@ -1,0 +1,23 @@
+uuid: e7b83281-9fe9-4fd8-afae-fe447c983f9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rescind_this_policy_orgpol
+    - node.type.organizational_policy
+id: node.organizational_policy.field_rescind_this_policy_orgpol
+field_name: field_rescind_this_policy_orgpol
+entity_type: node
+bundle: organizational_policy
+label: 'Rescind this policy'
+description: 'Check this box if you are rescinding this policy.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Rescinded
+  off_label: Active
+field_type: boolean

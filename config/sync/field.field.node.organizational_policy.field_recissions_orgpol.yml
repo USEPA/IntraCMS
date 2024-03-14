@@ -1,0 +1,25 @@
+uuid: f58a1837-3ac6-4c38-952a-376440afd0c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_recissions_orgpol
+    - node.type.organizational_policy
+id: node.organizational_policy.field_recissions_orgpol
+field_name: field_recissions_orgpol
+entity_type: node
+bundle: organizational_policy
+label: Rescissions
+description: 'Select the policy that is being rescinded by this new policy. If you do not see the policy you wish to rescind, please go to the policy that needs to be rescinded and check the Rescind this policy checkbox.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: organizational_policies
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

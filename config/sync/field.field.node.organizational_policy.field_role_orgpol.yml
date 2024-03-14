@@ -1,0 +1,29 @@
+uuid: c495e010-9784-4970-9bc5-bae480773857
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_role_orgpol
+    - node.type.organizational_policy
+    - taxonomy.vocabulary.policy_role
+id: node.organizational_policy.field_role_orgpol
+field_name: field_role_orgpol
+entity_type: node
+bundle: organizational_policy
+label: Role
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      policy_role: policy_role
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

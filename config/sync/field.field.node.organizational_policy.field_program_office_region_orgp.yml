@@ -1,0 +1,29 @@
+uuid: c8acb242-9225-4f18-9175-c7082ec8a657
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_program_office_region_orgp
+    - node.type.organizational_policy
+    - taxonomy.vocabulary.program_offices_and_regions
+id: node.organizational_policy.field_program_office_region_orgp
+field_name: field_program_office_region_orgp
+entity_type: node
+bundle: organizational_policy
+label: 'Program Office / Region'
+description: 'Select the program office or region this policy applies to.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      program_offices_and_regions: program_offices_and_regions
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
