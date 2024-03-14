@@ -1,0 +1,21 @@
+uuid: b66d4612-85d3-46d5-aaca-39ade96ff062
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sunset_review_date_orgpol
+    - node.type.organizational_policy
+  module:
+    - datetime
+id: node.organizational_policy.field_sunset_review_date_orgpol
+field_name: field_sunset_review_date_orgpol
+entity_type: node
+bundle: organizational_policy
+label: 'Sunset/Review Date'
+description: 'Enter a date in which the policy should be reviewed again. This date could be up to and including five years.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,29 @@
+uuid: 1c440ba9-0172-41f0-9e2d-b38273771a73
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_signed_memo_orgpol
+    - media.type.document
+    - node.type.organizational_policy
+id: node.organizational_policy.field_signed_memo_orgpol
+field_name: field_signed_memo_orgpol
+entity_type: node
+bundle: organizational_policy
+label: 'Signed Memo'
+description: 'Upload a signed copy of the document that approved the policy issuance, generally a memorandum format. This is the document that gives some historical reference that the policy was issued and approved.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      document: document
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

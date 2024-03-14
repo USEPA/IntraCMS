@@ -1,0 +1,25 @@
+uuid: ccf93db3-8263-4891-84dd-cdd0d4f6ba3f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_topic_orgpol
+    - node.type.organizational_policy
+id: node.organizational_policy.field_topic_orgpol
+field_name: field_topic_orgpol
+entity_type: node
+bundle: organizational_policy
+label: Topic
+description: 'Identify which topics this policy relates to.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: policy_topics
+      display_name: entity_reference_2
+      arguments: {  }
+field_type: entity_reference
