@@ -1,0 +1,25 @@
+uuid: b803864c-05f2-43af-9a24-f34846b74b71
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_agency_delegation
+    - node.type.organizational_policy
+id: node.organizational_policy.field_agency_delegation
+field_name: field_agency_delegation
+entity_type: node
+bundle: organizational_policy
+label: 'Related Agency Delegation'
+description: 'Begin typing the title of the appropriate Agency Delegation and select the appropriate one from the autocomplete options.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: policy_delegation
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

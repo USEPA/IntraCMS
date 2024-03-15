@@ -1,0 +1,25 @@
+uuid: a9651d74-e84e-4512-bef3-26b979b15369
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_re_deleg_orgpol
+    - node.type.organizational_policy
+id: node.organizational_policy.field_related_re_deleg_orgpol
+field_name: field_related_re_deleg_orgpol
+entity_type: node
+bundle: organizational_policy
+label: 'Related Re-Delegation'
+description: 'Begin typing the title of the appropriate redelegation and select the appropriate one from the autocomplete options, If this is a new redelegation, you must create the redelegation before you can reference from within the policy.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: redelegations
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

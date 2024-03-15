@@ -1,0 +1,20 @@
+uuid: 9930165d-f42b-4f90-a58f-dc84a7b4a057
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.web_area
+    - node.type.organizational_policy
+  module:
+    - gnode
+    - node
+id: group_content_type_45cbcab95be72
+label: 'Web Area: Group node (Organizational Policy)'
+description: 'Adds <em class="placeholder">Organizational Policy</em> content to groups both publicly and privately.'
+group_type: web_area
+content_plugin: 'group_node:organizational_policy'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 0
