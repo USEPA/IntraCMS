@@ -1,0 +1,224 @@
+uuid: b2cdf6b3-ad6b-471e-9f21-7416e12dd6b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.organizational_policy.field_agency_delegation
+    - field.field.node.organizational_policy.field_effective_date_orgpol
+    - field.field.node.organizational_policy.field_identifier_orgpol
+    - field.field.node.organizational_policy.field_last_review_date_orgpol
+    - field.field.node.organizational_policy.field_policy_coord_name_orgpol
+    - field.field.node.organizational_policy.field_policy_name_orgpol
+    - field.field.node.organizational_policy.field_policy_statement_orgpol
+    - field.field.node.organizational_policy.field_program_office_region_orgp
+    - field.field.node.organizational_policy.field_recissions_orgpol
+    - field.field.node.organizational_policy.field_reference_name_url_orgpol
+    - field.field.node.organizational_policy.field_reference_type_orgpol
+    - field.field.node.organizational_policy.field_related_agency_dire_orgpol
+    - field.field.node.organizational_policy.field_related_agency_forms
+    - field.field.node.organizational_policy.field_related_re_deleg_orgpol
+    - field.field.node.organizational_policy.field_related_resources_orgpol
+    - field.field.node.organizational_policy.field_rescind_this_policy_orgpol
+    - field.field.node.organizational_policy.field_role_orgpol
+    - field.field.node.organizational_policy.field_signed_memo_orgpol
+    - field.field.node.organizational_policy.field_sunset_review_date_orgpol
+    - field.field.node.organizational_policy.field_supplemental_documents_org
+    - field.field.node.organizational_policy.field_topic_orgpol
+    - node.type.organizational_policy
+  module:
+    - datetime
+    - link
+    - options
+    - user
+id: node.organizational_policy.default
+targetEntityType: node
+bundle: organizational_policy
+mode: default
+content:
+  field_agency_delegation:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 126
+    region: content
+  field_effective_date_orgpol:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_identifier_orgpol:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 112
+    region: content
+  field_last_review_date_orgpol:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 121
+    region: content
+  field_policy_coord_name_orgpol:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 120
+    region: content
+  field_policy_name_orgpol:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 113
+    region: content
+  field_policy_statement_orgpol:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  field_program_office_region_orgp:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  field_recissions_orgpol:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_reference_name_url_orgpol:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 115
+    region: content
+  field_reference_type_orgpol:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 114
+    region: content
+  field_related_agency_dire_orgpol:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 124
+    region: content
+  field_related_agency_forms:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 125
+    region: content
+  field_related_re_deleg_orgpol:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 123
+    region: content
+  field_related_resources_orgpol:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 119
+    region: content
+  field_rescind_this_policy_orgpol:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_role_orgpol:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 116
+    region: content
+  field_signed_memo_orgpol:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 117
+    region: content
+  field_sunset_review_date_orgpol:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 122
+    region: content
+  field_supplemental_documents_org:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 118
+    region: content
+  field_topic_orgpol:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

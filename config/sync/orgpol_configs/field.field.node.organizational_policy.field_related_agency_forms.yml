@@ -1,0 +1,25 @@
+uuid: ccb34df5-88bf-4130-8916-4555b7d152d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_agency_forms
+    - node.type.organizational_policy
+id: node.organizational_policy.field_related_agency_forms
+field_name: field_related_agency_forms
+entity_type: node
+bundle: organizational_policy
+label: 'Related Agency Forms'
+description: 'Begin typing the title of the appropriate Agency Form and select the appropriate one from the autocomplete options.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: related_forms
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

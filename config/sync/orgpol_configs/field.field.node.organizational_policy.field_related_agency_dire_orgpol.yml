@@ -1,0 +1,25 @@
+uuid: 06006eb6-7d05-439c-ac89-1f8782512a7f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_agency_dire_orgpol
+    - node.type.organizational_policy
+id: node.organizational_policy.field_related_agency_dire_orgpol
+field_name: field_related_agency_dire_orgpol
+entity_type: node
+bundle: organizational_policy
+label: 'Related Agency Directives'
+description: 'Begin typing the title of the appropriate Agency Directive (Manual, Order, or RMDS) and select the appropriate one from the autocomplete options.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: policy
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference
