@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.organizational_policy.field_agency_delegation
     - field.field.node.organizational_policy.field_effective_date_orgpol
     - field.field.node.organizational_policy.field_identifier_orgpol
     - field.field.node.organizational_policy.field_last_review_date_orgpol
@@ -13,6 +14,9 @@ dependencies:
     - field.field.node.organizational_policy.field_recissions_orgpol
     - field.field.node.organizational_policy.field_reference_name_url_orgpol
     - field.field.node.organizational_policy.field_reference_type_orgpol
+    - field.field.node.organizational_policy.field_related_agency_dire_orgpol
+    - field.field.node.organizational_policy.field_related_agency_forms
+    - field.field.node.organizational_policy.field_related_re_deleg_orgpol
     - field.field.node.organizational_policy.field_related_resources_orgpol
     - field.field.node.organizational_policy.field_rescind_this_policy_orgpol
     - field.field.node.organizational_policy.field_role_orgpol
@@ -24,10 +28,90 @@ dependencies:
   module:
     - content_moderation
     - datetime
-    - lightning_scheduler
+    - field_group
     - link
     - media_library
     - path
+third_party_settings:
+  field_group:
+    group_authority_citations:
+      children:
+        - field_reference_type_orgpol
+        - field_reference_name_url_orgpol
+      label: 'Authority Citations'
+      region: content
+      parent_name: ''
+      weight: 16
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
+    group_roles_and_responsibilities:
+      children:
+        - field_role_orgpol
+      label: 'Roles and Responsibilities'
+      region: content
+      parent_name: ''
+      weight: 17
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
+    group_definitions:
+      children:
+        - field_signed_memo_orgpol
+        - field_supplemental_documents_org
+        - field_related_re_deleg_orgpol
+      label: Definitions
+      region: content
+      parent_name: ''
+      weight: 18
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
+    group_related_agency_directives_:
+      children:
+        - field_related_agency_dire_orgpol
+        - field_related_agency_forms
+        - field_agency_delegation
+        - field_related_resources_orgpol
+      label: 'Related Agency Directives, Forms, & Resources'
+      region: content
+      parent_name: ''
+      weight: 19
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
+    group_point_of_contact:
+      children:
+        - field_policy_coord_name_orgpol
+        - field_last_review_date_orgpol
+        - field_sunset_review_date_orgpol
+      label: 'Point of Contact'
+      region: content
+      parent_name: ''
+      weight: 20
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
 id: node.organizational_policy.default
 targetEntityType: node
 bundle: organizational_policy
@@ -35,19 +119,29 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_agency_delegation:
+    type: entity_reference_autocomplete
+    weight: 21
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_effective_date_orgpol:
     type: datetime_default
-    weight: 125
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   field_identifier_orgpol:
     type: string_textfield
-    weight: 132
+    weight: 9
     region: content
     settings:
       size: 60
@@ -55,13 +149,13 @@ content:
     third_party_settings: {  }
   field_last_review_date_orgpol:
     type: datetime_default
-    weight: 141
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
   field_policy_coord_name_orgpol:
     type: entity_reference_autocomplete
-    weight: 140
+    weight: 20
     region: content
     settings:
       match_operator: CONTAINS
@@ -71,7 +165,7 @@ content:
     third_party_settings: {  }
   field_policy_name_orgpol:
     type: string_textfield
-    weight: 133
+    weight: 8
     region: content
     settings:
       size: 60
@@ -79,7 +173,7 @@ content:
     third_party_settings: {  }
   field_policy_statement_orgpol:
     type: string_textarea
-    weight: 130
+    weight: 15
     region: content
     settings:
       rows: 5
@@ -87,7 +181,7 @@ content:
     third_party_settings: {  }
   field_program_office_region_orgp:
     type: entity_reference_autocomplete
-    weight: 131
+    weight: 11
     region: content
     settings:
       match_operator: CONTAINS
@@ -96,18 +190,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_recissions_orgpol:
-    type: entity_reference_autocomplete
-    weight: 129
+    type: options_select
+    weight: 13
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_reference_name_url_orgpol:
     type: link_default
-    weight: 135
+    weight: 17
     region: content
     settings:
       placeholder_url: ''
@@ -115,13 +205,39 @@ content:
     third_party_settings: {  }
   field_reference_type_orgpol:
     type: options_select
-    weight: 134
+    weight: 16
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_related_agency_dire_orgpol:
+    type: entity_reference_autocomplete
+    weight: 19
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_related_agency_forms:
+    type: entity_reference_autocomplete
+    weight: 20
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_related_re_deleg_orgpol:
+    type: options_select
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
   field_related_resources_orgpol:
     type: link_default
-    weight: 139
+    weight: 22
     region: content
     settings:
       placeholder_url: ''
@@ -129,14 +245,14 @@ content:
     third_party_settings: {  }
   field_rescind_this_policy_orgpol:
     type: boolean_checkbox
-    weight: 126
+    weight: 12
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_role_orgpol:
     type: entity_reference_autocomplete
-    weight: 136
+    weight: 17
     region: content
     settings:
       match_operator: CONTAINS
@@ -146,78 +262,66 @@ content:
     third_party_settings: {  }
   field_signed_memo_orgpol:
     type: media_library_widget
-    weight: 137
+    weight: 18
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_sunset_review_date_orgpol:
     type: datetime_default
-    weight: 142
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
   field_supplemental_documents_org:
     type: media_library_widget
-    weight: 138
+    weight: 19
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_topic_orgpol:
-    type: entity_reference_autocomplete
-    weight: 128
+    type: options_select
+    weight: 14
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 100
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 15
+    weight: 2
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 120
+    weight: 7
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 16
+    weight: 3
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
-  title:
-    type: string_textfield
-    weight: -5
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 0
     region: content
     settings:
       match_operator: CONTAINS
@@ -226,8 +330,9 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  title: true
