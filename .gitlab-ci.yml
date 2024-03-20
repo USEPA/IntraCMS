@@ -8,7 +8,7 @@ stages:
   - Non-Production Stage Post Deploy
   - Non-Production Dev Post Deploy
   - Non-Production Dev10 Post Deploy
- 
+
 Build IntranetCMS Image:
   stage: build
   rules:
@@ -111,7 +111,7 @@ Post Deploy:
     kubernetes:
       namespace: cms-45-stage
 
-Post Deploy Dev:  
+Post Deploy Dev:
   stage: Non-Production Dev Post Deploy
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev-container"'
@@ -144,3 +144,7 @@ Post Deploy Dev10:
     url:
     kubernetes:
       namespace: cms-45-next
+
+dast:
+  tags:
+    - intranetcms-stg-runner
