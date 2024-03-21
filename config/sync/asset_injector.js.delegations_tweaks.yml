@@ -1,0 +1,27 @@
+uuid: 6106a6f0-1c19-423a-a594-4456b1396964
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+    - system
+id: delegations_tweaks
+label: 'Delegations tweaks'
+code: 'jQuery(''#block-pagetitle-2 h1'').text(''Add Delegation'');'
+noscript: ''
+noscriptRegion: {  }
+jquery: false
+header: false
+preprocess: false
+conditions:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
+  current_theme:
+    id: current_theme
+    negate: false
+    theme:
+      claro: claro
+contexts: {  }
+conditions_require_all: true
