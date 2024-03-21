@@ -7,7 +7,10 @@ dependencies:
     - system
 id: delegations_tweaks
 label: 'Delegations tweaks'
-code: 'jQuery(''#block-pagetitle-2 h1'').text(''Add Delegation'');'
+code: |-
+  jQuery("#block-pagetitle-2 h1").text(function () {
+      return jQuery(this).text().replace("Add Policy: Group node (Policy Delegation)", "Add Delegation");
+  });
 noscript: ''
 noscriptRegion: {  }
 jquery: false
