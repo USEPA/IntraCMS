@@ -152,7 +152,7 @@
       {% if 'May NOT be redelegated.' in content.field_redelegation|render|render  %}
         <li>{{ content.field_redelegation  }}</li>
       {% else %}
-        <li>
+        <li><div class="field__label display-inline">Redelegation.</div>
           <ul>
             {% if content.field_redelegation_language|render|trim is not empty %}
               <li>{{ content.field_redelegation_language }}</li>
