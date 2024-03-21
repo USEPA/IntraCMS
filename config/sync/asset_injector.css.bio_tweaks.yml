@@ -1,0 +1,18 @@
+uuid: 4d18dc94-fe7c-466d-9a52-e52e76623ed7
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+id: bio_tweaks
+label: 'Bio tweaks'
+code: '.field--name-field-staff-profile .title { min-width: 50px; }'
+media: all
+preprocess: true
+conditions:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
+contexts: {  }
+conditions_require_all: true
