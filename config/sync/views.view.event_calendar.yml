@@ -378,7 +378,7 @@ display:
           replica: false
           query_tags: null
       relationships: {  }
-      use_ajax: false
+      use_ajax: true
       group_by: false
       header:
         area:
@@ -1170,6 +1170,59 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+        combine:
+          id: combine
+          table: views
+          field: combine
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: views_autocomplete_filters_combine
+          operator: word
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: combine_op
+            label: 'Event search'
+            description: ''
+            use_operator: false
+            operator: combine_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: combine
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              webform: '0'
+              book_editor: '0'
+              system_editor: '0'
+              administrator: '0'
+            placeholder: ''
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          fields:
+            title: title
+            field_event_description: field_event_description
       filter_groups:
         operator: AND
         groups:
@@ -1198,6 +1251,7 @@ display:
             value: '<p><a href="/node/add/event" class="usa-button">Create Event</a><br /><em>You may be prompted to log in before creating events.</em></p>'
             format: simple_text
           tokenize: false
+      exposed_block: true
       display_extenders: {  }
       path: calendar/%event_host
     cache_metadata:

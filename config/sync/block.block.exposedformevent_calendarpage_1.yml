@@ -1,32 +1,32 @@
-uuid: 40a76366-1e5a-480c-a097-15caac21d7fb
+uuid: cdadade3-983e-4cc1-9d7a-67dfe68a3e66
 langcode: en
 status: true
 dependencies:
   config:
-    - fixed_block_content.fixed_block_content.create_event
+    - views.view.event_calendar
   module:
     - block_in_page_not_found
-    - fixed_block_content
     - system
+    - views
   theme:
     - epa_intranet_2
-id: createevent_2
+id: exposedformevent_calendarpage_1
 theme: epa_intranet_2
 region: sidebar_second
-weight: -21
+weight: -22
 provider: null
-plugin: 'fixed_block_content:create_event'
+plugin: 'views_exposed_filter_block:event_calendar-page_1'
 settings:
-  id: 'fixed_block_content:create_event'
-  label: 'Create Event'
-  label_display: visible
-  provider: fixed_block_content
-  view_mode: ''
+  id: 'views_exposed_filter_block:event_calendar-page_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
 visibility:
   request_path:
     id: request_path
     negate: false
-    pages: /calendar
+    pages: '/calendar/*'
   page_not_found_request:
     id: page_not_found_request
     negate: false
