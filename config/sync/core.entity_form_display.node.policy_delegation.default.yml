@@ -249,7 +249,25 @@ content:
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        802c7ad3-fc30-4e7d-a25b-0e0b8f4801de:
+          entity_type: node
+          bundle: policy_delegation
+          dependee: field_to_whom_delegated
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                target_id: '21'
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_prior_identifier:
     type: string_textfield
     weight: 4
