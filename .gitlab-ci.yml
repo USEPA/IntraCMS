@@ -160,9 +160,10 @@ Post Deploy Dev10:
     url:
     kubernetes:
       namespace: cms-45-next
-      
+
 dast:
   tags:
     - intranetcms-stg-runner
+  when: manual
   timeout: 2d
 
