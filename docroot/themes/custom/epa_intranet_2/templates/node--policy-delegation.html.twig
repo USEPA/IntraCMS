@@ -142,8 +142,7 @@
         <li>{{ content.field_to_whom_delegated }}</li>
       {% endif %}
       {% if 'This delegation has the following limitations' in content.field_limitations|render|render %}
-        <li>
-          {{ content.field_limitations }}
+        <li><div class="field__label display-inline">Limitations.</div>
           {{ content.field_limitation }}
         </li>
       {% else %}
@@ -156,9 +155,6 @@
           <ul>
             {% if content.field_redelegation_language|render|trim is not empty %}
               <li>{{ content.field_redelegation_language }}</li>
-            {% endif %}
-            {% if content.field_redelegation_authority|render|trim is not empty %}
-              <li>{{ content.field_redelegation_authority }}</li>
             {% endif %}
           </ul>
         </li>
