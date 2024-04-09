@@ -94,6 +94,9 @@
   {% endif %}
 
   <div{{ content_attributes }}>
+    {% if not node.isPublished() %}
+      <mark class="unpublished">{{ 'Unpublished'|trans }}</mark>
+    {% endif %}
     {{ content }}
   </div>
 
