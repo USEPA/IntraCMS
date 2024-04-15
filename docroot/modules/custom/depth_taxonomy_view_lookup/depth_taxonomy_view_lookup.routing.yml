@@ -33,3 +33,11 @@ taxonomy_depth_lookup.three_levels_deep:
     view_type: null
   requirements:
     _permission: 'access content'
+
+taxonomy_depth_lookup.standard_term_lookup:
+  path: '/taxonomy_depth_lookup_standard/{term_id}'
+  defaults:
+    _controller: '\Drupal\depth_taxonomy_view_lookup\Controller\TaxonomyViewLookupController::standardLookup'
+    view_type: null
+  requirements:
+    _permission: 'access content'
