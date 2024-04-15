@@ -2,11 +2,13 @@
 
 namespace Drupal\depth_taxonomy_view_lookup\Controller;
 
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal;
+use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Render\Renderer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Controller\ControllerBase;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
@@ -44,7 +46,7 @@ class TaxonomyViewLookupController extends ControllerBase {
   public function redirectToView($parent_term, $arg_1 = null, $arg_2 = null, $arg_3 = null, $view_type = null) {
     $taxonomy_service = $this->entity_manager->getStorage("taxonomy_term");
     if ($this->isViewType($parent_term) && isset($arg_1)) {
-      $request = \Drupal::request();
+      $request = Drupal::request();
       $referer = $request->headers->get('referer');
       return new RedirectResponse($referer);
     } else {
@@ -85,7 +87,7 @@ class TaxonomyViewLookupController extends ControllerBase {
   }
 
   public function getTitle() {
-    $path = \Drupal::request()->getpathInfo();
+    $path = Drupal::request()->getpathInfo();
     $taxonomy_terms_in_path = explode('/', $path);
     return $taxonomy_terms_in_path[count($taxonomy_terms_in_path) - 1];
   }
@@ -103,6 +105,29 @@ class TaxonomyViewLookupController extends ControllerBase {
       'parent' => $parent_term->id()
     ];
     return $properties;
+  }
+
+  /**
+   * @param $term_id
+   */
+  public function standardLookup($term_id = null){
+    $owner = '';
+    $email = 'N/A';
+    $quota = '';
+    $term = Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($term_id);
+
+    if ($term != null) {
+      if ($term->get('field_window_owner') != null) {
+        $owner = $term->get('field_window_owner')->value;
+      }
+      if ($term->get('field_window_email') != null) {
+        $email = $term->get('field_window_email')->value;
+      }
+      if ($term->get('field_window_quota_size') != null) {
+        $quota = $term->get('field_window_quota_size')->value;
+      }
+    }
+    return new JsonResponse(['owner' => $owner, 'email' => $email, 'size' => $quota]);
   }
 
 }
