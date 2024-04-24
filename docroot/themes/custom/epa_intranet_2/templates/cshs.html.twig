@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a CSHS select element.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the select tag.
+ * - options: The option element children.
+ *
+ * @see cshs_theme()
+ *
+ * @ingroup themeable
+ */
+#}
+<br/>
+<select{{ attributes.addClass('usa-select form-select cshs-custom-select') }}>
+  {% for option in options %}
+    {% if option.value %}
+      <option value="{{ option.value }}"
+              data-parent="{{ option.parent }}"{{ option.selected ? ' selected="selected"' }}>
+        {{ option.label }}
+      </option>
+    {% endif %}
+    {#    {% if option.selected %} #}
+    {#      {% set owner =  %} #}
+    {#    {% endif %} #}
+  {% endfor %}
+</select>
+<br/>
+<br/>
+<div class="all-windows-shares-metadata" style="display: none;">
+  <span class="cshs-custom-select-additions">
+    Owner Name - Quota Size_gb
+  </span>
+</div>

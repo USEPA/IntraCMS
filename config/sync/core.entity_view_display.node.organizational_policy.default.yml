@@ -41,16 +41,16 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 126
+    weight: 20
     region: content
   field_effective_date_orgpol:
     type: datetime_default
     label: above
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: month_day_year
     third_party_settings: {  }
-    weight: 105
+    weight: 0
     region: content
   field_identifier_orgpol:
     type: string
@@ -58,16 +58,16 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 112
+    weight: 6
     region: content
   field_last_review_date_orgpol:
     type: datetime_default
     label: above
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: month_day_year
     third_party_settings: {  }
-    weight: 121
+    weight: 15
     region: content
   field_policy_coord_name_orgpol:
     type: entity_reference_label
@@ -75,7 +75,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 120
+    weight: 14
     region: content
   field_policy_name_orgpol:
     type: string
@@ -83,22 +83,22 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 113
+    weight: 7
     region: content
   field_policy_statement_orgpol:
     type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 110
+    weight: 4
     region: content
   field_program_office_region_orgp:
     type: entity_reference_label
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
-    weight: 111
+    weight: 5
     region: content
   field_recissions_orgpol:
     type: entity_reference_label
@@ -106,7 +106,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 109
+    weight: 3
     region: content
   field_reference_name_url_orgpol:
     type: link
@@ -118,14 +118,14 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 115
+    weight: 9
     region: content
   field_reference_type_orgpol:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 114
+    weight: 8
     region: content
   field_related_agency_dire_orgpol:
     type: entity_reference_label
@@ -133,7 +133,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 124
+    weight: 18
     region: content
   field_related_agency_forms:
     type: entity_reference_label
@@ -141,7 +141,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 125
+    weight: 19
     region: content
   field_related_re_deleg_orgpol:
     type: entity_reference_label
@@ -149,7 +149,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 123
+    weight: 17
     region: content
   field_related_resources_orgpol:
     type: link
@@ -161,7 +161,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 119
+    weight: 13
     region: content
   field_rescind_this_policy_orgpol:
     type: boolean
@@ -171,54 +171,51 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 106
+    weight: 1
     region: content
   field_role_orgpol:
     type: entity_reference_label
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
-    weight: 116
+    weight: 10
     region: content
   field_signed_memo_orgpol:
     type: entity_reference_entity_view
     label: above
     settings:
-      view_mode: default
+      view_mode: link
       link: false
     third_party_settings: {  }
-    weight: 117
+    weight: 11
     region: content
   field_sunset_review_date_orgpol:
     type: datetime_default
     label: above
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: month_day_year
     third_party_settings: {  }
-    weight: 122
+    weight: 16
     region: content
   field_supplemental_documents_org:
     type: entity_reference_entity_view
     label: above
     settings:
-      view_mode: default
+      view_mode: link
       link: false
     third_party_settings: {  }
-    weight: 118
+    weight: 12
     region: content
   field_topic_orgpol:
     type: entity_reference_label
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
-    weight: 108
+    weight: 2
     region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
-    region: content
-hidden: {  }
+hidden:
+  content_moderation_control: true
+  links: true

@@ -70,115 +70,51 @@
  *   in different view modes.
  */
 #}
-{%
-  set classes = [
-    'node',
-    'node--type-' ~ node.bundle|clean_class,
-    node.isPromoted() ? 'node--promoted',
-    node.isSticky() ? 'node--sticky',
-    not node.isPublished() ? 'node--unpublished',
-    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-  ]
-%}
-
-
-
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+] %}
 
 {{ attach_library('classy/node') }}
-<article{{attributes.addClass(classes)}}>
+<article{{ attributes.addClass(classes) }}>
 
-	{{ title_prefix }}
-	{% if label and not page %}
-		<h2{{title_attributes}}>
-			<a href="{{ url }}" rel="bookmark">{{ label }}</a>
-		</h2>
-	{% endif %}
-	{{ title_suffix }}
+  {{ title_prefix }}
+  {% if label and not page %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
 
-	{% if display_submitted %}
-		<footer class="node__meta">
-			{{ author_picture }}
-			<div{{author_attributes.addClass('node__submitted')}}>
-				{% trans %}Submitted by
-				{{ author_name }}
-				on
-				{{ date }}{% endtrans %}
-				{{ metadata }}
-			</div>
-		</footer>
-	{% endif %}
-
-    {% if 'Rescinded' in content.field_rescind_this_delegation[0] %}
+  {% if 'Rescinded' in content.field_rescind_this_policy_orgpol[0] %}
     <div class="usa-alert usa-alert-normalizer usa-alert--error">
-    <div class="usa-alert__body">
-    <p class="usa-alert__heading">This Delegation has been Rescinded</p>
-    <p class="usa-alert__text">{{ content.field_rescission_date }}</p>
-	<p class="usa-alert__text">{{ content.field_rescission_notes }}</p>
-	<hr>
-	<p class="usa-alert__text"><strong>Delegation's Original Effective/Approval Date:</strong> {{ content.field_effective_date.0 }}</p>
+      <div class="usa-alert__body">
+        <p class="usa-alert__heading">This Organizational Policy has been Rescinded</p>
+        <hr>
+        <p class="usa-alert__text"><strong>Organizational Policy's Original Effective/Approval
+            Date:</strong> {{ content.field_effective_date_orgpol.0 }}</p>
+      </div>
     </div>
+  {% else %}
+    {% if display_submitted %}
+      <div class="node__meta">
+        {{ author_picture }}
+        <div{{ author_attributes.addClass('node__submitted') }}>
+          {% trans %}Submitted by
+            {{ author_name }}
+            on
+            {{ date }}{% endtrans %}
+          {{ metadata }}
+        </div>
+      </div>
+    {% endif %}
+    <div{{ content_attributes.addClass('node__content') }}>
+      {{ content|without('field_rescind_this_policy_orgpol') }}
     </div>
+  {% endif %}
 
-	{% else %}
-
-	<div{{ content_attributes.addClass('node__content') }}>
-
-
-
- {#  content|without('field_rescind_this_delegation','field_rescission_date', 'field_rescission_notes', 'field_governing_authorities', 'field_keywords', 'field_signed_memo') #}
-    {{ content.field_prior_identifier }}
-    {{ content.field_chapter }}
-    {{ content.field_effective_date }}
-    {{ content.field_admin_update_date }}
-    {{ content.field_link_to_delegation_file }}
-    {% if content.field_delegation_preamble1|render|trim is not empty %}
-      <div class="field__item">{{ content.field_delegation_preamble1 }}</div>
-    {% endif %}
-    <ol>
-      {% if content.field_autho|render|trim is not empty %}
-        <li>{{ content.field_autho }}</li>
-      {% endif %}
-      {% if content.field_to_whom_delegated|render|trim is not empty %}
-        <li>{{ content.field_to_whom_delegated }}</li>
-      {% endif %}
-      {% if 'This delegation has the following limitations' in content.field_limitations|render|render %}
-        <li><div class="field__label display-inline">Limitations.</div>
-          {{ content.field_limitation }}
-        </li>
-      {% else %}
-        <li>{{ content.field_limitations }}</li>
-      {% endif %}
-      {% if 'May NOT be redelegated.' in content.field_redelegation|render|render  %}
-        <li>{{ content.field_redelegation  }}</li>
-      {% else %}
-        <li><div class="field__label display-inline">Redelegation.</div>
-        {% if content.field_redelegation_authority|render|trim is not empty %}
-          <div>{{ content.field_redelegation_authority }}</div>
-        {% endif %}
-        {% if content.field_redelegation_language|render|trim is not empty %}
-          <div>{{ content.field_redelegation_language }}</div>
-        {% endif %}
-          </ul>
-        </li>
-      {% endif %}
-      <li><div class="field__label display-inline">Additional References.</div>
-        {% if content.field_references|render|trim is not empty %}
-          {{ content.field_references }}
-        {% else %}
-          <p>None.</p>
-        {% endif %}
-      </li>
-    </ol>
-    {% if content.field_delegation_supercession1|render|trim is not empty %}
-      <div class="field__item">{{ content.field_delegation_supercession1 }}</div>
-    {% endif %}
-    {% if content.field_signed_memo|render|trim is not empty %}
-      <div class="field__item">{{ content.field_signed_memo }}</div>
-    {% endif %}
-    {% if content.field_keywords|render|trim is not empty %}
-      {{ content.field_keywords }}
-    {% endif %}
-  </div>
-	{% endif %}
-
-	</article>
+</article>
