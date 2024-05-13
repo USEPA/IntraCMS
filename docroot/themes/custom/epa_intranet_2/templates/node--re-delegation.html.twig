@@ -120,8 +120,6 @@
           {{ content.field_policy_identifier }}
           {{ content.field_effective_date }}
           {{ content.field_admin_update_date }}
-          {{ content.field_policy_link }}
-          {{ content.field_policy_upload }}
           {{ content.field_agency_delegation }}
           {{ content.field_agency_delegation_link }}
           {{ content.field_transmittal_notice }}
@@ -138,6 +136,8 @@
                 {{ content.field_limitation }}
               </li>
             {% endif %}
+            {{ content.field_policy_link }}
+            {{ content.field_policy_upload }}
             {% if 'May not be redelegated.' in content.field_further_redelegation|render|render  %}
               <li>{{ content.field_further_redelegation  }}</li>
             {% else %}
