@@ -136,8 +136,8 @@
                 {{ content.field_limitation }}
               </li>
             {% endif %}
-            {{ content.field_policy_link }}
-            {{ content.field_policy_upload }}
+            <li>{{ content.field_policy_link }}
+            {{ content.field_policy_upload }}</li>
             {% if 'May not be redelegated.' in content.field_further_redelegation|render|render  %}
               <li>{{ content.field_further_redelegation  }}</li>
             {% else %}
