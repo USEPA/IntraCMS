@@ -2885,23 +2885,7 @@ display:
             value: 'There are no redelegations that match your filter criteria.'
             format: rich_text
           tokenize: false
-      sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: created
-          plugin_id: date
-          order: DESC
-          expose:
-            label: ''
-            field_identifier: created
-          exposed: false
-          granularity: second
+      sorts: {  }
       filters:
         status:
           id: status
@@ -3187,7 +3171,7 @@ display:
             field_redelegation_authority: field_redelegation_authority
             field_chapter: field_chapter
             field_divisions: field_divisions
-          default: field_divisions
+          default: field_policy_identifier
           info:
             field_policy_identifier:
               sortable: true
@@ -3225,8 +3209,6 @@ display:
               empty_column: false
               responsive: ''
             field_divisions:
-              sortable: true
-              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: true
