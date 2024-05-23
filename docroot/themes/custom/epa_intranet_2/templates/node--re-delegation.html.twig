@@ -160,8 +160,8 @@
               </li>
             {% endif %}
             <li><div class="field__label display-inline">Additional References:</div>
-            {% if content.field_references|render|trim is not empty %}
-              {{ content.field_references }}
+            {% if content.field_delegation_references|render|trim is not empty %}
+              {{ content.field_delegation_references }}
             {% else %}
               <p>None.</p>
             {% endif %}
