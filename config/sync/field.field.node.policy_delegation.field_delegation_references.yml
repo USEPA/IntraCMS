@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_delegation_references
     - node.type.policy_delegation
-    - paragraphs.paragraphs_type.governing_authorities
+    - paragraphs.paragraphs_type.delegation_references
   module:
     - entity_reference_revisions
 id: node.policy_delegation.field_delegation_references
@@ -22,7 +22,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      governing_authorities: governing_authorities
+      delegation_references: delegation_references
     negate: 0
     target_bundles_drag_drop:
       contact:
@@ -30,13 +30,13 @@ settings:
         enabled: false
       delegation_references:
         weight: 25
-        enabled: false
+        enabled: true
       dynamic_list:
         weight: 26
         enabled: false
       governing_authorities:
         weight: 27
-        enabled: true
+        enabled: false
       heading_title_and_text:
         weight: 28
         enabled: false
