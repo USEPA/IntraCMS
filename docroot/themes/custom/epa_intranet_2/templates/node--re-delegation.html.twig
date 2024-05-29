@@ -135,8 +135,11 @@
                 {{ content.field_limitation }}
               </li>
             {% endif %}
-            <li>{{ content.field_policy_link }}
-            {{ content.field_policy_upload }}</li>
+            <li>
+              {{ content.field_policy_link }}
+              {{ content.field_policy_upload }}
+              <p>{{ content.field_effective_date }}</p>
+            </li>
             {% if 'May not be redelegated.' in content.field_further_redelegation|render|render  %}
               <li>{{ content.field_further_redelegation  }}</li>
             {% else %}
@@ -151,9 +154,6 @@
 
                   {% if content.field_link_to_further_redelegati|render|trim is not empty %}
                     <li>{{ content.field_link_to_further_redelegati }}<p>{{ content.field_effective_date }}</p></li>
-                  {% endif %}
-                  {% if content.field_upload_further_delegation|render|trim is not empty %}
-                    <li>{{ content.field_upload_further_delegation }}<p>{{ content.field_effective_date }}</p></li>
                   {% endif %}
 
                 </ul>
