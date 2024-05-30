@@ -239,7 +239,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ title }}'
+            text: "{% set extension = field_sop_link | split('.') | last %}\r\n{{ title ~ ' (' ~ extension ~ ')' }}"
             make_link: true
             path: '{{ field_sop_link }}'
             absolute: false
