@@ -1,0 +1,32 @@
+uuid: 26b67387-05ff-4b5a-af50-7d653bf605eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.delegation_references.field_reference_text
+    - field.field.paragraph.delegation_references.field_reference_type
+    - paragraphs.paragraphs_type.delegation_references
+  module:
+    - text
+id: paragraph.delegation_references.default
+targetEntityType: paragraph
+bundle: delegation_references
+mode: default
+content:
+  field_reference_text:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_reference_type:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

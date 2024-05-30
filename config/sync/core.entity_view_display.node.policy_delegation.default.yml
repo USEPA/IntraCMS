@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.policy_delegation.field_autho
     - field.field.node.policy_delegation.field_chapter
     - field.field.node.policy_delegation.field_delegation_preamble1
+    - field.field.node.policy_delegation.field_delegation_references
     - field.field.node.policy_delegation.field_delegation_supercession1
     - field.field.node.policy_delegation.field_effective_date
     - field.field.node.policy_delegation.field_expiration_date
@@ -20,7 +21,6 @@ dependencies:
     - field.field.node.policy_delegation.field_redelegation
     - field.field.node.policy_delegation.field_redelegation_authority
     - field.field.node.policy_delegation.field_redelegation_language
-    - field.field.node.policy_delegation.field_references
     - field.field.node.policy_delegation.field_rescind_this_delegation
     - field.field.node.policy_delegation.field_rescission_date
     - field.field.node.policy_delegation.field_rescission_notes
@@ -72,6 +72,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 23
+    region: content
+  field_delegation_references:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 25
     region: content
   field_delegation_supercession1:
     type: text_default
@@ -175,15 +184,6 @@ content:
     type: basic_string
     label: hidden
     settings: {  }
-    third_party_settings: {  }
-    weight: 16
-    region: content
-  field_references:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
     third_party_settings: {  }
     weight: 16
     region: content
