@@ -900,6 +900,62 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      defaults:
+        relationships: false
+      relationships:
+        uid:
+          id: uid
+          table: node_field_data
+          field: uid
+          admin_label: author
+          plugin_id: standard
+          required: true
+        group_content:
+          id: group_content
+          table: node_field_data
+          field: group_content
+          relationship: none
+          group_type: group
+          admin_label: 'Content group content'
+          entity_type: node
+          plugin_id: group_content_to_entity_reverse
+          required: false
+          group_content_plugins:
+            'group_node:article': 'group_node:article'
+            'group_node:blog_post': 'group_node:blog_post'
+            'group_node:book': 'group_node:book'
+            'group_node:employee_profile': 'group_node:employee_profile'
+            'group_node:form': 'group_node:form'
+            'group_node:grants_policy_issuances_gpis_': 'group_node:grants_policy_issuances_gpis_'
+            'group_node:hr_advisories_and_bulletins': 'group_node:hr_advisories_and_bulletins'
+            'group_node:interagency_policy_issuance_ipi_': 'group_node:interagency_policy_issuance_ipi_'
+            'group_node:landing_page': 'group_node:landing_page'
+            'group_node:mass_mailer': 'group_node:mass_mailer'
+            'group_node:organizational_policy': 'group_node:organizational_policy'
+            'group_node:page': 'group_node:page'
+            'group_node:photos_of_the_week': 'group_node:photos_of_the_week'
+            'group_node:policy': 'group_node:policy'
+            'group_node:policy_delegation': 'group_node:policy_delegation'
+            'group_node:policy_notice': 'group_node:policy_notice'
+            'group_node:quiz': 'group_node:quiz'
+            'group_node:re_delegation': 'group_node:re_delegation'
+            'group_node:transmittal_notce': 'group_node:transmittal_notce'
+            'group_node:webform': 'group_node:webform'
+            'group_node:event': '0'
+            'group_node:qapp': '0'
+            'group_node:sop': '0'
+            'group_node:staff_member': '0'
+        revision_uid:
+          id: revision_uid
+          table: node_revision
+          field: revision_uid
+          relationship: none
+          group_type: group
+          admin_label: 'revision user'
+          entity_type: node
+          entity_field: revision_uid
+          plugin_id: standard
+          required: false
       display_extenders: {  }
       path: admin/content/node
       menu:
@@ -1379,7 +1435,62 @@ display:
             administrator: administrator
       defaults:
         access: false
+        relationships: false
         fields: false
+      relationships:
+        uid:
+          id: uid
+          table: node_field_data
+          field: uid
+          admin_label: author
+          plugin_id: standard
+          required: true
+        group_content:
+          id: group_content
+          table: node_field_data
+          field: group_content
+          relationship: none
+          group_type: group
+          admin_label: 'Content group content'
+          entity_type: node
+          plugin_id: group_content_to_entity_reverse
+          required: false
+          group_content_plugins:
+            'group_node:article': 'group_node:article'
+            'group_node:blog_post': 'group_node:blog_post'
+            'group_node:book': 'group_node:book'
+            'group_node:employee_profile': 'group_node:employee_profile'
+            'group_node:form': 'group_node:form'
+            'group_node:grants_policy_issuances_gpis_': 'group_node:grants_policy_issuances_gpis_'
+            'group_node:hr_advisories_and_bulletins': 'group_node:hr_advisories_and_bulletins'
+            'group_node:interagency_policy_issuance_ipi_': 'group_node:interagency_policy_issuance_ipi_'
+            'group_node:landing_page': 'group_node:landing_page'
+            'group_node:mass_mailer': 'group_node:mass_mailer'
+            'group_node:organizational_policy': 'group_node:organizational_policy'
+            'group_node:page': 'group_node:page'
+            'group_node:photos_of_the_week': 'group_node:photos_of_the_week'
+            'group_node:policy': 'group_node:policy'
+            'group_node:policy_delegation': 'group_node:policy_delegation'
+            'group_node:policy_notice': 'group_node:policy_notice'
+            'group_node:quiz': 'group_node:quiz'
+            'group_node:re_delegation': 'group_node:re_delegation'
+            'group_node:transmittal_notce': 'group_node:transmittal_notce'
+            'group_node:webform': 'group_node:webform'
+            'group_node:event': '0'
+            'group_node:qapp': '0'
+            'group_node:sop': '0'
+            'group_node:staff_member': '0'
+        revision_uid:
+          id: revision_uid
+          table: node_revision
+          field: revision_uid
+          relationship: none
+          group_type: group
+          admin_label: 'revision user'
+          entity_type: node
+          entity_field: revision_uid
+          plugin_id: standard
+          required: false
       display_description: ''
       display_extenders: {  }
       path: admin/content/group-actions
@@ -1715,8 +1826,63 @@ display:
           1: AND
       defaults:
         access: false
+        relationships: false
         filters: false
         filter_groups: false
+      relationships:
+        uid:
+          id: uid
+          table: node_field_data
+          field: uid
+          admin_label: author
+          plugin_id: standard
+          required: true
+        group_content:
+          id: group_content
+          table: node_field_data
+          field: group_content
+          relationship: none
+          group_type: group
+          admin_label: 'Content group content'
+          entity_type: node
+          plugin_id: group_content_to_entity_reverse
+          required: false
+          group_content_plugins:
+            'group_node:article': 'group_node:article'
+            'group_node:blog_post': 'group_node:blog_post'
+            'group_node:book': 'group_node:book'
+            'group_node:employee_profile': 'group_node:employee_profile'
+            'group_node:form': 'group_node:form'
+            'group_node:grants_policy_issuances_gpis_': 'group_node:grants_policy_issuances_gpis_'
+            'group_node:hr_advisories_and_bulletins': 'group_node:hr_advisories_and_bulletins'
+            'group_node:interagency_policy_issuance_ipi_': 'group_node:interagency_policy_issuance_ipi_'
+            'group_node:landing_page': 'group_node:landing_page'
+            'group_node:mass_mailer': 'group_node:mass_mailer'
+            'group_node:organizational_policy': 'group_node:organizational_policy'
+            'group_node:page': 'group_node:page'
+            'group_node:photos_of_the_week': 'group_node:photos_of_the_week'
+            'group_node:policy': 'group_node:policy'
+            'group_node:policy_delegation': 'group_node:policy_delegation'
+            'group_node:policy_notice': 'group_node:policy_notice'
+            'group_node:quiz': 'group_node:quiz'
+            'group_node:re_delegation': 'group_node:re_delegation'
+            'group_node:transmittal_notce': 'group_node:transmittal_notce'
+            'group_node:webform': 'group_node:webform'
+            'group_node:event': '0'
+            'group_node:qapp': '0'
+            'group_node:sop': '0'
+            'group_node:staff_member': '0'
+        revision_uid:
+          id: revision_uid
+          table: node_revision
+          field: revision_uid
+          relationship: none
+          group_type: group
+          admin_label: 'revision user'
+          entity_type: node
+          entity_field: revision_uid
+          plugin_id: standard
+          required: false
       display_description: ''
       display_extenders: {  }
       path: admin/content/regex
