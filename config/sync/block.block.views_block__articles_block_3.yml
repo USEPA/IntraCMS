@@ -1,0 +1,35 @@
+uuid: dc4fdd2d-6451-4181-87d8-829826ecb38a
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.articles
+  module:
+    - block_in_page_not_found
+    - system
+    - views
+  theme:
+    - epa_intranet_2
+id: views_block__articles_block_3
+theme: epa_intranet_2
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:articles-block_3'
+settings:
+  id: 'views_block:articles-block_3'
+  label: ''
+  label_display: visible
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/*/organizational-policies'
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
