@@ -35,31 +35,6 @@ third_party_settings:
           label: ''
           column_widths: 67-33
         components:
-          a123568d-c573-411b-bbe6-866be42f59e3:
-            uuid: a123568d-c573-411b-bbe6-866be42f59e3
-            region: first
-            configuration:
-              id: 'field_block:node:event:field_event_date'
-              label: 'Event Date'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: smartdate_recurring
-                label: above
-                settings:
-                  timezone_override: ''
-                  format: default
-                  force_chronological: false
-                  add_classes: false
-                  past_display: 2
-                  upcoming_display: 2
-                  show_next: false
-                third_party_settings: {  }
-            weight: 2
-            additional: {  }
           2649052a-3c2d-4d5e-bab2-6f4cab35bea9:
             uuid: 2649052a-3c2d-4d5e-bab2-6f4cab35bea9
             region: second
@@ -118,7 +93,7 @@ third_party_settings:
                   description: '[node:field_event_description]  <a href=''[node:field_event_link:uri]''>[node:field_event_link:title]</a>'
                   past_events: false
                 third_party_settings: {  }
-            weight: 1
+            weight: 3
             additional:
               layout_builder_styles_style: ''
           a1c59067-8f3d-491c-8384-a49f2703466a:
@@ -182,21 +157,21 @@ third_party_settings:
                 label: above
                 settings: {  }
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
             additional: {  }
-          47040f10-f50e-4db7-8eef-3aa7797930c7:
-            uuid: 47040f10-f50e-4db7-8eef-3aa7797930c7
+          a123568d-c573-411b-bbe6-866be42f59e3:
+            uuid: a123568d-c573-411b-bbe6-866be42f59e3
             region: first
             configuration:
               id: 'field_block:node:event:field_event_date'
               label: 'Event Date'
-              label_display: '0'
+              label_display: visible
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
               formatter:
-                type: smartdate_default
+                type: smartdate_recurring
                 label: above
                 settings:
                   timezone_override: ''
@@ -214,26 +189,49 @@ third_party_settings:
                     unit: ''
                     decimals: 2
                     suffix: h
+                  past_display: 0
+                  upcoming_display: 10
+                  show_next: false
+                  current_upcoming: false
                 third_party_settings:
                   date_augmenter:
-                    status:
-                      addtocal: 0
-                    weights:
-                      order:
+                    instances:
+                      status:
+                        addtocal: false
+                      weights:
+                        order:
+                          addtocal:
+                            weight: 0
+                      settings:
                         addtocal:
-                          weight: '0'
-                    augmenter_settings:
-                      settings__formatter__third_party_settings__date_augmenter__augmenter_settings__active_tab: ''
-                    settings:
-                      addtocal:
-                        label: 'Add to Calendar'
-                        event_title: ''
-                        location: ''
-                        description: ''
-                        max_desc: '60'
-                        past_events: 0
-                        target: ''
-            weight: 0
+                          label: 'Add to Calendar'
+                          event_title: ''
+                          location: ''
+                          description: ''
+                          max_desc: '60'
+                          past_events: 0
+                          target: ''
+                      augmenter_settings:
+                        settings__formatter__third_party_settings__date_augmenter__instances__augmenter_settings__active_tab: ''
+                    rule:
+                      status:
+                        addtocal: false
+                      weights:
+                        order:
+                          addtocal:
+                            weight: 0
+                      settings:
+                        addtocal:
+                          label: 'Add to Calendar'
+                          event_title: ''
+                          location: ''
+                          description: ''
+                          max_desc: '60'
+                          past_events: 0
+                          target: ''
+                      augmenter_settings:
+                        settings__formatter__third_party_settings__date_augmenter__rule__augmenter_settings__active_tab: ''
+            weight: 2
             additional: {  }
         third_party_settings: {  }
   layout_library:
