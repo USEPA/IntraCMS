@@ -697,6 +697,33 @@ display:
         - 'config:field.storage.node.field_epa_form_number'
         - 'config:field.storage.node.field_form_additional_resources'
         - 'config:field.storage.node.field_form_title'
+  block_1:
+    id: block_1
+    display_title: Block
+    display_plugin: block
+    position: 1
+    display_options:
+      defaults:
+        header: false
+      display_description: ''
+      header: {  }
+      display_extenders: {  }
+      block_description: 'Active Forms'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.body'
+        - 'config:field.storage.node.field_epa_form_number'
+        - 'config:field.storage.node.field_form_additional_resources'
+        - 'config:field.storage.node.field_form_title'
   entity_reference_1:
     id: entity_reference_1
     display_title: 'Entity Reference - Rescinded Forms'
