@@ -118,10 +118,17 @@
         <div{{ content_attributes.addClass('node__content') }}>
             {#  content|without('field_rescind_redelegation','field_rescission_date','field_rescission_notes','field_signed_memo','field_further_redelegation_files') #}
           {{ content.field_policy_identifier }}
-          {{ content.field_admin_update_date }}
+          {{ content.field_chapter }}
+          {# content.field_admin_update_date #}
+          <p>
           {{ content.field_agency_delegation }}
           {{ content.field_agency_delegation_link }}
+          </p>
+          {{ content.field_policy_link }}
+          {{ content.field_policy_upload }}
+          {{ content.field_effective_date }}
           {{ content.field_transmittal_notice }}
+
           <ol>
             {% if content.field_redelegation_authority|render|trim is not empty %}
               <li>{{ content.field_redelegation_authority }}</li>
@@ -135,11 +142,6 @@
                 {{ content.field_limitation }}
               </li>
             {% endif %}
-            <li>
-              {{ content.field_policy_link }}
-              {{ content.field_policy_upload }}
-              <p>{{ content.field_effective_date }}</p>
-            </li>
             {% if 'May not be redelegated.' in content.field_further_redelegation|render|render  %}
               <li>{{ content.field_further_redelegation  }}</li>
             {% else %}
