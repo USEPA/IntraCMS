@@ -27,22 +27,12 @@
 <div{{ attributes }}>
     <button{{ button_attributes.addClass(classes) }}>{{ button_text }}</button>
     <div{{ menu_attributes }}>
-      <ul class="addtocal-links">
-        <li class="addtocal-link" data-addtocal-type="ics">
-          <a href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0d%0aVERSION:2.0%0d%0aCALSCALE:GREGORIAN%0d%0aBEGIN:VTIMEZONE%0d%0aTZID:America/Chicago%0d%0aX-MICROSOFT-CDO-TZID:11%0d%0aBEGIN:DAYLIGHT%0d%0aDTSTART:20230620T054500%0d%0aTZOFFSETFROM:-500%0d%0aTZOFFSETTO:-500%0d%0aTZNAME:CDT%0d%0aEND:DAYLIGHT%0d%0aBEGIN:DAYLIGHT%0d%0aDTSTART:20240310T080000%0d%0aTZOFFSETFROM:-600%0d%0aTZOFFSETTO:-500%0d%0aTZNAME:CDT%0d%0aEND:DAYLIGHT%0d%0aBEGIN:STANDARD%0d%0aDTSTART:20231105T070000%0d%0aTZOFFSETFROM:-500%0d%0aTZOFFSETTO:-600%0d%0aTZNAME:CST%0d%0aEND:STANDARD%0d%0aBEGIN:STANDARD%0d%0aDTSTART:20241103T070000%0d%0aTZOFFSETFROM:-500%0d%0aTZOFFSETTO:-600%0d%0aTZNAME:CST%0d%0aEND:STANDARD%0d%0aEND:VTIMEZONE%0d%0aBEGIN:VEVENT%0d%0aUID:a98204413be6e6de193707d97bf23ec7%0d%0aSUMMARY:testing add to cal%0d%0aDTSTART;TZID=America/Chicago:20240614T004500%0d%0aDTEND;TZID=America/Chicago:20240614T014500%0d%0aX-ALT-DESC;FMTTYPE=TEXT/HTML:&lt;p&gt;test&lt;/p&gt;  &lt;a href=&#039;entity:node/133&#039;&gt;test&lt;/a%0d%0a &gt;%0d%0aEND:VEVENT%0d%0aEND:VCALENDAR%0d%0a" target="_blank" rel="noopener" aria-label="Add to iCal / MS Outlook">Microsoft Outlook/iCal</a>
-        </li>
-        <li class="addtocal-link" data-addtocal-type="google">
-          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;dates=20240614T054500Z/20240614T064500Z&amp;ctz=America/Chicago&amp;text=testing+add+to+cal&amp;details=%3Cp%3Etest%3C%2Fp%3E++%3Ca+href%3D%27entity%3Anode%2F133%27%3Etest%3C%2Fa%3E" target="_blank" rel="noopener" aria-label="Add to Google Calendar">Google</a>
-        </li>
-        <li class="addtocal-link" data-addtocal-type="yahoo">
-          <a href="https://calendar.yahoo.com/?v=60&amp;view=d&amp;type=20&amp;ST=20240614T054500Z&amp;ET=20240614T064500Z&amp;TITLE=testing%20add%20to%20cal&amp;DESC=%3Cp%3Etest%3C%2Fp%3E%20%20%3Ca%20href%3D%27entity%3Anode%2F133%27%3Etest%3C%2Fa%3E" target="_blank" rel="noopener" aria-label="Add to Yahoo Calendar">Yahoo!</a>
-        </li>
-        <li class="addtocal-link" data-addtocal-type="web_outlook">
-          <a href="https://outlook.live.com/calendar/deeplink/compose?path=/calendar/action/compose&amp;rru=addevent&amp;startdt=2024-06-14T05:45:00Z&amp;enddt=2024-06-14T06:45:00Z&amp;subject=testing%20add%20to%20cal&amp;body=%3Cp%3Etest%3C%2Fp%3E%20%20%3Ca%20href%3D%27entity%3Anode%2F133%27%3Etest%3C%2Fa%3E" target="_blank" rel="noopener" aria-label="Add to Outlook.com Calendar">Outlook.com</a>
-        </li>
-        <li class="addtocal-link" data-addtocal-type="web_office">
-          <a href="https://outlook.office.com/calendar/deeplink/compose?path=/calendar/action/compose&amp;rru=addevent&amp;startdt=2024-06-14T05:45:00Z&amp;enddt=2024-06-14T06:45:00Z&amp;subject=testing%20add%20to%20cal&amp;body=%3Cp%3Etest%3C%2Fp%3E%20%20%3Ca%20href%3D%27entity%3Anode%2F133%27%3Etest%3C%2Fa%3E" target="_blank" rel="noopener" aria-label="Add to Office.com Calendar">Office.com</a>
-        </li>
-      </ul>
+        <ul class="addtocal-links">
+            {% for type, item in items %}
+                <li class="addtocal-link" data-addtocal-type="{{ type }}">
+                    <a href="{{ item.url }}" target="_blank" rel="noopener" aria-label="{{ item['aria-label'] }}">{{ item.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 </div>
