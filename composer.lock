@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b70cccc7c41b083a62386cbc718c504",
+    "content-hash": "b2f140e528cfb2643080c175c2ef8b05",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -255,18 +255,6 @@
             "dist": {
                 "type": "zip",
                 "url": "https://download.ckeditor.com/fakeobjects/releases/fakeobjects_4.16.2.zip"
-            },
-            "require": {
-                "composer/installers": "^1.9.0"
-            },
-            "type": "drupal-library"
-        },
-        {
-            "name": "ckeditor-plugin/liststyle",
-            "version": "4.17.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://download.ckeditor.com/liststyle/releases/liststyle_4.17.1.zip"
             },
             "require": {
                 "composer/installers": "^1.9.0"
@@ -4934,6 +4922,80 @@
             "homepage": "https://www.drupal.org/project/date_augmenter",
             "support": {
                 "source": "https://git.drupalcode.org/project/date_augmenter"
+            }
+        },
+        {
+            "name": "drupal/db_maintenance",
+            "version": "3.0.0-rc1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/db_maintenance.git",
+                "reference": "3.0.0-rc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/db_maintenance-3.0.0-rc1.zip",
+                "reference": "3.0.0-rc1",
+                "shasum": "e7f69d629f7e421f453467be476aae3f272b153c"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.0-rc1",
+                    "datestamp": "1700236213",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "David N",
+                    "homepage": "https://www.drupal.org/u/deekayen",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://www.drupal.org/node/41588/committers",
+                    "role": "Contributors"
+                },
+                {
+                    "name": "deekayen",
+                    "homepage": "https://www.drupal.org/user/972"
+                },
+                {
+                    "name": "jgraham",
+                    "homepage": "https://www.drupal.org/user/146055"
+                },
+                {
+                    "name": "marcp",
+                    "homepage": "https://www.drupal.org/user/20885"
+                },
+                {
+                    "name": "Nafes",
+                    "homepage": "https://www.drupal.org/user/2489926"
+                },
+                {
+                    "name": "VicOnt",
+                    "homepage": "https://www.drupal.org/user/1801242"
+                }
+            ],
+            "description": "DB Maintenance module",
+            "homepage": "https://www.drupal.org/project/db_maintenance",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/db_maintenance",
+                "issues": "https://www.drupal.org/project/issues/db_maintenance"
             }
         },
         {
@@ -22469,6 +22531,7 @@
         "drupal/addtocal_augment": 10,
         "drupal/auto_entitylabel": 10,
         "drupal/bamboo_twig": 15,
+        "drupal/db_maintenance": 5,
         "drupal/entity_clone": 10,
         "drupal/entity_usage": 10,
         "drupal/group_outsider_in": 10,
