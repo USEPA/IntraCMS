@@ -1,0 +1,26 @@
+--- docroot/modules/contrib/addtocal/src/Plugin/Field/FieldFormatter/AddtocalView.php	2024-06-10 13:38:30.239924900 -0500
++++ docroot/modules/contrib/addtocal/src/Plugin/Field/FieldFormatter/AddtocalView.php	2024-06-10 13:34:13.767000000 -0500
+@@ -240,6 +240,11 @@
+         ],
+         '#menu_attributes' => [],
+         '#items' => [
++          'ics' => [
++            'title' => $this->t('Microsoft Outlook/iCal'),
++            'aria-label' => $this->t('Add to Microsoft Outlook/iCal'),
++            'generator' => new Ics(),
++          ],
+           'google' => [
+             'title' => $this->t('Google'),
+             'aria-label' => $this->t('Add to Google Calendar'),
+@@ -260,11 +265,6 @@
+             'aria-label' => $this->t('Add to Office.com Calendar'),
+             'generator' => new WebOffice(),
+           ],
+-          'ics' => [
+-            'title' => $this->t('iCal / MS Outlook'),
+-            'aria-label' => $this->t('Add to iCal / MS Outlook'),
+-            'generator' => new Ics(),
+-          ],
+         ],
+         '#access' => $addtocal_access,
+       ];
