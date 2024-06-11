@@ -156,10 +156,10 @@
 
                   {# Either the link OR the upload will display below depending on which one has content. #}
                   {% if content.field_link_to_further_redelegati|render|trim is not empty %}
-                    <li>{{ content.field_link_to_further_redelegati }}<p>{{ content.field_effective_date }}</p></li>
+                    <li>{{ content.field_link_to_further_redelegati }}</li>
                   {% endif %}
                   {% if content.field_upload_further_delegation|render|trim is not empty %}
-                    <li>{{ content.field_upload_further_delegation }}<p>{{ content.field_effective_date }}</p></li>
+                    <li>{{ content.field_upload_further_delegation }}</li>
                   {% endif %}
 
                 </ul>
