@@ -2,17 +2,17 @@
 
 namespace Drupal\epa_wysiwyg\Plugin\Filter;
 
-use Drupal\filter\Annotation\Filter;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 
 /**
- * Class EPAFilterEmptyParagraphs
+ * Class EPAFilterEmptyParagraphs.
+ *
  * @Filter(
  *   id = "epa_filter_empty_paragraphs",
  *   title = @Translation("Filter empty paragraphs"),
  *   description = @Translation("Removes empty paragraphs from html output."),
- *   type = Drupal\filter\Plugin\FilterInterface::TYPE_MARKUP_LANGUAGE,
+ *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_IRREVERSIBLE,
  * )
  * @package Drupal\epa_wysiwyg\Plugin\Filter
  */
