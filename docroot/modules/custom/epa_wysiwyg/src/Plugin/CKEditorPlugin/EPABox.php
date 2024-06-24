@@ -14,7 +14,7 @@ use Drupal\editor\Entity\Editor;
  *
  * @CKEditorPlugin(
  *   id = "epaBox",
- *   label = @Translation("Related Info Box")
+ *   label = @Translation("Related Info Summary Box")
  * )
  */
 class EPABox extends CKEditorPluginBase {
@@ -43,7 +43,7 @@ class EPABox extends CKEditorPluginBase {
   public function getFile() {
     // Make sure that the path to the plugin.js matches the file structure of
     // the CKEditor plugin you are implementing.
-    return drupal_get_path('module', 'epa_wysiwyg') . '/js/plugins/epaBox/plugin.js';
+    return \Drupal::service('extension.list.module')->getPath('epa_wysiwyg') . '/js/plugins/epaBox/plugin.js';
   }
 
   /**

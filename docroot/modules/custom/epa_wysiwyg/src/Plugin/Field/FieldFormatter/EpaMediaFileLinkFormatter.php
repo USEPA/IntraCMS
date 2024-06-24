@@ -5,8 +5,6 @@ namespace Drupal\epa_wysiwyg\Plugin\Field\FieldFormatter;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\file\Plugin\Field\FieldFormatter\FileFormatterBase;
-use Drupal\Core\Url;
-use Drupal\Core\Link;
 
 /**
  * Plugin implementation of the 'epa_media_file_link_formatter' formatter.
@@ -27,6 +25,7 @@ class EpaMediaFileLinkFormatter extends FileFormatterBase {
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
+    /** @var \Drupal\media\Entity\Media $media */
     $media = $items->getEntity();
 
     foreach ($this->getEntitiesToView($items, $langcode) as $delta => $file) {
@@ -35,11 +34,15 @@ class EpaMediaFileLinkFormatter extends FileFormatterBase {
       $content = [
         '#theme' => 'epa_file_link',
         '#file' => $file,
-        '#link_text' => $media->getName() . ($this->getSetting('show_extension') ? " ($extension)": NULL),
+        '#link_text' => $media->getName() . ($this->getSetting('show_extension') ? " ($extension)" : NULL),
         '#cache' => [
           'tags' => $file->getCacheTags(),
         ],
       ];
+
+      if ($media->hasField('field_limit_file_accessibility')) {
+        $content['#media_accessibility'] = $media->field_limit_file_accessibility->value ? 'private' : 'public';
+      }
 
       // Pass field item attributes to the theme function.
       if (isset($item->_attributes)) {
@@ -49,6 +52,7 @@ class EpaMediaFileLinkFormatter extends FileFormatterBase {
         // formatter output and should not be rendered in the field template.
         unset($item->_attributes);
       }
+
       $elements[$delta] = $content;
     }
     return $elements;
@@ -93,6 +97,5 @@ class EpaMediaFileLinkFormatter extends FileFormatterBase {
 
     return $summary;
   }
-
 
 }
