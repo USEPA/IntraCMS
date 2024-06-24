@@ -1,0 +1,81 @@
+uuid: 27725ee6-334c-46cf-9270-6be3f91d9e3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.rich_text_beta
+  module:
+    - ckeditor5
+format: rich_text_beta
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - heading
+      - bold
+      - italic
+      - '|'
+      - bulletedList
+      - numberedList
+      - insertTable
+      - link
+      - blockQuote
+      - underline
+      - code
+      - codeBlock
+      - strikethrough
+      - subscript
+      - superscript
+      - horizontalLine
+      - textPartLanguage
+      - sourceEditing
+  plugins:
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+        - heading5
+        - heading6
+    ckeditor5_sourceEditing:
+      allowed_tags:
+        - '<dl>'
+        - '<dt>'
+        - '<dd>'
+        - '<ins data-date>'
+        - '<ol type class>'
+        - '<li class>'
+        - '<th scope width data-sortable role>'
+        - '<td width data-sort-value>'
+        - '<tr scope>'
+        - '<figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter data-cke-display-name data-placeholder class>'
+        - '<figure role class>'
+        - '<div alt title id data-* class>'
+        - '<source media type>'
+        - '<iframe longdesc name scrolling src title align height frameborder width>'
+        - '<button aria-expanded aria-controls class>'
+        - '<svg role aria-* class>'
+        - '<use href xlink*>'
+        - '<drupal-inline-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title>'
+        - '<drupal-entity data-* title alt>'
+        - '<cite class="pull-quote__cite">'
+        - '<table width height class="usa-* datatable">'
+        - '<ul type class="list list--pipeline">'
+        - '<span class="usa-* usa-tag warning text-bold">'
+        - '<a target hreflang data-entity-type data-entity-uuid name id data-entity-substitution class="usa-button">'
+        - '<blockquote cite class="pull-quote u-align-left u-align-right">'
+        - '<img typeof>'
+        - '<h2 id>'
+        - '<h3 id>'
+        - '<h4 id>'
+        - '<h5 id>'
+        - '<h6 id>'
+        - '<drupal-media title data-view-mode>'
+    ckeditor5_list:
+      reversed: false
+      startIndex: true
+    ckeditor5_language:
+      language_list: un
+    media_media:
+      allow_view_mode_override: true
+image_upload: {  }
