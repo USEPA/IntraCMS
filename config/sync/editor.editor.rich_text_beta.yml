@@ -17,6 +17,9 @@ settings:
       - '|'
       - bulletedList
       - numberedList
+      - indent
+      - outdent
+      - alignment
       - insertTable
       - link
       - blockQuote
@@ -26,8 +29,13 @@ settings:
       - strikethrough
       - subscript
       - superscript
+      - specialCharacters
+      - '|'
+      - '-'
+      - drupalMedia
       - horizontalLine
-      - textPartLanguage
+      - undo
+      - redo
       - sourceEditing
   plugins:
     ckeditor5_heading:
@@ -74,8 +82,12 @@ settings:
     ckeditor5_list:
       reversed: false
       startIndex: true
-    ckeditor5_language:
-      language_list: un
+    ckeditor5_alignment:
+      enabled_alignments:
+        - left
+        - center
+        - right
+        - justify
     media_media:
       allow_view_mode_override: true
 image_upload: {  }
