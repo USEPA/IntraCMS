@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da033d44ab30daa8f3856aa5ead1f4a0",
+    "content-hash": "0b015570f01eddcf271bb0ea4b6ec076",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3515,6 +3515,52 @@
             }
         },
         {
+            "name": "drupal/ckeditor5_embedded_content",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor5_embedded_content.git",
+                "reference": "1.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ckeditor5_embedded_content-1.0.1.zip",
+                "reference": "1.0.1",
+                "shasum": "a30dba88b32630cec446c4117057de45c2d0e93e"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10",
+                "symfony/css-selector": "^4 || ^5 || ^6",
+                "symfony/dom-crawler": "^4 || ^5 || ^6"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.1",
+                    "datestamp": "1688981490",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "nuez",
+                    "homepage": "https://www.drupal.org/user/758020"
+                }
+            ],
+            "description": "Provides a ckeditor5 and drupal plugin to embed styled content into ckeditor text areas.",
+            "homepage": "http://drupal.org/project/ckeditor5_embedded_content",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ckeditor5_embedded_content"
+            }
+        },
+        {
             "name": "drupal/ckeditor_iframe",
             "version": "2.1.0",
             "source": {
@@ -3628,27 +3674,27 @@
         },
         {
             "name": "drupal/ckeditor_templates",
-            "version": "1.2.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ckeditor_templates.git",
-                "reference": "8.x-1.2"
+                "reference": "8.x-1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ckeditor_templates-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "4957f9d3b1d817433432f00518c18f52980a5376"
+                "url": "https://ftp.drupal.org/files/projects/ckeditor_templates-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "d7e1f4f542eb3ae04b02acf226a5653f8f91a22f"
             },
             "require": {
                 "drupal/ckeditor": "*",
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^9.3 || ^10 || ^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1601232517",
+                    "version": "8.x-1.4",
+                    "datestamp": "1713711694",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3661,6 +3707,11 @@
             ],
             "authors": [
                 {
+                    "name": "Lucas Le Goff",
+                    "homepage": "https://www.drupal.org/u/lucaslg",
+                    "role": "Maintainer"
+                },
+                {
                     "name": "lucaslg",
                     "homepage": "https://www.drupal.org/user/3128975"
                 },
@@ -3669,35 +3720,36 @@
                     "homepage": "https://www.drupal.org/user/52136"
                 }
             ],
-            "description": "Integrates the CKEditor templates plugin.",
+            "description": "This module integrates the CKEditor templates plugin.",
             "homepage": "https://www.drupal.org/project/ckeditor_templates",
             "support": {
-                "source": "https://git.drupalcode.org/project/ckeditor_templates"
+                "source": "https://cgit.drupalcode.org/ckeditor_templates",
+                "issues": "https://www.drupal.org/project/ckeditor_templates"
             }
         },
         {
             "name": "drupal/ckeditor_templates_ui",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ckeditor_templates_ui.git",
-                "reference": "8.x-1.4"
+                "reference": "8.x-1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ckeditor_templates_ui-8.x-1.4.zip",
-                "reference": "8.x-1.4",
-                "shasum": "9ad3716df4c99f84aa5acd56702238b8043b39c5"
+                "url": "https://ftp.drupal.org/files/projects/ckeditor_templates_ui-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "c8df4dbfdd28f02f5c6a423a74aed0f43663d624"
             },
             "require": {
                 "drupal/ckeditor_templates": "*",
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^9.3 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.4",
-                    "datestamp": "1602169160",
+                    "version": "8.x-1.5",
+                    "datestamp": "1679845059",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -12240,32 +12292,35 @@
         },
         {
             "name": "drupal/uswds_ckeditor_integration",
-            "version": "1.0.0-beta6",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/uswds_ckeditor_integration.git",
-                "reference": "1.0.0-beta6"
+                "reference": "2.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/uswds_ckeditor_integration-1.0.0-beta6.zip",
-                "reference": "1.0.0-beta6",
-                "shasum": "b4ff9f3ffb0bfe57e1fdff430844194d7a4d92be"
+                "url": "https://ftp.drupal.org/files/projects/uswds_ckeditor_integration-2.0.3.zip",
+                "reference": "2.0.3",
+                "shasum": "bf5660fee6c029dfc14d7bf43b0016f05dc9d341"
             },
             "require": {
-                "drupal/ckeditor_templates": "^1.2",
-                "drupal/ckeditor_templates_ui": "^1.4",
-                "drupal/core": "^8 || ^9",
-                "drupal/paragraphs_entity_embed": "^2.0@alpha"
+                "drupal/ckeditor5_embedded_content": "^1.0",
+                "drupal/core": "^9 || ^10",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "drupal/paragraphs_entity_embed": "*",
+                "drupal/uswds_paragraph_components": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.0-beta6",
-                    "datestamp": "1634311117",
+                    "version": "2.0.3",
+                    "datestamp": "1715989511",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -19225,6 +19280,71 @@
             "time": "2022-11-05T17:10:16+00:00"
         },
         {
+            "name": "symfony/css-selector",
+            "version": "v6.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "4b61b02fe15db48e3687ce1c45ea385d1780fe08"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/4b61b02fe15db48e3687ce1c45ea385d1780fe08",
+                "reference": "4b61b02fe15db48e3687ce1c45ea385d1780fe08",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\CssSelector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Jean-François Simon",
+                    "email": "jeanfrancois.simon@sensiolabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Converts CSS selectors to XPath expressions",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/css-selector/tree/v6.4.8"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-05-31T14:49:08+00:00"
+        },
+        {
             "name": "symfony/debug",
             "version": "v4.4.44",
             "source": {
@@ -19445,6 +19565,73 @@
                 }
             ],
             "time": "2023-01-24T14:02:46+00:00"
+        },
+        {
+            "name": "symfony/dom-crawler",
+            "version": "v6.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/dom-crawler.git",
+                "reference": "105b56a0305d219349edeb60a800082eca864e4b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/105b56a0305d219349edeb60a800082eca864e4b",
+                "reference": "105b56a0305d219349edeb60a800082eca864e4b",
+                "shasum": ""
+            },
+            "require": {
+                "masterminds/html5": "^2.6",
+                "php": ">=8.1",
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "require-dev": {
+                "symfony/css-selector": "^5.4|^6.0|^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\DomCrawler\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Eases DOM navigation for HTML and XML documents",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/dom-crawler/tree/v6.4.8"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-05-31T14:49:08+00:00"
         },
         {
             "name": "symfony/error-handler",
@@ -22516,7 +22703,6 @@
         "drupal/paragraphs_entity_embed": 15,
         "drupal/taxonomy_term_depth": 20,
         "drupal/ultimate_cron": 15,
-        "drupal/uswds_ckeditor_integration": 10,
         "drupal/uswds_paragraphs": 10,
         "drupal/views_taxonomy_term_name_into_id": 15,
         "drupal/webform_analysis": 10,
