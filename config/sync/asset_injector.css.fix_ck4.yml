@@ -1,0 +1,18 @@
+uuid: a73dc94e-8941-4452-b692-66d549d8a28c
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+id: fix_ck4
+label: 'Fix CK4'
+code: '#cke3 { clear: both; }'
+media: all
+preprocess: true
+conditions:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
+contexts: {  }
+conditions_require_all: true
