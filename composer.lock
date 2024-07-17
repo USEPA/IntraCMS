@@ -275,10 +275,10 @@
         },
         {
             "name": "ckeditor-plugin/liststyle",
-            "version": "4.11.1",
+            "version": "4.17.1",
             "dist": {
                 "type": "zip",
-                "url": "https://download.ckeditor.com/liststyle/releases/liststyle_4.11.1.zip"
+                "url": "https://download.ckeditor.com/liststyle/releases/liststyle_4.17.1.zip"
             },
             "require": {
                 "composer/installers": "^1.9.0"
@@ -12288,32 +12288,35 @@
         },
         {
             "name": "drupal/uswds_ckeditor_integration",
-            "version": "1.0.0-beta6",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/uswds_ckeditor_integration.git",
-                "reference": "1.0.0-beta6"
+                "reference": "2.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/uswds_ckeditor_integration-1.0.0-beta6.zip",
-                "reference": "1.0.0-beta6",
-                "shasum": "b4ff9f3ffb0bfe57e1fdff430844194d7a4d92be"
+                "url": "https://ftp.drupal.org/files/projects/uswds_ckeditor_integration-2.0.3.zip",
+                "reference": "2.0.3",
+                "shasum": "bf5660fee6c029dfc14d7bf43b0016f05dc9d341"
             },
             "require": {
-                "drupal/ckeditor_templates": "^1.2",
-                "drupal/ckeditor_templates_ui": "^1.4",
-                "drupal/core": "^8 || ^9",
-                "drupal/paragraphs_entity_embed": "^2.0@alpha"
+                "drupal/ckeditor5_embedded_content": "^1.0",
+                "drupal/core": "^9 || ^10",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "drupal/paragraphs_entity_embed": "*",
+                "drupal/uswds_paragraph_components": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.0-beta6",
-                    "datestamp": "1634311117",
+                    "version": "2.0.3",
+                    "datestamp": "1715989511",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
