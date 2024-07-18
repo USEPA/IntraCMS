@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_display.node.landing_page.default
+    - filter.format.delegation
     - filter.format.rich_text
     - node.type.event
     - node.type.staff_member
@@ -73,6 +74,7 @@ permissions:
   - 'create staff_member content'
   - 'create terms in event_tags'
   - 'delete all revisions'
+  - 'delete any staff_member content'
   - 'delete event revisions'
   - 'delete media'
   - 'delete own event content'
@@ -111,6 +113,7 @@ permissions:
   - 'use event_editorial transition unpublished'
   - 'use moderation dashboard'
   - 'use moderation sidebar'
+  - 'use text format delegation'
   - 'use text format rich_text'
   - 'use text format simple_text'
   - 'view all revisions'
