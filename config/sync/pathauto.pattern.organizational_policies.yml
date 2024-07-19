@@ -1,0 +1,22 @@
+uuid: 2eebe83a-fc80-4069-b3f4-5d096e3ebae6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: organizational_policies
+label: 'Organizational Policies'
+type: 'canonical_entities:node'
+pattern: '/[node:group:title]/organizational-policies/[node:title]'
+selection_criteria:
+  90cb9fd1-8d92-4343-9f4b-df9f6c8ae29b:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 90cb9fd1-8d92-4343-9f4b-df9f6c8ae29b
+    context_mapping:
+      node: node
+    bundles:
+      organizational_policy: organizational_policy
+selection_logic: and
+weight: -5
+relationships: {  }
