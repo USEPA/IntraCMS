@@ -163,7 +163,7 @@
       {% endif %}
       <li><div class="field__label display-inline">Additional References.</div>
         {% if content.field_delegation_references|render|trim is not empty %}
-          {# content.field_delegation_references #}
+          <div>Value check (remove): {{ content.field_delegation_references }}<div>
           <ol style="list-style-type: lower-alpha;">
           {% for ref_item in content.field_delegation_references %}
             <li>{{ ref_item.value }}</li>
