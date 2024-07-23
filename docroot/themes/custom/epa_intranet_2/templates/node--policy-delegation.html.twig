@@ -162,13 +162,7 @@
         </li>
       {% endif %}
       <li><div class="field__label display-inline">Additional References.</div>
-
-        {% for key, item in content.field_delegation_references if key|first != '#' %}
-          <div class="item-{{ key + 1 }}">{{ item }}</div>
-        {% endfor %}
-
         {% if content.field_delegation_references|render|trim is not empty %}
-          <div>Value check (remove): {{ content.field_delegation_references }}<div>
           <ol style="list-style-type: lower-alpha;">
           {% for key, item in content.field_delegation_references if key|first != '#' %}
             <li>{{ item }}</li>
