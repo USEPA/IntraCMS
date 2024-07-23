@@ -2,7 +2,10 @@ uuid: fc053510-4da4-42fb-921b-638fa7f8b620
 langcode: en
 status: true
 dependencies:
+  config:
+    - filter.format.full_html
   module:
+    - filter
     - lightning_core
 third_party_settings:
   lightning_core:
@@ -11,4 +14,5 @@ id: policy_editor
 label: 'Policy editor'
 weight: -6
 is_admin: null
-permissions: {  }
+permissions:
+  -'use text format full_html'
