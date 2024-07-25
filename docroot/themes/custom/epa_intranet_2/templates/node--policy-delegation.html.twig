@@ -123,6 +123,16 @@
 
 	<div{{ content_attributes.addClass('node__content') }}>
 
+{# Set defaults to blank. #}
+{% if content.field_limitations == '-' %}
+    {% set content.field_limitations = '' %}
+{% endif %}
+{% if content.field_redelegation_authority == '-' %}
+    {% set content.field_redelegation_authority = '' %}
+{% endif %}
+{% if content.field_autho == '-' %}
+    {% set content.field_autho = '' %}
+{% endif %}
 
 
  {#  content|without('field_rescind_this_delegation','field_rescission_date', 'field_rescission_notes', 'field_governing_authorities', 'field_keywords', 'field_signed_memo') #}
