@@ -37,6 +37,10 @@ settings:
       - undo
       - redo
       - sourceEditing
+      - '|'
+      - epaNew
+      - epaAddDefinition
+      - uswdsGrid
   plugins:
     ckeditor5_heading:
       enabled_headings:
@@ -50,7 +54,6 @@ settings:
         - '<dl>'
         - '<dt>'
         - '<dd>'
-        - '<ins data-date>'
         - '<ol type class>'
         - '<li class>'
         - '<th scope width data-sortable role>'
@@ -61,7 +64,6 @@ settings:
         - '<div alt title id data-* class>'
         - '<source media type>'
         - '<iframe longdesc name scrolling src title align height frameborder width>'
-        - '<button aria-expanded aria-controls class>'
         - '<svg role aria-* class>'
         - '<use href xlink*>'
         - '<drupal-inline-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title>'
@@ -90,4 +92,33 @@ settings:
         - justify
     media_media:
       allow_view_mode_override: true
+    linkit_extension:
+      linkit_enabled: false
+    uswds_ckeditor_integration_grid:
+      available_columns:
+        1: '1'
+        2: '2'
+        3: '3'
+        4: '4'
+        5: '5'
+        6: '6'
+        7: '7'
+        8: '8'
+        9: '9'
+        10: '10'
+        11: '11'
+        12: '12'
+      available_breakpoints:
+        xs: xs
+        sm: sm
+        md: md
+        lg: lg
+        xl: xl
+        xxl: xxl
+    uswds_ckeditor_integration_ckeditor5_overrides:
+      override_lists: false
+      override_links: false
+      override_tables: false
+    uswds_ckeditor_integration_ckeditor5_table_content_items:
+      table_content_items: false
 image_upload: {  }
