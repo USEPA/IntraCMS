@@ -13,39 +13,88 @@ settings:
     rows:
       -
         -
+          name: Format
+          items:
+            - Format
+        -
+          name: Styles
+          items:
+            - Styles
+        -
           name: Formatting
           items:
             - Bold
             - Italic
-            - Format
-            - Styles
+            - BulletedList
+            - NumberedList
+            - Outdent
+            - Indent
+            - JustifyLeft
+            - JustifyRight
+            - JustifyCenter
+            - Superscript
+            - Subscript
+            - Blockquote
+            - HorizontalRule
+            - Table
         -
-          name: Links
+          name: Linking
           items:
             - DrupalLink
             - DrupalUnlink
-            - DrupalFile
+            - Anchor
+            - DrupalInlineMedia
         -
-          name: Lists
+          name: Embed
           items:
-            - BulletedList
-            - NumberedList
-        -
-          name: Media
-          items:
-            - Blockquote
-            - DrupalImage
+            - DrupalMediaLibrary
+            - staff
+            - epaBoxButton
+            - epaNewButton
             - Iframe
+        -
+          name: Templates
+          items:
+            - Templates
+            - uswds_grid
         -
           name: Tools
           items:
+            - Undo
+            - Redo
+            - RemoveFormat
+            - SpecialChar
+            - Language
+            - '-'
+            - Maximize
+            - '-'
             - Source
   plugins:
+    language:
+      language_list: un
+    stylescombo:
+      styles: ''
     drupallink:
       linkit_enabled: true
       linkit_profile: editor
-    stylescombo:
-      styles: ''
+    templates:
+      template_path: ''
+      replace_content: 0
+    uswds_grid:
+      available_columns:
+        1: '1'
+        2: '2'
+        3: '3'
+        4: '4'
+        5: '5'
+        6: '6'
+        7: '7'
+        8: '8'
+        9: '9'
+        10: '10'
+        11: '11'
+        12: '12'
+      available_breakpoints: {  }
 image_upload:
   status: false
   scheme: public
