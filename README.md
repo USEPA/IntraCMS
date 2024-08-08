@@ -25,7 +25,7 @@ The United States Environmental Protection Agency (EPA) GitHub project code is p
 
 
 ## Basic Installation and Contributing
-======================
+=========================
 
 **Detailed setup instructions in [INSTALLATION](INSTALLATION.md)**
 **Detailed setup instructions in [contributing](contributing.md)**
