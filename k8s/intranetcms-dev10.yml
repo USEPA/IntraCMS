@@ -1,0 +1,120 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: intranetcms-next
+  annotations:
+    app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
+    app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
+    eks.amazonaws.com/compute-type: fargate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: intranetcms-next
+       #This needs to match label on ingress
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+
+  template:
+    metadata:
+      labels:
+        app: intranetcms-next
+      annotations:
+        app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
+        app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
+    spec:
+      hostAliases:
+      - ip: "127.0.0.1"
+        hostnames:
+        - "backend"
+      volumes:
+      - name: intranetcms-next-storage
+        persistentVolumeClaim:
+          claimName: intranetcms-next-efs-pvc
+      containers:
+      - name: intranetcms-next
+        image: registry.epa.gov/intranet-cms/intracms/intranetcms-build:$CI_COMMIT_SHORT_SHA
+        imagePullPolicy: Always
+        resources: 
+          requests: 
+            memory: "1G"
+            cpu: ".5"
+          limits:
+            memory: "2G"
+            cpu: "1"
+        ports:
+        - containerPort: 9000
+        - containerPort: 443
+        env:
+        - name: REDEPLOY_META
+          value: $CI_JOB_ID-$CI_COMMIT_SHA
+        - name: WEB_HTTPS
+          value: "false"
+        - name: WEB_HTTPS_ONLY
+          value: "false"        
+        livenessProbe:
+          tcpSocket:
+            port: 443
+          initialDelaySeconds: 15
+          periodSeconds: 15
+          timeoutSeconds: 20
+          failureThreshold: 2
+          failureThreshold: 100
+        readinessProbe:
+          tcpSocket:
+            port: 443
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        volumeMounts:
+        - name: intranetcms-next-storage
+          mountPath: /public
+      imagePullSecrets:
+        - name: glcr-auth
+      
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: intranetcms-next
+  annotations:
+    app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
+    app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
+spec:
+  ports:
+  - port: 443
+    protocol: TCP
+    targetPort: 443
+    name: https
+  selector:
+    app: intranetcms-next
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: intranetcms-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
+    app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
+spec:
+  tls:
+  - hosts:
+    - dev10.intranetcms-dev.aws.epa.gov
+    secretName: tls-devsecops-shared-webapp
+  rules:
+    - host: dev10.intranetcms-dev.aws.epa.gov
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: intranetcms-next
+              port: 
+                number: 443
