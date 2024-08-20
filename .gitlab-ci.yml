@@ -138,7 +138,7 @@ Post Deploy Dev10:
   script:
     - kubectl config use-context intranet-cms/intracms-infra-dev:intranetcms-dev-k8s-agent
     - apk add gettext
-    - envsubst < k8s/drush.yml | kubectl create -f - -n cms-45-next
+    - envsubst < k8s/drush-dev10.yml | kubectl create -f - -n cms-45-next
   environment:
     name: dev10
     url:
