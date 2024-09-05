@@ -77,6 +77,9 @@ content:
         custom
       show_extra: true
       hide_date: false
+      allday: true
+      remove_seconds: false
+      separator: to
       add_abbreviations: ''
     third_party_settings:
       smart_date_recur:
@@ -121,12 +124,13 @@ content:
       placeholder_title: ''
     third_party_settings:
       conditional_fields:
-        ae9afd15-a22d-4983-b80f-30a1c22ec121:
+        c7655269-6e51-4254-b9de-f5bcaed6aea8:
           entity_type: node
           bundle: event
           dependee: field_event_location_logistics
           settings:
-            state: visible
+            state: required
+            reset: false
             condition: value
             grouping: AND
             values_set: 1
@@ -147,12 +151,13 @@ content:
       placeholder: ''
     third_party_settings:
       conditional_fields:
-        d8c267ce-104d-4c96-9abc-f7b496c7b58e:
+        653edad1-822c-4fca-a9c2-44c343bbd17a:
           entity_type: node
           bundle: event
           dependee: field_event_location_logistics
           settings:
-            state: visible
+            state: required
+            reset: false
             condition: value
             grouping: AND
             values_set: 1
