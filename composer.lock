@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8297a6ac2debc38e9806871bedbaf7a0",
+    "content-hash": "afac84d6fff39bedab540d3afd6ff731",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8963,42 +8963,42 @@
         },
         {
             "name": "drupal/lightning_workflow",
-            "version": "3.17.0",
+            "version": "3.19.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/lightning_workflow.git",
-                "reference": "8.x-3.17"
+                "reference": "8.x-3.19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/lightning_workflow-8.x-3.17.zip",
-                "reference": "8.x-3.17",
-                "shasum": "291e7cb86c0ddbb4f2adde3cf917f67d0dbcd1b7"
+                "url": "https://ftp.drupal.org/files/projects/lightning_workflow-8.x-3.19.zip",
+                "reference": "8.x-3.19",
+                "shasum": "2541b1b08aa4e83e9c9981ba3223840fc82f04aa"
             },
             "require": {
                 "drupal/autosave_form": "^1.2",
                 "drupal/conflict": "^2.0-alpha2",
-                "drupal/core": "^8.8.10 || ^9.0.6",
+                "drupal/core": "^9.0.6 || ^10",
                 "drupal/diff": "^1.0",
-                "drupal/lightning_core": "3.* || 4.* || 5.*",
+                "drupal/lightning_core": "^5.14",
                 "drupal/moderation_dashboard": "^1.0",
                 "drupal/moderation_sidebar": "^1.2"
             },
             "require-dev": {
-                "drupal/lightning_core": "*"
+                "drupal/inline_entity_form": "^1",
+                "drupal/lightning_core": "*",
+                "drupal/quickedit": "^1",
+                "drush/drush": "^10 || ^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.17",
-                    "datestamp": "1651008580",
+                    "version": "8.x-3.19",
+                    "datestamp": "1673373968",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "branch-alias": {
-                    "dev-8.x-3.x": "3.x-dev"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -9197,27 +9197,27 @@
         },
         {
             "name": "drupal/media_entity_twitter",
-            "version": "2.7.0",
+            "version": "2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/media_entity_twitter.git",
-                "reference": "8.x-2.7"
+                "reference": "8.x-2.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_entity_twitter-8.x-2.7.zip",
-                "reference": "8.x-2.7",
-                "shasum": "6a2dec14a8fc1ebb88188e5b9b1afbd310342854"
+                "url": "https://ftp.drupal.org/files/projects/media_entity_twitter-8.x-2.9.zip",
+                "reference": "8.x-2.9",
+                "shasum": "1f10bb3bed1fcb112c2226bea214ae1d33b4a3ab"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9",
+                "drupal/core": "^9 || ^10",
                 "j7mbo/twitter-api-php": "~1.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.7",
-                    "datestamp": "1614676236",
+                    "version": "8.x-2.9",
+                    "datestamp": "1669304993",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9258,26 +9258,26 @@
         },
         {
             "name": "drupal/media_library_theme_reset",
-            "version": "1.1.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/media_library_theme_reset.git",
-                "reference": "8.x-1.1"
+                "reference": "8.x-1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_library_theme_reset-8.x-1.1.zip",
-                "reference": "8.x-1.1",
-                "shasum": "9bfb481c68962a903896a0e474295346e9368bb8"
+                "url": "https://ftp.drupal.org/files/projects/media_library_theme_reset-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "d0e26fb6a0e4b59ff3410bd3f3781165cc27b935"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1624207600",
+                    "version": "8.x-1.5",
+                    "datestamp": "1670618180",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9290,32 +9290,12 @@
             ],
             "authors": [
                 {
-                    "name": "gravelpot",
-                    "homepage": "https://www.drupal.org/user/748208"
-                },
-                {
-                    "name": "Jeff Cardwell",
-                    "homepage": "https://www.drupal.org/user/2913129"
-                },
-                {
-                    "name": "lreynaga",
-                    "homepage": "https://www.drupal.org/user/3400232"
-                },
-                {
                     "name": "mark_fullmer",
                     "homepage": "https://www.drupal.org/user/2612816"
                 },
                 {
-                    "name": "mmarler",
-                    "homepage": "https://www.drupal.org/user/500192"
-                },
-                {
-                    "name": "ricksta",
-                    "homepage": "https://www.drupal.org/user/311042"
-                },
-                {
-                    "name": "texas_tater",
-                    "homepage": "https://www.drupal.org/user/753614"
+                    "name": "rhovland",
+                    "homepage": "https://www.drupal.org/user/3559936"
                 },
                 {
                     "name": "utexas",
