@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef8c8fe86ebb821bfaba61df4415f103",
+    "content-hash": "8297a6ac2debc38e9806871bedbaf7a0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2130,26 +2130,26 @@
         },
         {
             "name": "drupal/acquia_telemetry-acquia_telemetry",
-            "version": "1.0.0-alpha5",
+            "version": "1.0.0-alpha6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/acquia_telemetry.git",
-                "reference": "1.0.0-alpha5"
+                "reference": "1.0.0-alpha6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/acquia_telemetry-1.0.0-alpha5.zip",
-                "reference": "1.0.0-alpha5",
-                "shasum": "b7d67260d66c049f8bd6eef8da47337d07922ecc"
+                "url": "https://ftp.drupal.org/files/projects/acquia_telemetry-1.0.0-alpha6.zip",
+                "reference": "1.0.0-alpha6",
+                "shasum": "00133225006c442f0ece3eb86572483b1ed4f896"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^9.3 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.0-alpha5",
-                    "datestamp": "1607015740",
+                    "version": "1.0.0-alpha6",
+                    "datestamp": "1660613622",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -8670,22 +8670,23 @@
         },
         {
             "name": "drupal/lightning_core",
-            "version": "5.9.0",
+            "version": "5.14.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/lightning_core.git",
-                "reference": "8.x-5.9"
+                "reference": "8.x-5.14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/lightning_core-8.x-5.9.zip",
-                "reference": "8.x-5.9",
-                "shasum": "853d26d790119bdfad8300e2e8878ab00acf55a3"
+                "url": "https://ftp.drupal.org/files/projects/lightning_core-8.x-5.14.zip",
+                "reference": "8.x-5.14",
+                "shasum": "eadfa67e3cd68fe8a866aee6ebaea3c2b2f8c67c"
             },
             "require": {
-                "drupal/acquia_telemetry-acquia_telemetry": "^1.0-alpha3",
+                "composer-runtime-api": "^2",
+                "drupal/acquia_telemetry-acquia_telemetry": "1.0-alpha6",
                 "drupal/contact_storage": "^1.0",
-                "drupal/core": "^8.8.6 || ^9.0.1",
+                "drupal/core": "^9.3 || ^10",
                 "drupal/metatag": "^1.13",
                 "drupal/pathauto": "^1.8",
                 "drupal/redirect": "^1.5",
@@ -8697,23 +8698,16 @@
                 "drupal/drupal-extension": "<3.4.0"
             },
             "require-dev": {
-                "acquia/coding-standards": "^0.4.1",
-                "composer/installers": "^1.9",
-                "cweagans/composer-patches": "^1.6",
                 "drupal/contact_storage": "*",
-                "drupal/core-composer-scaffold": "*",
-                "drupal/core-dev": "*",
+                "drupal/quickedit": "^1.0",
                 "drupal/search_api": "*",
-                "drush/drush": ">=9.7",
-                "phpspec/prophecy-phpunit": "^2",
-                "symfony/options-resolver": ">=4",
-                "vijaycs85/drupal-quality-checker": "^1.0"
+                "drush/drush": "^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-5.9",
-                    "datestamp": "1623947749",
+                    "version": "8.x-5.14",
+                    "datestamp": "1673367897",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8722,46 +8716,10 @@
                 "branch-alias": {
                     "dev-8.x-5.x": "5.x-dev"
                 },
-                "drupal-scaffold": {
-                    "file-mapping": {
-                        "[project-root]/.editorconfig": false,
-                        "[project-root]/.gitattributes": false,
-                        "[web-root]/.csslintrc": false,
-                        "[web-root]/INSTALL.txt": false,
-                        "[web-root]/example.gitignore": false,
-                        "[web-root]/modules/README.txt": false,
-                        "[web-root]/profiles/README.txt": false,
-                        "[web-root]/robots.txt": false,
-                        "[web-root]/sites/README.txt": false,
-                        "[web-root]/themes/README.txt": false,
-                        "[web-root]/web.config": false
-                    },
-                    "locations": {
-                        "web-root": "docroot/"
-                    }
-                },
                 "drush": {
                     "services": {
                         "drush.services.yml": "^9 || ^10"
                     }
-                },
-                "enable-patching": true,
-                "installer-paths": {
-                    "docroot/core": [
-                        "type:drupal-core"
-                    ],
-                    "docroot/libraries/{$name}": [
-                        "type:drupal-library"
-                    ],
-                    "docroot/modules/contrib/{$name}": [
-                        "type:drupal-module"
-                    ],
-                    "docroot/profiles/contrib/{$name}": [
-                        "type:drupal-profile"
-                    ],
-                    "docroot/themes/contrib/{$name}": [
-                        "type:drupal-theme"
-                    ]
                 },
                 "patches": {
                     "drupal/core": {
@@ -8769,36 +8727,7 @@
                     }
                 }
             },
-            "autoload": {
-                "psr-4": {
-                    "Drupal\\Tests\\lightning_core\\": "tests/src"
-                },
-                "classmap": [
-                    "tests/contexts"
-                ]
-            },
             "notification-url": "https://packages.drupal.org/8/downloads",
-            "scripts": {
-                "post-install-cmd": [
-                    "@putenv DIR=./docroot/modules/lightning_core",
-                    "mkdir -p $DIR",
-                    "ln -s -f $PWD/config $DIR",
-                    "ln -s -f $PWD/css $DIR",
-                    "ln -s -f $PWD/drush.services.yml $DIR",
-                    "ln -s -f $PWD/images $DIR",
-                    "ln -s -f $PWD/modules $DIR",
-                    "ln -s -f $PWD/src $DIR",
-                    "ln -s -f $PWD/tests $DIR",
-                    "find $PWD -name 'lightning_core.*' -depth 1 -exec ln -s -f {} $DIR ';'",
-                    "cp -f phpunit.xml ./docroot/core"
-                ],
-                "log": [
-                    "ls -t ./logs/*.md | xargs -I{} sh -c \"cat {}; echo ''\" > CHANGELOG.md"
-                ],
-                "nuke": [
-                    "rm -r -f docroot vendor"
-                ]
-            },
             "license": [
                 "GPL-2.0-or-later"
             ],
