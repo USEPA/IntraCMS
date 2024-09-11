@@ -93,7 +93,7 @@ third_party_settings:
                   description: '[node:field_event_description]  <a href=''[node:field_event_link:uri]''>[node:field_event_link:title]</a>'
                   past_events: false
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
             additional:
               layout_builder_styles_style: ''
           a1c59067-8f3d-491c-8384-a49f2703466a:
@@ -142,30 +142,13 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 1
             additional: {  }
-          9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84:
-            uuid: 9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84
-            region: first
-            configuration:
-              id: 'field_block:node:event:field_event_description'
-              label: 'Event Description'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: text_default
-                label: above
-                settings: {  }
-                third_party_settings: {  }
-            weight: 4
-            additional: {  }
           a123568d-c573-411b-bbe6-866be42f59e3:
             uuid: a123568d-c573-411b-bbe6-866be42f59e3
             region: first
             configuration:
               id: 'field_block:node:event:field_event_date'
               label: 'Event Date'
-              label_display: visible
+              label_display: '0'
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
@@ -189,7 +172,7 @@ third_party_settings:
                     unit: ''
                     decimals: 2
                     suffix: h
-                  past_display: 0
+                  past_display: 10
                   upcoming_display: 10
                   show_next: false
                   current_upcoming: false
@@ -232,6 +215,74 @@ third_party_settings:
                       augmenter_settings:
                         settings__formatter__third_party_settings__date_augmenter__rule__augmenter_settings__active_tab: ''
             weight: 2
+            additional: {  }
+          9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84:
+            uuid: 9d4a0de7-a9ca-4f54-b5b3-d965ccc63b84
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_event_description'
+              label: 'Event Description'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 5
+            additional: {  }
+          32f7e671-a149-4cdb-b06b-a429e9485ae4:
+            uuid: 32f7e671-a149-4cdb-b06b-a429e9485ae4
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_event_date'
+              label: 'Event Date'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: smartdate_default
+                label: hidden
+                settings:
+                  timezone_override: ''
+                  format: default
+                  force_chronological: false
+                  add_classes: false
+                  time_wrapper: true
+                  localize: false
+                  parts:
+                    start: start
+                    end: end
+                    duration: '0'
+                  duration:
+                    separator: ' | '
+                    unit: ''
+                    decimals: 2
+                    suffix: h
+                third_party_settings:
+                  date_augmenter:
+                    status:
+                      addtocal: 0
+                    weights:
+                      order:
+                        addtocal:
+                          weight: '0'
+                    augmenter_settings:
+                      settings__formatter__third_party_settings__date_augmenter__augmenter_settings__active_tab: ''
+                    settings:
+                      addtocal:
+                        label: 'Add to Calendar'
+                        event_title: ''
+                        location: ''
+                        description: ''
+                        max_desc: '60'
+                        past_events: 0
+                        target: ''
+            weight: 3
             additional: {  }
         third_party_settings: {  }
   layout_library:
