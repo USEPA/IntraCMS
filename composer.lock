@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "793eeb2465decf5491b635cbed413cea",
+    "content-hash": "e19dc748d939c267426ead509d1d5043",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -12033,6 +12033,67 @@
             }
         },
         {
+            "name": "drupal/twig_tweak",
+            "version": "3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/twig_tweak.git",
+                "reference": "3.3.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/twig_tweak-3.3.0.zip",
+                "reference": "3.3.0",
+                "shasum": "a029ab1775b62f08e573e5ad1ab27bc833e7f5b9"
+            },
+            "require": {
+                "drupal/core": "^9.3 || ^10.0",
+                "ext-json": "*",
+                "php": ">=7.3",
+                "symfony/polyfill-php80": "^1.17",
+                "twig/twig": "^2.15.3 || ^3.4.3"
+            },
+            "suggest": {
+                "symfony/var-dumper": "Better dump() function for debugging Twig variables"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.3.0",
+                    "datestamp": "1708670116",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10 || ^11"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Chi",
+                    "homepage": "https://www.drupal.org/user/556138"
+                }
+            ],
+            "description": "A Twig extension with some useful functions and filters for Drupal development.",
+            "homepage": "https://www.drupal.org/project/twig_tweak",
+            "keywords": [
+                "Drupal",
+                "Twig"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/twig_tweak",
+                "issues": "https://www.drupal.org/project/issues/twig_tweak"
+            }
+        },
+        {
             "name": "drupal/ultimate_cron",
             "version": "2.0.0-alpha5",
             "source": {
@@ -12334,6 +12395,62 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/uswds_ckeditor_integration",
                 "issues": "https://www.drupal.org/project/issues/uswds_ckeditor_integration"
+            }
+        },
+        {
+            "name": "drupal/uswds_paragraph_components",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/uswds_paragraph_components.git",
+                "reference": "3.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/uswds_paragraph_components-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "7613ffb6d706f5f0634347b70c1a92aaec7fe111"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10",
+                "drupal/entity_reference_revisions": "*",
+                "drupal/field_group": "^3.4",
+                "drupal/paragraphs": "^1.15",
+                "drupal/twig_tweak": "^3.2",
+                "drupal/viewsreference": "^2.0"
+            },
+            "require-dev": {
+                "drupal/paragraphs": "*",
+                "drupal/uswds_paragraph_components_breakpoints-uswds_paragraph_components_breakpoints": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.0",
+                    "datestamp": "1697213600",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Mustgrave",
+                    "homepage": "https://www.drupal.org/user/3252890",
+                    "email": "smustgrave@gmail.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A suite of Paragraph bundles made with the USWDS framework.",
+            "homepage": "https://drupal.org/project/uswds_paragraph_components",
+            "support": {
+                "source": "https://git.drupalcode.org/project/uswds_paragraph_components",
+                "issues": "https://drupal.org/project/issues/uswds_paragraph_components"
             }
         },
         {
