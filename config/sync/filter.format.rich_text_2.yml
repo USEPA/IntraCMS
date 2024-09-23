@@ -1,0 +1,175 @@
+uuid: b7c95313-74e8-405e-97b3-614bec795fef
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.full_width
+    - core.entity_view_mode.media.half_width
+    - core.entity_view_mode.media.link
+    - core.entity_view_mode.media.original
+    - core.entity_view_mode.media.small
+    - core.entity_view_mode.media.thumbnail
+  module:
+    - blazy
+    - ckeditor5_embedded_content
+    - editor
+    - entity_embed
+    - epa_wysiwyg
+    - media
+    - media_inline_embed
+    - slick
+name: 'Rich Text 2'
+format: rich_text_2
+weight: 0
+filters:
+  blazy_filter:
+    id: blazy_filter
+    provider: blazy
+    status: false
+    weight: 3
+    settings:
+      media_switch: ''
+      hybrid_style: ''
+      box_style: ''
+      box_media_style: ''
+      box_caption: ''
+      filter_tags:
+        img: img
+        iframe: iframe
+      use_data_uri: '0'
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<br> <p class="text-align-left text-align-center text-align-right text-align-justify"> <h2 class="text-align-left text-align-center text-align-right text-align-justify"> <h3 class="text-align-left text-align-center text-align-right text-align-justify"> <h4 class="text-align-left text-align-center text-align-right text-align-justify"> <h5 class="text-align-left text-align-center text-align-right text-align-justify"> <h6 class="text-align-left text-align-center text-align-right text-align-justify"> <strong> <em> <sub> <sup> <blockquote> <a href> <ul> <ol reversed start> <li> <hr> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption> <drupal-media data-entity-type data-entity-uuid alt data-caption data-align> <embedded-content data-plugin-config data-plugin-id> <div class data-*> <iframe src height width name tabindex title> <ins class="new" data-date> <drupal-entity alt title data-align data-caption data-entity-embed-display data-entity-embed-display-settings data-view-mode data-entity-uuid data-langcode data-embed-button="media_browser node paragraph_layout paragraphs staff" data-entity-type>'
+      filter_html_help: true
+      filter_html_nofollow: false
+  filter_url:
+    id: filter_url
+    provider: filter
+    status: true
+    weight: 0
+    settings:
+      filter_url_length: 72
+  media_embed:
+    id: media_embed
+    provider: media
+    status: true
+    weight: 100
+    settings:
+      default_view_mode: default
+      allowed_view_modes:
+        full_width: full_width
+        half_width: half_width
+        original: original
+        small: small
+        thumbnail: thumbnail
+      allowed_media_types:
+        audio_file: audio_file
+        image: image
+        remote_video: remote_video
+  media_inline_embed:
+    id: media_inline_embed
+    provider: media_inline_embed
+    status: true
+    weight: 100
+    settings:
+      default_view_mode: default
+      allowed_media_types:
+        document: document
+      allowed_view_modes:
+        link: link
+  slick_filter:
+    id: slick_filter
+    provider: slick
+    status: false
+    weight: 4
+    settings:
+      caption:
+        alt: '0'
+        title: '0'
+      optionset: default
+      layout: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      loading: ''
+      responsive_image_style: ''
+      box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+      style: ''
+      skin: ''
+      overridables:
+        arrows: '0'
+        autoplay: '0'
+        dots: '0'
+        draggable: '0'
+        infinite: '0'
+        mouseWheel: '0'
+        randomize: '0'
+        variableWidth: '0'
+      optionset_thumbnail: ''
+      skin_thumbnail: ''
+      thumbnail_caption: ''
+      thumbnail_effect: ''
+      thumbnail_position: ''
+      override: false
+      preserve_keys: false
+      visible_items: null
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: true
+    weight: 0
+    settings: {  }
+  epa_filter_empty_paragraphs:
+    id: epa_filter_empty_paragraphs
+    provider: epa_wysiwyg
+    status: true
+    weight: 0
+    settings: {  }
+  epa_filter_links:
+    id: epa_filter_links
+    provider: epa_wysiwyg
+    status: true
+    weight: 0
+    settings: {  }
+  filter_align:
+    id: filter_align
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
+  ckeditor5_embedded_content:
+    id: ckeditor5_embedded_content
+    provider: ckeditor5_embedded_content
+    status: true
+    weight: 100
+    settings: {  }
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
+  filter_caption:
+    id: filter_caption
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
+  entity_embed:
+    id: entity_embed
+    provider: entity_embed
+    status: true
+    weight: 100
+    settings: {  }
