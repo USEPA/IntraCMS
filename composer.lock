@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b0d65afd98365c1bdd9baad007129323",
+    "content-hash": "36361b2ac9618bb19628be16645f41b4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -7272,27 +7272,27 @@
         },
         {
             "name": "drupal/group_action",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/group_action.git",
-                "reference": "1.0.1"
+                "reference": "1.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/group_action-1.0.1.zip",
-                "reference": "1.0.1",
-                "shasum": "986f595846eddd54bb192cd19277ac88feca4cf3"
+                "url": "https://ftp.drupal.org/files/projects/group_action-1.1.0.zip",
+                "reference": "1.1.0",
+                "shasum": "570990acc005b53553597cf74c8cb657a4e56400"
             },
             "require": {
                 "drupal/core": "^9 || ^10",
-                "drupal/group": "^1.4"
+                "drupal/group": "^1 || ^2@beta || ^3@beta"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.1",
-                    "datestamp": "1663323673",
+                    "version": "1.1.0",
+                    "datestamp": "1670919885",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7322,20 +7322,14 @@
         },
         {
             "name": "drupal/group_outsider_in",
-            "version": "1.0.0-beta1",
+            "version": "dev-1.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/group_outsider_in.git",
-                "reference": "8.x-1.0-beta1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/group_outsider_in-8.x-1.0-beta1.zip",
-                "reference": "8.x-1.0-beta1",
-                "shasum": "f0b4546141f8f724139fb9beb46233d59e49aaf5"
+                "reference": "54e06c9b1230dfa05af834f4cd5c16bdd2685178"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
+                "drupal/core": "^8 || ^9 || ^10",
                 "drupal/group": "*"
             },
             "require-dev": {
@@ -7343,12 +7337,15 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
-                    "version": "8.x-1.0-beta1",
-                    "datestamp": "1612774634",
+                    "version": "8.x-1.0-beta1+2-dev",
+                    "datestamp": "1696490606",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
+                        "message": "Dev releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -7418,21 +7415,21 @@
         },
         {
             "name": "drupal/groupmedia",
-            "version": "2.0.0-rc1",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/groupmedia.git",
-                "reference": "8.x-2.0-rc1"
+                "reference": "8.x-2.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/groupmedia-8.x-2.0-rc1.zip",
-                "reference": "8.x-2.0-rc1",
-                "shasum": "09eac443f97791ba61d1f041fad9dcdd4ba93881"
+                "url": "https://ftp.drupal.org/files/projects/groupmedia-8.x-2.3.zip",
+                "reference": "8.x-2.3",
+                "shasum": "9f157029c3dbf93d2a0a3dd7f2867fe9f1434ed5"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9",
-                "drupal/group": "^1.2 || 1.x-dev@dev"
+                "drupal/core": "^9 || ^10",
+                "drupal/group": "^1.5"
             },
             "require-dev": {
                 "drupal/paragraphs": "*",
@@ -7441,11 +7438,11 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.0-rc1",
-                    "datestamp": "1677765577",
+                    "version": "8.x-2.3",
+                    "datestamp": "1724651673",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -7460,8 +7457,9 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "LOBsTerr",
-                    "homepage": "https://www.drupal.org/user/645020"
+                    "name": "Nikolay Lobachev",
+                    "homepage": "https://www.drupal.org/u/lobsterr",
+                    "role": "Maintainer"
                 }
             ],
             "description": "This module allows you to integrate media entity into group functionality",
@@ -7473,20 +7471,20 @@
         },
         {
             "name": "drupal/groupmenu",
-            "version": "1.0.0-beta3",
+            "version": "3.0.0-alpha2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/groupmenu.git",
-                "reference": "8.x-1.0-beta3"
+                "reference": "3.0.0-alpha2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/groupmenu-8.x-1.0-beta3.zip",
-                "reference": "8.x-1.0-beta3",
-                "shasum": "eee8925917662e4afc8701b6c75f2170c428c4bc"
+                "url": "https://ftp.drupal.org/files/projects/groupmenu-3.0.0-alpha2.zip",
+                "reference": "3.0.0-alpha2",
+                "shasum": "4ef4c5d71d11380bc7423716f7889bb5c27c48d1"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
+                "drupal/core": "^9 || ^10",
                 "drupal/group": "*"
             },
             "require-dev": {
@@ -7495,17 +7493,12 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0-beta3",
-                    "datestamp": "1630844354",
+                    "version": "3.0.0-alpha2",
+                    "datestamp": "1715254863",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
+                        "message": "Alpha releases are not covered by Drupal security advisories."
                     }
-                },
-                "patches_applied": {
-                    "3010909: Group menu association": "https://www.drupal.org/files/issues/2019-04-04/groupmenu-change_references_to_entity_id-3010909-9.patch",
-                    "Active Trail Patch: Add active trail ability to group menu block": "patches/fixing_group_menu_active_trail.patch.txt",
-                    "3206302: Node context error fix": "https://www.drupal.org/files/issues/2021-03-29/3206302-3.diff"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -7514,8 +7507,16 @@
             ],
             "authors": [
                 {
+                    "name": "chrisfromredfin",
+                    "homepage": "https://www.drupal.org/user/74392"
+                },
+                {
                     "name": "mike.davis",
                     "homepage": "https://www.drupal.org/user/2660157"
+                },
+                {
+                    "name": "safetypin",
+                    "homepage": "https://www.drupal.org/user/120508"
                 },
                 {
                     "name": "seanB",
@@ -22859,8 +22860,7 @@
         "drupal/auto_entitylabel": 10,
         "drupal/db_maintenance": 5,
         "drupal/entity_usage": 10,
-        "drupal/group_outsider_in": 10,
-        "drupal/groupmedia": 5,
+        "drupal/group_outsider_in": 20,
         "drupal/h5p": 15,
         "drupal/layout_library": 10,
         "drupal/libraries": 10,
