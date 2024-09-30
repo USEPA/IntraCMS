@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a8caf82c158df93a416c5d24996ca939",
+    "content-hash": "f912477b91b13a7b7cc57153d2003147",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -7269,41 +7269,32 @@
         },
         {
             "name": "drupal/group",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/group.git",
-                "reference": "8.x-1.4"
+                "reference": "8.x-1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/group-8.x-1.4.zip",
-                "reference": "8.x-1.4",
-                "shasum": "385a70f421dc3142c9c91876ac8b35ae3afa107e"
+                "url": "https://ftp.drupal.org/files/projects/group-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "4b890350749ff1d388425da8343b8835847492d8"
             },
             "require": {
-                "drupal/core": "^8.9 || ^9",
+                "drupal/core": "^9.3 || ^10",
                 "drupal/entity": "^1.2",
-                "drupal/variationcache": "^1.0"
+                "drupal/variationcache": "^1.1"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.4",
-                    "datestamp": "1625063515",
+                    "version": "8.x-1.5",
+                    "datestamp": "1685706327",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "patches_applied": {
-                    "2797793: Associate menu with a group": "https://www.drupal.org/files/issues/2021-06-15/group-support_string_entity_ids-2797793-260.patch",
-                    "2774827: Get a token of a node's parent group to create a pathauto pattern": "https://www.drupal.org/files/issues/2020-11-17/group-gnode_tokens-2774827-74.patch",
-                    "2984315: Media enabler": "https://www.drupal.org/files/issues/2019-05-30/media-enabler-2984315-31.patch",
-                    "2999661: Views default argument for referencing current user groups": "https://www.drupal.org/files/issues/2019-06-07/user-groups-argument-2999661.patch",
-                    "2906085: Content transition permissions": "https://www.drupal.org/files/issues/2020-09-23/2906085-80.patch",
-                    "3071489: Group media upload fix": "https://www.drupal.org/files/issues/2022-01-11/incorrect-access-check-on-media-library-3071489-25.patch",
-                    "3256998: Fix node revisions access": "https://www.drupal.org/files/issues/2022-03-30/group-3256998-35.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -7476,21 +7467,21 @@
         },
         {
             "name": "drupal/groupmedia",
-            "version": "2.0.0-rc1",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/groupmedia.git",
-                "reference": "8.x-2.0-rc1"
+                "reference": "8.x-2.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/groupmedia-8.x-2.0-rc1.zip",
-                "reference": "8.x-2.0-rc1",
-                "shasum": "09eac443f97791ba61d1f041fad9dcdd4ba93881"
+                "url": "https://ftp.drupal.org/files/projects/groupmedia-8.x-2.3.zip",
+                "reference": "8.x-2.3",
+                "shasum": "9f157029c3dbf93d2a0a3dd7f2867fe9f1434ed5"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9",
-                "drupal/group": "^1.2 || 1.x-dev@dev"
+                "drupal/core": "^9 || ^10",
+                "drupal/group": "^1.5"
             },
             "require-dev": {
                 "drupal/paragraphs": "*",
@@ -7499,11 +7490,11 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.0-rc1",
-                    "datestamp": "1677765577",
+                    "version": "8.x-2.3",
+                    "datestamp": "1724651673",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -7518,8 +7509,9 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "LOBsTerr",
-                    "homepage": "https://www.drupal.org/user/645020"
+                    "name": "Nikolay Lobachev",
+                    "homepage": "https://www.drupal.org/u/lobsterr",
+                    "role": "Maintainer"
                 }
             ],
             "description": "This module allows you to integrate media entity into group functionality",
@@ -12641,26 +12633,26 @@
         },
         {
             "name": "drupal/variationcache",
-            "version": "1.0.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/variationcache.git",
-                "reference": "8.x-1.0"
+                "reference": "8.x-1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/variationcache-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "302bcd0bc4d7c12a9d18ad4f531d1c65fdac65b1"
+                "url": "https://ftp.drupal.org/files/projects/variationcache-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "6165baee8c6fe5a7773f3499896e8fb464607a32"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9"
+                "drupal/core": "^9.5 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1588927568",
+                    "version": "8.x-1.5",
+                    "datestamp": "1705485386",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -22951,7 +22943,6 @@
         "drupal/db_maintenance": 5,
         "drupal/entity_usage": 10,
         "drupal/group_outsider_in": 10,
-        "drupal/groupmedia": 5,
         "drupal/h5p": 15,
         "drupal/layout_library": 10,
         "drupal/libraries": 10,
