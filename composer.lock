@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "743a60e3ad4d5ef6c2447a9c2e5aa257",
+    "content-hash": "e1d93b184b5cf36329e4a9378a1eabf1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -9529,26 +9529,27 @@
         },
         {
             "name": "drupal/moderated_content_bulk_publish",
-            "version": "2.0.11",
+            "version": "2.0.32",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/moderated_content_bulk_publish.git",
-                "reference": "2.0.11"
+                "reference": "2.0.32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/moderated_content_bulk_publish-2.0.11.zip",
-                "reference": "2.0.11",
-                "shasum": "6aef06c1c22095ecc683d5ccfbfba6fba8eccb8f"
+                "url": "https://ftp.drupal.org/files/projects/moderated_content_bulk_publish-2.0.32.zip",
+                "reference": "2.0.32",
+                "shasum": "90d9281c2bc0df6519f50b57585a46a19b313671"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8.9 || ^9 || ^10",
+                "drupal/views_bulk_operations": "^4.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.11",
-                    "datestamp": "1649772907",
+                    "version": "2.0.32",
+                    "datestamp": "1719499591",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9557,47 +9558,52 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
+                {
+                    "name": "See all contributors",
+                    "homepage": "https://www.drupal.org/node/3070758/committers"
+                },
                 {
                     "name": "joseph.olstad",
                     "homepage": "https://www.drupal.org/user/1321830"
                 }
             ],
-            "description": "Provides general administration features that Drupal 8 core does not provide.",
+            "description": "The Moderated Content Bulk Publish module does what it says from the /admin/content view.",
             "homepage": "https://www.drupal.org/project/moderated_content_bulk_publish",
             "support": {
-                "source": "https://git.drupalcode.org/project/moderated_content_bulk_publish"
+                "source": "git://git.drupal.org/project/moderated_content_bulk_publish.git",
+                "issues": "https://www.drupal.org/project/issues/moderated_content_bulk_publish"
             }
         },
         {
             "name": "drupal/moderation_dashboard",
-            "version": "1.0.0-beta3",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/moderation_dashboard.git",
-                "reference": "8.x-1.0-beta3"
+                "reference": "8.x-1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/moderation_dashboard-8.x-1.0-beta3.zip",
-                "reference": "8.x-1.0-beta3",
-                "shasum": "fb7779ec55654d7b645d29a98cadd59ef8dfda24"
+                "url": "https://ftp.drupal.org/files/projects/moderation_dashboard-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "908ec7a686cd01426ca0d528215c4b1a2a845b0c"
             },
             "require": {
-                "drupal/core": "^8.7.7 || ^9",
+                "drupal/core": "^9 || ^10",
                 "drupal/page_manager": "*",
                 "drupal/panels": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0-beta3",
-                    "datestamp": "1627851954",
+                    "version": "8.x-1.4",
+                    "datestamp": "1679787101",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -9627,30 +9633,33 @@
         },
         {
             "name": "drupal/moderation_sidebar",
-            "version": "1.4.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/moderation_sidebar.git",
-                "reference": "8.x-1.4"
+                "reference": "8.x-1.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/moderation_sidebar-8.x-1.4.zip",
-                "reference": "8.x-1.4",
-                "shasum": "5e6b0b68d01cd93a31c326c9fd20524a0e12d36a"
+                "url": "https://ftp.drupal.org/files/projects/moderation_sidebar-8.x-1.8.zip",
+                "reference": "8.x-1.8",
+                "shasum": "779bd8eaa109b215bbcfe8b3191ce0cb231aedf2"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^9.5 || ^10 || ^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.4",
-                    "datestamp": "1589812642",
+                    "version": "8.x-1.8",
+                    "datestamp": "1724947838",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "branch-alias": {
+                    "dev-8.x-1.x": "1.x-dev"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -9658,6 +9667,10 @@
                 "GPL-2.0-or-later"
             ],
             "authors": [
+                {
+                    "name": "japerry",
+                    "homepage": "https://www.drupal.org/user/45640"
+                },
                 {
                     "name": "joelpittet",
                     "homepage": "https://www.drupal.org/user/160302"
@@ -9667,10 +9680,11 @@
                     "homepage": "https://www.drupal.org/user/2582268"
                 }
             ],
-            "description": "Provides a frontend sidebar for Content Moderation",
-            "homepage": "https://www.drupal.org/project/moderation_sidebar",
+            "description": "Provides an off-canvas menu to moderate the current Entity.",
+            "homepage": "http://drupal.org/project/moderation_sidebar",
             "support": {
-                "source": "https://git.drupalcode.org/project/moderation_sidebar"
+                "source": "https://git.drupalcode.org/project/moderation_sidebar",
+                "issues": "https://www.drupal.org/project/issues/moderation_sidebar"
             }
         },
         {
