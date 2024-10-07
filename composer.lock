@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4e1bb0eb120cf883c66468d713ad22d",
+    "content-hash": "ee204f751f0cdf47a9e870209b67922a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -7140,6 +7140,44 @@
             }
         },
         {
+            "name": "drupal/gnode",
+            "version": "3.2.2",
+            "require": {
+                "drupal/core": "^9.5 || ^10",
+                "drupal/group": "*"
+            },
+            "type": "metapackage",
+            "extra": {
+                "drupal": {
+                    "version": "3.2.2",
+                    "datestamp": "1701886939",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "dww",
+                    "homepage": "https://www.drupal.org/user/46549"
+                },
+                {
+                    "name": "kristiaanvandeneynde",
+                    "homepage": "https://www.drupal.org/user/1345130"
+                }
+            ],
+            "description": "Enables Group functionality for the Node module",
+            "homepage": "https://www.drupal.org/project/group",
+            "support": {
+                "source": "https://git.drupalcode.org/project/group"
+            }
+        },
+        {
             "name": "drupal/google_analytics",
             "version": "4.0.2",
             "source": {
@@ -13578,6 +13616,72 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/webform_config_ignore",
                 "issues": "https://drupal.org/project/webform_config_ignore"
+            }
+        },
+        {
+            "name": "drupal/webform_group",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/webform_group.git",
+                "reference": "1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/webform_group-1.0.0.zip",
+                "reference": "1.0.0",
+                "shasum": "7cd392668c53a40fb296be7bbb83be92842600cf"
+            },
+            "require": {
+                "drupal/core": "^9.4 || ^10",
+                "drupal/gnode": "*",
+                "drupal/group": "^1.0",
+                "drupal/webform": "^6.2",
+                "drupal/webform_node": "*"
+            },
+            "require-dev": {
+                "drupal/gnode": "*",
+                "drupal/group": "*",
+                "drupal/webform": "*",
+                "drupal/webform_node": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0",
+                    "datestamp": "1696870347",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Lucas Hedding (heddn)",
+                    "homepage": "https://www.drupal.org/u/heddn",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Jacob Rockowitz (jrockowitz)",
+                    "homepage": "https://www.drupal.org/u/jrockowitz",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://git.drupalcode.org/project/webform_group/-/graphs/HEAD",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "Enables the creation of webforms and questionnaires for groups.",
+            "homepage": "https://drupal.org/project/webform_group",
+            "support": {
+                "source": "https://git.drupalcode.org/project/webform_group",
+                "issues": "https://www.drupal.org/project/issues/webform_group"
             }
         },
         {
