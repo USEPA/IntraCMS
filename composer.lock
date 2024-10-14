@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c58fb401e04c75159c08a00ed352ff0",
+    "content-hash": "9558c50403f624367f48dc5380f52457",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5331,17 +5331,17 @@
         },
         {
             "name": "drupal/draggableviews",
-            "version": "1.3.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/draggableviews.git",
-                "reference": "8.x-1.3"
+                "reference": "2.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/draggableviews-8.x-1.3.zip",
-                "reference": "8.x-1.3",
-                "shasum": "e73b5ee3b1ebcc26b334810b7c5a92f687038da2"
+                "url": "https://ftp.drupal.org/files/projects/draggableviews-2.1.0.zip",
+                "reference": "2.1.0",
+                "shasum": "28238e6ef67a51ccbcf3e2239262e04bfdcfd976"
             },
             "require": {
                 "drupal/core": "^8 || ^9"
@@ -5352,15 +5352,12 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.3",
-                    "datestamp": "1638128879",
+                    "version": "2.1.0",
+                    "datestamp": "1666341871",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "patches_applied": {
-                    "Remove view_name and view_display join since it will never be correct as is.": "patches/draggableviews_remove_join.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -5390,18 +5387,6 @@
                     "name": "Severin Unger (sevi)",
                     "homepage": "https://www.drupal.org/u/sevi",
                     "role": "Ex Maintainer (D6)"
-                },
-                {
-                    "name": "podarok",
-                    "homepage": "https://www.drupal.org/user/116002"
-                },
-                {
-                    "name": "sevi",
-                    "homepage": "https://www.drupal.org/user/199290"
-                },
-                {
-                    "name": "ygerasimov",
-                    "homepage": "https://www.drupal.org/user/257311"
                 }
             ],
             "description": "DraggableViews module makes views draggable.",
@@ -12827,20 +12812,20 @@
         },
         {
             "name": "drupal/vefl",
-            "version": "3.0.0",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/vefl.git",
-                "reference": "8.x-3.0"
+                "reference": "8.x-3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/vefl-8.x-3.0.zip",
-                "reference": "8.x-3.0",
-                "shasum": "12b19a16ed420d02054199c652a6dd256904c5fc"
+                "url": "https://ftp.drupal.org/files/projects/vefl-8.x-3.1.zip",
+                "reference": "8.x-3.1",
+                "shasum": "f87d8cf1b25905ab6e14c7fff22845d85a11f45f"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "require-dev": {
                 "drupal/better_exposed_filters": "^4"
@@ -12848,8 +12833,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.0",
-                    "datestamp": "1581161122",
+                    "version": "8.x-3.1",
+                    "datestamp": "1708270626",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -12866,6 +12851,10 @@
                     "homepage": "https://www.drupal.org/user/3181949"
                 },
                 {
+                    "name": "driverok",
+                    "homepage": "https://www.drupal.org/user/3551610"
+                },
+                {
                     "name": "skorzh",
                     "homepage": "https://www.drupal.org/user/813560"
                 }
@@ -12878,31 +12867,31 @@
         },
         {
             "name": "drupal/video_embed_field",
-            "version": "2.4.0",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/video_embed_field.git",
-                "reference": "8.x-2.4"
+                "reference": "8.x-2.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/video_embed_field-8.x-2.4.zip",
-                "reference": "8.x-2.4",
-                "shasum": "96b14bb93c1bb6a07b84315a4f87367870f8b574"
+                "url": "https://ftp.drupal.org/files/projects/video_embed_field-8.x-2.5.zip",
+                "reference": "8.x-2.5",
+                "shasum": "997ed67b6873e822fe628f87f65bd6da67e7350c"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9"
+                "drupal/core": "^9.2 || ^10"
             },
             "require-dev": {
-                "drupal/ckeditor": "*",
-                "drupal/colorbox": "^1.0",
+                "drupal/ckeditor": "^1",
+                "drupal/colorbox": "^2",
                 "drupal/video_embed_media": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.4",
-                    "datestamp": "1587686337",
+                    "version": "8.x-2.5",
+                    "datestamp": "1671413311",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -12911,7 +12900,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -12939,27 +12928,27 @@
         },
         {
             "name": "drupal/views_add_button",
-            "version": "2.0.2",
+            "version": "2.0.8",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_add_button.git",
-                "reference": "2.0.2"
+                "reference": "2.0.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_add_button-2.0.2.zip",
-                "reference": "2.0.2",
-                "shasum": "f409404267aa1953211b5a3797c1c6d3db029467"
+                "url": "https://ftp.drupal.org/files/projects/views_add_button-2.0.8.zip",
+                "reference": "2.0.8",
+                "shasum": "a8e755efb598742062d53c95489d9edd6aee7838"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
+                "drupal/core": "^8 || ^9 || ^10",
                 "drupal/token": "~1.5"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.2",
-                    "datestamp": "1638472238",
+                    "version": "2.0.8",
+                    "datestamp": "1689686062",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -13035,26 +13024,26 @@
         },
         {
             "name": "drupal/views_autocomplete_filters",
-            "version": "1.3.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_autocomplete_filters.git",
-                "reference": "8.x-1.3"
+                "reference": "8.x-1.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_autocomplete_filters-8.x-1.3.zip",
-                "reference": "8.x-1.3",
-                "shasum": "55762182e55c70f117d5edb8692049e0881ec4ce"
+                "url": "https://ftp.drupal.org/files/projects/views_autocomplete_filters-8.x-1.7.zip",
+                "reference": "8.x-1.7",
+                "shasum": "4061cac83e39279bbf5515b8ba8f8685b27b4023"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.3",
-                    "datestamp": "1587146330",
+                    "version": "8.x-1.7",
+                    "datestamp": "1697624365",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
