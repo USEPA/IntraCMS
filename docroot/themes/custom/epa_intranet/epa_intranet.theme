@@ -277,7 +277,7 @@ function epa_intranet_preprocess_page(&$variables) {
       $node_content_type = '';
       $node_web_area = '';
       $node_content_type = $node->type->entity->label();
-      $group_labels = get_group_labels_by_node_id($node->id());
+      $group_labels = get_group_labels_by_node_id_old($node->id());
 
       if ($group_labels != null) {
         $node_web_area = $group_labels;
@@ -371,18 +371,18 @@ function epa_intranet_preprocess_fieldset(&$variables) {
 
 function epa_intranet_preprocess_input__submit(&$variables) {
   $element = $variables['element'];
-  if (is_add_or_remove_button($element)) {
+  if (is_add_or_remove_button_old($element)) {
     $variables['attributes']['class'][] = 'usa-button--base';
   }
 }
 
 
-function is_add_or_remove_button($element) {
+function is_add_or_remove_button_old($element) {
   // Add More/ Remove elements have multiple values in Submit
   return isset($element['#submit']) && is_array($element['#submit'][0]);
 }
 
-function get_group_labels_by_node_id($node_id) {
+function get_group_labels_by_node_id_old($node_id) {
 
   $ids = \Drupal::entityQuery('group_content')
     ->condition('entity_id', $node_id)
