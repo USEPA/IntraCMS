@@ -332,7 +332,10 @@ function epa_intranet_preprocess_views_view_grouping(&$variables) {
       $child_tid_row = $staff_row_data->tid;
       $parent_terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($child_tid_row);
     }
+    /** 
     $variables['title'] = generate_grouping_title($parent_terms, $child_tid_row);
+    */
+    $variables['title'] = "Disabled";
   }
 
 }
@@ -342,6 +345,7 @@ function epa_intranet_preprocess_views_view_grouping(&$variables) {
  * @param string $child_tid_row
  * @return string
  */
+/**
 function generate_grouping_title(array $parent_terms, string $child_tid_row): string {
   $grouping_title = '';
   foreach ($parent_terms as $term) {
@@ -356,6 +360,7 @@ function generate_grouping_title(array $parent_terms, string $child_tid_row): st
   }
   return $grouping_title;
 }
+*/
 
 function epa_intranet_preprocess_fieldset(&$variables) {
   $element = $variables['element'];
