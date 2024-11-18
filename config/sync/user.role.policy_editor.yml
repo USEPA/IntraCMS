@@ -5,6 +5,7 @@ dependencies:
   config:
     - filter.format.full_html
   module:
+    - file
     - filter
     - lightning_core
 third_party_settings:
@@ -15,4 +16,5 @@ label: 'Policy editor'
 weight: -6
 is_admin: null
 permissions:
+  - 'delete own files'
   - 'use text format full_html'

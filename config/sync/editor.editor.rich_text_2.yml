@@ -42,6 +42,12 @@ settings:
       - '|'
       - sourceEditing
   plugins:
+    ckeditor5_alignment:
+      enabled_alignments:
+        - left
+        - center
+        - right
+        - justify
     ckeditor5_heading:
       enabled_headings:
         - heading2
@@ -49,19 +55,11 @@ settings:
         - heading4
         - heading5
         - heading6
-    ckeditor5_sourceEditing:
-      allowed_tags: {  }
     ckeditor5_list:
       reversed: true
       startIndex: true
-    ckeditor5_alignment:
-      enabled_alignments:
-        - left
-        - center
-        - right
-        - justify
-    media_media:
-      allow_view_mode_override: false
+    ckeditor5_sourceEditing:
+      allowed_tags: {  }
     ckeditor_bs_grid_grid:
       use_cdn: true
       cdn_url: 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css'
@@ -94,6 +92,8 @@ settings:
         - title
     linkit_extension:
       linkit_enabled: false
+    media_media:
+      allow_view_mode_override: false
     uswds_ckeditor_integration_ckeditor5_overrides:
       override_lists: false
       override_links: false

@@ -7,6 +7,7 @@ dependencies:
     - entity_embed
     - media
     - paragraphs_entity_embed
+    - slick
     - uswds_ckeditor_integration
 _core:
   default_config_hash: p_4o1T01WaCAlHPZNWJfSwSBUnHX748vr-SVC4Ku4_I
@@ -89,3 +90,9 @@ filters:
     settings:
       optionset: default
       media_switch: ''
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: 1
+    settings: {  }
