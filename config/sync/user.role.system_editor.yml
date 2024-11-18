@@ -14,6 +14,7 @@ dependencies:
     - workflows.workflow.event_editorial
   module:
     - block
+    - block_content
     - content_moderation
     - dropzonejs
     - field_permissions
@@ -40,10 +41,13 @@ weight: -7
 is_admin: null
 permissions:
   - 'access administration pages'
+  - 'access block library'
   - 'access content overview'
   - 'access files overview'
   - 'access group overview'
   - 'access site in maintenance mode'
+  - 'administer block content'
+  - 'administer block types'
   - 'administer blocks'
   - 'administer menu'
   - 'administer redirect settings'
@@ -69,6 +73,7 @@ permissions:
   - 'delete any webform'
   - 'delete any webform submission'
   - 'delete organizational_policy revisions'
+  - 'delete own files'
   - 'delete own organizational_policy content'
   - 'delete own re_delegation content'
   - 'delete re_delegation revisions'

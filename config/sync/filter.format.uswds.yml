@@ -5,6 +5,7 @@ dependencies:
   module:
     - editor
     - media
+    - slick
     - uswds_ckeditor_integration
 _core:
   default_config_hash: 05t4sDVkoIIr93awow19xLg0zeanMekWf7kwUh6Kroo
@@ -69,3 +70,9 @@ filters:
     settings:
       optionset: default
       media_switch: ''
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: 1
+    settings: {  }

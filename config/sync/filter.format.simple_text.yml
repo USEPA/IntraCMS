@@ -18,6 +18,7 @@ dependencies:
     - media
     - media_inline_embed
     - paragraphs_entity_embed
+    - slick
     - uswds_ckeditor_integration
 name: 'Simple Text'
 format: simple_text
@@ -120,6 +121,7 @@ filters:
       media_switch: ''
       hybrid_style: ''
       box_style: ''
+      box_media_style: ''
       filter_tags:
         img: img
         iframe: iframe
@@ -167,3 +169,9 @@ filters:
     settings:
       optionset: default
       media_switch: ''
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: -40
+    settings: {  }
