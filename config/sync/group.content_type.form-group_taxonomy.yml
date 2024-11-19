@@ -1,0 +1,18 @@
+uuid: c903a4e0-8a70-47f4-adc2-efd9f6e4e6d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.form
+  module:
+    - group_taxonomy
+    - taxonomy
+id: form-group_taxonomy
+label: 'Form: Group taxonomy'
+description: 'Adds taxonomy vocabulary to groups.'
+group_type: form
+content_plugin: group_taxonomy
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

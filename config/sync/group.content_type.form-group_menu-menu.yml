@@ -1,0 +1,22 @@
+uuid: 50293a79-f8f1-4a43-8181-5b1f876790f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.form
+  module:
+    - groupmenu
+    - system
+id: form-group_menu-menu
+label: 'Form: Group menu'
+description: 'Adds menus to groups'
+group_type: form
+content_plugin: 'group_menu:menu'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 1
+  auto_create_group_menu: 1
+  auto_create_home_link: 1
+  auto_create_home_link_title: Home
