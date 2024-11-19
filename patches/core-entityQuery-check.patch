@@ -1,0 +1,11 @@
+--- docroot/core/lib/Drupal/Core/Entity/Query/Sql/Query.php
++++ docroot/core/lib/Drupal/Core/Entity/Query/Sql/Query.php
+@@ -137,7 +137,7 @@
+       $this->sqlQuery->isNull("base_table_2.$id_field");
+     }
+ 
+-    if (is_null($this->accessCheck)) {
++    if (is_null($this->accessCheck(TRUE))) {
+       throw new QueryException('Entity queries must explicitly set whether the query should be access checked or not. See Drupal\Core\Entity\Query\QueryInterface::accessCheck().');
+     }
+     if ($this->accessCheck) {
