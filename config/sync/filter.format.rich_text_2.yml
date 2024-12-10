@@ -28,15 +28,63 @@ filters:
     status: false
     weight: 3
     settings:
-      media_switch: ''
-      hybrid_style: ''
-      box_style: ''
-      box_media_style: ''
-      box_caption: ''
       filter_tags:
         img: img
         iframe: iframe
+      media_switch: ''
+      box_style: ''
+      box_media_style: ''
+      hybrid_style: ''
       use_data_uri: '0'
+      box_caption: ''
+  ckeditor5_embedded_content:
+    id: ckeditor5_embedded_content
+    provider: ckeditor5_embedded_content
+    status: true
+    weight: 100
+    settings: {  }
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: true
+    weight: 0
+    settings: {  }
+  entity_embed:
+    id: entity_embed
+    provider: entity_embed
+    status: true
+    weight: 100
+    settings: {  }
+  epa_filter_empty_paragraphs:
+    id: epa_filter_empty_paragraphs
+    provider: epa_wysiwyg
+    status: true
+    weight: 0
+    settings: {  }
+  epa_filter_links:
+    id: epa_filter_links
+    provider: epa_wysiwyg
+    status: true
+    weight: 0
+    settings: {  }
+  filter_align:
+    id: filter_align
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
+  filter_caption:
+    id: filter_caption
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
   filter_html:
     id: filter_html
     provider: filter
@@ -46,6 +94,12 @@ filters:
       allowed_html: '<br> <p class="text-align-left text-align-center text-align-right text-align-justify"> <h2 class="text-align-left text-align-center text-align-right text-align-justify"> <h3 class="text-align-left text-align-center text-align-right text-align-justify"> <h4 class="text-align-left text-align-center text-align-right text-align-justify"> <h5 class="text-align-left text-align-center text-align-right text-align-justify"> <h6 class="text-align-left text-align-center text-align-right text-align-justify"> <strong> <em> <sub> <sup> <blockquote> <a href> <ul> <ol reversed start> <li> <hr> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption> <drupal-media data-entity-type data-entity-uuid alt data-caption data-align> <embedded-content data-plugin-config data-plugin-id> <div class data-*> <iframe src height width name tabindex title> <ins class="new" data-date> <drupal-entity alt title data-align data-caption data-entity-embed-display data-entity-embed-display-settings data-view-mode data-entity-uuid data-langcode data-embed-button="media_browser node paragraph_layout paragraphs staff" data-entity-type>'
       filter_html_help: true
       filter_html_nofollow: false
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: 1
+    settings: {  }
   filter_url:
     id: filter_url
     provider: filter
@@ -77,20 +131,21 @@ filters:
     weight: 100
     settings:
       default_view_mode: default
-      allowed_media_types:
-        document: document
       allowed_view_modes:
         link: link
+      allowed_media_types:
+        document: document
   slick_filter:
     id: slick_filter
     provider: slick
     status: false
     weight: 4
     settings:
+      optionset: default
+      media_switch: ''
       caption:
         alt: '0'
         title: '0'
-      optionset: default
       layout: ''
       background: false
       box_caption: ''
@@ -100,7 +155,6 @@ filters:
       responsive_image_style: ''
       box_style: ''
       image_style: ''
-      media_switch: ''
       ratio: ''
       thumbnail_style: ''
       grid: ''
@@ -125,57 +179,3 @@ filters:
       override: false
       preserve_keys: false
       visible_items: null
-  editor_file_reference:
-    id: editor_file_reference
-    provider: editor
-    status: true
-    weight: 0
-    settings: {  }
-  epa_filter_empty_paragraphs:
-    id: epa_filter_empty_paragraphs
-    provider: epa_wysiwyg
-    status: true
-    weight: 0
-    settings: {  }
-  epa_filter_links:
-    id: epa_filter_links
-    provider: epa_wysiwyg
-    status: true
-    weight: 0
-    settings: {  }
-  filter_align:
-    id: filter_align
-    provider: filter
-    status: true
-    weight: 0
-    settings: {  }
-  ckeditor5_embedded_content:
-    id: ckeditor5_embedded_content
-    provider: ckeditor5_embedded_content
-    status: true
-    weight: 100
-    settings: {  }
-  filter_autop:
-    id: filter_autop
-    provider: filter
-    status: true
-    weight: 0
-    settings: {  }
-  filter_caption:
-    id: filter_caption
-    provider: filter
-    status: true
-    weight: 0
-    settings: {  }
-  entity_embed:
-    id: entity_embed
-    provider: entity_embed
-    status: true
-    weight: 100
-    settings: {  }
-  filter_image_lazy_load:
-    id: filter_image_lazy_load
-    provider: filter
-    status: true
-    weight: 1
-    settings: {  }

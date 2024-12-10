@@ -12,7 +12,6 @@ dependencies:
     - media
     - taxonomy
     - user
-    - views_autocomplete_filters
     - views_infinite_scroll
 id: media_browser
 label: 'Media Browser'
@@ -241,7 +240,6 @@ display:
             context_key: target_bundles
             fallback: all
             multiple: or
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -509,7 +507,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags: {  }
   entity_browser_1:
@@ -527,6 +524,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags: {  }
