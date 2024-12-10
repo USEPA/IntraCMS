@@ -44,10 +44,10 @@ settings:
   plugins:
     ckeditor5_alignment:
       enabled_alignments:
-        - left
         - center
-        - right
         - justify
+        - left
+        - right
     ckeditor5_codeBlock:
       languages:
         -
@@ -100,8 +100,10 @@ settings:
         - heading5
         - heading6
     ckeditor5_list:
-      reversed: false
-      startIndex: true
+      properties:
+        reversed: false
+        startIndex: true
+      multiBlock: true
     ckeditor5_sourceEditing:
       allowed_tags:
         - '<dl>'
