@@ -10,6 +10,7 @@
         "ckeditor-plugin/liststyle": "^4.17.1",
         "ckeditor-plugin/templates": "^4.16.2",
         "cweagans/composer-patches": "^1.7.0",
+        "drupal/acquia_telemetry-acquia_telemetry": "1.0.0-alpha6",
         "drupal/address": "~1.10",
         "drupal/addtocal": "^3.0@beta",
         "drupal/addtocal_augment": "^1.1@beta",
@@ -31,6 +32,7 @@
         "drupal/charts": "5.0.16",
         "drupal/chosen": "^3.0",
         "drupal/chosen_lib": "^3.0",
+        "drupal/ckeditor": "1.0.2",
         "drupal/ckeditor5_embedded_content": "^1.0",
         "drupal/ckeditor_bs_grid": "2.0.12",
         "drupal/ckeditor_iframe": "3.0.0-beta1",
@@ -41,11 +43,12 @@
         "drupal/config_filter": "1.12",
         "drupal/config_ignore": "3.3",
         "drupal/config_split": "1.9",
+        "drupal/conflict": "2.0.0-alpha6",
         "drupal/consumers": "1.19",
         "drupal/contact_storage": "1.3",
-        "drupal/core-composer-scaffold": "10.2.12",
-        "drupal/core-project-message": "10.2.12",
-        "drupal/core-recommended": "10.2.12",
+        "drupal/core-composer-scaffold": "10.3.10",
+        "drupal/core-project-message": "10.3.10",
+        "drupal/core-recommended": "10.3.10",
         "drupal/crop": "2.4",
         "drupal/cshs": "^4.0",
         "drupal/csv_serialization": "^3.0 || ^4.0",
@@ -106,12 +109,12 @@
         "drupal/layout_builder_styles": "2.0",
         "drupal/layout_library": "1.0-beta4",
         "drupal/libraries": "^4.0.3",
-        "drupal/lightning_core": "5.14",
-        "drupal/lightning_media": "4.10",
-        "drupal/lightning_scheduler": "1.6",
-        "drupal/lightning_workflow": "3.19",
+        "drupal/lightning_core": "^6",
+        "drupal/lightning_media": "~5.0.0",
+        "drupal/lightning_workflow": "~4.0.0",
         "drupal/linkit": "^6.0",
         "drupal/media_entity_file_replace": "1.2",
+        "drupal/media_entity_instagram": "3.0.8",
         "drupal/media_entity_twitter": "2.9",
         "drupal/media_library_theme_reset": "1.5",
         "drupal/menu_export": "^1.4",
@@ -150,6 +153,7 @@
         "drupal/slick_entityreference": "2.2",
         "drupal/slick_paragraphs": "^2.4",
         "drupal/smart_date": "^4.1",
+        "drupal/structure_sync": "^2.0",
         "drupal/tablefield": "2.4",
         "drupal/taxonomy_manager": "2.0.10",
         "drupal/taxonomy_term_depth": "^2.6",
@@ -194,8 +198,8 @@
         "mglaman/composer-drupal-lenient": "^1.0",
         "npm-asset/slick-carousel": "1.8.0",
         "oomphinc/composer-installers-extender": "*",
-        "pear/archive_tar": "1.4.14",
-        "sabre/vobject": "^4.2"
+        "sabre/vobject": "^4.2",
+        "vardot/blazy": "1.8.2.1"
     },
     "config": {
         "process-timeout": 0,
@@ -210,9 +214,20 @@
         },
         "drupal-lenient": {
             "allowed-list": [
-                "drupal/views_add_button_group","drupal/groupmenu","drupal/group_taxonomy","drupal/path_file","drupal/custom_sql_migrate_source_plugin"
+                "drupal/views_add_button_group",
+                "drupal/groupmenu",
+                "drupal/group_taxonomy",
+                "drupal/path_file",
+                "drupal/custom_sql_migrate_source_plugin"
             ]
-        },        
+        },
+        "patches-ignore": {
+            "drupal/lightning_core": {
+                "drupal/core": {
+                    "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch"
+                }
+            }
+        },
         "patches": {
             "drupal/addtocal": {
                 "Upgrade the spatie/calendar-links up to the latest version": "https://www.drupal.org/files/issues/2023-10-29/addtocal-upgrade_spatie_library-3397549.patch",
@@ -228,29 +243,36 @@
             },
             "drupal/conditional_fields": {
                 "Required Field Error with Dependent Visibility": "https://www.drupal.org/files/issues/2023-05-05/3344587-required_fields_not_visible-15.patch"
-            },            
+            },
             "drupal/cshs": {
                 "3166049: Integrate select into webform": "https://www.drupal.org/files/issues/2023-04-06/cshs-3166046-11.patch"
             },
             "drupal/custom_sql_migrate_source_plugin": {
                 "Automated Drupal 10 Fixes": "https://www.drupal.org/files/issues/2022-06-15/custom_sql_migrate_source_plugin.1.3.rector.patch"
-            },              
+            },
             "drupal/diff": {
                 "2980335: Establish class attribute as array instead of string.": "https://www.drupal.org/files/issues/2018-06-18/2980335_2_define_classes_as_array.patch"
             },
-            "ckeditor/liststyle": {
-                "2874952: Change code from styles to type": "https://www.drupal.org/files/issues/2019-01-02/ckeditor_liststyle-styles-to-type-2874952-4-do-not-test.patch"
-            },              
             "drupal/lightning_core": {
                 "3408813: Fatal error: Declaration of Drupal lightning_core": "https://www.drupal.org/files/issues/2023-12-18/3408813_fatal_type_declaration_0.patch"
-            },  
+            },
+            "drupal/lightning_scheduler": {
+                "3408813: Circular reference cache error": "https://www.drupal.org/files/issues/2024-11-12/remove-lightning-scheduler-submodule-3458640-2-4.0.0-release.patch",
+                "3457016: Circular reference detected for service 'cache.backend.database'": "https://www.drupal.org/files/issues/2024-11-04/lightning-workflow-circular-reference-3457016-2.patch"
+            },    
+            "drupal/linkit": {
+                "3307118: The Linkit profile entity type needs to be installed.": "https://www.drupal.org/files/issues/2022-11-29/3307118-linkit_profile_entity_type_needs_to_be_installed-4.patch"
+            },                    
+            "ckeditor/liststyle": {
+                "2874952: Change code from styles to type": "https://www.drupal.org/files/issues/2019-01-02/ckeditor_liststyle-styles-to-type-2874952-4-do-not-test.patch"
+            },
             "drupal/menu_export": {
                 "3399829: Menu Import broken in Drupal 10 ": "https://www.drupal.org/files/issues/2024-03-11/menu-import-broken-in-d10-3399829.patch"
             },
             "drupal/path_file": {
                 "3289025: Drupal 10 Compatibility": "https://www.drupal.org/files/issues/2022-06-16/path_file.1.x-dev.rector.patch",
-                 "3289025-1: Drupal 10 Compatibility": "https://www.drupal.org/files/issues/2023-08-22/path_file_permission_change.patch"
-            },                          
+                "3289025-1: Drupal 10 Compatibility": "https://www.drupal.org/files/issues/2023-08-22/path_file_permission_change.patch"
+            },
             "drupal/group": {
                 "2797793: Associate menu with a group": "https://www.drupal.org/files/issues/2023-09-19/2797793-306.patch",
                 "2774827: Get a token of a node's parent group to create a pathauto pattern": "https://www.drupal.org/files/issues/2020-11-17/group-gnode_tokens-2774827-74.patch",
@@ -267,12 +289,12 @@
             "drupal/group_taxonomy": {
                 "3232198: Group members with the proper permissions can't access to the group taxonomy overview tab": "patches/group_taxonomy_button_visibility.patch",
                 "3287823: Automated Drupal 10 Fixes": "https://www.drupal.org/files/issues/2022-06-15/group_taxonomy.1.x-dev.rector.patch"
-            },            
+            },
             "drupal/groupmenu": {
                 "3308654: Drupal 10 compatibility": "https://www.drupal.org/files/issues/2024-02-02/d10-compatibility-14.patch",
                 "Active Trail Patch: Add active trail ability to group menu block": "patches/fixing_group_menu_active_trail.patch.txt",
                 "3098161: Null group fix": "https://www.drupal.org/files/issues/2023-02-15/groupmenu-3098161-8-null-group-fix.patch"
-            },            
+            },
             "drupal/h5p": {
                 "2774947: Allow disabling the reset of user data results": "https://www.drupal.org/files/issues/2020-05-14/2774947-keep-user-data-in-sync-with-content-7.patch",
                 "Drupal 9 module compatibility": "patches/h5p_module_compatibility_patch.patch",
@@ -294,7 +316,7 @@
             },
             "drupal/taxonomy_manager": {
                 "3444071: Version 2.0.10 breaks existing installations": "https://www.drupal.org/files/issues/2024-04-30/3444071-taxonomy-manager-mr-31.patch"
-            },           
+            },
             "drupal/entity_browser": {
                 "3104901: Entity Browser used in a entity referenced field of a layout builder custom block is not working": "https://www.drupal.org/files/issues/2020-03-25/3104901.patch"
             },
@@ -303,7 +325,7 @@
             },
             "drupal/anchor_link": {
                 "Remove overriding of CTRL+K command from ckeditor interfaces": "patches/anchor_link_shortcut_override.patch"
-            },         
+            },
             "drupal/core": {
                 "3020876: Custom block contextual links": "https://www.drupal.org/files/issues/2023-11-23/3020876-96.patch",
                 "2950729: Undefined offset 1 in the MenuParentFormSelector.php": "https://www.drupal.org/files/issues/2023-02-01/2950729-23.patch",
@@ -315,15 +337,14 @@
                 "2952261: Unsupported operand types in Drupal.": "https://www.drupal.org/files/issues/2021-12-18/unsupported-types-2952261-26.patch",
                 "2893747: Call to a member function getColumns() on boolean": "https://www.drupal.org/files/issues/2024-05-16/2893747-54.patch",
                 "3303889: Call to a member function uuid() on null": "https://www.drupal.org/files/issues/2023-12-07/core-3303889-media-library-widget-error-on-no-selection-34.patch",
-                "3044211: SectionStorage objects in tempstore are broken after upgrade.":  "https://www.drupal.org/files/issues/2023-03-10/3044211-25.patch",
-                "3270985: Wrong url generated for file fields.":  "patches/fileuri_fix.patch",
-                "3336143: Uncaught ReferenceError: loadjs is not defined after drupal core upgrade 9.5.":  "https://www.drupal.org/files/issues/2023-04-19/load_js-define_variable-3336143-32.patch",
-                "1278886:  Default text formats not saved.":  "https://www.drupal.org/files/issues/2023-11-14/1278886-120.patch",
+                "3270985: Wrong url generated for file fields.": "patches/fileuri_fix.patch",
+                "3336143: Uncaught ReferenceError: loadjs is not defined after drupal core upgrade 9.5.": "https://www.drupal.org/files/issues/2024-07-24/load_js-define_variable-3336143-43.patch",
+                "1278886:  Default text formats not saved.": "https://www.drupal.org/files/issues/2023-11-14/1278886-120.patch",
                 "3398155: Entity Query WSOD": "patches/core-entityQuery-check.patch"
             },
             "drupal/views_add_button_group": {
                 "Automated Drupal 10 Fixes": "https://www.drupal.org/files/issues/2022-06-16/views_add_button_group.2.0.x-dev.rector.patch"
-            },             
+            },
             "merge-plugin": {
                 "include": [
                     "docroot/modules/contrib/fontawesome/composer.libraries.json"
@@ -342,7 +363,8 @@
             "docroot/libraries/{$name}": [
                 "type:drupal-library",
                 "type:bower-asset",
-                "type:npm-asset"
+                "type:npm-asset",
+                "enyo/dropzone"
             ],
             "docroot/modules/contrib/{$name}": [
                 "type:drupal-module"
@@ -397,7 +419,7 @@
                     "reference": "8.x-1.0-rc18"
                 }
             }
-        },     
+        },
         {
             "type": "package",
             "package": {
@@ -490,7 +512,7 @@
                     "composer/installers": "^1.9.0"
                 }
             }
-        }, 
+        },
         {
             "type": "package",
             "package": {
@@ -505,7 +527,7 @@
                     "composer/installers": "^1.9.0"
                 }
             }
-        },               
+        },
         {
             "type": "package",
             "package": {
