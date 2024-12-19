@@ -4,11 +4,10 @@ status: true
 dependencies:
   config:
     - block_content.type.card_with_image
-    - entity_browser.browser.media_browser
     - field.field.block_content.card_with_image.field_card_image
     - field.field.block_content.card_with_image.field_card_text
   module:
-    - entity_browser
+    - media_library
     - text
 id: block_content.card_with_image.default
 targetEntityType: block_content
@@ -16,19 +15,11 @@ bundle: card_with_image
 mode: default
 content:
   field_card_image:
-    type: entity_browser_entity_reference
-    weight: 1
+    type: media_library_widget
+    weight: 26
     region: content
     settings:
-      entity_browser: media_browser
-      field_widget_display: rendered_entity
-      field_widget_edit: false
-      field_widget_remove: true
-      field_widget_replace: true
-      open: true
-      field_widget_display_settings:
-        view_mode: thumbnail
-      selection_mode: selection_append
+      media_types: {  }
     third_party_settings: {  }
   field_card_text:
     type: text_textarea
