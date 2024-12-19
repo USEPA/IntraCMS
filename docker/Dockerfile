@@ -1,4 +1,4 @@
-FROM registry.epa.gov/intranet-cms/intranet-cms-infra/intracms-php7.4.33:latest
+FROM registry.epa.gov/intranet-cms/intranet-cms-infra/intracms-php:latest
 SHELL ["/bin/bash", "-c"]
 
 WORKDIR /app 
