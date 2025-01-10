@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aba7c2b2509fbb6bbf28ce7af1e44a60",
+    "content-hash": "9ebf33dc3a6d738c7d7f6026872ac897",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1341,6 +1341,97 @@
             "time": "2024-04-18T06:56:21+00:00"
         },
         {
+            "name": "doctrine/common",
+            "version": "3.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/common.git",
+                "reference": "d9ea4a54ca2586db781f0265d36bea731ac66ec5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/d9ea4a54ca2586db781f0265d36bea731ac66ec5",
+                "reference": "d9ea4a54ca2586db781f0265d36bea731ac66ec5",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/persistence": "^2.0 || ^3.0 || ^4.0",
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^9.0 || ^10.0",
+                "doctrine/collections": "^1",
+                "phpstan/phpstan": "^1.4.1",
+                "phpstan/phpstan-phpunit": "^1",
+                "phpunit/phpunit": "^7.5.20 || ^8.5 || ^9.0",
+                "squizlabs/php_codesniffer": "^3.0",
+                "symfony/phpunit-bridge": "^6.1",
+                "vimeo/psalm": "^4.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                },
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                }
+            ],
+            "description": "PHP Doctrine Common project is a library that provides additional functionality that other Doctrine projects depend on such as better reflection support, proxies and much more.",
+            "homepage": "https://www.doctrine-project.org/projects/common.html",
+            "keywords": [
+                "common",
+                "doctrine",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/common/issues",
+                "source": "https://github.com/doctrine/common/tree/3.5.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fcommon",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2025-01-01T22:12:03+00:00"
+        },
+        {
             "name": "doctrine/deprecations",
             "version": "1.1.4",
             "source": {
@@ -1384,6 +1475,97 @@
                 "source": "https://github.com/doctrine/deprecations/tree/1.1.4"
             },
             "time": "2024-12-07T21:18:45+00:00"
+        },
+        {
+            "name": "doctrine/event-manager",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/event-manager.git",
+                "reference": "b680156fa328f1dfd874fd48c7026c41570b9c6e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/event-manager/zipball/b680156fa328f1dfd874fd48c7026c41570b9c6e",
+                "reference": "b680156fa328f1dfd874fd48c7026c41570b9c6e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "conflict": {
+                "doctrine/common": "<2.9"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^12",
+                "phpstan/phpstan": "^1.8.8",
+                "phpunit/phpunit": "^10.5",
+                "vimeo/psalm": "^5.24"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                },
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                }
+            ],
+            "description": "The Doctrine Event Manager is a simple PHP event system that was built to be used with the various Doctrine projects.",
+            "homepage": "https://www.doctrine-project.org/projects/event-manager.html",
+            "keywords": [
+                "event",
+                "event dispatcher",
+                "event manager",
+                "event system",
+                "events"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/event-manager/issues",
+                "source": "https://github.com/doctrine/event-manager/tree/2.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fevent-manager",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-05-22T20:47:39+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -1462,6 +1644,101 @@
                 }
             ],
             "time": "2024-02-05T11:35:39+00:00"
+        },
+        {
+            "name": "doctrine/persistence",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/persistence.git",
+                "reference": "45004aca79189474f113cbe3a53847c2115a55fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/persistence/zipball/45004aca79189474f113cbe3a53847c2115a55fa",
+                "reference": "45004aca79189474f113cbe3a53847c2115a55fa",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/event-manager": "^1 || ^2",
+                "php": "^8.1",
+                "psr/cache": "^1.0 || ^2.0 || ^3.0"
+            },
+            "conflict": {
+                "doctrine/common": "<2.10"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^12",
+                "phpstan/phpstan": "1.12.7",
+                "phpstan/phpstan-phpunit": "^1",
+                "phpstan/phpstan-strict-rules": "^1.1",
+                "phpunit/phpunit": "^9.6",
+                "symfony/cache": "^4.4 || ^5.4 || ^6.0 || ^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Persistence\\": "src/Persistence"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                },
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                }
+            ],
+            "description": "The Doctrine Persistence project is a set of shared interfaces and functionality that the different Doctrine object mappers share.",
+            "homepage": "https://www.doctrine-project.org/projects/persistence.html",
+            "keywords": [
+                "mapper",
+                "object",
+                "odm",
+                "orm",
+                "persistence"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/persistence/issues",
+                "source": "https://github.com/doctrine/persistence/tree/4.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fpersistence",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-11-01T21:49:07+00:00"
         },
         {
             "name": "drupal/acquia_telemetry-acquia_telemetry",
@@ -2998,17 +3275,17 @@
         },
         {
             "name": "drupal/ckeditor_iframe",
-            "version": "3.0.0-beta1",
+            "version": "3.0.0-beta2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ckeditor_iframe.git",
-                "reference": "3.0.0-beta1"
+                "reference": "3.0.0-beta2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ckeditor_iframe-3.0.0-beta1.zip",
-                "reference": "3.0.0-beta1",
-                "shasum": "f0b66aa76f604a62d783364d3d4dad04ba05b514"
+                "url": "https://ftp.drupal.org/files/projects/ckeditor_iframe-3.0.0-beta2.zip",
+                "reference": "3.0.0-beta2",
+                "shasum": "c553c65393c7f05fb563281b70b8763547e7db1a"
             },
             "require": {
                 "drupal/core": "^9 || ^10"
@@ -3016,8 +3293,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.0.0-beta1",
-                    "datestamp": "1719258314",
+                    "version": "3.0.0-beta2",
+                    "datestamp": "1727983211",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -4579,6 +4856,129 @@
             }
         },
         {
+            "name": "drupal/devel",
+            "version": "5.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/devel.git",
+                "reference": "5.3.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/devel-5.3.1.zip",
+                "reference": "5.3.1",
+                "shasum": "6a5f13bdf93dc5f7f194b6af847589ae15e37b63"
+            },
+            "require": {
+                "doctrine/common": "^2.7 || ^3.4",
+                "drupal/core": "^10.3 || ^11 || ^12",
+                "php": ">=8.1",
+                "symfony/var-dumper": "^4 || ^5 || ^6 || ^7"
+            },
+            "conflict": {
+                "drupal/core": "<10.3",
+                "drush/drush": "<12.5.1",
+                "kint-php/kint": "<3"
+            },
+            "require-dev": {
+                "drush/drush": "^13",
+                "firephp/firephp-core": "^0.5.3",
+                "kint-php/kint": "^5.1"
+            },
+            "suggest": {
+                "kint-php/kint": "Kint provides an informative display of arrays/objects. Useful for debugging and developing."
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "5.3.1",
+                    "datestamp": "1723258446",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "moshe weitzman",
+                    "homepage": "https://www.drupal.org/user/23"
+                }
+            ],
+            "description": "Various blocks, pages, and functions for developers.",
+            "homepage": "https://www.drupal.org/project/devel",
+            "support": {
+                "source": "https://gitlab.com/drupalspoons/devel",
+                "issues": "https://gitlab.com/drupalspoons/devel/-/issues",
+                "slack": "https://drupal.slack.com/archives/C012WAW1MH6"
+            }
+        },
+        {
+            "name": "drupal/devel_entity_updates",
+            "version": "4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/devel_entity_updates.git",
+                "reference": "4.2.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/devel_entity_updates-4.2.0.zip",
+                "reference": "4.2.0",
+                "shasum": "bbd2a745407cd49ce158430818b17d4db05a9e9f"
+            },
+            "require": {
+                "drupal/core": "^9.2 || ^10",
+                "drupal/devel": "*",
+                "drush/drush": "^11 || ^12 || ^13"
+            },
+            "require-dev": {
+                "drupal/devel": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "4.2.0",
+                    "datestamp": "1728286649",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^11 || ^12 || ^13"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Francesco Placella (plach)",
+                    "homepage": "https://www.drupal.org/u/plach",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "plach",
+                    "homepage": "https://www.drupal.org/user/183211"
+                }
+            ],
+            "description": "Provides developers an API and drush command to perform automatic entity updates.",
+            "homepage": "http://drupal.org/project/devel_entity_updates",
+            "support": {
+                "source": "https://cgit.drupalcode.org/devel_entity_updates",
+                "issues": "https://drupal.org/project/issues/devel_entity_updates",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
             "name": "drupal/diff",
             "version": "1.6.0",
             "source": {
@@ -5116,6 +5516,52 @@
             "homepage": "https://www.drupal.org/project/embed",
             "support": {
                 "source": "https://git.drupalcode.org/project/embed"
+            }
+        },
+        {
+            "name": "drupal/embedded_content",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/embedded_content.git",
+                "reference": "2.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/embedded_content-2.0.2.zip",
+                "reference": "2.0.2",
+                "shasum": "373da1a262e28d289b59abcef7cab7c0ec49d2ad"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10 || ^11",
+                "symfony/css-selector": "^6 || ^7",
+                "symfony/dom-crawler": "^6 || ^7"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.2",
+                    "datestamp": "1729321100",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "nuez",
+                    "homepage": "https://www.drupal.org/user/758020"
+                }
+            ],
+            "description": "Provides a way to embed rich content into ckeditor without having to grant html editing rights.",
+            "homepage": "http://drupal.org/project/embedded_content",
+            "support": {
+                "source": "https://git.drupalcode.org/project/embedded_content"
             }
         },
         {
@@ -11987,22 +12433,22 @@
         },
         {
             "name": "drupal/uswds_ckeditor_integration",
-            "version": "2.0.3",
+            "version": "3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/uswds_ckeditor_integration.git",
-                "reference": "2.0.3"
+                "reference": "3.1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/uswds_ckeditor_integration-2.0.3.zip",
-                "reference": "2.0.3",
-                "shasum": "bf5660fee6c029dfc14d7bf43b0016f05dc9d341"
+                "url": "https://ftp.drupal.org/files/projects/uswds_ckeditor_integration-3.1.3.zip",
+                "reference": "3.1.3",
+                "shasum": "243ef4b890c2307b30d26c48801b2bf839e6b5df"
             },
             "require": {
-                "drupal/ckeditor5_embedded_content": "^1.0",
-                "drupal/core": "^9 || ^10",
-                "php": ">=8.0"
+                "drupal/core": "^10.3 || ^11",
+                "drupal/embedded_content": "*",
+                "ext-dom": "*"
             },
             "require-dev": {
                 "drupal/paragraphs_entity_embed": "*",
@@ -12011,8 +12457,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.3",
-                    "datestamp": "1715989511",
+                    "version": "3.1.3",
+                    "datestamp": "1733881888",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -12843,20 +13289,20 @@
         },
         {
             "name": "drupal/webform",
-            "version": "6.2.0",
+            "version": "6.2.9",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/webform.git",
-                "reference": "6.2.0"
+                "reference": "6.2.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform-6.2.0.zip",
-                "reference": "6.2.0",
-                "shasum": "7a8292fb86fa60c88377279769fd6f1b1fad05c2"
+                "url": "https://ftp.drupal.org/files/projects/webform-6.2.9.zip",
+                "reference": "6.2.9",
+                "shasum": "650752c3cc6d0144c6f378b8d25d45c083e23600"
             },
             "require": {
-                "drupal/core": "^9.4 || ^10",
+                "drupal/core": "^10.2",
                 "php": ">=8.1"
             },
             "require-dev": {
@@ -12873,6 +13319,7 @@
                 "drupal/group": "1.x-dev",
                 "drupal/hal": "1 - 2",
                 "drupal/jquery_ui": "1.x-dev",
+                "drupal/jquery_ui_button": "2.x-dev",
                 "drupal/jquery_ui_checkboxradio": "2.x-dev",
                 "drupal/jquery_ui_datepicker": "2.x-dev",
                 "drupal/mailsystem": "4.x-dev",
@@ -12896,14 +13343,14 @@
                 "drupal/webform_ui": "*"
             },
             "suggest": {
-                "drupal/jquery_ui_checkboxradio": "Provides jQuery UI Checkboxradio library. Required by the Webform jQueryUI Buttons module. The Webform jQueryUI Buttons module is deprecated because jQueryUI is no longer maintained.",
+                "drupal/jquery_ui_buttons": "Provides jQuery UI Checkboxradio library. Required by the Webform jQueryUI Buttons module. The Webform jQueryUI Buttons module is deprecated because jQueryUI is no longer maintained.",
                 "drupal/jquery_ui_datepicker": "Provides jQuery UI Datepicker library. Required to support datepickers. The Webform jQueryUI Datepicker module is deprecated because jQueryUI is no longer maintained."
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "6.2.0",
-                    "datestamp": "1698674300",
+                    "version": "6.2.9",
+                    "datestamp": "1733851063",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -21631,6 +22078,7 @@
     "stability-flags": {
         "drupal/addtocal": 10,
         "drupal/addtocal_augment": 10,
+        "drupal/ckeditor_iframe": 10,
         "drupal/db_maintenance": 5,
         "drupal/entity_usage": 10,
         "drupal/group_outsider_in": 20,
