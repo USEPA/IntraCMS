@@ -1,0 +1,84 @@
+diff --git a/groupmenu.info.yml b/groupmenu.info.yml
+index 91ca39c90077aa6f91c7c582e3a65e48459b9da7..a7394915a9b93af94352a2e1f9493dd701cfa35a 100644
+--- a/groupmenu.info.yml
++++ b/groupmenu.info.yml
+@@ -2,7 +2,7 @@ name: 'Group Menu'
+ description: 'Gives the ability to create and manage menus for groups.'
+ package: 'Group'
+ type: 'module'
+-core_version_requirement: ^8 || ^9
++core_version_requirement: ^8 || ^9 || ^10
+ dependencies:
+   - 'drupal:menu_ui'
+   - 'group:group'
+diff --git a/modules/groupmenu_block/groupmenu_block.info.yml b/modules/groupmenu_block/groupmenu_block.info.yml
+index eecda4bf5f5e581fb77389033a33c72362fafef8..26e65ff708d88ea2d1f9b46318184fe05b495454 100644
+--- a/modules/groupmenu_block/groupmenu_block.info.yml
++++ b/modules/groupmenu_block/groupmenu_block.info.yml
+@@ -2,7 +2,7 @@ name: 'Group Menu Block'
+ description: 'Provides a block to display the group menus for content in a group.'
+ package: 'Group'
+ type: 'module'
+-core_version_requirement: ^8 || ^9
++core_version_requirement: ^8 || ^9 || ^10
+ dependencies:
+   - 'group:gnode'
+   - 'groupmenu:groupmenu'
+diff --git a/modules/groupmenu_block/src/Plugin/Block/GroupMenuBlock.php b/modules/groupmenu_block/src/Plugin/Block/GroupMenuBlock.php
+index 312cb8ab365eef109aa2b005a3022529cd91ddc9..6d24ae63390e8a15b6ed984571c7712cdaa9d621 100644
+--- a/modules/groupmenu_block/src/Plugin/Block/GroupMenuBlock.php
++++ b/modules/groupmenu_block/src/Plugin/Block/GroupMenuBlock.php
+@@ -14,7 +14,7 @@ use Drupal\Core\Form\FormStateInterface;
+  * @Block(
+  *   id = "groupmenus",
+  *   admin_label = @Translation("Group menus"),
+- *   context = {
++ *   context_definitions = {
+  *     "group" = @ContextDefinition("entity:group", required = FALSE),
+  *     "node" = @ContextDefinition("entity:node", required = FALSE)
+  *   }
+diff --git a/src/GroupMenuContentListBuilder.php b/src/GroupMenuContentListBuilder.php
+index ef9daef5ad4d26517c104c8c4b52f474777b1e75..c28a7c46fd3828a55a7c674af9edd5a801956c8b 100644
+--- a/src/GroupMenuContentListBuilder.php
++++ b/src/GroupMenuContentListBuilder.php
+@@ -24,7 +24,7 @@ class GroupMenuContentListBuilder extends GroupContentListBuilder {
+     }
+ 
+     $query = $this->getStorage()->getQuery();
+-
++    $query->accessCheck(TRUE);
+     // Filter by group menu plugins.
+     $query->condition('type', array_keys($group_content_types), 'IN');
+     // Only show group content for the group on the route.
+diff --git a/src/GroupMenuListBuilder.php b/src/GroupMenuListBuilder.php
+index f557481ccd09243e3d5b64c6be3f8cbce26ab0aa..5bf22b6a3700c198410e0f7b9847ffde04eb58e7 100644
+--- a/src/GroupMenuListBuilder.php
++++ b/src/GroupMenuListBuilder.php
+@@ -41,6 +41,7 @@ class GroupMenuListBuilder extends MenuListBuilder {
+ 
+     // Load all menus not used as group content.
+     $query = $this->getStorage()->getQuery()
++      ->accessCheck(TRUE)
+       ->condition($this->entityType->getKey('id'), $menus, 'NOT IN')
+       ->sort($this->entityType->getKey('id'));
+ 
+diff --git a/src/GroupMenuService.php b/src/GroupMenuService.php
+index a24d6d7e48d0cf9e689167b62ebe649b809e1e89..73a432f83466accfd12fc2981570e583a713d481 100644
+--- a/src/GroupMenuService.php
++++ b/src/GroupMenuService.php
+@@ -197,11 +197,13 @@ class GroupMenuService implements GroupMenuServiceInterface {
+         foreach ($group_contents as $group_content) {
+           // Make sure the group and entity IDs are set in the group content
+           // entity.
+-          if (!isset($group_content->gid->target_id) || !isset($group_content->entity_id->target_id)) {
++          $entity_id_field = isset($group_content->entity_id_str)
++            ? 'entity_id_str' : 'entity_id';
++          if (!isset($group_content->gid->target_id) || !isset($group_content->{$entity_id_field}->target_id)) {
+             continue;
+           }
+           /** @var \Drupal\group\Entity\GroupContentInterface $group_content */
+-          $this->groupMenus[$group_content->gid->target_id][$group_content->entity_id->target_id] = $menus[$group_content->entity_id->target_id];
++          $this->groupMenus[$group_content->gid->target_id][$group_content->{$entity_id_field}->target_id] = $menus[$group_content->{$entity_id_field}->target_id];
+         }
+       }
+     }

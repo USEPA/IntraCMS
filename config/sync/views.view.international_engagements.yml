@@ -2,11 +2,8 @@ uuid: 77d7b105-89fc-4923-af02-9508188f6de4
 langcode: en
 status: true
 dependencies:
-  config:
-    - webform.webform.international_coordination_engag
   module:
     - webform
-    - webform_views
 id: international_engagements
 label: 'International Engagements'
 module: views
@@ -93,6 +90,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:

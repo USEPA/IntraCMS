@@ -10,6 +10,7 @@ dependencies:
     - taxonomy.vocabulary.event_tags
   module:
     - node
+    - smart_date
     - taxonomy
     - user
 id: events_list
@@ -93,6 +94,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -432,7 +434,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -451,7 +452,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -482,6 +482,7 @@ display:
             offset: false
             offset_label: Offset
           quantity: 5
+          pagination_heading_level: h4
       defaults:
         pager: false
       display_description: ''
@@ -493,7 +494,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -527,7 +527,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -676,6 +675,7 @@ display:
             offset: false
             offset_label: Offset
           quantity: 5
+          pagination_heading_level: h4
       sorts:
         field_event_date_value:
           id: field_event_date_value
@@ -1029,7 +1029,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

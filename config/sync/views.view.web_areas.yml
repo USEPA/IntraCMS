@@ -21,7 +21,6 @@ dependencies:
     - serialization
     - taxonomy
     - vefl
-    - views_autocomplete_filters
     - views_data_export
 id: web_areas
 label: Web-Areas
@@ -1137,6 +1136,15 @@ display:
             date_format: month_day_year
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1204,6 +1212,15 @@ display:
             date_format: month_day_year
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1588,7 +1605,6 @@ display:
         - 'languages:language_interface'
         - request_format
         - url
-        - user
       tags:
         - 'config:field.storage.group.field_eic'
         - 'config:field.storage.group.field_program_office_region'
@@ -2405,7 +2421,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
       tags:
         - 'config:field.storage.group.field_eic'
         - 'config:field.storage.group.field_group_description'
@@ -2909,6 +2924,15 @@ display:
             date_format: month_day_year
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2976,6 +3000,15 @@ display:
             date_format: month_day_year
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -3337,7 +3370,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
       tags:
         - 'config:field.storage.group.field_eic'
         - 'config:field.storage.group.field_program_office_region'

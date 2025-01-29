@@ -7,6 +7,7 @@ dependencies:
     - entity_embed
     - media
     - paragraphs_entity_embed
+    - slick
     - uswds_ckeditor_integration
 _core:
   default_config_hash: p_4o1T01WaCAlHPZNWJfSwSBUnHX748vr-SVC4Ku4_I
@@ -19,6 +20,12 @@ filters:
     provider: editor
     status: true
     weight: 0
+    settings: {  }
+  entity_embed:
+    id: entity_embed
+    provider: entity_embed
+    status: true
+    weight: 100
     settings: {  }
   filter_align:
     id: filter_align
@@ -47,6 +54,18 @@ filters:
     status: true
     weight: 10
     settings: {  }
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: 1
+    settings: {  }
+  filter_table_attributes:
+    id: filter_table_attributes
+    provider: uswds_ckeditor_integration
+    status: true
+    weight: 0
+    settings: {  }
   filter_url:
     id: filter_url
     provider: filter
@@ -63,18 +82,6 @@ filters:
       default_view_mode: default
       allowed_view_modes: {  }
       allowed_media_types: {  }
-  filter_table_attributes:
-    id: filter_table_attributes
-    provider: uswds_ckeditor_integration
-    status: true
-    weight: 0
-    settings: {  }
-  entity_embed:
-    id: entity_embed
-    provider: entity_embed
-    status: true
-    weight: 100
-    settings: {  }
   paragraphs_entity_embed:
     id: paragraphs_entity_embed
     provider: paragraphs_entity_embed

@@ -26,24 +26,21 @@ name: 'Rich text'
 format: rich_text
 weight: -10
 filters:
-  filter_align:
-    id: filter_align
-    provider: filter
-    status: true
-    weight: -49
-    settings: {  }
-  filter_caption:
-    id: filter_caption
-    provider: filter
-    status: true
-    weight: -48
-    settings: {  }
-  filter_htmlcorrector:
-    id: filter_htmlcorrector
-    provider: filter
+  blazy_filter:
+    id: blazy_filter
+    provider: blazy
     status: false
-    weight: -38
-    settings: {  }
+    weight: -35
+    settings:
+      filter_tags:
+        img: img
+        iframe: iframe
+      media_switch: ''
+      box_style: ''
+      box_media_style: ''
+      hybrid_style: ''
+      use_data_uri: '0'
+      box_caption: ''
   editor_file_reference:
     id: editor_file_reference
     provider: editor
@@ -56,21 +53,45 @@ filters:
     status: true
     weight: -43
     settings: {  }
-  filter_html:
-    id: filter_html
+  epa_filter_empty_paragraphs:
+    id: epa_filter_empty_paragraphs
+    provider: epa_wysiwyg
+    status: false
+    weight: -34
+    settings: {  }
+  epa_filter_links:
+    id: epa_filter_links
+    provider: epa_wysiwyg
+    status: true
+    weight: -45
+    settings: {  }
+  filter_align:
+    id: filter_align
     provider: filter
     status: true
-    weight: -50
-    settings:
-      allowed_html: '<div class="tablet:grid-col*"> <em> <strong> <ins data-date> <code> <ol start type class=""> <li class=""> <dl> <dt> <dd> <s> <sup> <sub> <img src width height typeof alt data-align data-caption> <caption> <tbody> <thead> <tfoot> <th style colspan rowspan scope width data-sortable role> <td style colspan rowspan width data-sort-value> <tr scope> <hr> <br> <pre> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter data-cke-display-name data-placeholder class=""> <figure role class=""> <div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button id data-* class=""> <source media !src type> <iframe longdesc name scrolling src title align height frameborder width> <button aria-expanded aria-controls class=""> <svg role aria-* class=""> <use href xlink*> <a href target hreflang data-entity-type data-entity-uuid name id data-entity-substitution class=" usa-button"> <drupal-inline-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <drupal-media data-caption data-align data-entity-type data-entity-uuid data-view-mode alt title> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button data-langcode> <h2 id class="usa-* highlight"> <h3 id class="usa-* highlight"> <h4 id class="usa-* highlight"> <h5 id class="usa-* highlight"> <h6 id class="usa-* highlight"> <blockquote cite class=" pull-quote u-align-left u-align-right"> <cite class=" pull-quote__cite"> <table width height style class="usa-* datatable"> <ul type class=" list list--pipeline"> <span lang dir class="usa-* usa-tag warning text-bold"> <p class="usa-intro usa-* text-align-*">'
-      filter_html_help: true
-      filter_html_nofollow: false
+    weight: -49
+    settings: {  }
   filter_autop:
     id: filter_autop
     provider: filter
     status: false
     weight: -36
     settings: {  }
+  filter_caption:
+    id: filter_caption
+    provider: filter
+    status: true
+    weight: -48
+    settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -50
+    settings:
+      allowed_html: '<div data-entity-type data-entity-uuid data-langcode data-entity-embed-display data-entity-embed-display-settings alt title data-embed-button id data-* class> <em> <strong> <ins data-date> <code> <ol start type class> <li class> <dl> <dt> <dd> <s> <sup> <sub> <img src width height typeof alt data-align data-caption> <caption> <tbody> <thead> <tfoot> <th style colspan rowspan scope width data-sortable role> <td style colspan rowspan width data-sort-value> <tr scope> <hr> <br> <pre> <figcaption contenteditable data-cke-widget-editable data-cke-enter-mode data-cke-filter data-cke-display-name data-placeholder class> <figure role class> <source media !src type> <iframe longdesc name scrolling src title align height frameborder width> <button aria-expanded aria-controls class> <svg role aria-* class> <use href xlink*> <a href target hreflang data-entity-type data-entity-uuid name id data-entity-substitution class=" usa-button"> <drupal-inline-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <drupal-media data-caption data-align data-entity-type data-entity-uuid data-view-mode alt title> <drupal-entity data-* title alt data-entity-type data-entity-uuid data-entity-substitution data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button data-langcode> <h2 id class="usa-* highlight"> <h3 id class="usa-* highlight"> <h4 id class="usa-* highlight"> <h5 id class="usa-* highlight"> <h6 id class="usa-* highlight"> <blockquote cite class=" pull-quote u-align-left u-align-right"> <cite class=" pull-quote__cite"> <table width height style class="usa-* datatable"> <ul type class=" list list--pipeline"> <span lang dir class="usa-* usa-tag warning text-bold"> <p class="usa-intro usa-* text-align-*">'
+      filter_html_help: true
+      filter_html_nofollow: false
   filter_html_escape:
     id: filter_html_escape
     provider: filter
@@ -82,6 +103,24 @@ filters:
     provider: filter
     status: false
     weight: -39
+    settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: false
+    weight: -38
+    settings: {  }
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: -39
+    settings: {  }
+  filter_table_attributes:
+    id: filter_table_attributes
+    provider: uswds_ckeditor_integration
+    status: true
+    weight: -42
     settings: {  }
   filter_url:
     id: filter_url
@@ -114,20 +153,6 @@ filters:
         audio_file: audio_file
         image: image
         remote_video: remote_video
-  blazy_filter:
-    id: blazy_filter
-    provider: blazy
-    status: false
-    weight: -35
-    settings:
-      media_switch: ''
-      hybrid_style: ''
-      box_style: ''
-      box_caption: ''
-      filter_tags:
-        img: img
-        iframe: iframe
-      use_data_uri: '0'
   media_inline_embed:
     id: media_inline_embed
     provider: media_inline_embed
@@ -135,28 +160,10 @@ filters:
     weight: -46
     settings:
       default_view_mode: link
-      allowed_media_types:
-        document: document
       allowed_view_modes:
         link: link
-  filter_table_attributes:
-    id: filter_table_attributes
-    provider: uswds_ckeditor_integration
-    status: true
-    weight: -42
-    settings: {  }
-  epa_filter_empty_paragraphs:
-    id: epa_filter_empty_paragraphs
-    provider: epa_wysiwyg
-    status: false
-    weight: -34
-    settings: {  }
-  epa_filter_links:
-    id: epa_filter_links
-    provider: epa_wysiwyg
-    status: true
-    weight: -45
-    settings: {  }
+      allowed_media_types:
+        document: document
   paragraphs_entity_embed:
     id: paragraphs_entity_embed
     provider: paragraphs_entity_embed
@@ -170,16 +177,26 @@ filters:
     weight: 4
     settings:
       optionset: default
-      layout: ''
-      skin: ''
-      background: false
-      loading: ''
-      preload: false
-      responsive_image_style: ''
-      image_style: ''
       media_switch: ''
+      caption:
+        alt: '0'
+        title: '0'
+      layout: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      loading: ''
+      responsive_image_style: ''
+      box_style: ''
+      image_style: ''
       ratio: ''
       thumbnail_style: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+      style: ''
+      skin: ''
       overridables:
         arrows: '0'
         autoplay: '0'
@@ -195,3 +212,5 @@ filters:
       thumbnail_effect: ''
       thumbnail_position: ''
       override: false
+      preserve_keys: false
+      visible_items: null

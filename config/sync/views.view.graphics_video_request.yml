@@ -2,8 +2,6 @@ uuid: f9e9d9c7-2a05-487f-b589-d5529b952403
 langcode: en
 status: true
 dependencies:
-  config:
-    - webform.webform.graphics_video_request_in_r5
   module:
     - webform
     - webform_views
@@ -131,6 +129,15 @@ display:
             date_format: month_day_year
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -522,6 +529,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:

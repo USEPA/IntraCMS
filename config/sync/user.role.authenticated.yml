@@ -19,6 +19,7 @@ dependencies:
     - dropzonejs
     - editoria11y
     - entity_browser
+    - file
     - filter
     - google_analytics
     - h5peditor
@@ -28,8 +29,6 @@ dependencies:
     - moderation_sidebar
     - node
     - override_node_options
-    - path_file
-    - quickedit
     - smart_date_recur
     - system
     - tablefield
@@ -45,7 +44,6 @@ label: 'Authenticated user'
 weight: -9
 is_admin: false
 permissions:
-  - 'View published Path file entity entities'
   - 'access ckeditor_media_browser entity browser pages'
   - 'access comments'
   - 'access content'
@@ -54,7 +52,6 @@ permissions:
   - 'access editor'
   - 'access form_media entity browser pages'
   - 'access image_browser entity browser pages'
-  - 'access in-place editing'
   - 'access media overview'
   - 'access media_browser entity browser pages'
   - 'access printer-friendly version'
@@ -77,6 +74,7 @@ permissions:
   - 'delete event revisions'
   - 'delete media'
   - 'delete own event content'
+  - 'delete own files'
   - 'delete own staff_member content'
   - 'delete own webform submission'
   - 'delete terms in event_tags'
@@ -105,7 +103,6 @@ permissions:
   - 'revert event revisions'
   - 'skip comment approval'
   - 'update media'
-  - 'use blizz_bulk_creator ajax autocomplete'
   - 'use event_editorial transition create_new_draft'
   - 'use event_editorial transition publish'
   - 'use event_editorial transition restore_from_unpublished'
@@ -113,7 +110,6 @@ permissions:
   - 'use moderation dashboard'
   - 'use moderation sidebar'
   - 'use text format rich_text'
-  - 'use text format simple_text'
   - 'view all revisions'
   - 'view any unpublished content'
   - 'view editoria11y checker'
@@ -122,6 +118,5 @@ permissions:
   - 'view media'
   - 'view own unpublished media'
   - 'view own webform submission'
-  - 'view published path file entity entities'
   - 'view the administration theme'
   - 'view user email addresses'

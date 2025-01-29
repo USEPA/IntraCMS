@@ -14,8 +14,6 @@ dependencies:
     - node.type.staff_member
     - taxonomy.vocabulary.locations
     - taxonomy.vocabulary.organization
-  content:
-    - 'taxonomy_term:organization:ca7123a1-32d5-428f-9e15-895827ced5c6'
   module:
     - node
     - taxonomy
@@ -504,7 +502,8 @@ display:
           id: field_organization_target_id
           table: node__field_organization
           field: field_organization_target_id
-          plugin_id: numeric
+          plugin_id: entity_target_id
+          target_entity_type_id: taxonomy_term
       filters:
         status:
           id: status
@@ -1068,7 +1067,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1904,7 +1902,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -2179,7 +2176,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: ''
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -2777,7 +2773,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: ''
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -3305,7 +3300,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: ''
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -3544,7 +3538,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:

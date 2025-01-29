@@ -6,16 +6,9 @@ dependencies:
     - block_in_page_not_found
 id: webform_label_color
 label: 'Webform label color'
-code:
-  '#drupal-off-canvas .form-item .form-item__description {
-        color: #55565b;
-      }'
+code: '#drupal-off-canvas .form-item .form-item__description { color: #55565b; }'
 media: all
 preprocess: true
-conditions:
-  page_not_found_request:
-    id: page_not_found_request
-    negate: false
-    page_not_found: false
+conditions: {  }
 contexts: {  }
 conditions_require_all: true

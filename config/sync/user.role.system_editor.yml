@@ -14,12 +14,14 @@ dependencies:
     - workflows.workflow.event_editorial
   module:
     - block
+    - block_content
     - content_moderation
     - dropzonejs
     - field_permissions
     - file
     - filter
     - group
+    - help
     - lightning_core
     - media
     - moderated_content_bulk_publish
@@ -40,10 +42,14 @@ weight: -7
 is_admin: null
 permissions:
   - 'access administration pages'
+  - 'access block library'
   - 'access content overview'
   - 'access files overview'
   - 'access group overview'
+  - 'access help pages'
   - 'access site in maintenance mode'
+  - 'administer block content'
+  - 'administer block types'
   - 'administer blocks'
   - 'administer menu'
   - 'administer redirect settings'
@@ -54,7 +60,6 @@ permissions:
   - 'administer webform element access'
   - 'create field_group_contact_info'
   - 'create field_meta_tags'
-  - 'create field_show_on_official_portraits'
   - 'create organizational_policy content'
   - 'create re_delegation content'
   - 'create terms in event_host'
@@ -70,6 +75,7 @@ permissions:
   - 'delete any webform'
   - 'delete any webform submission'
   - 'delete organizational_policy revisions'
+  - 'delete own files'
   - 'delete own organizational_policy content'
   - 'delete own re_delegation content'
   - 'delete re_delegation revisions'
@@ -80,10 +86,8 @@ permissions:
   - 'edit any webform submission'
   - 'edit field_group_contact_info'
   - 'edit field_meta_tags'
-  - 'edit field_show_on_official_portraits'
   - 'edit own field_group_contact_info'
   - 'edit own field_meta_tags'
-  - 'edit own field_show_on_official_portraits'
   - 'edit own organizational_policy content'
   - 'edit own re_delegation content'
   - 'edit webform source'
@@ -113,11 +117,9 @@ permissions:
   - 'view any webform submission'
   - 'view field_group_contact_info'
   - 'view field_meta_tags'
-  - 'view field_show_on_official_portraits'
   - 'view latest version'
   - 'view organizational_policy revisions'
   - 'view own field_group_contact_info'
   - 'view own field_meta_tags'
-  - 'view own field_show_on_official_portraits'
   - 'view re_delegation revisions'
   - 'view unpublished paragraphs'

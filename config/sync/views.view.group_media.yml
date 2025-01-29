@@ -19,7 +19,6 @@ dependencies:
     - serialization
     - taxonomy
     - user
-    - views_autocomplete_filters
     - views_data_export
 _core:
   default_config_hash: S9IJ_ga9E9v8K2J31bHUC-URUCCx3kwokpqydP6AVlk
@@ -408,6 +407,15 @@ display:
             date_format: short
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -596,6 +604,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -652,7 +661,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: ''
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -1059,7 +1067,6 @@ display:
         - route.group
         - url
         - url.query_args
-        - user
         - user.group_permissions
       tags: {  }
   data_export_1:
@@ -1438,6 +1445,15 @@ display:
             date_format: short
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1480,7 +1496,6 @@ display:
         - request_format
         - route.group
         - url
-        - user
         - user.group_permissions
       tags: {  }
   page_1:
@@ -1523,7 +1538,6 @@ display:
         - route.group
         - url
         - url.query_args
-        - user
         - user.group_permissions
       tags: {  }
   page_2:
@@ -1903,6 +1917,15 @@ display:
             date_format: short
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2240,6 +2263,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.roles
       tags: {  }

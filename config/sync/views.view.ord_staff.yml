@@ -13,7 +13,6 @@ dependencies:
     - node
     - taxonomy
     - user
-    - views_autocomplete_filters
 id: ord_staff
 label: Staff
 module: views
@@ -342,6 +341,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -616,7 +616,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -638,7 +637,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:

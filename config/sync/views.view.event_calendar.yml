@@ -15,7 +15,6 @@ dependencies:
     - taxonomy
     - text
     - user
-    - views_autocomplete_filters
 id: event_calendar
 label: Calendar
 module: views
@@ -161,6 +160,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -308,8 +308,8 @@ display:
           start: field_event_date
           end: field_event_date
           title: title
-          right_buttons: 'dayGridMonth,timeGridWeek,timeGridDay,listYear'
           left_buttons: 'prev,next today'
+          right_buttons: 'dayGridMonth,timeGridWeek,timeGridDay,listYear'
           default_view: dayGridMonth
           firstDay: '0'
           nav_links: 1
@@ -403,7 +403,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -845,7 +844,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1121,7 +1119,6 @@ display:
             limit: false
             vids: {  }
             anyall: ','
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
