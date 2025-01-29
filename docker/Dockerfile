@@ -18,6 +18,7 @@ RUN ln -s /public/server/maint/simplesamlphp/metadata /srv/drupal-root/vendor/si
 RUN ln -s /public/server/maint/simplesamlphp/cert /srv/drupal-root/vendor/simplesamlphp/simplesamlphp/cert
 RUN ln -s /srv/drupal-root/vendor/simplesamlphp/simplesamlphp/www /srv/drupal-root/docroot/simplesaml
 RUN ln -s /public/server/maint/drush-files/intra/ /srv/drupal-root/drush
+RUN ln -s /srv/drupal-root/vendor/drush/drush/drush.php /usr/bin/drush.php
 
 RUN rm -rf /app/*
 
