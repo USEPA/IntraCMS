@@ -39,7 +39,15 @@ widgets:
     weight: 2
     settings:
       target_bundles: {  }
-      upload_validators: {  }
+      upload_validators:
+        type: sequence
+        label: 'Upload validators'
+        sequence:
+          type: sequence
+          label: 'Validator arguments'
+          sequence:
+            type: ignore
+            label: 'Argument value'      
       submit_text: Select
       form_mode: media_browser
       return_file: false
