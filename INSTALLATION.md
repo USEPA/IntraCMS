@@ -1,7 +1,6 @@
 
 Required Software & Setup
 =========================
-
 ### Using [DDEV](https://ddev.readthedocs.io/)
 ## DDEV Setup
 1. From command line, run command  `git clone https://github.com/USEPA/IntraCMS.git`
@@ -12,13 +11,14 @@ Required Software & Setup
 6. If not already installed, run `ddev composer require "drush/drush"`
 7. Update the config.yaml file located in the .ddev directory:
     1. Make sure the docroot is set correctly: `docroot: docroot`
-    2. Update to the appropriate php version - currently 7.3: `php_version: "7.3"`
-    3. Set the correct composer version - currently 1: `composer_version: "1"`
+    2. Update to the appropriate php version - currently 8.3: `php_version: "8.3"`
+    3. Set the correct composer version - currently 2: `composer_version: "2"`
 8. `ddev composer site-install` Until the project installation profile transitions to minimal from standard, there will always be errors related to the shortcut menu. The install script removes existing shortcuts, sets the site UUID, enables config_split, and runs a `drush-cim`. The post install script removes web.config and install.php.
 9. `ddev launch'`
 
 
-=========================
+Legacy Local Development Instructions
+=====================================
 
 ### PHP
 
