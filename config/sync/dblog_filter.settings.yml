@@ -3,21 +3,22 @@ severity_levels:
   alert: true
   critical: true
   error: true
-  warning: true
-  notice: false
-  info: true
-  debug: true
-log_values: {  }
-log_values_regex: {  }
-method: exclude
-syslog_severity_levels:
-  emergency: false
-  alert: false
-  critical: false
-  error: false
   warning: false
   notice: false
   info: false
-  debug: false
+  debug: true
+log_values: {  }
+log_values_regex: {  }
+method: include
+syslog_severity_levels:
+  emergency: true
+  alert: true
+  critical: true
+  error: true
+  warning: false
+  notice: false
+  info: false
+  debug: true
 syslog_log_values: {  }
 syslog_log_values_regex: {  }
+syslog_method: include
