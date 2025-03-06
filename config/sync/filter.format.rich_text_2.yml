@@ -13,11 +13,15 @@ dependencies:
     - blazy
     - ckeditor5_embedded_content
     - editor
+    - embedded_content
     - entity_embed
     - epa_wysiwyg
+    - linkit
     - media
     - media_inline_embed
+    - paragraphs_entity_embed
     - slick
+    - uswds_ckeditor_integration
 name: 'Rich Text 2'
 format: rich_text_2
 weight: 0
@@ -26,92 +30,135 @@ filters:
     id: blazy_filter
     provider: blazy
     status: false
-    weight: 3
+    weight: -32
     settings:
+      media_switch: ''
+      hybrid_style: ''
+      box_style: ''
+      box_media_style: ''
+      box_caption: ''
       filter_tags:
         img: img
         iframe: iframe
-      media_switch: ''
-      box_style: ''
-      box_media_style: ''
-      hybrid_style: ''
       use_data_uri: '0'
-      box_caption: ''
   ckeditor5_embedded_content:
     id: ckeditor5_embedded_content
     provider: ckeditor5_embedded_content
     status: true
-    weight: 100
+    weight: -42
     settings: {  }
   editor_file_reference:
     id: editor_file_reference
     provider: editor
     status: true
-    weight: 0
+    weight: -49
+    settings: {  }
+  embedded_content:
+    id: embedded_content
+    provider: embedded_content
+    status: false
+    weight: -28
     settings: {  }
   entity_embed:
     id: entity_embed
     provider: entity_embed
     status: true
-    weight: 100
+    weight: -41
     settings: {  }
   epa_filter_empty_paragraphs:
     id: epa_filter_empty_paragraphs
     provider: epa_wysiwyg
     status: true
-    weight: 0
+    weight: -48
     settings: {  }
   epa_filter_links:
     id: epa_filter_links
     provider: epa_wysiwyg
     status: true
-    weight: 0
+    weight: -47
     settings: {  }
   filter_align:
     id: filter_align
     provider: filter
     status: true
-    weight: 0
+    weight: -46
     settings: {  }
   filter_autop:
     id: filter_autop
     provider: filter
     status: true
-    weight: 0
+    weight: -38
     settings: {  }
   filter_caption:
     id: filter_caption
     provider: filter
     status: true
-    weight: 0
+    weight: -45
     settings: {  }
   filter_html:
     id: filter_html
     provider: filter
     status: true
-    weight: -10
+    weight: -50
     settings:
-      allowed_html: '<br> <p class="text-align-left text-align-center text-align-right text-align-justify"> <h2 class="text-align-left text-align-center text-align-right text-align-justify"> <h3 class="text-align-left text-align-center text-align-right text-align-justify"> <h4 class="text-align-left text-align-center text-align-right text-align-justify"> <h5 class="text-align-left text-align-center text-align-right text-align-justify"> <h6 class="text-align-left text-align-center text-align-right text-align-justify"> <strong> <em> <sub> <sup> <blockquote> <a href> <ul> <ol reversed start> <li> <hr> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption> <drupal-media data-entity-type data-entity-uuid alt data-caption data-align> <embedded-content data-plugin-config data-plugin-id> <div class data-*> <iframe src height width name tabindex title> <ins class="new" data-date> <drupal-entity alt title data-align data-caption data-entity-embed-display data-entity-embed-display-settings data-view-mode data-entity-uuid data-langcode data-embed-button="media_browser node paragraph_layout paragraphs staff" data-entity-type>'
+      allowed_html: '<br> <p class="text-align-left text-align-center text-align-right text-align-justify"> <h2 class="text-align-left text-align-center text-align-right text-align-justify"> <h3 class="text-align-left text-align-center text-align-right text-align-justify"> <h4 class="text-align-left text-align-center text-align-right text-align-justify"> <h5 class="text-align-left text-align-center text-align-right text-align-justify"> <h6 class="text-align-left text-align-center text-align-right text-align-justify"> <strong> <em> <sub> <sup> <blockquote> <a href> <ul> <ol reversed start> <li> <hr> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption> <drupal-media data-entity-type data-entity-uuid alt data-caption data-align> <embedded-content data-plugin-config data-plugin-id> <div class data-*> <iframe src height width name tabindex title> <ins class="new" data-date> <drupal-entity alt title data-align data-caption data-entity-embed-display data-entity-embed-display-settings data-view-mode data-entity-uuid data-langcode data-embed-button="media_browser node paragraphs paragraph_layout staff" data-entity-type>'
       filter_html_help: true
       filter_html_nofollow: false
+  filter_html_escape:
+    id: filter_html_escape
+    provider: filter
+    status: false
+    weight: -37
+    settings: {  }
+  filter_html_image_secure:
+    id: filter_html_image_secure
+    provider: filter
+    status: false
+    weight: -30
+    settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: false
+    weight: -29
+    settings: {  }
   filter_image_lazy_load:
     id: filter_image_lazy_load
     provider: filter
     status: true
-    weight: 1
+    weight: -43
+    settings: {  }
+  filter_table_attributes:
+    id: filter_table_attributes
+    provider: uswds_ckeditor_integration
+    status: false
+    weight: -34
     settings: {  }
   filter_url:
     id: filter_url
     provider: filter
     status: true
-    weight: 0
+    weight: -44
     settings:
       filter_url_length: 72
+  filter_uswds_table_sortable:
+    id: filter_uswds_table_sortable
+    provider: uswds_ckeditor_integration
+    status: false
+    weight: -33
+    settings: {  }
+  linkit:
+    id: linkit
+    provider: linkit
+    status: false
+    weight: -36
+    settings:
+      title: true
   media_embed:
     id: media_embed
     provider: media
     status: true
-    weight: 100
+    weight: -40
     settings:
       default_view_mode: default
       allowed_view_modes:
@@ -128,24 +175,29 @@ filters:
     id: media_inline_embed
     provider: media_inline_embed
     status: true
-    weight: 100
+    weight: -39
     settings:
       default_view_mode: default
-      allowed_view_modes:
-        link: link
       allowed_media_types:
         document: document
+      allowed_view_modes:
+        link: link
+  paragraphs_entity_embed:
+    id: paragraphs_entity_embed
+    provider: paragraphs_entity_embed
+    status: false
+    weight: -35
+    settings: {  }
   slick_filter:
     id: slick_filter
     provider: slick
     status: false
-    weight: 4
+    weight: -31
     settings:
-      optionset: default
-      media_switch: ''
       caption:
         alt: '0'
         title: '0'
+      optionset: default
       layout: ''
       background: false
       box_caption: ''
@@ -155,6 +207,7 @@ filters:
       responsive_image_style: ''
       box_style: ''
       image_style: ''
+      media_switch: ''
       ratio: ''
       thumbnail_style: ''
       grid: ''
