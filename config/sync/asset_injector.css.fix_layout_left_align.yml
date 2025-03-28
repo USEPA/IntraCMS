@@ -1,0 +1,28 @@
+uuid: 0abc6f3e-fa49-4644-880c-9109718cc149
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+    - system
+id: fix_layout_left_align
+label: 'Fix layout left align'
+code: |-
+  @media (min-width: 30em) {
+  	.layout-builder-add-block.usa-form, .layout-builder-form.usa-form {
+  		max-width: 100%;
+  	}
+  }
+media: all
+preprocess: true
+conditions:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
+  current_theme:
+    id: current_theme
+    negate: false
+    theme: claro
+contexts: {  }
+conditions_require_all: true
