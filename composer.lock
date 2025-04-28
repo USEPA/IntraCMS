@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "485a133963589feb90782d81a602c2b6",
+    "content-hash": "9fa26f7f1b391578fa4edc395ad3ca73",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -11322,6 +11322,61 @@
             }
         },
         {
+            "name": "drupal/shs",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/shs.git",
+                "reference": "2.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/shs-2.0.0.zip",
+                "reference": "2.0.0",
+                "shasum": "7c95c1d2f708db89b52e2ceb7f88a91f3c34c15b"
+            },
+            "require": {
+                "drupal/core": "^10.2 || ^11"
+            },
+            "require-dev": {
+                "drupal/chosen": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0",
+                    "datestamp": "1732638462",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "jhedstrom",
+                    "homepage": "https://www.drupal.org/user/208732"
+                },
+                {
+                    "name": "joseph.olstad",
+                    "homepage": "https://www.drupal.org/user/1321830"
+                },
+                {
+                    "name": "stborchert",
+                    "homepage": "https://www.drupal.org/user/36942"
+                }
+            ],
+            "description": "Creates a simple hierarchical select widget for taxonomy fields.",
+            "homepage": "https://www.drupal.org/project/shs",
+            "support": {
+                "source": "https://git.drupalcode.org/project/shs"
+            }
+        },
+        {
             "name": "drupal/simple_gmap",
             "version": "3.1.0",
             "source": {
@@ -14006,6 +14061,64 @@
             "homepage": "https://www.drupal.org/project/webform",
             "support": {
                 "source": "https://git.drupalcode.org/project/webform"
+            }
+        },
+        {
+            "name": "drupal/webform_shs",
+            "version": "2.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/webform_shs.git",
+                "reference": "2.0.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/webform_shs-2.0.0-beta1.zip",
+                "reference": "2.0.0-beta1",
+                "shasum": "93c62ce4e9596702e42bc4a1f2e9454fc2acff52"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10",
+                "drupal/shs": "*",
+                "drupal/webform": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0-beta1",
+                    "datestamp": "1681799264",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "hugronaphor",
+                    "homepage": "https://www.drupal.org/u/hugronaphor",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Adam Bramley",
+                    "homepage": "https://www.drupal.org/u/acbramley",
+                    "role": "Initial Drupal 8 port"
+                },
+                {
+                    "name": "Kevin Reynen",
+                    "homepage": "https://www.drupal.org/u/kreynen",
+                    "role": "Support for Drupal 10"
+                }
+            ],
+            "description": "Provides an SHS term select element for webform",
+            "homepage": "https://drupal.org/project/webform_shs",
+            "support": {
+                "source": "https://git.drupalcode.org/project/webform_shs",
+                "issues": "https://www.drupal.org/project/issues/webform_shs"
             }
         },
         {
@@ -22223,7 +22336,7 @@
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
+    "platform": [],
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
