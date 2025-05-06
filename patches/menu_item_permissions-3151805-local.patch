@@ -1,0 +1,22 @@
+diff --git a/src/Access/GroupMenuAccess.php b/src/Access/GroupMenuAccess.php
+index 1a6f141..addee5a 100644
+--- a/src/Access/GroupMenuAccess.php
++++ b/src/Access/GroupMenuAccess.php
+@@ -31,7 +31,7 @@ class GroupMenuAccess implements GroupMenuAccessInterface {
+    * {@inheritdoc}
+    */
+   public function menuItemAccess(AccountInterface $account, MenuLinkContentInterface $menu_link_content = NULL) {
+-    $menus = \Drupal::service('groupmenu.menu')->loadUserGroupMenus('edit', $account);
++    $menus = \Drupal::service('groupmenu.menu')->loadUserGroupMenus('update', $account);
+     if ($account->hasPermission('administer menu') || !empty($menus)) {
+       return AccessResult::allowed();
+     }
+@@ -42,7 +42,7 @@ class GroupMenuAccess implements GroupMenuAccessInterface {
+    * {@inheritdoc}
+    */
+   public function menuLinkAccess(AccountInterface $account, MenuLinkInterface $menu_link_plugin = NULL) {
+-    $menus = \Drupal::service('groupmenu.menu')->loadUserGroupMenus('edit', $account);
++    $menus = \Drupal::service('groupmenu.menu')->loadUserGroupMenus('update', $account);
+     if ($account->hasPermission('administer menu') || !empty($menus)) {
+       return AccessResult::allowed();
+     }
