@@ -9,7 +9,7 @@ dependencies:
     - node.type.event
     - taxonomy.vocabulary.event_host
   module:
-    - fullcalendar_view
+    - fullcalendar
     - node
     - smart_date
     - taxonomy
@@ -146,6 +146,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 0
           total_pages: null
           id: 0
@@ -160,7 +161,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -301,72 +301,145 @@ display:
             default_group_multiple: {  }
             group_items: {  }
       style:
-        type: fullcalendar_view_display
+        type: fullcalendar
         options:
-          default_date_source: now
-          defaultDate: ''
-          start: field_event_date
-          end: field_event_date
-          title: title
-          left_buttons: 'prev,next today'
-          right_buttons: 'dayGridMonth,timeGridWeek,timeGridDay,listYear'
-          default_view: dayGridMonth
-          firstDay: '0'
-          nav_links: 1
-          timeFormat: 'h:mm a'
-          allowEventOverlap: 1
-          updateAllowed: 1
-          updateConfirm: 1
-          defaultLanguage: en
-          languageSelector: 0
-          dialogWindow: 0
-          openEntityInNewTab: 1
-          createEventLink: 0
-          tax_field: field_event_host
-          vocabularies: event_host
-          color_bundle:
-            article: '#3a87ad'
-            blog_post: '#3a87ad'
-            employee_profile: '#3a87ad'
-            event: '#3a87ad'
-            landing_page: '#3a87ad'
-            mass_mailer: '#3a87ad'
-            page: '#3a87ad'
-            photos_of_the_week: '#3a87ad'
-            policy: '#3a87ad'
-            policy_delegation: '#3a87ad'
-            quiz: '#3a87ad'
-            staff_member: '#3a87ad'
-            webform: '#3a87ad'
-          rrule: ''
-          duration: ''
-          bundle_type: event
-          classes: ''
-          color_taxonomies:
-            1: '#3a87ad'
-            23: '#269c2a'
-            250: '#3a87ad'
-            2: '#3a87ad'
-            3: '#3a87ad'
-            4: '#008000'
-            5: '#3a87ad'
-            6: '#3a87ad'
-            7: '#3a87ad'
-            8: '#3a87ad'
-            9: '#3a87ad'
-            10: '#3a87ad'
-            11: '#3a87ad'
-            12: '#3a87ad'
-            13: '#3a87ad'
-            22: '#3a87ad'
-            14: '#3a87ad'
-            15: '#3a87ad'
-            16: '#3a87ad'
-            17: '#3a87ad'
-            18: '#3a87ad'
-            19: '#3a87ad'
-            20: '#3a87ad'
-            21: '#3a87ad'
+          header: "left:'dayGridMonth,timeGridWeek,timeGridDay', center:'title', right:'today prev,next'"
+          footer: ''
+          titleFormat: ''
+          titleRangeSeparator: \u2013
+          buttonText: "today:'today', month:'month', week:'week', day:'day', list:'list'"
+          buttonIcons: "prev:'left-single-arrow', next:'right-single-arrow', prevYear:'left-double-arrow', nextYear:'right-double-arrow'"
+          month_view: true
+          timegrid_view: true
+          daygrid_view: true
+          list_view: true
+          fields:
+            title: false
+            title_field: ''
+            url: false
+            url_field: ''
+            date: false
+            date_field: {  }
+          event_format:
+            eventColor: '#3788d8'
+            eventDisplay: auto
+            displayEventTime: true
+            nextDayThreshold: '00:00:00'
+          links:
+            navLinks: true
+            navLinkDayClick: ''
+            navLinkWeekClick: ''
+            bundle_type: event
+            createTarget: ''
+            modalWidth: 600
+            updateConfirm: false
+            showMessages: true
+          colors:
+            color_bundle:
+              article: {  }
+              blog_post: {  }
+              book: {  }
+              employee_profile: {  }
+              event: {  }
+              form: {  }
+              grants_policy_issuances_gpis_: {  }
+              hr_advisories_and_bulletins: {  }
+              interagency_policy_issuance_ipi_: {  }
+              landing_page: {  }
+              mass_mailer: {  }
+              organizational_policy: {  }
+              page: {  }
+              photos_of_the_week: {  }
+              policy: {  }
+              policy_delegation: {  }
+              policy_notice: {  }
+              qapp: {  }
+              quiz: {  }
+              re_delegation: {  }
+              sop: {  }
+              staff_member: {  }
+              transmittal_notce: {  }
+              webform: {  }
+            tax_field: ''
+            vocabularies: ''
+            color_taxonomies: {  }
+          month_view_settings:
+            fixedWeekCount: true
+            showNonCurrentDates: '1'
+          timegrid_view_settings:
+            allDaySlot: true
+            allDayContent: all-day
+            slotEventOverlap: true
+            timeGridEventMinHeight: ''
+          list_view_settings:
+            listDayFormat: "weekday:'long'"
+            listDayAltFormat: "month:'long', day:'numeric', year:'numeric'"
+            noEventsMessage: 'No events to display'
+          views_year:
+            listYear_buttonText: "buttonText: 'list'"
+            listYear_titleFormat: "year: 'numeric'"
+          views_month:
+            listMonth_buttonText: "buttonText: 'list'"
+            listMonth_titleFormat: "year: 'numeric', month: 'long'"
+            dayGridMonth_buttonText: "buttonText: 'month'"
+            dayGridMonth_titleFormat: "year: 'numeric', month: 'long'"
+            dayGridMonth_dayHeaderFormat: "weekday:'short'"
+          views_week:
+            listWeek_buttonText: "buttonText: 'list'"
+            listWeek_titleFormat: "year: 'numeric', month: 'short', day: 'numeric'"
+            dayGridWeek_buttonText: "buttonText: 'week'"
+            dayGridWeek_titleFormat: "year: 'numeric', month: 'short', day: 'numeric'"
+            dayGridWeek_dayHeaderFormat: "weekday:'short', month:'numeric', day:'numeric', omitCommas:true"
+            timeGridWeek_buttonText: "buttonText: 'week'"
+            timeGridWeek_titleFormat: "year: 'numeric', month: 'short', day: 'numeric'"
+            timeGridWeek_dayHeaderFormat: "weekday:'short', month:'numeric', day:'numeric', omitCommas:true"
+          views_day:
+            listDay_buttonText: "buttonText: 'list'"
+            listDay_titleFormat: "year: 'numeric', month: 'long', day: 'numeric'"
+            dayGridDay_buttonText: "buttonText: 'day'"
+            dayGridDay_titleFormat: "year: 'numeric', month: 'long', day: 'numeric'"
+            dayGridDay_dayHeaderFormat: "weekday:'long'"
+            timeGridDay_buttonText: "buttonText: 'day'"
+            timeGridDay_titleFormat: "year: 'numeric', month: 'long', day: 'numeric'"
+            timeGridDay_dayHeaderFormat: "weekday:'long'"
+          display:
+            initialView: dayGridMonth
+            firstDay: '0'
+          times:
+            convert_timezones: true
+            weekends: true
+            hiddenDays: ''
+            dayHeaders: '1'
+          axis:
+            slotDuration: ''
+            slotLabelInterval: ''
+            slotLabelFormat: ''
+            slotMinTime: ''
+            slotMaxTime: ''
+            scrollTime: ''
+          nav:
+            initialDate: ''
+            validRange: ''
+          week:
+            weekNumbers: false
+            weekNumberCalculation: local
+            weekText: W
+          now:
+            nowIndicator: false
+            now: false
+          business:
+            businessHours: false
+            businessHours2: ''
+          style:
+            themeSystem: standard
+            height: ''
+            contentHeight: ''
+            aspectRatio: '1.35'
+            handleWindowResize: true
+            windowResizeDelay: '100'
+          google:
+            googleCalendarApiKey: ''
+            googleCalendarId: ''
       row:
         type: fields
       query:
