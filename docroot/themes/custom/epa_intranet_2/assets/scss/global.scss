@@ -264,6 +264,15 @@ blockquote {
   }
 }
 
+
+/* Hack to update Fullcalendar default color to bulke since not working for taxonomy. */
+.fc-direction-ltr .fc-daygrid-event.fc-event-end, .fc-direction-rtl .fc-daygrid-event.fc-event-start {
+  background-color: rgb(55, 136, 216);
+}
+.fc-direction-ltr .fc-daygrid-event .fc-event-time {
+  margin-right: 20px;
+}
+
 /* overriding links to apply uswds standards */
 
 ol.links-list a, ul.links-list a:not(.usa-button), ol.uswds-breadcrumbs a, ul.uswds-breadcrumbs a {
@@ -734,6 +743,14 @@ section.comment-wrapper ul.links li {
 
 .field--label-inline .field__label::after {
   content: ":";
+}
+
+/* Fix inline labels that were appearing after the field value */
+.field--label-inline .title.display-inline {
+  float: left;
+}
+.field--label-inline .field.display-inline {
+  padding-left: 3px;
 }
 
 .media--view-mode-media-block {
