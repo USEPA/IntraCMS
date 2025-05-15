@@ -126,15 +126,36 @@ content:
           bundle: event
           dependee: field_event_location_logistics
           settings:
-            state: visible
+            state: required
+            reset: false
             condition: value
-            grouping: AND
+            grouping: OR
             values_set: 1
             value: ''
             values: {  }
             value_form:
               -
                 value: online
+            effect: show
+            effect_options: {  }
+            selector: ''
+        d5cca0ba-fdf7-4f01-bcab-fc92c40dcbc9:
+          entity_type: node
+          bundle: event
+          dependee: field_event_location_logistics
+          settings:
+            state: required
+            reset: false
+            condition: value
+            grouping: OR
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: online
+              -
+                value: in-person
             effect: show
             effect_options: {  }
             selector: ''
@@ -146,24 +167,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings:
-      conditional_fields:
-        d8c267ce-104d-4c96-9abc-f7b496c7b58e:
-          entity_type: node
-          bundle: event
-          dependee: field_event_location_logistics
-          settings:
-            state: visible
-            condition: value
-            grouping: AND
-            values_set: 1
-            value: ''
-            values: {  }
-            value_form:
-              -
-                value: in-person
-            effect: show
-            effect_options: {  }
-            selector: ''
+      conditional_fields: {  }
   field_event_location_logistics:
     type: options_buttons
     weight: 3
