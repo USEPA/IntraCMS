@@ -1,0 +1,29 @@
+diff --git a/backup_migrate.install b/backup_migrate.install
+index e05fd54d9424fe0b5479bf2cea24e7c5ba26c7f9..e6da8975a57129559c41a6e3be187338135586e5 100644
+--- a/backup_migrate.install
++++ b/backup_migrate.install
+@@ -9,6 +9,24 @@ declare(strict_types=1);
+ 
+ use Drupal\backup_migrate\Entity\Schedule;
+ 
++/**
++ * Install new backup and migrate entity types.
++ */
++function backup_migrate_update_9001() {
++  $new_entity_types = [
++    'backup_migrate_schedule',
++    'backup_migrate_destination',
++    'backup_migrate_settings',
++    'backup_migrate_source',
++  ];
++  $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
++  $type_manager = \Drupal::entityTypeManager();
++  foreach ($new_entity_types as $entity_type) {
++    $entity_type = $type_manager->getDefinition($entity_type);
++    $entity_definition_update_manager->installEntityType($entity_type);
++  }
++}
++
+ /**
+  * Migrate last_run information from raw KeyValue to State API.
+  */
