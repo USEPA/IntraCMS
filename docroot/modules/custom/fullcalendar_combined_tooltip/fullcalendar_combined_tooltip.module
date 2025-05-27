@@ -1,0 +1,33 @@
+<?php
+
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_fullcalendar_event_alter().
+ */
+function fullcalendar_combined_tooltip_fullcalendar_event_alter(array &$event, array $context) {
+  if (!empty($context['entity']) && $context['entity'] instanceof NodeInterface) {
+    $node = $context['entity'];
+    if ($node->bundle() === 'event' && $node->hasField('field_event_description')) {
+      $event['extendedProps']['description'] = $node->get('field_event_description')->value ?? '';
+    }
+  }
+}
+
+/**
+ * Implements hook_fullcalendar_calendar_alter().
+ */
+function fullcalendar_combined_tooltip_fullcalendar_calendar_alter(array &$calendar, array $context) {
+  $calendar['eventDidMount'] = 'function(info) {
+    if (info.event.extendedProps && info.event.extendedProps.description) {
+      info.el.setAttribute("data-description", info.event.extendedProps.description);
+    }
+  }';
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function fullcalendar_combined_tooltip_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'fullcalendar_combined_tooltip/calendar_assets';
+}
