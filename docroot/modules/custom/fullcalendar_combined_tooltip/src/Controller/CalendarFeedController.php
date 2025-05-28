@@ -17,7 +17,7 @@ class CalendarFeedController {
     $nodes = Node::loadMultiple($nids);
     foreach ($nodes as $node) {
       //$start = $node->get('field_event_date')->value; //change the correct event date field name
-	  $start = date(DATE_ATOM, strtotime($node->get('field_event_start_date')->value));
+	  $start = date(DATE_ATOM, strtotime($node->get('field_event_date')->value));
       $description = $node->get('field_event_description')->value ?? '';
       $events[] = [
         'title' => $node->label(),
