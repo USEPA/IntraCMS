@@ -3,27 +3,22 @@
     attach: function (context, settings) {
       console.log('✅ fullcalendarTooltip behavior attached');
 
-      $.getJSON('/calendar-feed', function (data) {
-        const descMap = {};
+      function attachTooltipsFromFeed() {
+        $.getJSON('/calendar-feed', function (data) {
+          const descMap = {};
 
-        data.forEach(function (event) {
-          descMap[event.url] = event.extendedProps?.description || 'No description';
-        });
+          data.forEach(function (event) {
+            descMap[event.url] = event.extendedProps?.description || 'No description';
+          });
 
-        const waitForEvents = setInterval(function () {
-          const $events = $('.fc-event:not(.fc-tooltip-processed)', context);
+          $('.fc-event', context).each(function () {
+            const $event = $(this);
 
-          if ($events.length) {
-            clearInterval(waitForEvents);
-            console.log(`🟢 Found ${$events.length} event(s) — adding tooltips`);
+            if (!$event.hasClass('fc-tooltip-processed')) {
+              $event.addClass('fc-tooltip-processed');
 
-            $events.each(function () {
-              const $event = $(this);
               const href = $event.attr('href');
               const description = descMap[href] || 'No description';
-
-              $event.addClass('fc-tooltip-processed');
-              //$event.css('border', '1px dashed red');
 
               if (typeof tippy === 'function') {
                 tippy(this, {
@@ -35,12 +30,37 @@
                 });
                 console.log('✨ Tooltip attached for:', href);
               }
-            });
+            }
+          });
+        }).fail(function () {
+          console.error('❌ Failed to load /calendar-feed');
+        });
+      }
+
+      // Run once on initial page load
+      attachTooltipsFromFeed();
+
+      // Watch for DOM changes on calendar container
+      const calendarContainer = document.querySelector('.fc'); // Fix here
+
+      if (calendarContainer) {
+        const observer = new MutationObserver(function (mutations) {
+          for (const mutation of mutations) {
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+              setTimeout(attachTooltipsFromFeed, 200);
+            }
           }
-        }, 300); // Check every 300ms until events exist
-      }).fail(function () {
-        console.error('❌ Failed to load /calendar-feed');
-      });
+        });
+
+        observer.observe(calendarContainer, {
+          childList: true,
+          subtree: true,
+        });
+
+        console.log('👀 Watching .fc for DOM changes');
+      } else {
+        console.warn('⚠️ .fc calendar container not found');
+      }
     }
   };
 })(jQuery, Drupal);
