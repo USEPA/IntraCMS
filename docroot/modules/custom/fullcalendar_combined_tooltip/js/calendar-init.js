@@ -3,6 +3,7 @@
     attach: function (context, settings) {
       console.log('✅ fullcalendarTooltip behavior attached');
 
+      // Load the description data from JSON feed
       function attachTooltipsFromFeed() {
         $.getJSON('/calendar-feed', function (data) {
           const descMap = {};
@@ -11,6 +12,7 @@
             descMap[event.url] = event.extendedProps?.description || 'No description';
           });
 
+          // Attach tooltips to all visible events
           $('.fc-event', context).each(function () {
             const $event = $(this);
 
@@ -22,12 +24,41 @@
 
               if (typeof tippy === 'function') {
                 tippy(this, {
-                  content: description,
-                  allowHTML: true,
-                  arrow: true,
-                  placement: 'top',
-                  theme: 'light-border',
-                });
+				  content: description,
+				  allowHTML: true,
+				  arrow: true,
+				  theme: 'light-border',
+				  placement: 'auto',
+				  maxWidth: 500,
+				  interactive: true,
+				  appendTo: document.body,
+				  duration: [150, 100],
+				  animation: 'scale',
+				  popperOptions: {
+					modifiers: [
+					  {
+						name: 'flip',
+						options: {
+						  fallbackPlacements: ['bottom', 'top', 'right', 'left'],
+						  padding: 10,
+						},
+					  },
+					  {
+						name: 'preventOverflow',
+						options: {
+						  boundary: 'viewport',
+						  padding: 10,
+						},
+					  },
+					  {
+						name: 'offset',
+						options: {
+						  offset: [0, 10],
+						},
+					  },
+					],
+				  },
+				});
                 console.log('✨ Tooltip attached for:', href);
               }
             }
@@ -40,8 +71,8 @@
       // Run once on initial page load
       attachTooltipsFromFeed();
 
-      // Watch for DOM changes on calendar container
-      const calendarContainer = document.querySelector('.fc'); // Fix here
+      // Watch for DOM changes when navigating calendar months
+      const calendarContainer = document.querySelector('.fc');
 
       if (calendarContainer) {
         const observer = new MutationObserver(function (mutations) {
