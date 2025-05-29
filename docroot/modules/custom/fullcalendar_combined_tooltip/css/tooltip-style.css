@@ -2,13 +2,44 @@
   font-size: 0.9em;
 }
 
-/***Change tooltip box***/
+/* Tooltip box styling for Tippy.js with light-border theme */
 .tippy-box[data-theme~='light-border'] {
-  background-color: white;
+  max-width: 500px;                    /* Limit width */
+  white-space: normal;                 /* Allow line breaks */
+  overflow-wrap: break-word;           /* Break long words */
+  word-wrap: break-word;
+  font-size: 0.9em;                    /* Readable size */
+  padding: 0.75em;                     /* Padding inside tooltip */
+  line-height: 1.4;
+  text-align: left;
+  background-color: white;            /* Light background */
   color: black;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  padding: 8px;
-  max-width: 250px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  z-index: 2147483647 !important;     /* Ensure tooltip is on top of all elements */
+}
+
+/* Tooltip arrow style for light-border theme */
+.tippy-box[data-theme~='light-border'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: white;
+}
+.tippy-box[data-theme~='light-border'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: white;
+}
+.tippy-box[data-theme~='light-border'][data-placement^='left'] > .tippy-arrow::before {
+  border-left-color: white;
+}
+.tippy-box[data-theme~='light-border'][data-placement^='right'] > .tippy-arrow::before {
+  border-right-color: white;
+}
+
+/* Optional animation for smooth fade */
+.tippy-box[data-animation='scale'][data-state='visible'] {
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+}
+
+/* Ensure calendar container allows tooltips to overflow */
+.fc, .view-content, .layout-content {
+  overflow: visible !important;
+  position: relative; /* Needed for overflow fix */
 }
