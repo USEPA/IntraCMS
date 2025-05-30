@@ -1,0 +1,24 @@
+uuid: dad1631f-dec3-4637-887e-631e1ffe8718
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_to_whom_delegated_text
+    - filter.format.rich_text
+    - node.type.policy_delegation
+  module:
+    - text
+id: node.policy_delegation.field_to_whom_delegated_text
+field_name: field_to_whom_delegated_text
+entity_type: node
+bundle: policy_delegation
+label: 'To Whom Delegated Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - rich_text
+field_type: text_long
