@@ -27,6 +27,7 @@ dependencies:
     - field.field.node.policy_delegation.field_signed_memo
     - field.field.node.policy_delegation.field_temp_delegation
     - field.field.node.policy_delegation.field_to_whom_delegated
+    - field.field.node.policy_delegation.field_to_whom_delegated_text
     - field.field.node.policy_delegation.field_topic_area_of_authority
     - node.type.policy_delegation
   module:
@@ -120,14 +121,14 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 14
+    weight: 15
     region: content
   field_limitations:
     type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 13
+    weight: 14
     region: content
   field_link_to_delegation_file:
     type: link
@@ -156,7 +157,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 12
+    weight: 13
     region: content
   field_prior_identifier:
     type: string
@@ -171,21 +172,21 @@ content:
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 15
+    weight: 16
     region: content
   field_redelegation_authority:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 17
+    weight: 18
     region: content
   field_redelegation_language:
     type: basic_string
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 16
+    weight: 17
     region: content
   field_rescind_this_delegation:
     type: boolean
@@ -220,7 +221,7 @@ content:
       view_mode: link
       link: false
     third_party_settings: {  }
-    weight: 17
+    weight: 19
     region: content
   field_to_whom_delegated:
     type: cshs_full_hierarchy
@@ -231,6 +232,13 @@ content:
       reverse: false
     third_party_settings: {  }
     weight: 11
+    region: content
+  field_to_whom_delegated_text:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 12
     region: content
   field_topic_area_of_authority:
     type: entity_reference_label
