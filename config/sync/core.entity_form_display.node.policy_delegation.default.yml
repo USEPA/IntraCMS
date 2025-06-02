@@ -18,7 +18,6 @@ dependencies:
     - field.field.node.policy_delegation.field_next_review_date
     - field.field.node.policy_delegation.field_other_delegation
     - field.field.node.policy_delegation.field_prior_identifier
-    - field.field.node.policy_delegation.field_redelegation
     - field.field.node.policy_delegation.field_redelegation_authority
     - field.field.node.policy_delegation.field_redelegation_language
     - field.field.node.policy_delegation.field_rescind_this_delegation
@@ -298,12 +297,6 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-  field_redelegation:
-    type: options_buttons
-    weight: 17
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_redelegation_authority:
     type: text_textarea
     weight: 18
@@ -312,24 +305,7 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings:
-      conditional_fields:
-        84491729-17fd-4972-adfa-5ffb234958f2:
-          entity_type: node
-          bundle: policy_delegation
-          dependee: field_redelegation
-          settings:
-            state: visible
-            condition: value
-            grouping: AND
-            values_set: 1
-            value: ''
-            values: {  }
-            value_form:
-              -
-                value: may
-            effect: show
-            effect_options: {  }
-            selector: ''
+      conditional_fields: {  }
   field_redelegation_language:
     type: string_textarea
     weight: 19
