@@ -137,9 +137,6 @@
       {% if content.field_autho|render|trim is not empty %}
         <li>{{ content.field_autho }}</li>
       {% endif %}
-      {% if content.field_to_whom_delegated|render|trim is not empty %}
-        <li>{{ content.field_to_whom_delegated }}</li>
-      {% endif %}
       {% if content.field_to_whom_delegated_text|render|trim is not empty %}
         <li>{{ content.field_to_whom_delegated_text }}</li>
       {% endif %}
@@ -150,19 +147,12 @@
       {% else %}
         <li>{{ content.field_limitations }}</li>
       {% endif %}
-      {% if 'May NOT be redelegated.' in content.field_redelegation|render|render  %}
-        <li>{{ content.field_redelegation  }}</li>
-      {% else %}
-        <li><div class="field__label display-inline">Redelegation.</div>
-        {% if content.field_redelegation_authority|render|trim is not empty %}
-          <div>{{ content.field_redelegation_authority }}</div>
-        {% endif %}
-        {% if content.field_redelegation_language|render|trim is not empty %}
-          <div>{{ content.field_redelegation_language }}</div>
-        {% endif %}
-          </ul>
-        </li>
+      <li><div class="field__label display-inline">Redelegation.</div>
+      {% if content.field_redelegation_authority|render|trim is not empty %}
+        <div>{{ content.field_redelegation_authority }}</div>
       {% endif %}
+      </ul>
+      </li>
       <li><div class="field__label display-inline">Additional References.</div>
         {% if content.field_delegation_references|render|trim is not empty %}
           <ol style="list-style-type: lower-alpha;">
