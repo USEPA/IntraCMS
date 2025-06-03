@@ -1,97 +1,24 @@
-uuid: b3dd9d4b-99f9-4dbf-a584-1da538f10b78
+uuid: 22b3f6c3-2866-462c-8d4c-9533a5d6f9d1
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_delegation_references
+    - filter.format.rich_text
     - node.type.policy_delegation
-    - paragraphs.paragraphs_type.delegation_references
   module:
-    - entity_reference_revisions
+    - text
 id: node.policy_delegation.field_delegation_references
 field_name: field_delegation_references
 entity_type: node
 bundle: policy_delegation
-label: References
+label: 'Delegation References'
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:paragraph'
-  handler_settings:
-    target_bundles:
-      delegation_references: delegation_references
-    negate: 0
-    target_bundles_drag_drop:
-      contact:
-        weight: 24
-        enabled: false
-      delegation_references:
-        weight: 25
-        enabled: true
-      dynamic_list:
-        weight: 26
-        enabled: false
-      governing_authorities:
-        weight: 27
-        enabled: false
-      heading_title_and_text:
-        weight: 28
-        enabled: false
-      hero_carousel:
-        weight: 29
-        enabled: false
-      list_of_link:
-        weight: 30
-        enabled: false
-      policy_roles:
-        weight: 31
-        enabled: false
-      question_and_answer:
-        weight: 32
-        enabled: false
-      rich_text:
-        weight: 33
-        enabled: false
-      slide:
-        weight: 34
-        enabled: false
-      slide_show:
-        weight: 35
-        enabled: false
-      title_and_text:
-        weight: 36
-        enabled: false
-      uswds_card:
-        weight: 37
-        enabled: false
-      uswds_card_set:
-        weight: 38
-        enabled: false
-      uswds_column:
-        weight: 39
-        enabled: false
-      uswds_graphic_list:
-        weight: 40
-        enabled: false
-      uswds_grid:
-        weight: 41
-        enabled: false
-      uswds_hero:
-        weight: 42
-        enabled: false
-      uswds_media_block:
-        weight: 43
-        enabled: false
-      uswds_text:
-        weight: 44
-        enabled: false
-      views_reference_list:
-        weight: 45
-        enabled: false
-      webform:
-        weight: 46
-        enabled: false
-field_type: entity_reference_revisions
+  allowed_formats:
+    - rich_text
+field_type: text_long

@@ -155,13 +155,7 @@
       </li>
       <li><div class="field__label display-inline">Additional References.</div>
         {% if content.field_delegation_references|render|trim is not empty %}
-          <ol style="list-style-type: lower-alpha;">
-            {% for key, item in content.field_delegation_references %}
-              {% if key|first != '#' %}
-                <li>{{ item }}</li>
-              {% endif %}
-            {% endfor %}
-          </ol>
+          <div>{{ content.field_delegation_references }}</div>
         {% else %}
           <p>None.</p>
         {% endif %}
