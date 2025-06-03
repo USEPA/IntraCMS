@@ -31,7 +31,6 @@ dependencies:
   module:
     - cshs
     - datetime
-    - entity_reference_revisions
     - link
     - options
     - text
@@ -73,11 +72,9 @@ content:
     weight: 23
     region: content
   field_delegation_references:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
+    type: text_default
+    label: above
+    settings: {  }
     third_party_settings: {  }
     weight: 25
     region: content
