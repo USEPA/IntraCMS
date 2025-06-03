@@ -19,7 +19,6 @@ dependencies:
     - field.field.node.policy_delegation.field_other_delegation
     - field.field.node.policy_delegation.field_prior_identifier
     - field.field.node.policy_delegation.field_redelegation_authority
-    - field.field.node.policy_delegation.field_redelegation_language
     - field.field.node.policy_delegation.field_rescind_this_delegation
     - field.field.node.policy_delegation.field_rescission_date
     - field.field.node.policy_delegation.field_rescission_notes
@@ -306,14 +305,6 @@ content:
       placeholder: ''
     third_party_settings:
       conditional_fields: {  }
-  field_redelegation_language:
-    type: string_textarea
-    weight: 19
-    region: content
-    settings:
-      rows: 2
-      placeholder: ''
-    third_party_settings: {  }
   field_rescind_this_delegation:
     type: boolean_checkbox
     weight: 11
