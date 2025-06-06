@@ -1,6 +1,8 @@
 <?php
 
 use Drupal\node\NodeInterface;
+use Drupal\views\ViewExecutable;
+use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Implements hook_fullcalendar_event_alter().
@@ -19,11 +21,42 @@ function fullcalendar_combined_tooltip_fullcalendar_event_alter(array &$event, a
  */
 function fullcalendar_combined_tooltip_fullcalendar_calendar_alter(array &$calendar, array $context) {
   $calendar['eventDidMount'] = 'function(info) {
+    // Format time
+    if (info.event.start) {
+      const timeEl = info.el.querySelector(".fc-event-time");
+      if (timeEl) {
+        timeEl.textContent = info.event.start.toLocaleTimeString([], {
+          hour: "numeric",
+          minute: "2-digit"
+        });
+      }
+    }
+
+    // Set description as data attribute
     if (info.event.extendedProps && info.event.extendedProps.description) {
       info.el.setAttribute("data-description", info.event.extendedProps.description);
     }
+
+    // 🔵 Set background color
+    info.el.style.backgroundColor = "#3a87ad";
+    info.el.style.borderColor = "#3a87ad";
+    info.el.style.color = "white";
   }';
 }
+
+/**
+ * Implements hook_page_attachments().
+ */
+ /*
+function fullcalendar_combined_tooltip_page_attachments(array &$attachments) {
+  $current_path = \Drupal::service('path.current')->getPath();
+
+  // ✅ Replace with your actual calendar view page path.
+  if (str_starts_with($current_path, '/calendar')) {
+    $attachments['#attached']['library'][] = 'fullcalendar_combined_tooltip/calendar_assets';
+  }
+}
+*/
 
 /**
  * Implements hook_page_attachments().

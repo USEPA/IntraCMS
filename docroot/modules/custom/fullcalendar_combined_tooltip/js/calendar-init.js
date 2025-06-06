@@ -1,7 +1,7 @@
 (function ($, Drupal) {
   Drupal.behaviors.fullcalendarTooltip = {
     attach: function (context, settings) {
-      console.log('✅ fullcalendarTooltip behavior attached');
+      console.log('✅ fullcalendarTooltip behavior attached -- Testing #2');
 
       // Load the description data from JSON feed
       function attachTooltipsFromFeed() {
