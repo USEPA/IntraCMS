@@ -43,3 +43,35 @@
   overflow: visible !important;
   position: relative; /* Needed for overflow fix */
 }
+
+.fc-daygrid-event-dot {
+  display: none !important;
+}
+
+/* Force background color for FullCalendar events */
+.fc-event {
+  background-color: #3a87ad !important;
+  border-color: #3a87ad !important;
+  color: #fff !important;
+  padding-left: 5px !important;
+  overflow: hidden;
+}
+
+
+/* Bold only the time */
+.fc-event-time {
+  font-weight: bold;
+  display: block;
+  line-height: 1.2;
+  margin-bottom: 2px;
+   min-width: auto !important; /* Force proper text wrapping */
+  white-space: nowrap;
+}
+
+/* Remove bold from title */
+.fc-event-title {
+  font-weight: normal !important;
+  display: block;
+  line-height: 1.2;
+ min-width: auto !important; /* Prevent forced overflow */
+}
