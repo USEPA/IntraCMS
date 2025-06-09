@@ -50,7 +50,7 @@ Release:
   script:
     # https://github.com/google/go-containerregistry/blob/main/cmd/crane/doc/crane_copy.md
     - crane auth login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
-    - crane copy "$CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA" "$CI_REGISTRY_IMAGE/intranetcms-build:latest"
+    #- crane copy "$CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA" "$CI_REGISTRY_IMAGE/intranetcms-build:latest"
     - crane copy "$CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA" "$CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_TAG"
   only:
     - tags
