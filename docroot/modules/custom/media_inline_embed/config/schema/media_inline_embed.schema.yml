@@ -17,3 +17,14 @@ filter_settings.media_inline_embed:
       sequence:
         type: string
         label: 'View mode'
+
+# Plugin \Drupal\media_inline_embed\Plugin\CKEditor5Plugin\DrupalInlineMedia
+ckeditor5.plugin.media_library_inlineMediaLibrary:
+  type: mapping
+  label: Media Inline
+  mapping:
+    allow_view_mode_override:
+      type: boolean
+      label: 'Allow view mode override'
+      constraints:
+        NotNull: []
