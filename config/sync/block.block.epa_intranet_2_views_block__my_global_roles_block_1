@@ -1,0 +1,30 @@
+uuid: 8ccc8cad-6e47-4221-ad9b-df71405b7c40
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.my_global_roles
+  module:
+    - system
+    - views
+  theme:
+    - epa_intranet_2
+id: epa_intranet_2_views_block__my_global_roles_block_1
+theme: epa_intranet_2
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:my_global_roles-block_1'
+settings:
+  id: 'views_block:my_global_roles-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/user/*'
