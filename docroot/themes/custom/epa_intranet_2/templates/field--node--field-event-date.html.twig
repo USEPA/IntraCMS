@@ -57,23 +57,14 @@
     'field__label',
     label_display == 'inline' ? 'inline',
   ] %}
-
-  {% if (formatter == 'smartdate_recurring' and showRecurring) or (formatter == 'addtocal_view' and showEventDate) or (formatter == 'smartdate_default' and showEventDate) %}
-    <div{{ attributes.addClass(classes) }}>
-      {% if not label_hidden %}
-        {% if formatter == 'smartdate_recurring' %}
-          <div class="card-header m-0 font-weight-bold">Event Date (Recurring)</div>
-        {% else %}
-          <div class="card-header m-0 font-weight-bold">{{ label }}</div>
-        {% endif %}
-      {% endif %}
-      <div class="card-body py-1 display-grid">
-        {% for item in items %}
-          {% if (item.recurring and formatter == 'smartdate_recurring') or (not item.recurring and formatter == 'addtocal_view') or (not item.recurring and formatter == 'smartdate_default') %}
-            <p{{ item.attributes }}>{{ item.content }}</p>
-          {% endif %}
-        {% endfor %}
-      </div>
+  <div{{ attributes.addClass(classes) }}>
+    {% if not label_hidden %}
+      <div class="card-header m-0 font-weight-bold">{{ label }}</div>
+    {% endif %}
+    <div class="card-body py-1 display-grid">
+      {% for item in items %}
+        <p{{ item.attributes }}>{{ item.content }}</p>
+      {% endfor %}
     </div>
-  {% endif %}
+  </div>
 {% endif %}
