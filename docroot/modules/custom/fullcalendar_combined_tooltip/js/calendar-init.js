@@ -7,7 +7,6 @@
       function attachTooltipsAndFixTime() {
         $.getJSON('/calendar-feed', function (data) {
           const descMap = {};
-
           data.forEach(function (event) {
             descMap[event.url] = event.extendedProps?.description || 'No description';
           });
@@ -16,10 +15,9 @@
           $('.fc-event', context).each(function () {
             const $event = $(this);
 
-            // Tooltip setup
+            // ✅ TOOLTIP
             if (!$event.hasClass('fc-tooltip-processed')) {
               $event.addClass('fc-tooltip-processed');
-
               const href = $event.attr('href');
               const description = descMap[href] || 'No description';
 
@@ -27,75 +25,53 @@
                 tippy(this, {
                   content: description,
                   allowHTML: true,
-                  arrow: true,
                   theme: 'light-border',
                   placement: 'auto',
                   maxWidth: 500,
                   interactive: true,
                   appendTo: document.body,
-                  duration: [150, 100],
-                  animation: 'scale',
-                  popperOptions: {
-                    modifiers: [
-                      {
-                        name: 'flip',
-                        options: {
-                          fallbackPlacements: ['bottom', 'top', 'right', 'left'],
-                          padding: 10,
-                        },
-                      },
-                      {
-                        name: 'preventOverflow',
-                        options: {
-                          boundary: 'viewport',
-                          padding: 10,
-                        },
-                      },
-                      {
-                        name: 'offset',
-                        options: {
-                          offset: [0, 10],
-                        },
-                      },
-                    ],
-                  },
                 });
-                console.log('✨ Tooltip attached for:', href);
               }
             }
 
-            // Fix time formatting (e.g., 8a → 8:00 am)
-            const $time = $event.find('.fc-event-time').not('.fc-time-fixed');
-            $time.each(function () {
+            // ✅ TIME FIXING
+            $event.find('.fc-event-time').each(function () {
               const $el = $(this);
-              const original = $el.text().trim();
-              const match = original.match(/^(\d{1,2})(a|p)$/i);
-              if (match) {
-                const hour = parseInt(match[1]);
-                const suffix = match[2].toLowerCase() === 'a' ? 'am' : 'pm';
-                const formatted = `${hour}:00 ${suffix}`;
-                console.log(`⏰ Converting "${original}" → "${formatted}"`);
-                $el.text(formatted);
-                $el.addClass('fc-time-fixed');
+              let raw = $el.text().trim();
+
+              // Remove all existing formatting artifacts like "2:00 pm2p"
+              raw = raw.replace(/(\d{1,2}:\d{2} (am|pm))?(\d{1,2})(a|p)/i, '$3$4').trim();
+
+              let formatted = raw;
+
+              if (/^\d{1,2}a$/i.test(raw)) {
+                const hour = raw.replace(/a/i, '');
+                formatted = `${hour}:00 am`;
+              } else if (/^\d{1,2}p$/i.test(raw)) {
+                const hour = raw.replace(/p/i, '');
+                formatted = `${hour}:00 pm`;
+              } else if (/^\d{1,2}:\d{2}(a|p)m?$/i.test(raw)) {
+                formatted = raw.replace(/^(\d{1,2}):(\d{2})(a|p)m?$/i, '$1:$2 $3m');
               }
+
+              console.log(`⏰ Final clean: "${raw}" → "${formatted}"`);
+              $el.text(formatted); // fully overwrite
             });
           });
-        }).fail(function () {
-          console.error('❌ Failed to load /calendar-feed');
         });
       }
 
-      // Run once on initial page load
+      // Run on load
       attachTooltipsAndFixTime();
 
-      // Watch for DOM changes when navigating calendar months
+      // Watch for calendar month/week/day changes
       const calendarContainer = document.querySelector('.fc');
-
       if (calendarContainer) {
         const observer = new MutationObserver(function (mutations) {
           for (const mutation of mutations) {
             if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
               setTimeout(attachTooltipsAndFixTime, 200);
+              break;
             }
           }
         });
@@ -106,9 +82,7 @@
         });
 
         console.log('👀 Watching .fc for DOM changes');
-      } else {
-        console.warn('⚠️ .fc calendar container not found');
-      }
+      } 
     }
   };
 })(jQuery, Drupal);
