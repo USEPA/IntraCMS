@@ -589,10 +589,22 @@ display:
           settings:
             timezone_override: ''
             format: default
-            force_chronological: true
+            force_chronological: false
+            add_classes: false
+            time_wrapper: false
+            localize: false
+            parts:
+              start: start
+              end: '0'
+              duration: '0'
+            duration:
+              separator: ' | '
+              unit: ''
+              decimals: 2
+              suffix: h
           group_column: value
           group_columns: {  }
-          group_rows: true
+          group_rows: false
           delta_limit: 0
           delta_offset: 0
           delta_reversed: false
@@ -871,7 +883,7 @@ display:
       header: {  }
       exposed_block: true
       display_extenders: {  }
-      path: calendar
+      path: calendar-save
     cache_metadata:
       max-age: -1
       contexts:
@@ -1285,7 +1297,7 @@ display:
           tokenize: false
       exposed_block: false
       display_extenders: {  }
-      path: calendar/%event_host
+      path: calendar-save/%event_host
     cache_metadata:
       max-age: -1
       contexts:
