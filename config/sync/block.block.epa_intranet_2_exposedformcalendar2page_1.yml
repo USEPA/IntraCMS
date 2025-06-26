@@ -2,13 +2,13 @@ uuid: 7e31578b-dbef-490c-9af6-a9d67c0422f8
 langcode: en
 status: true
 dependencies:
-config:
-- views.view.calendar2
-module:
-- system
-- views
-theme:
-- epa_intranet_2
+  config:
+    - views.view.calendar2
+  module:
+    - system
+    - views
+  theme:
+    - epa_intranet_2
 id: epa_intranet_2_exposedformcalendar2page_1
 theme: epa_intranet_2
 region: sidebar_second
@@ -16,13 +16,14 @@ weight: -22
 provider: null
 plugin: 'views_exposed_filter_block:calendar2-page_1'
 settings:
-id: 'views_exposed_filter_block:calendar2-page_1'
-label: ''
-label_display: '0'
-provider: views
-views_label: ''
+  id: 'views_exposed_filter_block:calendar2-page_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
 visibility:
-request_path:
-id: request_path
-negate: false
-pages: /calendar2
+  request_path:
+    id: request_path
+    negate: false
+    pages: /calendar2
+    

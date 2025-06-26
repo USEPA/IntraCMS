@@ -2,13 +2,13 @@ uuid: 07b65ceb-35df-4e18-9e97-e8b334c0d9e8
 langcode: en
 status: true
 dependencies:
-config:
-- views.view.upcoming_events
-module:
-- system
-- views
-theme:
-- epa_intranet_2
+  config:
+    - views.view.upcoming_events
+  module:
+    - system
+    - views
+  theme:
+    - epa_intranet_2
 id: epa_intranet_2_exposedformupcoming_eventspage_1
 theme: epa_intranet_2
 region: sidebar_second
@@ -16,13 +16,14 @@ weight: -21
 provider: null
 plugin: 'views_exposed_filter_block:upcoming_events-page_1'
 settings:
-id: 'views_exposed_filter_block:upcoming_events-page_1'
-label: ''
-label_display: '0'
-provider: views
-views_label: ''
+  id: 'views_exposed_filter_block:upcoming_events-page_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
 visibility:
-request_path:
-id: request_path
-negate: false
-pages: /upcoming-events
+  request_path:
+    id: request_path
+    negate: false
+    pages: /upcoming-events
+    
