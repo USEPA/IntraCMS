@@ -11,13 +11,13 @@ field_name: field_to_whom_delegated
 entity_type: node
 bundle: policy_delegation
 label: 'To Whom Delegated.'
-description: 'Select to whom the authority is delegated.'
+description: 'Select to whom the authority is delegated. Use the dropdown for standard options or the text area for custom formatting. Do not use both.'
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
+  handler: 'default:filter_existing_terms'
   handler_settings:
     target_bundles:
       delegation_authorities: delegation_authorities
