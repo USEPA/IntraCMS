@@ -123,8 +123,6 @@
 
 	<div{{ content_attributes.addClass('node__content') }}>
 
-
- {#  content|without('field_rescind_this_delegation','field_rescission_date', 'field_rescission_notes', 'field_governing_authorities', 'field_keywords', 'field_signed_memo') #}
     {{ content.field_prior_identifier }}
     {{ content.field_chapter }}
     {{ content.field_effective_date }}
@@ -139,11 +137,10 @@
       {% endif %}
       {% if content.field_to_whom_delegated_text|render|trim is not empty %}
         <li>{{ content.field_to_whom_delegated_text }}</li>
-      {% else %}
-        {% if content.field_to_whom_delegated|render|trim is not empty %}
-          <li>{{ content.field_to_whom_delegated }}</li>
-        {% endif %}        
       {% endif %}
+      {# if content.field_to_whom_delegated|render|trim is not empty #}
+        <li>{{ content.field_to_whom_delegated }}</li>      
+      {# endif #}
 
       {% if 'This delegation has the following limitations' in content.field_limitations|render|render %}
         <li><div class="field__label display-inline">Limitations.</div>
