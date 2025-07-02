@@ -135,10 +135,10 @@
       {% if content.field_autho|render|trim is not empty %}
         <li>{{ content.field_autho }}</li>
       {% endif %}
-      {% if content.field_to_whom_delegated_text|render|trim is not empty %}
+      {% if content.field_to_whom_delegated_text.value|render|trim is not empty %}
         <li>{{ content.field_to_whom_delegated_text }}</li>
       {% endif %}
-      {# if content.field_to_whom_delegated|render|trim is not empty #}
+      {# if content.field_to_whom_delegated.value|render|trim is not empty #}
         <li>{{ content.field_to_whom_delegated }}</li>      
       {# endif #}
 
