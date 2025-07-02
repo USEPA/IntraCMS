@@ -1,0 +1,695 @@
+uuid: 25f97f37-deab-4d46-8b56-7b5e83d00b39
+langcode: en
+status: open
+dependencies:
+  module:
+    - webform_analysis
+third_party_settings:
+  webform_analysis:
+    chart_type: ColumnChart
+    components:
+      - status
+      - organization
+      - location
+weight: 0
+open: null
+close: null
+uid: 244
+template: false
+archive: false
+id: existing_folder_request
+title: 'Existing Folder Request'
+description: ''
+categories:
+  - IT
+elements: |-
+  approval_status:
+    '#type': details
+    '#title': 'Approval Status'
+    '#description': 'Selecting a status of &quot;Not Approved&quot; or &quot;On Hold&quot; will require you to enter a justification.&nbsp; The person who made the request will receive an email notification of the status change.'
+    '#help_title': 'Update Status'
+    '#help': 'Expand this section to update the status of this request.'
+    '#states':
+      visible:
+        - ':input[name="status"]':
+            value: Approved
+        - or
+        - ':input[name="status"]':
+            value: 'On Hold'
+        - or
+        - ':input[name="status"]':
+            value: 'Not Approved'
+        - or
+        - ':input[name="status"]':
+            value: 'Under Review'
+    '#states_clear': false
+    status:
+      '#type': radios
+      '#title': Status
+      '#options':
+        Approved: Approved
+        'On Hold': 'On Hold'
+        'Not Approved': 'Not Approved'
+        'Under Review': 'Under Review'
+      '#states_clear': false
+      '#admin_title': 'Approval Status'
+    justification:
+      '#type': textarea
+      '#title': Justification
+      '#description': 'Provide a justification for why the request was not approved.'
+      '#states':
+        visible:
+          - ':input[name="status"]':
+              value: 'Not Approved'
+          - or
+          - ':input[name="status"]':
+              value: 'On Hold'
+  requestor_information:
+    '#type': fieldset
+    '#title': 'Requestor Data'
+    '#title_display': invisible
+    requestor_email:
+      '#type': email
+      '#title': 'Requestor Email'
+      '#required': true
+      '#default_value': '[current-user:mail]'
+    organization:
+      '#type': select
+      '#title': Organization
+      '#options': ord_centers_and_offices
+      '#required': true
+    location:
+      '#type': select
+      '#title': Location
+      '#options': epa_geographic_locations
+      '#required': true
+  horizontal_rule:
+    '#type': webform_horizontal_rule
+  work_request_header:
+    '#type': webform_markup
+    '#display_on': view
+    '#markup': '<h2>Work Request Information</h2>'
+  existing_folder_new:
+    '#type': webform_shs_term_select
+    '#title': 'Existing Shared Folder'
+    '#description': |-
+      Select the location (or ORD for folders across all ORD) from the first dropdown, and then select the folder name from the second dropdown.
+
+      The text below the dropdowns will update to show the folder owner and the folder storage quota.
+    '#help_title': Examples
+    '#help': |-
+      If the folder is L:\PRIV\CIN\OSIM, the location you select in the dropdown box will be CIN.
+
+      If the folder is on the O: drive, the location you select in the dropdown box will be ORD.
+    '#required': true
+    '#attributes':
+      class:
+        - cshs-custom-select
+    '#vocabulary': all_windows_shares
+    '#force_deepest': true
+    '#depth_labels': {  }
+    '#empty_option': '- Select -'
+  no_folder_name:
+    '#type': webform_message
+    '#message_type': info
+    '#message_message': 'If you are unable to locate the exact folder you are looking for, you will be able to provide the exact path in the <strong>Existing Folder Name Found ?</strong> field below.&nbsp;This will sometimes be necessary because we can only drill down three levels at most and in some cases individual folders are further down than that.'
+    '#message_close': true
+  existing_folder_name:
+    '#type': radios
+    '#title': 'Existing Folder Name Found?'
+    '#description': 'Did the existing folder you selected above drill down to the sub-folder you are looking to modify?'
+    '#description_display': before
+    '#options': yes_no
+    '#required': true
+  subfolder_name_and_path:
+    '#type': textfield
+    '#title': 'Subfolder Name and Path'
+    '#description': 'Enter the full path of the subfolder you are looking to modify. Example:&nbsp;O:\PRIV\Science_Communication\2012 Annual Report'
+    '#required': true
+    '#states':
+      visible:
+        ':input[name="existing_folder_name"]':
+          value: 'No'
+  existing_folder_request_type:
+    '#type': radios
+    '#title': 'Existing Folder Request Type'
+    '#options':
+      size: 'Change the storage capacity of the shared folder selected above'
+      access: 'Add access for one or more users to the shared folder selected above'
+      remove-access: 'Remove access for one or more users to the shared folder selected above'
+      owner: 'Transfer the ownership of the shared folder selected above to another user'
+    '#required': true
+  existing_folder_req_msg:
+    '#type': webform_message
+    '#states':
+      visible:
+        ':input[name="existing_folder_request_type"]':
+          value: size
+    '#message_type': error
+    '#message_message': 'All requests for changes to storage capacity require the completion of a <a href="https://usepa.sharepoint.com/:w:/s/PublicDocumentLink/Ecg_tZcUZopIvCmyauLCytEBA2zBaYn9bzU5tetqlwiqXA?e=FGvx47">SAN Storage Questionnaire</a>. Please download the form, complete it, and return it to Dwayne Austin (austin.dwayne@epa.gov) and Isidro Avila (avila.isidro@epa.gov). If you have any questions about the form, please contact Dwayne or Isidro.'
+  remove_access:
+    '#type': webform_section
+    '#title': 'Remove Access'
+    '#states':
+      visible:
+        ':input[name="existing_folder_request_type"]':
+          value: remove-access
+    users_to_remove:
+      '#type': textfield
+      '#title': 'Users to remove'
+      '#multiple': true
+      '#description': 'Enter the name of the user whose permissions need to be removed from this folder. Use the <strong>Add another user to remove</strong> button or the <img alt="add more" src="/sites/default/files/2021-05/plus.jpg" />&nbsp;icon to add more users. If you wish to remove a user field you&#39;ve entered, use the <img alt="add more" src="/sites/default/files/2021-05/minus.jpg" /> icon.'
+      '#title_display': before
+      '#multiple__header_label': 'Users Whose Permissions Will be Removed'
+      '#multiple__sorting': false
+      '#multiple__add_more_input': false
+      '#multiple__add_more_button_label': 'Add another user to remove'
+  access:
+    '#type': webform_section
+    '#title': 'Grant Access'
+    '#title_tag': h3
+    '#states':
+      visible:
+        ':input[name="existing_folder_request_type"]':
+          value: access
+    folder_access_names_and_type:
+      '#type': webform_custom_composite
+      '#title': 'Name(s) and Type of Access'
+      '#description': |-
+        Enter the name of the user and the type of permission they should have to this folder. Use the <strong>Add another user</strong> button or the <img alt="add more" src="/sites/default/files/2021-05/plus.jpg" />&nbsp;icon to add more users. If you wish to remove a user field you&#39;ve entered, use the <img alt="add more" src="/sites/default/files/2021-05/minus.jpg" /> icon.<br />
+        <br />
+        If you are looking to remove access to a folder, please select <strong>Remove acess for one or more users to the shared folder selected above</strong>&nbsp;from the <em>Existing Folder Request Type</em> field
+      '#more_title': 'Description of Access Levels'
+      '#more': |-
+        <strong>Read </strong>- User will have Read-Only permissions to the share. They will not be able to write any data, and if any changes need to be made to a document, they will first need to make a local copy, edit and save it, and request someone with Modify permissions to save it back to the share.<br />
+        <br />
+        <strong>Read/Write</strong> - The implied permission is that a person with read/write access to a shared folder can do everything except delete. &nbsp;That is, they can create files, edit existing files, change file and folder names, etc. &nbsp;However, that is not the case.
+        <ol>
+        	<li>The user will be able to create a subfolder within the main folder, but they will not be able to change the name so you will&nbsp;be stuck with NewFolder1, etc. &nbsp;To change the name, they will need to copy the new folder to their desktop, rename it, and&nbsp;then copy it back.</li>
+        	<li>The user WILL be able to create a new file in the folder and edit existing files that THEY create. &nbsp;To change the name, they&nbsp;will need to copy the new file to their desktop, rename it, and then copy it back</li>
+        	<li>The user will NOT be able to make changes to existing files in the folder or any subfolders that were created by someone else.</li>
+        	<li>To make changes to a file owned by someone else, the user will have to again, copy it to their desktop, make the desired changes and then copy it back. &nbsp;However, since they cannot make changes to an existing file created by someone else, they will have to give the new file a different name. &nbsp;Renaming existing files / folders owned by someone other than you requires the &quot;delete&quot; permission, which Read/Write access does not provide</li>
+        </ol>
+        <strong>Modify </strong>- This gives the users full rights to read, write, modify, and delete files in the share, without needing to save files locally first and/or save them under a different name.
+      '#multiple__item_label': names
+      '#multiple__no_items_message': 'No names entered. Please add names and permissions below.'
+      '#multiple__sorting': false
+      '#multiple__add_more_input': false
+      '#multiple__add_more_button_label': 'Add more users'
+      '#element':
+        name:
+          '#type': textfield
+          '#title': Name
+          '#description': 'Enter the first and last name of the person you want to grant access to'
+        access_type_options:
+          '#type': radios
+          '#options':
+            read: Read
+            read_write: Read/Write
+            modify: 'Modify (Read/Write/Delete)'
+          '#title': 'Access Type'
+          '#description': 'Select which level of access you want this person to have'
+  transfer_ownership:
+    '#type': webform_section
+    '#title': 'Transfer Ownership'
+    '#title_tag': h3
+    '#states':
+      visible:
+        ':input[name="existing_folder_request_type"]':
+          value: owner
+    new_folder_owner_email:
+      '#type': email
+      '#title': 'New Folder Owner Email'
+      '#description': 'Enter the email address of the <strong>NEW</strong> owner of this shared folder.'
+      '#required': true
+  additional_instructions:
+    '#type': textarea
+    '#title': 'Additional Instructions'
+    '#description': 'Please provide any additional instructions or information.'
+    '#states':
+      invisible:
+        ':input[name="existing_folder_request_type"]':
+          value: size
+  original_folder_name:
+    '#type': hidden
+    '#title': 'Original Folder Name'
+  folder_owner_message:
+    '#type': webform_message
+    '#states':
+      visible:
+        ':input[name="request_type"]':
+          value: Existing
+    '#message_type': warning
+    '#message_message': 'If you are the folder owner and entered the request, please watch your email inbox for an approval request from the system as it will come to you almost immediately after you submit the request.'
+    '#message_close': true
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#states':
+      disabled:
+        ':input[name="existing_folder_request_type"]':
+          value: size
+css: ''
+javascript: "(function ($, Drupal) {\r\n  function moveEmptyOptionToTop(select) {\r\n    const $select = $(select);\r\n    const $option = $select.find('option[value=\"_none\"]');\r\n    if ($option.length && $select.find('option:first').val() !== '_none') {\r\n      $option.remove();\r\n      $select.prepend($option);\r\n    }\r\n  }\r\n\r\n  function observeSHSContainer() {\r\n    const observer = new MutationObserver(function (mutations) {\r\n      mutations.forEach(function (mutation) {\r\n        mutation.addedNodes.forEach(function (node) {\r\n          if (node.nodeType === 1 && node.tagName === 'SELECT' && $(node).hasClass('shs-select')) {\r\n            moveEmptyOptionToTop(node);\r\n          }\r\n        });\r\n      });\r\n    });\r\n\r\n    // Observe all changes under webform\r\n    const target = document.querySelector('form.webform-submission-form');\r\n    if (target) {\r\n      observer.observe(target, { childList: true, subtree: true });\r\n\r\n      // Also fix already visible selects\r\n      $(target).find('select.shs-select').each(function () {\r\n        moveEmptyOptionToTop(this);\r\n      });\r\n    }\r\n  }\r\n\r\n  Drupal.behaviors.shsFixEmptyOption = {\r\n    attach: function () {\r\n      observeSHSContainer();\r\n    }\r\n  };\r\n})(jQuery, Drupal);\r\n"
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: both
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: true
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: true
+  token_update: true
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  view_any:
+    roles: {  }
+    users:
+      - 244
+      - 214
+      - 1410
+      - 1411
+      - 1412
+      - 1413
+      - 1414
+      - 323
+      - 3115
+      - 1516
+      - 8055
+    permissions: {  }
+    group_roles: {  }
+  update_any:
+    roles: {  }
+    users:
+      - 244
+      - 214
+      - 1051
+      - 323
+      - 3115
+      - 1516
+      - 8055
+    permissions: {  }
+    group_roles: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  view_own:
+    roles:
+      - authenticated
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  administer:
+    roles: {  }
+    users:
+      - 4546
+      - 20
+      - 9005
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+    group_roles: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer_submissions:
+    group_roles: {  }
+handlers:
+  email_to_requestor:
+    id: email
+    handler_id: email_to_requestor
+    label: 'Email to Requestor'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: -50
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:requestor_email:raw]'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
+  initial_status_action:
+    id: action
+    handler_id: initial_status_action
+    label: 'Initial Status Action'
+    notes: 'Set the initial approval status to Under Review'
+    status: true
+    conditions: {  }
+    weight: -49
+    settings:
+      states:
+        - completed
+      notes: ''
+      sticky: null
+      locked: null
+      data: "status: 'Under Review'"
+      message: ''
+      message_type: status
+      debug: false
+  email_to_osim_approval:
+    id: email
+    handler_id: email_to_osim_approval
+    label: 'Email to OSIM Approval'
+    notes: ''
+    status: true
+    conditions:
+      enabled:
+        -
+          ':input[name="existing_folder_request_type"]':
+            value: size
+        - or
+        -
+          ':input[name="existing_folder_name"]':
+            value: 'No'
+    weight: -48
+    settings:
+      states:
+        - completed
+      to_mail: 'Austin.Dwayne@epa.gov, Avila.Isidro@epa.gov'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: '[webform_submission:values:requestor_email:raw]'
+      from_options: {  }
+      from_name: '[webform_submission:values:requestor_email:raw]'
+      reply_to: '[webform_submission:values:requestor_email:raw]'
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: _default
+      body: "<strong>This request requires your review and approval.</strong><br />\r\nUpdate the submission at:&nbsp;<a href=\"[webform_submission:token-update-url]\">[webform_submission:token-update-url]</a><br />\r\n<br />\r\nSubmitted on [webform_submission:created]<br />\r\nSubmitted by: [webform_submission:user] /[webform_submission:values:requestor_email]<br />\r\nSubmitted values are:<br />\r\n[webform_submission:values]<br />\r\n<br />\r\n&nbsp;"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
+  email_to_existing_folder_owner:
+    id: email
+    handler_id: email_to_existing_folder_owner
+    label: 'Email to Existing Folder Owner'
+    notes: ''
+    status: true
+    conditions:
+      enabled:
+        ':input[name="existing_folder_name"]':
+          value: 'Yes'
+    weight: -47
+    settings:
+      states:
+        - completed
+      to_mail: martinez.michael@epa.gov
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: '[webform_submission:values:requestor_email:raw]'
+      from_options: {  }
+      from_name: '[webform_submission:values:requestor_email:raw]'
+      reply_to: '[webform_submission:values:requestor_email:raw]'
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: _default
+      body: "<p>A request to modify a shared network folder (<strong>[webform_submission:values:existing_folder]</strong>) that you are the owner of has been submitted by&nbsp;[webform_submission:values:requestor_email] .<br />\r\n<br />\r\n<strong>Please <a href=\"[webform_submission:token-update-url]\">review the request</a> below and update the submission with your approval or disapproval.</strong></p>\r\n\r\n<ol>\r\n\t<li>Go to: <a href=\"[webform_submission:token-update-url]\">[webform_submission:token-update-url]</a></li>\r\n\t<li>Click the <strong>Approval Status</strong> header to expand the <em>Approval Status</em> fields</li>\r\n\t<li>Update the status of the request.</li>\r\n\t<li>Scroll to the bottom of the form and click the <strong>Save&nbsp;</strong>button</li>\r\n</ol>\r\n\r\n<p>Submitted on [webform_submission:created]&nbsp;by: [webform_submission:user] /&nbsp;[webform_submission:values:requestor_email]<br />\r\n<br />\r\n<strong>Request Type:</strong> [webform_submission:values:existing_folder_request_type]<br />\r\n[webform_submission:values:storage]<br />\r\n[webform_submission:values:access]<br />\r\n[webform_submission:values:transfer_ownership]<br />\r\n[webform_submission:values:additional_instructions]</p>\r\n\r\n<hr />\r\n<p>Full submission details:<br />\r\n[webform_submission:values]</p>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
+  email_to_eisd:
+    id: email
+    handler_id: email_to_eisd
+    label: 'Email to EISD'
+    notes: ''
+    status: true
+    conditions:
+      enabled:
+        ':input[name="status"]':
+          value: Approved
+    weight: -46
+    settings:
+      states:
+        - updated
+      to_mail: eisd@epa.gov
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: 'Austin.Dwayne@epa.gov, Avila.Isidro@epa.gov'
+      cc_options: {  }
+      from_mail: '[webform_submission:values:requestor_email:raw]'
+      from_options: {  }
+      from_name: '[webform_submission:values:requestor_email:raw]'
+      reply_to: '[webform_submission:values:requestor_email:raw]'
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: _default
+      body: "<p>Please broker to the ORD Windows Server Group.<br />\r\nPlease process the ORD folder request as noted below.&nbsp; Thank you!</p>\r\n\r\n<p>Submitted on [webform_submission:created]</p>\r\n\r\n<p>Submitted by: [webform_submission:user]&nbsp;/&nbsp;[webform_submission:values:requestor_email]</p>\r\n\r\n<p>Submitted values are:</p>\r\n[webform_submission:values]"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
+  status_update_to_requestor_email:
+    id: email
+    handler_id: status_update_to_requestor_email
+    label: 'Status update to Requestor Email'
+    notes: ''
+    status: true
+    conditions:
+      enabled:
+        ':input[name="status"]':
+          '!value': 'Under Review'
+    weight: 0
+    settings:
+      states:
+        - updated
+      to_mail: '[webform_submission:values:requestor_email:raw]'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: _default
+      body: |-
+        <br />
+        The status of your shared folder request has been updated.&nbsp;<br />
+        The status of your request is now: [webform_submission:values:status]<br />
+        [webform_submission:values:justification]<br />
+        <br />
+        View the original request at: <a href="[webform_submission:token-view-url]">[webform_submission:token-view-url]</a>
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
+variants: {  }
