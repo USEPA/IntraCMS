@@ -138,8 +138,9 @@
       {% if content.field_to_whom_delegated_text|render|trim is not empty %}
         <li><div class="title">To Whom Delegated.</div>{{ content.field_to_whom_delegated_text }}</li>
       {% else %}
-      {# if content.field_to_whom_delegated.value|render|trim is not empty #}
-        <li><div class="title">To Whom Delegated.</div>{{ content.field_to_whom_delegated }}</li>      
+        {# if content.field_to_whom_delegated.value|render|trim is not empty #}
+          <li><div class="title">To Whom Delegated.</div>{{ content.field_to_whom_delegated }}</li>      
+        {# endif #}
       {# endif #}
 
       {% if 'This delegation has the following limitations' in content.field_limitations|render|render %}
