@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.policy_delegation.field_chapter
     - field.field.node.policy_delegation.field_delegation_preamble1
     - field.field.node.policy_delegation.field_delegation_references
+    - field.field.node.policy_delegation.field_delegation_references_text
     - field.field.node.policy_delegation.field_delegation_supercession1
     - field.field.node.policy_delegation.field_effective_date
     - field.field.node.policy_delegation.field_expiration_date
@@ -77,6 +78,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 25
+    region: content
+  field_delegation_references_text:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 26
     region: content
   field_delegation_supercession1:
     type: text_default
@@ -238,3 +246,4 @@ hidden:
   content_moderation_control: true
   field_temp_delegation: true
   search_api_excerpt: true
+  

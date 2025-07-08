@@ -4,10 +4,9 @@ status: true
 dependencies:
   module:
     - block_in_page_not_found
-    - system
 id: fix_policy_hot_fix_2
 label: 'Fix Policy hot fix 2'
-code: |
+code: |-
   .node-policy-delegation-edit-form .field--name-field-autho:before, .node-policy-delegation-form .field--name-field-autho:before {
       content: "1.";
   }
@@ -17,8 +16,22 @@ code: |
   .node-policy-delegation-edit-form .field--name-field-limitations:before, .node-policy-delegation-form .field--name-field-limitations:before {
       content: "3.";
   } 
+  .node-policy-delegation-edit-form .field--name-field-redelegation-authority:before, .node-policy-delegation-form .field--name-field-redelegation-authority:before {
+      content: "4.";
+  }
+  .node-policy-delegation-edit-form .field--name-field-delegation-references:before, .node-policy-delegation-form .field--name-field-delegation-references:before {
+      content: "5.";
+  } 
+  .node-policy-delegation-edit-form .field--name-field-delegation-references-text:before, .node-policy-delegation-form .field--name-field-delegation-references-text:before {
+      content: "5.";
+  } 
+  .node--type-policy-delegation li .title { font-weight: bold; }
 media: all
 preprocess: true
-conditions: {  }
+conditions:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
 contexts: {  }
 conditions_require_all: true
