@@ -129,22 +129,22 @@
       {{ content.field_admin_update_date }}
       {{ content.field_link_to_delegation_file }}
 
-      {% if content.field_delegation_preamble1|render|trim is not empty %}
+      {% if content.field_delegation_preamble1|render|trim|striptags is not empty %}
         <div class="field__item">{{ content.field_delegation_preamble1 }}</div>
       {% endif %}
 
       <ol>
 
-        {% if content.field_autho|render|trim is not empty %}
+        {% if content.field_autho|render|trim|striptags is not empty %}
           <li>{{ content.field_autho }}</li>
         {% endif %}
 
         {% set content_render = content.field_to_whom_delegated_text|render %}
-        {% if content_render|trim %}
+        {% if content_render|trim|striptags %}
           <li><div class="title">To Whom Delegated.</div>{{ content.field_to_whom_delegated_text }}</li>
         {% else %}
           {% set content_render = content.field_to_whom_delegated|render %}
-          {% if content_render|trim %}
+          {% if content_render|trim|striptags %}
             <li><div class="title">To Whom Delegated.</div>{{ content.field_to_whom_delegated }}</li> 
           {% endif %}
         {% endif %}     
@@ -157,18 +157,18 @@
           <li>{{ content.field_limitations }}</li>
         {% endif %}
         
-        {% if content.field_redelegation_authority|render|trim is not empty %}
+        {% if content.field_redelegation_authority|render|trim|striptags is not empty %}
           <li><div class="field__label display-inline">Redelegation.</div>
               <div>{{ content.field_redelegation_authority }}</div>
           </li>
         {% endif %}
         
         {% set content_render = content.field_delegation_references_text|render %}
-        {% if content_render|trim %}
+        {% if content_render|trim|striptags %}
           <li><div class="title">References.</div>{{ content.field_delegation_references_text }}</li>
         {% else %}
           {% set content_render = content.field_delegation_references|render %}
-          {% if content_render|trim %}        
+          {% if content_render|trim|striptags %}        
             <li><div class="title">References.</div>{{ content.field_delegation_references }}</li>
           {% else %}
             <li><p>None.</p></li>
@@ -177,15 +177,15 @@
 
       </ol>
 
-      {% if content.field_delegation_supercession1|render|trim is not empty %}
+      {% if content.field_delegation_supercession1|render|trim|striptags is not empty %}
         <div class="field__item">{{ content.field_delegation_supercession1 }}</div>
       {% endif %}
 
-      {% if content.field_signed_memo|render|trim is not empty %}
+      {% if content.field_signed_memo|render|trim|striptags is not empty %}
         <div class="field__item">{{ content.field_signed_memo }}</div>
       {% endif %}
 
-      {% if content.field_keywords|render|trim is not empty %}
+      {% if content.field_keywords|render|trim|striptags is not empty %}
         {{ content.field_keywords }}
       {% endif %}
       
