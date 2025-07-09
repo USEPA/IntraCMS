@@ -173,9 +173,9 @@ function epa_intranet_2_preprocess_node__event(&$variables)
             $variables['rawEndDate'] = $event_end_date;
             // if overlaps between AM and PM, then display for both
             if (date("a", $event_start_date) != date("a", $event_end_date)) {
-              $variables['displayTime'] = date("g:ia", $event_start_date) . " - " . date("g:ia", $event_end_date);
+              $variables['displayTime'] = date("D, M j Y, ga", $event_start_date) . " - " . date("g:ia T", $event_end_date);
             } else {
-              $variables['displayTime'] = date("g:i", $event_start_date) . " - " . date("g:ia", $event_end_date);
+              $variables['displayTime'] = date("D, M j Y, ga", $event_start_date) . " - " . date("g:ia T", $event_end_date);
             }
           }
           $variables['displayMonth'] = date("M", $event_start_date);
