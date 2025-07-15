@@ -61,9 +61,9 @@
     {% if not label_hidden %}
       <div class="card-header m-0 font-weight-bold">{{ label }}</div>
     {% endif %}
-    <div class="card-body py-1 display-grid">
+    <div class="py-1 display-grid">
       {% for item in items %}
-        <p{{ item.attributes }}>{{ item.content }}</p>
+        <em>{{ item.content }}</em>
       {% endfor %}
     </div>
   </div>
