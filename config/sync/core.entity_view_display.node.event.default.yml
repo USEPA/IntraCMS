@@ -71,31 +71,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 2
             additional: {  }
-          d85c9582-7126-4288-a154-3981c572676f:
-            uuid: d85c9582-7126-4288-a154-3981c572676f
-            region: first
-            configuration:
-              id: 'field_block:node:event:field_event_date'
-              label: 'Event Date'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: addtocal_view
-                label: hidden
-                settings:
-                  timezone_override: ''
-                  date_format: 'D, M j Y, g:ia T'
-                  event_title: '[node:title]'
-                  location: '[node:field_event_location]'
-                  description: "[node:field_event_description]  <a href='[node:field_event_link:uri]'>[node:field_event_link:title]</a>"
-                  past_events: false
-                third_party_settings: {  }
-            weight: 4
-            additional:
-              layout_builder_styles_style: ''
           a1c59067-8f3d-491c-8384-a49f2703466a:
             uuid: a1c59067-8f3d-491c-8384-a49f2703466a
             region: second
@@ -193,7 +168,7 @@ third_party_settings:
                   date_augmenter:
                     instances:
                       status:
-                        addtocal: false
+                        addtocal: true
                       weights:
                         order:
                           addtocal:
@@ -316,3 +291,4 @@ hidden:
   content_moderation_control: true
   field_event_link: true
   search_api_excerpt: true
+  
