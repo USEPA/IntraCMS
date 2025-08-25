@@ -1,0 +1,33 @@
+uuid: 02643464-58db-41e3-bfb7-65532a6b34a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - group_content_menu.group_content_menu_type.web_area_menu
+  module:
+    - block_in_page_not_found
+    - group_content_menu
+  theme:
+    - epa_intranet_2
+id: epa_intranet_2_webareamenu
+theme: epa_intranet_2
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'group_content_menu:web_area_menu'
+settings:
+  id: 'group_content_menu:web_area_menu'
+  label: 'Web Area Menu'
+  label_display: visible
+  provider: group_content_menu
+  context_mapping:
+    group: '@group.group_route_context:group'
+  level: 1
+  depth: 3
+  expand_all_items: true
+visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
+    
