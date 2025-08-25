@@ -1,0 +1,11 @@
+--- docroot/modules/contrib/groupmenu/groupmenu.routing.yml	2021-09-05 07:02:09.000000000 -0500
++++ docroot/modules/contrib/groupmenu/groupmenu.routing.yml	2025-08-12 11:51:33.598119000 -0500
+@@ -8,7 +8,7 @@
+   requirements:
+     _permission: 'administer group'
+ entity.group.menu:
+-  path: '/group/{group}/menus'
++  path: '/group/{group}/gmenus'
+   defaults:
+     _controller: '\Drupal\groupmenu\Controller\GroupMenuController::groupContentOverview'
+     _title_callback: '\Drupal\groupmenu\Controller\GroupMenuController::groupContentOverviewTitle'

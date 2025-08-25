@@ -267,9 +267,6 @@
             "drupal/cshs": {
                 "3166049: Integrate select into webform": "https://www.drupal.org/files/issues/2023-04-06/cshs-3166046-11.patch"
             },
-            "drupal/custom_sql_migrate_source_plugin": {
-                "Automated Drupal 10 Fixes": "https://www.drupal.org/files/issues/2022-06-15/custom_sql_migrate_source_plugin.1.3.rector.patch"
-            },
             "drupal/diff": {
                 "2980335: Establish class attribute as array instead of string.": "https://www.drupal.org/files/issues/2018-06-18/2980335_2_define_classes_as_array.patch"
             },
@@ -317,7 +314,10 @@
                 "Patch odd Gcontent Moderation sub-module Drupal 10": "patches/gcontent.patch",
                 "Patch odd Gmedia sub-module Drupal 10": "patches/gmedia.patch",
                 "3305840: WSOD Error when editing group type permissions": "https://www.drupal.org/files/issues/2022-08-25/group-3294949-2.patch",
-                "3349565: Use of static in callables": "https://www.drupal.org/files/issues/2023-07-25/3349565-6.patch"
+                "3349565: Use of static in callables": "https://www.drupal.org/files/issues/2023-07-25/3349565-6.patch",
+                "Ensure entity exists when deriving label": "https://www.drupal.org/files/issues/2020-03-03/group-3053524-14.patch",
+                "Avoid fatal errors with Layout Builder rendering by checking if group is being rendered in preview mode": "https://www.drupal.org/files/issues/2020-10-02/group-check_if_in_preview-3174615-2.patch",
+                "Add contexts": "https://www.drupal.org/files/issues/2021-02-19/2815971-28.patch"
             },
             "drupal/group_taxonomy": {
                 "3232198: Group members with the proper permissions can't access to the group taxonomy overview tab": "patches/group_taxonomy_button_visibility.patch",
@@ -327,8 +327,14 @@
                 "3308654: Drupal 10 compatibility": "https://www.drupal.org/files/issues/2024-02-02/d10-compatibility-14.patch",
                 "Active Trail Patch: Add active trail ability to group menu block": "patches/fixing_group_menu_active_trail.patch.txt",
                 "3098161: Null group fix": "https://www.drupal.org/files/issues/2023-02-15/groupmenu-3098161-8-null-group-fix.patch",
-                "3151805: Permission to edit should check entity_id_str": "patches/menu_item_permissions-3151805-local.patch"
+                "3151805: Permission to edit should check entity_id_str": "patches/menu_item_permissions-3151805-local.patch",
+                "Change the Groupmenu path different than Group Content Menu": "patches/groupmenu-routing.patch"
             },
+            "drupal/group_content_menu": {
+                "Set active trail correctly": "https://www.drupal.org/files/issues/2021-04-21/group_content_menu-active_trail_cache_problem-3209011-10.patch",
+                "Menu item edit translation permission": "https://www.drupal.org/files/issues/2023-09-08/group-content-menu-translation-permission-3152938-80.patch",
+                "Operation is null in custom menu link form": "https://www.drupal.org/files/issues/2023-05-22/set-operations-3361822.patch"
+            },            
             "drupal/h5p": {
                 "2774947: Allow disabling the reset of user data results": "https://www.drupal.org/files/issues/2020-05-14/2774947-keep-user-data-in-sync-with-content-7.patch",
                 "Drupal 9 module compatibility": "patches/h5p_module_compatibility_patch.patch",
