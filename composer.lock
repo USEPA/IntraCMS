@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36329a9f92bee526aee06a88ee50f956",
+    "content-hash": "cbf541164175b8ea2efc26681fae3a93",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -7521,44 +7521,6 @@
             }
         },
         {
-            "name": "drupal/gnode",
-            "version": "3.3.5",
-            "require": {
-                "drupal/core": "^10.3 || ^11",
-                "drupal/group": "*"
-            },
-            "type": "metapackage",
-            "extra": {
-                "drupal": {
-                    "version": "3.3.5",
-                    "datestamp": "1746519542",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "dww",
-                    "homepage": "https://www.drupal.org/user/46549"
-                },
-                {
-                    "name": "kristiaanvandeneynde",
-                    "homepage": "https://www.drupal.org/user/1345130"
-                }
-            ],
-            "description": "Enables Group functionality for the Node module",
-            "homepage": "https://www.drupal.org/project/group",
-            "support": {
-                "source": "https://git.drupalcode.org/project/group"
-            }
-        },
-        {
             "name": "drupal/google_analytics",
             "version": "4.0.3",
             "source": {
@@ -7733,17 +7695,11 @@
         },
         {
             "name": "drupal/group_content_menu",
-            "version": "1.2.0",
+            "version": "dev-1.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/group_content_menu.git",
-                "reference": "8.x-1.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/group_content_menu-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "c0d154a48f583acb50bbb1b5112419b1929afcea"
+                "reference": "c6c56688ca19e32b1bf07b07f6ccaa22f28122e7"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10",
@@ -7751,12 +7707,15 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1693867309",
+                    "version": "8.x-1.2+1-dev",
+                    "datestamp": "1717188313",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -19509,65 +19468,6 @@
             "time": "2024-06-01T09:15:21+00:00"
         },
         {
-            "name": "spatie/calendar-links",
-            "version": "1.11.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/calendar-links.git",
-                "reference": "bf4645d6a2d8eb32248a5b0b7da7976a13e5e2b5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/calendar-links/zipball/bf4645d6a2d8eb32248a5b0b7da7976a13e5e2b5",
-                "reference": "bf4645d6a2d8eb32248a5b0b7da7976a13e5e2b5",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.1"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.49",
-                "phpunit/phpunit": "^10.5",
-                "spatie/phpunit-snapshot-assertions": "^5.1",
-                "vimeo/psalm": "^5.22"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\CalendarLinks\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian De Deyne",
-                    "email": "sebastian@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Generate add to calendar links for Google, iCal and other calendar systems",
-            "homepage": "https://github.com/spatie/calendar-links",
-            "keywords": [
-                "calendar-links",
-                "spatie"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/calendar-links/issues",
-                "source": "https://github.com/spatie/calendar-links/tree/1.11.1"
-            },
-            "funding": [
-                {
-                    "url": "https://spatie.be/open-source/support-us",
-                    "type": "custom"
-                }
-            ],
-            "time": "2025-01-16T16:49:47+00:00"
-        },
-        {
             "name": "swagger-api/swagger-ui",
             "version": "v3.52.5",
             "source": {
@@ -23457,12 +23357,12 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/addtocal": 10,
         "drupal/addtocal_augment": 10,
         "drupal/ckeditor_abbreviation": 15,
         "drupal/ckeditor_iframe": 10,
         "drupal/db_maintenance": 5,
         "drupal/entity_usage": 10,
+        "drupal/group_content_menu": 20,
         "drupal/group_outsider_in": 20,
         "drupal/media_inline_embed": 20,
         "drupal/node_revision_delete": 5,
