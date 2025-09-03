@@ -6383,38 +6383,38 @@
         },
         {
             "name": "drupal/entity_usage",
-            "version": "2.0.0-beta24",
+            "version": "2.0.0-beta12",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/entity_usage.git",
-                "reference": "8.x-2.0-beta24"
+                "reference": "8.x-2.0-beta12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_usage-8.x-2.0-beta24.zip",
-                "reference": "8.x-2.0-beta24",
-                "shasum": "063cf50d2b5cf7c99bb86a818c03fcfef2082151"
+                "url": "https://ftp.drupal.org/files/projects/entity_usage-8.x-2.0-beta12.zip",
+                "reference": "8.x-2.0-beta12",
+                "shasum": "cdd31e6c413cad6fbdb1bd0aac9ad8a0331eb429"
             },
             "require": {
-                "drupal/core": "^10.2 || ^11"
+                "drupal/core": "^9.1 || ^10"
             },
             "require-dev": {
                 "drupal/block_field": "~1.0",
+                "drupal/ckeditor": "^1.0",
                 "drupal/dynamic_entity_reference": "~1.0 || ^2.0 || ^4.0",
                 "drupal/entity_browser": "~2.0",
-                "drupal/entity_browser_block": "~1.0 || ^2.0",
-                "drupal/entity_embed": "^1.7",
+                "drupal/entity_browser_block": "~1.0",
+                "drupal/entity_embed": "~1.0",
                 "drupal/entity_reference_revisions": "~1.0",
-                "drupal/inline_entity_form": "^1.0@RC || ^3.0@RC",
+                "drupal/inline_entity_form": "^1.0@RC",
                 "drupal/paragraphs": "~1.0",
-                "drupal/redirect": "^1.11",
                 "drupal/webform": "^6.0.0-alpha4"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.0-beta24",
-                    "datestamp": "1743745774",
+                    "version": "8.x-2.0-beta12",
+                    "datestamp": "1684309054",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -6432,15 +6432,11 @@
             ],
             "authors": [
                 {
-                    "name": "lullabot",
-                    "homepage": "https://www.drupal.org/user/3815489"
-                },
-                {
                     "name": "marcoscano",
                     "homepage": "https://www.drupal.org/user/1288796"
                 },
                 {
-                    "name": "seanb",
+                    "name": "seanB",
                     "homepage": "https://www.drupal.org/user/545912"
                 }
             ],
@@ -7695,11 +7691,17 @@
         },
         {
             "name": "drupal/group_content_menu",
-            "version": "dev-1.x",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/group_content_menu.git",
-                "reference": "c6c56688ca19e32b1bf07b07f6ccaa22f28122e7"
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/group_content_menu-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "c0d154a48f583acb50bbb1b5112419b1929afcea"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10",
@@ -7707,15 +7709,12 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.2+1-dev",
-                    "datestamp": "1717188313",
+                    "version": "8.x-1.2",
+                    "datestamp": "1693867309",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -7730,7 +7729,7 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "ghost of drupal past",
+                    "name": "Ghost of Drupal Past",
                     "homepage": "https://www.drupal.org/user/3619592"
                 },
                 {
@@ -7749,48 +7748,61 @@
             }
         },
         {
-            "name": "drupal/group_outsider_in",
-            "version": "dev-1.x",
+            "name": "drupal/group_content_menu",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/group_outsider_in.git",
-                "reference": "54e06c9b1230dfa05af834f4cd5c16bdd2685178"
+                "url": "https://git.drupalcode.org/project/group_content_menu.git",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/group_content_menu-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "c0d154a48f583acb50bbb1b5112419b1929afcea"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10",
-                "drupal/group": "*"
-            },
-            "require-dev": {
-                "vijaycs85/drupal-quality-checker": "^1.3"
+                "drupal/group": "^1.0@RC"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.0-beta1+2-dev",
-                    "datestamp": "1696490606",
+                    "version": "8.x-1.2",
+                    "datestamp": "1693867309",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
-                    "name": "GaëlG",
-                    "homepage": "https://www.drupal.org/user/431210"
+                    "name": "Lucas Hedding",
+                    "homepage": "https://www.drupal.org/u/heddn",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Ghost of Drupal Past",
+                    "homepage": "https://www.drupal.org/user/3619592"
+                },
+                {
+                    "name": "heddn",
+                    "homepage": "https://www.drupal.org/user/1463982"
                 }
             ],
-            "description": "Also apply the 'advanced outsider permissions' to group members",
-            "homepage": "https://www.drupal.org/project/group_outsider_in",
+            "description": "Provides features for a menu per group",
+            "homepage": "https://www.drupal.org/project/group_content_menu",
+            "keywords": [
+                "Drupal"
+            ],
             "support": {
-                "source": "https://git.drupalcode.org/project/group_outsider_in"
+                "source": "https://git.drupalcode.org/project/group_content_menu",
+                "issues": "https://www.drupal.org/project/issues/group_content_menu"
             }
         },
         {
@@ -7840,17 +7852,17 @@
         },
         {
             "name": "drupal/groupmedia",
-            "version": "2.3.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/groupmedia.git",
-                "reference": "8.x-2.3"
+                "reference": "8.x-2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/groupmedia-8.x-2.3.zip",
-                "reference": "8.x-2.3",
-                "shasum": "9f157029c3dbf93d2a0a3dd7f2867fe9f1434ed5"
+                "url": "https://ftp.drupal.org/files/projects/groupmedia-8.x-2.1.zip",
+                "reference": "8.x-2.1",
+                "shasum": "dc2cfd516c5a28f18861830f45552924a17cb3b5"
             },
             "require": {
                 "drupal/core": "^9 || ^10",
@@ -7863,8 +7875,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.3",
-                    "datestamp": "1724651673",
+                    "version": "8.x-2.1",
+                    "datestamp": "1693953964",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
