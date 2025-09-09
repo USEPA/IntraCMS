@@ -380,7 +380,8 @@
                 "3270985: Wrong url generated for file fields.": "patches/fileuri_fix.patch",
                 "3336143: Uncaught ReferenceError: loadjs is not defined after drupal core upgrade 9.5.": "https://www.drupal.org/files/issues/2024-07-24/load_js-define_variable-3336143-43.patch",
                 "1278886:  Default text formats not saved.": "https://www.drupal.org/files/issues/2023-11-14/1278886-120.patch",
-                "3398155: Entity Query WSOD": "patches/core-entityQuery-check.patch"
+                "3398155: Entity Query WSOD": "patches/core-entityQuery-check.patch",
+                "3110371: Restrict the available parents to the current menu": "https://www.drupal.org/files/issues/2024-07-11/3110371-58.patch"
             },
             "drupal/views_add_button_group": {
                 "Automated Drupal 10 Fixes": "https://www.drupal.org/files/issues/2022-06-16/views_add_button_group.2.0.x-dev.rector.patch"
@@ -642,7 +643,23 @@
                 "type": "zip"
                 }
             }
-        },                  
+        },  
+        {
+            "type": "package",
+            "package": {
+                "name": "algolia/places",
+                "version": "1.19.0",
+                "type": "drupal-library",
+                "extra": {
+                    "installer-name": "algolia.places"
+                },
+                "dist": {
+                    "url": "https://registry.npmjs.org/places.js/-/places.js-1.19.0.tgz",
+                    "type": "tar"
+                },
+                "license": "MIT"
+            }
+        },
         {
             "type": "package",
             "package": {
