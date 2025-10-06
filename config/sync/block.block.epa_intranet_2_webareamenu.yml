@@ -26,8 +26,19 @@ settings:
   depth: 3
   expand_all_items: true
 visibility:
-  page_not_found_request:
-    id: page_not_found_request
-    negate: false
-    page_not_found: false
-    
+  request_path:
+    id: request_path
+    negate: true
+    pages: "*/web-areas/*\r\n/group/*/menus\r\n/group/*/revisions\r\n/group/*/taxonomy\r\n/group/*/member/*"
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      employee_profile: employee_profile
+      event: event
+      landing_page: landing_page
+      mass_mailer: mass_mailer
+      photos_of_the_week: photos_of_the_week
+      staff_member: staff_member
