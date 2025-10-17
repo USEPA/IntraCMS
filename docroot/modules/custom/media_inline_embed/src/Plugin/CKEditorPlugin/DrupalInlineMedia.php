@@ -6,7 +6,7 @@ use Drupal\Core\Url;
 use Drupal\editor\Entity\Editor;
 use Drupal\media_library\MediaLibraryState;
 use Drupal\media_library\MediaLibraryUiBuilder;
-use Drupal\ckeditor\Plugin\CKEditorPlugin\DrupalMediaLibrary;
+use Drupal\media_library\Plugin\CKEditorPlugin\DrupalMediaLibrary;
 
 /**
  * Defines the "drupalinlinemedia" plugin.
@@ -60,7 +60,7 @@ class DrupalInlineMedia extends DrupalMediaLibrary {
     }
 
     $state = MediaLibraryState::create(
-      'media_library.opener.editor',
+      'media_inline_embed.opener.editor',
       $media_type_ids,
       reset($media_type_ids),
       1,
