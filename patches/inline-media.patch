@@ -1,0 +1,1838 @@
+commit f0f605f1f4a02ceef5672d4afbb166a1e3bc0e3b
+Author: Katherine Senzee <katherine.senzee@smartsheet.com>
+Date:   Thu May 29 09:43:32 2025 -0700
+
+    3168966 as of #105
+
+diff --git a/core/modules/ckeditor5/ckeditor5.ckeditor5.yml b/core/modules/ckeditor5/ckeditor5.ckeditor5.yml
+index 2a2c3fd1658..3c2f61d05bd 100644
+--- a/core/modules/ckeditor5/ckeditor5.ckeditor5.yml
++++ b/core/modules/ckeditor5/ckeditor5.ckeditor5.yml
+@@ -742,6 +742,9 @@ media_media:
+       - <drupal-media>
+       - <drupal-media data-entity-type data-entity-uuid alt>
+       - <drupal-media data-view-mode>
++      - <drupal-media-inline>
++      - <drupal-media-inline data-entity-type data-entity-uuid alt>
++      - <drupal-media-inline data-view-mode>
+     conditions:
+       filter: media_embed
+ 
+@@ -756,6 +759,7 @@ ckeditor5_drupalMediaCaption:
+     label: Media caption
+     elements:
+       - <drupal-media data-caption>
++      - <drupal-media-inline data-caption>
+     conditions:
+       filter: filter_caption
+       plugins:
+@@ -805,6 +809,7 @@ media_mediaAlign:
+     library: ckeditor5/internal.drupal.ckeditor5.mediaAlign
+     elements:
+       - <drupal-media data-align>
++      - <drupal-media-inline data-align>
+     conditions:
+       filter: filter_align
+       plugins: [media_media]
+diff --git a/core/modules/ckeditor5/ckeditor5.module b/core/modules/ckeditor5/ckeditor5.module
+index 561795fa958..0e94ce38a3b 100644
+--- a/core/modules/ckeditor5/ckeditor5.module
++++ b/core/modules/ckeditor5/ckeditor5.module
+@@ -26,6 +26,50 @@
+ 
+ // cspell:ignore multiblock
+ 
++/**
++ * Implements hook_theme().
++ */
++function ckeditor5_theme() {
++  return [
++    'field__ckeditor_inline' => [
++      'base hook' => 'field',
++    ],
++    'media__ckeditor_inline_embed' => [
++      'base hook' => 'media',
++    ],
++    // The theme hook is used for rendering the CKEditor 5 toolbar settings in
++    // the Drupal admin UI. The toolbar settings UI is internal, and utilizing
++    // it outside of core usages is not supported because the UI can change at
++    // any point.
++    // @internal
++    'ckeditor5_settings_toolbar' => [
++      'render element' => 'form',
++    ],
++  ];
++}
++
++/**
++ * Implements hook_theme_suggestions_HOOK_alter().
++ */
++function ckeditor5_theme_suggestions_media_alter(array &$suggestions, array $variables) {
++  if ($variables['elements']['#view_mode'] == 'ckeditor_inline') {
++    $suggestions[] = 'media__ckeditor_inline_embed';
++  }
++}
++
++/**
++ * Implements hook_preprocess_HOOK().
++ */
++function ckeditor5_preprocess_media(&$variables) {
++  if ($variables['view_mode'] == 'ckeditor_inline') {
++    foreach ($variables['content'] as &$element) {
++      if (!empty($element['#theme']) && $element['#theme'] == 'field') {
++        $element['#theme'] = 'field__ckeditor_inline';
++      }
++    }
++  }
++}
++
+ /**
+  * Implements hook_help().
+  */
+@@ -78,22 +122,6 @@ function ckeditor5_help($route_name, RouteMatchInterface $route_match) {
+   }
+ }
+ 
+-/**
+- * Implements hook_theme().
+- */
+-function ckeditor5_theme() {
+-  return [
+-    // The theme hook is used for rendering the CKEditor 5 toolbar settings in
+-    // the Drupal admin UI. The toolbar settings UI is internal, and utilizing
+-    // it outside of core usages is not supported because the UI can change at
+-    // any point.
+-    // @internal
+-    'ckeditor5_settings_toolbar' => [
+-      'render element' => 'form',
+-    ],
+-  ];
+-}
+-
+ /**
+  * Implements hook_module_implements_alter().
+  */
+@@ -119,6 +147,22 @@ function ckeditor5_module_implements_alter(&$implementations, $hook) {
+   }
+ }
+ 
++/**
++ * Implements hook_form_FORM_ID_alter().
++ */
++function ckeditor5_form_entity_view_mode_form_alter(&$form, FormStateInterface $form_state, $form_id) : void {
++  $viewMode = $form_state->getFormObject()->getEntity();
++  if ($viewMode->getTargetType() === 'media') {
++    $form['inline'] = [
++      '#type' => 'checkbox',
++      '#title' => t('Enable this view mode for inline media'),
++      '#description' => t('Check this box to allow media of this type to be embedded inline.'),
++      '#default_value' => $viewMode->getThirdPartySetting('ckeditor5', 'inline')
++    ];
++    $form['#entity_builders'][] = 'ckeditor5_entity_view_mode_form_builder';
++  }
++}
++
+ /**
+  * Implements hook_form_FORM_ID_alter().
+  */
+@@ -700,3 +744,15 @@ function ckeditor5_editor_presave(EditorInterface $editor) {
+     $editor->setSettings($settings);
+   }
+ }
++
++/**
++ * Entity builder for the inline setting on the entity_view_mode entity.
++ */
++function ckeditor5_entity_view_mode_form_builder($entity_type, $entity, &$form, \Drupal\Core\Form\FormStateInterface $form_state): void {
++  if (is_null($form_state->getValue('inline'))) {
++    $entity->unsetThirdPartySetting('ckeditor5', 'inline');
++  }
++  else {
++    $entity->setThirdPartySetting('ckeditor5', 'inline', $form_state->getValue('inline'));
++  }
++}
+diff --git a/core/modules/ckeditor5/ckeditor5.post_update.php b/core/modules/ckeditor5/ckeditor5.post_update.php
+index 6c8bbf01f84..55283a1a28c 100644
+--- a/core/modules/ckeditor5/ckeditor5.post_update.php
++++ b/core/modules/ckeditor5/ckeditor5.post_update.php
+@@ -9,6 +9,8 @@
+ use Drupal\Core\Config\Entity\ConfigEntityUpdater;
+ use Drupal\editor\Entity\Editor;
+ 
++use Drupal\Core\Config\FileStorage;
++
+ // cspell:ignore multiblock
+ 
+ /**
+@@ -142,3 +144,39 @@ function ckeditor5_post_update_list_start_reversed(&$sandbox = []) {
+       && array_key_exists('ckeditor5_sourceEditing', $settings['plugins']);
+   });
+ }
++
++/**
++ * Creates the ckeditor_inline view mode for media entities.
++ */
++function ckeditor5_post_update_create_ckeditor_inline_view_mode() {
++  $config_path = \Drupal::service('extension.list.module')->getPath('ckeditor5') . '/config/optional';
++  $source = new FileStorage($config_path);
++  $entity_type_manager = \Drupal::entityTypeManager();
++  $module_handler = \Drupal::moduleHandler();
++  /** @var \Drupal\Core\Config\StorageInterface $config_storage */
++  $config_storage = \Drupal::service('config.storage');
++
++  if ($module_handler->moduleExists('media') && !$config_storage->exists('core.entity_view_mode.media.ckeditor_inline')) {
++    $entity_type_manager->getStorage('entity_view_mode')
++      ->create($source->read('core.entity_view_mode.media.ckeditor_inline'))
++      ->save();
++  }
++}
++
++/**
++ * Amends the filter format settings to allow the drupal-media-inline tag.
++ */
++function ckeditor5_post_update_allow_inline_media_element() {
++  $formats = filter_formats();
++  foreach ($formats as $format_id => $format) {
++    $config = \Drupal::configFactory()->getEditable('filter.format.' . $format_id);
++    $filters = $config->get('filters');
++    if (\array_key_exists('media_embed', $filters)
++      && \array_key_exists('filter_html', $filters)
++      && !\str_contains($filters['filter_html']['settings']['allowed_html'], 'drupal-media-inline')) {
++      $filters['filter_html']['settings']['allowed_html'] .= ' <drupal-media-inline data-entity-type data-entity-uuid alt data-view-mode data-caption data-align>';
++      $config->set('filters', $filters);
++      $config->save();
++    }
++  }
++}
+diff --git a/core/modules/ckeditor5/config/optional/core.entity_view_mode.media.ckeditor_inline.yml b/core/modules/ckeditor5/config/optional/core.entity_view_mode.media.ckeditor_inline.yml
+new file mode 100644
+index 00000000000..3d3a48e190b
+--- /dev/null
++++ b/core/modules/ckeditor5/config/optional/core.entity_view_mode.media.ckeditor_inline.yml
+@@ -0,0 +1,13 @@
++langcode: en
++status: true
++dependencies:
++  module:
++    - media
++third_party_settings:
++  ckeditor5:
++    inline: 1
++id: media.ckeditor_inline
++label: 'CKEditor Inline'
++description: 'View mode used for media embedded inline'
++targetEntityType: media
++cache: true
+diff --git a/core/modules/ckeditor5/config/schema/ckeditor5.schema.yml b/core/modules/ckeditor5/config/schema/ckeditor5.schema.yml
+index 68344494841..e1b346a1a67 100644
+--- a/core/modules/ckeditor5/config/schema/ckeditor5.schema.yml
++++ b/core/modules/ckeditor5/config/schema/ckeditor5.schema.yml
+@@ -230,3 +230,12 @@ ckeditor5.plugin.ckeditor5_style:
+                     minAttributeValueCount: 1
+               StyleSensibleElement: []
+             label: 'Style tag + classes'
++
++# Adds an inline setting to media view modes.
++core.entity_view_mode.media.*.third_party.ckeditor5:
++  type: mapping
++  label: 'Media embed view mode settings'
++  mapping:
++    inline:
++      type: boolean
++      label: 'Provides inline (flow) content'
+diff --git a/core/modules/ckeditor5/css/drupalmedia.css b/core/modules/ckeditor5/css/drupalmedia.css
+index e69e9c7ed6f..7fd2b0b188f 100644
+--- a/core/modules/ckeditor5/css/drupalmedia.css
++++ b/core/modules/ckeditor5/css/drupalmedia.css
+@@ -13,6 +13,12 @@
+   min-width: 50px;
+ }
+ 
++.ck .drupal-media.drupal-media-inline {
++  display: inline-block;
++  clear: initial;
++  margin: 0;
++}
++
+ .ck .drupal-media [data-drupal-media-preview] {
+   pointer-events: none;
+ }
+diff --git a/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption/drupalmediacaptioncommand.js b/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption/drupalmediacaptioncommand.js
+index f1268afdab0..a04133fba77 100644
+--- a/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption/drupalmediacaptioncommand.js
++++ b/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption/drupalmediacaptioncommand.js
+@@ -51,7 +51,7 @@ export default class ToggleDrupalMediaCaptionCommand extends Command {
+     if (!selectedElement) {
+       // Command should be enabled if `<drupalMedia>` element is part of the
+       // selection.
+-      this.isEnabled = !!getClosestSelectedDrupalMediaElement(selection);
++      this.isEnabled = !!getClosestSelectedDrupalMediaElement(selection, false);
+       // Check if the selection descends from a `<drupalMedia>` element that
+       // also includes a `<caption>`.
+       this.value = !!getMediaCaptionFromModelSelection(selection);
+@@ -60,7 +60,7 @@ export default class ToggleDrupalMediaCaptionCommand extends Command {
+     }
+ 
+     // If single element is selected, check if it's a `<drupalMedia>` element.
+-    this.isEnabled = isDrupalMedia(selectedElement);
++    this.isEnabled = isDrupalMedia(selectedElement, false);
+ 
+     if (!this.isEnabled) {
+       this.value = false;
+diff --git a/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediaediting.js b/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediaediting.js
+index 9b9b582482a..34aef3fa935 100644
+--- a/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediaediting.js
++++ b/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediaediting.js
+@@ -210,6 +210,13 @@ export default class DrupalMediaEditing extends Plugin {
+       inheritAllFrom: '$blockObject',
+       allowAttributes: Object.keys(this.attrs),
+     });
++
++    schema.register('drupalMediaInline', {
++      inheritAllFrom: '$inlineObject',
++      allowIn: ['$block', '$container', '$text'],
++      allowAttributes: Object.keys(this.attrs),
++    });
++
+     // Register `<drupal-media>` as a block element in the DOM converter. This
+     // ensures that the DOM converter knows to handle the `<drupal-media>` as a
+     // block element.
+@@ -227,212 +234,228 @@ export default class DrupalMediaEditing extends Plugin {
+       'DrupalMediaMetadataRepository',
+     );
+ 
+-    conversion
+-      .for('upcast')
+-      .elementToElement({
++    const viewToModelMap = {
++      'drupal-media': 'drupalMedia',
++      'drupal-media-inline': 'drupalMediaInline',
++    };
++
++    Object.keys(viewToModelMap).forEach((view) => {
++      const model = viewToModelMap[view];
++
++      conversion
++        .for('upcast')
++        .elementToElement({
++          view: {
++            name: view,
++          },
++          model,
++        })
++        .add((dispatcher) => {
++          dispatcher.on(
++            `element:${view}`,
++            (evt, data) => {
++              const [modelElement] = data.modelRange.getItems();
++              metadataRepository
++                .getMetadata(modelElement)
++                .then((metadata) => {
++                  if (!modelElement) {
++                    return;
++                  }
++                  // On upcast, get `drupalMediaIsImage` attribute value from media metadata
++                  // repository.
++                  this.upcastDrupalMediaIsImage(modelElement);
++                  // Enqueue a model change after getting modelElement.
++                  this.editor.model.enqueueChange(
++                    { isUndoable: false },
++                    (writer) => {
++                      writer.setAttribute(
++                        'drupalMediaType',
++                        metadata.type,
++                        modelElement,
++                      );
++                    },
++                  );
++                })
++                .catch((e) => {
++                  // There isn't any UI indication for errors because this should be
++                  // always called after the Drupal Media has been upcast, which would
++                  // already display an error in the UI.
++                  console.warn(e.toString());
++                });
++            },
++            // This converter needs to have the lowest priority to ensure that the
++            // model element and its attributes have already been converted. It is only used
++            // to gather metadata to make the UI tailored to the specific media entity that
++            // is being dealt with.
++            { priority: 'lowest' },
++          );
++        });
++
++      conversion.for('dataDowncast').elementToElement({
++        model,
+         view: {
+-          name: 'drupal-media',
++          name: view,
+         },
+-        model: 'drupalMedia',
+-      })
+-      .add((dispatcher) => {
+-        dispatcher.on(
+-          'element:drupal-media',
+-          (evt, data) => {
+-            const [modelElement] = data.modelRange.getItems();
+-            metadataRepository
+-              .getMetadata(modelElement)
+-              .then((metadata) => {
+-                if (!modelElement) {
+-                  return;
+-                }
+-                // On upcast, get `drupalMediaIsImage` attribute value from media metadata
+-                // repository.
+-                this.upcastDrupalMediaIsImage(modelElement);
+-                // Enqueue a model change after getting modelElement.
+-                this.editor.model.enqueueChange(
+-                  { isUndoable: false },
+-                  (writer) => {
+-                    writer.setAttribute(
+-                      'drupalMediaType',
+-                      metadata.type,
+-                      modelElement,
+-                    );
+-                  },
+-                );
+-              })
+-              .catch((e) => {
+-                // There isn't any UI indication for errors because this should be
+-                // always called after the Drupal Media has been upcast, which would
+-                // already display an error in the UI.
+-                console.warn(e.toString());
+-              });
+-          },
+-          // This converter needs to have the lowest priority to ensure that the
+-          // model element and its attributes have already been converted. It is only used
+-          // to gather metadata to make the UI tailored to the specific media entity that
+-          // is being dealt with.
+-          { priority: 'lowest' },
+-        );
+       });
+-
+-    conversion.for('dataDowncast').elementToElement({
+-      model: 'drupalMedia',
+-      view: {
+-        name: 'drupal-media',
+-      },
+-    });
+-    conversion
+-      .for('editingDowncast')
+-      .elementToElement({
+-        model: 'drupalMedia',
+-        view: (modelElement, { writer }) => {
+-          const container = writer.createContainerElement('figure', {
+-            class: 'drupal-media',
+-          });
+-          if (!this.previewUrl) {
+-            // If preview URL isn't available, insert empty preview element
+-            // which indicates that preview couldn't be loaded.
+-            const mediaPreview = writer.createRawElement('div', {
+-              'data-drupal-media-preview': 'unavailable',
++      conversion
++        .for('editingDowncast')
++        .elementToElement({
++          model,
++          view: (modelElement, { writer }) => {
++            const container = writer.createContainerElement('figure', {
++              class:
++                view === 'drupal-media-inline' ? `drupal-media ${view}` : view,
+             });
+-            writer.insert(writer.createPositionAt(container, 0), mediaPreview);
+-          }
+-          writer.setCustomProperty('drupalMedia', true, container);
+-
+-          return toWidget(container, writer, {
+-            label: Drupal.t('Media widget'),
+-          });
+-        },
+-      })
+-      .add((dispatcher) => {
+-        const converter = (event, data, conversionApi) => {
+-          const viewWriter = conversionApi.writer;
+-          const modelElement = data.item;
+-          const container = conversionApi.mapper.toViewElement(data.item);
+-
+-          // Search for preview container recursively from its children because
+-          // the preview container could be wrapped with an element such as
+-          // `<a>`.
+-          let media = getPreviewContainer(container.getChildren());
+-
+-          // Use pre-existing media preview container if one exists. If the
+-          // preview element doesn't exist, create a new element.
+-          if (media) {
+-            // Stop processing if media preview is unavailable or a preview is
+-            // already loading.
+-            if (media.getAttribute('data-drupal-media-preview') !== 'ready') {
+-              return;
++            if (!this.previewUrl) {
++              // If preview URL isn't available, insert empty preview element
++              // which indicates that preview couldn't be loaded.
++              const mediaPreview = writer.createRawElement('div', {
++                'data-drupal-media-preview': 'unavailable',
++              });
++              writer.insert(
++                writer.createPositionAt(container, 0),
++                mediaPreview,
++              );
+             }
++            writer.setCustomProperty(model, true, container);
+ 
+-            // Preview was ready meaning that a new preview can be loaded.
+-            // "Change the attribute to loading to prepare for the loading of
+-            // the updated preview. Preview is kept intact so that it remains
+-            // interactable in the UI until the new preview has been rendered.
+-            viewWriter.setAttribute(
+-              'data-drupal-media-preview',
+-              'loading',
+-              media,
+-            );
+-          } else {
+-            media = viewWriter.createRawElement('div', {
+-              'data-drupal-media-preview': 'loading',
++            return toWidget(container, writer, {
++              label: Drupal.t('Media widget'),
+             });
+-            viewWriter.insert(viewWriter.createPositionAt(container, 0), media);
+-          }
+-
+-          this._fetchPreview(modelElement).then(({ label, preview }) => {
+-            if (!media) {
+-              // Nothing to do if associated preview wrapped no longer exist.
+-              return;
+-            }
+-            // CKEditor 5 doesn't support async view conversion. Therefore, once
+-            // the promise is fulfilled, the editing view needs to be modified
+-            // manually.
+-            this.editor.editing.view.change((writer) => {
+-              const mediaPreview = writer.createRawElement(
+-                'div',
+-                { 'data-drupal-media-preview': 'ready', 'aria-label': label },
+-                (domElement) => {
+-                  domElement.innerHTML = preview;
+-                },
++          },
++        })
++        .add((dispatcher) => {
++          const converter = (event, data, conversionApi) => {
++            const viewWriter = conversionApi.writer;
++            const modelElement = data.item;
++            const container = conversionApi.mapper.toViewElement(data.item);
++
++            // Search for preview container recursively from its children because
++            // the preview container could be wrapped with an element such as
++            // `<a>`.
++            let media = getPreviewContainer(container.getChildren());
++
++            // Use pre-existing media preview container if one exists. If the
++            // preview element doesn't exist, create a new element.
++            if (media) {
++              // Stop processing if media preview is unavailable or a preview is
++              // already loading.
++              if (media.getAttribute('data-drupal-media-preview') !== 'ready') {
++                return;
++              }
++
++              // Preview was ready meaning that a new preview can be loaded.
++              // "Change the attribute to loading to prepare for the loading of
++              // the updated preview. Preview is kept intact so that it remains
++              // interactable in the UI until the new preview has been rendered.
++              viewWriter.setAttribute(
++                'data-drupal-media-preview',
++                'loading',
++                media,
+               );
+-              // Insert the new preview before the previous preview element to
+-              // ensure that the location remains same even if it is wrapped
+-              // with another element.
+-              writer.insert(writer.createPositionBefore(media), mediaPreview);
+-              writer.remove(media);
++            } else {
++              media = viewWriter.createRawElement('div', {
++                'data-drupal-media-preview': 'loading',
++              });
++              viewWriter.insert(
++                viewWriter.createPositionAt(container, 0),
++                media,
++              );
++            }
++
++            this._fetchPreview(modelElement).then(({ label, preview }) => {
++              if (!media) {
++                // Nothing to do if associated preview wrapped no longer exist.
++                return;
++              }
++              // CKEditor 5 doesn't support async view conversion. Therefore, once
++              // the promise is fulfilled, the editing view needs to be modified
++              // manually.
++              this.editor.editing.view.change((writer) => {
++                const mediaPreview = writer.createRawElement(
++                  'div',
++                  { 'data-drupal-media-preview': 'ready', 'aria-label': label },
++                  (domElement) => {
++                    domElement.innerHTML = preview;
++                  },
++                );
++                // Insert the new preview before the previous preview element to
++                // ensure that the location remains same even if it is wrapped
++                // with another element.
++                writer.insert(writer.createPositionBefore(media), mediaPreview);
++                writer.remove(media);
++              });
+             });
++          };
++
++          // List all attributes that should trigger re-rendering of the
++          // preview.
++          this.converterAttributes.forEach((attribute) => {
++            dispatcher.on(`attribute:${attribute}:${model}`, converter);
+           });
+-        };
+ 
+-        // List all attributes that should trigger re-rendering of the
+-        // preview.
+-        this.converterAttributes.forEach((attribute) => {
+-          dispatcher.on(`attribute:${attribute}:drupalMedia`, converter);
++          return dispatcher;
+         });
+ 
+-        return dispatcher;
+-      });
++      conversion.for('editingDowncast').add((dispatcher) => {
++        dispatcher.on(
++          `attribute:drupalElementStyleAlign:${model}`,
++          (evt, data, conversionApi) => {
++            const alignMapping = {
++              // This is a map of CSS classes representing Drupal element styles for alignments.
++              left: 'drupal-media-style-align-left',
++              right: 'drupal-media-style-align-right',
++              center: 'drupal-media-style-align-center',
++            };
++            const viewElement = conversionApi.mapper.toViewElement(data.item);
++            const viewWriter = conversionApi.writer;
++
++            // If the prior value is alignment related, it should be removed
++            // whether or not the module property is consumed.
++            if (alignMapping[data.attributeOldValue]) {
++              viewWriter.removeClass(
++                alignMapping[data.attributeOldValue],
++                viewElement,
++              );
++            }
+ 
+-    conversion.for('editingDowncast').add((dispatcher) => {
+-      dispatcher.on(
+-        'attribute:drupalElementStyleAlign:drupalMedia',
+-        (evt, data, conversionApi) => {
+-          const alignMapping = {
+-            // This is a map of CSS classes representing Drupal element styles for alignments.
+-            left: 'drupal-media-style-align-left',
+-            right: 'drupal-media-style-align-right',
+-            center: 'drupal-media-style-align-center',
+-          };
+-          const viewElement = conversionApi.mapper.toViewElement(data.item);
+-          const viewWriter = conversionApi.writer;
+-
+-          // If the prior value is alignment related, it should be removed
+-          // whether or not the module property is consumed.
+-          if (alignMapping[data.attributeOldValue]) {
+-            viewWriter.removeClass(
+-              alignMapping[data.attributeOldValue],
++            // If the new value is not alignment related, do not proceed.
++            if (!alignMapping[data.attributeNewValue]) {
++              return;
++            }
++
++            // The model property is already consumed, do not proceed.
++            if (!conversionApi.consumable.consume(data.item, evt.name)) {
++              return;
++            }
++
++            // Add the alignment class in the view that corresponds to the value
++            // of the model's drupalElementStyle property.
++            viewWriter.addClass(
++              alignMapping[data.attributeNewValue],
+               viewElement,
+             );
+-          }
+-
+-          // If the new value is not alignment related, do not proceed.
+-          if (!alignMapping[data.attributeNewValue]) {
+-            return;
+-          }
+-
+-          // The model property is already consumed, do not proceed.
+-          if (!conversionApi.consumable.consume(data.item, evt.name)) {
+-            return;
+-          }
+-
+-          // Add the alignment class in the view that corresponds to the value
+-          // of the model's drupalElementStyle property.
+-          viewWriter.addClass(
+-            alignMapping[data.attributeNewValue],
+-            viewElement,
+-          );
+-        },
+-      );
+-    });
++          },
++        );
++      });
+ 
+-    // Set attributeToAttribute conversion for all supported attributes.
+-    Object.keys(this.attrs).forEach((modelKey) => {
+-      const attributeMapping = {
+-        model: {
+-          key: modelKey,
+-          name: 'drupalMedia',
+-        },
+-        view: {
+-          name: 'drupal-media',
+-          key: this.attrs[modelKey],
+-        },
+-      };
+-      // Attributes should be rendered only in dataDowncast to avoid having
+-      // unfiltered data-attributes on the Drupal Media widget.
+-      conversion.for('dataDowncast').attributeToAttribute(attributeMapping);
+-      conversion.for('upcast').attributeToAttribute(attributeMapping);
++      // Set attributeToAttribute conversion for all supported attributes.
++      Object.keys(this.attrs).forEach((modelKey) => {
++        const attributeMapping = {
++          model: {
++            key: modelKey,
++            name: model,
++          },
++          view: {
++            name: view,
++            key: this.attrs[modelKey],
++          },
++        };
++        // Attributes should be rendered only in dataDowncast to avoid having
++        // unfiltered data-attributes on the Drupal Media widget.
++        conversion.for('dataDowncast').attributeToAttribute(attributeMapping);
++        conversion.for('upcast').attributeToAttribute(attributeMapping);
++      });
+     });
+   }
+ 
+diff --git a/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediageneralhtmlsupport.js b/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediageneralhtmlsupport.js
+index 66ca7dbee62..d65914e909b 100644
+--- a/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediageneralhtmlsupport.js
++++ b/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediageneralhtmlsupport.js
+@@ -5,18 +5,22 @@ import { setViewAttributes } from '@ckeditor/ckeditor5-html-support/src/utils';
+ 
+ /**
+  * View-to-model conversion helper for Drupal Media.
+- * Used for preserving allowed attributes on the Drupal Media model.
++ * Used for preserving allowed attributes on the Drupal Media models.
+  *
++ * @param {string} model
++ *   The model name (DrupalMedia or DrupalMediaInline).
++ * @param {string} view
++ *   The view name (drupal-media or drupal-media-inline).
+  * @param {module:html-support/datafilter~DataFilter} dataFilter
+  *   The General HTML support data filter.
+  *
+  * @return {function}
+  *   Function that adds an event listener to upcastDispatcher.
+  */
+-function viewToModelDrupalMediaAttributeConverter(dataFilter) {
++function viewToModelDrupalMediaAttributeConverter(dataFilter, model, view) {
+   return (dispatcher) => {
+     dispatcher.on(
+-      'element:drupal-media',
++      `element:${view}`,
+       (evt, data, conversionApi) => {
+         function preserveElementAttributes(viewElement, attributeName) {
+           const viewAttributes = dataFilter.processViewAttributes(
+@@ -96,18 +100,21 @@ function modelToDataAttributeConverter(evt, data, conversionApi) {
+ /**
+  * Model to editing view attribute converter.
+  *
++ * @param {string} model
++ *   The model name (DrupalMedia or DrupalMediaInline).
++ *
+  * @return {function}
+  *   A function that adds an event listener to downcastDispatcher.
+  */
+-function modelToEditingViewAttributeConverter() {
++function modelToEditingViewAttributeConverter(model) {
+   return (dispatcher) => {
+     dispatcher.on(
+-      'attribute:linkHref:drupalMedia',
++      `attribute:linkHref:${model}`,
+       (evt, data, conversionApi) => {
+         if (
+           !conversionApi.consumable.consume(
+             data.item,
+-            'attribute:htmlLinkAttributes:drupalMedia',
++            `attribute:htmlLinkAttributes:${model}`,
+           )
+         ) {
+           return;
+@@ -134,18 +141,21 @@ function modelToEditingViewAttributeConverter() {
+ /**
+  * Model to data view attribute converter.
+  *
++ * @param {string} model
++ *   The model name (DrupalMedia or DrupalMediaInline).
++ *
+  * @return {function}
+  *   Function that adds an event listener to downcastDispatcher.
+  */
+-function modelToDataViewAttributeConverter() {
++function modelToDataViewAttributeConverter(model) {
+   return (dispatcher) => {
+     dispatcher.on(
+-      'attribute:linkHref:drupalMedia',
++      `attribute:linkHref:${model}`,
+       (evt, data, conversionApi) => {
+         if (
+           !conversionApi.consumable.consume(
+             data.item,
+-            'attribute:htmlLinkAttributes:drupalMedia',
++            `attribute:htmlLinkAttributes:${model}`,
+           )
+         ) {
+           return;
+@@ -163,7 +173,7 @@ function modelToDataViewAttributeConverter() {
+     );
+ 
+     dispatcher.on(
+-      'attribute:htmlAttributes:drupalMedia',
++      `attribute:htmlAttributes:${model}`,
+       modelToDataAttributeConverter,
+       { priority: 'low' },
+     );
+@@ -204,32 +214,45 @@ export default class DrupalMediaGeneralHtmlSupport extends Plugin {
+     const dataFilter = this.editor.plugins.get('DataFilter');
+     const dataSchema = this.editor.plugins.get('DataSchema');
+ 
+-    // This needs to be initialized in ::constructor() to ensure this runs
+-    // before the General HTML Support has been initialized.
+-    // @see module:html-support/generalhtmlsupport~GeneralHtmlSupport
+-    dataSchema.registerBlockElement({
+-      model: 'drupalMedia',
+-      view: 'drupal-media',
+-    });
++    const viewToModelMap = {
++      'drupal-media': 'drupalMedia',
++      'drupal-media-inline': 'drupalMediaInline',
++    };
+ 
+-    dataFilter.on('register:drupal-media', (evt, definition) => {
+-      if (definition.model !== 'drupalMedia') {
+-        return;
+-      }
++    Object.keys(viewToModelMap).forEach((view) => {
++      const model = viewToModelMap[view];
+ 
+-      schema.extend('drupalMedia', {
+-        allowAttributes: ['htmlLinkAttributes', 'htmlAttributes'],
++      // This needs to be initialized in ::constructor() to ensure this runs
++      // before the General HTML Support has been initialized.
++      // @see module:html-support/generalhtmlsupport~GeneralHtmlSupport
++      dataSchema.registerBlockElement({
++        model,
++        view,
+       });
+ 
+-      conversion
+-        .for('upcast')
+-        .add(viewToModelDrupalMediaAttributeConverter(dataFilter));
+-      conversion
+-        .for('editingDowncast')
+-        .add(modelToEditingViewAttributeConverter());
+-      conversion.for('dataDowncast').add(modelToDataViewAttributeConverter());
++      dataFilter.on(`register:${view}`, (evt, definition) => {
++        if (definition.model !== model) {
++          return;
++        }
+ 
+-      evt.stop();
++        schema.extend(model, {
++          allowAttributes: ['htmlLinkAttributes', 'htmlAttributes'],
++        });
++
++        conversion
++          .for('upcast')
++          .add(
++            viewToModelDrupalMediaAttributeConverter(dataFilter, model, view),
++          );
++        conversion
++          .for('editingDowncast')
++          .add(modelToEditingViewAttributeConverter(model));
++        conversion
++          .for('dataDowncast')
++          .add(modelToDataViewAttributeConverter(model));
++
++        evt.stop();
++      });
+     });
+   }
+ 
+diff --git a/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/insertdrupalmedia.js b/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/insertdrupalmedia.js
+index df600cd3d0a..537f8563046 100644
+--- a/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/insertdrupalmedia.js
++++ b/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/insertdrupalmedia.js
+@@ -1,15 +1,42 @@
+ /* eslint-disable import/no-extraneous-dependencies */
+ // cspell:ignore insertdrupalmediacommand
+ import { Command } from 'ckeditor5/src/core';
++import { first } from 'ckeditor5/src/utils';
+ import { groupNameToModelAttributeKey } from './utils';
+ 
+ /**
+  * @module drupalMedia/insertdrupalmediacommand
+  */
+ 
+-function createDrupalMedia(writer, attributes) {
+-  const drupalMedia = writer.createElement('drupalMedia', attributes);
+-  return drupalMedia;
++function createDrupalMedia(writer, attributes, model) {
++  return writer.createElement(model, attributes);
++}
++
++function determineImageTypeForInsertionAtSelection(schema, selection) {
++  const firstBlock = first(selection.getSelectedBlocks());
++  // Insert a block media if the selection is not in/on block elements or it's
++  // on a block widget.
++  if (!firstBlock || schema.isObject(firstBlock)) {
++    return 'drupalMedia';
++  }
++  // A block image should also be inserted into an empty block element
++  // (that is not an empty list item so the list won't get split).
++  if (firstBlock.isEmpty && firstBlock.name !== 'listItem') {
++    return 'drupalMedia';
++  }
++  // Otherwise insert an inline media.
++  return 'drupalMediaInline';
++}
++
++function determineImageTypeForInsertion(editor, selectable) {
++  const schema = editor.model.schema;
++  // Try to replace the selected widget (e.g. another image).
++  if (selectable.is('selection')) {
++    return determineImageTypeForInsertionAtSelection(schema, selectable);
++  }
++  return schema.checkChild(selectable, 'drupalMediaInline')
++    ? 'drupalMediaInline'
++    : 'drupalMedia';
+ }
+ 
+ /**
+@@ -85,9 +112,14 @@ export default class InsertDrupalMediaCommand extends Command {
+       }
+     }
+ 
++    const insertedModel = determineImageTypeForInsertion(
++      this.editor,
++      this.editor.model.document.selection,
++    );
++
+     this.editor.model.change((writer) => {
+       this.editor.model.insertObject(
+-        createDrupalMedia(writer, modelAttributes),
++        createDrupalMedia(writer, modelAttributes, insertedModel),
+       );
+     });
+   }
+@@ -95,9 +127,10 @@ export default class InsertDrupalMediaCommand extends Command {
+   refresh() {
+     const model = this.editor.model;
+     const selection = model.document.selection;
++    const mediaModel = determineImageTypeForInsertion(this.editor, selection);
+     const allowedIn = model.schema.findAllowedParent(
+       selection.getFirstPosition(),
+-      'drupalMedia',
++      mediaModel,
+     );
+     this.isEnabled = allowedIn !== null;
+   }
+diff --git a/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/utils.js b/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/utils.js
+index afd77f4cd98..180fdc3f3b2 100644
+--- a/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/utils.js
++++ b/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/utils.js
+@@ -7,12 +7,25 @@ import { isWidget } from 'ckeditor5/src/widget';
+  *
+  * @param {module:engine/model/element~Element} modelElement
+  *   The model element to be checked.
++ * @param {boolean} includeInline
++ *   Optional. Whether to consider <drupal-media-inline> elements as
++ *   media. Defaults to true.
+  * @return {boolean}
+  *   A boolean indicating if the element is a drupalMedia element.
+  *
+  * @private
+  */
+-export function isDrupalMedia(modelElement) {
++export function isDrupalMedia(modelElement, includeInline) {
++  if (typeof includeInline === 'undefined') {
++    includeInline = true;
++  }
++  if (includeInline) {
++    return (
++      !!modelElement &&
++      (modelElement.is('element', 'drupalMedia') ||
++        modelElement.is('element', 'drupalMediaInline'))
++    );
++  }
+   return !!modelElement && modelElement.is('element', 'drupalMedia');
+ }
+ 
+@@ -21,12 +34,25 @@ export function isDrupalMedia(modelElement) {
+  *
+  * @param {module:engine/view/element~Element} viewElement
+  *   The view element.
++ * @param {boolean} includeInline
++ *  Optional. Whether to consider <drupal-media-inline> elements as
++ *   media. Defaults to true.
+  * @return {boolean}
+  *   A boolean indicating if the element is a <drupal-media> element.
+  *
+  * @private
+  */
+-export function isDrupalMediaWidget(viewElement) {
++export function isDrupalMediaWidget(viewElement, includeInline) {
++  if (typeof includeInline === 'undefined') {
++    includeInline = true;
++  }
++  if (includeInline) {
++    return (
++      isWidget(viewElement) &&
++      (!!viewElement.getCustomProperty('drupalMedia') ||
++        !!viewElement.getCustomProperty('drupalMediaInline'))
++    );
++  }
+   return (
+     isWidget(viewElement) && !!viewElement.getCustomProperty('drupalMedia')
+   );
+@@ -37,6 +63,9 @@ export function isDrupalMediaWidget(viewElement) {
+  *
+  * @param {module:engine/model/selection~Selection|module:engine/model/documentselection~DocumentSelection} selection
+  *   The current selection.
++ * @param {boolean} includeInline
++ *  Optional. Whether to consider <drupal-media-inline> elements as
++ *   media. Defaults to true.
+  * @return {module:engine/model/element~Element|null}
+  *   The `drupalMedia` element which could be either the current selected an
+  *   ancestor of the selection. Returns null if the selection has no Drupal
+@@ -44,12 +73,17 @@ export function isDrupalMediaWidget(viewElement) {
+  *
+  * @private
+  */
+-export function getClosestSelectedDrupalMediaElement(selection) {
++export function getClosestSelectedDrupalMediaElement(selection, includeInline) {
++  if (typeof includeInline === 'undefined') {
++    includeInline = true;
++  }
+   const selectedElement = selection.getSelectedElement();
+ 
+-  return isDrupalMedia(selectedElement)
++  return isDrupalMedia(selectedElement, includeInline)
+     ? selectedElement
+-    : selection.getFirstPosition().findAncestor('drupalMedia');
++    : selection
++        .getFirstPosition()
++        .findAncestor(includeInline ? /drupalMedia(Inline)?/ : /drupalMedia/);
+ }
+ 
+ /**
+@@ -57,14 +91,20 @@ export function getClosestSelectedDrupalMediaElement(selection) {
+  *
+  * @param {module:engine/model/selection~Selection} selection
+  *   The current selection.
++ * @param {boolean} includeInline
++ *  Optional. Whether to consider <drupal-media-inline> elements as
++ *   media. Defaults to true.
+  * @return {module:engine/view/element~Element|null}
+  *   The currently selected Drupal Media widget or null.
+  *
+  * @private
+  */
+-export function getClosestSelectedDrupalMediaWidget(selection) {
++export function getClosestSelectedDrupalMediaWidget(selection, includeInline) {
++  if (typeof includeInline === 'undefined') {
++    includeInline = true;
++  }
+   const viewElement = selection.getSelectedElement();
+-  if (viewElement && isDrupalMediaWidget(viewElement)) {
++  if (viewElement && isDrupalMediaWidget(viewElement, includeInline)) {
+     return viewElement;
+   }
+ 
+@@ -76,7 +116,7 @@ export function getClosestSelectedDrupalMediaWidget(selection) {
+   let parent = selection.getFirstPosition().parent;
+ 
+   while (parent) {
+-    if (parent.is('element') && isDrupalMediaWidget(parent)) {
++    if (parent.is('element') && isDrupalMediaWidget(parent, includeInline)) {
+       return parent;
+     }
+ 
+diff --git a/core/modules/ckeditor5/src/Plugin/CKEditor5Plugin/Media.php b/core/modules/ckeditor5/src/Plugin/CKEditor5Plugin/Media.php
+index e06b2422ada..cbbdca8e1d6 100644
+--- a/core/modules/ckeditor5/src/Plugin/CKEditor5Plugin/Media.php
++++ b/core/modules/ckeditor5/src/Plugin/CKEditor5Plugin/Media.php
+@@ -121,7 +121,7 @@ private function configureViewModes(EditorInterface $editor) {
+             'title' => $all_view_modes[$view_mode],
+             'attributeName' => 'data-view-mode',
+             'attributeValue' => $view_mode,
+-            'modelElements' => ['drupalMedia'],
++            'modelElements' => ['drupalMedia', 'drupalMediaInline'],
+             'modelAttributes' => [
+               'drupalMediaType' => array_keys($media_bundles),
+             ],
+@@ -133,7 +133,7 @@ private function configureViewModes(EditorInterface $editor) {
+             'title' => $all_view_modes[$view_mode],
+             'attributeName' => 'data-view-mode',
+             'attributeValue' => $view_mode,
+-            'modelElements' => ['drupalMedia'],
++            'modelElements' => ['drupalMedia', 'drupalMediaInline'],
+             'modelAttributes' => [
+               'drupalMediaType' => $specific_bundles,
+             ],
+@@ -196,7 +196,7 @@ public function getElementsSubset(): array {
+     $subset = $this->getPluginDefinition()->getElements();
+     $view_mode_override_enabled = $this->getConfiguration()['allow_view_mode_override'];
+     if (!$view_mode_override_enabled) {
+-      $subset = array_diff($subset, ['<drupal-media data-view-mode>']);
++      $subset = array_diff($subset, ['<drupal-media data-view-mode>', '<drupal-media-inline data-view-mode>']);
+     }
+     return $subset;
+   }
+diff --git a/core/modules/ckeditor5/templates/field--ckeditor-inline.html.twig b/core/modules/ckeditor5/templates/field--ckeditor-inline.html.twig
+new file mode 100644
+index 00000000000..7f0ae06f836
+--- /dev/null
++++ b/core/modules/ckeditor5/templates/field--ckeditor-inline.html.twig
+@@ -0,0 +1,72 @@
++{#
++/**
++ * @file
++ * Default theme implementation for a field.
++ *
++ * To override output, copy the "field.html.twig" from the templates directory
++ * to your theme's directory and customize it, just like customizing other
++ * Drupal templates such as page.html.twig or node.html.twig.
++ *
++ * Instead of overriding the theming for all fields, you can also just override
++ * theming for a subset of fields using
++ * @link themeable Theme hook suggestions. @endlink For example,
++ * here are some theme hook suggestions that can be used for a field_foo field
++ * on an article node type:
++ * - field--node--field-foo--article.html.twig
++ * - field--node--field-foo.html.twig
++ * - field--node--article.html.twig
++ * - field--field-foo.html.twig
++ * - field--text-with-summary.html.twig
++ * - field.html.twig
++ *
++ * Available variables:
++ * - attributes: HTML attributes for the containing element.
++ * - label_hidden: Whether to show the field label or not.
++ * - title_attributes: HTML attributes for the title.
++ * - label: The label for the field.
++ * - multiple: TRUE if a field can contain multiple items.
++ * - items: List of all the field items. Each item contains:
++ *   - attributes: List of HTML attributes for each item.
++ *   - content: The field item's content.
++ * - entity_type: The entity type to which the field belongs.
++ * - field_name: The name of the field.
++ * - field_type: The type of the field.
++ * - label_display: The display settings for the label.
++ *
++ * @see template_preprocess_field()
++ *
++ * @ingroup themeable
++ */
++#}
++{%
++  set title_classes = [
++    label_display == 'visually_hidden' ? 'visually-hidden',
++  ]
++%}
++
++{% if label_hidden %}
++  {% if multiple %}
++    <span{{ attributes }}>
++      {% for item in items %}
++        <span{{ item.attributes }}>{{ item.content }}</span>
++      {% endfor %}
++    </span>
++  {% else %}
++    {% for item in items %}
++      <span{{ attributes }}>{{ item.content }}</span>
++    {% endfor %}
++  {% endif %}
++{% else %}
++  <span{{ attributes }}>
++    <span{{ title_attributes.addClass(title_classes) }}>{{ label }}</span>
++    {% if multiple %}
++      <span>
++    {% endif %}
++    {% for item in items %}
++      <span{{ item.attributes }}>{{ item.content }}</span>
++    {% endfor %}
++    {% if multiple %}
++      </span>
++    {% endif %}
++  </span>
++{% endif %}
+diff --git a/core/modules/ckeditor5/templates/media--ckeditor-inline-embed.html.twig b/core/modules/ckeditor5/templates/media--ckeditor-inline-embed.html.twig
+new file mode 100644
+index 00000000000..18a903f2454
+--- /dev/null
++++ b/core/modules/ckeditor5/templates/media--ckeditor-inline-embed.html.twig
+@@ -0,0 +1,36 @@
++{#
++/**
++ * @file
++ * Default theme implementation to present a media item.
++ *
++ * Available variables:
++ * - media: The media item, with limited access to object properties and
++ *   methods. Only method names starting with "get", "has", or "is" and
++ *   a few common methods such as "id", "label", and "bundle" are available.
++ *   For example:
++ *   - entity.getEntityTypeId() will return the entity type ID.
++ *   - entity.hasField('field_example') returns TRUE if the entity includes
++ *     field_example. (This does not indicate the presence of a value in this
++ *     field.)
++ *   Calling other methods, such as entity.delete(), will result in
++ *   an exception.
++ *   See \Drupal\Core\Entity\EntityInterface for a full list of methods.
++ * - name: Name of the media item.
++ * - content: Media content.
++ * - title_prefix: Additional output populated by modules, intended to be
++ *   displayed in front of the main title tag that appears in the template.
++ * - title_suffix: Additional output populated by modules, intended to be
++ *   displayed after the main title tag that appears in the template.
++ * - view_mode: View mode; for example, "teaser" or "full".
++ * - attributes: HTML attributes for the containing element.
++ * - title_attributes: Same as attributes, except applied to the main title
++ *   tag that appears in the template.
++ *
++ * @see template_preprocess_media()
++ *
++ * @ingroup themeable
++ */
++#}
++<span{{ attributes }}>
++  {{ content }}
++</span>
+diff --git a/core/modules/ckeditor5/tests/src/Functional/MediaEntityMetadataApiTest.php b/core/modules/ckeditor5/tests/src/Functional/MediaEntityMetadataApiTest.php
+index 07901fc69ce..93be5970cf8 100644
+--- a/core/modules/ckeditor5/tests/src/Functional/MediaEntityMetadataApiTest.php
++++ b/core/modules/ckeditor5/tests/src/Functional/MediaEntityMetadataApiTest.php
+@@ -115,7 +115,7 @@ protected function setUp(): void {
+           'status' => TRUE,
+           'weight' => -10,
+           'settings' => [
+-            'allowed_html' => "<p> <br> <drupal-media data-entity-type data-entity-uuid data-view-mode alt>",
++            'allowed_html' => "<p> <br> <drupal-media data-entity-type data-entity-uuid data-view-mode alt> <drupal-media-inline data-entity-type data-entity-uuid data-view-mode alt>",
+             'filter_html_help' => TRUE,
+             'filter_html_nofollow' => TRUE,
+           ],
+diff --git a/core/modules/ckeditor5/tests/src/FunctionalJavascript/CKEditor5AllowedTagsTest.php b/core/modules/ckeditor5/tests/src/FunctionalJavascript/CKEditor5AllowedTagsTest.php
+index e176048f50e..b906fc6067a 100644
+--- a/core/modules/ckeditor5/tests/src/FunctionalJavascript/CKEditor5AllowedTagsTest.php
++++ b/core/modules/ckeditor5/tests/src/FunctionalJavascript/CKEditor5AllowedTagsTest.php
+@@ -378,8 +378,8 @@ public function testMediaElementAllowedTags(): void {
+     $page->checkField('filters[media_embed][settings][allowed_view_modes][view_mode_1]');
+     $page->checkField('filters[media_embed][settings][allowed_view_modes][view_mode_2]');
+ 
+-    $allowed_with_media = $this->allowedElements . ' <drupal-media data-entity-type data-entity-uuid alt data-view-mode>';
+-    $allowed_with_media_without_view_mode = $this->allowedElements . ' <drupal-media data-entity-type data-entity-uuid alt>';
++    $allowed_with_media = $this->allowedElements . ' <drupal-media data-entity-type data-entity-uuid alt data-view-mode> <drupal-media-inline data-entity-type data-entity-uuid alt data-view-mode>';
++    $allowed_with_media_without_view_mode = $this->allowedElements . ' <drupal-media data-entity-type data-entity-uuid alt> <drupal-media-inline data-entity-type data-entity-uuid alt>';
+     $page->clickLink('Media');
+     $this->assertTrue($page->hasUncheckedField('editor[settings][plugins][media_media][allow_view_mode_override]'));
+     $this->assertHtmlEsqueFieldValueEquals('filters[filter_html][settings][allowed_html]', $allowed_with_media_without_view_mode);
+@@ -403,7 +403,7 @@ public function testMediaElementAllowedTags(): void {
+     // filter_align is enabled.
+     $page->checkField('filters[filter_align][status]');
+     $assert_session->assertExpectedAjaxRequest(1);
+-    $this->assertEquals($this->allowedElements . ' <drupal-media data-entity-type data-entity-uuid alt data-view-mode data-align>', $allowed_html_field->getValue());
++    $this->assertEquals($this->allowedElements . ' <drupal-media data-entity-type data-entity-uuid alt data-view-mode data-align> <drupal-media-inline data-entity-type data-entity-uuid alt data-view-mode data-align>', $allowed_html_field->getValue());
+ 
+     // Disable media embed.
+     $this->assertTrue($page->hasCheckedField('filters[media_embed][status]'));
+diff --git a/core/modules/ckeditor5/tests/src/FunctionalJavascript/MediaLinkabilityTest.php b/core/modules/ckeditor5/tests/src/FunctionalJavascript/MediaLinkabilityTest.php
+index f8a41742db1..58f0a4c4fa1 100644
+--- a/core/modules/ckeditor5/tests/src/FunctionalJavascript/MediaLinkabilityTest.php
++++ b/core/modules/ckeditor5/tests/src/FunctionalJavascript/MediaLinkabilityTest.php
+@@ -41,7 +41,7 @@ public function testLinkedMediaArbitraryHtml(bool $unrestricted): void {
+       $filter_format->setFilterConfig('filter_html', [
+         'status' => TRUE,
+         'settings' => [
+-          'allowed_html' => '<p> <br> <strong> <em> <a href data-foo> <drupal-media data-entity-type data-entity-uuid data-align data-caption alt data-view-mode> <div data-bar>',
++          'allowed_html' => '<p> <br> <strong> <em> <a href data-foo> <drupal-media data-entity-type data-entity-uuid data-align data-caption alt data-view-mode> <div data-bar> <drupal-media-inline data-entity-type data-entity-uuid alt data-view-mode data-caption data-align>',
+         ],
+       ]);
+     }
+diff --git a/core/modules/ckeditor5/tests/src/FunctionalJavascript/MediaTest.php b/core/modules/ckeditor5/tests/src/FunctionalJavascript/MediaTest.php
+index 7f383ccb05d..21c6ca30026 100644
+--- a/core/modules/ckeditor5/tests/src/FunctionalJavascript/MediaTest.php
++++ b/core/modules/ckeditor5/tests/src/FunctionalJavascript/MediaTest.php
+@@ -110,7 +110,7 @@ protected function testMediaSplitList(): void {
+     $filter_format->setFilterConfig('filter_html', [
+       'status' => TRUE,
+       'settings' => [
+-        'allowed_html' => '<p> <br> <strong> <em> <a href> <drupal-media data-entity-type data-entity-uuid data-align data-caption alt data-view-mode> <ol> <ul> <li>',
++        'allowed_html' => '<p> <br> <strong> <em> <a href> <drupal-media data-entity-type data-entity-uuid data-align data-caption alt data-view-mode> <drupal-media-inline data-entity-type data-entity-uuid data-align data-caption alt data-view-mode> <ol> <ul> <li>',
+       ],
+     ]);
+     $filter_format->save();
+@@ -165,7 +165,7 @@ public function testMediaArbitraryHtml(): void {
+     $filter_format->setFilterConfig('filter_html', [
+       'status' => TRUE,
+       'settings' => [
+-        'allowed_html' => '<p> <br> <strong> <em> <a href> <drupal-media data-entity-type data-entity-uuid data-align data-caption alt data-foo data-view-mode> <div data-bar>',
++        'allowed_html' => '<p> <br> <strong> <em> <a href> <drupal-media data-entity-type data-entity-uuid data-align data-caption alt data-foo data-view-mode> <drupal-media-inline data-entity-type data-entity-uuid data-align data-caption alt data-view-mode> <div data-bar>',
+       ],
+     ]);
+     $filter_format->save();
+@@ -700,7 +700,7 @@ public function testDrupalMediaStyleWithClass(): void {
+     $filter_format->setFilterConfig('filter_html', [
+       'status' => TRUE,
+       'settings' => [
+-        'allowed_html' => '<p> <br> <h1 class> <div class> <section class> <drupal-media data-entity-type data-entity-uuid data-align data-caption data-view-mode alt class="layercake-side">',
++        'allowed_html' => '<p> <br> <h1 class> <div class> <section class> <drupal-media data-entity-type data-entity-uuid data-align data-caption data-view-mode alt class="layercake-side"> <drupal-media-inline data-entity-type data-entity-uuid data-align data-caption data-view-mode alt>',
+       ],
+     ]);
+     $filter_format->save();
+@@ -1016,6 +1016,56 @@ public function testViewMode(bool $with_alignment): void {
+     $this->assertNotEmpty($this->getBalloonButton('View Mode 4'));
+   }
+ 
++  /**
++   * Tests inline embedding.
++   */
++  public function testInlineMedia() {
++    // Reconfigure the text format to suit our needs.
++    /** @var \Drupal\filter\FilterFormatInterface $format */
++    $format = FilterFormat::load($this->host->body->format);
++    $filter_html = $format->get('filters')['filter_html'];
++    $filter_html['settings']['allowed_html'] = $filter_html['settings']['allowed_html'] . '<ul> <li>';
++    $format->setFilterConfig('filter_html', $filter_html);
++    $format->save();
++
++    // Setup the test content containing inline and normal media in the editor.
++    $assert_session = $this->assertSession();
++    $original_value = $this->host->body->value;
++    $inline_value = \str_replace('drupal-media', 'drupal-media-inline', $original_value);
++    // @todo Captions on inline media are not supported yet.
++    $inline_value = \str_replace('data-caption="baz"', '', $inline_value);
++    $this->host->body->value = <<<END
++        <div>
++            $original_value
++            <p>This is a paragraph $inline_value with an inline media</p>
++            <ul>
++                <li>This is a list item $inline_value containing an inline media</li>
++            </ul>
++        </div>
++END;
++    $this->host->save();
++    $this->drupalGet($this->host->toUrl('edit-form'));
++
++    // Wait until media previews are fetched.
++    $this->assertNotEmpty($assert_session->waitForElementVisible('css', '.ck-widget.drupal-media-inline'));
++    $this->assertNotEmpty($assert_session->waitForElementVisible('css', '.ck-widget.drupal-media'));
++
++    // Confirm that the inline media is contained as phrasing content inside
++    // flow content.
++    $assert_session->elementExists('css', 'p > .drupal-media-inline');
++    $assert_session->elementExists('css', 'ul > li > .drupal-media-inline');
++    // Also ensure that a media not embedded inside flow content is still
++    // rendered not using the inline templates.
++    $assert_session->elementExists('css', 'div > .drupal-media');
++
++    // Verify the rendered inline media is rendered with markup that is using
++    // the dedicated inline media and field templates.
++    $this->drupalGet($this->host->toUrl('canonical'));
++    $assert_session->elementExists('css', 'p > span.media-embedded-inline span img[src*="image-test.png"]');
++    $assert_session->elementExists('css', 'ul > li > span.media-embedded-inline span img[src*="image-test.png"]');
++    $assert_session->elementExists('css', 'div > figure.caption-drupal-media article.media img[src*="image-test.png"]');
++  }
++
+   /**
+    * For testing view modes in different scenarios.
+    */
+diff --git a/core/modules/ckeditor5/tests/src/FunctionalJavascript/MediaTestBase.php b/core/modules/ckeditor5/tests/src/FunctionalJavascript/MediaTestBase.php
+index 3384ec7fa48..0d8faf49314 100644
+--- a/core/modules/ckeditor5/tests/src/FunctionalJavascript/MediaTestBase.php
++++ b/core/modules/ckeditor5/tests/src/FunctionalJavascript/MediaTestBase.php
+@@ -101,7 +101,7 @@ protected function setUp(): void {
+         'filter_html' => [
+           'status' => TRUE,
+           'settings' => [
+-            'allowed_html' => '<p> <br> <strong> <em> <a href> <drupal-media data-entity-type data-entity-uuid data-align data-view-mode data-caption alt>',
++            'allowed_html' => '<p> <br> <strong> <em> <a href> <drupal-media data-entity-type data-entity-uuid data-align data-view-mode data-caption alt> <drupal-media-inline data-entity-type data-entity-uuid data-align data-view-mode data-caption alt>',
+           ],
+         ],
+         'filter_align' => ['status' => TRUE],
+diff --git a/core/modules/ckeditor5/tests/src/Kernel/SmartDefaultSettingsTest.php b/core/modules/ckeditor5/tests/src/Kernel/SmartDefaultSettingsTest.php
+index 9856407b12a..6a4de58136f 100644
+--- a/core/modules/ckeditor5/tests/src/Kernel/SmartDefaultSettingsTest.php
++++ b/core/modules/ckeditor5/tests/src/Kernel/SmartDefaultSettingsTest.php
+@@ -226,7 +226,7 @@ protected function setUp(): void {
+     $basic_html_format_with_media_embed['format'] = 'basic_html_with_media_embed';
+     // Add media_embed filter, update filter_html filter settings.
+     $basic_html_format_with_media_embed['filters']['media_embed'] = ['status' => TRUE];
+-    $new_value = $current_value . ' <drupal-media data-entity-type data-entity-uuid data-align data-caption alt>';
++    $new_value = $current_value . ' <drupal-media data-entity-type data-entity-uuid data-align data-caption alt> <drupal-media-inline data-entity-type data-entity-uuid data-align data-caption alt>';
+     NestedArray::setValue($basic_html_format_with_media_embed, $allowed_html_parents, $new_value);
+     FilterFormat::create($basic_html_format_with_media_embed)->save();
+     $basic_html_editor_with_media_embed = Editor::create(
+@@ -246,6 +246,7 @@ protected function setUp(): void {
+     $basic_html_format_with_media_embed_view_mode_invalid['format'] = 'basic_html_with_media_embed_view_mode_enabled_no_view_modes_configured';
+     $current_value_media_embed = NestedArray::getValue($basic_html_format_with_media_embed, $allowed_html_parents);
+     $new_value = str_replace('<drupal-media data-entity-type data-entity-uuid data-align data-caption alt>', '<drupal-media data-entity-type data-entity-uuid data-align data-caption alt data-view-mode>', $current_value_media_embed);
++    $new_value = str_replace('<drupal-media-inline data-entity-type data-entity-uuid data-align data-caption alt>', '<drupal-media-inline data-entity-type data-entity-uuid data-align data-caption alt data-view-mode>', $new_value);
+     NestedArray::setValue($basic_html_format_with_media_embed_view_mode_invalid, $allowed_html_parents, $new_value);
+     FilterFormat::create($basic_html_format_with_media_embed_view_mode_invalid)->save();
+     $basic_html_editor_with_media_embed_view_mode_enabled_no_view_modes_configured = Editor::create(
+diff --git a/core/modules/filter/filter.module b/core/modules/filter/filter.module
+index 09367b65c1b..5de675f6327 100644
+--- a/core/modules/filter/filter.module
++++ b/core/modules/filter/filter.module
+@@ -705,7 +705,7 @@ function _filter_autop($text) {
+   // to avoid messing up code. We look for matched pairs and allow basic
+   // nesting. For example:
+   // "processed <pre> ignored <script> ignored </script> ignored </pre> processed"
+-  $chunks = preg_split('@(<!--.*?-->|</?(?:pre|script|style|object|iframe|drupal-media|svg|!--)[^>]*>)@i', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
++  $chunks = preg_split('@(<!--.*?-->|</?(?:pre|script|style|object|iframe|drupal-media|drupal-media-inline|svg|!--)[^>]*>)@i', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
+   // Note: PHP ensures the array consists of alternating delimiters and literals
+   // and begins and ends with a literal (inserting NULL as required).
+   $ignore = FALSE;
+diff --git a/core/modules/media/css/media.inline.css b/core/modules/media/css/media.inline.css
+new file mode 100644
+index 00000000000..0ff40b92181
+--- /dev/null
++++ b/core/modules/media/css/media.inline.css
+@@ -0,0 +1,18 @@
++/**
++ * @file
++ * Default styling for media that is embedded inline inside text, lists, etc.
++ */
++
++.media-embedded-inline {
++  display: inline-block;
++}
++
++.drupal-media-inline .media-embedded-inline {
++  width: 100%;
++}
++
++.media-embedded-inline video,
++.media-embedded-inline img,
++.media-embedded-inline audio {
++  display: inline-block;
++}
+diff --git a/core/modules/media/media.libraries.yml b/core/modules/media/media.libraries.yml
+index 41fc310fbb9..0e9527db1db 100644
+--- a/core/modules/media/media.libraries.yml
++++ b/core/modules/media/media.libraries.yml
+@@ -32,6 +32,12 @@ filter.caption:
+   dependencies:
+     - filter/caption
+ 
++media.inline:
++  version: VERSION
++  css:
++    component:
++      css/media.inline.css: {}
++
+ # Despite the name, this is actually not specific to CKEditor 4, and can be
+ # used by all text editor plugins.
+ media_embed_ckeditor_theme:
+diff --git a/core/modules/media/src/Event/MediaBuildEmbedEvent.php b/core/modules/media/src/Event/MediaBuildEmbedEvent.php
+new file mode 100644
+index 00000000000..98e5f4d5fb5
+--- /dev/null
++++ b/core/modules/media/src/Event/MediaBuildEmbedEvent.php
+@@ -0,0 +1,95 @@
++<?php
++
++namespace Drupal\media\Event;
++
++use Drupal\Component\EventDispatcher\Event;
++use Drupal\media\MediaInterface;
++
++/**
++ * Event that gets triggered when a media is about to be embedded in ckeditor5.
++ */
++class MediaBuildEmbedEvent extends Event {
++
++  /**
++   * The view mode the embedded media will be rendered with.
++   *
++   * @var string
++   */
++  protected string $viewMode;
++
++  /**
++   * The media which will be embedded.
++   *
++   * @var \Drupal\media\MediaInterface
++   */
++  protected MediaInterface $media;
++
++  /**
++   * The build array of the media before it gets rendered for embedding.
++   *
++   * @var array
++   */
++  protected array $build;
++
++  /**
++   * The <drupal-media> DOM node that gets replaced by the embed.
++   *
++   * @var \DOMElement
++   */
++  protected \DOMElement $node;
++
++  /**
++   * Construct a MediaBuildEmbedEvent object.
++   *
++   * @param string $viewMode
++   *   The view mode the embedded media will be rendered with.
++   * @param \Drupal\media\MediaInterface $media
++   *   The media which will be embedded.
++   * @param array $build
++   *   The build array of the media before it gets rendered for embedding.
++   * @param \DOMElement $node
++   *   The <drupal-media> DOM node that gets replaced by the embed.
++   */
++  public function __construct(string $viewMode, MediaInterface $media, array $build, \DOMElement $node) {
++    $this->viewMode = $viewMode;
++    $this->media = $media;
++    $this->build = $build;
++    $this->node = $node;
++  }
++
++  /**
++   * Getter for the view mode.
++   */
++  public function getViewMode(): string {
++    return $this->viewMode;
++  }
++
++  /**
++   * Gets the media.
++   */
++  public function getMedia(): MediaInterface {
++    return $this->media;
++  }
++
++  /**
++   * Gets the build.
++   */
++  public function getBuild(): array {
++    return $this->build;
++  }
++
++  /**
++   * Sets the build.
++   */
++  public function setBuild(array $build): void {
++    $this->build = $build;
++  }
++
++  /**
++   * Gets the <drupal-media> DOM node.
++   */
++  public function getNode(): \DOMElement {
++    return $this->node;
++  }
++
++}
+diff --git a/core/modules/media/src/Plugin/Filter/MediaEmbed.php b/core/modules/media/src/Plugin/Filter/MediaEmbed.php
+index 9075d2b0c43..c822736b092 100644
+--- a/core/modules/media/src/Plugin/Filter/MediaEmbed.php
++++ b/core/modules/media/src/Plugin/Filter/MediaEmbed.php
+@@ -21,8 +21,10 @@
+ use Drupal\filter\Plugin\FilterBase;
+ use Drupal\filter\Plugin\FilterInterface;
+ use Drupal\image\Plugin\Field\FieldType\ImageItem;
++use Drupal\media\Event\MediaBuildEmbedEvent;
+ use Drupal\media\MediaInterface;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
++use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+ 
+ /**
+  * Provides a filter to embed media items using a custom tag.
+@@ -118,8 +120,10 @@ class MediaEmbed extends FilterBase implements ContainerFactoryPluginInterface,
+    *   The renderer.
+    * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_factory
+    *   The logger factory.
++   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $eventDispatcher
++   *   The event dispatcher.
+    */
+-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityRepositoryInterface $entity_repository, EntityTypeManagerInterface $entity_type_manager, EntityDisplayRepositoryInterface $entity_display_repository, EntityTypeBundleInfoInterface $bundle_info, RendererInterface $renderer, LoggerChannelFactoryInterface $logger_factory) {
++  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityRepositoryInterface $entity_repository, EntityTypeManagerInterface $entity_type_manager, EntityDisplayRepositoryInterface $entity_display_repository, EntityTypeBundleInfoInterface $bundle_info, RendererInterface $renderer, LoggerChannelFactoryInterface $logger_factory, protected EventDispatcherInterface $eventDispatcher) {
+     parent::__construct($configuration, $plugin_id, $plugin_definition);
+     $this->entityRepository = $entity_repository;
+     $this->entityTypeManager = $entity_type_manager;
+@@ -142,7 +146,8 @@ public static function create(ContainerInterface $container, array $configuratio
+       $container->get('entity_display.repository'),
+       $container->get('entity_type.bundle.info'),
+       $container->get('renderer'),
+-      $container->get('logger.factory')
++      $container->get('logger.factory'),
++      $container->get('event_dispatcher'),
+     );
+   }
+ 
+@@ -255,6 +260,7 @@ protected function renderMedia(MediaInterface $media, $view_mode, $langcode) {
+     //   instead of only when #access allows this media to be viewed and hence
+     //   only when media is actually rendered.
+     $build[':media_embed']['#attached']['library'][] = 'media/filter.caption';
++    $build[':media_embed']['#attached']['library'][] = 'media/media.inline';
+ 
+     return $build;
+   }
+@@ -278,14 +284,15 @@ protected function renderMissingMediaIndicator() {
+   public function process($text, $langcode) {
+     $result = new FilterProcessResult($text);
+ 
+-    if (stristr($text, '<drupal-media') === FALSE) {
++    if (stristr($text, '<drupal-media') === FALSE && stristr($text, '<drupal-media-inline') === FALSE) {
+       return $result;
+     }
+ 
+     $dom = Html::load($text);
+     $xpath = new \DOMXPath($dom);
++    $matched_attributes = '@data-entity-type="media" and normalize-space(@data-entity-uuid)!=""';
+ 
+-    foreach ($xpath->query('//drupal-media[@data-entity-type="media" and normalize-space(@data-entity-uuid)!=""]') as $node) {
++    foreach ($xpath->query('//drupal-media[' . $matched_attributes . ']|//drupal-media-inline[' . $matched_attributes . ']') as $node) {
+       /** @var \DOMElement $node */
+       $uuid = $node->getAttribute('data-entity-uuid');
+       $view_mode_id = $node->getAttribute('data-view-mode') ?: $this->settings['default_view_mode'];
+@@ -313,10 +320,25 @@ public function process($text, $langcode) {
+           $this->loggerFactory->get('media')->error('During rendering of embedded media: the view mode "@view-mode-id" does not exist.', ['@view-mode-id' => $view_mode_id]);
+         }
+       }
++      // Inline media must be rendered in view modes that contain only HTML
++      // that is valid inside flow content (such as <p> tags).
++      if ($node->tagName === 'drupal-media-inline') {
++        $view_mode = $view_mode ?? $this->entityRepository->loadEntityByConfigTarget('entity_view_mode', "media.$view_mode_id");
++        // If an invalid view mode for inline content has been chosen, fall
++        // back to ckeditor_inline.
++        if (!$view_mode?->getThirdPartySetting('ckeditor5', 'inline', false)) {
++          $view_mode = $this->entityRepository->loadEntityByConfigTarget('entity_view_mode', "media.ckeditor_inline");
++        }
++      }
+ 
+-      $build = $media && ($view_mode || $view_mode_id === EntityDisplayRepositoryInterface::DEFAULT_DISPLAY_MODE)
+-        ? $this->renderMedia($media, $view_mode_id, $langcode)
+-        : $this->renderMissingMediaIndicator();
++      if ($media && ($view_mode || $view_mode_id === EntityDisplayRepositoryInterface::DEFAULT_DISPLAY_MODE)) {
++        $build = $this->renderMedia($media, $view_mode_id, $langcode);
++        $event = $this->eventDispatcher->dispatch(new MediaBuildEmbedEvent($view_mode_id, $media, $build, $node));
++        $build = $event->getBuild();
++      }
++      else {
++        $build = $this->renderMissingMediaIndicator();
++      }
+ 
+       if (empty($build['#attributes']['class'])) {
+         $build['#attributes']['class'] = [];
+@@ -339,6 +361,10 @@ public function process($text, $langcode) {
+         }
+       }
+ 
++      if ($node->tagName == 'drupal-media-inline') {
++        $build['#attributes']['class'][] = 'media-embedded-inline';
++      }
++
+       $this->renderIntoDomNode($build, $node, $result);
+     }
+
+diff --git a/core/profiles/demo_umami/config/install/editor.editor.basic_html.yml b/core/profiles/demo_umami/config/install/editor.editor.basic_html.yml
+index 60cd331cc87..08518f40f78 100644
+--- a/core/profiles/demo_umami/config/install/editor.editor.basic_html.yml
++++ b/core/profiles/demo_umami/config/install/editor.editor.basic_html.yml
+@@ -55,6 +55,7 @@ settings:
+         - '<h6 id>'
+         - '<img src alt data-entity-type data-entity-uuid data-align data-caption width height loading>'
+         - '<drupal-media title>'
++        - '<drupal-media-inline title>'
+     media_media:
+       allow_view_mode_override: true
+ image_upload:
+diff --git a/core/profiles/demo_umami/config/install/filter.format.basic_html.yml b/core/profiles/demo_umami/config/install/filter.format.basic_html.yml
+index b57e2a67a79..8ad1363564d 100644
+--- a/core/profiles/demo_umami/config/install/filter.format.basic_html.yml
++++ b/core/profiles/demo_umami/config/install/filter.format.basic_html.yml
+@@ -40,7 +40,7 @@ filters:
+     status: true
+     weight: -10
+     settings:
+-      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <p> <br> <img src alt loading height width data-entity-type data-entity-uuid data-align data-caption> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title>'
++      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <p> <br> <img src alt loading height width data-entity-type data-entity-uuid data-align data-caption> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <drupal-media-inline data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title>'
+       filter_html_help: false
+       filter_html_nofollow: false
+   filter_html_image_secure:
+diff --git a/core/themes/stable9/css/media/media.inline.css b/core/themes/stable9/css/media/media.inline.css
+new file mode 100644
+index 00000000000..0ff40b92181
+--- /dev/null
++++ b/core/themes/stable9/css/media/media.inline.css
+@@ -0,0 +1,18 @@
++/**
++ * @file
++ * Default styling for media that is embedded inline inside text, lists, etc.
++ */
++
++.media-embedded-inline {
++  display: inline-block;
++}
++
++.drupal-media-inline .media-embedded-inline {
++  width: 100%;
++}
++
++.media-embedded-inline video,
++.media-embedded-inline img,
++.media-embedded-inline audio {
++  display: inline-block;
++}
+diff --git a/core/themes/stable9/stable9.info.yml b/core/themes/stable9/stable9.info.yml
+index fb2751a86ba..c954d2afb9c 100644
+--- a/core/themes/stable9/stable9.info.yml
++++ b/core/themes/stable9/stable9.info.yml
+@@ -165,6 +165,11 @@ libraries-override:
+       component:
+         css/filter.caption.css: css/media/filter.caption.css
+ 
++  media/media.inline:
++    css:
++      component:
++        css/media.inline.css: css/media/media.inline.css
++
+   media/oembed.formatter:
+     css:
+       component:
+diff --git a/core/themes/stable9/templates/content/media--ckeditor-inline-embed.html.twig b/core/themes/stable9/templates/content/media--ckeditor-inline-embed.html.twig
+new file mode 100644
+index 00000000000..18a903f2454
+--- /dev/null
++++ b/core/themes/stable9/templates/content/media--ckeditor-inline-embed.html.twig
+@@ -0,0 +1,36 @@
++{#
++/**
++ * @file
++ * Default theme implementation to present a media item.
++ *
++ * Available variables:
++ * - media: The media item, with limited access to object properties and
++ *   methods. Only method names starting with "get", "has", or "is" and
++ *   a few common methods such as "id", "label", and "bundle" are available.
++ *   For example:
++ *   - entity.getEntityTypeId() will return the entity type ID.
++ *   - entity.hasField('field_example') returns TRUE if the entity includes
++ *     field_example. (This does not indicate the presence of a value in this
++ *     field.)
++ *   Calling other methods, such as entity.delete(), will result in
++ *   an exception.
++ *   See \Drupal\Core\Entity\EntityInterface for a full list of methods.
++ * - name: Name of the media item.
++ * - content: Media content.
++ * - title_prefix: Additional output populated by modules, intended to be
++ *   displayed in front of the main title tag that appears in the template.
++ * - title_suffix: Additional output populated by modules, intended to be
++ *   displayed after the main title tag that appears in the template.
++ * - view_mode: View mode; for example, "teaser" or "full".
++ * - attributes: HTML attributes for the containing element.
++ * - title_attributes: Same as attributes, except applied to the main title
++ *   tag that appears in the template.
++ *
++ * @see template_preprocess_media()
++ *
++ * @ingroup themeable
++ */
++#}
++<span{{ attributes }}>
++  {{ content }}
++</span>
+diff --git a/core/themes/stable9/templates/field/field--ckeditor-inline.html.twig b/core/themes/stable9/templates/field/field--ckeditor-inline.html.twig
+new file mode 100644
+index 00000000000..7f0ae06f836
+--- /dev/null
++++ b/core/themes/stable9/templates/field/field--ckeditor-inline.html.twig
+@@ -0,0 +1,72 @@
++{#
++/**
++ * @file
++ * Default theme implementation for a field.
++ *
++ * To override output, copy the "field.html.twig" from the templates directory
++ * to your theme's directory and customize it, just like customizing other
++ * Drupal templates such as page.html.twig or node.html.twig.
++ *
++ * Instead of overriding the theming for all fields, you can also just override
++ * theming for a subset of fields using
++ * @link themeable Theme hook suggestions. @endlink For example,
++ * here are some theme hook suggestions that can be used for a field_foo field
++ * on an article node type:
++ * - field--node--field-foo--article.html.twig
++ * - field--node--field-foo.html.twig
++ * - field--node--article.html.twig
++ * - field--field-foo.html.twig
++ * - field--text-with-summary.html.twig
++ * - field.html.twig
++ *
++ * Available variables:
++ * - attributes: HTML attributes for the containing element.
++ * - label_hidden: Whether to show the field label or not.
++ * - title_attributes: HTML attributes for the title.
++ * - label: The label for the field.
++ * - multiple: TRUE if a field can contain multiple items.
++ * - items: List of all the field items. Each item contains:
++ *   - attributes: List of HTML attributes for each item.
++ *   - content: The field item's content.
++ * - entity_type: The entity type to which the field belongs.
++ * - field_name: The name of the field.
++ * - field_type: The type of the field.
++ * - label_display: The display settings for the label.
++ *
++ * @see template_preprocess_field()
++ *
++ * @ingroup themeable
++ */
++#}
++{%
++  set title_classes = [
++    label_display == 'visually_hidden' ? 'visually-hidden',
++  ]
++%}
++
++{% if label_hidden %}
++  {% if multiple %}
++    <span{{ attributes }}>
++      {% for item in items %}
++        <span{{ item.attributes }}>{{ item.content }}</span>
++      {% endfor %}
++    </span>
++  {% else %}
++    {% for item in items %}
++      <span{{ attributes }}>{{ item.content }}</span>
++    {% endfor %}
++  {% endif %}
++{% else %}
++  <span{{ attributes }}>
++    <span{{ title_attributes.addClass(title_classes) }}>{{ label }}</span>
++    {% if multiple %}
++      <span>
++    {% endif %}
++    {% for item in items %}
++      <span{{ item.attributes }}>{{ item.content }}</span>
++    {% endfor %}
++    {% if multiple %}
++      </span>
++    {% endif %}
++  </span>
++{% endif %}

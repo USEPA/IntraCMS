@@ -32,6 +32,7 @@ CONFIGURATION
 
 1. Navigate to Administration > Configuration > Content authoring > Text formats and editors and select "Configure" for the formatter you would like to add the plugin to. 
 2. Add both "Insert from Media Library" and "Insert inline from Media Library" buttons to toolbar configuration for CKEditor.
-3. Enable both the Embed Media and Embed Media Inline filters and configure allowed media types and view modes and save.
-4. Navigate to Administration > Structure > Media types and manage display for any media types you would like to display inline and under WYSIWYG Options check embed inline and save. This is necessary to trigger an inline embed theme suggestion eliminating block elements in HTML. Otherwise the widget will be stripped by ckeditor
+3. Enable both the Embed Media and Embed Media Inline filters and configure allowed media types and view modes.
+4. If you have "Limit allowed HTML tags and correct faulty HTML" enabled, add "drupal-media" and "drupal-inline-media" with appropriate attributes to list of "Allowed HTML tags" and save.
+5. Navigate to Administration > Structure > Media types and manage display for any media types you would like to display inline and under WYSIWYG Options check embed inline and save. This is necessary to trigger an inline embed theme suggestion eliminating block elements in HTML. Otherwise the widget will be stripped by ckeditor
     
