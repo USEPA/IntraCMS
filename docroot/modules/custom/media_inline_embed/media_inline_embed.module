@@ -23,7 +23,19 @@ function media_inline_embed_theme($existing, $type, $theme, $path) {
       'path' => $path . '/templates',
       'base hook' => 'field',
     ],
+    'media_embed_error__inline' => [
+      'template' => 'media-embed-error--inline',
+      'path' => $path .'/templates',
+      'base hook' => 'media-embed-error',
+    ],
   ];
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function media_inline_embed_theme_registry_alter(&$theme_registry) {
+  $theme_registry['media_embed_error']['variables']['inline'] = FALSE;
 }
 
 /**
@@ -68,6 +80,9 @@ function media_inline_embed_theme_suggestions_alter(array &$suggestions, array $
         $suggestions[] = 'field__inline_embed__' . $elements['#entity_type'] . '__' . $elements['#field_name'] . '__' . $elements['#bundle'];
       }
       break;
+    case 'media_embed_error':
+      $suggestions[] = 'media_embed_error__' . ($variables['inline'] ? 'inline' : 'block');
+      break;
   }
 }
 
@@ -75,11 +90,10 @@ function media_inline_embed_theme_suggestions_alter(array &$suggestions, array $
  * Helper function to return display and view mode as sanitized string.
  */
 function _media_inline_embed_get_embed_info($elements, $bundle) {
-  $entity_type = $elements['#entity_type'];
   $view_mode = $elements['#view_mode'] == 'full' ? 'default' : $elements['#view_mode'];
 
   // Load display.
-  $display_id = implode('.', [$entity_type, $bundle, $view_mode]);
+  $display_id = implode('.', ['media', $bundle, $view_mode]);
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
   $display = $storage->load($display_id);
   if (empty($display)) {

@@ -101,4 +101,16 @@ class MediaInlineEmbed extends MediaEmbed {
     return $result;
   }
 
+  /**
+   * Builds the render array for the indicator when media cannot be loaded.
+   *
+   * @return array
+   *   A render array.
+   */
+  protected function renderMissingMediaIndicator() {
+    $output = parent::renderMissingMediaIndicator();
+    $output['#inline'] = TRUE;
+    return $output;
+  }
+
 }
