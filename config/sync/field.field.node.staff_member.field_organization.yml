@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_organization
     - node.type.staff_member
-    - taxonomy.vocabulary.organization
+    - taxonomy.vocabulary.program_offices_and_regions
 id: node.staff_member.field_organization
 field_name: field_organization
 entity_type: node
@@ -17,10 +17,10 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
+  handler: 'default:filter_existing_terms'
   handler_settings:
     target_bundles:
-      organization: organization
+      program_offices_and_regions: program_offices_and_regions
     sort:
       field: name
       direction: asc
