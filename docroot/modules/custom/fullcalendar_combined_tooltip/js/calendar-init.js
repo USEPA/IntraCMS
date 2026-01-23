@@ -1,7 +1,7 @@
 (function ($, Drupal) {
   Drupal.behaviors.fullcalendarTooltip = {
     attach: function (context, settings) {
-      console.log('✅ fullcalendarTooltip behavior attached');
+      //console.log('✅ fullcalendarTooltip behavior attached');
 
       // Load the description and color data from JSON feed
       function attachTooltipsAndFixTimeAndColor() {
@@ -62,7 +62,7 @@
                 formatted = raw.replace(/^(\d{1,2}):(\d{2})(a|p)m?$/i, '$1:$2 $3m');
               }
 
-              console.log(`⏰ Final clean: "${raw}" → "${formatted}"`);
+              //console.log(`⏰ Final clean: "${raw}" → "${formatted}"`);
               $el.text(formatted);
             });
 
@@ -98,7 +98,7 @@
           subtree: true,
         });
 
-        console.log('👀 Watching .fc for DOM changes');
+        //console.log('👀 Watching .fc for DOM changes');
       }
     }
   };
