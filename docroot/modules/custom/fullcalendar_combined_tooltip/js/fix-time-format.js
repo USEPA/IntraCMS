@@ -4,7 +4,7 @@
 (function ($, Drupal) {
   Drupal.behaviors.fixTimeFormat = {
     attach: function (context, settings) {
-      console.log('🎯 fix-time-format.js is running...');
+      //console.log('🎯 fix-time-format.js is running...');
 
       // Delay to wait for FullCalendar to render
       let retryCount = 0;
@@ -15,13 +15,13 @@
           $times.each(function () {
             const $el = $(this);
             const original = $el.text().trim();
-            console.log('🔍 Found event time:', original);
+            //console.log('🔍 Found event time:', original);
             const match = original.match(/^(\d{1,2})(a|p)$/i);
             if (match) {
               const hour = parseInt(match[1]);
               const suffix = match[2].toLowerCase() === 'a' ? 'am' : 'pm';
               const formatted = `${hour}:00 ${suffix}`;
-              console.log(`⏰ Converting "${original}" → "${formatted}"`);
+              //console.log(`⏰ Converting "${original}" → "${formatted}"`);
               $el.text(formatted);
               $el.addClass('fc-time-fixed');
             }
