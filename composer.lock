@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ded1e6a0ddf7e636decaf8a3de42739f",
+    "content-hash": "324da431fca56096bcea7e01628167a2",
     "packages": [
         {
             "name": "algolia/places",
@@ -5410,40 +5410,41 @@
         },
         {
             "name": "drupal/diff",
-            "version": "1.6.0",
+            "version": "2.0.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/diff.git",
-                "reference": "8.x-1.6"
+                "reference": "2.0.0-beta4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/diff-8.x-1.6.zip",
-                "reference": "8.x-1.6",
-                "shasum": "9327c3e71c6b1d83213c2bbc4f3e480daad3cdf0"
+                "url": "https://ftp.drupal.org/files/projects/diff-2.0.0-beta4.zip",
+                "reference": "2.0.0-beta4",
+                "shasum": "31084265e0c597a1076636000e2f8eb90463da5e"
             },
             "require": {
-                "drupal/core": "^9.3 || ^10",
-                "mkalkbrenner/php-htmldiff-advanced": "~0.0.8"
+                "drupal/core": "^10.2 || ^11",
+                "mkalkbrenner/php-htmldiff-advanced": "~0.0.8",
+                "php": "^8.1"
             },
             "require-dev": {
-                "jangregor/phpstan-prophecy": "dev-master",
+                "jangregor/phpstan-prophecy": "^1.0",
                 "mglaman/phpstan-drupal": "^1.2.10",
                 "phpstan/extension-installer": "^1.2",
                 "phpstan/phpstan": "^1.11",
                 "phpstan/phpstan-deprecation-rules": "*",
-                "phpstan/phpstan-phpunit": "1.4.x-dev",
-                "phpstan/phpstan-strict-rules": "^1@stable",
-                "previousnext/coding-standard": "^1"
+                "phpstan/phpstan-phpunit": "1.4",
+                "phpstan/phpstan-strict-rules": "^1.0",
+                "previousnext/coding-standard": "1.1.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.6",
-                    "datestamp": "1718073506",
+                    "version": "2.0.0-beta4",
+                    "datestamp": "1748842102",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -24814,6 +24815,7 @@
         "drupal/ckeditor_abbreviation": 15,
         "drupal/ckeditor_iframe": 10,
         "drupal/db_maintenance": 5,
+        "drupal/diff": 10,
         "drupal/group_content_menu": 20,
         "drupal/group_outsider_in": 20,
         "drupal/media_inline_embed": 20,
