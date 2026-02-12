@@ -60,7 +60,7 @@ class DrupalInlineMedia extends DrupalMediaLibrary {
     }
 
     $state = MediaLibraryState::create(
-      'media_library.opener.editor',
+      'media_inline_embed.opener.editor',
       $media_type_ids,
       reset($media_type_ids),
       1,

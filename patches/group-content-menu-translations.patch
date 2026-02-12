@@ -1,0 +1,746 @@
+diff --git a/group_content_menu.module b/group_content_menu.module
+index a4b03fa..c87e321 100644
+--- a/group_content_menu.module
++++ b/group_content_menu.module
+@@ -241,3 +241,13 @@ function group_content_menu_get_menu_link_default(NodeInterface $node, array $me
+ 
+   return $defaults;
+ }
++
++/**
++ * Implements hook_entity_type_alter().
++ */
++function group_content_menu_entity_type_alter(array &$entity_types) {
++  if (isset($entity_types['menu_link_content'])) {
++    $entity_types['menu_link_content']->setHandlerClass('translation', \Drupal\group_content_menu\GroupMenuItemTranslateAccessHandler::class);
++  }
++
++}
+diff --git a/src/Controller/GroupContentTranslationController.php b/src/Controller/GroupContentTranslationController.php
+new file mode 100644
+index 0000000..a879b1b
+--- /dev/null
++++ b/src/Controller/GroupContentTranslationController.php
+@@ -0,0 +1,282 @@
++<?php
++
++namespace Drupal\group_content_menu\Controller;
++
++use Drupal\content_translation\ContentTranslationManager;
++use Drupal\content_translation\Controller\ContentTranslationController;
++use Drupal\Core\Cache\CacheableMetadata;
++use Drupal\Core\Language\LanguageInterface;
++use Drupal\Core\Link;
++use Drupal\Core\Routing\RouteMatchInterface;
++use Drupal\Core\Url;
++
++/**
++ * Override the default content translation controller to fix group permissions.
++ */
++class GroupContentTranslationController extends ContentTranslationController {
++
++  /**
++   * {@inheritdoc}
++   */
++  public function overview(RouteMatchInterface $route_match, $entity_type_id = NULL) {
++    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
++    $entity = $route_match->getParameter($entity_type_id);
++    $account = $this->currentUser();
++    $handler = $this->entityTypeManager()->getHandler($entity_type_id, 'translation');
++    $manager = $this->manager;
++    $entity_type = $entity->getEntityType();
++    $use_latest_revisions = $entity_type->isRevisionable() && ContentTranslationManager::isPendingRevisionSupportEnabled($entity_type_id, $entity->bundle());
++
++    $group_content_menu = $route_match->getParameter('group_content_menu');
++    $group = $route_match->getParameter('group');
++    $destination = \Drupal::destination()->getAsArray();
++
++    // Start collecting the cacheability metadata, starting with the entity and
++    // later merge in the access result cacheability metadata.
++    $cacheability = CacheableMetadata::createFromObject($entity);
++
++    $languages = $this->languageManager()->getLanguages();
++    $original = $entity->getUntranslated()->language()->getId();
++    $translations = $entity->getTranslationLanguages();
++    $field_ui = $this->moduleHandler()->moduleExists('field_ui') && $account->hasPermission('administer ' . $entity_type_id . ' fields');
++
++    $rows = [];
++    $show_source_column = FALSE;
++    /** @var \Drupal\Core\Entity\ContentEntityStorageInterface $storage */
++    $storage = $this->entityTypeManager()->getStorage($entity_type_id);
++    $default_revision = $storage->load($entity->id());
++
++    if ($this->languageManager()->isMultilingual()) {
++      // Determine whether the current entity is translatable.
++      $translatable = FALSE;
++      foreach ($this->entityFieldManager->getFieldDefinitions($entity_type_id, $entity->bundle()) as $instance) {
++        if ($instance->isTranslatable()) {
++          $translatable = TRUE;
++          break;
++        }
++      }
++
++      // Show source-language column if there are non-original source langcodes.
++      $additional_source_langcodes = array_filter(array_keys($translations), function ($langcode) use ($entity, $original, $manager) {
++        $source = $manager->getTranslationMetadata($entity->getTranslation($langcode))->getSource();
++        return $source != $original && $source != LanguageInterface::LANGCODE_NOT_SPECIFIED;
++      });
++      $show_source_column = !empty($additional_source_langcodes);
++
++      foreach ($languages as $language) {
++        $language_name = $language->getName();
++        $langcode = $language->getId();
++
++        // If the entity type is revisionable, we may have pending revisions
++        // with translations not available yet in the default revision. Thus we
++        // need to load the latest translation-affecting revision for each
++        // language to be sure we are listing all available translations.
++        if ($use_latest_revisions) {
++          $entity = $default_revision;
++          $latest_revision_id = $storage->getLatestTranslationAffectedRevisionId($entity->id(), $langcode);
++          if ($latest_revision_id) {
++            /** @var \Drupal\Core\Entity\ContentEntityInterface $latest_revision */
++            $latest_revision = $storage->loadRevision($latest_revision_id);
++            // Make sure we do not list removed translations, i.e. translations
++            // that have been part of a default revision but no longer are.
++            if (!$latest_revision->wasDefaultRevision() || $default_revision->hasTranslation($langcode)) {
++              $entity = $latest_revision;
++            }
++          }
++          $translations = $entity->getTranslationLanguages();
++        }
++
++        $options = ['language' => $language, 'query' => $destination];
++        $add_url = $group_content_menu->toUrl('translate-menu-add-link', $options)
++          ->setRouteParameter('group', $group->id())
++          ->setRouteParameter('group_content_menu', $group_content_menu->id())
++          ->setRouteParameter('menu_link_content', $entity->id())
++          ->setRouteParameter('source', $original)
++          ->setRouteParameter('target', $langcode);
++        if ($original === $langcode) {
++          $edit_url = $group_content_menu->toUrl('edit-menu-link')
++            ->setRouteParameter('group', $group->id())
++            ->setRouteParameter('group_content_menu', $group_content_menu->id())
++            ->setRouteParameter('menu_link_content', $entity->id());
++        }
++        else {
++          $edit_url = $group_content_menu->toUrl('translate-menu-edit-link', $options)
++            ->setRouteParameter('group', $group->id())
++            ->setRouteParameter('group_content_menu', $group_content_menu->id())
++            ->setRouteParameter('menu_link_content', $entity->id())
++            ->setRouteParameter('language', $language->getId());
++        }
++
++        $delete_url = $group_content_menu->toUrl('delete-menu-link', $options)
++          ->setRouteParameter('group', $group->id())
++          ->setRouteParameter('group_content_menu', $group_content_menu->id())
++          ->setRouteParameter('menu_link_content', $entity->id());
++        $operations = [
++          'data' => [
++            '#type' => 'operations',
++            '#links' => [],
++          ],
++        ];
++
++        $links = &$operations['data']['#links'];
++        if (array_key_exists($langcode, $translations)) {
++          // Existing translation in the translation set: display status.
++          $translation = $entity->getTranslation($langcode);
++          $metadata = $manager->getTranslationMetadata($translation);
++          $source = $metadata->getSource() ?: LanguageInterface::LANGCODE_NOT_SPECIFIED;
++          $is_original = $langcode == $original;
++          $label = $entity->getTranslation($langcode)->label();
++          $link = isset($links->links[$langcode]['url']) ? $links->links[$langcode] : ['url' => $edit_url];
++          if (!empty($link['url'])) {
++            $link['url']->setOption('language', $language);
++            $row_title = Link::fromTextAndUrl($label, $link['url'])->toString();
++          }
++
++          if (empty($link['url'])) {
++            $row_title = $is_original ? $label : $this->t('n/a');
++          }
++
++          // If the user is allowed to edit the entity we point the edit link to
++          // the entity form, otherwise if we are not dealing with the original
++          // language we point the link to the translation form.
++          $translation_access = $handler->getTranslationAccess($entity, 'update');
++          $cacheability = $cacheability
++            ->merge(CacheableMetadata::createFromObject($translation_access));
++          if ($entity_type->hasLinkTemplate('edit-form')) {
++            $links['edit']['url'] = $edit_url;
++            $links['edit']['language'] = $language;
++          }
++          elseif (!$is_original && $translation_access->isAllowed()) {
++            $links['edit']['url'] = $edit_url;
++          }
++
++          if (isset($links['edit'])) {
++            $links['edit']['title'] = $this->t('Edit');
++          }
++          $status = [
++            'data' => [
++              '#type' => 'inline_template',
++              '#template' => '<span class="status">{% if status %}{{ "Published"|t }}{% else %}{{ "Not published"|t }}{% endif %}</span>{% if outdated %} <span class="marker">{{ "outdated"|t }}</span>{% endif %}',
++              '#context' => [
++                'status' => $metadata->isPublished(),
++                'outdated' => $metadata->isOutdated(),
++              ],
++            ],
++          ];
++
++          if ($is_original) {
++            $language_name = $this->t('<strong>@language_name (Original language)</strong>', ['@language_name' => $language_name]);
++            $source_name = $this->t('n/a');
++          }
++          else {
++            /** @var \Drupal\Core\Access\AccessResultInterface $delete_route_access */
++            $delete_route_access = \Drupal::service('content_translation.delete_access')->checkAccess($translation);
++            $cacheability->addCacheableDependency($delete_route_access);
++
++            if ($delete_route_access->isAllowed()) {
++              $source_name = isset($languages[$source]) ? $languages[$source]->getName() : $this->t('n/a');
++              $delete_access = $entity->access('delete', NULL, TRUE);
++              $translation_access = $handler->getTranslationAccess($entity, 'delete');
++              $cacheability
++                ->addCacheableDependency($delete_access)
++                ->addCacheableDependency($translation_access);
++
++              if ($delete_access->isAllowed() && $entity_type->hasLinkTemplate('delete-form')) {
++                $links['delete'] = [
++                  'title' => $this->t('Delete'),
++                  'url' => $delete_url,
++                  'language' => $language,
++                ];
++              }
++              elseif ($translation_access->isAllowed()) {
++                $links['delete'] = [
++                  'title' => $this->t('Delete'),
++                  'url' => $delete_url,
++                ];
++              }
++            }
++            else {
++              $this->messenger()->addWarning($this->t('The "Delete translation" action is only available for published translations.'), FALSE);
++            }
++          }
++        }
++        else {
++          // No such translation in the set yet: help user to create it.
++          $row_title = $source_name = $this->t('n/a');
++          $source = $entity->language()->getId();
++
++          $create_translation_access = $handler->getTranslationAccess($entity, 'create');
++          $cacheability = $cacheability
++            ->merge(CacheableMetadata::createFromObject($create_translation_access));
++          if ($source != $langcode && $create_translation_access->isAllowed()) {
++            if ($translatable) {
++              $links['add'] = [
++                'title' => $this->t('Add'),
++                'url' => $add_url,
++              ];
++            }
++            elseif ($field_ui) {
++              $url = new Url('language.content_settings_page');
++
++              // Link directly to the fields tab to make it easier to find the
++              // setting to enable translation on fields.
++              $links['nofields'] = [
++                'title' => $this->t('No translatable fields'),
++                'url' => $url,
++              ];
++            }
++          }
++
++          $status = $this->t('Not translated');
++        }
++        if ($show_source_column) {
++          $rows[] = [
++            $language_name,
++            $row_title,
++            $source_name,
++            $status,
++            $operations,
++          ];
++        }
++        else {
++          $rows[] = [$language_name, $row_title, $status, $operations];
++        }
++      }
++    }
++    if ($show_source_column) {
++      $header = [
++        $this->t('Language'),
++        $this->t('Translation'),
++        $this->t('Source language'),
++        $this->t('Status'),
++        $this->t('Operations'),
++      ];
++    }
++    else {
++      $header = [
++        $this->t('Language'),
++        $this->t('Translation'),
++        $this->t('Status'),
++        $this->t('Operations'),
++      ];
++    }
++
++    $build['#title'] = $this->t('Translations of %label', ['%label' => $entity->label()]);
++
++    // Add metadata to the build render array to let other modules know about
++    // which entity this is.
++    $build['#entity'] = $entity;
++    $cacheability
++      ->addCacheTags($entity->getCacheTags())
++      ->applyTo($build);
++
++    $build['content_translation_overview'] = [
++      '#theme' => 'table',
++      '#header' => $header,
++      '#rows' => $rows,
++    ];
++
++    return $build;
++  }
++
++}
+diff --git a/src/Entity/GroupContentMenu.php b/src/Entity/GroupContentMenu.php
+index 493eab2..b0fb18a 100644
+--- a/src/Entity/GroupContentMenu.php
++++ b/src/Entity/GroupContentMenu.php
+@@ -29,7 +29,8 @@ use Drupal\group_content_menu\GroupContentMenuInterface;
+  *     },
+  *     "route_provider" = {
+  *       "html" = "Drupal\group_content_menu\Routing\GroupContentMenuRouteProvider",
+- *     }
++ *     },
++ *    "translation" = "Drupal\group_content_menu\GroupMenuItemTranslateAccessHandler"
+  *   },
+  *   base_table = "group_content_menu",
+  *   data_table = "group_content_menu_field_data",
+@@ -47,6 +48,10 @@ use Drupal\group_content_menu\GroupContentMenuInterface;
+  *     "add-menu-link" = "/group/{group}/content-menu/{group_content_menu}/add-link",
+  *     "edit-menu-link" = "/group/{group}/content-menu/{group_content_menu}/link/{menu_link_content}",
+  *     "delete-menu-link" = "/group/{group}/content-menu/{group_content_menu}/link/{menu_link_content}/delete",
++ *     "translate-menu-link" = "/group/{group}/content-menu/{group_content_menu}/link/{menu_link_content}/translations",
++ *     "translate-menu-add-link" = "/group/{group}/content-menu/{group_content_menu}/link/{menu_link_content}/translations/add/{source}/{target}",
++ *     "translate-menu-edit-link" = "/group/{content-group}/content-menu/{group_content_menu}/link/{menu_link_content}/translations/edit/{language}",
++ *     "translate-menu-delete-link" = "/group/{group}/content-menu/{group_content_menu}/link/{menu_link_content}/translations/delete/{language}",
+  *     "edit-form" = "/group/{group}/content-menu/{group_content_menu}/edit",
+  *     "delete-form" = "/group/{group}/content-menu/{group_content_menu}/delete",
+  *     "collection" = "/group/{group}/content-menus"
+diff --git a/src/Form/GroupContentMenuForm.php b/src/Form/GroupContentMenuForm.php
+index 1dcc8db..b729831 100644
+--- a/src/Form/GroupContentMenuForm.php
++++ b/src/Form/GroupContentMenuForm.php
+@@ -159,7 +159,9 @@ class GroupContentMenuForm extends ContentEntityForm {
+     // instance, or has this permission inside the group.
+     $permission = 'administer group content menu types';
+     $plugin_id = 'group_content_menu:' . $this->entity->getEntityTypeId();
+-    $has_permission = $this->currentUser()->hasPermission($permission) || $group->hasPermission("view $plugin_id entity", $this->currentUser());
++    $has_permission = $this->currentUser()->hasPermission($permission) ||
++      $group->hasPermission("manage group_content_menu", $this->currentUser()) ||
++      $group->hasPermission("manage group_content_menu menu items", $this->currentUser());
+ 
+     // Supply the empty text.
+     if ($has_permission) {
+@@ -303,9 +305,13 @@ class GroupContentMenuForm extends ContentEntityForm {
+         if ($link->isTranslatable()) {
+           $operations['translate'] = [
+             'title' => $this->t('Translate'),
+-            'url' => $link->getTranslateRoute(),
++            'url' => Url::fromRoute('entity.group_content_menu.translate_link', [
++              'group' => $group->id(),
++              'group_content_menu' => $this->entity->id(),
++              'menu_link_content' => $link->getMetaData()['entity_id'],
++            ]),
++            'query' => $this->getRedirectDestination()->getAsArray(),
+           ];
+-          $operations['translate']['query'] = ['destination' => Url::fromRouteMatch($this->getRouteMatch())->toString()];
+         }
+ 
+         // Only display the operations to which the user has access.
+diff --git a/src/GroupMenuItemTranslateAccessHandler.php b/src/GroupMenuItemTranslateAccessHandler.php
+new file mode 100644
+index 0000000..a41ffdd
+--- /dev/null
++++ b/src/GroupMenuItemTranslateAccessHandler.php
+@@ -0,0 +1,56 @@
++<?php
++
++namespace Drupal\group_content_menu;
++
++use Drupal\content_translation\ContentTranslationHandler;
++use Drupal\Core\Access\AccessResult;
++use Drupal\Core\Entity\EntityInterface;
++use Drupal\group\Access\GroupAccessResult;
++
++class GroupMenuItemTranslateAccessHandler extends ContentTranslationHandler {
++
++  public function getTranslationAccess(EntityInterface $entity, $op) {
++    $parameters = \Drupal::routeMatch()->getParameters();
++    if ($parameters->has('group')) {
++      $group = $parameters->get('group');
++      $groupAccess = groupAccessResult::allowedIfHasGroupPermission($group, $this->currentUser, 'manage group_content_menu menu items translation');
++      if ($groupAccess->isAllowed()) {
++        return AccessResult::allowed();
++      }
++    }
++    return parent::getTranslationAccess($entity, $op);
++  }
++
++  /**
++   * Form submission handler for GroupMenuTranslationHandler::entityFormAlter().
++   *
++   * Get the entity delete form route url.
++   */
++  protected function entityFormDeleteTranslationUrl(EntityInterface $entity, $form_langcode) {
++    $entity_type_id = $entity->getEntityTypeId();
++    $request = $this->requestStack->getCurrentRequest();
++    $options = [];
++    if (!$request) {
++      return NULL;
++    }
++    if ($request->query->has('destination')) {
++      $options['query']['destination'] = $request->query->get('destination');
++    }
++
++    if ($entity->access('delete') && $this->entityType->hasLinkTemplate('delete-form')) {
++      $url = $entity->toUrl('delete-form');
++      if (!empty($options)) {
++        $url->mergeOptions($options);
++      }
++      return $url;
++    }
++    $group_content_menu = \Drupal::routeMatch()
++      ->getParameter('group_content_menu');
++    $destination = \Drupal::destination()->getAsArray();
++    $language = \Drupal::languageManager()->getCurrentLanguage();
++    $options = ['language' => $language, 'query' => $destination];
++    return $group_content_menu->toUrl('delete-link', $options)
++      ->setRouteParameter('menu_link_content', $entity->id());
++  }
++
++}
+diff --git a/src/Plugin/GroupContentMenuPermissionProvider.php b/src/Plugin/GroupContentMenuPermissionProvider.php
+index c33a904..d52800d 100644
+--- a/src/Plugin/GroupContentMenuPermissionProvider.php
++++ b/src/Plugin/GroupContentMenuPermissionProvider.php
+@@ -22,7 +22,26 @@ class GroupContentMenuPermissionProvider extends GroupContentPermissionProvider
+    * {@inheritdoc}
+    */
+   public function buildPermissions() {
+-    return [];
++    $permissions = [];
++
++    $permissions['access group content menu overview'] = $this->buildPermission(
++      'Access group content menu overview',
++      'Access the overview of all menus'
++    );
++    $permissions['manage group_content_menu'] = $this->buildPermission(
++      'Manage menus',
++      'Create, update and delete menus'
++    );
++    $permissions['manage group_content_menu menu items'] = $this->buildPermission(
++      'Manage menu items',
++      'Create, update and delete menu items within group menus'
++    );
++    $permissions['manage group_content_menu menu items translation'] = $this->buildPermission(
++      'Manage menu items translations',
++      'Create, update and delete menu items translation within group menus'
++    );
++
++    return $permissions;
+   }
+ 
+ }
+diff --git a/src/Routing/GroupContentMenuRouteProvider.php b/src/Routing/GroupContentMenuRouteProvider.php
+index 0e57a4a..8a3e207 100644
+--- a/src/Routing/GroupContentMenuRouteProvider.php
++++ b/src/Routing/GroupContentMenuRouteProvider.php
+@@ -2,10 +2,14 @@
+ 
+ namespace Drupal\group_content_menu\Routing;
+ 
++use Drupal\Core\Entity\EntityFieldManagerInterface;
+ use Drupal\Core\Entity\EntityTypeInterface;
++use Drupal\Core\Entity\EntityTypeManagerInterface;
+ use Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider;
++use Drupal\Core\Extension\ModuleHandlerInterface;
+ use Drupal\group_content_menu\Controller\GroupContentMenuController;
+ use Drupal\group_content_menu\Entity\GroupContentMenuType;
++use Symfony\Component\DependencyInjection\ContainerInterface;
+ use Symfony\Component\Routing\Route;
+ 
+ /**
+@@ -13,6 +17,52 @@ use Symfony\Component\Routing\Route;
+  */
+ class GroupContentMenuRouteProvider extends DefaultHtmlRouteProvider {
+ 
++  /**
++   * The entity type manager.
++   *
++   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
++   */
++  protected $entityTypeManager;
++
++  /**
++   * The entity field manager.
++   *
++   * @var \Drupal\Core\Entity\EntityFieldManagerInterface
++   */
++  protected $entityFieldManager;
++
++  /**
++   * The module handler service.
++   *
++   * @var \Drupal\Core\Extension\ModuleHandler
++   */
++  protected $moduleHandler;
++
++  /**
++   * Constructs a new DefaultHtmlRouteProvider.
++   *
++   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
++   *   The entity type manager.
++   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
++   *   The entity field manager.
++   */
++  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityFieldManagerInterface $entity_field_manager, ModuleHandlerInterface $module_handler) {
++    $this->entityTypeManager = $entity_type_manager;
++    $this->entityFieldManager = $entity_field_manager;
++    $this->moduleHandler = $module_handler;
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type) {
++    return new static(
++      $container->get('entity_type.manager'),
++      $container->get('entity_field.manager'),
++      $container->get('module_handler')
++    );
++  }
++
+   /**
+    * {@inheritdoc}
+    */
+@@ -28,6 +78,18 @@ class GroupContentMenuRouteProvider extends DefaultHtmlRouteProvider {
+     if ($delete_menu_link = $this->getDeleteMenuLink($entity_type)) {
+       $collection->add('entity.group_content_menu.delete_menu_link', $delete_menu_link);
+     }
++    if ($delete_menu_link = $this->getDeleteMenuLink($entity_type)) {
++      $collection->add('entity.group_content_menu.delete_link', $delete_menu_link);
++    }
++    if ($this->moduleHandler->moduleExists('content_translation') && $translations_menu_link = $this->getTranslationsMenuLink($entity_type)) {
++      $collection->add('entity.group_content_menu.translate_link', $translations_menu_link);
++    }
++    if ($this->moduleHandler->moduleExists('content_translation') && $translations_menu_add_link = $this->getTranslationsMenuItemAddLink($entity_type)) {
++      $collection->add('entity.group_content_menu.translate_menu_add_link', $translations_menu_add_link);
++    }
++    if ($this->moduleHandler->moduleExists('content_translation') && $translations_menu_edit_link = $this->getTranslationsMenuItemEditLink($entity_type)) {
++      $collection->add('entity.group_content_menu.translate_menu_edit_link', $translations_menu_edit_link);
++    }
+ 
+     return $collection;
+   }
+@@ -49,7 +111,7 @@ class GroupContentMenuRouteProvider extends DefaultHtmlRouteProvider {
+           '_title' => 'Add menu link',
+           '_controller' => sprintf('%s::addLink', GroupContentMenuController::class),
+         ])
+-        ->setRequirement('_group_permission', 'manage group_content_menu menu items')
++        ->setRequirement('_group_permission', implode('+', $this->getManageMenuItemsPermissions()))
+         ->setRequirement('_group_installed_content', implode('+', $this->getPluginIds()))
+         ->setOption('parameters', [
+           'group' => ['type' => 'entity:group'],
+@@ -76,7 +138,7 @@ class GroupContentMenuRouteProvider extends DefaultHtmlRouteProvider {
+           '_title' => 'Edit menu link',
+           '_controller' => sprintf('%s::editLink', GroupContentMenuController::class),
+         ])
+-        ->setRequirement('_group_permission', 'manage group_content_menu menu items')
++        ->setRequirement('_group_permission', implode('+', $this->getManageMenuItemsPermissions()))
+         ->setRequirement('_group_installed_content', implode('+', $this->getPluginIds()))
+         ->setOption('parameters', [
+           'group' => ['type' => 'entity:group'],
+@@ -105,17 +167,113 @@ class GroupContentMenuRouteProvider extends DefaultHtmlRouteProvider {
+           '_title' => 'Delete menu link',
+           '_controller' => sprintf('%s::deleteLink', GroupContentMenuController::class),
+         ])
+-        ->setRequirement('_group_permission', 'manage group_content_menu menu items')
++        ->setRequirement('_group_permission', implode('+', $this->getManageMenuItemsPermissions()))
++        ->setRequirement('_group_installed_content', implode('+', $this->getPluginIds()))
++        ->setOption('parameters', [
++          'group' => ['type' => 'entity:group'],
++          'group_content_menu' => ['type' => 'entity:group_content_menu'],
++          'menu_link_content' => ['type' => 'entity:menu_link_content'],
++        ])
++        ->setOption('_group_operation_route', TRUE);
++    }
++  }
++
++  /**
++   * Gets the translate-menu-link route.
++   *
++   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
++   *   The entity type.
++   *
++   * @return \Symfony\Component\Routing\Route|null
++   *   The generated route, if available.
++   */
++  protected function getTranslationsMenuLink(EntityTypeInterface $entity_type) {
++    if ($entity_type->hasLinkTemplate('translate-menu-link')) {
++      $route = new Route($entity_type->getLinkTemplate('translate-menu-link'));
++      return $route
++        ->setDefaults([
++          '_title' => 'Translations menu link',
++          '_controller' => '\Drupal\group_content_menu\Controller\GroupContentTranslationController::overview',
++          'entity_type_id' => 'menu_link_content',
++        ])
++        ->setRequirement('_group_permission', implode('+', $this->getManageMenuItemTranslationsPermissions()))
++        ->setRequirement('_group_installed_content', implode('+', $this->getPluginIds()))
++        ->setRequirement('_access', 'TRUE')
++        ->setOption('parameters', [
++          'group' => ['type' => 'entity:group'],
++          'group_content_menu' => ['type' => 'entity:group_content_menu'],
++          'menu_link_content' => ['type' => 'entity:menu_link_content'],
++        ])
++        ->setOption('_group_operation_route', TRUE);
++    }
++  }
++
++  /**
++   * Gets the translate-menu-add-link route.
++   *
++   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
++   *   The entity type.
++   *
++   * @return \Symfony\Component\Routing\Route|null
++   *   The generated route, if available.
++   */
++  protected function getTranslationsMenuItemAddLink(EntityTypeInterface $entity_type) {
++    if ($entity_type->hasLinkTemplate('translate-menu-add-link')) {
++      $route = new Route($entity_type->getLinkTemplate('translate-menu-add-link'));
++      return $route
++        ->setDefaults([
++          '_title' => 'Add translations menu link',
++          '_controller' => '\Drupal\content_translation\Controller\ContentTranslationController::add',
++          'entity_type_id' => 'menu_link_content',
++          'source' => NULL,
++          'target' => NULL,
++        ])
++        ->setRequirement('_group_permission', implode('+', $this->getManageMenuItemTranslationsPermissions()))
+         ->setRequirement('_group_installed_content', implode('+', $this->getPluginIds()))
++        ->setRequirement('_access', 'TRUE')
+         ->setOption('parameters', [
+           'group' => ['type' => 'entity:group'],
+           'group_content_menu' => ['type' => 'entity:group_content_menu'],
+           'menu_link_content' => ['type' => 'entity:menu_link_content'],
++          'source' => ['type' => 'language'],
++          'target' => ['type' => 'language']
+         ])
+         ->setOption('_group_operation_route', TRUE);
+     }
+   }
+ 
++  /**
++   * Gets the translate-menu-edit-link route.
++   *
++   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
++   *   The entity type.
++   *
++   * @return \Symfony\Component\Routing\Route|null
++   *   The generated route, if available.
++   */
++  protected function getTranslationsMenuItemEditLink(EntityTypeInterface $entity_type) {
++    if ($entity_type->hasLinkTemplate('translate-menu-edit-link')) {
++      $route = new Route($entity_type->getLinkTemplate('translate-menu-edit-link'));
++      return $route
++        ->setDefaults([
++          '_title' => 'Add translations menu link',
++          '_controller' => '\Drupal\content_translation\Controller\ContentTranslationController::edit',
++          'entity_type_id' => 'menu_link_content',
++          'language' => NULL,
++        ])
++        ->setRequirement('_group_permission', implode('+', $this->getManageMenuItemTranslationsPermissions()))
++        ->setRequirement('_group_installed_content', implode('+', $this->getPluginIds()))
++        ->setOption('parameters', [
++          'group' => ['type' => 'entity:group'],
++          'group_content_menu' => ['type' => 'entity:group_content_menu'],
++          'menu_link_content' => ['type' => 'entity:menu_link_content'],
++          'language' => ['type' => 'language']
++        ])
++        ->setOption('_group_operation_route', TRUE)
++        ->setOption('_admin_route', TRUE);
++    }
++  }
++
+   /**
+    * {@inheritdoc}
+    */
+@@ -218,7 +376,7 @@ class GroupContentMenuRouteProvider extends DefaultHtmlRouteProvider {
+       $route->setRequirements($requirements);
+       return $route
+         ->setRequirement('_group_menu_owns_content', 'TRUE')
+-        ->setRequirement('_group_permission', 'manage group_content_menu menu items')
++        ->setRequirement('_group_permission', implode('+', $this->getManageMenuItemsPermissions()))
+         ->setOption('_group_operation_route', TRUE)
+         ->setOption('parameters', [
+           'group' => ['type' => 'entity:group'],
+@@ -239,7 +397,7 @@ class GroupContentMenuRouteProvider extends DefaultHtmlRouteProvider {
+       $route->setRequirements($requirements);
+       return $route
+         ->setRequirement('_group_menu_owns_content', 'TRUE')
+-        ->setRequirement('_group_permission', 'manage group_content_menu')
++        ->setRequirement('_group_permission', implode('+', $this->getManageMenusPermissions()))
+         ->setOption('_group_operation_route', TRUE)
+         ->setOption('parameters', [
+           'group' => ['type' => 'entity:group'],
+@@ -248,6 +406,47 @@ class GroupContentMenuRouteProvider extends DefaultHtmlRouteProvider {
+     }
+   }
+ 
++  /**
++   * Get permissions that allow managing menus.
++   *
++   * @return array
++   *   List of permissions that allow managing menus.
++   */
++  protected function getManageMenusPermissions() {
++    $permissions = [];
++
++    $permissions[] = 'manage group_content_menu';
++
++    return $permissions;
++  }
++
++  /**
++   * Get permissions that allow managing menu items.
++   *
++   * @return array
++   *   List of permissions that allow managing menu items.
++   */
++  protected function getManageMenuItemsPermissions() {
++    $permissions = [];
++
++    $permissions[] = 'manage group_content_menu menu items';
++
++    return $permissions;
++  }
++
++  /**
++   * Get permissions that allow managing menu item translations.
++   *
++   * @return array
++   *   List of permissions that allow managing menu item translations.
++   */
++  protected function getManageMenuItemTranslationsPermissions() {
++    $permissions = [];
++    $permissions[] = 'manage group_content_menu menu items translation';
++
++    return $permissions;
++  }
++
+   /**
+    * Get plugin IDs.
+    *

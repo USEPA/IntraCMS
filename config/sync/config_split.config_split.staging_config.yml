@@ -6,17 +6,18 @@ id: staging_config
 label: 'Staging config'
 description: 'Config settings for staging environment'
 weight: 0
+stackable: false
+no_patching: false
+storage: folder
 folder: ../config/staging
 module:
   simplesamlphp_auth: 0
   webform: 0
   webform_composite: 0
 theme: {  }
-blacklist:
+complete_list:
   - config_ignore.settings
   - epa_intranet.settings
   - webform_custom_submissions.form
   - webform_custom_submissions.jira_custom_fields
-graylist: {  }
-graylist_dependents: true
-graylist_skip_equal: true
+partial_list: {  }

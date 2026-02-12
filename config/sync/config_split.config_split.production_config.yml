@@ -6,14 +6,15 @@ id: production_config
 label: 'Production config'
 description: 'Config settings for production environment'
 weight: 0
+stackable: false
+no_patching: false
+storage: folder
 folder: ../config/production
 module:
   simplesamlphp_auth: 0
 theme: {  }
-blacklist:
+complete_list:
   - system.performance
   - webform_custom_submissions.form
   - webform_custom_submissions.jira_custom_fields
-graylist: {  }
-graylist_dependents: true
-graylist_skip_equal: true
+partial_list: {  }

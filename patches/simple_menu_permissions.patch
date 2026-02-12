@@ -1,0 +1,28 @@
+--- docroot/modules/contrib/simple_menu_permissions/src/MenuParentFormSelectorDecorator.php	2024-10-13 16:46:55.000000000 -0500
++++ docroot/modules/contrib/simple_menu_permissions/src/MenuParentFormSelectorDecorator.php	2025-09-17 15:33:55.011607900 -0500
+@@ -8,6 +8,7 @@
+ use Drupal\Core\Menu\MenuParentFormSelector;
+ use Drupal\Core\Cache\CacheableMetadata;
+ use Drupal\Core\StringTranslation\TranslationInterface;
++use Drupal\Core\Session\AccountProxyInterface;
+ 
+ /**
+  * Decorator of the menu parent form selector service.
+@@ -50,7 +51,16 @@
+       $menus = $this->getMenuOptions();
+     }
+ 
+-    $menus = $this->filterMenus($menus);
++    /** @var AccountProxyInterface $currentUser */
++    $currentUser = \Drupal::currentUser();
++    if ($currentUser->hasRole('administrator')) {
++      // The current user has the 'administrator' role.
++      // Let them access all menus.
++    } else {
++      // The current user does not have the 'administrator' role.
++      // Filter the menus to what they can access.
++      $menus = $this->filterMenus($menus);
++    }
+ 
+     $element = parent::parentSelectElement($menu_parent, $id, $menus);
+ 

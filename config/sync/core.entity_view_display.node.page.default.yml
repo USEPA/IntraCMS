@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.field.node.page.body
     - field.field.node.page.field_custom_text
-    - field.field.node.page.field_featured_image
     - field.field.node.page.field_meta_tags
     - field.field.node.page.field_sidebar_content
     - field.field.node.page.layout_selection
@@ -54,24 +53,6 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             weight: 3
-            additional: {  }
-          e5ce82a7-ee94-4a37-b52a-824e76a414da:
-            uuid: e5ce82a7-ee94-4a37-b52a-824e76a414da
-            region: content
-            configuration:
-              id: 'field_block:node:page:field_featured_image'
-              label: 'Featured Image'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: entity_reference_entity_view
-                label: hidden
-                settings:
-                  view_mode: featured_image
-                third_party_settings: {  }
-            weight: 0
             additional: {  }
           e8508fcd-9577-4c72-a1ad-503ab4f78858:
             uuid: e8508fcd-9577-4c72-a1ad-503ab4f78858
@@ -127,15 +108,6 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
-  field_featured_image:
-    type: entity_reference_entity_view
-    label: above
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    weight: 4
-    region: content
   field_meta_tags:
     type: metatag_empty_formatter
     label: above
@@ -161,3 +133,4 @@ hidden:
   content_moderation_control: true
   layout_selection: true
   search_api_excerpt: true
+  

@@ -15,15 +15,27 @@ function media_inline_embed_theme($existing, $type, $theme, $path) {
   return [
     'media__inline_embed' => [
       'template' => 'media--inline-embed',
-      'path' => $path .'/templates',
+      'path' => $path . '/templates',
       'base hook' => 'media',
     ],
     'field__inline_embed' => [
-      'template' => 'field--inline-media',
-      'path' => $path .'/templates',
+      'template' => 'field--inline-embed',
+      'path' => $path . '/templates',
       'base hook' => 'field',
     ],
+    'media_embed_error__inline' => [
+      'template' => 'media-embed-error--inline',
+      'path' => $path .'/templates',
+      'base hook' => 'media-embed-error',
+    ],
   ];
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function media_inline_embed_theme_registry_alter(&$theme_registry) {
+  $theme_registry['media_embed_error']['variables']['inline'] = FALSE;
 }
 
 /**
@@ -55,10 +67,21 @@ function media_inline_embed_theme_suggestions_alter(array &$suggestions, array $
 
       // If parent view mode is embedded inline add theme suggestion for field.
       if ($embed_info['embed_inline']) {
-        $suggestions[] = $hook . '__inline_embed';
-        $suggestions[] = $hook . '__' . $elements['#entity_type'] . '__inline_embed';
-        $suggestions[] = $hook . '__' . $elements['#entity_type'] . '__' . $elements['#bundle'] . '__inline_embed';
+        // Effectively replace normal template suggestion for fields so that
+        // unaltered field templates are at least inline-compliant out of the
+        // box.
+        array_unshift($suggestions, 'field__inline_embed');
+
+        // Create additional suggestions for the inline context.
+        $suggestions[] = 'field__inline_embed__' . $elements['#field_type'];
+        $suggestions[] = 'field__inline_embed__' . $elements['#field_name'];
+        $suggestions[] = 'field__inline_embed__' . $elements['#entity_type'] . '__' . $elements['#bundle'];
+        $suggestions[] = 'field__inline_embed__' . $elements['#entity_type'] . '__' . $elements['#field_name'];
+        $suggestions[] = 'field__inline_embed__' . $elements['#entity_type'] . '__' . $elements['#field_name'] . '__' . $elements['#bundle'];
       }
+      break;
+    case 'media_embed_error':
+      $suggestions[] = 'media_embed_error__' . ($variables['inline'] ? 'inline' : 'block');
       break;
   }
 }
@@ -67,11 +90,10 @@ function media_inline_embed_theme_suggestions_alter(array &$suggestions, array $
  * Helper function to return display and view mode as sanitized string.
  */
 function _media_inline_embed_get_embed_info($elements, $bundle) {
-  $entity_type = $elements['#entity_type'];
   $view_mode = $elements['#view_mode'] == 'full' ? 'default' : $elements['#view_mode'];
 
   // Load display.
-  $display_id = implode('.', [$entity_type, $bundle, $view_mode]);
+  $display_id = implode('.', ['media', $bundle, $view_mode]);
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
   $display = $storage->load($display_id);
   if (empty($display)) {
