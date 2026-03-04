@@ -26,3 +26,13 @@ function epa_core_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_
   }
   $form['#attached']['library'][] = 'epa_core/admin-forms';
 }
+/**
+ * Implements hook_module_implements_alter().
+ */
+function epa_core_module_implements_alter(&$implementations, $hook) {
+  // Prevent group_content_menu module's form alter from happening.
+  // This prevents the menu settings from being displayed
+  if ($hook === 'form_alter' && isset($implementations['group_content_menu'])) {
+    unset($implementations['group_content_menu']);
+  }
+}

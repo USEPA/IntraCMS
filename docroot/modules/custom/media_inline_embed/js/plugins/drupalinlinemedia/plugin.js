@@ -3,17 +3,17 @@
     requires: 'drupalmedia',
     icons: 'drupalinlinemedia',
     beforeInit: function beforeInit(editor) {
-      
+
       var dtd = CKEDITOR.dtd;
       dtd['drupal-inline-media'] = { '#': 1 };
 
-            Object.keys(dtd).forEach(function (tagName) {
-                if (dtd[tagName].a) {
-                  dtd[tagName]['drupal-inline-media'] = 1;
-                }
-              });
-         
-               drupalmediawidget = editor.widgets.registered.drupalmedia;
+      Object.keys(dtd).forEach(function (tagName) {
+        if (dtd[tagName].a) {
+          dtd[tagName]['drupal-inline-media'] = 1;
+        }
+      });
+
+      drupalmediawidget = editor.widgets.registered.drupalmedia;
 
       editor.widgets.add('drupalinlinemedia', CKEDITOR.tools.extend({
         upcast: function upcast(element, data) {
@@ -63,11 +63,7 @@
             attributes: {
               '!data-entity-type': true,
               '!data-entity-uuid': true,
-              '!data-view-mode': true,
-              '!data-align': true,
-              '!data-caption': true,
-              '!alt': true,
-              '!title': true
+              'data-view-mode': true,
             },
             classes: {}
           }
