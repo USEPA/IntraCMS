@@ -8,6 +8,19 @@ COPY . .
 RUN composer clearcache
 RUN composer install --no-interaction
 RUN ./docker/scripts/bower.sh
+
+# Install PHP memcached extension
+RUN apk add --no-cache --virtual .memcached-build-deps \
+      libmemcached-dev \
+      zlib-dev \
+      autoconf \
+      g++ \
+      make \
+    && pecl install memcached \
+    && docker-php-ext-enable memcached \
+    && apk del .memcached-build-deps \
+    && apk add --no-cache libmemcached-libs
+
 RUN rsync -avz --recursive --links --times --executability --delete --delete-after --exclude=docker --exclude=k8s --exclude=*web.config --exclude=docroot/sites/*/settings.php --exclude=docroot/sites/*/settings.local.php --exclude=docroot/sites/*/services.yml --exclude=docroot/tools --exclude=docroot/sites/*/files --exclude=vendor/simplesamlphp/simplesamlphp/config --exclude=vendor/simplesamlphp/simplesamlphp/metadata --exclude=vendor/simplesamlphp/simplesamlphp/cert --delay-updates * /srv/drupal-root
 RUN ln -s /srv/drupal-root/vendor/drush/drush/drush /usr/bin/drush 
 RUN ln -s /public/data/drupal-files /srv/drupal-root/docroot/sites/default/files 
@@ -25,4 +38,3 @@ RUN rm -rf /app/*
 ENTRYPOINT ["/etc/entrypoint.sh"]
 
 EXPOSE 80 443 9000
-
