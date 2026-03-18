@@ -136,7 +136,19 @@ class WebareaNodeMatcher extends NodeMatcher {
     $suggestions = new SuggestionCollection();
     $query = $this->buildEntityQuery($string);
     $query_result = $query->execute();
-    $url_results = $this->findEntityIdByUrl($string);
+    
+    // Safely attempt to find entity by URL with error handling.
+    $url_results = [];
+    try {
+      $url_results = $this->findEntityIdByUrl($string);
+    }
+    catch (\Exception $e) {
+      // Log the error but don't break the autocomplete functionality.
+      \Drupal::logger('epa_wysiwyg')->warning('Error finding entity by URL in WebareaNodeMatcher: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+    }
+    
     $result = array_merge($query_result, $url_results);
 
     // If no results, return an empty suggestion collection.
