@@ -6,9 +6,15 @@ dependencies:
     - block_in_page_not_found
 id: fix_ck4
 label: 'Fix CK4'
-code: '.cke_toolbox .cke_toolbar:nth-child(5) { clear: both; }'
+code: |-
+  .cke_toolbox .cke_toolbar:nth-child(5) { clear: both; }
+  body.cke_editable table { width: 100%; }
 media: all
 preprocess: true
-conditions: {  }
+conditions:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
 contexts: {  }
 conditions_require_all: true
