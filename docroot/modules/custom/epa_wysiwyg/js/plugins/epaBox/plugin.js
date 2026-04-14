@@ -91,6 +91,8 @@
             }
 
             box.append('</div>');
+            box.append('</div>');
+            box.append('<p style="clear: both">&nbsp;</p>');
 
             editor.insertHtml(box.toString());
           }
