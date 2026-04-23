@@ -1,0 +1,17 @@
+--- a/lightning_core.routing.yml
++++ b/lightning_core.routing.yml
+@@ -6,2 +6,2 @@
+   requirements:
+-    _is_administrator: 'true'
++    _role: 'administrator'
+--- a/lightning_core.services.yml
++++ b/lightning_core.services.yml
+@@ -16,8 +15,0 @@
+-  access_check.administrator_role:
+-    class: '\Drupal\lightning_core\Access\AdministrativeRoleCheck'
+-    arguments:
+-      - '@entity_type.manager'
+-    tags:
+-      -
+-        name: access_check
+-        applies_to: _is_administrator
