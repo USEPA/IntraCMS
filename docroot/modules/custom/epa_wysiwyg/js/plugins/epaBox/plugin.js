@@ -75,7 +75,7 @@
             box.append('<div class="box box--related-info u-align-' + data.position + '">');
 
             if (data.title !== '') {
-              box.append('<h2 class="box__title">' + data.title + '</h2>');
+              box.append('<div class="box__title">' + data.title + '</div>');
             }
 
             box.append('<div class="box__content">');
@@ -91,6 +91,8 @@
             }
 
             box.append('</div>');
+            box.append('</div>');
+            box.append('<p style="clear: both">&nbsp;</p>');
 
             editor.insertHtml(box.toString());
           }

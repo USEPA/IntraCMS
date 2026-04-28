@@ -151,7 +151,7 @@ filters:
   linkit:
     id: linkit
     provider: linkit
-    status: false
+    status: true
     weight: -36
     settings:
       title: true
@@ -176,14 +176,13 @@ filters:
   media_inline_embed:
     id: media_inline_embed
     provider: media_inline_embed
-    status: false
+    status: true
     weight: -39
     settings:
-      default_view_mode: default
+      default_view_mode: link
       allowed_media_types:
         document: document
-      allowed_view_modes:
-        link: link
+      allowed_view_modes: {  }
   paragraphs_entity_embed:
     id: paragraphs_entity_embed
     provider: paragraphs_entity_embed

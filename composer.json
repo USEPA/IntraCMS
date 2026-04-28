@@ -4,24 +4,28 @@
     "description": "Project template for Drupal 10 projects with composer",
     "license": "GPL-2.0-or-later",
     "require": {
+        "algolia/places": "*",
         "bootstrap/bootstrap": "5.1.0",
+        "choices/choices": "*",
         "ckeditor-plugin/fakeobjects": "^4.16.2",
         "ckeditor-plugin/iframe": "^4.16.2",
         "ckeditor-plugin/liststyle": "^4.17.1",
         "ckeditor-plugin/templates": "^4.16.2",
         "ckeditor/resize": "4.13.0",
+        "codemirror/codemirror": "*",
         "cweagans/composer-patches": "^1.7.0",
         "drupal/acquia_telemetry-acquia_telemetry": "1.0.0-alpha6",
         "drupal/address": "~1.10",
+        "drupal/addtocal": "^3.0@beta",
         "drupal/addtocal_augment": "^1.1@beta",
         "drupal/admin_toolbar": "^3.1",
-        "drupal/anchor_link": "~1.10",
+        "drupal/anchor_link": "^3.0",
         "drupal/asset_injector": "2.20",
         "drupal/auto_entitylabel": "3.1",
         "drupal/autosave_form": "1.6",
         "drupal/back_to_top": "3.0.2",
         "drupal/backup_migrate": "^5.1",
-        "drupal/bamboo_twig": "6.0",
+        "drupal/bamboo_twig": "^6.0",
         "drupal/bartik": "^1.0",
         "drupal/better_parent": "^10.0",
         "drupal/bg_image_formatter": "1.17",
@@ -42,7 +46,7 @@
         "drupal/ckeditor5_template": "^1.0",
         "drupal/ckeditor_abbreviation": "^4.0@alpha",
         "drupal/ckeditor_bs_grid": "2.0.12",
-        "drupal/ckeditor_iframe": "^3.0@beta",
+        "drupal/ckeditor_iframe": "^3.1",
         "drupal/ckeditor_liststyle": "^1.5",
         "drupal/ckeditor_resize": "^1.3",
         "drupal/ckeditor_specialchars": "^1.2",
@@ -53,13 +57,13 @@
         "drupal/config_delete": "^2.0",
         "drupal/config_filter": "1.12",
         "drupal/config_ignore": "3.3",
-        "drupal/config_split": "1.9",
+        "drupal/config_split": "^2.0",
         "drupal/conflict": "2.0.0-alpha6",
         "drupal/consumers": "1.19",
         "drupal/contact_storage": "1.3",
-        "drupal/core-composer-scaffold": "10.4.1",
-        "drupal/core-project-message": "10.4.1",
-        "drupal/core-recommended": "10.4.1",
+        "drupal/core-composer-scaffold": "10.6.7",
+        "drupal/core-project-message": "10.6.7",
+        "drupal/core-recommended": "10.6.7",
         "drupal/crop": "2.4",
         "drupal/cshs": "^4.0",
         "drupal/csv_serialization": "^3.0 || ^4.0",
@@ -69,7 +73,7 @@
         "drupal/db_maintenance": "^3.0@RC",
         "drupal/dblog_filter": "^4.1",
         "drupal/devel": "^5.2",
-        "drupal/diff": "1.6",
+        "drupal/diff": "^2.0@beta",
         "drupal/disable_html5_validation": "2.0",
         "drupal/draggableviews": "2.1.4",
         "drupal/dropzonejs": "2.11",
@@ -118,10 +122,12 @@
         "drupal/jquery_countdown_timer": "1.4",
         "drupal/jquery_ui": "1.7",
         "drupal/jquery_ui_effects": "2.0",
-        "drupal/layout_builder_modal": "1.2",
-        "drupal/layout_builder_restrictions": "2.20",
-        "drupal/layout_builder_styles": "2.0",
+        "drupal/layout_builder_iframe_modal": "^1.3",
+        "drupal/layout_builder_modal": "^1.3",
+        "drupal/layout_builder_restrictions": "^3.0",
+        "drupal/layout_builder_styles": "^2.1",
         "drupal/layout_library": "1.0-beta4",
+        "drupal/lb_claro": "^2.0@alpha",
         "drupal/libraries": "^4.0.3",
         "drupal/lightning_core": "^6",
         "drupal/lightning_media": "~5.0.0",
@@ -131,7 +137,7 @@
         "drupal/media_entity_instagram": "3.0.8",
         "drupal/media_entity_twitter": "2.9",
         "drupal/media_inline_embed": "1.x-dev",
-        "drupal/media_library_theme_reset": "1.5",
+        "drupal/media_library_theme_reset": "^2.0@beta",
         "drupal/memcache": "^2.7",
         "drupal/menu_export": "^1.4",
         "drupal/menu_migration": "^4.0",
@@ -139,7 +145,7 @@
         "drupal/migrate_plus": "6.0",
         "drupal/migrate_tools": "^6.0",
         "drupal/moderated_content_bulk_publish": "2.0.32",
-        "drupal/moderation_dashboard": "1.4",
+        "drupal/moderation_dashboard": "^3.1",
         "drupal/moderation_sidebar": "1.8",
         "drupal/node_revision_delete": "^1.0@RC",
         "drupal/oembed_providers": "^2.1",
@@ -152,7 +158,7 @@
         "drupal/openapi_ui_swagger": "1.0",
         "drupal/override_node_options": "2.8",
         "drupal/page_manager": "4.0-RC1",
-        "drupal/panels": "4.8",
+        "drupal/panels": "^4.9",
         "drupal/paragraph_view_mode": "2.0.4",
         "drupal/paragraphs": "1.15",
         "drupal/paragraphs_entity_embed": "^4.0@beta",
@@ -168,7 +174,7 @@
         "drupal/shs": "2.0",
         "drupal/simple_gmap": "3.1",
         "drupal/simple_menu_permissions": "3.0",
-        "drupal/simplesamlphp_auth": "^4.0",
+        "drupal/simplesamlphp_auth": "^4.1",
         "drupal/single_content_sync": "^1.3.9",
         "drupal/slick": "^2.10",
         "drupal/slick_entityreference": "2.2",
@@ -208,6 +214,7 @@
         "drupal/webform_analysis": "1.0-beta10",
         "drupal/webform_composite": "^1.0",
         "drupal/webform_config_ignore": "1.3",
+        "drupal/webform_group": "^1.0",
         "drupal/webform_node": "^6.1",
         "drupal/webform_shs": "2.0-beta1",
         "drupal/webform_ui": "^6.1",
@@ -220,16 +227,6 @@
         "fengyuanchen/cropper": "v4.1.0",
         "fontawesome/fontawesome": "5.15.4",
         "harvesthq/chosen": "1.8.7",
-        "jquery/inputmask": "^5.0",
-        "mglaman/composer-drupal-lenient": "^1.0",
-        "npm-asset/slick-carousel": "1.8.0",
-        "oomphinc/composer-installers-extender": "*",
-        "sabre/vobject": "^4.2",
-        "vardot/blazy": "1.8.2.1",
-        "wikimedia/composer-merge-plugin": "^2.0",
-        "algolia/places": "*",
-        "choices/choices": "*",
-        "codemirror/codemirror": "*",
         "jquery/chosen": "*",
         "jquery/geocomplete": "*",
         "jquery/hotkeys": "*",
@@ -242,12 +239,18 @@
         "jquery/textcounter": "*",
         "jquery/timepicker": "*",
         "jquery/toggles": "*",
+        "mglaman/composer-drupal-lenient": "^1.0",
+        "npm-asset/slick-carousel": "1.8.0",
+        "oomphinc/composer-installers-extender": "*",
         "popperjs/popperjs": "*",
         "progress-tracker/progress-tracker": "*",
+        "sabre/vobject": "^4.2",
         "signature_pad/signature_pad": "*",
         "svg-pan-zoom/svg-pan-zoom": "*",
         "tabby/tabby": "*",
-        "tippyjs/tippyjs": "*"        
+        "tippyjs/tippyjs": "*",
+        "vardot/blazy": "1.8.2.1",
+        "wikimedia/composer-merge-plugin": "^2.0"
     },
     "suggest": {
         "drupal/jquery_ui_checkboxradio": "Provides jQuery UI Checkboxradio library. Required by the Webform jQueryUI Buttons module. The Webform jQueryUI Buttons module is deprecated because jQueryUI is no longer maintained.",
@@ -283,49 +286,46 @@
         "patches": {
             "drupal/backup_migrate": {
                 "Missing entities/profiles errors after installation of 5.0.0": "patches/backup-migrate-missing-fields.patch"
-            },            
+            },
             "drupal/contact_storage": {
                 "Fix VBO config error because of Contact Storage": "https://www.drupal.org/files/issues/2022-11-07/contact_storage-bc_action_fix-3191567-31.patch"
             },
             "drupal/ckeditor5": {
                 "Fix 'Enable at least one style, otherwise disable the Style plugin' error": "https://www.drupal.org/files/issues/2023-06-15/drupal-3309585-15.patch",
                 "CKEditor 5 isn't respecting field widgets row settings": "https://www.drupal.org/files/issues/2023-02-02/3241295-d9.5-101.patch"
-            },           
+            },
             "drupal/conditional_fields": {
                 "Required Field Error with Dependent Visibility": "https://www.drupal.org/files/issues/2023-05-05/3344587-required_fields_not_visible-15.patch"
             },
             "drupal/cshs": {
                 "3166049: Integrate select into webform": "https://www.drupal.org/files/issues/2023-04-06/cshs-3166046-11.patch"
             },
-            "drupal/diff": {
-                "2980335: Establish class attribute as array instead of string.": "https://www.drupal.org/files/issues/2018-06-18/2980335_2_define_classes_as_array.patch"
-            },
             "drupal/entity_embed": {
                 "3065054: Add permission to allow 'missing media' to be hidden.": "https://www.drupal.org/files/issues/2025-02-04/entity_embed-1.x-add_missing_media_permission-3065054-75.patch",
                 "3402443: PHP error: Call to a member function id() on null.": "https://www.drupal.org/files/issues/2023-11-17/issue-3402443-php-error-call-fixes.patch"
-            },              
+            },
             "drupal/entity_reference_revisions": {
                 "2799479: Views doesn't recognize relationship to host.": "https://www.drupal.org/files/issues/2024-08-24/entity_reference_revisions-2799479-231--no-tests.patch"
-            },            
+            },
             "drupal/lightning_core": {
-                "3408813: Fatal error: Declaration of Drupal lightning_core": "https://www.drupal.org/files/issues/2023-12-18/3408813_fatal_type_declaration_0.patch"
+                "IntraCMS: Fix fatal D10 access_check.administrator_role routing crash": "patches/lightning_core_d10_access_check.patch"
             },
             "drupal/lightning_media": {
                 "3456919: Entity browser errors on DRUSH CIM": "https://www.drupal.org/files/issues/2024-07-12/mapping-definition-entity-browser-upload-validators-3456919.patch"
-            },                         
+            },
             "drupal/lightning_workflow": {
                 "3459341: taxonomy_term__scheduled_transition_date doesn't exist": "https://www.drupal.org/files/issues/2024-09-13/add-base-fields-to-new-content-types-supported-by-content-moderation-3459341-3.patch",
                 "3457016: Circular reference detected for service cache.backend.database": "https://www.drupal.org/files/issues/2024-06-27/circular-reference-detected-3457016-7.patch"
-            },  
+            },
             "drupal/linkit": {
                 "3307118: The Linkit profile entity type needs to be installed.": "https://www.drupal.org/files/issues/2022-11-29/3307118-linkit_profile_entity_type_needs_to_be_installed-4.patch"
-            },                    
+            },
             "ckeditor/liststyle": {
                 "2874952: Change code from styles to type": "https://www.drupal.org/files/issues/2019-01-02/ckeditor_liststyle-styles-to-type-2874952-4-do-not-test.patch"
             },
             "drupal/fullcalendar_view": {
                 "3280982: Repeating Smart Date Events Causing Significant Load Times ": "https://www.drupal.org/files/issues/2023-08-11/fullcalendar_view_repeating_events_5.1.12.patch"
-            },            
+            },
             "drupal/path_file": {
                 "3289025: Drupal 10 Compatibility": "https://www.drupal.org/files/issues/2022-06-16/path_file.1.x-dev.rector.patch",
                 "3289025-1: Drupal 10 Compatibility": "https://www.drupal.org/files/issues/2023-08-22/path_file_permission_change.patch"
@@ -346,7 +346,8 @@
                 "3349565: Use of static in callables": "https://www.drupal.org/files/issues/2023-07-25/3349565-6.patch",
                 "Ensure entity exists when deriving label": "https://www.drupal.org/files/issues/2020-03-03/group-3053524-14.patch",
                 "Avoid fatal errors with Layout Builder rendering by checking if group is being rendered in preview mode": "https://www.drupal.org/files/issues/2020-10-02/group-check_if_in_preview-3174615-2.patch",
-                "Add contexts": "https://www.drupal.org/files/issues/2021-02-19/2815971-28.patch"
+                "Add contexts": "https://www.drupal.org/files/issues/2021-02-19/2815971-28.patch",
+                "IntraCMS: Fix PHP 8.2 dynamic property deprecation in views relationship": "patches/group_php82_dynamic_property.patch"
             },
             "drupal/group_taxonomy": {
                 "3232198: Group members with the proper permissions can't access to the group taxonomy overview tab": "patches/group_taxonomy_button_visibility.patch",
@@ -364,7 +365,7 @@
                 "Conflicts with groupmenu paths": "patches/group_content_menu_path.patch",
                 "Menu item edit translation permission": "patches/group-content-menu-translations.patch",
                 "Set new menu link defaults to first available group menu": "https://www.drupal.org/files/issues/2025-06-19/3519798-set-default-group-menu-gcm2.x-4.patch"
-            },            
+            },
             "drupal/h5p": {
                 "2774947: Allow disabling the reset of user data results": "https://www.drupal.org/files/issues/2020-05-14/2774947-keep-user-data-in-sync-with-content-7.patch",
                 "Drupal 9 module compatibility": "patches/h5p_module_compatibility_patch.patch",
@@ -373,13 +374,12 @@
             "drupal/image_widget_crop": {
                 "3093928: The Cropper library used is deprecated": "https://www.drupal.org/files/issues/2023-02-17/3093928-17.patch",
                 "3293603: parse_url() Passing null in image_widget_crop_requirements()": "https://www.drupal.org/files/issues/2022-11-07/3293603-16.patch"
-            
             },
             "drupal/paragraphs": {
                 "3090200: Fixes permission issues when editing non-published paragraphs": "https://www.drupal.org/files/issues/2020-07-08/access-controll-issue-3090200-22.patch",
                 "2901390: Fixes 'null langcode' error when saving paragraphs to custom layout": "https://www.drupal.org/files/issues/2020-06-25/paragraphs-2901390-51.patch",
                 "Add paragraph button too large when using Claro admin theme": "https://www.drupal.org/files/issues/2024-03-13/add-paragraph-button-styles-claro-3424471-5.patch"
-            },       
+            },
             "drupal/uswds": {
                 "3083130: fieldset template missing required class": "https://www.drupal.org/files/issues/2019-09-23/fieldset-template-missing-required-class-3083130-2.patch",
                 "2934855: Make node links into USWDS buttons": "https://www.drupal.org/files/issues/2018-07-17/uswds-d8-node-links-2934855-2.patch"
@@ -393,9 +393,6 @@
             },
             "drupal/webform_analysis": {
                 "3137161: Google Charts version downgrade to eliminate isHtml error": "https://www.drupal.org/files/issues/2020-06-07/google_charts_version_downgrade-3137161-5.patch"
-            },
-            "drupal/anchor_link": {
-                "Remove overriding of CTRL+K command from ckeditor interfaces": "patches/anchor_link_shortcut_override.patch"
             },
             "drupal/core": {
                 "3020876: Custom block contextual links": "https://www.drupal.org/files/issues/2023-11-23/3020876-96.patch",
@@ -412,15 +409,14 @@
                 "1278886:  Default text formats not saved.": "https://www.drupal.org/files/issues/2023-11-14/1278886-120.patch",
                 "3398155: Entity Query WSOD": "patches/core-entityQuery-check.patch",
                 "3110371: Restrict the available parents to the current menu": "https://www.drupal.org/files/issues/2024-07-11/3110371-58.patch",
-                "3049332: Fix Log error + visual warning for missing or broken block": "https://www.drupal.org/files/issues/2024-06-26/3049332_d10.3.0.patch",
-                "3274635: [upstream] Use CKEditor 5's native <ol type> and <ul type> UX": "https://www.drupal.org/files/issues/2025-03-27/3274635-mr5079-94fde602-10.4.x-updated-editorStyleFixCondition--120.patch"
+                "3049332: Fix Log error + visual warning for missing or broken block": "https://www.drupal.org/files/issues/2024-06-26/3049332_d10.3.0.patch"
             },
             "drupal/views_add_button_group": {
                 "Automated Drupal 10 Fixes": "https://www.drupal.org/files/issues/2022-06-16/views_add_button_group.2.0.x-dev.rector.patch"
-            }, 
+            },
             "drupal/redirect": {
                 "Move hook_entity_delete to hook_entity_predelete": "https://git.drupalcode.org/project/redirect/-/merge_requests/161.patch"
-            },                                    
+            },
             "merge-plugin": {
                 "include": [
                     "docroot/modules/contrib/fontawesome/composer.libraries.json",
@@ -832,7 +828,7 @@
                 },
                 "license": "MIT"
             }
-        },                                            
+        },
         {
             "type": "package",
             "package": {
@@ -999,19 +995,19 @@
                     "reference": "920f326fcabd07358e8b6954ddbce81149970b0a"
                 }
             }
-        }, 
+        },
         {
             "type": "package",
             "package": {
-            "name": "ckeditor/resize",
-            "version": "4.13.0",
-            "type": "drupal-library",
-            "dist": {
-                "url": "https://download.ckeditor.com/resize/releases/resize_4.13.0.zip",
-                "type": "zip"
+                "name": "ckeditor/resize",
+                "version": "4.13.0",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://download.ckeditor.com/resize/releases/resize_4.13.0.zip",
+                    "type": "zip"
                 }
             }
-        },  
+        },
         {
             "type": "package",
             "package": {
@@ -1041,7 +1037,6 @@
                 }
             }
         }
-
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
