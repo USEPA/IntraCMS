@@ -1,25 +1,26 @@
 (function ($, Drupal) {
   Drupal.behaviors.fullcalendarTooltip = {
     attach: function (context, settings) {
-      //console.log('✅ fullcalendarTooltip behavior attached');
+      console.log('✅ fullcalendarTooltip behavior attached');
 
       // Load the description and color data from JSON feed
       function attachTooltipsAndFixTimeAndColor() {
-        $.getJSON('/calendar-feed', function (data) {
-          const descMap = {};
-          const colorMap = {};
-          const textColorMap = {};
+        if (window.location.pathname === "/calendar") {
+          $.getJSON('/calendar-feed', function (data) {
+            const descMap = {};
+            const colorMap = {};
+            const textColorMap = {};
 
-          data.forEach(function (event) {
-            descMap[event.url] = event.extendedProps?.description || 'No description';
-            if (event.backgroundColor) {
-              colorMap[event.url] = event.backgroundColor;
-            }
-            if (event.textColor) {
-              textColorMap[event.url] = event.textColor;
-            }
-          });
-
+            data.forEach(function (event) {
+              descMap[event.url] = event.extendedProps?.description || 'No description';
+              if (event.backgroundColor) {
+                colorMap[event.url] = event.backgroundColor;
+              }
+              if (event.textColor) {
+                textColorMap[event.url] = event.textColor;
+              }
+            });
+          }
           // Attach tooltip, fix time, and apply background color
           $('.fc-event', context).each(function () {
             const $event = $(this);
@@ -62,7 +63,7 @@
                 formatted = raw.replace(/^(\d{1,2}):(\d{2})(a|p)m?$/i, '$1:$2 $3m');
               }
 
-              //console.log(`⏰ Final clean: "${raw}" → "${formatted}"`);
+              console.log(`⏰ Final clean: "${raw}" → "${formatted}"`);
               $el.text(formatted);
             });
 
@@ -98,7 +99,7 @@
           subtree: true,
         });
 
-        //console.log('👀 Watching .fc for DOM changes');
+        console.log('👀 Watching .fc for DOM changes');
       }
     }
   };
