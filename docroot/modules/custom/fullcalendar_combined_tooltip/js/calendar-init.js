@@ -5,7 +5,7 @@
 
       // Load the description and color data from JSON feed
       function attachTooltipsAndFixTimeAndColor() {
-        if (window.location.pathname === "/calendar") {
+        if (window.location.pathname.startsWith("/calendar")) {
           $.getJSON('/calendar-feed', function (data) {
             const descMap = {};
             const colorMap = {};
@@ -20,7 +20,7 @@
                 textColorMap[event.url] = event.textColor;
               }
             });
-          }
+          
           // Attach tooltip, fix time, and apply background color
           $('.fc-event', context).each(function () {
             const $event = $(this);
@@ -77,6 +77,7 @@
             }
           });
         });
+        }
       }
 
       // Run on initial load
