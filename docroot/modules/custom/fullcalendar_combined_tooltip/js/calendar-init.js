@@ -22,7 +22,7 @@
             });
           
           // Attach tooltip, fix time, and apply background color
-          $('.fc-event', context).each(function () {
+          $.('.fc-event', context).each(function () {
             const $event = $(this);
             const href = $event.attr('href');
 
