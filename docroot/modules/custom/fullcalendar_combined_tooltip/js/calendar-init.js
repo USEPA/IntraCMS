@@ -21,29 +21,28 @@
               }
             });
           
-            // Attach tooltip, fix time, and apply background color
-            $('.fc-event', context).each(function () {
-              const $event = $(this);
-              const href = $event.attr('href');
+          // Attach tooltip, fix time, and apply background color
+          $('.fc-event', context).each(function () {
+            const $event = $(this);
+            const href = $event.attr('href');
 
-              // ✅ TOOLTIP
-              if (!$event.hasClass('fc-tooltip-processed')) {
-                $event.addClass('fc-tooltip-processed');
-                const description = descMap[href] || 'No description';
+            // ✅ TOOLTIP
+            if (!$event.hasClass('fc-tooltip-processed')) {
+              $event.addClass('fc-tooltip-processed');
+              const description = descMap[href] || 'No description';
 
-                if (typeof tippy === 'function') {
-                  tippy(this, {
-                    content: description,
-                    allowHTML: true,
-                    theme: 'light-border',
-                    placement: 'auto',
-                    maxWidth: 500,
-                    interactive: true,
-                    appendTo: document.body,
-                  });
-                }
+              if (typeof tippy === 'function') {
+                tippy(this, {
+                  content: description,
+                  allowHTML: true,
+                  theme: 'light-border',
+                  placement: 'auto',
+                  maxWidth: 500,
+                  interactive: true,
+                  appendTo: document.body,
+                });
               }
-            });
+            }
 
             // ✅ TIME FIXING
             $event.find('.fc-event-time').each(function () {
