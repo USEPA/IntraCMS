@@ -4,6 +4,9 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_autho
+    - filter.format.full_html
+    - filter.format.rich_text
+    - filter.format.rich_text_2
     - node.type.policy_delegation
   module:
     - text
@@ -19,5 +22,7 @@ default_value: {  }
 default_value_callback: ''
 settings:
   allowed_formats:
+    - rich_text
+    - rich_text_2
     - full_html
 field_type: text_long
