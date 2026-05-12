@@ -1,0 +1,21 @@
+--- a/src/H5PDrupal/H5PDrupal.php
++++ b/src/H5PDrupal/H5PDrupal.php
+@@ -232,6 +232,16 @@ class H5PDrupal implements \H5PFrameworkInterface {
+     \Drupal::database()->delete('h5p_events')
+       ->condition('created_at', $older_than, '<')
+       ->execute();
+   }
+ 
++  /**
++   * Implements resetHubOrganizationData
++   *
++   * Resets hub organization data. Added in h5p-core for hub organization
++   * features not yet implemented in this Drupal integration.
++   */
++  public function resetHubOrganizationData() {
++    // Not implemented in this Drupal integration.
++  }
++
+   /**
+    * Keeps the libraries metadata cache up-to-date.
+    */
