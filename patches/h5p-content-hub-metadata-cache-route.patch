@@ -1,0 +1,17 @@
+--- a/modules/h5peditor/h5peditor.routing.yml
++++ b/modules/h5peditor/h5peditor.routing.yml
+@@ -14,6 +14,14 @@
+   requirements:
+     _permission: 'access h5p editor'
+ 
++h5peditor.content_hub_metadata_cache:
++  path: '/h5peditor/{token}/{content_id}/content-hub-metadata-cache'
++  defaults:
++    _controller: 'Drupal\h5peditor\Controller\H5PEditorAJAXController::contentHubMetadataCacheCallback'
++    _title: 'Get Content Hub Metadata Cache'
++  requirements:
++    _permission: 'access h5p editor'
++
+ h5peditor.library_install:
+   path: '/h5peditor/{token}/{content_id}/library-install/{machine_name}'
+   defaults:
