@@ -1,0 +1,36 @@
+--- a/modules/h5peditor/src/Controller/H5PEditorAJAXController.php
++++ b/modules/h5peditor/src/Controller/H5PEditorAJAXController.php
+@@ -29,6 +29,33 @@
+   }
+ 
+   /**
++   * Callback that returns the content hub metadata cache
++   *
++   * @param string $token Security token
++   * @param int $content_id Content id
++   */
++  function contentHubMetadataCacheCallback($token, $content_id) {
++    // The core AJAX handler for CONTENT_HUB_METADATA_CACHE requires
++    // H5PCore::getUpdatedContentHubMetadataCache() which is not yet available
++    // in this version of h5p-core. Return an empty but valid structure so
++    // h5p-hub-client.js does not throw "Unable to load X metadata" errors.
++    header('Cache-Control: no-cache');
++    header('Content-Type: application/json; charset=utf-8');
++    print json_encode([
++      'success' => TRUE,
++      'data' => [
++        'levels'      => [],
++        'languages'   => [],
++        'licenses'    => [],
++        'disciplines' => [],
++        'categories'  => [],
++        'keywords'    => [],
++      ],
++    ]);
++    exit();
++  }
++
++  /**
+    * Callback Install library from external file
+    *
+    * @param string $token Security token
