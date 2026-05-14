@@ -1,0 +1,19 @@
+--- a/src/H5PDrupal/H5PDrupal.php
++++ b/src/H5PDrupal/H5PDrupal.php
+@@ -235,6 +235,16 @@
+   }
+ 
+   /**
++   * Implements resetHubOrganizationData
++   *
++   * Resets hub organization data. Added in h5p-core for hub organization
++   * features not yet implemented in this Drupal integration.
++   */
++  public function resetHubOrganizationData() {
++    // Not implemented in this Drupal integration.
++  }
++
++  /**
+    * Keeps the libraries metadata cache up-to-date.
+    */
+   public function fetchLibrariesMetadata($fetchingDisabled = FALSE) {

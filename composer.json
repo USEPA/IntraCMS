@@ -112,7 +112,7 @@
         "drupal/group_taxonomy": "^1.0",
         "drupal/groupmedia": "2.3",
         "drupal/groupmenu": "^1.0-beta3",
-        "drupal/h5p": "2.0-alpha4",
+        "drupal/h5p": "^2.0@beta",
         "drupal/hal": "^1.0 || ^2.0",
         "drupal/hierarchical_term_formatter": "1.3",
         "drupal/image_style_quality": "1.6",
@@ -133,6 +133,7 @@
         "drupal/lightning_media": "~5.0.0",
         "drupal/lightning_workflow": "~4.0.0",
         "drupal/linkit": "^7.0",
+        "drupal/masquerade": "^2.2",
         "drupal/media_entity_file_replace": "1.2",
         "drupal/media_entity_instagram": "3.0.8",
         "drupal/media_entity_twitter": "2.9",
@@ -369,7 +370,10 @@
             "drupal/h5p": {
                 "2774947: Allow disabling the reset of user data results": "https://www.drupal.org/files/issues/2020-05-14/2774947-keep-user-data-in-sync-with-content-7.patch",
                 "Drupal 9 module compatibility": "patches/h5p_module_compatibility_patch.patch",
-                "Drupal 9 widget compatibility": "patches/h5p_widget_compatibility_patch.patch"
+                "Drupal 9 widget compatibility": "patches/h5p_widget_compatibility_patch.patch",
+                "Fix missing resetHubOrganizationData method for 2.0.0-beta1": "patches/h5p-reset-hub-organization-data.patch",
+                "Add missing content-hub-metadata-cache route": "patches/h5p-content-hub-metadata-cache-route.patch",
+                "Add missing content-hub-metadata-cache controller method": "patches/h5p-content-hub-metadata-cache-controller.patch"
             },
             "drupal/image_widget_crop": {
                 "3093928: The Cropper library used is deprecated": "https://www.drupal.org/files/issues/2023-02-17/3093928-17.patch",
