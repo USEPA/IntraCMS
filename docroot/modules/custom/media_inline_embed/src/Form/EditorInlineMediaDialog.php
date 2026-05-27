@@ -22,15 +22,14 @@ class EditorInlineMediaDialog extends EditorMediaDialog {
     // editor. If we don't cache it, this data will be lost. By convention,
     // the data that the text editor sends to any dialog is in the
     // 'editor_object' key.
-    $editor_object = [];
     if (isset($form_state->getUserInput()['editor_object'])) {
       $editor_object = $form_state->getUserInput()['editor_object'];
       // The data that the text editor sends to any dialog is in
       // the 'editor_object' key.
       // @see core/modules/ckeditor/js/ckeditor.es6.js
-      $media_embed_element = $editor_object['attributes'] ?? [];
+      $media_embed_element = $editor_object['attributes'];
       $form_state->set('media_embed_element', $media_embed_element);
-      $has_caption = $editor_object['hasCaption'] ?? FALSE;
+      $has_caption = $editor_object['hasCaption'];
       $is_inline = empty($editor_object['isInline']) ? FALSE : TRUE;
       $form_state
         ->set('hasCaption', $has_caption)
@@ -58,13 +57,12 @@ class EditorInlineMediaDialog extends EditorMediaDialog {
     $allowed_attributes = [];
     if ($filter_html->status) {
       $restrictions = $filter_html->getHTMLRestrictions();
-      $allowed_attributes = $is_inline ? ($restrictions['allowed']['drupal-inline-media'] ?? []) : ($restrictions['allowed']['drupal-media'] ?? []);
+      $allowed_attributes = $is_inline ? $restrictions['allowed']['drupal-inline-media'] : $restrictions['allowed']['drupal-media'];
     }
 
-    $media_uuid = $media_embed_element['data-entity-uuid'] ?? NULL;
-    $media = $media_uuid ? $this->entityRepository->loadEntityByUuid('media', $media_uuid) : NULL;
+    $media = $this->entityRepository->loadEntityByUuid('media', $media_embed_element['data-entity-uuid']);
 
-    if ($media && ($image_field_name = $this->getMediaImageSourceFieldName($media))) {
+    if ($image_field_name = $this->getMediaImageSourceFieldName($media)) {
       // We'll want the alt text from the same language as the host.
       if (!empty($editor_object['hostEntityLangcode']) && $media->hasTranslation($editor_object['hostEntityLangcode'])) {
         $media = $media->getTranslation($editor_object['hostEntityLangcode']);
@@ -111,9 +109,8 @@ class EditorInlineMediaDialog extends EditorMediaDialog {
       '#access' => $filter_caption->status && ($filter_html->status === FALSE || !empty($allowed_attributes['data-caption'])),
     ];
 
-    $allowed_view_modes = $media_embed_filter->settings['allowed_view_modes'] ?? [];
-    $view_mode_options = $media ? array_intersect_key($this->entityDisplayRepository->getViewModeOptionsByBundle('media', $media->bundle()), $allowed_view_modes) : [];
-    $default_view_mode = static::getViewModeDefaultValue($view_mode_options, $media_embed_filter, $media_embed_element['data-view-mode'] ?? NULL);
+    $view_mode_options = array_intersect_key($this->entityDisplayRepository->getViewModeOptionsByBundle('media', $media->bundle()), $media_embed_filter->settings['allowed_view_modes']);
+    $default_view_mode = static::getViewModeDefaultValue($view_mode_options, $media_embed_filter, $media_embed_element['data-view-mode']);
 
     $form['view_mode'] = [
       '#title' => $this->t("Display"),
@@ -127,7 +124,7 @@ class EditorInlineMediaDialog extends EditorMediaDialog {
     // Store the default from the MediaEmbed filter, so that if the selected
     // view mode matches the default, we can drop the 'data-view-mode'
     // attribute.
-    $form_state->set('filter_default_view_mode', $media_embed_filter->settings['default_view_mode'] ?? 'default');
+    $form_state->set('filter_default_view_mode', $media_embed_filter->settings['default_view_mode']);
 
     if ((empty($form['alt']) || $form['alt']['#access'] === FALSE) && $form['align']['#access'] === FALSE && $form['caption']['#access'] === FALSE && $form['view_mode']['#access'] === FALSE) {
       $format = $editor->getFilterFormat();
