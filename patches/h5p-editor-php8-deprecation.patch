@@ -1,0 +1,11 @@
+--- a/vendor/h5p/h5p-editor/h5peditor.class.php
++++ b/vendor/h5p/h5p-editor/h5peditor.class.php
+@@ -373,7 +373,7 @@
+    *
+    * @return array Libraries that was requested
+    */
+-  public function getLibraryData($machineName, $majorVersion, $minorVersion, $languageCode, $prefix = '', $fileDir = '', $defaultLanguage) {
++  public function getLibraryData($machineName, $majorVersion, $minorVersion, $languageCode, $prefix = '', $fileDir = '', $defaultLanguage = '') {
+     $libraryData = new stdClass();
+ 
+     $library = $this->h5p->loadLibrary($machineName, $majorVersion, $minorVersion);
