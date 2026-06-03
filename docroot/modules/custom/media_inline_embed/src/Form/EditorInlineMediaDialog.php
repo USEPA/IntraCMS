@@ -64,7 +64,18 @@ class EditorInlineMediaDialog extends EditorMediaDialog {
     $media_uuid = $media_embed_element['data-entity-uuid'] ?? NULL;
     $media = $media_uuid ? $this->entityRepository->loadEntityByUuid('media', $media_uuid) : NULL;
 
-    if ($media && ($image_field_name = $this->getMediaImageSourceFieldName($media))) {
+    // Guard against missing or deleted media entities. If the UUID in the
+    // embed element no longer corresponds to an existing media entity,
+    // return the form early with a user-facing notice to avoid a fatal
+    // TypeError in getMediaImageSourceFieldName().
+    if (!$media instanceof \Drupal\media\MediaInterface) {
+      $form['missing_media_notice'] = [
+        '#markup' => $this->t('The embedded media could not be found. It may have been deleted. Please remove it from the editor.'),
+      ];
+      return $form;
+    }
+
+    if ($image_field_name = $this->getMediaImageSourceFieldName($media)) {
       // We'll want the alt text from the same language as the host.
       if (!empty($editor_object['hostEntityLangcode']) && $media->hasTranslation($editor_object['hostEntityLangcode'])) {
         $media = $media->getTranslation($editor_object['hostEntityLangcode']);
