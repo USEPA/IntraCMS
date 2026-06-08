@@ -1059,6 +1059,14 @@
         "quick-start": [
             "composer install",
             "php docroot/core/scripts/drupal quick-start lightning --no-interaction"
+        ],
+        "post-install-cmd": [
+            "rm -f vendor/h5p/h5p-editor/libs/fabric.js",
+            "rm -f vendor/h5p/h5p-editor-php-library/libs/fabric.js"
+        ],
+        "post-update-cmd": [
+            "rm -f vendor/h5p/h5p-editor/libs/fabric.js",
+            "rm -f vendor/h5p/h5p-editor-php-library/libs/fabric.js"
         ]
     }
 }
