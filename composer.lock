@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "08d132a0d93661c80ecf7da1e50093e3",
+    "content-hash": "7948ba62b09cda560ed984894f223687",
     "packages": [
         {
             "name": "algolia/places",
@@ -7777,44 +7777,6 @@
             }
         },
         {
-            "name": "drupal/gnode",
-            "version": "3.3.5",
-            "require": {
-                "drupal/core": "^10.3 || ^11",
-                "drupal/group": "*"
-            },
-            "type": "metapackage",
-            "extra": {
-                "drupal": {
-                    "version": "3.3.5",
-                    "datestamp": "1746519542",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "dww",
-                    "homepage": "https://www.drupal.org/user/46549"
-                },
-                {
-                    "name": "kristiaanvandeneynde",
-                    "homepage": "https://www.drupal.org/user/1345130"
-                }
-            ],
-            "description": "Enables Group functionality for the Node module",
-            "homepage": "https://www.drupal.org/project/group",
-            "support": {
-                "source": "https://git.drupalcode.org/project/group"
-            }
-        },
-        {
             "name": "drupal/google_analytics",
             "version": "4.0.3",
             "source": {
@@ -10324,42 +10286,46 @@
         },
         {
             "name": "drupal/metatag",
-            "version": "1.26.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/metatag.git",
-                "reference": "8.x-1.26"
+                "reference": "2.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.26.zip",
-                "reference": "8.x-1.26",
-                "shasum": "afa4a37422748baa2f0c35b13961438668ef3be8"
+                "url": "https://ftp.drupal.org/files/projects/metatag-2.2.0.zip",
+                "reference": "2.2.0",
+                "shasum": "b6ae4b665a49771d5139644c71cb3d5a68cb4828"
             },
             "require": {
-                "drupal/core": "^9.3 || ^10",
-                "drupal/token": "^1.0"
+                "drupal/core": "^10.3 || ^11",
+                "drupal/token": "^1.0",
+                "php": ">=8.0"
             },
             "require-dev": {
-                "drupal/devel": "^4.0 || ^5.0",
-                "drupal/hal": "^9 || ^1 || ^2",
+                "drupal/forum": "1.x-dev",
+                "drupal/hal": "^1 || ^2 || ^9",
                 "drupal/metatag_dc": "*",
                 "drupal/metatag_open_graph": "*",
                 "drupal/page_manager": "^4.0",
-                "drupal/panelizer": "^4.0",
                 "drupal/redirect": "^1.0",
-                "drupal/webprofiler": "^9 || ^10",
+                "ergebnis/composer-normalize": "*",
                 "mpyw/phpunit-patch-serializable-comparison": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.26",
-                    "datestamp": "1687856123",
+                    "version": "2.2.0",
+                    "datestamp": "1758622371",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "composer-normalize": {
+                    "indent-size": 2,
+                    "indent-style": "space"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -15280,72 +15246,6 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/webform_config_ignore",
                 "issues": "https://drupal.org/project/webform_config_ignore"
-            }
-        },
-        {
-            "name": "drupal/webform_group",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/webform_group.git",
-                "reference": "1.0.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform_group-1.0.0.zip",
-                "reference": "1.0.0",
-                "shasum": "7cd392668c53a40fb296be7bbb83be92842600cf"
-            },
-            "require": {
-                "drupal/core": "^9.4 || ^10",
-                "drupal/gnode": "*",
-                "drupal/group": "^1.0",
-                "drupal/webform": "^6.2",
-                "drupal/webform_node": "*"
-            },
-            "require-dev": {
-                "drupal/gnode": "*",
-                "drupal/group": "*",
-                "drupal/webform": "*",
-                "drupal/webform_node": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "1.0.0",
-                    "datestamp": "1696870347",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Lucas Hedding (heddn)",
-                    "homepage": "https://www.drupal.org/u/heddn",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Jacob Rockowitz (jrockowitz)",
-                    "homepage": "https://www.drupal.org/u/jrockowitz",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Contributors",
-                    "homepage": "https://git.drupalcode.org/project/webform_group/-/graphs/HEAD",
-                    "role": "Contributor"
-                }
-            ],
-            "description": "Enables the creation of webforms and questionnaires for groups.",
-            "homepage": "https://drupal.org/project/webform_group",
-            "support": {
-                "source": "https://git.drupalcode.org/project/webform_group",
-                "issues": "https://www.drupal.org/project/issues/webform_group"
             }
         },
         {
