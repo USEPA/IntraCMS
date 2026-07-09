@@ -4,6 +4,7 @@
     "description": "Project template for Drupal 10 projects with composer",
     "license": "GPL-2.0-or-later",
     "require": {
+        "php": ">=8.3",
         "algolia/places": "*",
         "bootstrap/bootstrap": "5.1.0",
         "choices/choices": "*",
@@ -262,7 +263,10 @@
     "config": {
         "process-timeout": 0,
         "allow-plugins": true,
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "php": "8.3"
+        }
     },
     "extra": {
         "drupal-scaffold": {
