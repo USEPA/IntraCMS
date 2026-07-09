@@ -1,3 +1,7 @@
+# Post-deploy Drush Job for IntraCMS (dev and stage namespaces). Launched by the
+# .postdeploy CI job after a successful deploy; CI waits for it and fails the
+# pipeline if it does not succeed. Uses a Job (not a bare Pod) so it exposes real
+# succeeded/failed status to poll.
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -28,6 +32,17 @@ spec:
             memory: "2G"
             cpu: "1"
         command: ["/bin/sh"]
+        # Post-deploy Drush wrapped in a maintenance window (fail-closed):
+        #   1) enable maintenance mode via raw SQL - no Drupal bootstrap needed,
+        #      safe even if new-code + old-schema would break a full bootstrap
+        #   2) updb : apply pending database updates
+        #   3) cim  : import configuration
+        #   4) cr   : rebuild caches
+        #   5) disable maintenance mode (only reached if every step above passed)
+        # The `&&` chain means any failure leaves the site IN maintenance and the
+        # Job exits non-zero (surfaced by the CI .postdeploy wait).
+        # NOTE: assumes no DB table prefix; `drush sql:query` does not apply
+        # Drupal's table prefix, so adjust `key_value` if a prefix is configured.
         args:
           - "-c"
           - >-
