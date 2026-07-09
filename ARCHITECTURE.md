@@ -92,6 +92,19 @@ This is the EPA IntracMS repository - a Drupal 10 intranet site based on the U.S
    - This repo defines ingress rules in `k8s/intranetcms.yml`, `k8s/intranetcms-stage.yml`
    - URLs: `dev.intranetcms-dev.aws.epa.gov`, `stage.intranetcms-stage.aws.epa.gov`
 
+### PHP Version Management
+
+PHP runtime and Composer dependency resolution are controlled across **both** repositories and must be kept in sync:
+
+- **Runtime (intranet-cms-infra)** - `docker/php/Dockerfile` sets the PHP version via `FROM php:8.3-fpm-alpine3.22` and `ENV PHP_VERSION=8.3`, which builds the `intracms-php` base image consumed by this repo's `docker/Dockerfile`.
+- **Dependency resolution (this repo)** - `composer.json` pins `config.platform.php` and enforces `require.php` to the same version, so Composer resolves packages against the deployed runtime instead of the local/live PHP.
+
+To upgrade PHP (for example, 8.3 to 8.4):
+
+1. In `intranet-cms-infra`, edit `docker/php/Dockerfile`: bump the `FROM php:<version>-fpm-alpineX.Y` tag and `ENV PHP_VERSION=<version>`, then rebuild and publish the `intracms-php` base image.
+2. In this repo, edit `composer.json`: set `config.platform.php` to `<version>` and `require.php` to `>=<version>`.
+3. Run `composer update` to re-resolve and regenerate `composer.lock` against the new platform, then rebuild the app image.
+
 ### When to Work in Each Repository
 
 **Work in intranet-cms-infra when**:
