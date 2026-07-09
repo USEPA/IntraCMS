@@ -1,13 +1,30 @@
+# =============================================================================
+# IntraCMS GitLab CI/CD pipeline
+#
+# Ordering is driven by `needs:` (a DAG), NOT by stage order. On a push to a
+# *-container* branch:
+#
+#   build:image --+--> deploy:<env> --> postdeploy:<env>  (Drush updb/cim/cr)
+#                 +--> Prisma Scan                         (parallel, non-blocking)
+#
+# A deploy therefore starts as soon as the image is built, instead of waiting
+# for the security scan. Each branch only runs the jobs whose `rules:` match:
+#   dev-container     -> dev    (namespace cms-45-dev)
+#   dev-container-10  -> dev10  (namespace cms-45-next)
+#   stage-container-1 -> stage  (namespace cms-45-stage)
+# =============================================================================
 stages:
-  - build
-  - scan
-  - deploy
-  - post-deploy
-  - dast
+  - build        # Build the Drupal application image with Kaniko.
+  - scan         # Prisma Cloud vulnerability scan (non-blocking).
+  - deploy       # Apply the k8s manifests (Deployment/Service/Ingress).
+  - post-deploy  # Run Drush updb/cim/cr as a verified k8s Job.
+  - dast         # Manual dynamic security scan (ZAP) against stage.
 
 include:
   - template: DAST.gitlab-ci.yml
 
+# DAST (Dynamic Application Security Testing) settings consumed by the
+# GitLab-managed `dast` job pulled in via the DAST.gitlab-ci.yml include above.
 variables:
   DAST_WEBSITE: "https://stage.intranetcms-stage.aws.epa.gov/"
   DAST_AUTH_URL: "https://stage.intranetcms-stage.aws.epa.gov/user/login?destination=/node/1"
@@ -22,6 +39,11 @@ variables:
   DAST_SKIP_TARGET_CHECK: "true"
 
  
+# ---------------------------------------------------------------------------
+# build:image - build the Drupal application image with Kaniko and push it to
+# the registry as intranetcms-build:<short-sha>. Runs only on the three
+# container branches; always on the dev runner (stage images are built here too).
+# ---------------------------------------------------------------------------
 build:image:
   stage: build
   rules:
@@ -65,6 +87,7 @@ Prisma Scan:
   tags:
     - twistcli
   variables:
+    # No repo checkout needed - this job only pulls and scans the image.
     GIT_STRATEGY: none
   script:
     - 'export PRISMA_CI_TOKEN=$(curl -kH "Content-Type: application/json" -d "{\"username\":\"$PRISMA_CI_USERNAME\", \"password\":\"$PRISMA_CI_PASSWORD\"}" https://prismacloud.epa.gov/api/v32.01/authenticate | jq -r .token)'
@@ -78,14 +101,22 @@ Prisma Scan:
     - rm -rf $CI_PROJECT_DIR
 
 
+# ---------------------------------------------------------------------------
+# .deploy - reusable template for the three environment deploys. Each concrete
+# job below sets only its runner tag, kube-agent context, manifest, namespace,
+# and environment. `needs: build:image` means deploys do NOT wait for the scan.
+# ---------------------------------------------------------------------------
 .deploy:
   stage: deploy
   needs:
     - "build:image"
   image: dtzar/helm-kubectl
   script:
+    # Point kubectl at the GitLab-managed cluster agent for this environment.
     - kubectl config use-context $KUBE_CONTEXT
+    # `envsubst` (gettext) expands ${CI_*} placeholders inside the manifest.
     - apk add gettext
+    # Render the manifest and apply it to the environment's namespace.
     - envsubst < $MANIFEST | kubectl apply -f - -n $NAMESPACE
 
 deploy:dev:
@@ -233,6 +264,10 @@ postdeploy:dev10:
     kubernetes:
       namespace: cms-45-next
 
+# ---------------------------------------------------------------------------
+# dast - Dynamic Application Security Testing (ZAP) against stage. Manual only;
+# overrides the GitLab-managed job from the DAST.gitlab-ci.yml include above.
+# ---------------------------------------------------------------------------
 dast:
   tags:
     - intranetcms-stg-runner
