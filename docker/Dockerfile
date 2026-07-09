@@ -1,12 +1,19 @@
-FROM registry.epa.gov/intranet-cms/intranet-cms-infra/intracms-php:latest
+ARG PHP_BASE_TAG=latest
+FROM registry.epa.gov/intranet-cms/intranet-cms-infra/intracms-php:${PHP_BASE_TAG}
 SHELL ["/bin/bash", "-c"]
 
-WORKDIR /app 
+WORKDIR /app
 
+# Dependency layer: copy only the Composer manifests and local patches first so
+# this expensive step (package downloads + patch fetches) is cached by Kaniko
+# across commits that do not change dependencies.
+COPY composer.json composer.lock ./
+COPY patches/ ./patches/
+RUN composer install --no-interaction --no-progress --prefer-dist --optimize-autoloader --no-dev
+
+# Application layer: bring in the rest of the source on top of the installed deps.
 COPY . .
 
-RUN composer clearcache
-RUN composer install --no-interaction
 RUN ./docker/scripts/bower.sh
 RUN rsync -avz --recursive --links --times --executability --delete --delete-after --exclude=docker --exclude=k8s --exclude=*web.config --exclude=docroot/sites/*/settings.php --exclude=docroot/sites/*/settings.local.php --exclude=docroot/sites/*/services.yml --exclude=docroot/tools --exclude=docroot/sites/*/files --exclude=vendor/simplesamlphp/simplesamlphp/config --exclude=vendor/simplesamlphp/simplesamlphp/metadata --exclude=vendor/simplesamlphp/simplesamlphp/cert --delay-updates * /srv/drupal-root
 RUN ln -s /srv/drupal-root/vendor/drush/drush/drush /usr/bin/drush 
