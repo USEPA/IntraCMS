@@ -39,7 +39,16 @@ Build IntranetCMS Image:
   script:
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/docker/Dockerfile --destination $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA
+    - |-
+      /kaniko/executor \
+        --context $CI_PROJECT_DIR \
+        --dockerfile $CI_PROJECT_DIR/docker/Dockerfile \
+        --build-arg PHP_BASE_TAG=${PHP_BASE_TAG:-latest} \
+        --cache=true \
+        --cache-repo=$CI_REGISTRY_IMAGE/cache \
+        --cache-ttl=336h \
+        --cache-copy-layers=true \
+        --destination $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA
 
 Prisma Scan:
   stage: prisma scan
