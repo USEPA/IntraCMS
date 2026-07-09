@@ -22,7 +22,7 @@ variables:
   DAST_SKIP_TARGET_CHECK: "true"
 
  
-Build IntranetCMS Image:
+build:image:
   stage: build
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev-container" || $CI_COMMIT_BRANCH == "stage-container-1" || $CI_COMMIT_BRANCH == "dev-container-10"'
@@ -46,7 +46,11 @@ Build IntranetCMS Image:
         --destination $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA
 
 Prisma Scan:
-  stage: prisma scan
+  stage: scan
+  needs:
+    - "build:image"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev-container" || $CI_COMMIT_BRANCH == "stage-container-1" || $CI_COMMIT_BRANCH == "dev-container-10"'
   tags:
     - twistcli
   variables:
