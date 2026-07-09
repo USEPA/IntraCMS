@@ -33,7 +33,13 @@ build:image:
     entrypoint: [""]
   script:
     - mkdir -p /kaniko/.docker
+    # Registry auth so Kaniko can pull the PHP base image and push the result.
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    # Build + push. The caching flags let unchanged layers (notably the Composer
+    # dependency layer) restore from the registry cache instead of rebuilding:
+    #   --build-arg PHP_BASE_TAG : pin the PHP base tag (set a CI var to override 'latest')
+    #   --cache/--cache-repo/--cache-ttl : enable + locate the layer cache (kept 14 days)
+    #   --cache-copy-layers : also cache COPY layers (e.g. the composer.json/lock copy)
     - |-
       /kaniko/executor \
         --context $CI_PROJECT_DIR \
@@ -45,6 +51,11 @@ build:image:
         --cache-copy-layers=true \
         --destination $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA
 
+# ---------------------------------------------------------------------------
+# Prisma Scan - Prisma Cloud (twistcli) vulnerability scan of the built image.
+# `needs: build:image` runs it in PARALLEL with the deploy, and
+# `allow_failure: true` (below) means findings never block a deployment.
+# ---------------------------------------------------------------------------
 Prisma Scan:
   stage: scan
   needs:
