@@ -124,13 +124,52 @@ deploy:stage:
 
 
 
+# ---------------------------------------------------------------------------
+# .postdeploy - run post-deploy Drush as a Kubernetes Job and WAIT for it, so a
+# failed DB update / config import fails the pipeline. Previously this used
+# `kubectl create` on a bare Pod and returned immediately, hiding Drush errors.
+# The Drush Job itself (k8s/drush*.yml) toggles maintenance mode around updb/cim.
+# ---------------------------------------------------------------------------
 .postdeploy:
   stage: post-deploy
   image: dtzar/helm-kubectl
   script:
+    # Point kubectl at the GitLab-managed cluster agent for this environment.
     - kubectl config use-context $KUBE_CONTEXT
-    - apk add gettext
-    - envsubst < $MANIFEST | kubectl create -f - -n $NAMESPACE
+    - apk add --no-cache gettext
+    - |-
+      set -eu
+      # Create the Drush Job (generateName gives each run a unique name) and
+      # capture its resource name (e.g. "job.batch/drush-abc12") for polling.
+      JOB=$(envsubst < "$MANIFEST" | kubectl create -f - -n "$NAMESPACE" -o name)
+      JOB_NAME=${JOB##*/}
+      echo "Created $JOB in namespace $NAMESPACE"
+      # Bounded wait (the Job has activeDeadlineSeconds: 1800); fail loudly if Drush does not succeed.
+      deadline=$(( $(date +%s) + 1860 ))
+      # Poll the Job status until it succeeds, fails, or we pass the deadline.
+      while true; do
+        succeeded=$(kubectl get "$JOB" -n "$NAMESPACE" -o jsonpath='{.status.succeeded}' 2>/dev/null || true)
+        failed=$(kubectl get "$JOB" -n "$NAMESPACE" -o jsonpath='{.status.failed}' 2>/dev/null || true)
+        # Success: Drush finished cleanly; stop waiting.
+        if [ "$succeeded" = "1" ]; then
+          break
+        fi
+        if [ -n "$failed" ] && [ "$failed" != "0" ]; then
+          echo "Drush Job $JOB_NAME failed:"
+          kubectl logs "job/$JOB_NAME" -n "$NAMESPACE" --all-containers --tail=-1 || true
+          kubectl describe "$JOB" -n "$NAMESPACE" || true
+          exit 1
+        fi
+        if [ "$(date +%s)" -ge "$deadline" ]; then
+          echo "Timed out waiting for Drush Job $JOB_NAME."
+          kubectl logs "job/$JOB_NAME" -n "$NAMESPACE" --all-containers --tail=-1 || true
+          exit 1
+        fi
+        sleep 10
+      done
+      echo "Drush Job $JOB_NAME completed successfully:"
+      kubectl logs "job/$JOB_NAME" -n "$NAMESPACE" --all-containers --tail=-1 || true
+      kubectl delete "$JOB" -n "$NAMESPACE" --ignore-not-found
 
 postdeploy:stage:
   extends: .postdeploy

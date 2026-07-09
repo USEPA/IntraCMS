@@ -1,29 +1,44 @@
-apiVersion: v1
-kind: Pod
+apiVersion: batch/v1
+kind: Job
 metadata:
   generateName: drush-
   labels:
     purpose: clear-drupal-cache
 spec:
-  volumes:
-  - name: intranetcms-next-storage
-    persistentVolumeClaim:
-      claimName: intranetcms-next-efs-pvc
-  containers:
-  - name: intranetcms
-    image: registry.epa.gov/intranet-cms/intracms/intranetcms-build:$CI_COMMIT_SHORT_SHA
-    resources:
-      requests:
-        memory: "1G"
-        cpu: ".5"
-      limits:
-        memory: "2G"
-        cpu: "1"
-    command: ["/bin/sh"]
-    args: ["-c", "/srv/drupal-root/vendor/drush/drush/drush @intra updb --yes && /srv/drupal-root/vendor/drush/drush/drush @intra cr && /srv/drupal-root/vendor/drush/drush/drush @intra cim --yes"]
-    volumeMounts:
-    - name: intranetcms-next-storage
-      mountPath: /public
-  imagePullSecrets:
-    - name: glcr-auth
-  restartPolicy: Never
+  # Fail fast (no retries) and cap the run so a stuck deploy step cannot hang.
+  backoffLimit: 0
+  activeDeadlineSeconds: 1800
+  template:
+    metadata:
+      labels:
+        purpose: clear-drupal-cache
+    spec:
+      volumes:
+      - name: intranetcms-next-storage
+        persistentVolumeClaim:
+          claimName: intranetcms-next-efs-pvc
+      containers:
+      - name: intranetcms
+        image: registry.epa.gov/intranet-cms/intracms/intranetcms-build:$CI_COMMIT_SHORT_SHA
+        resources:
+          requests:
+            memory: "1G"
+            cpu: ".5"
+          limits:
+            memory: "2G"
+            cpu: "1"
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - >-
+            /srv/drupal-root/vendor/drush/drush/drush @intra sql:query "REPLACE INTO key_value (collection, name, value) VALUES ('state', 'system.maintenance_mode', 'b:1;')"
+            && /srv/drupal-root/vendor/drush/drush/drush @intra updb --yes
+            && /srv/drupal-root/vendor/drush/drush/drush @intra cim --yes
+            && /srv/drupal-root/vendor/drush/drush/drush @intra cr
+            && /srv/drupal-root/vendor/drush/drush/drush @intra sql:query "DELETE FROM key_value WHERE collection = 'state' AND name = 'system.maintenance_mode'"
+        volumeMounts:
+        - name: intranetcms-next-storage
+          mountPath: /public
+      imagePullSecrets:
+        - name: glcr-auth
+      restartPolicy: Never
