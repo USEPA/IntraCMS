@@ -14,11 +14,13 @@
 #   stage-container-1 -> stage  (namespace cms-45-stage)
 # =============================================================================
 stages:
-  - build        # Build the Drupal application image with Kaniko.
-  - scan         # Prisma Cloud vulnerability scan (non-blocking).
-  - deploy       # Apply the k8s manifests (Deployment/Service/Ingress).
-  - post-deploy  # Run Drush updb/cim/cr as a verified k8s Job.
-  - dast         # Manual dynamic security scan (ZAP) against stage.
+  - build             # Build the Drupal application image with Kaniko.
+  - scan              # Prisma Cloud vulnerability scan (non-blocking).
+  - deploy            # Apply the k8s manifests (Deployment/Service/Ingress).
+  - post-deploy       # Run Drush updb/cim/cr as a verified k8s Job.
+  - prod-deploy       # Manually promote the stage-validated image to production.
+  - prod-post-deploy  # Run the verified Drush Job in production.
+  - dast              # Manual dynamic security scan (ZAP) against stage.
 
 include:
   - template: DAST.gitlab-ci.yml
@@ -263,6 +265,60 @@ postdeploy:dev10:
     name: dev10
     kubernetes:
       namespace: cms-45-next
+
+# ===========================================================================
+# PRODUCTION PROMOTION (manual, image-promotion model)
+#
+# Prod is NOT built or deployed from its own branch. A successful stage run
+# (deploy:stage + its verified Drush) unlocks a manual deploy:prod that promotes
+# the EXACT SAME intranetcms-build:<sha> image stage validated - no rebuild, so
+# no drift. After stage passes the pipeline shows "blocked": that is the
+# ready-to-promote state; play deploy:prod to release to production.
+# ===========================================================================
+
+# deploy:prod - manual promotion. `needs: postdeploy:stage` means it only
+# becomes available once stage (including its Drush Job) has fully succeeded.
+deploy:prod:
+  extends: .deploy
+  stage: prod-deploy
+  needs:
+    - "postdeploy:stage"
+  rules:
+    # Promotion runs from the stage pipeline and requires a human to play it.
+    - if: '$CI_COMMIT_BRANCH == "stage-container-1"'
+      when: manual
+  tags:
+    - intranetcms-prod-runner
+  variables:
+    # TODO: confirm the prod agent's registered context name (GitLab > Operate >
+    # Kubernetes) and that the agent authorizes the IntraCMS project.
+    KUBE_CONTEXT: intranet-cms/intranetcms-k8s-resources:intranetcms-prod-k8s-agent
+    MANIFEST: k8s/intranetcms-prod.yml
+    NAMESPACE: cms-45-prod
+  environment:
+    name: prod
+    kubernetes:
+      namespace: cms-45-prod
+
+# postdeploy:prod - runs the verified Drush Job in prod right after deploy:prod
+# succeeds (reuses the hardened .postdeploy template + k8s/drush.yml).
+postdeploy:prod:
+  extends: .postdeploy
+  stage: prod-post-deploy
+  needs:
+    - "deploy:prod"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "stage-container-1"'
+  tags:
+    - intranetcms-prod-runner
+  variables:
+    KUBE_CONTEXT: intranet-cms/intranetcms-k8s-resources:intranetcms-prod-k8s-agent
+    MANIFEST: k8s/drush.yml
+    NAMESPACE: cms-45-prod
+  environment:
+    name: prod
+    kubernetes:
+      namespace: cms-45-prod
 
 # ---------------------------------------------------------------------------
 # dast - Dynamic Application Security Testing (ZAP) against stage. Manual only;
