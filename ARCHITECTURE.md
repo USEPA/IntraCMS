@@ -30,21 +30,19 @@ flowchart TD
 
 **Repositories at a glance:**
 - **IntraCMS** (this repo; GitHub source mirrored to GitLab `intranet-cms/intracms`) - Drupal 10 application, container build (`docker/Dockerfile`), Kubernetes manifests (`k8s/`), and CI/CD pipeline (`.gitlab-ci.yml`).
-- **intranet-cms-infra** - Terraform for shared dev/stage EKS infrastructure (clusters, the `cms-45-dev`/`cms-45-next`/`cms-45-stage` namespaces, EFS, ElastiCache Memcached, S3 + IRSA, GitLab Kubernetes agents) and the build of the shared PHP 8.3 base image (`intracms-php`).
+- **intranet-cms-infra** - Terraform for the shared non-prod EKS cluster(s), the S3 bucket + IRSA, and the build of the shared PHP 8.3 base image (`intracms-php`).
 - **intranetcms-k8s-resources** - Terraform for the production environment: namespace, Fargate profile, EFS volume, Memcached cluster, and the production GitLab agent (runner tag `intranetcms-prod-runner`).
-- **intracms-infra-dev** and **cms-k8s-stg-resources** (GitLab projects) - host the GitLab Kubernetes agents the pipeline targets for dev/dev10 and stage respectively (see Integration Points below).
+- **intracms-infra-dev** (dev/dev10) and **cms-k8s-stg-resources** (stage) - per-environment Terraform that provisions each environment's namespace, EFS/PVC, Memcached, and GitLab agent; the pipeline deploys through those agents (see Integration Points below).
 
 ### Infrastructure Repository (intranet-cms-infra)
 **Location**: `~/Repositories/intranet-cms-infra`
 
 **What it provides**:
-- EKS cluster `cms-shared-dev00` (primary; hosts the `cms-45-dev` and `cms-45-next` namespaces); a secondary `cms-shared-dev01` cluster is defined in Terraform but currently disabled
-- Kubernetes namespaces: `cms-45-dev`, `cms-45-next`, `cms-45-stage`
-- AWS S3 bucket: `intranet-cms-dev` with IAM roles for pod access (IRSA)
-- EFS file systems with access points for Drupal files
-- ElastiCache Memcached cluster for Drupal caching
-- GitLab Kubernetes agents for CI/CD deployment
-- PHP 8.3 base container image with NGINX
+- Shared EKS cluster(s) for the non-prod environments
+- The PHP 8.3 + NGINX base container image (`intracms-php`) that the app image is built `FROM`
+- AWS S3 bucket `intranet-cms-dev` with IAM roles for pod access (IRSA)
+
+Note: the per-environment Kubernetes namespaces, EFS volumes/PVCs, Memcached clusters, and GitLab agents are each provisioned by the per-environment resources repos - `intracms-infra-dev` (dev/dev10), `cms-k8s-stg-resources` (stage), and `intranetcms-k8s-resources` (prod) - not by this repo.
 
 ### Application Repository (IntraCMS)
 **Location**: `~/Repositories/IntraCMS` (THIS REPOSITORY)
@@ -409,6 +407,13 @@ namespace via the production GitLab agent, then `postdeploy:prod` runs the same
 verified Drush Job. Because the artifact and Drush steps are identical to stage and
 only environment config differs, a green stage is a strong predictor of prod.
 After stage passes, the pipeline shows "blocked" - that is the ready-to-promote state.
+
+**Prerequisites:** the production resources must already be applied from the
+`intranetcms-k8s-resources` repo (namespace `cms-45-prod`, the EFS PVC, the
+`glcr-auth` pull secret, and the production GitLab agent) before a promotion can
+succeed. The TLS secret `tls-devsecops-shared-webapp` is provided by the platform
+(DSO), not by these repos' Terraform, so it must already exist in `cms-45-prod`
+with a certificate covering `prod.intranetcms-prod.aws.epa.gov`.
 
 ### Branch Strategy
 - `dev-container` → Development deployment
