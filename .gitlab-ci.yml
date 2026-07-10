@@ -290,9 +290,11 @@ deploy:prod:
   tags:
     - intranetcms-prod-runner
   variables:
-    # TODO: confirm the prod agent's registered context name (GitLab > Operate >
-    # Kubernetes) and that the agent authorizes the IntraCMS project.
-    KUBE_CONTEXT: intranet-cms/intranetcms-k8s-resources:intranetcms-prod-k8s-agent
+    # The prod resources repo lives in the `production/intranetcms-production`
+    # GitLab group (not `intranet-cms/` like dev/stage). TODO: confirm the agent's
+    # registered name segment (GitLab > Operate > Kubernetes) and that the agent
+    # authorizes the IntraCMS project.
+    KUBE_CONTEXT: production/intranetcms-production/intranetcms-k8s-resources:intranetcms-prod-k8s-agent
     MANIFEST: k8s/intranetcms-prod.yml
     NAMESPACE: cms-45-prod
   environment:
@@ -312,7 +314,8 @@ postdeploy:prod:
   tags:
     - intranetcms-prod-runner
   variables:
-    KUBE_CONTEXT: intranet-cms/intranetcms-k8s-resources:intranetcms-prod-k8s-agent
+    # See deploy:prod for the context-path / agent-name confirmation note.
+    KUBE_CONTEXT: production/intranetcms-production/intranetcms-k8s-resources:intranetcms-prod-k8s-agent
     MANIFEST: k8s/drush.yml
     NAMESPACE: cms-45-prod
   environment:
