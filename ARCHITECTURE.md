@@ -337,6 +337,7 @@ The application deploys across multiple environments:
 - **dev** - Development environment
 - **dev10** - Drupal 10 testing environment  
 - **stage** - Staging environment
+- **prod** - Production environment (`cms-45-prod`, host `prod.intranetcms-prod.aws.epa.gov`), released by manual promotion from the stage pipeline
 
 ### Key Kubernetes Resources
 ```yaml
@@ -392,9 +393,22 @@ as soon as the image is built rather than waiting for the security scan:
    the manifests to the environment's namespace
 4. **post-deploy** (`postdeploy:dev` / `postdeploy:dev10` / `postdeploy:stage`) -
    run the verified Drush Job (see Post-Deployment Tasks)
-5. **dast** - Dynamic Application Security Testing (ZAP), manual
+5. **prod-deploy** (`deploy:prod`) - manual promotion of the stage-validated
+   image to production (see Production Promotion below)
+6. **prod-post-deploy** (`postdeploy:prod`) - run the verified Drush Job in prod
+7. **dast** - Dynamic Application Security Testing (ZAP), manual
 
 Each branch runs only the jobs whose `rules:` match it (see Branch Strategy).
+
+### Production Promotion
+Production uses an **image-promotion** model rather than a prod branch. `deploy:prod`
+is a manual job that `needs: postdeploy:stage`, so it only becomes available after
+stage (including its Drush Job) fully succeeds. When played, it deploys the exact
+same `intranetcms-build:<sha>` image that stage validated into the `cms-45-prod`
+namespace via the production GitLab agent, then `postdeploy:prod` runs the same
+verified Drush Job. Because the artifact and Drush steps are identical to stage and
+only environment config differs, a green stage is a strong predictor of prod.
+After stage passes, the pipeline shows "blocked" - that is the ready-to-promote state.
 
 ### Branch Strategy
 - `dev-container` → Development deployment
