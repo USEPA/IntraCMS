@@ -4,13 +4,14 @@ status: true
 dependencies:
   config:
     - group.type.policy
+    - user.role.authenticated
 id: policy-member
 label: Member
 weight: -100
-internal: true
-audience: member
+admin: false
+scope: insider
+global_role: authenticated
 group_type: policy
-permissions_ui: true
 permissions:
   - 'access group_media overview'
   - 'access group_menu overview'

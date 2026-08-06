@@ -4,16 +4,17 @@ status: true
 dependencies:
   config:
     - group.type.web_area
+    - user.role.book_editor
   enforced:
     config:
       - user.role.book_editor
 id: web_area-8252b8ffb
 label: 'Book Editor'
 weight: -5
-internal: true
-audience: outsider
+admin: false
+scope: outsider
+global_role: book_editor
 group_type: web_area
-permissions_ui: false
 permissions:
   - 'create group_node:book entity'
   - 'delete any group_node:book entity'

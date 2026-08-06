@@ -4,13 +4,14 @@ status: true
 dependencies:
   config:
     - group.type.web_area
+    - user.role.authenticated
 id: web_area-member
 label: Member
 weight: -100
-internal: true
-audience: member
+admin: false
+scope: insider
+global_role: authenticated
 group_type: web_area
-permissions_ui: true
 permissions:
   - 'access group_media overview'
   - 'access group_menu overview'
@@ -98,6 +99,7 @@ permissions:
   - 'update any group_node:landing_page content'
   - 'update any group_node:landing_page entity'
   - 'update any group_node:page content'
+  - 'update any group_node:page entity'
   - 'update any group_node:quiz content'
   - 'update any group_node:quiz entity'
   - 'update any group_node:staff_member content'

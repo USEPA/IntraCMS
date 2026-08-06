@@ -4,13 +4,14 @@ status: true
 dependencies:
   config:
     - group.type.communications
+    - user.role.authenticated
 id: communications-member
 label: Member
 weight: -100
-internal: true
-audience: member
+admin: false
+scope: insider
+global_role: authenticated
 group_type: communications
-permissions_ui: true
 permissions:
   - 'access group_media overview'
   - 'access group_menu overview'

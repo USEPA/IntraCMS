@@ -4,13 +4,14 @@ status: true
 dependencies:
   config:
     - group.type.policy
+    - user.role.authenticated
 id: policy-outsider
 label: Outsider
 weight: -101
-internal: true
-audience: outsider
+admin: false
+scope: outsider
+global_role: authenticated
 group_type: policy
-permissions_ui: true
 permissions:
   - 'view group'
   - 'view group_media:document entity'

@@ -4,16 +4,17 @@ status: true
 dependencies:
   config:
     - group.type.form
+    - user.role.system_editor
   enforced:
     config:
       - user.role.system_editor
 id: form-30cda0a61
 label: 'System Editor'
 weight: -7
-internal: true
-audience: outsider
+admin: false
+scope: outsider
+global_role: system_editor
 group_type: form
-permissions_ui: false
 permissions:
   - 'access group_media overview'
   - 'access group_menu overview'

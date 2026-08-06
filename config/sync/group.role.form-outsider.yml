@@ -4,13 +4,14 @@ status: true
 dependencies:
   config:
     - group.type.form
+    - user.role.authenticated
 id: form-outsider
 label: Outsider
 weight: -101
-internal: true
-audience: outsider
+admin: false
+scope: outsider
+global_role: authenticated
 group_type: form
-permissions_ui: true
 permissions:
   - 'create group_media:remote_video entity'
   - 'delete own group_media:remote_video entity'
