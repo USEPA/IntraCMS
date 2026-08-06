@@ -4,16 +4,17 @@ status: true
 dependencies:
   config:
     - group.type.web_area
+    - user.role.system_editor
   enforced:
     config:
       - user.role.system_editor
 id: web_area-30cda0a61
 label: 'System Editor'
 weight: -6
-internal: true
-audience: outsider
+admin: false
+scope: outsider
+global_role: system_editor
 group_type: web_area
-permissions_ui: false
 permissions:
   - 'access group_media overview'
   - 'access group_menu overview'
