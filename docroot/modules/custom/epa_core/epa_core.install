@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Emergency deployment hotfix for Group module upgrade tracking.
+ */
+
+/**
+ * Implements hook_update_N().
+ *
+ * Emergency hotfix to completely purge the leftover 1.x patch definition.
+ */
+function epa_core_update_9999() {
+  $database = \Drupal::database();
+  
+  // 1. Clear the exact database row causing the __PHP_Incomplete_Class crash
+  $database->query("DELETE FROM {key_value} WHERE name = 'group_content.field_storage_definitions';");
+  
+  // 2. Drop the leftover patch tables/columns just in case they are still lingering
+  $tables_to_drop = ['group_content__entity_id_str', 'group_content_revision__entity_id_str'];
+  foreach ($tables_to_drop as $table) {
+    if ($database->schema()->tableExists($table)) {
+      $database->schema()->dropTable($table);
+    }
+  }
+  
+  // 3. Clear all discovery memory registers (wipes both DB and Memcache caches)
+  \Drupal::service('cache.discovery')->invalidateAll();
+  
+  return 'Group 1.x patch artifacts completely purged. Schema unblocked!';
+}
+
+/**
+ * Implements hook_update_dependencies().
+ *
+ * Force this cleanup hook to execute BEFORE the group module updates run.
+ */
+function epa_core_update_dependencies() {
+  // Tells Drupal: Do not run any 'group' module updates until our hook 9999 finishes
+  $dependencies['group'] = [
+    'epa_core' => 9999,
+  ];
+  return $dependencies;
+}
