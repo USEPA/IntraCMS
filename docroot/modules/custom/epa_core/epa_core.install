@@ -1,44 +1,42 @@
 <?php
 
 /**
- * @file
- * Emergency deployment hotfix for Group module upgrade tracking.
- */
-
-/**
- * Implements hook_update_N().
+ * Implements hook_update_dependencies().
  *
- * Emergency hotfix to completely purge the leftover 1.x patch definition.
+ * Forces our emergency cleanup to run BEFORE the group module updates trigger.
  */
-function epa_core_update_9999() {
-  $database = \Drupal::database();
-  
-  // 1. Clear the exact database row causing the __PHP_Incomplete_Class crash
-  $database->query("DELETE FROM {key_value} WHERE name = 'group_content.field_storage_definitions';");
-  
-  // 2. Drop the leftover patch tables/columns just in case they are still lingering
-  $tables_to_drop = ['group_content__entity_id_str', 'group_content_revision__entity_id_str'];
-  foreach ($tables_to_drop as $table) {
-    if ($database->schema()->tableExists($table)) {
-      $database->schema()->dropTable($table);
-    }
-  }
-  
-  // 3. Clear all discovery memory registers (wipes both DB and Memcache caches)
-  \Drupal::service('cache.discovery')->invalidateAll();
-  
-  return 'Group 1.x patch artifacts completely purged. Schema unblocked!';
+function epa_core_update_dependencies() {
+  $dependencies['group'] = [
+    'my_module' => 9999, // Run hook_update_9999 before group_update_9203
+  ];
+  return $dependencies;
 }
 
 /**
- * Implements hook_update_dependencies().
- *
- * Force this cleanup hook to execute BEFORE the group module updates run.
+ * Emergency deployment hotfix to execute the core table rename early.
  */
-function epa_core_update_dependencies() {
-  // Tells Drupal: Do not run any 'group' module updates until our hook 9999 finishes
-  $dependencies['group'] = [
-    'epa_core' => 9999,
+function epa_core_update_9999() {
+  $schema = \Drupal::database()->schema();
+
+  // Map out the exact core table conversions group_update_9203 wants to do
+  $tables_to_rename = [
+    'group_content' => 'group_relationship',
+    'group_content_field_data' => 'group_relationship_field_data',
+    'group_content_field_revision' => 'group_relationship_field_revision',
+    'group_content_revision' => 'group_relationship_revision',
   ];
-  return $dependencies;
+
+  $renamed_count = 0;
+  foreach ($tables_to_rename as $old_table => $new_table) {
+    // If the old table exists and the new one doesn't yet, rename it natively
+    if ($schema->tableExists($old_table) && !$schema->tableExists($new_table)) {
+      $schema->renameTable($old_table, $new_table);
+      $renamed_count++;
+    }
+  }
+
+  // Force invalidate discovery caches so the system registers the table paths
+  \Drupal::service('cache.discovery')->invalidateAll();
+
+  return "🟢 SUCCESS: Successfully renamed {$renamed_count} core group tables early. Path unblocked!";
 }
