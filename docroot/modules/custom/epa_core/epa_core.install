@@ -2,43 +2,44 @@
 
 /**
  * @file
- * Emergency deployment schema cleanup configuration.
+ * Emergency deployment schema resolution for Group 2.x migration.
  */
 
 /**
  * Implements hook_update_dependencies().
  *
- * Forces our emergency cleanup to run BEFORE the group module updates trigger.
+ * Intercepts Drush and forces our safe rename to run BEFORE group_update_9203.
  */
 function epa_core_update_dependencies() {
-  // Tells Drupal: Do not run group_update_9203 until epa_core_update_9001 finishes
   $dependencies['group'][9203] = [
-    'epa_core' => 9001,
+    'epa_core' => 9999,
   ];
   return $dependencies;
 }
 
 /**
- * Step 1: Execute the core table rename early to unblock group_update_9203.
+ * Emergency hotfix to execute the core table renames safely using Core Schema APIs.
  */
-function epa_core_update_9001() {
+function epa_core_update_9999() {
   $schema = \Drupal::database()->schema();
   
+  // Map out the exact structural shifts group_update_9203 is failing to reach
   $tables_to_rename = [
     'group_content' => 'group_relationship',
     'group_content_field_data' => 'group_relationship_field_data',
-    'group_content_field_revision' => 'group_relationship_field_revision',
-    'group_content_revision' => 'group_relationship_revision',
   ];
 
-  $renamed = 0;
+  $renamed_count = 0;
   foreach ($tables_to_rename as $old_table => $new_table) {
+    // Defensive Guard: Only rename if the old table exists and the new one doesn't
     if ($schema->tableExists($old_table) && !$schema->tableExists($new_table)) {
       $schema->renameTable($old_table, $new_table);
-      $renamed++;
+      $renamed_count++;
     }
   }
 
+  // Flush the discovery container registers completely
   \Drupal::service('cache.discovery')->invalidateAll();
-  return "Successfully renamed {$renamed} group tables early.";
+  
+  return "🟢 SUCCESS: Safely renamed {$renamed_count} core data tables early. Path unblocked!";
 }
