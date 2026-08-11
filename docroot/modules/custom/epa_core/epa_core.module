@@ -5,6 +5,33 @@
  * Contains misc features for EPA intranet.
  */
 
+<?php
+
+/**
+ * @file
+ * Primary module runtime hooks for epa_core.
+ */
+
+// Force an emergency execution check right when the file is loaded by the container
+if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === 'update') {
+  $ram = round(memory_get_usage(true) / 1024 / 1024);
+  error_log("🔍 HARD BREADCRUMB [BOOT]: Drush update execution has hit the epa_core module file! RAM: {$ram}MB");
+
+  // Check if the database engine itself is reachable before the schema validates
+  try {
+    $database = \Drupal::database();
+    $schema = $database->schema();
+    
+    $has_old_table = $schema->tableExists('group_content_field_data') ? 'YES' : 'NO';
+    $has_new_table = $schema->tableExists('group_relationship_field_data') ? 'YES' : 'NO';
+    
+    error_log("🔍 HARD BREADCRUMB [DB]: Physical tables -> Old Data: {$has_old_table}, New Data: {$has_new_table}");
+  } 
+  catch (\Exception $e) {
+    error_log("🔍 HARD BREADCRUMB [DB CRASH]: Database layer unreachable: " . $e->getMessage());
+  }
+}
+
 
 /**
  * Implements hook_views_plugins_style_alter() to show empty calendar when not events exist.
