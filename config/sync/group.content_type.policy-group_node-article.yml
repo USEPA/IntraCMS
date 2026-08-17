@@ -1,0 +1,18 @@
+uuid: bcd39fc2-8bdb-47d7-8e10-544827d15790
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.policy
+    - node.type.article
+  module:
+    - gnode
+    - node
+id: policy-group_node-article
+group_type: policy
+content_plugin: 'group_node:article'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false
+  node_form_group_menu: 1
