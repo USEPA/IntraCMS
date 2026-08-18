@@ -14,12 +14,13 @@ theme: epa_intranet_2
 region: sidebar_first
 weight: 0
 provider: null
-plugin: 'group_content_menu:web_area_menu'
+plugin: 'group_content_menu'
 settings:
-  id: 'group_content_menu:web_area_menu'
+  id: 'group_content_menu'
   label: 'Web Area Menu'
   label_display: '0'
   provider: group_content_menu
+    group_content_menu_type: web_area_menu
   context_mapping:
     group: '@group.group_route_context:group'
   level: 1
