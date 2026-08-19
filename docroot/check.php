@@ -9,34 +9,30 @@ $kernel = DrupalKernel::createFromRequest($request, $autoloader, 'prod');
 $kernel->boot();
 $kernel->preHandle($request);
 
-// 2. Run the Sanity Check
-$search_terms = ['web_area_menu', 'group_content_menu'];
-$found_configs = [];
+echo "<h2>[DEEP SCAN] Searching all configuration data...</h2>";
 
 try {
     $database = \Drupal::database();
-    foreach ($search_terms as $term) {
-        $query = $database->select('config', 'c')
-            ->fields('c', ['name'])
-            ->condition('name', '%' . $database->escapeLike($term) . '%', 'LIKE')
-            ->execute();
-            
-        while ($row = $query->fetchAssoc()) {
-            $found_configs[] = $row['name'];
-        }
+    
+    // Scan the actual 'data' blob column for the hidden string
+    $query = $database->select('config', 'c')
+        ->fields('c', ['name', 'data'])
+        ->condition('data', '%web_area_menu%', 'LIKE')
+        ->execute();
+        
+    $found = false;
+    while ($row = $query->fetchAssoc()) {
+        $found = true;
+        echo "<p style='color: #d35400;'>Found reference inside configuration object: <strong>" . htmlspecialchars($row['name']) . "</strong></p>";
     }
-
-    $found_configs = array_unique($found_configs);
-
-    if (!empty($found_configs)) {
-        echo "<h3>[SANITY CHECK] Rogue configuration items found:</h3><ul>";
-        foreach ($found_configs as $config_name) {
-            echo "<li><strong>" . htmlspecialchars($config_name) . "</strong></li>";
-        }
-        echo "</ul><p>It is safe to run purge.php now.</p>";
+    
+    if (!$found) {
+        echo "<p style='color: green;'><strong>No references found in the database config table.</strong></p>";
+        echo "<p>This means the rogue plugin string lives exclusively inside a file in your <code>config/sync/</code> folder. Drupal is reading it from the file system during the import phase and crashing.</p>";
     } else {
-        echo "<p style='color: green;'><strong>[SANITY CHECK] Clean! No legacy matching configuration found.</strong></p>";
+        echo "<p><em>Once you know the name above, we can target and clean it up.</em></p>";
     }
+
 } catch (\Exception $e) {
     echo "Error: " . $e->getMessage();
 }
