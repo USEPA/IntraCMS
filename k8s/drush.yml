@@ -1,29 +1,59 @@
-apiVersion: v1
-kind: Pod
+# Post-deploy Drush Job for IntraCMS (dev and stage namespaces). Launched by the
+# .postdeploy CI job after a successful deploy; CI waits for it and fails the
+# pipeline if it does not succeed. Uses a Job (not a bare Pod) so it exposes real
+# succeeded/failed status to poll.
+apiVersion: batch/v1
+kind: Job
 metadata:
   generateName: drush-
   labels:
     purpose: clear-drupal-cache
 spec:
-  volumes:
-  - name: intranetcms-storage
-    persistentVolumeClaim:
-      claimName: intranetcms-efs-pvc
-  containers:
-  - name: intranetcms
-    image: registry.epa.gov/intranet-cms/intracms/intranetcms-build:$CI_COMMIT_SHORT_SHA
-    resources:
-      requests:
-        memory: "1G"
-        cpu: ".5"
-      limits:
-        memory: "2G"
-        cpu: "1"
-    command: ["/bin/sh"]
-    args: ["-c", "/srv/drupal-root/vendor/drush/drush/drush @intra updb --yes && /srv/drupal-root/vendor/drush/drush/drush @intra cr && /srv/drupal-root/vendor/drush/drush/drush @intra cim --yes"]
-    volumeMounts:
-    - name: intranetcms-storage
-      mountPath: /public
-  imagePullSecrets:
-    - name: glcr-auth
-  restartPolicy: Never
+  # Fail fast (no retries) and cap the run so a stuck deploy step cannot hang.
+  backoffLimit: 0
+  activeDeadlineSeconds: 1800
+  template:
+    metadata:
+      labels:
+        purpose: clear-drupal-cache
+    spec:
+      volumes:
+      - name: intranetcms-storage
+        persistentVolumeClaim:
+          claimName: intranetcms-efs-pvc
+      containers:
+      - name: intranetcms
+        image: registry.epa.gov/intranet-cms/intracms/intranetcms-build:$CI_COMMIT_SHORT_SHA
+        resources:
+          requests:
+            memory: "1G"
+            cpu: ".5"
+          limits:
+            memory: "2G"
+            cpu: "1"
+        command: ["/bin/sh"]
+        # Post-deploy Drush wrapped in a maintenance window (fail-closed):
+        #   1) enable maintenance mode via raw SQL - no Drupal bootstrap needed,
+        #      safe even if new-code + old-schema would break a full bootstrap
+        #   2) updb : apply pending database updates
+        #   3) cim  : import configuration
+        #   4) cr   : rebuild caches
+        #   5) disable maintenance mode (only reached if every step above passed)
+        # The `&&` chain means any failure leaves the site IN maintenance and the
+        # Job exits non-zero (surfaced by the CI .postdeploy wait).
+        # NOTE: assumes no DB table prefix; `drush sql:query` does not apply
+        # Drupal's table prefix, so adjust `key_value` if a prefix is configured.
+        args:
+          - "-c"
+          - >-
+            /srv/drupal-root/vendor/drush/drush/drush @intra sql:query "REPLACE INTO key_value (collection, name, value) VALUES ('state', 'system.maintenance_mode', 'b:1;')"
+            && /srv/drupal-root/vendor/drush/drush/drush @intra updb --yes
+            && /srv/drupal-root/vendor/drush/drush/drush @intra cim --yes
+            && /srv/drupal-root/vendor/drush/drush/drush @intra cr
+            && /srv/drupal-root/vendor/drush/drush/drush @intra sql:query "DELETE FROM key_value WHERE collection = 'state' AND name = 'system.maintenance_mode'"
+        volumeMounts:
+        - name: intranetcms-storage
+          mountPath: /public
+      imagePullSecrets:
+        - name: glcr-auth
+      restartPolicy: Never

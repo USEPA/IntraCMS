@@ -10,44 +10,39 @@ This is the EPA IntracMS repository - a Drupal 10 intranet site based on the U.S
 
 ## Related Repositories
 
-**This application repository works in tandem with the intranet-cms-infra infrastructure repository.**
+The IntraCMS platform spans several GitLab-side repositories: this repo builds
+and deploys the Drupal application, while other repos provision the AWS/EKS
+infrastructure and the per-environment Kubernetes resources it runs on.
 
 ### Repository Relationship
 
+```mermaid
+flowchart TD
+    INFRA["intranet-cms-infra<br/>Terraform: dev/stage EKS clusters,<br/>namespaces, EFS, Memcached, S3/IRSA,<br/>GitLab agents + builds the PHP base image"]
+    APP["IntraCMS (THIS REPO)<br/>Drupal 10 app, docker/Dockerfile,<br/>k8s/ manifests, .gitlab-ci.yml"]
+    PROD["intranetcms-k8s-resources<br/>Terraform: prod namespace, Fargate profile,<br/>EFS, Memcached, GitLab agent"]
+    K8S["EKS / Fargate<br/>cms-45-dev / cms-45-next / cms-45-stage / prod"]
+    INFRA -->|"intracms-php base image"| APP
+    APP -->|"intranetcms-build image"| K8S
+    INFRA -.->|"provisions dev/stage"| K8S
+    PROD -.->|"provisions prod"| K8S
 ```
-┌─────────────────────────────────┐
-│   intranet-cms-infra          │
-│   Infrastructure as Code        │
-│                                 │
-│   • Creates EKS clusters        │
-│   • Provisions namespaces       │
-│   • Manages AWS resources       │
-│   • Builds PHP base image       │
-└────────────┬────────────────────┘
-             │ Provides infrastructure
-             ↓
-┌─────────────────────────────────┐
-│   IntraCMS (THIS)               │
-│   Application Code              │
-│                                 │
-│   • Drupal 10 application       │
-│   • Deploys to namespaces       │
-│   • Uses S3/EFS resources       │
-│   • Builds app container        │
-└─────────────────────────────────┘
-```
+
+**Repositories at a glance:**
+- **IntraCMS** (this repo; GitHub source mirrored to GitLab `intranet-cms/intracms`) - Drupal 10 application, container build (`docker/Dockerfile`), Kubernetes manifests (`k8s/`), and CI/CD pipeline (`.gitlab-ci.yml`).
+- **intranet-cms-infra** - Terraform for the shared non-prod EKS cluster(s), the S3 bucket + IRSA, and the build of the shared PHP 8.3 base image (`intracms-php`).
+- **intranetcms-k8s-resources** - Terraform for the production environment: namespace, Fargate profile, EFS volume, Memcached cluster, and the production GitLab agent (runner tag `intranetcms-prod-runner`).
+- **intracms-infra-dev** (dev/dev10) and **cms-k8s-stg-resources** (stage) - per-environment Terraform that provisions each environment's namespace, EFS/PVC, Memcached, and GitLab agent; the pipeline deploys through those agents (see Integration Points below).
 
 ### Infrastructure Repository (intranet-cms-infra)
 **Location**: `~/Repositories/intranet-cms-infra`
 
 **What it provides**:
-- EKS clusters: `cms-shared-dev00` (dev/dev10) and `cms-shared-dev01` (stage)
-- Kubernetes namespaces: `cms-45-dev`, `cms-45-next`, `cms-45-stage`
-- AWS S3 bucket: `intranet-cms-dev` with IAM roles for pod access (IRSA)
-- EFS file systems with access points for Drupal files
-- ElastiCache Memcached cluster for Drupal caching
-- GitLab Kubernetes agents for CI/CD deployment
-- PHP 8.3 base container image with NGINX
+- Shared EKS cluster(s) for the non-prod environments
+- The PHP 8.3 + NGINX base container image (`intracms-php`) that the app image is built `FROM`
+- AWS S3 bucket `intranet-cms-dev` with IAM roles for pod access (IRSA)
+
+Note: the per-environment Kubernetes namespaces, EFS volumes/PVCs, Memcached clusters, and GitLab agents are each provisioned by the per-environment resources repos - `intracms-infra-dev` (dev/dev10), `cms-k8s-stg-resources` (stage), and `intranetcms-k8s-resources` (prod) - not by this repo.
 
 ### Application Repository (IntraCMS)
 **Location**: `~/Repositories/IntraCMS` (THIS REPOSITORY)
@@ -60,6 +55,17 @@ This is the EPA IntracMS repository - a Drupal 10 intranet site based on the U.S
 - Container build configuration in `docker/` directory
 - Configuration management in `config/` directory
 
+### Production Resources Repository (intranetcms-k8s-resources)
+**Location**: `~/Repositories/intranetcms-k8s-resources`
+
+**What it provides** (Terraform, applied on its own `main` branch via the `intranetcms-prod-runner`):
+- The production Kubernetes namespace and its Fargate profile (`cms-45-prd-ns`)
+- A production EFS file system and `ReadWriteMany` PersistentVolume/PVC for Drupal's `/public` data
+- A production ElastiCache Memcached cluster (`intranetcms-prod`), with endpoints optionally published to SSM
+- The production GitLab Kubernetes agent used to deploy into the prod namespace
+
+Note: production is provisioned here but is not deployed by this repo's pipeline (which targets dev/dev10/stage only). Production application rollout is handled separately.
+
 ### Integration Points
 
 1. **Deployment Targets**:
@@ -69,9 +75,10 @@ This is the EPA IntracMS repository - a Drupal 10 intranet site based on the U.S
    - `stage-container-1` branch → `cms-45-stage` namespace
 
 2. **GitLab Agents**:
-   - CI/CD uses agents deployed by infrastructure repo
+   - CI/CD selects a GitLab-managed Kubernetes agent per environment (agents are registered by the infra/resources projects, not this repo)
    - Dev/Dev10: `kubectl config use-context intranet-cms/intracms-infra-dev:intranetcms-dev-k8s-agent`
    - Stage: `kubectl config use-context intranet-cms/cms-k8s-stg-resources:intranetcms-stage-k8s-agent`
+   - Prod (managed outside this pipeline): agent registered by `intranetcms-k8s-resources`
 
 3. **Container Images**:
    - Infrastructure provides: `registry.epa.gov/intranet-cms/intracms-infra/intracms-php` (PHP base)
@@ -83,9 +90,9 @@ This is the EPA IntracMS repository - a Drupal 10 intranet site based on the U.S
    - Mount point: `/public` for Drupal public files
 
 5. **Caching**:
-   - Memcached endpoints provisioned by infrastructure repo
-   - Retrieved from AWS SSM Parameter Store: `/intranetcms/dev/endpoints/memcached`
-   - Configure in Drupal's `settings.php` for Memcache module
+   - Memcached clusters are provisioned by the infra repos (dev/stage in `intranet-cms-infra`, prod in `intranetcms-k8s-resources`)
+   - Endpoints are published to AWS SSM Parameter Store: dev under `/intranetcms/dev/endpoints/memcached`, prod under `/echs/intranetcms/prod/endpoints/memcached`
+   - The Memcache module is configured in Drupal's `settings.php`/`settings.local.php`, which are mounted at runtime from the EFS `/public` volume (see the Dockerfile symlinks) rather than baked into the image
 
 6. **Networking**:
    - NGINX ingress controllers provisioned by infrastructure
@@ -122,6 +129,10 @@ To upgrade PHP (for example, 8.3 to 8.4):
 - Modifying deployment replicas or resource requests
 - Updating application environment variables
 - Working on Drupal features, content, or design
+
+**Work in intranetcms-k8s-resources when**:
+- Changing the production namespace, Fargate profile, EFS, or Memcached
+- Rotating or reconfiguring the production GitLab Kubernetes agent
 
 ## Development Environment Setup
 
@@ -312,18 +323,32 @@ The system applies numerous patches for Drupal 10 compatibility and enhanced fun
 ## Container Deployment & Kubernetes
 
 ### Image Build Process
+The `build:image` job builds the app image with Kaniko and pushes it as
+`intranetcms-build:<short-sha>`. Layer caching is enabled so unchanged layers -
+in particular the Composer dependency layer - are restored from a registry cache
+instead of rebuilt. The Dockerfile copies `composer.json`/`composer.lock` and
+`patches/` and runs `composer install` *before* copying the rest of the source,
+so that dependency layer only rebuilds when dependencies actually change.
 ```bash
-# GitLab CI builds images using Kaniko
-/kaniko/executor --context $CI_PROJECT_DIR \
+/kaniko/executor \
+  --context $CI_PROJECT_DIR \
   --dockerfile $CI_PROJECT_DIR/docker/Dockerfile \
+  --build-arg PHP_BASE_TAG=${PHP_BASE_TAG:-latest} \
+  --cache=true \
+  --cache-repo=$CI_REGISTRY_IMAGE/cache \
+  --cache-ttl=336h \
+  --cache-copy-layers=true \
   --destination $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA
 ```
+The base PHP image tag is controlled by the `PHP_BASE_TAG` build arg (default
+`latest`); set a `PHP_BASE_TAG` CI/CD variable to pin an immutable base image.
 
 ### Kubernetes Deployment
 The application deploys across multiple environments:
 - **dev** - Development environment
 - **dev10** - Drupal 10 testing environment  
 - **stage** - Staging environment
+- **prod** - Production environment (`cms-45-prod`, host `prod.intranetcms-prod.aws.epa.gov`), released by manual promotion from the stage pipeline
 
 ### Key Kubernetes Resources
 ```yaml
@@ -349,20 +374,59 @@ kubectl exec -it deployment/intranetcms -n cms-45-dev -- drush status
 ```
 
 ### Post-Deployment Tasks
-Automated via Kubernetes jobs:
+Post-deploy Drush runs as a Kubernetes **Job** (`k8s/drush.yml`, `k8s/drush-dev10.yml`),
+launched by the `postdeploy:<env>` CI job. The CI job waits for the Job to finish,
+streams its logs, and fails the pipeline if Drush fails or times out (the Job has
+`backoffLimit: 0` and `activeDeadlineSeconds: 1800`).
+
+The Job wraps the update in a fail-closed maintenance window: it enables
+maintenance mode, runs the updates, then lifts maintenance only if every step
+succeeded. If any step fails, the site stays in maintenance and the pipeline fails.
 ```bash
-# Database updates, cache clear, config import
-drush @intra updb --yes && drush @intra cr && drush @intra cim --yes
+# Enable maintenance mode (bootstrap-free), then update, then lift it:
+drush @intra sql:query "REPLACE INTO key_value (collection, name, value) VALUES ('state', 'system.maintenance_mode', 'b:1;')" \
+  && drush @intra updb --yes \
+  && drush @intra cim --yes \
+  && drush @intra cr \
+  && drush @intra sql:query "DELETE FROM key_value WHERE collection = 'state' AND name = 'system.maintenance_mode'"
 ```
 
 ## GitLab CI/CD Pipeline
 
 ### Pipeline Stages
-1. **build** - Container image creation with Kaniko
-2. **prisma scan** - Security vulnerability scanning
-3. **Non-Production Deployments** - Dev, Stage, Dev10 environments
-4. **Post Deploy** - Drush commands for database updates
-5. **dast** - Dynamic Application Security Testing (manual)
+The pipeline uses a `needs:` DAG (not strict stage ordering), so a deploy starts
+as soon as the image is built rather than waiting for the security scan:
+
+1. **build** (`build:image`) - build + push the app image with Kaniko (cached)
+2. **scan** (`Prisma Scan`) - Prisma Cloud image scan; runs in parallel with the
+   deploy and is non-blocking (`allow_failure: true`)
+3. **deploy** (`deploy:dev` / `deploy:dev10` / `deploy:stage`) - `kubectl apply`
+   the manifests to the environment's namespace
+4. **post-deploy** (`postdeploy:dev` / `postdeploy:dev10` / `postdeploy:stage`) -
+   run the verified Drush Job (see Post-Deployment Tasks)
+5. **prod-deploy** (`deploy:prod`) - manual promotion of the stage-validated
+   image to production (see Production Promotion below)
+6. **prod-post-deploy** (`postdeploy:prod`) - run the verified Drush Job in prod
+7. **dast** - Dynamic Application Security Testing (ZAP), manual
+
+Each branch runs only the jobs whose `rules:` match it (see Branch Strategy).
+
+### Production Promotion
+Production uses an **image-promotion** model rather than a prod branch. `deploy:prod`
+is a manual job that `needs: postdeploy:stage`, so it only becomes available after
+stage (including its Drush Job) fully succeeds. When played, it deploys the exact
+same `intranetcms-build:<sha>` image that stage validated into the `cms-45-prod`
+namespace via the production GitLab agent, then `postdeploy:prod` runs the same
+verified Drush Job. Because the artifact and Drush steps are identical to stage and
+only environment config differs, a green stage is a strong predictor of prod.
+After stage passes, the pipeline shows "blocked" - that is the ready-to-promote state.
+
+**Prerequisites:** the production resources must already be applied from the
+`intranetcms-k8s-resources` repo (namespace `cms-45-prod`, the EFS PVC, the
+`glcr-auth` pull secret, and the production GitLab agent) before a promotion can
+succeed. The TLS secret `tls-devsecops-shared-webapp` is provided by the platform
+(DSO), not by these repos' Terraform, so it must already exist in `cms-45-prod`
+with a certificate covering `prod.intranetcms-prod.aws.epa.gov`.
 
 ### Branch Strategy
 - `dev-container` → Development deployment

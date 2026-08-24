@@ -1,18 +1,32 @@
+# =============================================================================
+# IntraCMS GitLab CI/CD pipeline
+#
+# Ordering is driven by `needs:` (a DAG), NOT by stage order. On a push to a
+# *-container* branch:
+#
+#   build:image --+--> deploy:<env> --> postdeploy:<env>  (Drush updb/cim/cr)
+#                 +--> Prisma Scan                         (parallel, non-blocking)
+#
+# A deploy therefore starts as soon as the image is built, instead of waiting
+# for the security scan. Each branch only runs the jobs whose `rules:` match:
+#   dev-container     -> dev    (namespace cms-45-dev)
+#   dev-container-10  -> dev10  (namespace cms-45-next)
+#   stage-container-1 -> stage  (namespace cms-45-stage)
+# =============================================================================
 stages:
-
-  - build
-  - prisma scan
-  - Non-Production Dev Deployment
-  - Non-Production Stage Deployment
-  - Non-Production Dev10 Deployment
-  - Non-Production Stage Post Deploy
-  - Non-Production Dev Post Deploy
-  - Non-Production Dev10 Post Deploy
-  - dast
+  - build             # Build the Drupal application image with Kaniko.
+  - scan              # Prisma Cloud vulnerability scan (non-blocking).
+  - deploy            # Apply the k8s manifests (Deployment/Service/Ingress).
+  - post-deploy       # Run Drush updb/cim/cr as a verified k8s Job.
+  - prod-deploy       # Manually promote the stage-validated image to production.
+  - prod-post-deploy  # Run the verified Drush Job in production.
+  - dast              # Manual dynamic security scan (ZAP) against stage.
 
 include:
   - template: DAST.gitlab-ci.yml
 
+# DAST (Dynamic Application Security Testing) settings consumed by the
+# GitLab-managed `dast` job pulled in via the DAST.gitlab-ci.yml include above.
 variables:
   DAST_WEBSITE: "https://stage.intranetcms-stage.aws.epa.gov/"
   DAST_AUTH_URL: "https://stage.intranetcms-stage.aws.epa.gov/user/login?destination=/node/1"
@@ -27,7 +41,12 @@ variables:
   DAST_SKIP_TARGET_CHECK: "true"
 
  
-Build IntranetCMS Image:
+# ---------------------------------------------------------------------------
+# build:image - build the Drupal application image with Kaniko and push it to
+# the registry as intranetcms-build:<short-sha>. Runs only on the three
+# container branches; always on the dev runner (stage images are built here too).
+# ---------------------------------------------------------------------------
+build:image:
   stage: build
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev-container" || $CI_COMMIT_BRANCH == "stage-container-1" || $CI_COMMIT_BRANCH == "dev-container-10"'
@@ -38,14 +57,39 @@ Build IntranetCMS Image:
     entrypoint: [""]
   script:
     - mkdir -p /kaniko/.docker
+    # Registry auth so Kaniko can pull the PHP base image and push the result.
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/docker/Dockerfile --destination $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA
+    # Build + push. The caching flags let unchanged layers (notably the Composer
+    # dependency layer) restore from the registry cache instead of rebuilding:
+    #   --build-arg PHP_BASE_TAG : pin the PHP base tag (set a CI var to override 'latest')
+    #   --cache/--cache-repo/--cache-ttl : enable + locate the layer cache (kept 14 days)
+    #   --cache-copy-layers : also cache COPY layers (e.g. the composer.json/lock copy)
+    - |-
+      /kaniko/executor \
+        --context $CI_PROJECT_DIR \
+        --dockerfile $CI_PROJECT_DIR/docker/Dockerfile \
+        --build-arg PHP_BASE_TAG=${PHP_BASE_TAG:-latest} \
+        --cache=true \
+        --cache-repo=$CI_REGISTRY_IMAGE/cache \
+        --cache-ttl=336h \
+        --cache-copy-layers=true \
+        --destination $CI_REGISTRY_IMAGE/intranetcms-build:$CI_COMMIT_SHORT_SHA
 
+# ---------------------------------------------------------------------------
+# Prisma Scan - Prisma Cloud (twistcli) vulnerability scan of the built image.
+# `needs: build:image` runs it in PARALLEL with the deploy, and
+# `allow_failure: true` (below) means findings never block a deployment.
+# ---------------------------------------------------------------------------
 Prisma Scan:
-  stage: prisma scan
+  stage: scan
+  needs:
+    - "build:image"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev-container" || $CI_COMMIT_BRANCH == "stage-container-1" || $CI_COMMIT_BRANCH == "dev-container-10"'
   tags:
     - twistcli
   variables:
+    # No repo checkout needed - this job only pulls and scans the image.
     GIT_STRATEGY: none
   script:
     - 'export PRISMA_CI_TOKEN=$(curl -kH "Content-Type: application/json" -d "{\"username\":\"$PRISMA_CI_USERNAME\", \"password\":\"$PRISMA_CI_PASSWORD\"}" https://prismacloud.epa.gov/api/v32.01/authenticate | jq -r .token)'
@@ -59,110 +103,230 @@ Prisma Scan:
     - rm -rf $CI_PROJECT_DIR
 
 
-Development:
-  stage: Non-Production Dev Deployment
+# ---------------------------------------------------------------------------
+# .deploy - reusable template for the three environment deploys. Each concrete
+# job below sets only its runner tag, kube-agent context, manifest, namespace,
+# and environment. `needs: build:image` means deploys do NOT wait for the scan.
+# ---------------------------------------------------------------------------
+.deploy:
+  stage: deploy
+  needs:
+    - "build:image"
+  image: dtzar/helm-kubectl
+  script:
+    # Point kubectl at the GitLab-managed cluster agent for this environment.
+    - kubectl config use-context $KUBE_CONTEXT
+    # `envsubst` (gettext) expands ${CI_*} placeholders inside the manifest.
+    - apk add gettext
+    # Render the manifest and apply it to the environment's namespace.
+    - envsubst < $MANIFEST | kubectl apply -f - -n $NAMESPACE
+
+deploy:dev:
+  extends: .deploy
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev-container"'
   tags:
     - intranetcms-dev-runner
-  image: dtzar/helm-kubectl
-  script:
-    - kubectl config use-context intranet-cms/intracms-infra-dev:intranetcms-dev-k8s-agent
-    - apk add gettext
-    - envsubst < k8s/intranetcms.yml | kubectl apply -f - -n cms-45-dev
+  variables:
+    KUBE_CONTEXT: intranet-cms/intracms-infra-dev:intranetcms-dev-k8s-agent
+    MANIFEST: k8s/intranetcms.yml
+    NAMESPACE: cms-45-dev
   environment:
     name: dev
-    url:
     kubernetes:
       namespace: cms-45-dev
 
-Development10:
-  stage: Non-Production Dev10 Deployment
+deploy:dev10:
+  extends: .deploy
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev-container-10"'
   tags:
     - intranetcms-dev-runner
-  image: dtzar/helm-kubectl
-  script:
-    - kubectl config use-context intranet-cms/intracms-infra-dev:intranetcms-dev-k8s-agent
-    - apk add gettext
-    - envsubst < k8s/intranetcms-dev10.yml | kubectl apply -f - -n cms-45-next
+  variables:
+    KUBE_CONTEXT: intranet-cms/intracms-infra-dev:intranetcms-dev-k8s-agent
+    MANIFEST: k8s/intranetcms-dev10.yml
+    NAMESPACE: cms-45-next
   environment:
     name: dev10
-    url:
     kubernetes:
       namespace: cms-45-next
 
-Stage:
-  stage: Non-Production Stage Deployment
+deploy:stage:
+  extends: .deploy
   rules:
     - if: '$CI_COMMIT_BRANCH == "stage-container-1"'
   tags:
     - intranetcms-stg-runner
-  image: dtzar/helm-kubectl
-  script:
-    - kubectl config use-context intranet-cms/cms-k8s-stg-resources:intranetcms-stage-k8s-agent
-    - apk add gettext
-    - envsubst < k8s/intranetcms-stage.yml | kubectl apply -f - -n cms-45-stage
+  variables:
+    KUBE_CONTEXT: intranet-cms/cms-k8s-stg-resources:intranetcms-stage-k8s-agent
+    MANIFEST: k8s/intranetcms-stage.yml
+    NAMESPACE: cms-45-stage
   environment:
     name: stage
-    url:
     kubernetes:
       namespace: cms-45-stage
 
 
 
-Post Deploy:
-  stage: Non-Production Stage Post Deploy
+# ---------------------------------------------------------------------------
+# .postdeploy - run post-deploy Drush as a Kubernetes Job and WAIT for it, so a
+# failed DB update / config import fails the pipeline. Previously this used
+# `kubectl create` on a bare Pod and returned immediately, hiding Drush errors.
+# The Drush Job itself (k8s/drush*.yml) toggles maintenance mode around updb/cim.
+# ---------------------------------------------------------------------------
+.postdeploy:
+  stage: post-deploy
+  image: dtzar/helm-kubectl
+  script:
+    # Point kubectl at the GitLab-managed cluster agent for this environment.
+    - kubectl config use-context $KUBE_CONTEXT
+    - apk add --no-cache gettext
+    - |-
+      set -eu
+      # Create the Drush Job (generateName gives each run a unique name) and
+      # capture its resource name (e.g. "job.batch/drush-abc12") for polling.
+      JOB=$(envsubst < "$MANIFEST" | kubectl create -f - -n "$NAMESPACE" -o name)
+      JOB_NAME=${JOB##*/}
+      echo "Created $JOB in namespace $NAMESPACE"
+      # Bounded wait (the Job has activeDeadlineSeconds: 1800); fail loudly if Drush does not succeed.
+      deadline=$(( $(date +%s) + 1860 ))
+      # Poll the Job status until it succeeds, fails, or we pass the deadline.
+      while true; do
+        succeeded=$(kubectl get "$JOB" -n "$NAMESPACE" -o jsonpath='{.status.succeeded}' 2>/dev/null || true)
+        failed=$(kubectl get "$JOB" -n "$NAMESPACE" -o jsonpath='{.status.failed}' 2>/dev/null || true)
+        # Success: Drush finished cleanly; stop waiting.
+        if [ "$succeeded" = "1" ]; then
+          break
+        fi
+        if [ -n "$failed" ] && [ "$failed" != "0" ]; then
+          echo "Drush Job $JOB_NAME failed:"
+          kubectl logs "job/$JOB_NAME" -n "$NAMESPACE" --all-containers --tail=-1 || true
+          kubectl describe "$JOB" -n "$NAMESPACE" || true
+          exit 1
+        fi
+        if [ "$(date +%s)" -ge "$deadline" ]; then
+          echo "Timed out waiting for Drush Job $JOB_NAME."
+          kubectl logs "job/$JOB_NAME" -n "$NAMESPACE" --all-containers --tail=-1 || true
+          exit 1
+        fi
+        sleep 10
+      done
+      echo "Drush Job $JOB_NAME completed successfully:"
+      kubectl logs "job/$JOB_NAME" -n "$NAMESPACE" --all-containers --tail=-1 || true
+      kubectl delete "$JOB" -n "$NAMESPACE" --ignore-not-found
+
+postdeploy:stage:
+  extends: .postdeploy
+  needs:
+    - "deploy:stage"
   rules:
     - if: '$CI_COMMIT_BRANCH == "stage-container-1"'
   tags:
     - intranetcms-stg-runner
-  image: dtzar/helm-kubectl
-  script:
-    - kubectl config use-context intranet-cms/cms-k8s-stg-resources:intranetcms-stage-k8s-agent
-    - apk add gettext
-    - envsubst < k8s/drush.yml | kubectl create -f - -n cms-45-stage
+  variables:
+    KUBE_CONTEXT: intranet-cms/cms-k8s-stg-resources:intranetcms-stage-k8s-agent
+    MANIFEST: k8s/drush.yml
+    NAMESPACE: cms-45-stage
   environment:
     name: stage
-    url:
     kubernetes:
       namespace: cms-45-stage
 
-Post Deploy Dev:  
-  stage: Non-Production Dev Post Deploy
+postdeploy:dev:
+  extends: .postdeploy
+  needs:
+    - "deploy:dev"
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev-container"'
   tags:
     - intranetcms-dev-runner
-  image: dtzar/helm-kubectl
-  script:
-    - kubectl config use-context intranet-cms/intracms-infra-dev:intranetcms-dev-k8s-agent
-    - apk add gettext
-    - envsubst < k8s/drush.yml | kubectl create -f - -n cms-45-dev
+  variables:
+    KUBE_CONTEXT: intranet-cms/intracms-infra-dev:intranetcms-dev-k8s-agent
+    MANIFEST: k8s/drush.yml
+    NAMESPACE: cms-45-dev
   environment:
     name: dev
-    url:
     kubernetes:
       namespace: cms-45-dev
 
-Post Deploy Dev10:
-  stage: Non-Production Dev10 Post Deploy
+postdeploy:dev10:
+  extends: .postdeploy
+  needs:
+    - "deploy:dev10"
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev-container-10"'
   tags:
     - intranetcms-dev-runner
-  image: dtzar/helm-kubectl
-  script:
-    - kubectl config use-context intranet-cms/intracms-infra-dev:intranetcms-dev-k8s-agent
-    - apk add gettext
-    - envsubst < k8s/drush-dev10.yml | kubectl create -f - -n cms-45-next
+  variables:
+    KUBE_CONTEXT: intranet-cms/intracms-infra-dev:intranetcms-dev-k8s-agent
+    MANIFEST: k8s/drush-dev10.yml
+    NAMESPACE: cms-45-next
   environment:
     name: dev10
-    url:
     kubernetes:
       namespace: cms-45-next
 
+# ===========================================================================
+# PRODUCTION PROMOTION (manual, image-promotion model)
+#
+# Prod is NOT built or deployed from its own branch. A successful stage run
+# (deploy:stage + its verified Drush) unlocks a manual deploy:prod that promotes
+# the EXACT SAME intranetcms-build:<sha> image stage validated - no rebuild, so
+# no drift. After stage passes the pipeline shows "blocked": that is the
+# ready-to-promote state; play deploy:prod to release to production.
+# ===========================================================================
+
+# deploy:prod - manual promotion. `needs: postdeploy:stage` means it only
+# becomes available once stage (including its Drush Job) has fully succeeded.
+deploy:prod:
+  extends: .deploy
+  stage: prod-deploy
+  needs:
+    - "postdeploy:stage"
+  rules:
+    # Promotion runs from the stage pipeline and requires a human to play it.
+    - if: '$CI_COMMIT_BRANCH == "stage-container-1"'
+      when: manual
+  tags:
+    - intranetcms-prod-runner
+  variables:
+    # The prod resources repo lives in the `production/intranetcms-production`
+    # GitLab group (not `intranet-cms/` like dev/stage). TODO: confirm the agent's
+    # registered name segment (GitLab > Operate > Kubernetes) and that the agent
+    # authorizes the IntraCMS project.
+    KUBE_CONTEXT: production/intranetcms-production/intranetcms-k8s-resources:intranetcms-prod-k8s-agent
+    MANIFEST: k8s/intranetcms-prod.yml
+    NAMESPACE: cms-45-prod
+  environment:
+    name: prod
+    kubernetes:
+      namespace: cms-45-prod
+
+# postdeploy:prod - runs the verified Drush Job in prod right after deploy:prod
+# succeeds (reuses the hardened .postdeploy template + k8s/drush.yml).
+postdeploy:prod:
+  extends: .postdeploy
+  stage: prod-post-deploy
+  needs:
+    - "deploy:prod"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "stage-container-1"'
+  tags:
+    - intranetcms-prod-runner
+  variables:
+    # See deploy:prod for the context-path / agent-name confirmation note.
+    KUBE_CONTEXT: production/intranetcms-production/intranetcms-k8s-resources:intranetcms-prod-k8s-agent
+    MANIFEST: k8s/drush.yml
+    NAMESPACE: cms-45-prod
+  environment:
+    name: prod
+    kubernetes:
+      namespace: cms-45-prod
+
+# ---------------------------------------------------------------------------
+# dast - Dynamic Application Security Testing (ZAP) against stage. Manual only;
+# overrides the GitLab-managed job from the DAST.gitlab-ci.yml include above.
+# ---------------------------------------------------------------------------
 dast:
   tags:
     - intranetcms-stg-runner
