@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* cspell:words drupalelementstylecommand */
-import { Plugin } from 'ckeditor5/src/core';
-import * as icons from 'ckeditor5/src/icons';
+import { Plugin, icons } from 'ckeditor5/src/core';
 import { first } from 'ckeditor5/src/utils';
 import DrupalInlineElementStyleCommand from './drupalinlineelementstylecommand';
 import { groupNameToModelAttributeKey } from '../utils';
@@ -246,11 +245,6 @@ export default class DrupalInlineElementStyleEditing extends Plugin {
           if (typeof style.icon === 'string') {
             if (icons[style.icon]) {
               style.icon = icons[style.icon];
-            } else {
-              const iconName = 'Icon' + style.icon.charAt(0).toUpperCase() + style.icon.slice(1);
-              if (icons[iconName]) {
-                style.icon = icons[iconName];
-              }
             }
           }
           if (style.name) {
