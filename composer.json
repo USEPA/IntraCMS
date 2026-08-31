@@ -61,9 +61,9 @@
         "drupal/conflict": "2.0.0-alpha6",
         "drupal/consumers": "1.19",
         "drupal/contact_storage": "1.3",
-        "drupal/core-composer-scaffold": "10.6.15",
-        "drupal/core-project-message": "10.6.15",
-        "drupal/core-recommended": "10.6.15",
+        "drupal/core-composer-scaffold": "10.6.9",
+        "drupal/core-project-message": "10.6.9",
+        "drupal/core-recommended": "10.6.9",
         "drupal/crop": "2.4",
         "drupal/cshs": "^4.0",
         "drupal/csv_serialization": "^3.0 || ^4.0",
@@ -92,7 +92,7 @@
         "drupal/environment_indicator": "4.0.19",
         "drupal/externalauth": "2.0.6",
         "drupal/extlink": "1.7",
-        "drupal/fakeobjects": "^2.0",
+        "drupal/fakeobjects": "1.2",
         "drupal/feeds": "3.0-rc2",
         "drupal/feeds_ex": "1.0-beta5",
         "drupal/field_group": "3.6",
@@ -109,6 +109,7 @@
         "drupal/google_analytics": "^4.0",
         "drupal/group": "1.6",
         "drupal/group_action": "1.1",
+        "drupal/group_content_menu": "1.x-dev@dev",
         "drupal/group_outsider_in": "1.x-dev@dev",
         "drupal/group_taxonomy": "^1.0",
         "drupal/groupmedia": "2.3",
@@ -143,7 +144,7 @@
         "drupal/memcache": "^2.7",
         "drupal/menu_export": "^1.4",
         "drupal/menu_migration": "^4.0",
-        "drupal/metatag": "^2.2",
+        "drupal/metatag": "1.26",
         "drupal/migrate_plus": "6.0",
         "drupal/migrate_tools": "^6.0",
         "drupal/moderated_content_bulk_publish": "2.0.32",
@@ -195,7 +196,7 @@
         "drupal/ultimate_cron": "2.0-alpha7",
         "drupal/upgrade_status": "4.3",
         "drupal/uswds": "2.7",
-        "drupal/uswds_base": "^3.12",
+        "drupal/uswds_base": "^3.3",
         "drupal/uswds_ckeditor_integration": "^3.0",
         "drupal/uswds_paragraph_components": "3.0",
         "drupal/uswds_paragraphs": "2.0-beta3",
@@ -216,6 +217,7 @@
         "drupal/webform_analysis": "1.0-beta10",
         "drupal/webform_composite": "^1.0",
         "drupal/webform_config_ignore": "1.3",
+        "drupal/webform_group": "^1.0",
         "drupal/webform_node": "^6.1",
         "drupal/webform_shs": "2.0-beta1",
         "drupal/webform_ui": "^6.1",
@@ -285,9 +287,6 @@
             }
         },
         "patches": {
-            "drupal/anchor_link": {
-                "Remove duplicate contextual menu links": "patches/anchor_link-disable-context-menu-links.patch"
-            },
             "drupal/backup_migrate": {
                 "Missing entities/profiles errors after installation of 5.0.0": "patches/backup-migrate-missing-fields.patch"
             },
@@ -322,8 +321,7 @@
                 "3457016: Circular reference detected for service cache.backend.database": "https://www.drupal.org/files/issues/2024-06-27/circular-reference-detected-3457016-7.patch"
             },
             "drupal/linkit": {
-                "3307118: The Linkit profile entity type needs to be installed.": "https://www.drupal.org/files/issues/2022-11-29/3307118-linkit_profile_entity_type_needs_to_be_installed-4.patch",
-                "3576609: Uncaught Target element must have a data-drupal-selector attribute ending in '-uri'": "https://www.drupal.org/files/issues/2026-03-31/linkit-ckeditor-link-dialog-href-selector-3576609-4.patch"
+                "3307118: The Linkit profile entity type needs to be installed.": "https://www.drupal.org/files/issues/2022-11-29/3307118-linkit_profile_entity_type_needs_to_be_installed-4.patch"
             },
             "ckeditor/liststyle": {
                 "2874952: Change code from styles to type": "https://www.drupal.org/files/issues/2019-01-02/ckeditor_liststyle-styles-to-type-2874952-4-do-not-test.patch"
@@ -363,6 +361,13 @@
                 "Active Trail Patch: Add active trail ability to group menu block": "patches/fixing_group_menu_active_trail.patch.txt",
                 "3098161: Null group fix": "https://www.drupal.org/files/issues/2023-02-15/groupmenu-3098161-8-null-group-fix.patch",
                 "3151805: Allow access for now. We are trying to migrate": "patches/allowed-groupmenu.patch"
+            },
+            "drupal/group_content_menu": {
+                "Set active trail correctly": "https://www.drupal.org/files/issues/2021-04-21/group_content_menu-active_trail_cache_problem-3209011-10.patch",
+                "Operation is null in custom menu link form": "https://www.drupal.org/files/issues/2023-05-22/set-operations-3361822.patch",
+                "Conflicts with groupmenu paths": "patches/group_content_menu_path.patch",
+                "Menu item edit translation permission": "patches/group-content-menu-translations.patch",
+                "Set new menu link defaults to first available group menu": "https://www.drupal.org/files/issues/2025-06-19/3519798-set-default-group-menu-gcm2.x-4.patch"
             },
             "drupal/h5p": {
                 "2774947: Allow disabling the reset of user data results": "https://www.drupal.org/files/issues/2020-05-14/2774947-keep-user-data-in-sync-with-content-7.patch",

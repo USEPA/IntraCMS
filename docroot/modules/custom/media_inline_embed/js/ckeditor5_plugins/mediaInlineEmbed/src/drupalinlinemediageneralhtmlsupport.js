@@ -1,5 +1,5 @@
 import { Plugin } from 'ckeditor5/src/core';
-import { setViewAttributes } from '@ckeditor/ckeditor5-html-support/src/utils';
+import { setViewAttributes } from '@ckeditor/ckeditor5-html-support/src/conversionutils';
 
 /**
  * View-to-model conversion helper for Drupal Inline Media.
