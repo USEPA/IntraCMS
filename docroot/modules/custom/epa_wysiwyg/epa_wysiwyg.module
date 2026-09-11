@@ -9,6 +9,23 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function epa_wysiwyg_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  // Hard target both the grid and table attachments within the media library modal
+  if ($view->id() === 'media_library' && strpos($view->current_display, 'widget') !== FALSE) {
+    
+    // 1. Force the query plugin options to stop tagging the query
+    $query->setOption('disable_sql_rewrite', TRUE);
+    
+    // 2. Clear out the query tags entirely so Group Media can never see the query execution
+    $query->tags = [];
+  }
+}
 
 /**
  * Implements hook_library_info_alter().
