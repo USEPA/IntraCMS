@@ -16,14 +16,18 @@ use Drupal\views\ViewExecutable;
  * Implements hook_views_query_alter().
  */
 function epa_wysiwyg_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
-  // Hard target both the grid and table attachments within the media library modal
+  // Target both the grid and table displays of the Media Library modal frame
   if ($view->id() === 'media_library' && strpos($view->current_display, 'widget') !== FALSE) {
     
-    // 1. Force the query plugin options to stop tagging the query
-    $query->setOption('disable_sql_rewrite', TRUE);
+    // 1. Direct array assignment to drop SQL rewriting safely in Drupal 10
+    $query->options['disable_sql_rewrite'] = TRUE;
     
-    // 2. Clear out the query tags entirely so Group Media can never see the query execution
-    $query->tags = [];
+    // 2. Unset the specific access metadata tags used by the Group module
+    if (isset($query->tags) && is_array($query->tags)) {
+      unset($query->tags['group_access']);
+      unset($query->tags['media_access']);
+      unset($query->tags['entity_access']);
+    }
   }
 }
 
