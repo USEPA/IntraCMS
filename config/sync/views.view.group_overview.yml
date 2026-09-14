@@ -1,0 +1,134 @@
+uuid: 0148b297-6515-4d42-9b5f-a4b6bd619a4f
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+    - user
+id: group_overview
+label: Groups
+module: views
+description: 'High-performance group directory with bypassed query access loops.'
+tag: default
+base_table: groups_field_data
+base_field: id
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      fields:
+        id:
+          id: id
+          table: groups_field_data
+          field: id
+          plugin_id: numeric
+        label:
+          id: label
+          table: groups_field_data
+          field: label
+          plugin_id: field
+          type: string
+          settings:
+            link_to_entity: false
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: custom
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<div class=\"dropbutton-wrapper dropbutton-multiple\">\r\n  <div class=\"dropbutton-widget\">\r\n    <ul class=\"dropbutton\">\r\n      <!-- Action 1: Edit (Primary Button) -->\r\n      <li class=\"edit dropbutton-action\">\r\n        <a href=\"/group/{{ id }}/edit?destination=/current-path\">Edit Group</a>\r\n      </li>\r\n      \r\n      <!-- Action 2: Members (Dropdown Option) -->\r\n      <li class=\"members dropbutton-action\">\r\n        <a href=\"/group/{{ id }}/members\">Manage Members</a>\r\n      </li>\r\n      \r\n      <!-- Action 3: Menus / Content (Dropdown Option) -->\r\n      <li class=\"menus dropbutton-action\">\r\n        <a href=\"/group/{{ id }}/content\">Group Content</a>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+      pager:
+        type: full
+        options:
+          pagination_heading_level: h4
+          items_per_page: 25
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: none
+        options: {  }
+      style:
+        type: table
+      row:
+        type: fields
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: true
+          distinct: false
+          replica: false
+          query_tags:
+            - disable_query_access
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - user.permissions
+      tags: {  }
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: admin/group
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - user.permissions
+      tags: {  }
