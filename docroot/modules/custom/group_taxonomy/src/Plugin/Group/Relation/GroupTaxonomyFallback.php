@@ -2,10 +2,8 @@
 
 namespace Drupal\group_taxonomy\Plugin\Group\Relation;
 
-use Drupal\group\Plugin\Group\Relation\GroupRelationTypeBase;
-
 /**
- * Provides a temporary fallback mapping plugin for group_taxonomy.
+ * Provides a zero-dependency temporary fallback mapping plugin for group_taxonomy.
  *
  * @GroupRelationType(
  *   id = "group_taxonomy",
@@ -15,4 +13,9 @@ use Drupal\group\Plugin\Group\Relation\GroupRelationTypeBase;
  *   pretty_path_key = "taxonomy"
  * )
  */
-class GroupTaxonomyFallback extends GroupRelationTypeBase {}
+class GroupTaxonomyFallback {
+  // Empty class with zero external dependencies to prevent Class Not Found compilation crashes.
+  public function __construct() {}
+  public function __call($name, $arguments) { return null; }
+  public static function __callStatic($name, $arguments) { return null; }
+}
