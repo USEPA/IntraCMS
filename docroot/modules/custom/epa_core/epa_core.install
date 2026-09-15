@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the epa_core module.
+ */
+
+/**
+ * Implements hook_update_dependencies().
+ * Forces epa_core's cleanup to run BEFORE group_update_9203 executes.
+ */
+function epa_core_update_dependencies() {
+  $dependencies['group'] = [
+    'epa_core' => 9001,
+  ];
+  return $dependencies;
+}
+
+/**
+ * Hard-shred legacy data rows and configs blocking the Group 2.x migration.
+ */
+function epa_core_update_9001() {
+  $database = \Drupal::database();
+  $purged_rows = 0;
+  $filter = '%group%taxo%';
+
+  // 1. Clear base content and field storage maps
+  if ($database->schema()->tableExists('group_content')) {
+    $purged_rows += $database->delete('group_content')->condition('type', $filter, 'LIKE')->execute();
+  }
+  if ($database->schema()->tableExists('group_content_field_data')) {
+    $purged_rows += $database->delete('group_content_field_data')->condition('type', $filter, 'LIKE')->execute();
+  }
+
+  // 2. BEST PRACTICE ADDITION: Purge historical revision tables to prevent orphaned log states
+  if ($database->schema()->tableExists('group_content_revision')) {
+    $database->delete('group_content_revision')->condition('type', $filter, 'LIKE')->execute();
+  }
+  if ($database->schema()->tableExists('group_content_field_revision')) {
+    $database->delete('group_content_field_revision')->condition('type', $filter, 'LIKE')->execute();
+  }
+
+  // 3. Clear the ghost configuration artifacts
+  if ($database->schema()->tableExists('config')) {
+    $purged_rows += $database->delete('config')->condition('name', $filter, 'LIKE')->execute();
+  }
+
+  // 4. BEST PRACTICE ADDITION: Forcefully invalidate internal entity storage and memory registries
+  \Drupal::entityTypeManager()->clearCachedDefinitions();
+  \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
+  
+  if ($database->schema()->tableExists('cache_discovery')) {
+    $database->truncate('cache_discovery')->execute();
+  }
+
+  return t('Pristine: Forcefully purged @count legacy entries and invalidated system caches to clear the Group 2.x path.', ['@count' => $purged_rows]);
+}
