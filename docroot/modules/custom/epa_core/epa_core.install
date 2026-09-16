@@ -105,3 +105,47 @@ function epa_core_update_9002() {
 
   return t('Pristine: Deeply sanitized @count data elements to protect the container cache compilation pass.', ['@count' => $purged_rows]);
 }
+/**
+ * Programmatic recovery pass to restore a missing or empty core.extension record.
+ * Leverages the primary sync blueprint to clear the profile validation gate.
+ */
+function epa_core_update_9003() {
+  $database = \Drupal::database();
+
+  if ($database->schema()->tableExists('config')) {
+    // 1. Double-check if the row is actually missing from the table
+    $exists = $database->select('config', 'c')
+      ->fields('c', ['name'])
+      ->condition('name', 'core.extension')
+      ->execute()
+      ->fetchField();
+
+    if (!$exists) {
+      // 2. Direct Core Path Mapping: Target your main sync folder above docroot
+      $app_root = \Drupal::root();
+      $file_path = $app_root . '/../config/sync/core.extension.yml';
+
+      // Fallback path wrapper depending on container deployment configurations
+      if (!file_exists($file_path)) {
+        $file_path = $app_root . '/config/sync/core.extension.yml';
+      }
+
+      if (file_exists($file_path)) {
+        // 3. Read the authentic raw string data directly off your branch codebase
+        $raw_yaml = file_get_contents($file_path);
+        $parsed_data = \Drupal\Component\Serialization\Yaml::decode($raw_yaml);
+
+        if ($parsed_data && isset($parsed_data['profile'])) {
+          // 4. Safely re-inject the complete profile and module registry mapping array
+          $database->insert('config')
+            ->fields([
+              'collection' => '',
+              'name' => 'core.extension',
+              'data' => serialize($parsed_data),
+            ])
+            ->execute();
+        }
+      }
+    }
+  }
+}
