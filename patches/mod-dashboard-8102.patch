@@ -1,0 +1,24 @@
+--- moderation_dashboard.install	2026-09-30 15:28:06.935164200 -0500
++++ moderation_dashboard.install	2026-09-30 15:29:01.315780700 -0500
+@@ -57,3 +57,21 @@
+ function moderation_dashboard_update_last_removed(): int {
+   return 8102;
+ }
++
++/**
++ * Bridge update: move schema from 8101 to 8102 for older databases.
++ *
++ * Newer versions of this module removed the original update hooks up to and
++ * including 8102, and instead expose moderation_dashboard_update_last_removed()
++ * returning 8102. On sites where the schema is still at 8101, this causes
++ * update.php to fail with:
++ *   "The installed version of the Moderation dashboard module is too old to
++ *    update. Update to an intermediate version first (last removed version:
++ *    8102, installed version: 8101)."
++ *
++ * This no-op update exists purely to advance the schema version from 8101 to
++ * 8102 so those sites can proceed with updates on 3.x.
++ */
++function moderation_dashboard_update_8102() {
++  // Intentionally no-op.
++}
