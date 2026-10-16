@@ -1,0 +1,193 @@
+<?php
+
+/**
+ * @file
+ * Install/update hooks for epa_core.
+ */
+
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Database\Database;
+
+/**
+ * Reverse Group patch 2797793 storage change prior to Group 2.x upgrade.
+ *
+ * Steps:
+ *  1) Reinstall the legacy base-field 'entity_id' on group_content so that
+ *     group_content_field_data.entity_id exists again.
+ *  2) Backfill group_content_field_data.entity_id from
+ *     group_content__entity_id.entity_id_target_id.
+ *  3) Uninstall the patch's field storage for entity_id and entity_id_str,
+ *     dropping group_content__entity_id and group_content__entity_id_str.
+ *  4) Realign Group's schema version to stock 1.6 final (group_update_8402)
+ *     so the 2.x upgrade path runs in the correct order.
+ */
+/**
+ * Implements hook_update_dependencies().
+ *
+ * Ensures the Group patch 2797793 reversal runs before any Group 2.x
+ * storage migration hooks begin. Without this pin, drush updb would run
+ * group_update_9200 → 9211 against patched-1.6 storage and fail at 9203.
+ */
+function epa_core_update_dependencies() {
+  return [
+    'group' => [
+      9200 => [
+        'epa_core' => 10001,
+      ],
+    ],
+  ];
+}
+function epa_core_update_10001() {
+  // Precondition: Group schema must be stock 1.6 (8025) with patch applied.
+  $current_group_schema = (int) \Drupal::service('update.update_hook_registry')
+    ->getInstalledVersion('group');
+  if ($current_group_schema !== 8025) {
+    throw new \RuntimeException(sprintf(
+      'epa_core_update_10001 aborted: Group schema is %d, expected 8025. ' .
+      'If 9200-9202, DB is in a failed-migration state — restore baseline before retrying.',
+      $current_group_schema
+    ));
+  }
+
+  // Precondition: 1.x dependency modules must already be uninstalled.
+  $still_enabled = [];
+  foreach (['groupmenu', 'group_taxonomy', 'groupmenu_block', 'group_outsider_in',
+            'group_media_context', 'gcontent_moderation'] as $module) {
+    if (\Drupal::moduleHandler()->moduleExists($module)) {
+      $still_enabled[] = $module;
+    }
+  }
+  if (!empty($still_enabled)) {
+    throw new \RuntimeException(
+      'epa_core_update_10001 aborted: these modules must be uninstalled first: '
+      . implode(', ', $still_enabled)
+    );
+  }
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $database = Database::getConnection();
+  $schema = $database->schema();
+
+  // ---------------------------------------------------------------------------
+  // Step 1: Reinstall legacy base-field 'entity_id' on group_content.
+  // Matches stock Group 1.6 GroupContent::baseFieldDefinitions() shape.
+  // ---------------------------------------------------------------------------
+  $entity_id_definition = BaseFieldDefinition::create('entity_reference')
+    ->setLabel(t('Content'))
+    ->setDescription(t('The entity to add to the group.'))
+    ->setSetting('target_type', 'node') // Overridden per plugin at runtime; stock 1.6 uses 'node' as the schema default.
+    ->setReadOnly(TRUE)
+    ->setRequired(TRUE);
+
+  // Only install if not already present (idempotent).
+  if (!$definition_update_manager->getFieldStorageDefinition('entity_id', 'group_content')) {
+    $definition_update_manager->installFieldStorageDefinition(
+      'entity_id',
+      'group_content',
+      'group',
+      $entity_id_definition
+    );
+  }
+
+  // ---------------------------------------------------------------------------
+  // Step 2: Backfill group_content_field_data.entity_id from field table.
+  // Your _str table has 0 rows so no string backfill is needed.
+  // ---------------------------------------------------------------------------
+  if ($schema->tableExists('group_content__entity_id')
+      && $schema->fieldExists('group_content_field_data', 'entity_id')) {
+
+    // Portable backfill (works on MySQL/MariaDB; adjust for Postgres if used).
+    $database->query("
+      UPDATE {group_content_field_data} gcfd
+      INNER JOIN {group_content__entity_id} ei
+        ON ei.entity_id = gcfd.id AND ei.deleted = 0
+      SET gcfd.entity_id = ei.entity_id_target_id
+    ");
+  }
+
+  // Sanity check — fail the update if nulls remain so you can investigate.
+  $null_count = (int) $database->query("
+    SELECT COUNT(*) FROM {group_content_field_data} WHERE entity_id IS NULL
+  ")->fetchField();
+
+  if ($null_count > 0) {
+    throw new \RuntimeException(sprintf(
+      'Backfill incomplete: %d group_content rows have NULL entity_id after backfill. Aborting before field storage drop.',
+      $null_count
+    ));
+  }
+
+  // ---------------------------------------------------------------------------
+  // Step 3: Uninstall patch field storage for entity_id and entity_id_str.
+  // Preferred path: entity definition update manager (clean, updates key_value).
+  // Fallback path: drop tables + prune key_value entries if the API cannot
+  // resolve the field definitions (e.g., patch code already removed).
+  // ---------------------------------------------------------------------------
+  $uninstalled_via_api = FALSE;
+
+  foreach (['entity_id', 'entity_id_str'] as $field_name) {
+    $existing = $definition_update_manager->getFieldStorageDefinition($field_name, 'group_content');
+    // The patch registered these as *configurable* field storage via
+    // GroupContentReferenceDefinition. If the base-field reinstall in Step 1
+    // replaced 'entity_id', the API will only still see 'entity_id_str' here.
+    if ($existing && $existing->getProvider() !== 'group_content_base') {
+      try {
+        $definition_update_manager->uninstallFieldStorageDefinition($existing);
+        $uninstalled_via_api = TRUE;
+      }
+      catch (\Throwable $e) {
+        // Fall through to raw cleanup below.
+      }
+    }
+  }
+
+  // Raw cleanup fallback / finalization.
+  foreach (['group_content__entity_id', 'group_content__entity_id_str'] as $table) {
+    if ($schema->tableExists($table)) {
+      $schema->dropTable($table);
+    }
+  }
+
+  // Prune leftover entity definition bookkeeping for the patch's field defs,
+  // so Drupal does not try to re-create those tables on next cache rebuild.
+  $kv = \Drupal::keyValue('entity.definitions.installed');
+  $installed_defs = $kv->get('group_content.field_storage_definitions', []);
+  if (is_array($installed_defs)) {
+    $changed = FALSE;
+    foreach (['entity_id', 'entity_id_str'] as $field_name) {
+      if (isset($installed_defs[$field_name])) {
+        $def = $installed_defs[$field_name];
+        // Only remove if it is the patched (configurable) definition, not the
+        // base-field we just installed in Step 1.
+        $provider = method_exists($def, 'getProvider') ? $def->getProvider() : NULL;
+        if ($field_name === 'entity_id_str' || ($provider !== NULL && $provider !== 'group_content_base' && $provider !== 'group')) {
+          unset($installed_defs[$field_name]);
+          $changed = TRUE;
+        }
+      }
+    }
+    if ($changed) {
+      $kv->set('group_content.field_storage_definitions', $installed_defs);
+    }
+  }
+
+  // Ensure the base-field 'entity_id' we installed in Step 1 is recorded.
+  $installed_defs = $kv->get('group_content.field_storage_definitions', []);
+  if (!isset($installed_defs['entity_id'])) {
+    $installed_defs['entity_id'] = $entity_id_definition;
+    $kv->set('group_content.field_storage_definitions', $installed_defs);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Step 4: Realign Group's schema version to stock 1.6 final.
+  // Confirm 8402 against a clean 1.6 group.install before running in prod.
+  // ---------------------------------------------------------------------------
+  \Drupal::service('update.update_hook_registry')->setInstalledVersion('group', 8025);
+
+  // Clean caches so entity type/field definitions are rebuilt.
+  \Drupal::entityTypeManager()->clearCachedDefinitions();
+  \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
+
+  return t('Reversed Group patch 2797793 storage: reinstalled base field entity_id, backfilled @n rows, dropped patch field tables, set Group schema to 8402.', [
+    '@n' => 49251,
+  ]);
+}
