@@ -9,24 +9,14 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Database\Database;
 
 /**
- * Reverse Group patch 2797793 storage change prior to Group 2.x upgrade.
- *
- * Steps:
- *  1) Reinstall the legacy base-field 'entity_id' on group_content so that
- *     group_content_field_data.entity_id exists again.
- *  2) Backfill group_content_field_data.entity_id from
- *     group_content__entity_id.entity_id_target_id.
- *  3) Uninstall the patch's field storage for entity_id and entity_id_str,
- *     dropping group_content__entity_id and group_content__entity_id_str.
- *  4) Realign Group's schema version to stock 1.6 final (group_update_8402)
- *     so the 2.x upgrade path runs in the correct order.
- */
-/**
  * Implements hook_update_dependencies().
  *
  * Ensures the Group patch 2797793 reversal runs before any Group 2.x
  * storage migration hooks begin. Without this pin, drush updb would run
  * group_update_9200 → 9211 against patched-1.6 storage and fail at 9203.
+ *
+ * NOTE: If additional epa_core reversal hooks are added (10002+), they must
+ * also be pinned here if they need to run before specific group 2.x hooks.
  */
 function epa_core_update_dependencies() {
   return [
@@ -37,22 +27,55 @@ function epa_core_update_dependencies() {
     ],
   ];
 }
+
+/**
+ * Reverse Group patch 2797793 storage change prior to Group 2.x upgrade.
+ *
+ * Steps:
+ *  1) Reinstall the legacy base-field 'entity_id' on group_content so that
+ *     group_content_field_data.entity_id exists again.
+ *  2) Backfill group_content_field_data.entity_id from
+ *     group_content__entity_id.entity_id_target_id.
+ *  3) Uninstall the patch's field storage for entity_id and entity_id_str,
+ *     dropping group_content__entity_id and group_content__entity_id_str.
+ *  4) Realign Group's schema version to stock 1.6 final so the 2.x upgrade
+ *     path runs in the correct order.
+ */
 function epa_core_update_10001() {
-  // Precondition: Group schema must be stock 1.6 (8025) with patch applied.
+  // ---------------------------------------------------------------------------
+  // VERIFY BEFORE DEPLOY: Confirm this schema version against stock Group 1.6
+  // source. Run: grep -E "function group_update_[0-9]+" against stock 1.6's
+  // group.install and use the highest-numbered hook. Current assumption: 8025.
+  // ---------------------------------------------------------------------------
+  $expected_schema_version = 8025; // <<VERIFY>>
+
+  // Precondition: Group schema must be stock 1.6 with patch applied.
   $current_group_schema = (int) \Drupal::service('update.update_hook_registry')
     ->getInstalledVersion('group');
-  if ($current_group_schema !== 8025) {
+  if ($current_group_schema !== $expected_schema_version) {
     throw new \RuntimeException(sprintf(
-      'epa_core_update_10001 aborted: Group schema is %d, expected 8025. ' .
-      'If 9200-9202, DB is in a failed-migration state — restore baseline before retrying.',
-      $current_group_schema
+      'epa_core_update_10001 aborted: Group schema is %d, expected %d (stock 1.6 final). ' .
+      'Possible causes: ' .
+      '(a) module not actually at 1.6 patched baseline; ' .
+      '(b) group_update_9200-9202 already ran — restore pre-updb snapshot; ' .
+      '(c) patched schema diverged from expected baseline — inspect manually.',
+      $current_group_schema,
+      $expected_schema_version
     ));
   }
 
   // Precondition: 1.x dependency modules must already be uninstalled.
+  // This list MUST match the Phase 3 uninstall scope exactly.
+  $required_uninstalled = [
+    'groupmenu',
+    'group_taxonomy',
+    'groupmenu_block',
+    'group_outsider_in',
+    'group_media_context',
+    'gcontent_moderation',
+  ];
   $still_enabled = [];
-  foreach (['groupmenu', 'group_taxonomy', 'groupmenu_block', 'group_outsider_in',
-            'group_media_context', 'gcontent_moderation'] as $module) {
+  foreach ($required_uninstalled as $module) {
     if (\Drupal::moduleHandler()->moduleExists($module)) {
       $still_enabled[] = $module;
     }
@@ -63,22 +86,54 @@ function epa_core_update_10001() {
       . implode(', ', $still_enabled)
     );
   }
+
   $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
   $database = Database::getConnection();
   $schema = $database->schema();
 
+  // Capture total row count up front for the final return message and for
+  // post-backfill verification.
+  $total_rows = (int) $database->query("
+    SELECT COUNT(*) FROM {group_content_field_data}
+  ")->fetchField();
+
+  // ---------------------------------------------------------------------------
+  // Pre-flight: confirm no orphan shells exist. Every row in
+  // group_content_field_data must have a matching row in
+  // group_content__entity_id, otherwise backfill will leave stale rows that
+  // will corrupt the 9203 migration.
+  // ---------------------------------------------------------------------------
+  if ($schema->tableExists('group_content__entity_id')) {
+    $orphan_count = (int) $database->query("
+      SELECT COUNT(*) FROM {group_content_field_data} gcfd
+      LEFT JOIN {group_content__entity_id} ei
+        ON ei.entity_id = gcfd.id AND ei.deleted = 0
+      WHERE ei.entity_id IS NULL
+    ")->fetchField();
+
+    if ($orphan_count > 0) {
+      throw new \RuntimeException(sprintf(
+        'epa_core_update_10001 aborted: %d orphan shells detected in ' .
+        'group_content_field_data (rows with no corresponding group_content__entity_id row). ' .
+        'These must be cleaned via Phase 2 shell-cleanup SQL before this hook can run safely.',
+        $orphan_count
+      ));
+    }
+  }
+
   // ---------------------------------------------------------------------------
   // Step 1: Reinstall legacy base-field 'entity_id' on group_content.
   // Matches stock Group 1.6 GroupContent::baseFieldDefinitions() shape.
+  // Stock 1.6 does NOT set target_type on the base definition — plugins
+  // override it per bundle. Do not add setSetting('target_type', ...) here.
   // ---------------------------------------------------------------------------
   $entity_id_definition = BaseFieldDefinition::create('entity_reference')
     ->setLabel(t('Content'))
     ->setDescription(t('The entity to add to the group.'))
-    ->setSetting('target_type', 'node') // Overridden per plugin at runtime; stock 1.6 uses 'node' as the schema default.
     ->setReadOnly(TRUE)
     ->setRequired(TRUE);
 
-  // Only install if not already present (idempotent).
+  // Idempotent: only install if not already present.
   if (!$definition_update_manager->getFieldStorageDefinition('entity_id', 'group_content')) {
     $definition_update_manager->installFieldStorageDefinition(
       'entity_id',
@@ -90,7 +145,8 @@ function epa_core_update_10001() {
 
   // ---------------------------------------------------------------------------
   // Step 2: Backfill group_content_field_data.entity_id from field table.
-  // Your _str table has 0 rows so no string backfill is needed.
+  // The _str table has 0 rows (confirmed in Phase 1 analysis) so no string
+  // backfill is needed.
   // ---------------------------------------------------------------------------
   if ($schema->tableExists('group_content__entity_id')
       && $schema->fieldExists('group_content_field_data', 'entity_id')) {
@@ -104,15 +160,30 @@ function epa_core_update_10001() {
     ");
   }
 
-  // Sanity check — fail the update if nulls remain so you can investigate.
+  // Post-backfill verification 1: no NULL entity_id values remain.
   $null_count = (int) $database->query("
     SELECT COUNT(*) FROM {group_content_field_data} WHERE entity_id IS NULL
   ")->fetchField();
 
   if ($null_count > 0) {
     throw new \RuntimeException(sprintf(
-      'Backfill incomplete: %d group_content rows have NULL entity_id after backfill. Aborting before field storage drop.',
+      'Backfill incomplete: %d group_content rows have NULL entity_id after backfill. ' .
+      'Aborting before field storage drop. Investigate before retrying.',
       $null_count
+    ));
+  }
+
+  // Post-backfill verification 2: row count sanity check.
+  $post_backfill_count = (int) $database->query("
+    SELECT COUNT(*) FROM {group_content_field_data}
+  ")->fetchField();
+
+  if ($post_backfill_count !== $total_rows) {
+    throw new \RuntimeException(sprintf(
+      'Row count mismatch: started with %d rows, now have %d. ' .
+      'Backfill should not have changed row count. Aborting.',
+      $total_rows,
+      $post_backfill_count
     ));
   }
 
@@ -122,8 +193,6 @@ function epa_core_update_10001() {
   // Fallback path: drop tables + prune key_value entries if the API cannot
   // resolve the field definitions (e.g., patch code already removed).
   // ---------------------------------------------------------------------------
-  $uninstalled_via_api = FALSE;
-
   foreach (['entity_id', 'entity_id_str'] as $field_name) {
     $existing = $definition_update_manager->getFieldStorageDefinition($field_name, 'group_content');
     // The patch registered these as *configurable* field storage via
@@ -132,10 +201,13 @@ function epa_core_update_10001() {
     if ($existing && $existing->getProvider() !== 'group_content_base') {
       try {
         $definition_update_manager->uninstallFieldStorageDefinition($existing);
-        $uninstalled_via_api = TRUE;
       }
       catch (\Throwable $e) {
-        // Fall through to raw cleanup below.
+        // Fall through to raw cleanup below. Log for forensics.
+        \Drupal::logger('epa_core')->warning(
+          'uninstallFieldStorageDefinition failed for @field: @msg. Falling back to raw cleanup.',
+          ['@field' => $field_name, '@msg' => $e->getMessage()]
+        );
       }
     }
   }
@@ -147,47 +219,58 @@ function epa_core_update_10001() {
     }
   }
 
-  // Prune leftover entity definition bookkeeping for the patch's field defs,
-  // so Drupal does not try to re-create those tables on next cache rebuild.
+  // Prune leftover entity definition bookkeeping and restore the base-field
+  // definition unconditionally. Simpler and safer than conditional provider
+  // checks, since Step 1 already installed the correct base definition.
   $kv = \Drupal::keyValue('entity.definitions.installed');
   $installed_defs = $kv->get('group_content.field_storage_definitions', []);
   if (is_array($installed_defs)) {
-    $changed = FALSE;
-    foreach (['entity_id', 'entity_id_str'] as $field_name) {
-      if (isset($installed_defs[$field_name])) {
-        $def = $installed_defs[$field_name];
-        // Only remove if it is the patched (configurable) definition, not the
-        // base-field we just installed in Step 1.
-        $provider = method_exists($def, 'getProvider') ? $def->getProvider() : NULL;
-        if ($field_name === 'entity_id_str' || ($provider !== NULL && $provider !== 'group_content_base' && $provider !== 'group')) {
-          unset($installed_defs[$field_name]);
-          $changed = TRUE;
-        }
-      }
-    }
-    if ($changed) {
-      $kv->set('group_content.field_storage_definitions', $installed_defs);
-    }
-  }
-
-  // Ensure the base-field 'entity_id' we installed in Step 1 is recorded.
-  $installed_defs = $kv->get('group_content.field_storage_definitions', []);
-  if (!isset($installed_defs['entity_id'])) {
+    // Remove patch artifact unconditionally.
+    unset($installed_defs['entity_id_str']);
+    // Overwrite entity_id with the known-good base definition from Step 1.
     $installed_defs['entity_id'] = $entity_id_definition;
     $kv->set('group_content.field_storage_definitions', $installed_defs);
   }
 
   // ---------------------------------------------------------------------------
   // Step 4: Realign Group's schema version to stock 1.6 final.
-  // Confirm 8402 against a clean 1.6 group.install before running in prod.
   // ---------------------------------------------------------------------------
-  \Drupal::service('update.update_hook_registry')->setInstalledVersion('group', 8025);
+  \Drupal::service('update.update_hook_registry')
+    ->setInstalledVersion('group', $expected_schema_version);
 
-  // Clean caches so entity type/field definitions are rebuilt.
+  // ---------------------------------------------------------------------------
+  // Cache invalidation — must be aggressive enough that the next update hook
+  // (group_update_9200) sees fresh entity type and plugin definitions.
+  // ---------------------------------------------------------------------------
   \Drupal::entityTypeManager()->clearCachedDefinitions();
   \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
 
-  return t('Reversed Group patch 2797793 storage: reinstalled base field entity_id, backfilled @n rows, dropped patch field tables, set Group schema to 8402.', [
-    '@n' => 49251,
+  // Clear the group_content_enabler plugin cache if the service exists in 1.6.
+  // Wrapped in try/catch because service name differ
+  // ---------------------------------------------------------------------------
+  // Cache invalidation — must be aggressive enough that the next update hook
+  // (group_update_9200) sees fresh entity type and plugin definitions.
+  // ---------------------------------------------------------------------------
+  \Drupal::entityTypeManager()->clearCachedDefinitions();
+  \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
+
+  // Clear the group_content_enabler plugin cache if the service exists in 1.6.
+  // Wrapped in try/catch because service name differs between 1.x and 2.x and
+  // this hook straddles that boundary.
+  try {
+    if (\Drupal::hasService('plugin.manager.group_content_enabler')) {
+      \Drupal::service('plugin.manager.group_content_enabler')->clearCachedDefinitions();
+    }
+  }
+  catch (\Throwable $e) {
+    \Drupal::logger('epa_core')->notice(
+      'group_content_enabler plugin cache clear skipped: @msg',
+      ['@msg' => $e->getMessage()]
+    );
+  }
+
+  return t('Reed Group patversch 2797793 storage: reinstalled base field entity_id, backfilled @n rows, dropped patch field tables, realigned Group schema to @v.', [
+    '@n' => $total_rows,
+    '@v' => $expected_schema_version,
   ]);
 }
