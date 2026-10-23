@@ -38,34 +38,37 @@ function epa_core_update_dependencies() {
  *     group_content__entity_id.entity_id_target_id.
  *  3) Uninstall the patch's field storage for entity_id and entity_id_str,
  *     dropping group_content__entity_id and group_content__entity_id_str.
- *  4) Realign Group's schema version to stock 1.6 final so the 2.x upgrade
- *     path runs in the correct order.
+ *
+ * NOTE: We do NOT realign Group's stored schema version here. Core's update
+ * batch controller (DbUpdateController) writes `first_pending - 1` to
+ * key_value['system.schema'] for every module in the pending set *before*
+ * any hook_update_N runs. By the time this hook executes, group's stored
+ * schema has already been normalized to 9199. The next batch operation
+ * (group_update_9200) will overwrite it to 9200 on completion.
  */
 function epa_core_update_10001() {
-  // ---------------------------------------------------------------------------
-  // VERIFY BEFORE DEPLOY: Confirm this schema version against stock Group 1.6
-  // source. Run: grep -E "function group_update_[0-9]+" against stock 1.6's
-  // group.install and use the highest-numbered hook. Current assumption: 8025.
-  // ---------------------------------------------------------------------------
-  $expected_schema_version = 8025; // <<VERIFY>>
+  $database = Database::getConnection();
+  $schema = $database->schema();
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
 
-  // Precondition: Group schema must be stock 1.6 with patch applied.
-  $current_group_schema = (int) \Drupal::service('update.update_hook_registry')
-    ->getInstalledVersion('group');
-  if ($current_group_schema !== $expected_schema_version) {
-    throw new \RuntimeException(sprintf(
-      'epa_core_update_10001 aborted: Group schema is %d, expected %d (stock 1.6 final). ' .
-      'Possible causes: ' .
-      '(a) module not actually at 1.6 patched baseline; ' .
-      '(b) group_update_9200-9202 already ran — restore pre-updb snapshot; ' .
-      '(c) patched schema diverged from expected baseline — inspect manually.',
-      $current_group_schema,
-      $expected_schema_version
-    ));
+  // ---------------------------------------------------------------------------
+  // Precondition 1: Patch 2797793 must actually be applied. The authoritative
+  // signal is the presence of the patch-created field table. If this table
+  // doesn't exist, the hook has nothing to reverse — either the patch was
+  // never applied, or this hook already ran.
+  // ---------------------------------------------------------------------------
+  if (!$schema->tableExists('group_content__entity_id')) {
+    throw new \RuntimeException(
+      'epa_core_update_10001 aborted: group_content__entity_id table not found. ' .
+      'This hook expects Group 1.6 with patch 2797793 applied. Either the ' .
+      'patch was never applied, or this reversal already ran. Inspect manually.'
+    );
   }
 
-  // Precondition: 1.x dependency modules must already be uninstalled.
+  // ---------------------------------------------------------------------------
+  // Precondition 2: 1.x dependency modules must already be uninstalled.
   // This list MUST match the Phase 3 uninstall scope exactly.
+  // ---------------------------------------------------------------------------
   $required_uninstalled = [
     'groupmenu',
     'group_taxonomy',
@@ -87,10 +90,6 @@ function epa_core_update_10001() {
     );
   }
 
-  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
-  $database = Database::getConnection();
-  $schema = $database->schema();
-
   // Capture total row count up front for the final return message and for
   // post-backfill verification.
   $total_rows = (int) $database->query("
@@ -98,27 +97,24 @@ function epa_core_update_10001() {
   ")->fetchField();
 
   // ---------------------------------------------------------------------------
-  // Pre-flight: confirm no orphan shells exist. Every row in
-  // group_content_field_data must have a matching row in
-  // group_content__entity_id, otherwise backfill will leave stale rows that
-  // will corrupt the 9203 migration.
+  // Precondition 3: no orphan shells. Every row in group_content_field_data
+  // must have a matching row in group_content__entity_id, otherwise backfill
+  // will leave stale rows that will corrupt the 9203 migration.
   // ---------------------------------------------------------------------------
-  if ($schema->tableExists('group_content__entity_id')) {
-    $orphan_count = (int) $database->query("
-      SELECT COUNT(*) FROM {group_content_field_data} gcfd
-      LEFT JOIN {group_content__entity_id} ei
-        ON ei.entity_id = gcfd.id AND ei.deleted = 0
-      WHERE ei.entity_id IS NULL
-    ")->fetchField();
+  $orphan_count = (int) $database->query("
+    SELECT COUNT(*) FROM {group_content_field_data} gcfd
+    LEFT JOIN {group_content__entity_id} ei
+      ON ei.entity_id = gcfd.id AND ei.deleted = 0
+    WHERE ei.entity_id IS NULL
+  ")->fetchField();
 
-    if ($orphan_count > 0) {
-      throw new \RuntimeException(sprintf(
-        'epa_core_update_10001 aborted: %d orphan shells detected in ' .
-        'group_content_field_data (rows with no corresponding group_content__entity_id row). ' .
-        'These must be cleaned via Phase 2 shell-cleanup SQL before this hook can run safely.',
-        $orphan_count
-      ));
-    }
+  if ($orphan_count > 0) {
+    throw new \RuntimeException(sprintf(
+      'epa_core_update_10001 aborted: %d orphan shells detected in ' .
+      'group_content_field_data (rows with no corresponding group_content__entity_id row). ' .
+      'These must be cleaned via Phase 2 shell-cleanup SQL before this hook can run safely.',
+      $orphan_count
+    ));
   }
 
   // ---------------------------------------------------------------------------
@@ -148,9 +144,7 @@ function epa_core_update_10001() {
   // The _str table has 0 rows (confirmed in Phase 1 analysis) so no string
   // backfill is needed.
   // ---------------------------------------------------------------------------
-  if ($schema->tableExists('group_content__entity_id')
-      && $schema->fieldExists('group_content_field_data', 'entity_id')) {
-
+  if ($schema->fieldExists('group_content_field_data', 'entity_id')) {
     // Portable backfill (works on MySQL/MariaDB; adjust for Postgres if used).
     $database->query("
       UPDATE {group_content_field_data} gcfd
@@ -233,12 +227,6 @@ function epa_core_update_10001() {
   }
 
   // ---------------------------------------------------------------------------
-  // Step 4: Realign Group's schema version to stock 1.6 final.
-  // ---------------------------------------------------------------------------
-  \Drupal::service('update.update_hook_registry')
-    ->setInstalledVersion('group', $expected_schema_version);
-
-  // ---------------------------------------------------------------------------
   // Cache invalidation — must be aggressive enough that the next update hook
   // (group_update_9200) sees fresh entity type and plugin definitions.
   // ---------------------------------------------------------------------------
@@ -246,17 +234,8 @@ function epa_core_update_10001() {
   \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
 
   // Clear the group_content_enabler plugin cache if the service exists in 1.6.
-  // Wrapped in try/catch because service name differ
-  // ---------------------------------------------------------------------------
-  // Cache invalidation — must be aggressive enough that the next update hook
-  // (group_update_9200) sees fresh entity type and plugin definitions.
-  // ---------------------------------------------------------------------------
-  \Drupal::entityTypeManager()->clearCachedDefinitions();
-  \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
-
-  // Clear the group_content_enabler plugin cache if the service exists in 1.6.
-  // Wrapped in try/catch because service name differs between 1.x and 2.x and
-  // this hook straddles that boundary.
+  // Wrapped in try/catch because the service name differs between 1.x and 2.x
+  // and this hook straddles that boundary.
   try {
     if (\Drupal::hasService('plugin.manager.group_content_enabler')) {
       \Drupal::service('plugin.manager.group_content_enabler')->clearCachedDefinitions();
@@ -269,8 +248,8 @@ function epa_core_update_10001() {
     );
   }
 
-  return t('Reed Group patversch 2797793 storage: reinstalled base field entity_id, backfilled @n rows, dropped patch field tables, realigned Group schema to @v.', [
-    '@n' => $total_rows,
-    '@v' => $expected_schema_version,
-  ]);
+  return t(
+    'Reversed Group patch 2797793: reinstalled entity_id base field, backfilled @count rows, dropped patch field tables.',
+    ['@count' => $total_rows]
+  );
 }
