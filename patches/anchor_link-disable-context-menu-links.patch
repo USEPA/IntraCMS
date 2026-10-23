@@ -1,0 +1,28 @@
+diff --git a/js/link/plugin.js b/js/link/plugin.js
+index 6177242b..bf42aebe 100644
+--- a/js/link/plugin.js
++++ b/js/link/plugin.js
+@@ -130,7 +130,8 @@
+                     var menu = {};
+ 
+                     if ( anchor.getAttribute( 'href' ) && anchor.getChildCount() ) {
+-                        menu = { link: CKEDITOR.TRISTATE_OFF, unlink: CKEDITOR.TRISTATE_OFF };
++                        // Temporary bandaid: Disable edit link and unlink from context menu
++                        // menu = { link: CKEDITOR.TRISTATE_OFF, unlink: CKEDITOR.TRISTATE_OFF };
+                     }
+ 
+                     if ( anchor && anchor.hasAttribute( 'name' ) ) {
+diff --git a/js/anchor/plugin.js b/js/anchor/plugin.js
+index 4f9e142c..60c0eaab 100644
+--- a/js/anchor/plugin.js
++++ b/js/anchor/plugin.js
+@@ -136,7 +136,8 @@
+                     var menu = {};
+ 
+                     if ( anchor.getAttribute( 'href' ) && anchor.getChildCount() ) {
+-                        menu = { link: CKEDITOR.TRISTATE_OFF, unlink: CKEDITOR.TRISTATE_OFF };
++                        // Temporary bandaid: Disable edit link and unlink from context menu
++                        // menu = { link: CKEDITOR.TRISTATE_OFF, unlink: CKEDITOR.TRISTATE_OFF };
+                     }
+ 
+                     if ( anchor && anchor.hasAttribute( 'name' ) ) {

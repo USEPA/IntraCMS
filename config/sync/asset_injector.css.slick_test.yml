@@ -1,0 +1,111 @@
+uuid: 27e48d14-59ac-445d-bb09-03ee5964f49e
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_in_page_not_found
+id: slick_test
+label: 'Slick test'
+code: |
+  /* Ensures absolute elements stay bounded inside the slider block */
+  .slick {
+    position: relative;
+  }
+
+  /* 1. Target the absolute nav bar row */
+  .slick-dots {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    
+    position: absolute;
+    bottom: 30px; /* Pins buttons 20px up from the absolute bottom edge */
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin: 0 !important;
+    
+    /* NEW ALIGNMENT STRATEGY: Replicate the USWDS structural grid container */
+    max-width: 76rem;              /* Standard USWDS .grid-container width limit */
+    padding-left: 2rem !important; /* Matches standard USWDS desktop site gutters */
+    padding-right: 2rem !important;
+    margin-left: auto !important;  /* Centers this grid layout area inside the full-screen image */
+    margin-right: auto !important;
+    
+    justify-content: flex-start;   /* Forces the internal items to snap to the left edge of this grid */
+  }
+
+  /* 2. Responsive adjustment for smaller viewports */
+  @media (max-width: 64rem) {
+    .slick-dots {
+      /* Seamless alignment with mobile gutters when the screen scales down smaller than 64rem */
+      padding-left: 1rem !important; 
+      padding-right: 1rem !important;
+    }
+  }
+
+
+
+  /* 2. Style the individual items with tight spacing */
+  .slick-dots li {
+    display: inline-block;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 0.5rem 0 0 !important; 
+  }
+
+  /* 3. Style the native numbers inside your .usa-button layout */
+  .slick-dots li button {
+    font-family: inherit;      
+    font-size: 1rem !important; 
+    font-weight: 700 !important;
+    color: #ffffff !important;  
+    
+    text-indent: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    border: none;
+    
+    /* INACTIVE STATE: Your specific neutral theme color */
+    background-color: #71767a !important; 
+  }
+
+  /* 4. HOVER STATE: Changes to your specific primary blue color */
+  .slick-dots li button:hover {
+    background-color: #005ea2 !important;
+  }
+
+  /* 5. ACTIVE STATE: Keeps your current active slide visibly highlighted */
+  .slick-dots li.slick-active button {
+    background-color: #1a4480 !important;
+    box-shadow: none !important; /* Removes the white inset border ring */
+  }
+
+  /* 6. Ensure the duplicate counter element remains completely hidden */
+  .slick-dots li button::before {
+    display: none !important;
+    content: none !important;
+  }
+  .usa-hero__callout {
+  	color: white;
+  }
+  .slick-slide, .slick-slide .usa-hero {
+  	min-height: 500px;
+  }
+media: all
+preprocess: false
+conditions:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
+contexts: {  }
+conditions_require_all: true
