@@ -15,8 +15,9 @@ use Drupal\Core\Database\Database;
  * storage migration hooks begin. Without this pin, drush updb would run
  * group_update_9200 → 9211 against patched-1.6 storage and fail at 9203.
  *
- * NOTE: If additional epa_core reversal hooks are added (10002+), they must
- * also be pinned here if they need to run before specific group 2.x hooks.
+ * TO VERIFY before swap: confirm that group_update_9200 is the first
+ * pending Group 2.x hook. If 2.x code introduces an earlier numbered hook
+ * that touches entity_id, pin that number instead.
  */
 function epa_core_update_dependencies() {
   return [
@@ -31,37 +32,43 @@ function epa_core_update_dependencies() {
 /**
  * Reverse Group patch 2797793 storage change prior to Group 2.x upgrade.
  *
+ * CRITICAL ORDERING: The patch's group_content__entity_id table is our
+ * backfill source. We must snapshot its mapping to memory BEFORE touching
+ * the field storage definitions, because manipulating the installed
+ * definitions can trigger table drops.
+ *
  * Steps:
- *  1) Reinstall the legacy base-field 'entity_id' on group_content so that
- *     group_content_field_data.entity_id exists again.
- *  2) Backfill group_content_field_data.entity_id from
- *     group_content__entity_id.entity_id_target_id.
- *  3) Uninstall the patch's field storage for entity_id and entity_id_str,
- *     dropping group_content__entity_id and group_content__entity_id_str.
+ *  0) Validate preconditions, snapshot source mapping to memory.
+ *  1) Remove patch's 'entity_id' and 'entity_id_str' field storage metadata
+ *     from installed definitions (does NOT touch tables yet).
+ *  2) Install legacy base-field 'entity_id' — triggers DDL to add
+ *     entity_id column to group_content_field_data.
+ *  3) Backfill group_content_field_data.entity_id from in-memory mapping,
+ *     verify rowCount matches expectations.
+ *  4) Drop patch tables group_content__entity_id and
+ *     group_content__entity_id_str.
  *
  * NOTE: We do NOT realign Group's stored schema version here. Core's update
- * batch controller (DbUpdateController) writes `first_pending - 1` to
- * key_value['system.schema'] for every module in the pending set *before*
- * any hook_update_N runs. By the time this hook executes, group's stored
- * schema has already been normalized to 9199. The next batch operation
- * (group_update_9200) will overwrite it to 9200 on completion.
+ * batch controller writes `first_pending - 1` to key_value['system.schema']
+ * for every module in the pending set before any hook_update_N runs. By the
+ * time this hook executes, group's stored schema has already been
+ * normalized to 9199.
  */
 function epa_core_update_10001() {
   $database = Database::getConnection();
   $schema = $database->schema();
   $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $logger = \Drupal::logger('epa_core');
 
   // ---------------------------------------------------------------------------
   // Precondition 1: Patch 2797793 must actually be applied. The authoritative
-  // signal is the presence of the patch-created field table. If this table
-  // doesn't exist, the hook has nothing to reverse — either the patch was
-  // never applied, or this hook already ran.
+  // signal is the presence of the patch-created field table.
   // ---------------------------------------------------------------------------
   if (!$schema->tableExists('group_content__entity_id')) {
     throw new \RuntimeException(
       'epa_core_update_10001 aborted: group_content__entity_id table not found. ' .
       'This hook expects Group 1.6 with patch 2797793 applied. Either the ' .
-      'patch was never applied, or this reversal already ran. Inspect manually.'
+      'patch was never applied, or this reversal already ran.'
     );
   }
 
@@ -90,12 +97,6 @@ function epa_core_update_10001() {
     );
   }
 
-  // Capture total row count up front for the final return message and for
-  // post-backfill verification.
-  $total_rows = (int) $database->query("
-    SELECT COUNT(*) FROM {group_content_field_data}
-  ")->fetchField();
-
   // ---------------------------------------------------------------------------
   // Precondition 3: no orphan shells. Every row in group_content_field_data
   // must have a matching row in group_content__entity_id, otherwise backfill
@@ -110,18 +111,119 @@ function epa_core_update_10001() {
 
   if ($orphan_count > 0) {
     throw new \RuntimeException(sprintf(
-      'epa_core_update_10001 aborted: %d orphan shells detected in ' .
-      'group_content_field_data (rows with no corresponding group_content__entity_id row). ' .
-      'These must be cleaned via Phase 2 shell-cleanup SQL before this hook can run safely.',
+      'epa_core_update_10001 aborted: %d orphan shells detected. ' .
+      'Clean via Phase 2 shell-cleanup SQL before retrying.',
       $orphan_count
     ));
   }
 
+  // Capture row counts for verification.
+  $expected_rows = (int) $database->query(
+    'SELECT COUNT(*) FROM {group_content_field_data}'
+  )->fetchField();
+
+  $source_rows = (int) $database->query(
+    'SELECT COUNT(*) FROM {group_content__entity_id} WHERE deleted = 0'
+  )->fetchField();
+
+  if ($expected_rows !== $source_rows) {
+    throw new \RuntimeException(sprintf(
+      'epa_core_update_10001 aborted: row count mismatch between ' .
+      'group_content_field_data (%d) and group_content__entity_id ' .
+      'non-deleted (%d). Resolve before retrying.',
+      $expected_rows,
+      $source_rows
+    ));
+  }
+
   // ---------------------------------------------------------------------------
-  // Step 1: Reinstall legacy base-field 'entity_id' on group_content.
+  // Step 0: Snapshot the backfill mapping to memory BEFORE touching schema.
+  // At ~38,484 rows × ~16 bytes per [id => target_id] pair this is ~600KB,
+  // trivially small for PHP's memory limit. Doing this in memory decouples
+  // our backfill source from any schema manipulation Steps 1-2 may trigger.
+  // ---------------------------------------------------------------------------
+  $mapping = $database->query("
+    SELECT entity_id AS gc_id, entity_id_target_id AS target_id
+    FROM {group_content__entity_id}
+    WHERE deleted = 0
+  ")->fetchAllKeyed();
+
+  if (count($mapping) !== $source_rows) {
+    throw new \RuntimeException(sprintf(
+      'epa_core_update_10001 aborted: in-memory mapping captured %d rows ' .
+      'but expected %d. Investigate before retrying.',
+      count($mapping),
+      $source_rows
+    ));
+  }
+
+  $logger->notice('Captured in-memory mapping of @count group_content → entity references.', [
+    '@count' => count($mapping),
+  ]);
+
+  // ---------------------------------------------------------------------------
+  // Step 1: Remove patch's field storage metadata from key_value.
+  //
+  // FIX for Bug 4: installFieldStorageDefinition() is a no-op when the
+  // entity.definitions.installed key_value already has an 'entity_id' entry
+  // (which the patch wrote). It compares definitions and sees "already
+  // present, no action needed", so no DDL fires and the column is never
+  // added to group_content_field_data.
+  //
+  // We clear the patch's entries directly from key_value. This does NOT
+  // drop tables (tables are dropped in Step 4). After clearing metadata,
+  // Step 2's installFieldStorageDefinition() will treat 'entity_id' as a
+  // fresh install and issue the ALTER TABLE to add the column.
+  // ---------------------------------------------------------------------------
+  $kv = \Drupal::keyValue('entity.definitions.installed');
+  $installed_defs = $kv->get('group_content.field_storage_definitions', []);
+
+  if (!is_array($installed_defs)) {
+    throw new \RuntimeException(
+      'epa_core_update_10001 aborted: entity.definitions.installed is not ' .
+      'an array. State is unexpected; investigate before retrying.'
+    );
+  }
+
+  $removed = [];
+  foreach (['entity_id', 'entity_id_str'] as $field_name) {
+    if (isset($installed_defs[$field_name])) {
+      unset($installed_defs[$field_name]);
+      $removed[] = $field_name;
+    }
+  }
+  $kv->set('group_content.field_storage_definitions', $installed_defs);
+
+  // Also clear the last_installed_schema repository entries for the patch
+  // fields. The repository caches definitions separately from key_value in
+  // some Drupal versions; clearing both avoids stale-read races.
+  $last_installed_repo = \Drupal::service('entity.last_installed_schema.repository');
+  foreach (['entity_id', 'entity_id_str'] as $field_name) {
+    // getLastInstalledFieldStorageDefinitions returns the full set keyed by
+    // field name; we rebuild without the patch fields and write it back.
+    // Note: deleteLastInstalledFieldStorageDefinition requires a definition
+    // object we may not have, so we manipulate the collection instead.
+    $defs = $last_installed_repo->getLastInstalledFieldStorageDefinitions('group_content');
+    if (isset($defs[$field_name])) {
+      unset($defs[$field_name]);
+      $last_installed_repo->setLastInstalledFieldStorageDefinitions('group_content', $defs);
+    }
+  }
+
+  $logger->notice('Removed patch field storage metadata for: @fields', [
+    '@fields' => implode(', ', $removed) ?: '(none)',
+  ]);
+
+  // ---------------------------------------------------------------------------
+  // Step 2: Install legacy base-field 'entity_id' on group_content.
+  //
   // Matches stock Group 1.6 GroupContent::baseFieldDefinitions() shape.
   // Stock 1.6 does NOT set target_type on the base definition — plugins
   // override it per bundle. Do not add setSetting('target_type', ...) here.
+  //
+  // FIX for Bug 1: The guard now checks the actual column in
+  // group_content_field_data, not getFieldStorageDefinition() which would
+  // return cached/stale metadata.
   // ---------------------------------------------------------------------------
   $entity_id_definition = BaseFieldDefinition::create('entity_reference')
     ->setLabel(t('Content'))
@@ -129,106 +231,132 @@ function epa_core_update_10001() {
     ->setReadOnly(TRUE)
     ->setRequired(TRUE);
 
-  // Idempotent: only install if not already present.
-  if (!$definition_update_manager->getFieldStorageDefinition('entity_id', 'group_content')) {
+  // Clear caches so the definition update manager re-reads key_value state
+  // we just modified in Step 1.
+  \Drupal::entityTypeManager()->clearCachedDefinitions();
+  \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
+
+  if (!$schema->fieldExists('group_content_field_data', 'entity_id')) {
     $definition_update_manager->installFieldStorageDefinition(
       'entity_id',
       'group_content',
       'group',
       $entity_id_definition
     );
+    $logger->notice('Installed entity_id base-field storage definition.');
+  }
+  else {
+    $logger->notice('entity_id column already present on group_content_field_data; skipping install.');
+  }
+
+  // FIX for Bug 2: Hard-fail if the column still isn't present after install.
+  // Previously this was a silent "if column exists, backfill" guard that
+  // would skip backfill entirely and only surface the problem later via
+  // the misleading "NULL entity_id" check.
+  if (!$schema->fieldExists('group_content_field_data', 'entity_id')) {
+    throw new \RuntimeException(
+      'epa_core_update_10001 aborted: entity_id column was not created on ' .
+      'group_content_field_data by installFieldStorageDefinition(). ' .
+      'This indicates stale metadata in key_value. Investigate Step 1 ' .
+      'metadata removal before retrying.'
+    );
   }
 
   // ---------------------------------------------------------------------------
-  // Step 2: Backfill group_content_field_data.entity_id from field table.
-  // The _str table has 0 rows (confirmed in Phase 1 analysis) so no string
-  // backfill is needed.
+  // Step 3: Backfill group_content_field_data.entity_id from in-memory
+  // mapping, then verify affected row count.
+  //
+  // FIX for Bug 3: We capture rowCount() from the UPDATE and report THAT
+  // in the final message, not the pre-flight $expected_rows. Previously
+  // the hook reported $total_rows (the count of rows in the table) as if
+  // it meant "rows backfilled" — misleading if backfill partially failed.
+  //
+  // Using a CASE expression lets us do all 38k updates in a single query
+  // rather than 38k separate UPDATE statements. For 38k rows this matters
+  // (seconds vs. minutes).
   // ---------------------------------------------------------------------------
-  if ($schema->fieldExists('group_content_field_data', 'entity_id')) {
-    // Portable backfill (works on MySQL/MariaDB; adjust for Postgres if used).
-    $database->query("
-      UPDATE {group_content_field_data} gcfd
-      INNER JOIN {group_content__entity_id} ei
-        ON ei.entity_id = gcfd.id AND ei.deleted = 0
-      SET gcfd.entity_id = ei.entity_id_target_id
-    ");
+  $update_query = $database->update('group_content_field_data');
+  $cases = [];
+  $ids = [];
+  foreach ($mapping as $gc_id => $target_id) {
+    // Use integer-casting placeholders. We trust the values because they
+    // came from our own query against group_content__entity_id, but we
+    // still cast defensively.
+    $cases[] = 'WHEN ' . (int) $gc_id . ' THEN ' . (int) $target_id;
+    $ids[] = (int) $gc_id;
   }
 
-  // Post-backfill verification 1: no NULL entity_id values remain.
-  $null_count = (int) $database->query("
-    SELECT COUNT(*) FROM {group_content_field_data} WHERE entity_id IS NULL
-  ")->fetchField();
+  // Build and execute the single mass-update. Expression object required
+  // because the CASE statement is raw SQL.
+  $expression = 'CASE id ' . implode(' ', $cases) . ' END';
+  $update_query->expression('entity_id', $expression);
+  $update_query->condition('id', $ids, 'IN');
+  $affected = $update_query->execute();
 
-  if ($null_count > 0) {
+  if ($affected !== $expected_rows) {
     throw new \RuntimeException(sprintf(
-      'Backfill incomplete: %d group_content rows have NULL entity_id after backfill. ' .
-      'Aborting before field storage drop. Investigate before retrying.',
-      $null_count
+      'epa_core_update_10001 aborted: UPDATE affected %d rows but expected %d. ' .
+      'Backfill is incomplete. State is now partially migrated — restore ' .
+      'from pre-reversal snapshot before retrying.',
+      $affected,
+      $expected_rows
     ));
   }
 
-  // Post-backfill verification 2: row count sanity check.
-  $post_backfill_count = (int) $database->query("
-    SELECT COUNT(*) FROM {group_content_field_data}
-  ")->fetchField();
+  // Post-backfill verification: no NULL entity_id values remain.
+  $null_count = (int) $database->query(
+    'SELECT COUNT(*) FROM {group_content_field_data} WHERE entity_id IS NULL'
+  )->fetchField();
 
-  if ($post_backfill_count !== $total_rows) {
+  if ($null_count > 0) {
     throw new \RuntimeException(sprintf(
-      'Row count mismatch: started with %d rows, now have %d. ' .
-      'Backfill should not have changed row count. Aborting.',
-      $total_rows,
+      'epa_core_update_10001 aborted: %d rows still have NULL entity_id ' .
+      'after backfill despite UPDATE reporting %d affected rows. ' .
+      'This should not happen; investigate before retrying.',
+      $null_count,
+      $affected
+    ));
+  }
+
+  // Post-backfill verification: row count unchanged.
+  $post_backfill_count = (int) $database->query(
+    'SELECT COUNT(*) FROM {group_content_field_data}'
+  )->fetchField();
+
+  if ($post_backfill_count !== $expected_rows) {
+    throw new \RuntimeException(sprintf(
+      'epa_core_update_10001 aborted: row count changed during backfill ' .
+      '(%d → %d). UPDATE should not have altered row count. Restore from ' .
+      'snapshot before retrying.',
+      $expected_rows,
       $post_backfill_count
     ));
   }
 
-  // ---------------------------------------------------------------------------
-  // Step 3: Uninstall patch field storage for entity_id and entity_id_str.
-  // Preferred path: entity definition update manager (clean, updates key_value).
-  // Fallback path: drop tables + prune key_value entries if the API cannot
-  // resolve the field definitions (e.g., patch code already removed).
-  // ---------------------------------------------------------------------------
-  foreach (['entity_id', 'entity_id_str'] as $field_name) {
-    $existing = $definition_update_manager->getFieldStorageDefinition($field_name, 'group_content');
-    // The patch registered these as *configurable* field storage via
-    // GroupContentReferenceDefinition. If the base-field reinstall in Step 1
-    // replaced 'entity_id', the API will only still see 'entity_id_str' here.
-    if ($existing && $existing->getProvider() !== 'group_content_base') {
-      try {
-        $definition_update_manager->uninstallFieldStorageDefinition($existing);
-      }
-      catch (\Throwable $e) {
-        // Fall through to raw cleanup below. Log for forensics.
-        \Drupal::logger('epa_core')->warning(
-          'uninstallFieldStorageDefinition failed for @field: @msg. Falling back to raw cleanup.',
-          ['@field' => $field_name, '@msg' => $e->getMessage()]
-        );
-      }
-    }
-  }
+  $logger->notice('Backfilled @count rows of group_content_field_data.entity_id.', [
+    '@count' => $affected,
+  ]);
 
-  // Raw cleanup fallback / finalization.
+  // ---------------------------------------------------------------------------
+  // Step 4: Drop patch tables. Safe to do now because:
+  //  - entity_id data has been successfully backfilled to the base-field
+  //    column (verified by rowCount, NULL check, and row count check above).
+  //  - Patch's field storage metadata was removed in Step 1, so no entity
+  //    code path still expects these tables.
+  //  - entity_id_str had 0 rows (confirmed in Phase 1 analysis), so no data
+  //    is lost by dropping group_content__entity_id_str.
+  // ---------------------------------------------------------------------------
   foreach (['group_content__entity_id', 'group_content__entity_id_str'] as $table) {
     if ($schema->tableExists($table)) {
       $schema->dropTable($table);
+      $logger->notice('Dropped patch table: @table', ['@table' => $table]);
     }
   }
 
-  // Prune leftover entity definition bookkeeping and restore the base-field
-  // definition unconditionally. Simpler and safer than conditional provider
-  // checks, since Step 1 already installed the correct base definition.
-  $kv = \Drupal::keyValue('entity.definitions.installed');
-  $installed_defs = $kv->get('group_content.field_storage_definitions', []);
-  if (is_array($installed_defs)) {
-    // Remove patch artifact unconditionally.
-    unset($installed_defs['entity_id_str']);
-    // Overwrite entity_id with the known-good base definition from Step 1.
-    $installed_defs['entity_id'] = $entity_id_definition;
-    $kv->set('group_content.field_storage_definitions', $installed_defs);
-  }
-
   // ---------------------------------------------------------------------------
-  // Cache invalidation — must be aggressive enough that the next update hook
-  // (group_update_9200) sees fresh entity type and plugin definitions.
+  // Final cache invalidation — must be aggressive enough that the next
+  // update hook (group_update_9200) sees fresh entity type definitions
+  // reflecting the base-field entity_id, not the patch's field storage.
   // ---------------------------------------------------------------------------
   \Drupal::entityTypeManager()->clearCachedDefinitions();
   \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
@@ -242,14 +370,18 @@ function epa_core_update_10001() {
     }
   }
   catch (\Throwable $e) {
-    \Drupal::logger('epa_core')->notice(
-      'group_content_enabler plugin cache clear skipped: @msg',
-      ['@msg' => $e->getMessage()]
-    );
+    $logger->notice('group_content_enabler plugin cache clear skipped: @msg', [
+      '@msg' => $e->getMessage(),
+    ]);
   }
 
   return t(
-    'Reversed Group patch 2797793: reinstalled entity_id base field, backfilled @count rows, dropped patch field tables.',
-    ['@count' => $total_rows]
+    'Reversed Group patch 2797793: removed patch field storage metadata, ' .
+    'installed entity_id base-field, backfilled @affected rows ' .
+    '(of @expected expected), dropped patch tables.',
+    [
+      '@affected' => $affected,
+      '@expected' => $expected_rows,
+    ]
   );
 }

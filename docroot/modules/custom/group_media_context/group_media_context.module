@@ -9,7 +9,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\group\Entity\GroupContent;
+use Drupal\group\Entity\GroupRelationship;
 use Drupal\group\Entity\GroupInterface;
 use Drupal\layout_builder\Plugin\SectionStorage\OverridesSectionStorage;
 use Drupal\media_library\MediaLibraryState;
@@ -33,9 +33,9 @@ function group_media_context_field_widget_form_alter($element, FormStateInterfac
     $entity = $form_state->getformObject()->getEntity();
     $groups = [];
     if ($entity->id()) {
-      $group_contents = GroupContent::loadByEntity($entity);
-      foreach ($group_contents as $group_content) {
-        $groups[] = $group_content->getGroup();
+      $group_relationships = GroupRelationship::loadByEntity($entity);
+      foreach ($group_relationships as $group_relationship) {
+        $groups[] = $group_relationship->getGroup();
       }
     }
     elseif (isset($form_state->getStorage()['group'])) {
@@ -95,9 +95,9 @@ function group_media_context_editor_js_settings_alter(&$settings) {
           $entity = $parameter;
         }
         if ($entity instanceof ContentEntityInterface) {
-          $group_contents = GroupContent::loadByEntity($entity);
-          foreach ($group_contents as $group_content) {
-            $groups[] = $group_content->getGroup();
+          $group_relationships = GroupRelationship::loadByEntity($entity);
+          foreach ($group_relationships as $group_relationship) {
+            $groups[] = $group_relationship->getGroup();
           }
           break;
         }
@@ -151,7 +151,7 @@ function _group_media_context_submit($form, FormStateInterface $form_state) {
       foreach ($group_ids as $group_id) {
         foreach ($media_items as $media) {
           $group = $entity_type_manager->getStorage('group')->load($group_id);
-          $group->addContent($media, 'group_media:' . $media->bundle());
+          $group->addRelationship($media, 'group_media:' . $media->bundle());
         }
       }
     }
