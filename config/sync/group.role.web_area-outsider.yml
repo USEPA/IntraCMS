@@ -4,13 +4,14 @@ status: true
 dependencies:
   config:
     - group.type.web_area
+    - user.role.authenticated
 id: web_area-outsider
 label: Outsider
 weight: -101
-internal: true
-audience: outsider
+admin: false
+scope: outsider
+global_role: authenticated
 group_type: web_area
-permissions_ui: true
 permissions:
   - 'create group_node:quiz content'
   - 'delete own group_node:quiz content'

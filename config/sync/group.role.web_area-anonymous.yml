@@ -4,13 +4,14 @@ status: true
 dependencies:
   config:
     - group.type.web_area
+    - user.role.anonymous
 id: web_area-anonymous
 label: Anonymous
 weight: -102
-internal: true
-audience: anonymous
+admin: false
+scope: outsider
+global_role: anonymous
 group_type: web_area
-permissions_ui: true
 permissions:
   - 'view group'
   - 'view group_media:audio_file entity'

@@ -485,10 +485,11 @@ function get_group_labels_by_node_id($node_id)
 
   $ids = \Drupal::entityQuery('group_content')
     ->condition('entity_id', $node_id)
+    ->accessCheck(FALSE)
     ->execute();
   $group_lables = array();
   $group_ids = array();
-  $relations = \Drupal\group\Entity\GroupContent::loadMultiple($ids);
+  $relations = \Drupal\group\Entity\GroupRelationship::loadMultiple($ids);
   foreach ($relations as $rel) {
     if ($rel->getEntity()->getEntityTypeId() == 'node') {
       $group_ids[] = $rel->getGroup()->id();
@@ -497,3 +498,4 @@ function get_group_labels_by_node_id($node_id)
   }
   return implode(", ", $group_lables);
 }
+
