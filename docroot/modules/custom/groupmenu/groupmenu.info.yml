@@ -1,0 +1,5 @@
+name: 'Groupmenu (removal stub)'
+type: module
+description: 'TEMPORARY: Empty stub to allow clean uninstall of orphaned groupmenu references during the Group 2.x upgrade. Groupmenu was removed from composer.json before being properly uninstalled, leaving references in active DB config across all environments. This stub provides the minimum file ExtensionList needs so that cim can run the uninstall path cleanly. SAFE TO REMOVE after Group 2.x upgrade has been successfully deployed to all environments (dev, stage, prod).'
+core_version_requirement: ^9 || ^10
+package: 'Deprecated'
