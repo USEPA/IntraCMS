@@ -1,0 +1,13 @@
+diff --git a/src/Plugin/Condition/GroupContentMenu.php b/rc/Plugin/Condition/GroupContentMenu.php
+index 5143a1fa..7878689e 100644
+--- a/src/Plugin/Condition/GroupContentMenu.php
++++ b/src/Plugin/Condition/GroupContentMenu.php
+@@ -115,7 +115,7 @@ public function getMenuInstance(): ?GroupContentMenuInterface {
+       return NULL;
+     }
+ 
+-    $group_relationship_storage = $this->entityTypeManager->getStorage('group_relationship');
++    $group_relationship_storage = $this->entityTypeManager->getStorage('group_content');
+     assert($group_relationship_storage instanceof GroupRelationshipStorageInterface);
+     $plugin_id = $group_relationship_storage->loadByPluginId($this->getPluginIdWithType());
+ 
