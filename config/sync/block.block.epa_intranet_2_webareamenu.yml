@@ -1,23 +1,26 @@
-uuid: 427fa867-9d69-4b8e-b252-7d7f84b250c3
+uuid: 1df36313-4de3-43d2-814b-5cc3f28814c5
 langcode: en
 status: true
 dependencies:
   config:
     - group_content_menu.group_content_menu_type.webareamenu
   module:
+    - block_in_page_not_found
     - group_content_menu
+    - node
+    - system
   theme:
     - epa_intranet_2
 id: epa_intranet_2_webareamenu
 theme: epa_intranet_2
 region: sidebar_first
-weight: -23
+weight: -24
 provider: null
 plugin: 'group_content_menu:webareamenu'
 settings:
   id: 'group_content_menu:webareamenu'
   label: 'Web Area Menu'
-  label_display: visible
+  label_display: '0'
   provider: group_content_menu
   context_mapping:
     group: '@group.group_route_context:group'
@@ -27,9 +30,29 @@ settings:
   relative_visibility: false
   theme_hook_suggestion: ''
 visibility:
+  page_not_found_request:
+    id: page_not_found_request
+    negate: false
+    page_not_found: false
   group_content_menu:
     id: group_content_menu
     negate: false
     context_mapping:
       group: '@group.group_route_context:group'
     type: webareamenu
+  request_path:
+    id: request_path
+    negate: true
+    pages: "/web-areas/*\r\n/group/*/menus\r\n/group/*/revisions\r\n/group/*/taxonomy\r\n/group/*/member/*"
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      employee_profile: employee_profile
+      event: event
+      landing_page: landing_page
+      mass_mailer: mass_mailer
+      photos_of_the_week: photos_of_the_week
+      staff_member: staff_member
